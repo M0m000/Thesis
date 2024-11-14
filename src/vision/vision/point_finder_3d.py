@@ -39,10 +39,10 @@ class PointFinder3D(Node):
         self.error_window_name = 'Current Errors'
 
         ### Kameraparameter (ausgelesen aus RealSense Console)
-        self.fx = 601                   # Brennweite in x-Richtung (in Pixeln)
-        self.fy = 599                  # Brennweite in y-Richtung (in Pixeln)
-        self.cx = 422.081146240234      # Mittelpunkt in x (in Pixeln)
-        self.cy = 243.28205871582       # Mittelpunkt in y (in Pixeln)
+        self.fx = 623                   # Brennweite in x-Richtung (in Pixeln)
+        self.fy = 623                  # Brennweite in y-Richtung (in Pixeln)
+        self.cx = 318.262176513672      # Mittelpunkt in x (in Pixeln)
+        self.cy = 242.990539550781       # Mittelpunkt in y (in Pixeln)
         self.mm_per_pixel = 0.537       # MUESSEN UEBER CALIBRATION NODE AUSGELESEN UND HIER EINGETRAGEN WERDEN!
         self.pixel_per_mm = 1/0.537     # MUESSEN UEBER CALIBRATION NODE AUSGELESEN UND HIER EINGETRAGEN WERDEN!
 
@@ -164,7 +164,7 @@ class PointFinder3D(Node):
 
 
     def show_point_coordinates(self, points_text):
-        points_img = np.zeros((480, 640, 3), dtype=np.uint8)
+        points_img = np.zeros((240, 800, 3), dtype=np.uint8)
         lines = points_text.split(";")
         y_offset = 30
 
@@ -201,7 +201,7 @@ class PointFinder3D(Node):
 
 
     def show_current_error(self, error_text):
-        error_img = np.zeros((480, 640, 3), dtype=np.uint8)
+        error_img = np.zeros((240, 800, 3), dtype=np.uint8)
         lines = error_text.split(";")
         y_offset = 30
 
