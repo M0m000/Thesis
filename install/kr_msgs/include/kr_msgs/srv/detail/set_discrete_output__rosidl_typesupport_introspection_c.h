@@ -1,0 +1,1 @@
+/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/set_discrete_output__rosidl_typesupport_introspection_c.h

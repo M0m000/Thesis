@@ -1,0 +1,1 @@
+/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_generator_c/kr_msgs/srv/detail/get_system_frame__type_support.h

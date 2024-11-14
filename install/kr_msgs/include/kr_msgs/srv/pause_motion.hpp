@@ -1,0 +1,1 @@
+/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_generator_cpp/kr_msgs/srv/pause_motion.hpp

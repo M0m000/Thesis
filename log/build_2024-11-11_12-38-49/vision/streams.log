@@ -1,0 +1,17 @@
+[0.933s] Invoking command in '/home/vboxuser/ros2_ws/build/vision': PYTHONPATH=/home/vboxuser/ros2_ws/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/vboxuser/ros2_ws/build/vision/build --no-deps symlink_data
+[1.230s] running develop
+[1.376s] running egg_info
+[1.380s] writing vision.egg-info/PKG-INFO
+[1.380s] writing dependency_links to vision.egg-info/dependency_links.txt
+[1.380s] writing entry points to vision.egg-info/entry_points.txt
+[1.381s] writing requirements to vision.egg-info/requires.txt
+[1.381s] writing top-level names to vision.egg-info/top_level.txt
+[1.419s] reading manifest file 'vision.egg-info/SOURCES.txt'
+[1.419s] writing manifest file 'vision.egg-info/SOURCES.txt'
+[1.458s] running build_ext
+[1.458s] Creating /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision.egg-link (link to .)
+[1.459s] Installing pointcloud_receiver script to /home/vboxuser/ros2_ws/install/vision/lib/vision
+[1.461s] 
+[1.461s] Installed /home/vboxuser/ros2_ws/build/vision
+[1.463s] running symlink_data
+[1.509s] Invoked command in '/home/vboxuser/ros2_ws/build/vision' returned '0': PYTHONPATH=/home/vboxuser/ros2_ws/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/vboxuser/ros2_ws/build/vision/build --no-deps symlink_data

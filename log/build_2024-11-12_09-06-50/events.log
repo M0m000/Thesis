@@ -1,0 +1,84 @@
+[0.000000] (-) TimerEvent: {}
+[0.006748] (kr_msgs) JobQueued: {'identifier': 'kr_msgs', 'dependencies': OrderedDict()}
+[0.010152] (realsense2_camera_msgs) JobQueued: {'identifier': 'realsense2_camera_msgs', 'dependencies': OrderedDict()}
+[0.010434] (vision) JobQueued: {'identifier': 'vision', 'dependencies': OrderedDict()}
+[0.010653] (kr_example_cpp) JobQueued: {'identifier': 'kr_example_cpp', 'dependencies': OrderedDict([('kr_msgs', '/home/vboxuser/thesis/ros2_ws/install/kr_msgs')])}
+[0.010739] (kr_example_python) JobQueued: {'identifier': 'kr_example_python', 'dependencies': OrderedDict([('kr_msgs', '/home/vboxuser/thesis/ros2_ws/install/kr_msgs')])}
+[0.011019] (realsense2_camera) JobQueued: {'identifier': 'realsense2_camera', 'dependencies': OrderedDict([('realsense2_camera_msgs', '/home/vboxuser/thesis/ros2_ws/install/realsense2_camera_msgs')])}
+[0.011688] (realsense2_description) JobQueued: {'identifier': 'realsense2_description', 'dependencies': OrderedDict([('realsense2_camera_msgs', '/home/vboxuser/thesis/ros2_ws/install/realsense2_camera_msgs')])}
+[0.011800] (kr_msgs) JobStarted: {'identifier': 'kr_msgs'}
+[0.030236] (realsense2_camera_msgs) JobStarted: {'identifier': 'realsense2_camera_msgs'}
+[0.058588] (vision) JobStarted: {'identifier': 'vision'}
+[0.088721] (kr_msgs) JobProgress: {'identifier': 'kr_msgs', 'progress': 'cmake'}
+[0.090754] (kr_msgs) JobProgress: {'identifier': 'kr_msgs', 'progress': 'build'}
+[0.095107] (kr_msgs) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/vboxuser/thesis/ros2_ws/build/kr_msgs', '--', '-j8', '-l8'], 'cwd': '/home/vboxuser/thesis/ros2_ws/build/kr_msgs', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'de_DE:en'), ('USER', 'vboxuser'), ('LC_TIME', 'de_DE.UTF-8'), ('SSH_AGENT_PID', '1396'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/vboxuser'), ('OLDPWD', '/home/vboxuser/thesis'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/terminator.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'de_DE.UTF-8'), ('MANAGERPID', '1302'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '5808'), ('IM_CONFIG_PHASE', '1'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'vboxuser'), ('JOURNAL_STREAM', '8:34746'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'vboxuser'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/home/vboxuser/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/KassowRobot:@/tmp/.ICE-unix/1466,unix/KassowRobot:/tmp/.ICE-unix/1466'), ('INVOCATION_ID', 'b602fe611a214057a657c48b6947f0a8'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'de_DE.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'de_DE.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'de_DE.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '18'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'de_DE.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:4af11849-d34d-42e4-84e4-1881524cfb0c'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'de_DE.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('LC_IDENTIFICATION', 'de_DE.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/vboxuser/thesis/ros2_ws/build/kr_msgs'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'de_DE.UTF-8'), ('LC_PAPER', 'de_DE.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy')]), 'shell': False}
+[0.112205] (-) TimerEvent: {}
+[0.114137] (realsense2_camera_msgs) JobProgress: {'identifier': 'realsense2_camera_msgs', 'progress': 'cmake'}
+[0.117710] (realsense2_camera_msgs) JobProgress: {'identifier': 'realsense2_camera_msgs', 'progress': 'build'}
+[0.128843] (realsense2_camera_msgs) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/vboxuser/thesis/ros2_ws/build/realsense2_camera_msgs', '--', '-j8', '-l8'], 'cwd': '/home/vboxuser/thesis/ros2_ws/build/realsense2_camera_msgs', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'de_DE:en'), ('USER', 'vboxuser'), ('LC_TIME', 'de_DE.UTF-8'), ('SSH_AGENT_PID', '1396'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/vboxuser'), ('OLDPWD', '/home/vboxuser/thesis'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/terminator.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'de_DE.UTF-8'), ('MANAGERPID', '1302'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '5808'), ('IM_CONFIG_PHASE', '1'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'vboxuser'), ('JOURNAL_STREAM', '8:34746'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'vboxuser'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/home/vboxuser/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/KassowRobot:@/tmp/.ICE-unix/1466,unix/KassowRobot:/tmp/.ICE-unix/1466'), ('INVOCATION_ID', 'b602fe611a214057a657c48b6947f0a8'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'de_DE.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'de_DE.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'de_DE.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '18'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'de_DE.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:4af11849-d34d-42e4-84e4-1881524cfb0c'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'de_DE.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('LC_IDENTIFICATION', 'de_DE.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/vboxuser/thesis/ros2_ws/build/realsense2_camera_msgs'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'de_DE.UTF-8'), ('LC_PAPER', 'de_DE.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy')]), 'shell': False}
+[0.155186] (kr_msgs) StderrLine: {'line': b'CMake Error: The current CMakeCache.txt directory /home/vboxuser/thesis/ros2_ws/build/kr_msgs/CMakeCache.txt is different than the directory /home/vboxuser/ros2_ws/build/kr_msgs where CMakeCache.txt was created. This may result in binaries being created in the wrong place. If you are not sure, reedit the CMakeCache.txt\n'}
+[0.165749] (realsense2_camera_msgs) StderrLine: {'line': b'CMake Error: The current CMakeCache.txt directory /home/vboxuser/thesis/ros2_ws/build/realsense2_camera_msgs/CMakeCache.txt is different than the directory /home/vboxuser/ros2_ws/build/realsense2_camera_msgs where CMakeCache.txt was created. This may result in binaries being created in the wrong place. If you are not sure, reedit the CMakeCache.txt\n'}
+[0.194774] (realsense2_camera_msgs) StderrLine: {'line': b'CMake Error: The source directory "/home/vboxuser/ros2_ws/src/realsense-ros/realsense2_camera_msgs" does not exist.\n'}
+[0.195862] (realsense2_camera_msgs) StderrLine: {'line': b'Specify --help for usage, or press the help button on the CMake GUI.\n'}
+[0.198352] (realsense2_camera_msgs) StderrLine: {'line': b'make: *** [Makefile:1708: cmake_check_build_system] Fehler 1\n'}
+[0.212747] (-) TimerEvent: {}
+[0.251131] (kr_msgs) StderrLine: {'line': b'CMake Error: The source directory "/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs" does not exist.\n'}
+[0.252024] (kr_msgs) StderrLine: {'line': b'Specify --help for usage, or press the help button on the CMake GUI.\n'}
+[0.253955] (kr_msgs) StderrLine: {'line': b'make: *** [Makefile:13468: cmake_check_build_system] Fehler 1\n'}
+[0.313476] (-) TimerEvent: {}
+[0.415551] (-) TimerEvent: {}
+[0.517074] (-) TimerEvent: {}
+[0.618474] (-) TimerEvent: {}
+[0.704187] (realsense2_camera_msgs) CommandEnded: {'returncode': 2}
+[0.718946] (kr_msgs) CommandEnded: {'returncode': 2}
+[0.721041] (-) TimerEvent: {}
+[0.830192] (-) TimerEvent: {}
+[0.935953] (-) TimerEvent: {}
+[1.037187] (-) TimerEvent: {}
+[1.139730] (-) TimerEvent: {}
+[1.240953] (-) TimerEvent: {}
+[1.308420] (realsense2_camera_msgs) JobEnded: {'identifier': 'realsense2_camera_msgs', 'rc': 2}
+[1.341342] (-) TimerEvent: {}
+[1.442407] (-) TimerEvent: {}
+[1.543462] (-) TimerEvent: {}
+[1.645276] (-) TimerEvent: {}
+[1.746353] (-) TimerEvent: {}
+[1.798192] (vision) JobEnded: {'identifier': 'vision', 'rc': 'SIGINT'}
+[1.847286] (-) TimerEvent: {}
+[1.949392] (-) TimerEvent: {}
+[2.051993] (-) TimerEvent: {}
+[2.153497] (-) TimerEvent: {}
+[2.264749] (-) TimerEvent: {}
+[2.369384] (-) TimerEvent: {}
+[2.470641] (-) TimerEvent: {}
+[2.571988] (-) TimerEvent: {}
+[2.674509] (-) TimerEvent: {}
+[2.775720] (-) TimerEvent: {}
+[2.876719] (-) TimerEvent: {}
+[2.977517] (-) TimerEvent: {}
+[3.082028] (-) TimerEvent: {}
+[3.183533] (-) TimerEvent: {}
+[3.284499] (-) TimerEvent: {}
+[3.385470] (-) TimerEvent: {}
+[3.488561] (-) TimerEvent: {}
+[3.590385] (-) TimerEvent: {}
+[3.692424] (-) TimerEvent: {}
+[3.793232] (-) TimerEvent: {}
+[3.894128] (-) TimerEvent: {}
+[3.996705] (-) TimerEvent: {}
+[4.097711] (-) TimerEvent: {}
+[4.199317] (-) TimerEvent: {}
+[4.300673] (-) TimerEvent: {}
+[4.412922] (-) TimerEvent: {}
+[4.514848] (-) TimerEvent: {}
+[4.616319] (-) TimerEvent: {}
+[4.717776] (-) TimerEvent: {}
+[4.819129] (-) TimerEvent: {}
+[4.920361] (-) TimerEvent: {}
+[5.021851] (-) TimerEvent: {}
+[5.093145] (kr_msgs) JobEnded: {'identifier': 'kr_msgs', 'rc': 'SIGINT'}
+[5.107591] (kr_example_cpp) JobSkipped: {'identifier': 'kr_example_cpp'}
+[5.108479] (kr_example_python) JobSkipped: {'identifier': 'kr_example_python'}
+[5.108542] (realsense2_camera) JobSkipped: {'identifier': 'realsense2_camera'}
+[5.108584] (realsense2_description) JobSkipped: {'identifier': 'realsense2_description'}
+[5.108641] (-) EventReactorShutdown: {}

@@ -1,0 +1,29 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from kr_msgs/srv/io/ConfigQuadratureInput.srv
+// generated code does not contain a copyright notice
+
+
+module kr_msgs {
+  module srv {
+    @verbatim (language="comment", text=
+      "#####################################################" "\n"
+      "            CONFIG QUADRATURE INPUT SRV             #" "\n"
+      "#####################################################")
+    struct ConfigQuadratureInput_Request {
+      @verbatim (language="comment", text=
+        " input index (1 or 2)")
+      int8 index;
+
+      @verbatim (language="comment", text=
+        " pulses per revolution (0 - 32767 LPR)")
+      int32 pulse_per_rev;
+
+      @verbatim (language="comment", text=
+        " index availability")
+      boolean idx_availability;
+    };
+    struct ConfigQuadratureInput_Response {
+      boolean success;
+    };
+  };
+};

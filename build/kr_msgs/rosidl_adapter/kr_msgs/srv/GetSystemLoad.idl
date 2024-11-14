@@ -1,0 +1,39 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from kr_msgs/srv/robot/GetSystemLoad.srv
+// generated code does not contain a copyright notice
+
+
+module kr_msgs {
+  module srv {
+    module GetSystemLoad_Request_Constants {
+      const string TOOLLOAD = "toolload";
+      const string PAYLOAD = "payload";
+    };
+    @verbatim (language="comment", text=
+      "#####################################################" "\n"
+      "                 GET SYSTEM LOAD                    #" "\n"
+      "#####################################################")
+    struct GetSystemLoad_Request {
+      @verbatim (language="comment", text=
+        " see SUPPORTED_LOADS")
+      string name;
+    };
+    typedef double double__3[3];
+    typedef double double__6[6];
+    struct GetSystemLoad_Response {
+      double mass;
+
+      @verbatim (language="comment", text=
+        " center of gravity - x, y, z")
+      @unit (value="mm")
+      double__3 cog;
+
+      @verbatim (language="comment", text=
+        " inertia matrix - xx, yy, zz, xy, xz, yz")
+      @unit (value="kg/m2")
+      double__6 imx;
+
+      boolean success;
+    };
+  };
+};

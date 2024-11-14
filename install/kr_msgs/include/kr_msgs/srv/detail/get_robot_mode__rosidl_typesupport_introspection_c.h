@@ -1,0 +1,1 @@
+/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/get_robot_mode__rosidl_typesupport_introspection_c.h

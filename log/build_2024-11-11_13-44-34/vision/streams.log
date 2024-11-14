@@ -1,0 +1,35 @@
+[0.810s] Invoking command in '/home/vboxuser/ros2_ws/build/vision': PYTHONPATH=/home/vboxuser/ros2_ws/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --uninstall --editable --build-directory /home/vboxuser/ros2_ws/build/vision/build
+[1.060s] running develop
+[1.227s] Removing /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision.egg-link (link to .)
+[1.261s] Invoked command in '/home/vboxuser/ros2_ws/build/vision' returned '0': PYTHONPATH=/home/vboxuser/ros2_ws/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --uninstall --editable --build-directory /home/vboxuser/ros2_ws/build/vision/build
+[1.262s] Invoking command in '/home/vboxuser/ros2_ws/src/vision': PYTHONPATH=/home/vboxuser/ros2_ws/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/vboxuser/ros2_ws/build/vision/build install --record /home/vboxuser/ros2_ws/build/vision/install.log --install-scripts $base/lib/vision --single-version-externally-managed install_data --force
+[1.500s] running egg_info
+[1.500s] writing ../../build/vision/vision.egg-info/PKG-INFO
+[1.501s] writing dependency_links to ../../build/vision/vision.egg-info/dependency_links.txt
+[1.501s] writing entry points to ../../build/vision/vision.egg-info/entry_points.txt
+[1.503s] writing requirements to ../../build/vision/vision.egg-info/requires.txt
+[1.508s] writing top-level names to ../../build/vision/vision.egg-info/top_level.txt
+[1.543s] reading manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[1.544s] writing manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[1.545s] running build
+[1.545s] running build_py
+[1.545s] copying vision/pointcloud_receiver.py -> /home/vboxuser/ros2_ws/build/vision/build/lib/vision
+[1.546s] copying vision/depthimage_receiver.py -> /home/vboxuser/ros2_ws/build/vision/build/lib/vision
+[1.546s] running install
+[1.547s] running install_lib
+[1.548s] creating /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision
+[1.548s] copying /home/vboxuser/ros2_ws/build/vision/build/lib/vision/pointcloud_receiver.py -> /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision
+[1.548s] copying /home/vboxuser/ros2_ws/build/vision/build/lib/vision/depthimage_receiver.py -> /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision
+[1.548s] copying /home/vboxuser/ros2_ws/build/vision/build/lib/vision/__init__.py -> /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision
+[1.549s] byte-compiling /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision/pointcloud_receiver.py to pointcloud_receiver.cpython-38.pyc
+[1.550s] byte-compiling /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision/depthimage_receiver.py to depthimage_receiver.cpython-38.pyc
+[1.551s] byte-compiling /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision/__init__.py to __init__.cpython-38.pyc
+[1.551s] running install_data
+[1.552s] copying resource/vision -> /home/vboxuser/ros2_ws/install/vision/share/ament_index/resource_index/packages
+[1.552s] copying package.xml -> /home/vboxuser/ros2_ws/install/vision/share/vision
+[1.552s] running install_egg_info
+[1.554s] Copying ../../build/vision/vision.egg-info to /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision-0.0.0-py3.8.egg-info
+[1.555s] running install_scripts
+[1.574s] Installing depthimage_receiver script to /home/vboxuser/ros2_ws/install/vision/lib/vision
+[1.575s] writing list of installed files to '/home/vboxuser/ros2_ws/build/vision/install.log'
+[1.604s] Invoked command in '/home/vboxuser/ros2_ws/src/vision' returned '0': PYTHONPATH=/home/vboxuser/ros2_ws/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/vboxuser/ros2_ws/build/vision/build install --record /home/vboxuser/ros2_ws/build/vision/install.log --install-scripts $base/lib/vision --single-version-externally-managed install_data --force

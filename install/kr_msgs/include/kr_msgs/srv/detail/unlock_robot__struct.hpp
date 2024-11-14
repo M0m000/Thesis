@@ -1,0 +1,1 @@
+/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_generator_cpp/kr_msgs/srv/detail/unlock_robot__struct.hpp

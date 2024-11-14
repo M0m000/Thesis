@@ -1,0 +1,1 @@
+/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_typesupport_fastrtps_c/kr_msgs/msg/detail/safety_mode__rosidl_typesupport_fastrtps_c.h

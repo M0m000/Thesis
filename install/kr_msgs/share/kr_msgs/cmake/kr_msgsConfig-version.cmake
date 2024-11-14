@@ -1,0 +1,1 @@
+/home/vboxuser/ros2_ws/build/kr_msgs/ament_cmake_core/kr_msgsConfig-version.cmake

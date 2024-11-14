@@ -1,0 +1,2 @@
+Invoking command in '/home/vboxuser/thesis/ros2_ws/build/kr_msgs': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/thesis/ros2_ws/build/kr_msgs -- -j8 -l8
+Invoked command in '/home/vboxuser/thesis/ros2_ws/build/kr_msgs' returned '2': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/thesis/ros2_ws/build/kr_msgs -- -j8 -l8

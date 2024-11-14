@@ -1,0 +1,1 @@
+/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/get_master_speed__rosidl_typesupport_fastrtps_cpp.hpp

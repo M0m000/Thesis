@@ -1,0 +1,1 @@
+/home/vboxuser/ros2_ws/build/kr_example_cpp/ament_cmake_core/kr_example_cppConfig.cmake

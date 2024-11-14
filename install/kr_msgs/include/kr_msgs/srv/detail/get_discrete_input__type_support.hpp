@@ -1,0 +1,1 @@
+/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_generator_cpp/kr_msgs/srv/detail/get_discrete_input__type_support.hpp

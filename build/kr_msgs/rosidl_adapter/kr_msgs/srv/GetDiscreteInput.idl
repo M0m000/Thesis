@@ -1,0 +1,29 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from kr_msgs/srv/io/GetDiscreteInput.srv
+// generated code does not contain a copyright notice
+
+
+module kr_msgs {
+  module srv {
+    module GetDiscreteInput_Request_Constants {
+      const int8 OFF = 0;
+      const int8 ON = 1;
+    };
+    @verbatim (language="comment", text=
+      "#####################################################" "\n"
+      "              GET DISCRETE INPUT SRV                #" "\n"
+      "#####################################################")
+    struct GetDiscreteInput_Request {
+      @verbatim (language="comment", text=
+        " input index")
+      int8 index;
+    };
+    struct GetDiscreteInput_Response {
+      @verbatim (language="comment", text=
+        " see INPUT_VALUE")
+      int8 value;
+
+      boolean success;
+    };
+  };
+};

@@ -1,0 +1,1 @@
+/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_generator_c/kr_msgs/msg/detail/jog_linear__type_support.h
