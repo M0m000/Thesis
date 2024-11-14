@@ -186,30 +186,33 @@ class Calibration(Node):
 
 
 
-    def calc_focal_lengths(self, point_1, point_2):
+    def calc_focal_lengths(self, point_1, point_2, point_3):
         u_1, v_1, w_1 = point_1
         u_2, v_2, w_2 = point_2
-    
-        Z_mean = (w_1 + w_2) / 2.0
-    
-        delta_u = abs(u_2 - u_1)
-        delta_v = abs(v_2 - v_1)
-    
-        dist_px = np.sqrt(delta_u**2 + delta_v**2)
-    
+        u_3, v_3, w_3 = point_3
+
+        Z_mean = (w_1 + w_2 + w_3) / 3
+
+        points = [(u_1, v_1), (u_2, v_2), (u_3, v_3)]
+        points = sorted(points, key=lambda p: (p[0], p[1]))
+        upper_left = points[0]
+        lower_left = min(points[1:], key=lambda p: p[0])
+        lower_right = max(points[1:], key=lambda p: p[0])
+        line_1 = [lower_left, upper_left]
+        line_2 = [lower_left, lower_right]
+
+        dx_px = abs(lower_right[0] - lower_left[0])         # fuer Brennweite fy
+        dy_px = abs(upper_left[1] - lower_left[1])          # fuer Brennweite fx
+
         if self.point_distance_in_mm == 0:
             self.get_logger().error("Der Punktabstand in mm darf nicht null sein.")
             return
+        
+        self.fx = dx_px * Z_mean / self.point_distance_in_mm
+        self.fy = dy_px * Z_mean / self.point_distance_in_mm
     
-        # Berechnung der Brennweiten
-        # Annahme: Der Abstand der Punkte in der realen Welt ist in der Ebene des Bildes korrekt projiziert.
-        self.fx = (dist_px * Z_mean) / (self.point_distance_in_mm * (delta_u / dist_px))
-        self.fy = (dist_px * Z_mean) / (self.point_distance_in_mm * (delta_v / dist_px))
-    
-        self.get_logger().info(f"Berechnete Brennweite fx: {self.fx:.2f} Pixel")
-        self.get_logger().info(f"Berechnete Brennweite fy: {self.fy:.2f} Pixel")
-
-
+        self.get_logger().info(f"Berechnete Brennweite fx: {self.fx:.4f} Pixel")
+        self.get_logger().info(f"Berechnete Brennweite fy: {self.fy:.4f} Pixel")
 
 
 
@@ -222,3 +225,5 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
+
