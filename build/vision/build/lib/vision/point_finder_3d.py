@@ -155,7 +155,7 @@ class PointFinder3D(Node):
 
     def show_point_coordinates(self, points_text):
         points_img = np.zeros((240, 800, 3), dtype=np.uint8)
-        lines = points_text.split(";")
+        lines = points_text.split("; ")
         y_offset = 30
 
         for line in lines:
