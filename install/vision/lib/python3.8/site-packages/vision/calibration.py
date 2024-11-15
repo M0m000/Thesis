@@ -31,14 +31,25 @@ class Calibration(Node):
         self.ratio_window = 'ratio Pixels to mm'
 
         ### Kameraparameter (ausgelesen aus RealSense Console)
-        self.cx = 422.081146240234 # Mittelpunkt in x (in Pixeln)
+        self.cx = 318.262176513672 # Mittelpunkt in x (in Pixeln)
         self.cy = 243.28205871582  # Mittelpunkt in y (in Pixeln)
         self.fx = None
         self.fy = None
         self.mm_per_pixel = None
         self.pixel_per_mm = None
 
+        self.fx_list = []
+        self.fy_list = []
 
+        self.create_threshold_slider()
+
+    def create_threshold_slider(self):
+        cv2.namedWindow("Threshold Control")
+        cv2.createTrackbar("Threshold", "Threshold Control", self.threshold, 255, self.update_threshold)
+
+    def update_threshold(self, val):
+        self.threshold = val
+        self.get_logger().info(f"Threshold geändert: {self.threshold}")
 
     def rgbd_raw_callback(self, msg):
         try:
@@ -52,15 +63,11 @@ class Calibration(Node):
         except Exception as e:
             self.get_logger().error(f"Fehler bei der Verarbeitung des RGB-Bildes: {e}")
 
-
-
     def split_rgbd_tensor(self):
         self.actual_rgb = self.actual_rgbd_raw[:, :, 0:3]   # RGB
         self.actual_depth = self.actual_rgbd_raw[:, :, 3]   # Tiefe
         self.actual_rgb = np.asarray(self.actual_rgb, dtype = np.uint8)
         self.actual_depth = np.asarray(self.actual_depth, dtype = np.uint16)
-
-
 
     def calc_cam_to_real_point(self, point=(0, 0, 0)):
         u, v, w = point
@@ -72,8 +79,6 @@ class Calibration(Node):
             Y = (v - self.cy) * w / self.fy
         '''
         return (X, Y, w)
-    
-
 
     def find_black_points(self):
         try:
@@ -81,6 +86,9 @@ class Calibration(Node):
             _, mask = cv2.threshold(gray, self.threshold, 255, cv2.THRESH_BINARY_INV)
             contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
+            if self.show_img:
+                cv2.imshow("Threshold Mask", mask)
+            
             points = []
             rgb_with_contours = self.actual_rgb.copy()
 
@@ -106,25 +114,28 @@ class Calibration(Node):
             else:
                 self.get_logger().info("Keine schwarzen Punkte gefunden.")
 
-            # Aufruf Calibration, sobald genau 2 Punkte vorliegen
-            if len(points) == 2:
+            # Aufruf Calibration, sobald genau 3 Punkte vorliegen
+            if len(points) == 3:
                 self.calc_pixel_mm_ratio(point_1=points[0], point_2=points[1])
 
                 ratio_text += f"[Calibration RESULT] mm_per_pixel: {self.mm_per_pixel:.4f}; [Calibration RESLUT] pixel_per_mm: {self.pixel_per_mm:.4f}; ; "
 
                 p1_real = self.calc_cam_to_real_point(points[0])
                 p2_real = self.calc_cam_to_real_point(points[1])
+                p3_real = self.calc_cam_to_real_point(points[2])
 
-                self.get_logger().info(f"Kontrolle - Punkt 1 bei x: {p1_real[0]} y: {p1_real[1]} z: {p1_real[2]}")
-                self.get_logger().info(f"Kontrolle - Punkt 2 bei x: {p2_real[0]} y: {p2_real[1]} z: {p2_real[2]}")
-                points_text += f"[Point 1 in mm] X: {p1_real[0]:.2f} mm Y: {p1_real[1]:.2f} mm Z: {p1_real[2]:.2f} mm;"
-                points_text += f"[Point 2 in mm] X: {p2_real[0]:.2f} mm Y: {p2_real[1]:.2f} mm Z: {p2_real[2]:.2f} mm;"
+                self.get_logger().info(f"Kontrolle - Punkt bei x: {p1_real[0]} y: {p1_real[1]} z: {p1_real[2]}")
+                self.get_logger().info(f"Kontrolle - Punkt bei x: {p2_real[0]} y: {p2_real[1]} z: {p2_real[2]}")
+                self.get_logger().info(f"Kontrolle - Punkt bei x: {p3_real[0]} y: {p3_real[1]} z: {p3_real[2]}")
+                points_text += f"[Point in mm] X: {p1_real[0]:.2f} mm Y: {p1_real[1]:.2f} mm Z: {p1_real[2]:.2f} mm;"
+                points_text += f"[Point in mm] X: {p2_real[0]:.2f} mm Y: {p2_real[1]:.2f} mm Z: {p2_real[2]:.2f} mm;"
+                points_text += f"[Point in mm] X: {p3_real[0]:.2f} mm Y: {p3_real[1]:.2f} mm Z: {p3_real[2]:.2f} mm;"
 
-                self.calc_focal_lengths(points[0], points[1])
-                ratio_text += f"[FOCAL LENGTHS] fx: {self.fx:.4f} fy: {self.fy:.4f}; "
+                self.calc_focal_lengths(points[0], points[1], points[2])
+                ratio_text += f"[FOCAL LENGTH] fx: {self.fx:.4f} fy: {self.fy:.4f}; "
                 self.show_ratio(ratio_text)
             else:
-                self.get_logger().warn("Weniger als zwei Punkte gefunden. Kalibrierung kann nicht durchgeführt werden.")
+                self.get_logger().warn("Weniger bzw. mehr als drei Punkte gefunden. Kalibrierung kann nicht durchgeführt werden.")
 
             self.img_plane_coords = points
             self.show_point_coordinates(points_text)
@@ -208,9 +219,19 @@ class Calibration(Node):
             self.get_logger().error("Der Punktabstand in mm darf nicht null sein.")
             return
         
-        self.fx = dx_px * Z_mean / self.point_distance_in_mm
-        self.fy = dy_px * Z_mean / self.point_distance_in_mm
-    
+        fx = dx_px * Z_mean / self.point_distance_in_mm
+        fy = dy_px * Z_mean / self.point_distance_in_mm
+        
+        if fx != 0:
+            self.fx_list.append(fx)
+        if fy != 0:
+            self.fy_list.append(fy)
+
+        fx_arr = np.array(self.fx_list)
+        self.fx = np.sum(fx_arr) / len(self.fx_list)
+        fy_arr = np.array(self.fy_list)
+        self.fy = np.sum(fy_arr) / len(self.fy_list)
+
         self.get_logger().info(f"Berechnete Brennweite fx: {self.fx:.4f} Pixel")
         self.get_logger().info(f"Berechnete Brennweite fy: {self.fy:.4f} Pixel")
 
