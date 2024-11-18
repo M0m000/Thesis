@@ -6,6 +6,7 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 
+
 class PointFinder3D(Node):
     def __init__(self):
         super().__init__('point_finder_3d')
@@ -18,12 +19,14 @@ class PointFinder3D(Node):
         self.show_error_plot = self.get_parameter('show_error_plot').get_parameter_value().bool_value
 
         self.subscription = self.create_subscription(Image, 'vision/actual_rgbd', self.rgbd_raw_callback, 10)
+        self.publisher = self.create_publisher(Image, '/vision/camera_1/point_mask_rgbd', 10)
 
         self.bridge = CvBridge()
         self.actual_rgbd_raw = None
         self.actual_rgb = None
         self.actual_depth = None
         self.img_plane_coords = []
+        self.img_real_coords = []
         
         self.errors = []
         self.fig, self.ax = plt.subplots()
@@ -42,8 +45,10 @@ class PointFinder3D(Node):
         self.fy = 620.4985              # Brennweite in y-Richtung (in Pixeln) - kann über Calibration Node ausgelesen werden
         self.cx = 318.262176513672      # Mittelpunkt in x (in Pixeln) - ausgelesen aus Realsense Console
         self.cy = 242.990539550781      # Mittelpunkt in y (in Pixeln) - ausgelesen aus Realsense Console
+        self.intrinsic_matrix = [[self.fx, 0, self.cx],
+                                 [0, self.fy, self.cy],
+                                 [0, 0, 1]]
 
-        # Füge eine Methode hinzu, um den Schwellenwert dynamisch anzupassen
         self.create_threshold_slider()
 
     def create_threshold_slider(self):
@@ -61,7 +66,10 @@ class PointFinder3D(Node):
 
             if self.actual_rgbd_raw is not None:
                 self.split_rgbd_tensor()
-                self.img_plane_coords = self.find_black_points()
+                self.img_real_coords = self.find_black_points()
+
+                # Erstelle und veröffentliche das zweischichtige Bild
+                self.create_point_mask_rgbd()
 
         except Exception as e:
             self.get_logger().error(f"Fehler bei der Verarbeitung des RGB-Bildes: {e}")
@@ -74,10 +82,25 @@ class PointFinder3D(Node):
 
     def calc_cam_to_real_point(self, point=(0, 0, 0)):
         u, v, w = point
-        if w != 0:
-            X = (u - self.cx) * w / self.fx
-            Y = (v - self.cy) * w / self.fy
-        return (X, Y, w)
+        p = np.zeros((3, 1))
+        p[0] = u * w
+        p[1] = v * w
+        p[2] = w
+        K_inv = np.linalg.inv(self.intrinsic_matrix)
+        P = np.matmul(K_inv, p)
+        return (P[0].item(), P[1].item(), w)
+    
+    def calc_real_to_cam_point(self, point=(0, 0, 0)):
+        X, Y, Z = point
+        P = np.zeros((3, 1))
+        P[0] = X/Z
+        P[1] = Y/Z
+        P[2] = 1
+
+        if Z != 0:
+            return np.matmul(self.intrinsic_matrix, P)
+        else:
+            return None
 
     def find_black_points(self):
         try:
@@ -90,6 +113,7 @@ class PointFinder3D(Node):
             contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
             points = []
+            cam_points = []
             rgb_with_contours = self.actual_rgb.copy()
             rgb_with_geometric_points = self.actual_rgb.copy()
 
@@ -110,7 +134,11 @@ class PointFinder3D(Node):
                             Z = self.actual_depth[cy_img, cx_img]
                             if Z > 0:
                                 X, Y, Z = self.calc_cam_to_real_point((cx_img, cy_img, Z))
+                                p = self.calc_real_to_cam_point(point=(X, Y, Z))
+                                self.get_logger().info(f"Punkt original: {cx_img, cy_img, Z}")
+                                self.get_logger().info(f"Probe mit Intrinsic Matrix: {p}")
                                 points.append((X, Y, Z))
+                                cam_points.append((cx_img, cy_img, Z))
                                 points_text += f"[moments] X: {X:.2f} mm Y: {Y:.2f} mm Z: {Z:.2f} mm; "
                                 cv2.drawMarker(self.actual_rgb, (cx_img, cy_img), (0, 0, 255), cv2.MARKER_CROSS, 10, 2)
             
@@ -137,7 +165,8 @@ class PointFinder3D(Node):
                 cv2.drawContours(rgb_with_contours, [contour], -1, (255, 0, 0), 2)
 
             if Z > 0:
-                self.img_plane_coords = points
+                self.img_real_coords = points
+                self.img_plane_coords = cam_points
                 self.show_point_coordinates(points_text)
             if Z_geo > 0:
                 self.show_current_error(error_text)
@@ -189,6 +218,29 @@ class PointFinder3D(Node):
     def visualize_rgb(self, img, window_name):
         cv2.imshow(window_name, img)
         cv2.waitKey(1)
+
+    def create_point_mask_rgbd(self):
+        try:
+            height, width = self.actual_rgb.shape[:2]
+            mask = np.zeros((height, width, 2), dtype=np.uint16)
+            for point in self.img_plane_coords:
+                mask[point[1], point[0], 0] = True
+            mask[:, :, 1] = self.actual_depth
+            self.publish_point_mask(mask)
+        except Exception as e:
+            self.get_logger().error(f"Fehler bei der Erstellung des Punkt-Maskenbildes: {e}")
+
+    def publish_point_mask(self, mask):
+        try:
+            mask_msg = self.bridge.cv2_to_imgmsg(mask, encoding="passthrough")
+            mask_msg.header.stamp = self.get_clock().now().to_msg()
+            mask_msg.header.frame_id = "camera_1"
+            self.get_logger().info("Veröffentliche das Punkt-Maskenbild")
+
+            self.publisher.publish(mask_msg)
+        except Exception as e:
+            self.get_logger().error(f"Fehler beim Veröffentlichen des Punkt-Maskenbildes: {e}")
+
 
 def main(args=None):
     rclpy.init(args=args)

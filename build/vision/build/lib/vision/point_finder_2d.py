@@ -54,7 +54,6 @@ class PointFinder2D(Node):
             rgb_with_contours = self.actual_rgb.copy()
 
             for contour in contours:
-                # Berechnung des Mittelpunkts über die Momente (Originalmethode)
                 M = cv2.moments(contour)
                 if M['m00'] != 0:
                     cx_moments = int(M['m10'] / M['m00'])
@@ -62,10 +61,8 @@ class PointFinder2D(Node):
                     points.append((cx_moments, cy_moments))
                     self.get_logger().info(f"Momenten Mittelpunkt: x={cx_moments}, y={cy_moments}")
 
-                    # Zeichne den Momenten-Mittelpunkt als rotes Kreuz auf rgb_with_contours
                     cv2.drawMarker(rgb_with_contours, (cx_moments, cy_moments), (0, 0, 255), cv2.MARKER_CROSS, 10, 2)
 
-                # Berechnung des Mittelpunkts über das geometrische Mittel (Durchschnitt der Punkte)
                 if len(contour) > 0:  # Wenn die Kontur aus mehr als einem Punkt besteht
                     contour_points = contour[:, 0, :]  # Extrahiere die x- und y-Koordinaten
                     cx_geo = np.mean(contour_points[:, 0])  # Durchschnitt der x-Koordinaten
@@ -73,16 +70,13 @@ class PointFinder2D(Node):
                     points.append((int(cx_geo), int(cy_geo)))
                     self.get_logger().info(f"Geometrischer Mittelpunkt: x={int(cx_geo)}, y={int(cy_geo)}")
 
-                    # Zeichne den geometrischen Mittelpunkt als weißes Kreuz auf rgb_with_contours
                     cv2.drawMarker(rgb_with_contours, (int(cx_geo), int(cy_geo)), (255, 255, 255), cv2.MARKER_CROSS, 10, 2)
 
-                # Zeichne die Kontur auf rgb_with_contours
                 cv2.drawContours(rgb_with_contours, [contour], -1, (255, 0, 0), 2)
 
             self.img_plane_coords = points
 
             if points:
-                # Visualisiere das RGB-Bild mit den erkannten Punkten und beiden Mittelpunkten
                 self.visualize_rgb(rgb_with_contours, title='RGB with detected Points and Centers')
             else:
                 self.get_logger().info("Keine schwarzen Punkte gefunden.")
