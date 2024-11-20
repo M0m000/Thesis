@@ -6,6 +6,8 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 
+
+
 class StereoTriangulation(Node):
     def __init__(self):
         super().__init__('stereo_triangulation')
@@ -59,7 +61,6 @@ class StereoTriangulation(Node):
                     if Z != 0:
                         real_coords = self.calc_cam_to_real_point(point=(point[0], point[1], Z), cam=1)
                         self.cam_1_real_coords.append(real_coords)
-                        print(len(self.cam_1_real_coords))
                         ### Weiterverarbeitung der Punkte
                 self.visualize_points()
             else:
@@ -125,7 +126,7 @@ class StereoTriangulation(Node):
         except Exception as e:
             self.get_logger().error(f"Fehler bei der Visualisierung der Punkte: {e}")
 
-    def 
+
 
 
 def main(args=None):

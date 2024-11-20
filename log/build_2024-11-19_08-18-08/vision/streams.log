@@ -1,0 +1,34 @@
+[4.164s] Invoking command in '/home/vboxuser/ros2_ws/src/vision': PYTHONPATH=/home/vboxuser/ros2_ws/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/vboxuser/ros2_ws/build/vision/build install --record /home/vboxuser/ros2_ws/build/vision/install.log --install-scripts $base/lib/vision --single-version-externally-managed install_data
+[4.915s] running egg_info
+[4.926s] writing ../../build/vision/vision.egg-info/PKG-INFO
+[4.968s] writing dependency_links to ../../build/vision/vision.egg-info/dependency_links.txt
+[4.978s] writing entry points to ../../build/vision/vision.egg-info/entry_points.txt
+[4.979s] writing requirements to ../../build/vision/vision.egg-info/requires.txt
+[4.981s] writing top-level names to ../../build/vision/vision.egg-info/top_level.txt
+[5.136s] reading manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[5.140s] writing manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[5.141s] running build
+[5.141s] running build_py
+[5.161s] copying vision/stereo_triangulation.py -> /home/vboxuser/ros2_ws/build/vision/build/lib/vision
+[5.211s] running install
+[5.212s] running install_lib
+[5.212s] copying /home/vboxuser/ros2_ws/build/vision/build/lib/vision/stereo_triangulation.py -> /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision
+[5.236s]   File "/home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision/stereo_triangulation.py", line 128
+[5.237s]     def
+[5.237s]        ^
+[5.249s] SyntaxError: invalid syntax
+[5.249s] 
+[5.265s] byte-compiling /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision/stereo_triangulation.py to stereo_triangulation.cpython-38.pyc
+[5.265s] running install_data
+[5.266s] running install_egg_info
+[5.275s] removing '/home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision-0.0.0-py3.8.egg-info' (and everything under it)
+[5.277s] Copying ../../build/vision/vision.egg-info to /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision-0.0.0-py3.8.egg-info
+[5.291s] running install_scripts
+[5.350s] Installing calibration script to /home/vboxuser/ros2_ws/install/vision/lib/vision
+[5.352s] Installing image_receiver script to /home/vboxuser/ros2_ws/install/vision/lib/vision
+[5.352s] Installing point_finder_2d script to /home/vboxuser/ros2_ws/install/vision/lib/vision
+[5.355s] Installing point_finder_3d script to /home/vboxuser/ros2_ws/install/vision/lib/vision
+[5.356s] Installing stereo_triangulation script to /home/vboxuser/ros2_ws/install/vision/lib/vision
+[5.356s] Installing test_node script to /home/vboxuser/ros2_ws/install/vision/lib/vision
+[5.356s] writing list of installed files to '/home/vboxuser/ros2_ws/build/vision/install.log'
+[5.420s] Invoked command in '/home/vboxuser/ros2_ws/src/vision' returned '0': PYTHONPATH=/home/vboxuser/ros2_ws/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/vboxuser/ros2_ws/build/vision/build install --record /home/vboxuser/ros2_ws/build/vision/install.log --install-scripts $base/lib/vision --single-version-externally-managed install_data

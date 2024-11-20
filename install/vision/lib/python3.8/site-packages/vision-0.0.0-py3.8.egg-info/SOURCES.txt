@@ -15,6 +15,7 @@ test/test_pep257.py
 vision/__init__.py
 vision/calibration.py
 vision/image_receiver.py
+vision/img_filters.py
 vision/point_finder_2d.py
 vision/point_finder_3d.py
 vision/stereo_triangulation.py

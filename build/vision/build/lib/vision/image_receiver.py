@@ -104,87 +104,10 @@ class ImageReceiver(Node):
         self.actual_depthcut_norm = depth_cut_norm
         self.visualize_depth(depth_cut_norm, title='Depth Cutout')
 
-        ##### Kantendetektor Canny #####
-        rgb_edges = self.canny_rgb(self.actual_rgb, [220, 240])
-        depth_edges = self.canny_depth(depth_cut_norm)
-
-        ##### RANSAC #####
-        self.ransac()
-
     def depth_cutout(self):
         d = self.actual_depth_raw
         d[np.where(d >= self.max_depth)] = 0
         return d
-
-    def canny_rgb(self, rgb_img, canny_rgb_thresholds=[220, 240]):
-        gray = cv2.cvtColor(rgb_img, cv2.COLOR_BGR2GRAY)
-        edges = cv2.Canny(gray, canny_rgb_thresholds[0], canny_rgb_thresholds[1])
-        return edges
-
-    def canny_depth(self, depth_img, canny_depth_thresholds=[100, 200]):
-        edges = cv2.Canny(depth_img, canny_depth_thresholds[0], canny_depth_thresholds[1])
-        return edges
-
-    def ransac(self):
-        if self.actual_rgb is None:
-            self.get_logger().info("Kein RGB-Bild vorhanden!")
-            return
-
-        gray = cv2.cvtColor(self.actual_rgb, cv2.COLOR_BGR2GRAY)
-        edges = cv2.Canny(gray, 50, 150, apertureSize=3)
-
-        lines = cv2.HoughLinesP(edges, 1, np.pi / 180, threshold=30, minLineLength=10, maxLineGap=5)
-        if lines is None:
-            self.get_logger().info("Keine Linien gefunden!")
-            return
-
-        target_lines = []
-        line_img = np.copy(self.actual_rgb)
-
-        for line in lines:
-            x1, y1, x2, y2 = line[0]
-            angle = np.arctan2((y2 - y1), (x2 - x1)) * 180 / np.pi
-
-            if 75 < abs(angle) < 105:
-                target_lines.append(((x1, y1), (x2, y2)))
-
-        min_distance = 30
-        filtered_lines = self.filter_nearby_lines(target_lines, min_distance)
-
-        for line in filtered_lines:
-            x1, y1 = line[0]
-            x2, y2 = line[1]
-            cv2.line(line_img, (x1, y1), (x2, y2), (0, 255, 0), 2)
-            cv2.circle(line_img, (x2, y2), 5, (0, 0, 255), -1)
-
-        self.get_logger().info(f"Anzahl der gefundenen vertikalen Linien: {len(filtered_lines)}")
-        self.visualize_rgb(line_img, title="Gefundene vertikale Linien")
-
-    def filter_nearby_lines(self, lines, min_distance):
-        filtered_lines = []
-        for i, line1 in enumerate(lines):
-            keep_line = True
-            for j, line2 in enumerate(lines):
-                if i >= j:
-                    continue
-
-                dist = self.calculate_line_distance(line1, line2)
-                if dist < min_distance:
-                    keep_line = False
-                    break
-
-            if keep_line:
-                filtered_lines.append(line1)
-        return filtered_lines
-
-    def calculate_line_distance(self, line1, line2):
-        x1, y1 = line1[0]
-        x2, y2 = line1[1]
-        x3, y3 = line2[0]
-        x4, y4 = line2[1]
-
-        dist = np.linalg.norm(np.cross([x2 - x1, y2 - y1], [x3 - x1, y3 - y1])) / np.linalg.norm([x2 - x1, y2 - y1])
-        return dist
 
     def create_rgbd_tensor(self):
         # Hier wird der RGBD-Tensor mit uint16 für die Tiefenschicht erstellt

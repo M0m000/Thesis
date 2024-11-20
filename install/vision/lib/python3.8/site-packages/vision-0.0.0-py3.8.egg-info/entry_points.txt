@@ -1,5 +1,6 @@
 [console_scripts]
 calibration = vision.calibration:main
+image_filters = vision.img_filters:main
 image_receiver = vision.image_receiver:main
 point_finder_2d = vision.point_finder_2d:main
 point_finder_3d = vision.point_finder_3d:main

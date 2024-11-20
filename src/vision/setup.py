@@ -25,7 +25,8 @@ setup(
             'point_finder_3d = vision.point_finder_3d:main',
             'test_node = vision.test_node:main',
             'calibration = vision.calibration:main',
-            'stereo_triangulation = vision.stereo_triangulation:main'
+            'stereo_triangulation = vision.stereo_triangulation:main',
+            'image_filters = vision.img_filters:main'
         ],
     },
 )
