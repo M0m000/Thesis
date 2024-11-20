@@ -16,3 +16,6 @@ ros2 run vision point_finder_2d --ros-args -p show_img:=True <br>
 **Start Stereo Triangulation in ROS2** <br>
 ros2 run vision stereo_triangulation <br>
 <br>
+**Start Image Filter Node in ROS2** <br>
+ros2 run vision img_filters --ros-args -p show_img:=True -p use_sobel:=True <br>
+<br>
