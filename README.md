@@ -1,6 +1,6 @@
 # **Robot Control Package**
 **Start Test Node (robot_control Package) in ROS2** <br>
-ros2 run robot_control move_lin_by_key --ros-args -p speed:=50.0 <br>
+ros2 run robot_control hello_node <br>
 <br>
 **Start Move Linear By Key Node (robot_control Package) in ROS2** <br>
 ros2 run robot_control move_lin_by_key --ros-args -p speed:=50.0 <br>
