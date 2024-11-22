@@ -1,4 +1,5 @@
-# **Masterthesis Repo**
+# **Masterthesis Repo** <br>
+*Konzeption und Implementierung eines robotergestützten Systems zur vollautomatisierten Aufhängung von Strukturbauteilen für Kathodische Tauchlackierungen* <br>
 
 ## **Robot Control Package**
 Start **Test** Node (Robot Control Package) in ROS2 <br>
