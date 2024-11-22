@@ -72,7 +72,7 @@ ros2 run vision stereo_triangulation
 ```
 <br>
 
-### Start **Image Filter** Node (Vision Package) in ROS2 <br>
+Start **Image Filter** Node (Vision Package) in ROS2 <br>
 ```bash
 ros2 run vision image_filters --ros-args -p show_img:=True -p use_sobel:=True
 ```
