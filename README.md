@@ -4,8 +4,9 @@
 <br>
 
 <p align="center">
-  <img src="/imgs/1.png" alt="Kathodische Tauchlackierung" width="400"/>
+  <img src="/imgs/1.png" alt="Abb. 1 - Kathodische Tauchlackierung" width="400"/>
 </p>
+<p align="center"><em>Abb. 1 - Kathodische Tauchlackierung</em></p>
 
 <br>
 
@@ -16,8 +17,10 @@ Während das Aufnehmen eines Teils aus einer Kiste mit bereits bekannten Bin-Pic
 <br>
 
 <p align="center">
-  <img src="/imgs/2.png" alt="Gitteranordnung" width="400"/>
+  <img src="/imgs/2.png" alt="Abb 2 - Gitteranordnung" width="400"/>
 </p>
+<p align="center"><em>Abb. 2 - Gitteranordnung</em></p>
+
 
 <br>
 
@@ -27,6 +30,7 @@ Wie in Abb. 2 zu sehen, befinden sich an einem Gitter mehrere feste Haken, an de
 <p align="center">
   <img src="/imgs/3.png" alt="Mögliche Abweichungen an Aufhängevorrichtungen" width="600"/>
 </p>
+<p align="center"><em>Abb. 3 - Mögliche Abweichungen an Aufhängevorrichtungen</em></p>
 
 <br>
 
@@ -45,6 +49,7 @@ Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers K
 <p align="center">
   <img src="/imgs/4.png" alt="Kassow Robots KR810 (7 Achsen)" width="400"/>
 </p>
+<p align="center"><em>Abb. 4 - Kassow Robots KR810 (7 Achsen)</em></p>
 
 <br>
 <br>
