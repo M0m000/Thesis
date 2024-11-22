@@ -65,6 +65,10 @@ Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers K
 -	Testen und Optimieren der Konzepte in einem praktischen Aufbau <br>
 -	Bewertung und Evaluierung in Bezug auf das Ziel der Aufgabenstellung <br>
 
+<br>
+<br>
+<br>
+
 ***
 ## **Robot Control Package**
 Start **Test** Node (Robot Control Package) in ROS2 <br>
