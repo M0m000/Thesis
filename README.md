@@ -1,4 +1,5 @@
 # **Masterthesis Repo** <br>
+***
 **Konzeption und Implementierung eines robotergestützten Systems zur vollautomatisierten Aufhängung von Strukturbauteilen für Kathodische Tauchlackierungen** <br>
 <br>
 <p align="center">
@@ -45,7 +46,7 @@ Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers K
 -	Testen und Optimieren der Konzepte in einem praktischen Aufbau <br>
 -	Bewertung und Evaluierung in Bezug auf das Ziel der Aufgabenstellung <br>
 
-
+***
 ## **Robot Control Package**
 Start **Test** Node (Robot Control Package) in ROS2 <br>
 ```bash
