@@ -1,5 +1,39 @@
 # **Masterthesis Repo** <br>
-*Konzeption und Implementierung eines robotergestützten Systems zur vollautomatisierten Aufhängung von Strukturbauteilen für Kathodische Tauchlackierungen* <br>
+**Konzeption und Implementierung eines robotergestützten Systems zur vollautomatisierten Aufhängung von Strukturbauteilen für Kathodische Tauchlackierungen** <br>
+<br>
+![grafik](https://github.com/user-attachments/assets/47de38f3-820d-4f46-8c87-49cafae25141)
+<br>
+Die Kathodische Tauchlackierung (Abb. 1) ist ein in der Industrie bekannter elektrochemischer Prozess zur Lackierung von komplizierten Strukturen in großen Stückzahlen. Zu Beginn des Prozesses werden die zu lackierenden Teile dabei an einer Gitterstruktur (Abb. 2) aufgehängt. Dies geschieht zum jetzigen Zeitpunkt ausschließlich von Hand und stellt einen für den Menschen monotonen Bewegungsablauf dar. Zur Entlastung soll dieser Vorgang durch einen Roboterarm realisiert werden, welcher sowohl das Aufnehmen der Teile aus einer Kiste als auch das korrekte Platzieren an den Vorrichtungen übernimmt. Die hier beschriebene Aufgabenstellung lässt sich dabei prinzipiell auch auf andere Beschichtungsverfahren, wie Sprühlackierungen oder Pulverbeschichtungen übertragen. <br>
+<br>
+Während das Aufnehmen eines Teils aus einer Kiste mit bereits bekannten Bin-Picking-Lösungen realisiert werden kann, stellt die Vermessung des Gitters und das anschließende Aufhängen aufgrund der hohen Varianz an Teilen und Vorrichtungen eine Herausforderung dar. <br>
+<br>
+![grafik](https://github.com/user-attachments/assets/318b8f7c-33c5-4e1e-9bc3-c0d61adda239)
+<br>
+Wie in Abb. 2 zu sehen, befinden sich an einem Gitter mehrere feste Haken, an denen die Teile aufgehängt werden sollen. Durch Verschleiß und mechanische Beanspruchung entstehen hier Verbiegungen oder weitergehende Beschädigungen durch abgebrochene Haken oder Ösen. Die Vorrichtungen können daher nicht als identisch angesehen werden. Sie weisen darüber hinaus Fertigungstoleranzen auf und können wegen ihres mechanischen Aufbaus nicht hinreichend exakt platziert werden. Da möglichst viele Vorrichtungen trotzdem verwendet werden sollen, scheidet eine Steuerung des Roboters mit festen Koordinaten aus. Abb. 3 gibt einen ersten Überblick über mögliche Fehlstellungen und Abweichungen der Vorrichtungen. <br>
+<br>
+![grafik](https://github.com/user-attachments/assets/0af662f6-d899-42d2-b77f-5030c9519d4b)
+<br>
+Mit Hilfe geeigneter Sensoren und entsprechender Datenverarbeitung sollen diese Fehlstellungen ermittelt werden, sodass ein erfolgreiches Aufhängen des Teils am Haken durch den Roboterarm möglich ist. Die Art der Sensorik und das Konzept zur Vermessung der Vorrichtung und der Repräsentation auf Koordinatenebene soll im Rahmen der Thesis erarbeitet werden und stellt den Kern der Aufgabenstellung dar. Denkbar wäre beispielsweise die Verwendung von Tiefenkameras, um ein dreidimensionales Bild der Vorrichtung aufnehmen zu können. Auf Basis dieses Bildes kann nach weiterer Verarbeitung schlussendlich die Trajektorie für ein geeignetes Anfahren der Vorrichtung gebildet werden. <br>
+<br>
+Weiterhin stellen das Einfädeln und Aufhängen der Teile eine Herausforderung dar. Auch für diesen Teil des Prozesses sollen geeignete Sensoren gewählt und ein sinnvolles Verfahren zur Ansteuerung bzw. Regelung des Roboterarms entwickelt werden. Eine mehrdimensionale Messung der Kräfte am TCP kann hier dazu beitragen, das Einfädeln des Teils am Gitter zu optimieren und den Roboter auf Basis dieser Kräftewerte zu regeln. Abschließend soll kontrolliert werden, ob das Teil sicher in der Vorrichtung eingehängt wurde. <br>
+<br>
+Ebenfalls zu berücksichtigen ist die Vorbereitung der Teile, nachdem der Griff in die Kiste erfolgt ist. Hier stellt sich die Frage nach einem geeigneten Handling zur Vorbereitung der Teile. Dies könnte eine Zentrierung, Arretierung und ein erneutes optimiertes Greifen umfassen, bevor der eigentliche Vorgang des Aufhängens starten kann. <br>
+<br>
+Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers Kassow Robots (Abbildung 4) zum Einsatz. Die für die Anwendung notwendigen Algorithmen zur Verarbeitung der Sensordaten, eventuellen Regelungen und Ansteuerungen des Roboterarms sollen in einer ROS2-Umgebung integriert werden. <br>
+<br>
+![grafik](https://github.com/user-attachments/assets/b9083204-247b-4291-b215-7983ee9252a6)
+<br>
+Folgende inhaltliche Anforderungen sind im Rahmen der Thesis zu erfüllen: <br>
+-	Analyse zu möglichen Fehlerfällen an den Vorrichtungen und dem damit erforderlichen Umgang im Kontext der Anwendung <br>
+-	Recherchen zu möglichen Ansätzen für die Vermessung der Vorrichtungen inklusive erforderlicher Sensorik <br>
+-	Finden von geeigneten Methoden zur Weiterverarbeitung der Sensorwerte mit dem Ziel, die vermessene Vorrichtung auf Koordinatenebene repräsentieren zu können, sodass anschließend eine Planung der Robotertrajektorie erfolgen kann. (Bspw. Bildverarbeitung, Machine Learning, …) <br>
+-	Planung einer Robotertrajektorie von Aufnahme des Teils bis zur Vorrichtung, an der das Teil eingehängt werden soll <br>
+-	Erarbeiten einer Strategie für das Einhängen der Teile an den Vorrichtungen <br>
+-	Erarbeiten einer sinnvollen Möglichkeit zur abschließenden Kontrolle des Aufhängvorgangs <br>
+-	Konzept für das Handling von Teilen mit verschiedenen Formen anschließend an das Bin-Picking, sodass der Aufhängvorgang starten kann <br>
+-	Testen und Optimieren der Konzepte in einem praktischen Aufbau <br>
+-	Bewertung und Evaluierung in Bezug auf das Ziel der Aufgabenstellung <br>
+
 
 ## **Robot Control Package**
 Start **Test** Node (Robot Control Package) in ROS2 <br>
