@@ -1,17 +1,17 @@
 # **Masterthesis Repo** <br>
 **Konzeption und Implementierung eines robotergestützten Systems zur vollautomatisierten Aufhängung von Strukturbauteilen für Kathodische Tauchlackierungen** <br>
 <br>
-<img src="[pfad/zum/bild.png"](https://github.com/user-attachments/assets/47de38f3-820d-4f46-8c87-49cafae25141)" alt="Bildbeschreibung" align="middle"/>
+![grafik](https://github.com/user-attachments/assets/3421d63e-ebae-4118-91c1-b62a499767d3)
 <br>
 Die Kathodische Tauchlackierung (Abb. 1) ist ein in der Industrie bekannter elektrochemischer Prozess zur Lackierung von komplizierten Strukturen in großen Stückzahlen. Zu Beginn des Prozesses werden die zu lackierenden Teile dabei an einer Gitterstruktur (Abb. 2) aufgehängt. Dies geschieht zum jetzigen Zeitpunkt ausschließlich von Hand und stellt einen für den Menschen monotonen Bewegungsablauf dar. Zur Entlastung soll dieser Vorgang durch einen Roboterarm realisiert werden, welcher sowohl das Aufnehmen der Teile aus einer Kiste als auch das korrekte Platzieren an den Vorrichtungen übernimmt. Die hier beschriebene Aufgabenstellung lässt sich dabei prinzipiell auch auf andere Beschichtungsverfahren, wie Sprühlackierungen oder Pulverbeschichtungen übertragen. <br>
 <br>
 Während das Aufnehmen eines Teils aus einer Kiste mit bereits bekannten Bin-Picking-Lösungen realisiert werden kann, stellt die Vermessung des Gitters und das anschließende Aufhängen aufgrund der hohen Varianz an Teilen und Vorrichtungen eine Herausforderung dar. <br>
 <br>
-![grafik](https://github.com/user-attachments/assets/318b8f7c-33c5-4e1e-9bc3-c0d61adda239)
+![grafik](https://github.com/user-attachments/assets/5b8bc19d-a611-464e-a5ad-a5aaca59b842)
 <br>
 Wie in Abb. 2 zu sehen, befinden sich an einem Gitter mehrere feste Haken, an denen die Teile aufgehängt werden sollen. Durch Verschleiß und mechanische Beanspruchung entstehen hier Verbiegungen oder weitergehende Beschädigungen durch abgebrochene Haken oder Ösen. Die Vorrichtungen können daher nicht als identisch angesehen werden. Sie weisen darüber hinaus Fertigungstoleranzen auf und können wegen ihres mechanischen Aufbaus nicht hinreichend exakt platziert werden. Da möglichst viele Vorrichtungen trotzdem verwendet werden sollen, scheidet eine Steuerung des Roboters mit festen Koordinaten aus. Abb. 3 gibt einen ersten Überblick über mögliche Fehlstellungen und Abweichungen der Vorrichtungen. <br>
 <br>
-![grafik](https://github.com/user-attachments/assets/0af662f6-d899-42d2-b77f-5030c9519d4b)
+![grafik](https://github.com/user-attachments/assets/7c8c6f20-576f-4693-9fce-0475365e5ea5)
 <br>
 Mit Hilfe geeigneter Sensoren und entsprechender Datenverarbeitung sollen diese Fehlstellungen ermittelt werden, sodass ein erfolgreiches Aufhängen des Teils am Haken durch den Roboterarm möglich ist. Die Art der Sensorik und das Konzept zur Vermessung der Vorrichtung und der Repräsentation auf Koordinatenebene soll im Rahmen der Thesis erarbeitet werden und stellt den Kern der Aufgabenstellung dar. Denkbar wäre beispielsweise die Verwendung von Tiefenkameras, um ein dreidimensionales Bild der Vorrichtung aufnehmen zu können. Auf Basis dieses Bildes kann nach weiterer Verarbeitung schlussendlich die Trajektorie für ein geeignetes Anfahren der Vorrichtung gebildet werden. <br>
 <br>
@@ -21,7 +21,7 @@ Ebenfalls zu berücksichtigen ist die Vorbereitung der Teile, nachdem der Griff 
 <br>
 Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers Kassow Robots (Abbildung 4) zum Einsatz. Die für die Anwendung notwendigen Algorithmen zur Verarbeitung der Sensordaten, eventuellen Regelungen und Ansteuerungen des Roboterarms sollen in einer ROS2-Umgebung integriert werden. <br>
 <br>
-![grafik](https://github.com/user-attachments/assets/b9083204-247b-4291-b215-7983ee9252a6)
+![grafik](https://github.com/user-attachments/assets/3d52e5ee-2837-4afe-8a36-e3973a331441)
 <br>
 Folgende inhaltliche Anforderungen sind im Rahmen der Thesis zu erfüllen: <br>
 -	Analyse zu möglichen Fehlerfällen an den Vorrichtungen und dem damit erforderlichen Umgang im Kontext der Anwendung <br>
