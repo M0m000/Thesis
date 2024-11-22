@@ -2,7 +2,7 @@
 **Konzeption und Implementierung eines robotergestützten Systems zur vollautomatisierten Aufhängung von Strukturbauteilen für Kathodische Tauchlackierungen** <br>
 <br>
 <p align="center">
-  <img src="/imgs/1.png" alt="Kathodische Tauchlackierung" width="600"/>
+  <img src="/imgs/1.png" alt="Kathodische Tauchlackierung" width="500"/>
 </p>
 
 <br>
@@ -11,13 +11,13 @@ Die Kathodische Tauchlackierung (Abb. 1) ist ein in der Industrie bekannter elek
 Während das Aufnehmen eines Teils aus einer Kiste mit bereits bekannten Bin-Picking-Lösungen realisiert werden kann, stellt die Vermessung des Gitters und das anschließende Aufhängen aufgrund der hohen Varianz an Teilen und Vorrichtungen eine Herausforderung dar. <br>
 <br>
 <p align="center">
-  <img src="/imgs/2.png" alt="Gitteranordnung" width="600"/>
+  <img src="/imgs/2.png" alt="Gitteranordnung" width="500"/>
 </p>
 <br>
 Wie in Abb. 2 zu sehen, befinden sich an einem Gitter mehrere feste Haken, an denen die Teile aufgehängt werden sollen. Durch Verschleiß und mechanische Beanspruchung entstehen hier Verbiegungen oder weitergehende Beschädigungen durch abgebrochene Haken oder Ösen. Die Vorrichtungen können daher nicht als identisch angesehen werden. Sie weisen darüber hinaus Fertigungstoleranzen auf und können wegen ihres mechanischen Aufbaus nicht hinreichend exakt platziert werden. Da möglichst viele Vorrichtungen trotzdem verwendet werden sollen, scheidet eine Steuerung des Roboters mit festen Koordinaten aus. Abb. 3 gibt einen ersten Überblick über mögliche Fehlstellungen und Abweichungen der Vorrichtungen. <br>
 <br>
 <p align="center">
-  <img src="/imgs/3.png" alt="Mögliche Abweichungen an Aufhängevorrichtungen" width="600"/>
+  <img src="/imgs/3.png" alt="Mögliche Abweichungen an Aufhängevorrichtungen" width="800"/>
 </p>
 <br>
 Mit Hilfe geeigneter Sensoren und entsprechender Datenverarbeitung sollen diese Fehlstellungen ermittelt werden, sodass ein erfolgreiches Aufhängen des Teils am Haken durch den Roboterarm möglich ist. Die Art der Sensorik und das Konzept zur Vermessung der Vorrichtung und der Repräsentation auf Koordinatenebene soll im Rahmen der Thesis erarbeitet werden und stellt den Kern der Aufgabenstellung dar. Denkbar wäre beispielsweise die Verwendung von Tiefenkameras, um ein dreidimensionales Bild der Vorrichtung aufnehmen zu können. Auf Basis dieses Bildes kann nach weiterer Verarbeitung schlussendlich die Trajektorie für ein geeignetes Anfahren der Vorrichtung gebildet werden. <br>
@@ -29,7 +29,7 @@ Ebenfalls zu berücksichtigen ist die Vorbereitung der Teile, nachdem der Griff 
 Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers Kassow Robots (Abbildung 4) zum Einsatz. Die für die Anwendung notwendigen Algorithmen zur Verarbeitung der Sensordaten, eventuellen Regelungen und Ansteuerungen des Roboterarms sollen in einer ROS2-Umgebung integriert werden. <br>
 <br>
 <p align="center">
-  <img src="/imgs/4.png" alt="Kassow Robots KR810 (7 Achsen)" width="600"/>
+  <img src="/imgs/4.png" alt="Kassow Robots KR810 (7 Achsen)" width="400"/>
 </p>
 <br>
 Folgende inhaltliche Anforderungen sind im Rahmen der Thesis zu erfüllen: <br>
