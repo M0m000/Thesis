@@ -1,7 +1,9 @@
 # **Masterthesis Repo** <br>
 **Konzeption und Implementierung eines robotergestützten Systems zur vollautomatisierten Aufhängung von Strukturbauteilen für Kathodische Tauchlackierungen** <br>
 <br>
-![grafik](https://github.com/user-attachments/assets/3421d63e-ebae-4118-91c1-b62a499767d3)
+<p align="center">
+  ![grafik](https://github.com/user-attachments/assets/3421d63e-ebae-4118-91c1-b62a499767d3)
+</p>
 <br>
 Die Kathodische Tauchlackierung (Abb. 1) ist ein in der Industrie bekannter elektrochemischer Prozess zur Lackierung von komplizierten Strukturen in großen Stückzahlen. Zu Beginn des Prozesses werden die zu lackierenden Teile dabei an einer Gitterstruktur (Abb. 2) aufgehängt. Dies geschieht zum jetzigen Zeitpunkt ausschließlich von Hand und stellt einen für den Menschen monotonen Bewegungsablauf dar. Zur Entlastung soll dieser Vorgang durch einen Roboterarm realisiert werden, welcher sowohl das Aufnehmen der Teile aus einer Kiste als auch das korrekte Platzieren an den Vorrichtungen übernimmt. Die hier beschriebene Aufgabenstellung lässt sich dabei prinzipiell auch auf andere Beschichtungsverfahren, wie Sprühlackierungen oder Pulverbeschichtungen übertragen. <br>
 <br>
