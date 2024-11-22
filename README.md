@@ -32,6 +32,8 @@ Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers K
   <img src="/imgs/4.png" alt="Kassow Robots KR810 (7 Achsen)" width="400"/>
 </p>
 <br>
+<br>
+
 **Folgende inhaltliche Anforderungen sind im Rahmen der Thesis zu erfüllen:** <br>
 -	Analyse zu möglichen Fehlerfällen an den Vorrichtungen und dem damit erforderlichen Umgang im Kontext der Anwendung <br>
 -	Recherchen zu möglichen Ansätzen für die Vermessung der Vorrichtungen inklusive erforderlicher Sensorik <br>
