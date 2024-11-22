@@ -1,6 +1,6 @@
 # **Masterthesis Repo** <br>
 ***
-**Konzeption und Implementierung eines robotergestützten Systems zur vollautomatisierten Aufhängung von Strukturbauteilen für Kathodische Tauchlackierungen** <br>
+## **Konzeption und Implementierung eines robotergestützten Systems zur vollautomatisierten Aufhängung von Strukturbauteilen für Kathodische Tauchlackierungen** <br>
 <br>
 <p align="center">
   <img src="/imgs/1.png" alt="Kathodische Tauchlackierung" width="400"/>
