@@ -13,6 +13,9 @@ Start **Print TCP Pose** Node (Robot Control Package) in ROS2 <br>
 Start **Print Frames** Node (Robot Control Package) in ROS2 <br>
 *ros2 run robot_control print_tcp_pose --ros-args -p desired_frame:='tcp' -p reference_frame:='world* <br>
 <br>
+Start **Set Frame Client** Node (Robot Control Package) in ROS2 <br>
+*ros2 run robot_control set_frame_client --ros-args -p ref:=3 -p pos="[0.0, 0.0, 0.0]" -p rot="[0.0, 0.0, 0.0]"* <br>
+<br>
 
 ## **RealSense Package**
 Start **Realsense Depth Align** Node (RealSense Package) in ROS2 <br>
