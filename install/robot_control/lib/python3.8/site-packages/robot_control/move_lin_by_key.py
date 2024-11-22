@@ -26,28 +26,35 @@ class MoveLinByKey(Node):
 
     def on_press(self, key):
         try:
-            if key == keyboard.Key.right:
-                self.jog_msg.vel = [self.speed, 0.0, 0.0]  # Geschwindigkeit in x-Richtung
-                self.get_logger().info(f"Pfeiltaste nach rechts gedrückt! Roboter bewegt sich mit {self.speed} mm/s in x-Richtung.")
+            if key.char == 'l':  # Bewegung in X_tcp
+                self.jog_msg.vel = [self.speed, 0.0, 0.0]
+                self.get_logger().info(f"Key 'l'   X_tcp   {self.speed} mm/s.")
 
-            elif key == keyboard.Key.left:
-                self.jog_msg.vel = [-self.speed, 0.0, 0.0]  # Geschwindigkeit in negative x-Richtung
-                self.get_logger().info(f"Pfeiltaste nach links gedrückt! Roboter bewegt sich mit {-self.speed} mm/s in negative x-Richtung.")
+            elif key.char == 'j':  # Bewegung in -X_tcp
+                self.jog_msg.vel = [-self.speed, 0.0, 0.0]
+                self.get_logger().info(f"Key 'j'   -X_tcp   {-self.speed} mm/s.")
 
-            elif key == keyboard.Key.up:
-                self.jog_msg.vel = [0.0, self.speed, 0.0]  # Geschwindigkeit in y-Richtung
-                self.get_logger().info(f"Pfeiltaste nach oben gedrückt! Roboter bewegt sich mit {self.speed} mm/s in y-Richtung.")
+            elif key.char == 'o':  # Bewegung in Y_tcp
+                self.jog_msg.vel = [0.0, self.speed, 0.0]
+                self.get_logger().info(f"Key 'i'   Y_tcp   {self.speed} mm/s.")
 
-            elif key == keyboard.Key.down:
-                self.jog_msg.vel = [0.0, -self.speed, 0.0]  # Geschwindigkeit in negative y-Richtung
-                self.get_logger().info(f"Pfeiltaste nach unten gedrückt! Roboter bewegt sich mit {-self.speed} mm/s in negative y-Richtung.")
+            elif key.char == 'n':  # Bewegung in -Y_tcp
+                self.jog_msg.vel = [0.0, -self.speed, 0.0]
+                self.get_logger().info(f"Key 'k'   -Y_tcp   {-self.speed} mm/s.")
+
+            elif key.char == 'i':  # Bewegung in -Z_tcp
+                self.jog_msg.vel = [0.0, 0.0, self.speed]
+                self.get_logger().info(f"Key 'n'   Z_tcp   {self.speed} mm/s.")
+
+            elif key.char == 'k':  # Bewegung in -Z_tcp
+                self.jog_msg.vel = [0.0, 0.0, -self.speed]
+                self.get_logger().info(f"Key 'o'   -Z_tcp   {-self.speed} mm/s.")
 
         except AttributeError:
             self.get_logger().info(f"Taste {key} gedrückt")
 
     def on_release(self, key):
         self.jog_msg.vel = [0.0, 0.0, 0.0]  # Roboter stoppt
-        self.get_logger().info("Keine Taste gedrückt. Roboter stoppt.")
 
 def main(args=None):
     rclpy.init(args=args)
