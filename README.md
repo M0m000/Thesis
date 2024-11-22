@@ -1,6 +1,6 @@
 # **Masterthesis Repo** <br>
 ***
-## **Konzeption und Implementierung eines robotergestützten Systems zur vollautomatisierten Aufhängung von Strukturbauteilen für Kathodische Tauchlackierungen** <br>
+### **Konzeption und Implementierung eines robotergestützten Systems zur vollautomatisierten Aufhängung von Strukturbauteilen für Kathodische Tauchlackierungen** <br>
 <br>
 <p align="center">
   <img src="/imgs/1.png" alt="Kathodische Tauchlackierung" width="400"/>
@@ -35,7 +35,7 @@ Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers K
 <br>
 <br>
 
-**Folgende inhaltliche Anforderungen sind im Rahmen der Thesis zu erfüllen:** <br>
+### **Folgende inhaltliche Anforderungen sind im Rahmen der Thesis zu erfüllen:** <br>
 -	Analyse zu möglichen Fehlerfällen an den Vorrichtungen und dem damit erforderlichen Umgang im Kontext der Anwendung <br>
 -	Recherchen zu möglichen Ansätzen für die Vermessung der Vorrichtungen inklusive erforderlicher Sensorik <br>
 -	Finden von geeigneten Methoden zur Weiterverarbeitung der Sensorwerte mit dem Ziel, die vermessene Vorrichtung auf Koordinatenebene repräsentieren zu können, sodass anschließend eine Planung der Robotertrajektorie erfolgen kann. (Bspw. Bildverarbeitung, Machine Learning, …) <br>
