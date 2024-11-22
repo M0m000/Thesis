@@ -10,6 +10,9 @@ Start **Move Linear By Key** Node (Robot Control Package) in ROS2 <br>
 Start **Print TCP Pose** Node (Robot Control Package) in ROS2 <br>
 *ros2 run robot_control print_tcp_pose* <br>
 <br>
+Start **Set Frame Client** Node (Robot Control Package) in ROS2 <br>
+*ros2 run robot_control set_frame_client --ros-args -p ref:=3 -p pos="[0.0, 0.0, 0.0] -p rot:="[0.0, 0.0, 0.0]"* <br>
+<br>
 
 ## **RealSense Package**
 Start **Realsense Depth Align** Node (RealSense Package) in ROS2 <br>
