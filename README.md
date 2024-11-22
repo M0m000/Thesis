@@ -2,36 +2,50 @@
 ***
 ### **Konzeption und Implementierung eines robotergestützten Systems zur vollautomatisierten Aufhängung von Strukturbauteilen für Kathodische Tauchlackierungen** <br>
 <br>
+
 <p align="center">
   <img src="/imgs/1.png" alt="Kathodische Tauchlackierung" width="400"/>
 </p>
 
 <br>
+
 Die Kathodische Tauchlackierung (Abb. 1) ist ein in der Industrie bekannter elektrochemischer Prozess zur Lackierung von komplizierten Strukturen in großen Stückzahlen. Zu Beginn des Prozesses werden die zu lackierenden Teile dabei an einer Gitterstruktur (Abb. 2) aufgehängt. Dies geschieht zum jetzigen Zeitpunkt ausschließlich von Hand und stellt einen für den Menschen monotonen Bewegungsablauf dar. Zur Entlastung soll dieser Vorgang durch einen Roboterarm realisiert werden, welcher sowohl das Aufnehmen der Teile aus einer Kiste als auch das korrekte Platzieren an den Vorrichtungen übernimmt. Die hier beschriebene Aufgabenstellung lässt sich dabei prinzipiell auch auf andere Beschichtungsverfahren, wie Sprühlackierungen oder Pulverbeschichtungen übertragen. <br>
 <br>
+
 Während das Aufnehmen eines Teils aus einer Kiste mit bereits bekannten Bin-Picking-Lösungen realisiert werden kann, stellt die Vermessung des Gitters und das anschließende Aufhängen aufgrund der hohen Varianz an Teilen und Vorrichtungen eine Herausforderung dar. <br>
 <br>
+
 <p align="center">
   <img src="/imgs/2.png" alt="Gitteranordnung" width="400"/>
 </p>
+
 <br>
+
 Wie in Abb. 2 zu sehen, befinden sich an einem Gitter mehrere feste Haken, an denen die Teile aufgehängt werden sollen. Durch Verschleiß und mechanische Beanspruchung entstehen hier Verbiegungen oder weitergehende Beschädigungen durch abgebrochene Haken oder Ösen. Die Vorrichtungen können daher nicht als identisch angesehen werden. Sie weisen darüber hinaus Fertigungstoleranzen auf und können wegen ihres mechanischen Aufbaus nicht hinreichend exakt platziert werden. Da möglichst viele Vorrichtungen trotzdem verwendet werden sollen, scheidet eine Steuerung des Roboters mit festen Koordinaten aus. Abb. 3 gibt einen ersten Überblick über mögliche Fehlstellungen und Abweichungen der Vorrichtungen. <br>
 <br>
+
 <p align="center">
   <img src="/imgs/3.png" alt="Mögliche Abweichungen an Aufhängevorrichtungen" width="600"/>
 </p>
+
 <br>
+
 Mit Hilfe geeigneter Sensoren und entsprechender Datenverarbeitung sollen diese Fehlstellungen ermittelt werden, sodass ein erfolgreiches Aufhängen des Teils am Haken durch den Roboterarm möglich ist. Die Art der Sensorik und das Konzept zur Vermessung der Vorrichtung und der Repräsentation auf Koordinatenebene soll im Rahmen der Thesis erarbeitet werden und stellt den Kern der Aufgabenstellung dar. Denkbar wäre beispielsweise die Verwendung von Tiefenkameras, um ein dreidimensionales Bild der Vorrichtung aufnehmen zu können. Auf Basis dieses Bildes kann nach weiterer Verarbeitung schlussendlich die Trajektorie für ein geeignetes Anfahren der Vorrichtung gebildet werden. <br>
 <br>
+
 Weiterhin stellen das Einfädeln und Aufhängen der Teile eine Herausforderung dar. Auch für diesen Teil des Prozesses sollen geeignete Sensoren gewählt und ein sinnvolles Verfahren zur Ansteuerung bzw. Regelung des Roboterarms entwickelt werden. Eine mehrdimensionale Messung der Kräfte am TCP kann hier dazu beitragen, das Einfädeln des Teils am Gitter zu optimieren und den Roboter auf Basis dieser Kräftewerte zu regeln. Abschließend soll kontrolliert werden, ob das Teil sicher in der Vorrichtung eingehängt wurde. <br>
 <br>
+
 Ebenfalls zu berücksichtigen ist die Vorbereitung der Teile, nachdem der Griff in die Kiste erfolgt ist. Hier stellt sich die Frage nach einem geeigneten Handling zur Vorbereitung der Teile. Dies könnte eine Zentrierung, Arretierung und ein erneutes optimiertes Greifen umfassen, bevor der eigentliche Vorgang des Aufhängens starten kann. <br>
 <br>
+
 Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers Kassow Robots (Abbildung 4) zum Einsatz. Die für die Anwendung notwendigen Algorithmen zur Verarbeitung der Sensordaten, eventuellen Regelungen und Ansteuerungen des Roboterarms sollen in einer ROS2-Umgebung integriert werden. <br>
 <br>
+
 <p align="center">
   <img src="/imgs/4.png" alt="Kassow Robots KR810 (7 Achsen)" width="400"/>
 </p>
+
 <br>
 <br>
 
