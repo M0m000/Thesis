@@ -106,7 +106,7 @@ ros2 run robot_control print_tcp_pose
 
 ### **Print Frames** Node <br>
 ```bash
-ros2 run robot_control print_tcp_pose --ros-args -p desired_frame:='tcp' -p reference_frame:='world
+ros2 run robot_control print_tcp_pose --ros-args -p desired_frame:='tcp' -p reference_frame:='world'
 ```
 >Gibt die Pose eines gewählten Koordinatensystems in gewähltem Referenz-Frame aus <br>
 <br>
