@@ -120,6 +120,9 @@ ros2 run robot_control set_frame_client --ros-args -p ref:=3 -p pos="[0.0, 0.0, 
 <br>
 
 ## **Intel RealSense Package**
+Standardpaket von Intel RealSense - aktiviert den Kamerasystem und enthält einstellbare Parameter. <br>
+<br>
+
 ### Start **Realsense Depth Align** Node (RealSense Package) in ROS2 <br>
 ```bash
 ros2 launch realsense2_camera rs_align_depth_launch.py
@@ -128,6 +131,9 @@ ros2 launch realsense2_camera rs_align_depth_launch.py
 <br>
 
 ## **Vision Package**
+Enthält alle Programme zur Bildverarbeitung - Filterung, NNs... <br>
+<br>
+
 ### Start **Image Receiver** (Vision Package) in ROS2 <br>
 ```bash
 ros2 run vision image_receiver --ros-args -p show_img:=False -p max_depth:=40
