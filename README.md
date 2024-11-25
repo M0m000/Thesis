@@ -1,5 +1,4 @@
 # **Masterthesis Repo** <br>
-***
 ### *Konzeption und Implementierung eines kameragestützten Robotersystems zur vollautomatisierten Aufhängung von Strukturbauteilen für Kathodische Tauchlackierungen* <br>
 <br>
 
