@@ -122,7 +122,7 @@ ros2 run robot_control transformation_snapshot --ros-args -p desired_frame:='tcp
 >Dient zur Erfassung von Differenzen in Translation und Rotation zwischen zwei Aufnahmepunkten. Mit Taste S kann Snapshot gestartet werden und nach Verfahren des Roboters mit Taste D beendet werden. Differenzen-Vektor wird dann über Topic /robot_control/transformation_snapshot gepublisht. Welches Koordinatensystem erfasst werden soll kann über desired_frame und reference_frame bei Aufruf des Knotens festgelegt werden. <br>
 <br>
 
-### **Transformation Snapshot** <br>
+### **Read Delta Transformation** <br>
 ```bash
 ros2 run robot_control read_delta_transformation
 ```
