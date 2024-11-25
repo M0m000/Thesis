@@ -75,7 +75,6 @@ Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers K
 ```bash
 ros2 run robot_control hello_node
 ```
-<br>
 Dieser Knoten stellt nur eine Testverbindung zum Roboter her und gibt (wenn Verbindung erfolgreich) ein paar Statusmeldungen in der ROS-Konsole aus. <br>
 <br>
 
@@ -84,7 +83,6 @@ Dieser Knoten stellt nur eine Testverbindung zum Roboter her und gibt (wenn Verb
 ```bash
 ros2 run robot_control move_lin_by_key --ros-args -p speed:=50.0
 ```
-<br>
 Dieser Knoten dient zur Steuerung des Roboter über Tasten. Die Geschwindigkeit in mm/s kann als Argument beim Start übergeben werden. Der TCP wird linear verfahren, wenn eine der folgenden Tasten gedrückt ist: <br>
 Taste L -> +X_tcp <br>
 Taste J -> -X_tcp <br>
@@ -99,7 +97,6 @@ Taste N -> -Y_tcp <br>
 ```bash
 ros2 run robot_control print_tcp_pose
 ```
-<br>
 Gibt die aktuelle Pose des TCP (Translation und Rotation) in Referenz WORLD in der Konsole aus. <br>
 <br>
 
@@ -108,7 +105,6 @@ Gibt die aktuelle Pose des TCP (Translation und Rotation) in Referenz WORLD in d
 ```bash
 ros2 run robot_control print_tcp_pose --ros-args -p desired_frame:='tcp' -p reference_frame:='world
 ```
-<br>
 Gibt die Pose eines gewählten Koordinatensystems in gewähltem Referenz-Frame aus <br>
 <br>
 
@@ -116,7 +112,6 @@ Gibt die Pose eines gewählten Koordinatensystems in gewähltem Referenz-Frame a
 ```bash
 ros2 run robot_control set_frame_client --ros-args -p ref:=3 -p pos="[0.0, 0.0, 0.0]" -p rot="[0.0, 0.0, 0.0]"
 ```
-<br>
 Dient zur Anlegung von benutzerdefinierten Frames - benannt über REF. Diese Systeme müssen im WORLD-System definiert werden. <br>
 <br>
 
@@ -125,7 +120,6 @@ Dient zur Anlegung von benutzerdefinierten Frames - benannt über REF. Diese Sys
 ```bash
 ros2 launch realsense2_camera rs_align_depth_launch.py
 ```
-<br>
 Startet den Kamerastream mit Tiefeninformation. <br>
 <br>
 
@@ -134,7 +128,6 @@ Startet den Kamerastream mit Tiefeninformation. <br>
 ```bash
 ros2 run vision image_receiver --ros-args -p show_img:=False -p max_depth:=40
 ```
-<br>
 Extrahiert den Kamerastream und publisht die Bilder über Topics. Hier kann bereits maximale Tiefe eingestellt werden -> Punkte, die weiter weg liegen, werden dann aus den Bildern entfernt. Weitere Filter, wie RANSAC zum Finden von Konturen werden hier ebenfalls schon getestet. <br>
 <br>
 
@@ -142,7 +135,6 @@ Extrahiert den Kamerastream und publisht die Bilder über Topics. Hier kann bere
 ```bash
 ros2 run vision calibration --ros-args -p show_img:=True -p threshold:=40 -p point_distance_in_mm:=92.0
 ```
-<br>
 Startet den Kalibrierungsknoten. Hierzu muss das Kalibrierblatt exakt horizontal in einem festen Abstand zur Kamera aufgehangen werden. Die Punktdistanz zwischen den drei Referenzpunkten des Kalibrierblatts muss beim Knotenaufruf übergeben werden. Es ist darauf zu achten, dass die Kamera orthogonal auf das Kalibrierblatt ausgerichtet ist. Das Kalibrierblatt muss ich einer senkrechten Tiefenebene befinden (alle drei Punkten sollten möglichst den gleichen Tiefenwert haben). In den Ausgabefesntern sind dann die intrinsischen Kameraparameter Brennweite fx und fy zu sehen. Diese können dann beispielsweise im Knoten Point_Finder_3D verwendet werden, um die reale Position der Punkte vom Kamerasystem aus gesehen zu berechnen. <br>
 <br>
 
@@ -150,7 +142,6 @@ Startet den Kalibrierungsknoten. Hierzu muss das Kalibrierblatt exakt horizontal
 ```bash
 ros2 run vision point_finder_3d --ros-args -p show_img:=True -p threshold:=40
 ```
-<br>
 Dieser Knoten dient zur Berechnung von Punktkoordinaten in der realen Welt. Es detektiert schwarze Punkte im Bild (über Threshold einstellbar, wie dunkel diese Punkte sein müssen) und berechnet mit Hilfe der intrinsischen Kameraparameter die Punktkoordinaten aus dem Kamerasystem aus gesehen. Die Mittelpunktkoordinaten der schwarzen Blobs wird mit Hilfe von Canny-Konturerkennnung und Berechnung über Momente bestimmt. <br>
 <br>
 
@@ -158,7 +149,6 @@ Dieser Knoten dient zur Berechnung von Punktkoordinaten in der realen Welt. Es d
 ```bash
 ros2 run vision point_finder_2d --ros-args -p show_img:=True
 ```
-<br>
 Finden von schwarzn Punkten (einstellbar über Threshold) in der Bildebene in einem 2D-Bild über OpenCV Canny und Momente. <br>
 <br>
 
@@ -166,7 +156,6 @@ Finden von schwarzn Punkten (einstellbar über Threshold) in der Bildebene in ei
 ```bash
 ros2 run vision stereo_triangulation
 ```
-<br>
 Dient als Knoten für Stereo-Triangulation in einer horizontalen Baseline. Es ist jedoch bisher nur die erste Kamera integriert... <br>
 <br>
 
@@ -174,6 +163,5 @@ Dient als Knoten für Stereo-Triangulation in einer horizontalen Baseline. Es is
 ```bash
 ros2 run vision image_filters --ros-args -p show_img:=True -p use_sobel:=True
 ```
-<br>
 Startet einen Knoten zum Testen von Filterfunktionen aus OpenCV. Momentan ist Canny und Vergleich von Referenzkonturen implementiert. <br>
 <br>
