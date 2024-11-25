@@ -18,6 +18,5 @@ vision/image_receiver.py
 vision/img_filters.py
 vision/point_finder_2d.py
 vision/point_finder_3d.py
-vision/stereo_triangulation.py
 vision/stereo_triangulation_with_robot.py
 vision/test_node.py

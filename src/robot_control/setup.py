@@ -26,9 +26,9 @@ setup(
             'print_frames = robot_control.print_frames:main',
             'set_frame_client = robot_control.set_frame_client:main',
             'transformation_snapshot = robot_control.transformation_snapshot:main',
-            'read_transformation_snapshot = robot_control.read_transformation_snapshot:main'
+            'read_transformation_snapshot = robot_control.read_transformation_snapshot:main',
+            'transformation_delta = robot_control.transformation_delta:main',
+            'read_transformation_delta = robot_control.read_transformation_delta:main'
         ],
     },
 )
-
-

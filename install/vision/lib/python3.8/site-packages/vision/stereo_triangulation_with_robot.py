@@ -12,8 +12,7 @@ class StereoTriangulationWithRobot(Node):
 
         # Topics
         self.subscription1 = self.create_subscription(Image, '/vision/camera_1/point_mask_rgbd', self.cam_1_callback, 10)
-        self.robot_tcp_twist = self.create_subscription(JogLinear, '/kr/motion/jog_linear', self.tcp_twist_callback, 10)
-
+        
         # Parameter
         self.declare_parameter('triangulation_axis_tcp', 'axis_x')
         self.triangulation_axis_tcp = self.get_parameter('triangulation_axis_tcp').get_parameter_value().string_value
