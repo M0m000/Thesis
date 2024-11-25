@@ -80,7 +80,6 @@ ros2 run robot_control hello_node
 >Dieser Knoten stellt nur eine Testverbindung zum Roboter her und gibt (wenn Verbindung erfolgreich) ein paar Statusmeldungen in der ROS-Konsole aus. <br>
 <br>
 
-
 ### **Move Linear By Key** <br>
 ```bash
 ros2 run robot_control move_lin_by_key --ros-args -p speed:=50.0
@@ -95,14 +94,12 @@ Taste O -> Y_tcp <br>
 Taste N -> -Y_tcp <br>
 <br>
 
-
 ### **Print TCP Pose** <br>
 ```bash
 ros2 run robot_control print_tcp_pose
 ```
 >Gibt die aktuelle Pose des TCP (Translation und Rotation) in Referenz WORLD in der Konsole aus. <br>
 <br>
-
 
 ### **Print Frames** <br>
 ```bash
@@ -117,6 +114,21 @@ ros2 run robot_control set_frame_client --ros-args -p ref:=3 -p pos="[0.0, 0.0, 
 ```
 >Dient zur Anlegung von benutzerdefinierten Frames - benannt über REF. Diese Systeme müssen im WORLD-System definiert werden. <br>
 <br>
+
+### **Transformation Snapshot** <br>
+```bash
+ros2 run robot_control transformation_snapshot --ros-args -p desired_frame:='tcp' -p reference_frame:='world'
+```
+>Dient zur Erfassung von Differenzen in Translation und Rotation zwischen zwei Aufnahmepunkten. Mit Taste S kann Snapshot gestartet werden und nach Verfahren des Roboters mit Taste D beendet werden. Differenzen-Vektor wird dann über Topic /robot_control/transformation_snapshot gepublisht. Welches Koordinatensystem erfasst werden soll kann über desired_frame und reference_frame bei Aufruf des Knotens festgelegt werden. <br>
+<br>
+
+### **Transformation Snapshot** <br>
+```bash
+ros2 run robot_control read_delta_transformation
+```
+>Empfängt den Differenz-Vektor von Transformation Snapshot und gibt diesen in der ROS-Konsole aus - für Testzwecke.<br>
+<br>
+
 
 ## **Intel RealSense Package**
 Standardpaket von Intel RealSense - aktiviert den Kamerasystem und enthält einstellbare Parameter. <br>
