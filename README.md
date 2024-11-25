@@ -186,3 +186,17 @@ ros2 run vision image_filters --ros-args -p show_img:=True -p use_sobel:=True
 ```
 >Startet einen Knoten zum Testen von Filterfunktionen aus OpenCV. Momentan ist Canny und Vergleich von Referenzkonturen implementiert. <br>
 <br>
+
+
+
+
+***
+***
+### Links zu Repositories orange-ros2 und RealSense <br>
+**RealSense** <br>
+https://github.com/IntelRealSense/realsense-ros <br>
+<br>
+
+**orange-ros2 (Kassow)** <br>
+https://gitlab.com/kassowrobots/orange-ros2 <br>
+
