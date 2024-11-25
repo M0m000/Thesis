@@ -119,7 +119,7 @@ ros2 run robot_control set_frame_client --ros-args -p ref:=3 -p pos="[0.0, 0.0, 
 ```bash
 ros2 run robot_control transformation_snapshot --ros-args -p desired_frame:='tcp' -p reference_frame:='world'
 ```
->Kann später zur Berechnung der Baseline bei Stereo Triangulation verwendet werden. Dient zur Erfassung von Differenzen in Translation und Rotation zwischen zwei Aufnahmepunkten. Mit Taste S kann Snapshot gestartet werden und nach Verfahren des Roboters mit Taste D beendet werden. Differenzen-Vektor wird dann über Topic /robot_control/transformation_snapshot gepublisht. Welches Koordinatensystem erfasst werden soll kann über desired_frame und reference_frame bei Aufruf des Knotens festgelegt werden. <br>
+>Kann später zur Berechnung der Baseline bei Stereo Triangulation verwendet werden. Dient zur Erfassung von Differenzen in Translation und Rotation zwischen zwei Aufnahmepunkten. Mit Taste S kann Snapshot gestartet werden und nach Verfahren des Roboters mit Taste D beendet werden. Differenzen-Vektor wird dann über Topic /robot_control/transformation_snapshot gepublisht. Welches Koordinatensystem erfasst werden soll, kann über desired_frame und reference_frame bei Aufruf des Knotens festgelegt werden. <br>
 <br>
 
 ### **Read Delta Transformation** <br>
