@@ -85,12 +85,12 @@ ros2 run robot_control move_lin_by_key --ros-args -p speed:=50.0
 ```
 >Dieser Knoten dient zur Steuerung des Roboter über Tasten. Die Geschwindigkeit in mm/s kann als Argument beim Start übergeben werden. Der TCP wird linear verfahren, wenn eine der folgenden Tasten gedrückt ist: <br>
 <br>
-Taste L -> +X_tcp <br>
-Taste J -> -X_tcp <br>
-Taste I -> Z_tcp <br>
-Taste K -> -Z_tcp <br>
-Taste O -> Y_tcp <br>
-Taste N -> -Y_tcp <br>
+> Taste L -> +X_tcp <br>
+> Taste J -> -X_tcp <br>
+> Taste I -> Z_tcp <br>
+> Taste K -> -Z_tcp <br>
+> Taste O -> Y_tcp <br>
+> Taste N -> -Y_tcp <br>
 <br>
 
 
@@ -98,7 +98,7 @@ Taste N -> -Y_tcp <br>
 ```bash
 ros2 run robot_control print_tcp_pose
 ```
-Gibt die aktuelle Pose des TCP (Translation und Rotation) in Referenz WORLD in der Konsole aus. <br>
+> Gibt die aktuelle Pose des TCP (Translation und Rotation) in Referenz WORLD in der Konsole aus. <br>
 <br>
 
 
