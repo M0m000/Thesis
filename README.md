@@ -85,12 +85,12 @@ ros2 run robot_control move_lin_by_key --ros-args -p speed:=50.0
 ```
 >Dieser Knoten dient zur Steuerung des Roboter über Tasten. Die Geschwindigkeit in mm/s kann als Argument beim Start übergeben werden. Der TCP wird linear verfahren, wenn eine der folgenden Tasten gedrückt ist: <br>
 <br>
-> Taste L -> +X_tcp <br>
-> Taste J -> -X_tcp <br>
-> Taste I -> Z_tcp <br>
-> Taste K -> -Z_tcp <br>
-> Taste O -> Y_tcp <br>
-> Taste N -> -Y_tcp <br>
+>Taste L -> +X_tcp <br>
+>Taste J -> -X_tcp <br>
+>Taste I -> Z_tcp <br>
+>Taste K -> -Z_tcp <br>
+>Taste O -> Y_tcp <br>
+>Taste N -> -Y_tcp <br>
 <br>
 
 
@@ -98,7 +98,7 @@ ros2 run robot_control move_lin_by_key --ros-args -p speed:=50.0
 ```bash
 ros2 run robot_control print_tcp_pose
 ```
-> Gibt die aktuelle Pose des TCP (Translation und Rotation) in Referenz WORLD in der Konsole aus. <br>
+>Gibt die aktuelle Pose des TCP (Translation und Rotation) in Referenz WORLD in der Konsole aus. <br>
 <br>
 
 
@@ -106,14 +106,14 @@ ros2 run robot_control print_tcp_pose
 ```bash
 ros2 run robot_control print_tcp_pose --ros-args -p desired_frame:='tcp' -p reference_frame:='world
 ```
-Gibt die Pose eines gewählten Koordinatensystems in gewähltem Referenz-Frame aus <br>
+>Gibt die Pose eines gewählten Koordinatensystems in gewähltem Referenz-Frame aus <br>
 <br>
 
 ### Start **Set Frame Client** Node (Robot Control Package) in ROS2 <br>
 ```bash
 ros2 run robot_control set_frame_client --ros-args -p ref:=3 -p pos="[0.0, 0.0, 0.0]" -p rot="[0.0, 0.0, 0.0]"
 ```
-Dient zur Anlegung von benutzerdefinierten Frames - benannt über REF. Diese Systeme müssen im WORLD-System definiert werden. <br>
+>Dient zur Anlegung von benutzerdefinierten Frames - benannt über REF. Diese Systeme müssen im WORLD-System definiert werden. <br>
 <br>
 
 ## **RealSense Package**
@@ -121,7 +121,7 @@ Dient zur Anlegung von benutzerdefinierten Frames - benannt über REF. Diese Sys
 ```bash
 ros2 launch realsense2_camera rs_align_depth_launch.py
 ```
-Startet den Kamerastream mit Tiefeninformation. <br>
+>Startet den Kamerastream mit Tiefeninformation. <br>
 <br>
 
 ## **Vision Package**
@@ -129,7 +129,7 @@ Startet den Kamerastream mit Tiefeninformation. <br>
 ```bash
 ros2 run vision image_receiver --ros-args -p show_img:=False -p max_depth:=40
 ```
-Extrahiert den Kamerastream und publisht die Bilder über Topics. Hier kann bereits maximale Tiefe eingestellt werden -> Punkte, die weiter weg liegen, werden dann aus den Bildern entfernt. Weitere Filter, wie RANSAC zum Finden von Konturen werden hier ebenfalls schon getestet. <br>
+>Extrahiert den Kamerastream und publisht die Bilder über Topics. Hier kann bereits maximale Tiefe eingestellt werden -> Punkte, die weiter weg liegen, werden dann aus den Bildern entfernt. Weitere Filter, wie RANSAC zum Finden von Konturen werden hier ebenfalls schon getestet. <br>
 <br>
 
 ### Start **Calibration** Tool (Vision Package) in ROS2 <br>
