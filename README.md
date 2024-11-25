@@ -129,6 +129,20 @@ ros2 run robot_control read_transformation_snapshot
 >Empfängt den Differenz-Vektor von Transformation Snapshot und gibt diesen in der ROS-Konsole aus - für Testzwecke.<br>
 <br>
 
+### **Transformation Delta** <br>
+```bash
+ros2 run robot_control transformation_delta --ros-args -p desired_frame:='tcp' -p reference_frame:='world'
+```
+>Kann später zur Berechnung der Baseline bei Stereo Triangulation verwendet werden. Macht prinzipiell das Gleiche, wie Transformation Snapshot lediglich ohne Endbedingung. Es wird permament die Differenz der Pose zwischen der Startpunkte (zum Zeitpunkt, wenn Taste s gedrückt wird bzw. wenn über Topic /robot_control/transformation_delta_trigger eine Flanke auf TRUE gepublisht wird) berechnet und über den Topic /robot_control/transformation_delta gepublisht. Welches Koordinatensystem erfasst werden soll, kann über desired_frame und reference_frame bei Aufruf des Knotens festgelegt werden. <br>
+<br>
+
+### **Read Transformation Delta** <br>
+```bash
+ros2 run robot_control read_transformation_delta
+```
+>vgl. Red Transformation Snapshot - für Testzwecke.<br>
+<br>
+
 
 ## **Intel RealSense Package**
 Standardpaket von Intel RealSense - aktiviert den Kamerasystem und enthält einstellbare Parameter. <br>
