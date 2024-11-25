@@ -71,6 +71,9 @@ Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers K
 ***
 # ROS2-Befehle
 ## **Robot Control Package**
+>Enthält alle Roboteransteuerungen - kommuniziert mit orange-ros2-Package von Kassow Robots. <br>
+<br>
+
 ### Start **Test** Node (Robot Control Package) in ROS2 <br>
 ```bash
 ros2 run robot_control hello_node
