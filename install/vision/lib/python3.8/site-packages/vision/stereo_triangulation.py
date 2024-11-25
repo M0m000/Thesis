@@ -26,7 +26,7 @@ class StereoTriangulation(Node):
                                        [0, self.cam_1_fy, self.cam_1_cy],
                                        [0, 0, 1]]
 
-        # Kamera 2 Parameter (falls du sie in Zukunft brauchst)
+        # Kamera 2 Parameter
         self.cam_2_fx = 619.3136
         self.cam_2_fy = 620.4985
         self.cam_2_cx = 318.262176513672

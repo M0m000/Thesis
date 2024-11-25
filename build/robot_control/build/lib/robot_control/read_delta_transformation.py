@@ -3,8 +3,6 @@ from rclpy.node import Node
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 
-
-
 class ReadDeltaTransformation(Node):
     def __init__(self):
         super().__init__('read_delta_transformation')
@@ -16,10 +14,7 @@ class ReadDeltaTransformation(Node):
     
     def callback(self, msg):
         self.diff_vector = self.bridge.imgmsg_to_cv2(msg, desired_encoding='passthrough')
-        print(self.diff_vector)
-        print(type(self.diff_vector))
-
-
+        self.get_logger().info(f"Transformation Snapshot: {self.diff_vector}")
 
 def main(args=None):
     rclpy.init(args=args)
@@ -29,4 +24,3 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
-

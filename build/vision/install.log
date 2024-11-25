@@ -1,6 +1,7 @@
 /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision/point_finder_3d.py
 /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision/point_finder_2d.py
 /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision/img_filters.py
+/home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision/stereo_triangulation_with_robot.py
 /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision/test_node.py
 /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision/__init__.py
 /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision/stereo_triangulation.py
@@ -9,6 +10,7 @@
 /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision/__pycache__/point_finder_3d.cpython-38.pyc
 /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision/__pycache__/point_finder_2d.cpython-38.pyc
 /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision/__pycache__/img_filters.cpython-38.pyc
+/home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision/__pycache__/stereo_triangulation_with_robot.cpython-38.pyc
 /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision/__pycache__/test_node.cpython-38.pyc
 /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision/__pycache__/__init__.cpython-38.pyc
 /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision/__pycache__/stereo_triangulation.cpython-38.pyc
@@ -29,4 +31,5 @@
 /home/vboxuser/ros2_ws/install/vision/lib/vision/point_finder_2d
 /home/vboxuser/ros2_ws/install/vision/lib/vision/point_finder_3d
 /home/vboxuser/ros2_ws/install/vision/lib/vision/stereo_triangulation
+/home/vboxuser/ros2_ws/install/vision/lib/vision/stereo_triangulation_with_robot
 /home/vboxuser/ros2_ws/install/vision/lib/vision/test_node

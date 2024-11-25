@@ -26,7 +26,8 @@ setup(
             'test_node = vision.test_node:main',
             'calibration = vision.calibration:main',
             'stereo_triangulation = vision.stereo_triangulation:main',
-            'image_filters = vision.img_filters:main'
+            'image_filters = vision.img_filters:main',
+            'stereo_triangulation_with_robot = vision.stereo_triangulation_with_robot:main'
         ],
     },
 )
