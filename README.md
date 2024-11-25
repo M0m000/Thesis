@@ -74,7 +74,7 @@ Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers K
 Enthält alle Roboteransteuerungen - kommuniziert mit orange-ros2-Package von Kassow Robots. <br>
 <br>
 
-### Start **Test** Node (Robot Control Package) in ROS2 <br>
+### **Test** Node (Robot Control Package) <br>
 ```bash
 ros2 run robot_control hello_node
 ```
@@ -82,7 +82,7 @@ ros2 run robot_control hello_node
 <br>
 
 
-### Start **Move Linear By Key** Node (Robot Control Package) in ROS2 <br>
+### **Move Linear By Key** Node (Robot Control Package) <br>
 ```bash
 ros2 run robot_control move_lin_by_key --ros-args -p speed:=50.0
 ```
@@ -97,7 +97,7 @@ Taste N -> -Y_tcp <br>
 <br>
 
 
-### Start **Print TCP Pose** Node (Robot Control Package) in ROS2 <br>
+### **Print TCP Pose** Node (Robot Control Package) <br>
 ```bash
 ros2 run robot_control print_tcp_pose
 ```
@@ -105,14 +105,14 @@ ros2 run robot_control print_tcp_pose
 <br>
 
 
-### Start **Print Frames** Node (Robot Control Package) in ROS2 <br>
+### **Print Frames** Node (Robot Control Package) <br>
 ```bash
 ros2 run robot_control print_tcp_pose --ros-args -p desired_frame:='tcp' -p reference_frame:='world
 ```
 >Gibt die Pose eines gewählten Koordinatensystems in gewähltem Referenz-Frame aus <br>
 <br>
 
-### Start **Set Frame Client** Node (Robot Control Package) in ROS2 <br>
+### **Set Frame Client** Node (Robot Control Package) <br>
 ```bash
 ros2 run robot_control set_frame_client --ros-args -p ref:=3 -p pos="[0.0, 0.0, 0.0]" -p rot="[0.0, 0.0, 0.0]"
 ```
@@ -123,7 +123,7 @@ ros2 run robot_control set_frame_client --ros-args -p ref:=3 -p pos="[0.0, 0.0, 
 Standardpaket von Intel RealSense - aktiviert den Kamerasystem und enthält einstellbare Parameter. <br>
 <br>
 
-### Start **Realsense Depth Align** Node (RealSense Package) in ROS2 <br>
+### **Realsense Depth Align** Node (RealSense Package) <br>
 ```bash
 ros2 launch realsense2_camera rs_align_depth_launch.py
 ```
@@ -134,42 +134,42 @@ ros2 launch realsense2_camera rs_align_depth_launch.py
 Enthält alle Programme zur Bildverarbeitung - Filterung, NNs... <br>
 <br>
 
-### Start **Image Receiver** (Vision Package) in ROS2 <br>
+### **Image Receiver** (Vision Package) <br>
 ```bash
 ros2 run vision image_receiver --ros-args -p show_img:=False -p max_depth:=40
 ```
 >Extrahiert den Kamerastream und publisht die Bilder über Topics. Hier kann bereits maximale Tiefe eingestellt werden -> Punkte, die weiter weg liegen, werden dann aus den Bildern entfernt. Weitere Filter, wie RANSAC zum Finden von Konturen werden hier ebenfalls schon getestet. <br>
 <br>
 
-### Start **Calibration** Tool (Vision Package) in ROS2 <br>
+### **Calibration** Tool (Vision Package) <br>
 ```bash
 ros2 run vision calibration --ros-args -p show_img:=True -p threshold:=40 -p point_distance_in_mm:=92.0
 ```
 >Startet den Kalibrierungsknoten. Hierzu muss das Kalibrierblatt exakt horizontal in einem festen Abstand zur Kamera aufgehangen werden. Die Punktdistanz zwischen den drei Referenzpunkten des Kalibrierblatts muss beim Knotenaufruf übergeben werden. Es ist darauf zu achten, dass die Kamera orthogonal auf das Kalibrierblatt ausgerichtet ist. Das Kalibrierblatt muss ich einer senkrechten Tiefenebene befinden (alle drei Punkten sollten möglichst den gleichen Tiefenwert haben). In den Ausgabefesntern sind dann die intrinsischen Kameraparameter Brennweite fx und fy zu sehen. Diese können dann beispielsweise im Knoten Point_Finder_3D verwendet werden, um die reale Position der Punkte vom Kamerasystem aus gesehen zu berechnen. <br>
 <br>
 
-### Start **Point Finder 3D** (Vision Package) in ROS2 <br>
+### **Point Finder 3D** (Vision Package) <br>
 ```bash
 ros2 run vision point_finder_3d --ros-args -p show_img:=True -p threshold:=40
 ```
 >Dieser Knoten dient zur Berechnung von Punktkoordinaten in der realen Welt. Es detektiert schwarze Punkte im Bild (über Threshold einstellbar, wie dunkel diese Punkte sein müssen) und berechnet mit Hilfe der intrinsischen Kameraparameter die Punktkoordinaten aus dem Kamerasystem aus gesehen. Die Mittelpunktkoordinaten der schwarzen Blobs wird mit Hilfe von Canny-Konturerkennnung und Berechnung über Momente bestimmt. <br>
 <br>
 
-### Start **Point Finder 2D** (Vision Package) in ROS2 <br>
+### **Point Finder 2D** (Vision Package) <br>
 ```bash
 ros2 run vision point_finder_2d --ros-args -p show_img:=True
 ```
 >Finden von schwarzn Punkten (einstellbar über Threshold) in der Bildebene in einem 2D-Bild über OpenCV Canny und Momente. <br>
 <br>
 
-### Start **Stereo Triangulation** (Vision Package) in ROS2 <br>
+### **Stereo Triangulation** (Vision Package) <br>
 ```bash
 ros2 run vision stereo_triangulation
 ```
 >Dient als Knoten für Stereo-Triangulation in einer horizontalen Baseline. Es ist jedoch bisher nur die erste Kamera integriert... <br>
 <br>
 
-### Start **Image Filter** Node (Vision Package) in ROS2 <br>
+### **Image Filter** Node (Vision Package) <br>
 ```bash
 ros2 run vision image_filters --ros-args -p show_img:=True -p use_sobel:=True
 ```
