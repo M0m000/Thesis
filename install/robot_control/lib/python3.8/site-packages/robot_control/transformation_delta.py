@@ -37,7 +37,7 @@ class TransformationDelta(Node):
         self.transform2_rot = None
         self.response_trans = None
         self.response_rot = None
-        
+
         self.service_available = False
         self.flag = False
         self.trigger = False
@@ -49,7 +49,7 @@ class TransformationDelta(Node):
         self.service_available = True
     
     def transformation_trigger_callback(self, msg):
-        self.trigger = msg.bool
+        self.trigger = msg.data
 
         if self.trigger:
             if self.service_available:
