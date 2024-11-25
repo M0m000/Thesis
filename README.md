@@ -81,7 +81,7 @@ ros2 run robot_control hello_node
 <br>
 
 
-### **Move Linear By Key** Node <br>
+### **Move Linear By Key** <br>
 ```bash
 ros2 run robot_control move_lin_by_key --ros-args -p speed:=50.0
 ```
@@ -96,7 +96,7 @@ Taste N -> -Y_tcp <br>
 <br>
 
 
-### **Print TCP Pose** Node <br>
+### **Print TCP Pose** <br>
 ```bash
 ros2 run robot_control print_tcp_pose
 ```
@@ -104,14 +104,14 @@ ros2 run robot_control print_tcp_pose
 <br>
 
 
-### **Print Frames** Node <br>
+### **Print Frames** <br>
 ```bash
 ros2 run robot_control print_tcp_pose --ros-args -p desired_frame:='tcp' -p reference_frame:='world'
 ```
 >Gibt die Pose eines gewählten Koordinatensystems in gewähltem Referenz-Frame aus <br>
 <br>
 
-### **Set Frame Client** Node <br>
+### **Set Frame Client** <br>
 ```bash
 ros2 run robot_control set_frame_client --ros-args -p ref:=3 -p pos="[0.0, 0.0, 0.0]" -p rot="[0.0, 0.0, 0.0]"
 ```
@@ -122,7 +122,7 @@ ros2 run robot_control set_frame_client --ros-args -p ref:=3 -p pos="[0.0, 0.0, 
 Standardpaket von Intel RealSense - aktiviert den Kamerasystem und enthält einstellbare Parameter. <br>
 <br>
 
-### **Realsense Depth Align** Node <br>
+### **Realsense Depth Align Camera Stream** <br>
 ```bash
 ros2 launch realsense2_camera rs_align_depth_launch.py
 ```
@@ -168,7 +168,7 @@ ros2 run vision stereo_triangulation
 >Dient als Knoten für Stereo-Triangulation in einer horizontalen Baseline. Es ist jedoch bisher nur die erste Kamera integriert... <br>
 <br>
 
-### **Image Filter** Node <br>
+### **Image Filters** <br>
 ```bash
 ros2 run vision image_filters --ros-args -p show_img:=True -p use_sobel:=True
 ```
