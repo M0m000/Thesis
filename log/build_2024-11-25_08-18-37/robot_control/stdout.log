@@ -1,0 +1,29 @@
+running egg_info
+writing ../../build/robot_control/robot_control.egg-info/PKG-INFO
+writing dependency_links to ../../build/robot_control/robot_control.egg-info/dependency_links.txt
+writing entry points to ../../build/robot_control/robot_control.egg-info/entry_points.txt
+writing requirements to ../../build/robot_control/robot_control.egg-info/requires.txt
+writing top-level names to ../../build/robot_control/robot_control.egg-info/top_level.txt
+reading manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'
+writing manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'
+running build
+running build_py
+copying robot_control/print_tcp_pose.py -> /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control
+copying robot_control/set_frame_client.py -> /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control
+running install
+running install_lib
+copying /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control/print_tcp_pose.py -> /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control
+copying /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control/set_frame_client.py -> /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control
+byte-compiling /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control/print_tcp_pose.py to print_tcp_pose.cpython-38.pyc
+byte-compiling /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control/set_frame_client.py to set_frame_client.cpython-38.pyc
+running install_data
+running install_egg_info
+removing '/home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info' (and everything under it)
+Copying ../../build/robot_control/robot_control.egg-info to /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info
+running install_scripts
+Installing hello_node script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+Installing move_lin_by_key script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+Installing print_frames script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+Installing print_tcp_pose script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+Installing set_frame_client script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+writing list of installed files to '/home/vboxuser/ros2_ws/build/robot_control/install.log'

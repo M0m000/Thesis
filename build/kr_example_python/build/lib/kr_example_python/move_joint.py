@@ -3,7 +3,6 @@ from rclpy.node import Node
 
 from kr_msgs.srv import MoveJoint
 
-
 class MoveJointPublisher(Node):
 
     def __init__(self):
@@ -14,7 +13,7 @@ class MoveJointPublisher(Node):
         self.req = MoveJoint.Request()
 
     def send_request(self):
-        config_1 = [45., 0., 0., 90., 0., 0., 0.]
+        config_1 = [-90., 0., 0., 90., 0., 0., 0.]
 
         self.req.jsconf = config_1
 
@@ -55,3 +54,6 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
+
+

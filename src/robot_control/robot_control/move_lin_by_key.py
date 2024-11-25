@@ -42,7 +42,7 @@ class MoveLinByKey(Node):
                 self.jog_msg.vel = [0.0, -self.speed, 0.0]
                 self.get_logger().info(f"Key 'k'   -Y_tcp   {-self.speed} mm/s.")
 
-            elif key.char == 'i':  # Bewegung in -Z_tcp
+            elif key.char == 'i':  # Bewegung in Z_tcp
                 self.jog_msg.vel = [0.0, 0.0, self.speed]
                 self.get_logger().info(f"Key 'n'   Z_tcp   {self.speed} mm/s.")
 
