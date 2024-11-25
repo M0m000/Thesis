@@ -85,12 +85,12 @@ ros2 run robot_control move_lin_by_key --ros-args -p speed:=50.0
 ```
 >Dieser Knoten dient zur Steuerung des Roboter über Tasten. Die Geschwindigkeit in mm/s kann als Argument beim Start übergeben werden. Der TCP wird linear verfahren, wenn eine der folgenden Tasten gedrückt ist: <br>
 <br>
->Taste L -> +X_tcp <br>
->Taste J -> -X_tcp <br>
->Taste I -> Z_tcp <br>
->Taste K -> -Z_tcp <br>
->Taste O -> Y_tcp <br>
->Taste N -> -Y_tcp <br>
+Taste L -> +X_tcp <br>
+Taste J -> -X_tcp <br>
+Taste I -> Z_tcp <br>
+Taste K -> -Z_tcp <br>
+Taste O -> Y_tcp <br>
+Taste N -> -Y_tcp <br>
 <br>
 
 
@@ -136,33 +136,33 @@ ros2 run vision image_receiver --ros-args -p show_img:=False -p max_depth:=40
 ```bash
 ros2 run vision calibration --ros-args -p show_img:=True -p threshold:=40 -p point_distance_in_mm:=92.0
 ```
-Startet den Kalibrierungsknoten. Hierzu muss das Kalibrierblatt exakt horizontal in einem festen Abstand zur Kamera aufgehangen werden. Die Punktdistanz zwischen den drei Referenzpunkten des Kalibrierblatts muss beim Knotenaufruf übergeben werden. Es ist darauf zu achten, dass die Kamera orthogonal auf das Kalibrierblatt ausgerichtet ist. Das Kalibrierblatt muss ich einer senkrechten Tiefenebene befinden (alle drei Punkten sollten möglichst den gleichen Tiefenwert haben). In den Ausgabefesntern sind dann die intrinsischen Kameraparameter Brennweite fx und fy zu sehen. Diese können dann beispielsweise im Knoten Point_Finder_3D verwendet werden, um die reale Position der Punkte vom Kamerasystem aus gesehen zu berechnen. <br>
+>Startet den Kalibrierungsknoten. Hierzu muss das Kalibrierblatt exakt horizontal in einem festen Abstand zur Kamera aufgehangen werden. Die Punktdistanz zwischen den drei Referenzpunkten des Kalibrierblatts muss beim Knotenaufruf übergeben werden. Es ist darauf zu achten, dass die Kamera orthogonal auf das Kalibrierblatt ausgerichtet ist. Das Kalibrierblatt muss ich einer senkrechten Tiefenebene befinden (alle drei Punkten sollten möglichst den gleichen Tiefenwert haben). In den Ausgabefesntern sind dann die intrinsischen Kameraparameter Brennweite fx und fy zu sehen. Diese können dann beispielsweise im Knoten Point_Finder_3D verwendet werden, um die reale Position der Punkte vom Kamerasystem aus gesehen zu berechnen. <br>
 <br>
 
 ### Start **Point Finder 3D** (Vision Package) in ROS2 <br>
 ```bash
 ros2 run vision point_finder_3d --ros-args -p show_img:=True -p threshold:=40
 ```
-Dieser Knoten dient zur Berechnung von Punktkoordinaten in der realen Welt. Es detektiert schwarze Punkte im Bild (über Threshold einstellbar, wie dunkel diese Punkte sein müssen) und berechnet mit Hilfe der intrinsischen Kameraparameter die Punktkoordinaten aus dem Kamerasystem aus gesehen. Die Mittelpunktkoordinaten der schwarzen Blobs wird mit Hilfe von Canny-Konturerkennnung und Berechnung über Momente bestimmt. <br>
+>Dieser Knoten dient zur Berechnung von Punktkoordinaten in der realen Welt. Es detektiert schwarze Punkte im Bild (über Threshold einstellbar, wie dunkel diese Punkte sein müssen) und berechnet mit Hilfe der intrinsischen Kameraparameter die Punktkoordinaten aus dem Kamerasystem aus gesehen. Die Mittelpunktkoordinaten der schwarzen Blobs wird mit Hilfe von Canny-Konturerkennnung und Berechnung über Momente bestimmt. <br>
 <br>
 
 ### Start **Point Finder 2D** (Vision Package) in ROS2 <br>
 ```bash
 ros2 run vision point_finder_2d --ros-args -p show_img:=True
 ```
-Finden von schwarzn Punkten (einstellbar über Threshold) in der Bildebene in einem 2D-Bild über OpenCV Canny und Momente. <br>
+>Finden von schwarzn Punkten (einstellbar über Threshold) in der Bildebene in einem 2D-Bild über OpenCV Canny und Momente. <br>
 <br>
 
 ### Start **Stereo Triangulation** (Vision Package) in ROS2 <br>
 ```bash
 ros2 run vision stereo_triangulation
 ```
-Dient als Knoten für Stereo-Triangulation in einer horizontalen Baseline. Es ist jedoch bisher nur die erste Kamera integriert... <br>
+>Dient als Knoten für Stereo-Triangulation in einer horizontalen Baseline. Es ist jedoch bisher nur die erste Kamera integriert... <br>
 <br>
 
 ### Start **Image Filter** Node (Vision Package) in ROS2 <br>
 ```bash
 ros2 run vision image_filters --ros-args -p show_img:=True -p use_sobel:=True
 ```
-Startet einen Knoten zum Testen von Filterfunktionen aus OpenCV. Momentan ist Canny und Vergleich von Referenzkonturen implementiert. <br>
+>Startet einen Knoten zum Testen von Filterfunktionen aus OpenCV. Momentan ist Canny und Vergleich von Referenzkonturen implementiert. <br>
 <br>
