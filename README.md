@@ -116,7 +116,7 @@ ros2 run robot_control set_frame_client --ros-args -p ref:=3 -p pos="[0.0, 0.0, 
 >Dient zur Anlegung von benutzerdefinierten Frames - benannt über REF. Diese Systeme müssen im WORLD-System definiert werden. <br>
 <br>
 
-## **RealSense Package**
+## **Intel RealSense Package**
 ### Start **Realsense Depth Align** Node (RealSense Package) in ROS2 <br>
 ```bash
 ros2 launch realsense2_camera rs_align_depth_launch.py
