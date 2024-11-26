@@ -69,6 +69,18 @@ Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers K
 
 ***
 # ROS2-Befehle
+
+## **Behavior Tree Package**
+Enthält alle Behavior Trees (Ablaufsteuerungen) als Nodes geschrieben - Kommunikation mit allen anderen Topics/Nodes/etc. möglich. <br>
+<br>
+
+### **Example Tree** Node <br>
+```bash
+ros2 run bt_pkg bt_example_tree
+```
+>Dieser Knoten erstellt einen Test-Behavior-Tree. Dabei gibt es drei Knoten. Der erste wartet auf die Eingabe der Taste 1. Der zweite wartet auf die Eingabe der Taste 2, startet dann einen Timer von 20sec und ist nach Ablauf der Zeit beednet. Der dritte Knoten wartet dann auf die Eingabe der Taste 3 und beendet den Behavior Tree. <br>
+<br>
+
 ## **Robot Control Package**
 Enthält alle Roboteransteuerungen - kommuniziert mit orange-ros2-Package von Kassow Robots. <br>
 <br>
