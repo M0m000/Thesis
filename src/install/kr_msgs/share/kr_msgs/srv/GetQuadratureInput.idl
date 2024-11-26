@@ -1,0 +1,24 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from kr_msgs/srv/io/GetQuadratureInput.srv
+// generated code does not contain a copyright notice
+
+#include "kr_msgs/msg/Quadrature.idl"
+
+module kr_msgs {
+  module srv {
+    @verbatim (language="comment", text=
+      "#####################################################" "\n"
+      "              GET QUADRATURE INPUT SRV              #" "\n"
+      "#####################################################")
+    struct GetQuadratureInput_Request {
+      @verbatim (language="comment", text=
+        " input index")
+      int8 index;
+    };
+    struct GetQuadratureInput_Response {
+      kr_msgs::msg::Quadrature quad;
+
+      boolean success;
+    };
+  };
+};

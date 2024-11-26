@@ -1,0 +1,32 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from kr_msgs/srv/motion/SetCustomFrame.srv
+// generated code does not contain a copyright notice
+
+
+module kr_msgs {
+  module srv {
+    typedef double double__3[3];
+    @verbatim (language="comment", text=
+      "#####################################################" "\n"
+      "                 SET CUSTOM FRAME                   #" "\n"
+      "#####################################################")
+    struct SetCustomFrame_Request {
+      @verbatim (language="comment", text=
+        " id - World(0), Base(1), TCP(2), Custom")
+      int8 ref;
+
+      @verbatim (language="comment", text=
+        " position - x, y, z")
+      @unit (value="mm")
+      double__3 pos;
+
+      @verbatim (language="comment", text=
+        " orientation - r, p, y")
+      @unit (value="degrees")
+      double__3 rot;
+    };
+    struct SetCustomFrame_Response {
+      boolean success;
+    };
+  };
+};

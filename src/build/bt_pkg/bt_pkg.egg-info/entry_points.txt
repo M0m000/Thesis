@@ -1,0 +1,3 @@
+[console_scripts]
+bt_scan_hookstrip = bt_pkg.bt_scan_hookstrip:main
+

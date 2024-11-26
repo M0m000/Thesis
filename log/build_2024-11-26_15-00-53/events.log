@@ -1,0 +1,339 @@
+[0.000000] (-) TimerEvent: {}
+[0.000351] (-) JobUnselected: {'identifier': 'kr_example_cpp'}
+[0.001283] (-) JobUnselected: {'identifier': 'kr_example_python'}
+[0.001541] (-) JobUnselected: {'identifier': 'kr_msgs'}
+[0.001639] (-) JobUnselected: {'identifier': 'realsense2_camera'}
+[0.001661] (-) JobUnselected: {'identifier': 'realsense2_camera_msgs'}
+[0.001736] (-) JobUnselected: {'identifier': 'realsense2_description'}
+[0.001756] (-) JobUnselected: {'identifier': 'robot_control'}
+[0.001829] (-) JobUnselected: {'identifier': 'vision'}
+[0.001930] (groot) JobQueued: {'identifier': 'groot', 'dependencies': OrderedDict()}
+[0.002227] (groot) JobStarted: {'identifier': 'groot'}
+[0.018481] (groot) JobProgress: {'identifier': 'groot', 'progress': 'cmake'}
+[0.020914] (groot) JobProgress: {'identifier': 'groot', 'progress': 'build'}
+[0.021066] (groot) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/vboxuser/ros2_ws/build/groot', '--', '-j8', '-l8'], 'cwd': '/home/vboxuser/ros2_ws/build/groot', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'de_DE:en'), ('USER', 'vboxuser'), ('LC_TIME', 'de_DE.UTF-8'), ('SSH_AGENT_PID', '1671'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/vboxuser/ros2_ws/install/realsense2_camera/lib:/home/vboxuser/ros2_ws/install/realsense2_camera_msgs/lib:/home/vboxuser/ros2_ws/install/kr_msgs/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/vboxuser'), ('OLDPWD', '/home/vboxuser/ros2_ws/src'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/terminator.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'de_DE.UTF-8'), ('MANAGERPID', '1532'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3651'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/vboxuser/ros2_ws/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'vboxuser'), ('JOURNAL_STREAM', '8:38487'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'vboxuser'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/home/vboxuser/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/KassowRobot:@/tmp/.ICE-unix/1748,unix/KassowRobot:/tmp/.ICE-unix/1748'), ('INVOCATION_ID', 'e274ef62441a43a3adb3e1bffb43f2b1'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'de_DE.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'de_DE.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'de_DE.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '18'), ('AMENT_PREFIX_PATH', '/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/realsense2_description:/home/vboxuser/ros2_ws/install/realsense2_camera:/home/vboxuser/ros2_ws/install/realsense2_camera_msgs:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/kr_example_cpp:/home/vboxuser/ros2_ws/install/kr_msgs:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'de_DE.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:2a7753e0-17fa-4476-a0b3-900cb9309396'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'de_DE.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('LC_IDENTIFICATION', 'de_DE.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/vboxuser/ros2_ws/build/groot'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/realsense2_camera_msgs/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/kr_example_python/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'de_DE.UTF-8'), ('LC_PAPER', 'de_DE.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/vboxuser/ros2_ws/install/realsense2_description:/home/vboxuser/ros2_ws/install/realsense2_camera:/home/vboxuser/ros2_ws/install/realsense2_camera_msgs:/home/vboxuser/ros2_ws/install/kr_example_cpp:/home/vboxuser/ros2_ws/install/kr_msgs:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/opt/ros/foxy')]), 'shell': False}
+[0.096524] (-) TimerEvent: {}
+[0.112048] (groot) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.197947] (-) TimerEvent: {}
+[0.331085] (-) TimerEvent: {}
+[0.383209] (groot) StdoutLine: {'line': b'-- Found ament_index_cpp: 1.1.0 (/opt/ros/foxy/share/ament_index_cpp/cmake)\n'}
+[0.386090] (groot) StdoutLine: {'line': b'-- ---------------------\n'}
+[0.386341] (groot) StdoutLine: {'line': b'-- Compiling with AMENT.\n'}
+[0.386432] (groot) StdoutLine: {'line': b'-- ---------------------\n'}
+[0.395916] (groot) StdoutLine: {'line': b'-- ZeroMQ found.\n'}
+[0.431820] (-) TimerEvent: {}
+[0.464056] (groot) StdoutLine: {'line': b'-- Configuring done\n'}
+[0.532584] (-) TimerEvent: {}
+[0.575083] (groot) StdoutLine: {'line': b'-- Generating done\n'}
+[0.579590] (groot) StdoutLine: {'line': b'-- Build files have been written to: /home/vboxuser/ros2_ws/build/groot\n'}
+[0.624410] (groot) StdoutLine: {'line': b'[  1%] \x1b[34m\x1b[1mAutomatic MOC and UIC for target QtNodeEditor\x1b[0m\n'}
+[0.633666] (-) TimerEvent: {}
+[0.662241] (groot) StdoutLine: {'line': b'[  1%] Built target QtNodeEditor_autogen\n'}
+[0.691466] (groot) StdoutLine: {'line': b'[  5%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_Connection.cpp\x1b[0m\n'}
+[0.691835] (groot) StdoutLine: {'line': b'[  5%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_ConnectionGeometry.cpp\x1b[0m\n'}
+[0.691928] (groot) StdoutLine: {'line': b'[  5%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_memory.cpp\x1b[0m\n'}
+[0.691994] (groot) StdoutLine: {'line': b'[  5%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_Compiler.cpp\x1b[0m\n'}
+[0.692194] (groot) StdoutLine: {'line': b'[  5%] \x1b[34m\x1b[1mGenerating qrc_resources.cpp\x1b[0m\n'}
+[0.693108] (groot) StdoutLine: {'line': b'[  6%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_ConnectionState.cpp\x1b[0m\n'}
+[0.694122] (groot) StdoutLine: {'line': b'[  7%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_ConnectionStyle.cpp\x1b[0m\n'}
+[0.694933] (groot) StdoutLine: {'line': b'[  7%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_ConnectionGraphicsObject.cpp\x1b[0m\n'}
+[0.724714] (groot) StdoutLine: {'line': b'[  8%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_FlowViewStyle.cpp\x1b[0m\n'}
+[0.725179] (groot) StdoutLine: {'line': b'[ 10%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_FlowScene.cpp\x1b[0m\n'}
+[0.725657] (groot) StdoutLine: {'line': b'[ 10%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_Export.cpp\x1b[0m\n'}
+[0.726404] (groot) StdoutLine: {'line': b'[ 10%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_DataModelRegistry.cpp\x1b[0m\n'}
+[0.726810] (groot) StdoutLine: {'line': b'[ 10%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_FlowView.cpp\x1b[0m\n'}
+[0.730386] (groot) StdoutLine: {'line': b'[ 11%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_Node.cpp\x1b[0m\n'}
+[0.735630] (-) TimerEvent: {}
+[0.760925] (groot) StdoutLine: {'line': b'[ 11%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_NodeDataModel.cpp\x1b[0m\n'}
+[0.761619] (groot) StdoutLine: {'line': b'[ 12%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_NodeData.cpp\x1b[0m\n'}
+[0.787525] (groot) StdoutLine: {'line': b'[ 13%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_NodeGraphicsObject.cpp\x1b[0m\n'}
+[0.790149] (groot) StdoutLine: {'line': b'[ 14%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_NodeGeometry.cpp\x1b[0m\n'}
+[0.809407] (groot) StdoutLine: {'line': b'[ 15%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_NodeState.cpp\x1b[0m\n'}
+[0.809740] (groot) StdoutLine: {'line': b'[ 15%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_NodePainterDelegate.cpp\x1b[0m\n'}
+[0.831660] (groot) StdoutLine: {'line': b'[ 16%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_NodeStyle.cpp\x1b[0m\n'}
+[0.836767] (-) TimerEvent: {}
+[0.843504] (groot) StdoutLine: {'line': b'[ 17%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_OperatingSystem.cpp\x1b[0m\n'}
+[0.857235] (groot) StdoutLine: {'line': b'[ 17%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_PortType.cpp\x1b[0m\n'}
+[0.870091] (groot) StdoutLine: {'line': b'[ 18%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_QStringStdHash.cpp\x1b[0m\n'}
+[0.878978] (groot) StdoutLine: {'line': b'[ 19%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_QUuidStdHash.cpp\x1b[0m\n'}
+[0.884332] (groot) StdoutLine: {'line': b'[ 20%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_Serializable.cpp\x1b[0m\n'}
+[0.897545] (groot) StdoutLine: {'line': b'[ 20%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_Style.cpp\x1b[0m\n'}
+[0.903761] (groot) StdoutLine: {'line': b'[ 21%] \x1b[34m\x1b[1mGenerating include/nodes/internal/moc_TypeConverter.cpp\x1b[0m\n'}
+[0.936895] (-) TimerEvent: {}
+[0.964315] (groot) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target QtNodeEditor\x1b[0m\n'}
+[1.037851] (-) TimerEvent: {}
+[1.139711] (-) TimerEvent: {}
+[1.192546] (groot) StdoutLine: {'line': b'[ 22%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/Connection.cpp.o\x1b[0m\n'}
+[1.196621] (groot) StdoutLine: {'line': b'[ 23%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/ConnectionBlurEffect.cpp.o\x1b[0m\n'}
+[1.198610] (groot) StdoutLine: {'line': b'[ 24%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/ConnectionGeometry.cpp.o\x1b[0m\n'}
+[1.198745] (groot) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/ConnectionPainter.cpp.o\x1b[0m\n'}
+[1.202351] (groot) StdoutLine: {'line': b'[ 26%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/DataModelRegistry.cpp.o\x1b[0m\n'}
+[1.203948] (groot) StdoutLine: {'line': b'[ 26%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/ConnectionGraphicsObject.cpp.o\x1b[0m\n'}
+[1.214262] (groot) StdoutLine: {'line': b'[ 27%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/ConnectionState.cpp.o\x1b[0m\n'}
+[1.223289] (groot) StdoutLine: {'line': b'[ 27%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/ConnectionStyle.cpp.o\x1b[0m\n'}
+[1.239914] (-) TimerEvent: {}
+[1.342700] (-) TimerEvent: {}
+[1.472468] (-) TimerEvent: {}
+[1.575971] (-) TimerEvent: {}
+[1.803439] (-) TimerEvent: {}
+[2.021657] (-) TimerEvent: {}
+[2.034286] (groot) StdoutLine: {'line': b'[ 28%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/FlowScene.cpp.o\x1b[0m\n'}
+[2.174982] (-) TimerEvent: {}
+[2.480108] (-) TimerEvent: {}
+[2.559640] (groot) StdoutLine: {'line': b'[ 29%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/FlowView.cpp.o\x1b[0m\n'}
+[2.608615] (groot) StdoutLine: {'line': b'[ 29%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/FlowViewStyle.cpp.o\x1b[0m\n'}
+[2.609323] (-) TimerEvent: {}
+[2.702200] (groot) StdoutLine: {'line': b'[ 30%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/Node.cpp.o\x1b[0m\n'}
+[2.834062] (-) TimerEvent: {}
+[2.940528] (-) TimerEvent: {}
+[3.042094] (-) TimerEvent: {}
+[3.145499] (-) TimerEvent: {}
+[3.193228] (groot) StdoutLine: {'line': b'[ 31%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/NodeConnectionInteraction.cpp.o\x1b[0m\n'}
+[3.202992] (groot) StdoutLine: {'line': b'[ 31%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/NodeDataModel.cpp.o\x1b[0m\n'}
+[3.272826] (-) TimerEvent: {}
+[3.353145] (groot) StdoutLine: {'line': b'[ 32%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/NodeGeometry.cpp.o\x1b[0m\n'}
+[3.500163] (-) TimerEvent: {}
+[3.602750] (-) TimerEvent: {}
+[3.882765] (groot) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/NodeGraphicsObject.cpp.o\x1b[0m\n'}
+[3.883404] (-) TimerEvent: {}
+[3.984574] (-) TimerEvent: {}
+[4.296151] (-) TimerEvent: {}
+[4.324559] (groot) StdoutLine: {'line': b'[ 34%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/NodePainter.cpp.o\x1b[0m\n'}
+[4.639758] (-) TimerEvent: {}
+[4.753582] (-) TimerEvent: {}
+[4.823383] (groot) StdoutLine: {'line': b'[ 34%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/NodeState.cpp.o\x1b[0m\n'}
+[4.874378] (groot) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/NodeStyle.cpp.o\x1b[0m\n'}
+[4.874950] (-) TimerEvent: {}
+[4.977729] (-) TimerEvent: {}
+[4.984509] (groot) StdoutLine: {'line': b'[ 36%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/Properties.cpp.o\x1b[0m\n'}
+[5.019055] (groot) StdoutLine: {'line': b'[ 36%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/StyleCollection.cpp.o\x1b[0m\n'}
+[5.160017] (-) TimerEvent: {}
+[5.263154] (-) TimerEvent: {}
+[5.364153] (-) TimerEvent: {}
+[5.524416] (groot) StdoutLine: {'line': b'[ 37%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/qrc_resources.cpp.o\x1b[0m\n'}
+[5.525088] (-) TimerEvent: {}
+[5.591731] (groot) StdoutLine: {'line': b'[ 38%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_Compiler.cpp.o\x1b[0m\n'}
+[5.622613] (groot) StdoutLine: {'line': b'[ 39%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_Connection.cpp.o\x1b[0m\n'}
+[5.689886] (-) TimerEvent: {}
+[5.791253] (-) TimerEvent: {}
+[5.855677] (groot) StdoutLine: {'line': b'[ 39%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_ConnectionGeometry.cpp.o\x1b[0m\n'}
+[5.892615] (-) TimerEvent: {}
+[5.983313] (groot) StdoutLine: {'line': b'[ 40%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_ConnectionGraphicsObject.cpp.o\x1b[0m\n'}
+[5.986672] (groot) StdoutLine: {'line': b'[ 41%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_ConnectionState.cpp.o\x1b[0m\n'}
+[6.166364] (groot) StdoutLine: {'line': b'[ 42%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_ConnectionStyle.cpp.o\x1b[0m\n'}
+[6.166969] (-) TimerEvent: {}
+[6.167228] (groot) StdoutLine: {'line': b'[ 42%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_DataModelRegistry.cpp.o\x1b[0m\n'}
+[6.200920] (groot) StdoutLine: {'line': b'[ 44%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_Export.cpp.o\x1b[0m\n'}
+[6.201746] (groot) StdoutLine: {'line': b'[ 44%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_FlowScene.cpp.o\x1b[0m\n'}
+[6.202566] (groot) StdoutLine: {'line': b'[ 44%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_FlowView.cpp.o\x1b[0m\n'}
+[6.233297] (groot) StdoutLine: {'line': b'[ 45%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_FlowViewStyle.cpp.o\x1b[0m\n'}
+[6.264993] (groot) StdoutLine: {'line': b'[ 46%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_Node.cpp.o\x1b[0m\n'}
+[6.341061] (-) TimerEvent: {}
+[6.362036] (groot) StdoutLine: {'line': b'[ 46%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_NodeData.cpp.o\x1b[0m\n'}
+[6.451224] (-) TimerEvent: {}
+[6.562717] (groot) StdoutLine: {'line': b'[ 47%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_NodeDataModel.cpp.o\x1b[0m\n'}
+[6.566712] (-) TimerEvent: {}
+[6.718875] (groot) StdoutLine: {'line': b'[ 48%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_NodeGeometry.cpp.o\x1b[0m\n'}
+[6.722530] (-) TimerEvent: {}
+[6.803577] (groot) StdoutLine: {'line': b'[ 49%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_NodeGraphicsObject.cpp.o\x1b[0m\n'}
+[6.843170] (-) TimerEvent: {}
+[6.910572] (groot) StdoutLine: {'line': b'[ 49%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_NodePainterDelegate.cpp.o\x1b[0m\n'}
+[6.953816] (groot) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_NodeState.cpp.o\x1b[0m\n'}
+[6.954439] (-) TimerEvent: {}
+[6.986208] (groot) StdoutLine: {'line': b'[ 51%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_NodeStyle.cpp.o\x1b[0m\n'}
+[7.020755] (groot) StdoutLine: {'line': b'[ 51%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_OperatingSystem.cpp.o\x1b[0m\n'}
+[7.053609] (groot) StdoutLine: {'line': b'[ 52%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_PortType.cpp.o\x1b[0m\n'}
+[7.087138] (groot) StdoutLine: {'line': b'[ 53%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_QStringStdHash.cpp.o\x1b[0m\n'}
+[7.087746] (-) TimerEvent: {}
+[7.093051] (groot) StdoutLine: {'line': b'[ 54%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_QUuidStdHash.cpp.o\x1b[0m\n'}
+[7.119209] (groot) StdoutLine: {'line': b'[ 54%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_Serializable.cpp.o\x1b[0m\n'}
+[7.126736] (groot) StdoutLine: {'line': b'[ 55%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_Style.cpp.o\x1b[0m\n'}
+[7.150975] (groot) StdoutLine: {'line': b'[ 56%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_TypeConverter.cpp.o\x1b[0m\n'}
+[7.162080] (groot) StdoutLine: {'line': b'[ 56%] \x1b[32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_memory.cpp.o\x1b[0m\n'}
+[7.695154] (-) TimerEvent: {}
+[7.820123] (-) TimerEvent: {}
+[7.906282] (groot) StdoutLine: {'line': b'[ 57%] \x1b[32m\x1b[1mLinking CXX static library ../lib/libQtNodeEditor.a\x1b[0m\n'}
+[7.920298] (-) TimerEvent: {}
+[8.022731] (-) TimerEvent: {}
+[8.049993] (groot) StdoutLine: {'line': b'[ 57%] Built target QtNodeEditor\n'}
+[8.081471] (groot) StdoutLine: {'line': b'[ 58%] \x1b[34m\x1b[1mAutomatic MOC and UIC for target behavior_tree_editor\x1b[0m\n'}
+[8.241589] (-) TimerEvent: {}
+[8.353858] (-) TimerEvent: {}
+[8.425760] (groot) StdoutLine: {'line': b'[ 58%] Built target behavior_tree_editor_autogen\n'}
+[8.450663] (groot) StdoutLine: {'line': b'[ 60%] \x1b[34m\x1b[1mGenerating ui_sidepanel_monitor.h\x1b[0m\n'}
+[8.451496] (groot) StdoutLine: {'line': b'[ 60%] \x1b[34m\x1b[1mGenerating ui_about_dialog.h\x1b[0m\n'}
+[8.454314] (-) TimerEvent: {}
+[8.456035] (groot) StdoutLine: {'line': b'[ 62%] \x1b[34m\x1b[1mGenerating ui_action_form.h\x1b[0m\n'}
+[8.456773] (groot) StdoutLine: {'line': b'[ 62%] \x1b[34m\x1b[1mGenerating ui_startup_dialog.h\x1b[0m\n'}
+[8.458248] (groot) StdoutLine: {'line': b'[ 62%] \x1b[34m\x1b[1mGenerating ui_mainwindow.h\x1b[0m\n'}
+[8.460622] (groot) StdoutLine: {'line': b'[ 62%] \x1b[34m\x1b[1mGenerating ui_sidepanel_replay.h\x1b[0m\n'}
+[8.477362] (groot) StdoutLine: {'line': b'[ 63%] \x1b[34m\x1b[1mGenerating ui_sidepanel_editor.h\x1b[0m\n'}
+[8.479875] (groot) StdoutLine: {'line': b'[ 64%] \x1b[34m\x1b[1mGenerating ui_custom_node_dialog.h\x1b[0m\n'}
+[8.508850] (groot) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target behavior_tree_editor\x1b[0m\n'}
+[8.556336] (-) TimerEvent: {}
+[8.659387] (-) TimerEvent: {}
+[8.662227] (groot) StdoutLine: {'line': b'[ 65%] \x1b[32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/editor_flowscene.cpp.o\x1b[0m\n'}
+[8.664382] (groot) StdoutLine: {'line': b'[ 66%] \x1b[32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/utils.cpp.o\x1b[0m\n'}
+[8.664594] (groot) StdoutLine: {'line': b'[ 66%] \x1b[32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/mainwindow.cpp.o\x1b[0m\n'}
+[8.667682] (groot) StdoutLine: {'line': b'[ 67%] \x1b[32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/bt_editor_base.cpp.o\x1b[0m\n'}
+[8.667872] (groot) StdoutLine: {'line': b'[ 68%] \x1b[32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/behavior_tree_editor_autogen/mocs_compilation.cpp.o\x1b[0m\n'}
+[8.671098] (groot) StdoutLine: {'line': b'[ 68%] \x1b[32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/models/SubtreeNodeModel.cpp.o\x1b[0m\n'}
+[8.671684] (groot) StdoutLine: {'line': b'[ 69%] \x1b[32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/models/BehaviorTreeNodeModel.cpp.o\x1b[0m\n'}
+[8.678148] (groot) StdoutLine: {'line': b'[ 69%] \x1b[32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/graphic_container.cpp.o\x1b[0m\n'}
+[9.571027] (-) TimerEvent: {}
+[9.673223] (-) TimerEvent: {}
+[9.807219] (-) TimerEvent: {}
+[9.942821] (-) TimerEvent: {}
+[10.476538] (-) TimerEvent: {}
+[10.583058] (-) TimerEvent: {}
+[10.686244] (-) TimerEvent: {}
+[10.789397] (-) TimerEvent: {}
+[10.894534] (-) TimerEvent: {}
+[10.998052] (-) TimerEvent: {}
+[11.334270] (-) TimerEvent: {}
+[11.560022] (-) TimerEvent: {}
+[11.667719] (-) TimerEvent: {}
+[11.769430] (-) TimerEvent: {}
+[11.949123] (-) TimerEvent: {}
+[12.144238] (groot) StdoutLine: {'line': b'[ 70%] \x1b[32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/startup_dialog.cpp.o\x1b[0m\n'}
+[12.148535] (-) TimerEvent: {}
+[12.277300] (-) TimerEvent: {}
+[12.325801] (groot) StdoutLine: {'line': b'[ 71%] \x1b[32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/sidepanel_editor.cpp.o\x1b[0m\n'}
+[12.463757] (groot) StdoutLine: {'line': b'[ 71%] \x1b[32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/sidepanel_replay.cpp.o\x1b[0m\n'}
+[12.464231] (-) TimerEvent: {}
+[12.511583] (groot) StdoutLine: {'line': b'[ 72%] \x1b[32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/custom_node_dialog.cpp.o\x1b[0m\n'}
+[12.853466] (groot) StdoutLine: {'line': b'[ 73%] \x1b[32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/XML_utilities.cpp.o\x1b[0m\n'}
+[12.853825] (-) TimerEvent: {}
+[12.956417] (-) TimerEvent: {}
+[13.057748] (-) TimerEvent: {}
+[13.329542] (-) TimerEvent: {}
+[13.374328] (groot) StdoutLine: {'line': b'[ 74%] \x1b[32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/sidepanel_monitor.cpp.o\x1b[0m\n'}
+[13.485625] (-) TimerEvent: {}
+[13.590678] (-) TimerEvent: {}
+[13.751023] (-) TimerEvent: {}
+[14.288683] (-) TimerEvent: {}
+[14.393852] (-) TimerEvent: {}
+[14.496822] (-) TimerEvent: {}
+[14.723995] (-) TimerEvent: {}
+[14.953330] (-) TimerEvent: {}
+[15.054529] (-) TimerEvent: {}
+[15.845559] (-) TimerEvent: {}
+[15.955673] (-) TimerEvent: {}
+[16.421138] (-) TimerEvent: {}
+[16.541934] (-) TimerEvent: {}
+[16.822208] (-) TimerEvent: {}
+[16.943263] (-) TimerEvent: {}
+[16.963068] (groot) StdoutLine: {'line': b'[ 74%] \x1b[32m\x1b[1mLinking CXX shared library libbehavior_tree_editor.so\x1b[0m\n'}
+[17.083592] (-) TimerEvent: {}
+[17.599570] (-) TimerEvent: {}
+[17.700828] (-) TimerEvent: {}
+[17.709659] (groot) StdoutLine: {'line': b'[ 74%] Built target behavior_tree_editor\n'}
+[17.739031] (groot) StdoutLine: {'line': b'[ 75%] \x1b[34m\x1b[1mAutomatic MOC and UIC for target replay_test\x1b[0m\n'}
+[17.739304] (groot) StdoutLine: {'line': b'[ 76%] \x1b[34m\x1b[1mAutomatic MOC and UIC for target Groot\x1b[0m\n'}
+[17.739490] (groot) StdoutLine: {'line': b'[ 76%] \x1b[34m\x1b[1mAutomatic MOC and UIC for target editor_test\x1b[0m\n'}
+[17.776451] (groot) StdoutLine: {'line': b'[ 76%] Built target Groot_autogen\n'}
+[17.792609] (groot) StdoutLine: {'line': b'[ 77%] \x1b[34m\x1b[1mAutomatic RCC for bt_editor/resources/icons.qrc\x1b[0m\n'}
+[17.792861] (groot) StdoutLine: {'line': b'[ 78%] \x1b[34m\x1b[1mAutomatic RCC for bt_editor/resources/style.qrc\x1b[0m\n'}
+[17.793024] (groot) StdoutLine: {'line': b'[ 78%] \x1b[34m\x1b[1mAutomatic RCC for test_data/test_files.qrc\x1b[0m\n'}
+[17.855283] (groot) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target Groot\x1b[0m\n'}
+[17.855537] (-) TimerEvent: {}
+[17.908717] (groot) StdoutLine: {'line': b'[ 80%] \x1b[32mBuilding CXX object CMakeFiles/Groot.dir/bt_editor/main.cpp.o\x1b[0m\n'}
+[17.909649] (groot) StdoutLine: {'line': b'[ 80%] \x1b[32mBuilding CXX object CMakeFiles/Groot.dir/Groot_autogen/OQ4J2MLGYJ/qrc_icons.cpp.o\x1b[0m\n'}
+[17.919479] (groot) StdoutLine: {'line': b'[ 81%] \x1b[32mBuilding CXX object CMakeFiles/Groot.dir/Groot_autogen/OQ4J2MLGYJ/qrc_style.cpp.o\x1b[0m\n'}
+[17.920742] (groot) StdoutLine: {'line': b'[ 81%] \x1b[32mBuilding CXX object CMakeFiles/Groot.dir/Groot_autogen/NYYW7IJ2JN/qrc_test_files.cpp.o\x1b[0m\n'}
+[18.183313] (-) TimerEvent: {}
+[18.256443] (groot) StdoutLine: {'line': b'[ 81%] Built target editor_test_autogen\n'}
+[18.257952] (groot) StdoutLine: {'line': b'[ 81%] Built target replay_test_autogen\n'}
+[18.279934] (groot) StdoutLine: {'line': b'[ 85%] \x1b[34m\x1b[1mAutomatic RCC for ../test_data/test_files.qrc\x1b[0m\n'}
+[18.280162] (groot) StdoutLine: {'line': b'[ 85%] \x1b[34m\x1b[1mAutomatic RCC for ../QtNodeEditor/resources/resources.qrc\x1b[0m\n'}
+[18.280321] (groot) StdoutLine: {'line': b'[ 85%] \x1b[34m\x1b[1mAutomatic RCC for ../QtNodeEditor/resources/resources.qrc\x1b[0m\n'}
+[18.280537] (groot) StdoutLine: {'line': b'[ 85%] \x1b[34m\x1b[1mAutomatic RCC for ../test_data/test_files.qrc\x1b[0m\n'}
+[18.283057] (groot) StdoutLine: {'line': b'[ 86%] \x1b[34m\x1b[1mAutomatic RCC for ../bt_editor/resources/icons.qrc\x1b[0m\n'}
+[18.283392] (-) TimerEvent: {}
+[18.312002] (groot) StdoutLine: {'line': b'[ 86%] \x1b[34m\x1b[1mAutomatic RCC for ../bt_editor/resources/style.qrc\x1b[0m\n'}
+[18.317952] (groot) StdoutLine: {'line': b'[ 86%] \x1b[34m\x1b[1mAutomatic RCC for ../bt_editor/resources/icons.qrc\x1b[0m\n'}
+[18.319148] (groot) StdoutLine: {'line': b'[ 87%] \x1b[34m\x1b[1mAutomatic RCC for ../bt_editor/resources/style.qrc\x1b[0m\n'}
+[18.358840] (groot) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target replay_test\x1b[0m\n'}
+[18.393938] (groot) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target editor_test\x1b[0m\n'}
+[18.394154] (-) TimerEvent: {}
+[18.454874] (groot) StdoutLine: {'line': b'[ 88%] \x1b[32mBuilding CXX object test/CMakeFiles/replay_test.dir/replay_test.cpp.o\x1b[0m\n'}
+[18.455428] (groot) StdoutLine: {'line': b'[ 89%] \x1b[32mBuilding CXX object test/CMakeFiles/replay_test.dir/replay_test_autogen/mocs_compilation.cpp.o\x1b[0m\n'}
+[18.455763] (groot) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding CXX object test/CMakeFiles/replay_test.dir/groot_test_base.cpp.o\x1b[0m\n'}
+[18.466879] (groot) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding CXX object test/CMakeFiles/replay_test.dir/replay_test_autogen/EB4OVBCXLB/qrc_resources.cpp.o\x1b[0m\n'}
+[18.471590] (groot) StdoutLine: {'line': b'[ 91%] \x1b[32mBuilding CXX object test/CMakeFiles/replay_test.dir/replay_test_autogen/K3L5NHU5SO/qrc_icons.cpp.o\x1b[0m\n'}
+[18.492854] (groot) StdoutLine: {'line': b'[ 92%] \x1b[32mBuilding CXX object test/CMakeFiles/editor_test.dir/editor_test_autogen/mocs_compilation.cpp.o\x1b[0m\n'}
+[18.527549] (groot) StdoutLine: {'line': b'[ 92%] \x1b[32mBuilding CXX object test/CMakeFiles/replay_test.dir/replay_test_autogen/K3L5NHU5SO/qrc_style.cpp.o\x1b[0m\n'}
+[18.527753] (-) TimerEvent: {}
+[18.781339] (groot) StdoutLine: {'line': b'[ 93%] \x1b[32mBuilding CXX object test/CMakeFiles/replay_test.dir/replay_test_autogen/4L4FNCFPKD/qrc_test_files.cpp.o\x1b[0m\n'}
+[18.781562] (-) TimerEvent: {}
+[18.841187] (groot) StdoutLine: {'line': b'[ 93%] \x1b[32mBuilding CXX object test/CMakeFiles/editor_test.dir/editor_test.cpp.o\x1b[0m\n'}
+[18.856766] (groot) StdoutLine: {'line': b'[ 94%] \x1b[32mBuilding CXX object test/CMakeFiles/editor_test.dir/groot_test_base.cpp.o\x1b[0m\n'}
+[19.233700] (groot) StdoutLine: {'line': b'[ 95%] \x1b[32mBuilding CXX object test/CMakeFiles/editor_test.dir/editor_test_autogen/EB4OVBCXLB/qrc_resources.cpp.o\x1b[0m\n'}
+[19.234389] (-) TimerEvent: {}
+[19.297269] (groot) StdoutLine: {'line': b'[ 95%] \x1b[32mBuilding CXX object test/CMakeFiles/editor_test.dir/editor_test_autogen/K3L5NHU5SO/qrc_icons.cpp.o\x1b[0m\n'}
+[20.008457] (-) TimerEvent: {}
+[20.064894] (groot) StdoutLine: {'line': b'[ 96%] \x1b[32mBuilding CXX object test/CMakeFiles/editor_test.dir/editor_test_autogen/K3L5NHU5SO/qrc_style.cpp.o\x1b[0m\n'}
+[20.110715] (groot) StdoutLine: {'line': b'[ 97%] \x1b[32mBuilding CXX object test/CMakeFiles/editor_test.dir/editor_test_autogen/4L4FNCFPKD/qrc_test_files.cpp.o\x1b[0m\n'}
+[20.110939] (-) TimerEvent: {}
+[21.097564] (groot) StdoutLine: {'line': b'[ 98%] \x1b[32m\x1b[1mLinking CXX executable Groot\x1b[0m\n'}
+[21.097772] (-) TimerEvent: {}
+[21.675442] (-) TimerEvent: {}
+[21.769058] (groot) StdoutLine: {'line': b'[ 98%] Built target Groot\n'}
+[21.805740] (-) TimerEvent: {}
+[21.906464] (-) TimerEvent: {}
+[22.007239] (-) TimerEvent: {}
+[22.109568] (-) TimerEvent: {}
+[22.210404] (-) TimerEvent: {}
+[22.249075] (groot) StdoutLine: {'line': b'[ 99%] \x1b[32m\x1b[1mLinking CXX executable replay_test\x1b[0m\n'}
+[22.310669] (-) TimerEvent: {}
+[22.411904] (-) TimerEvent: {}
+[22.513324] (-) TimerEvent: {}
+[22.619655] (-) TimerEvent: {}
+[22.721765] (-) TimerEvent: {}
+[22.822652] (-) TimerEvent: {}
+[22.844667] (groot) StdoutLine: {'line': b'[ 99%] Built target replay_test\n'}
+[22.924611] (-) TimerEvent: {}
+[23.029590] (-) TimerEvent: {}
+[23.130566] (-) TimerEvent: {}
+[23.140352] (groot) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable editor_test\x1b[0m\n'}
+[23.231049] (-) TimerEvent: {}
+[23.336024] (-) TimerEvent: {}
+[23.438227] (-) TimerEvent: {}
+[23.545752] (-) TimerEvent: {}
+[23.646937] (-) TimerEvent: {}
+[23.687970] (groot) StdoutLine: {'line': b'[100%] Built target editor_test\n'}
+[23.708380] (groot) CommandEnded: {'returncode': 0}
+[23.747332] (-) TimerEvent: {}
+[23.847881] (-) TimerEvent: {}
+[23.856353] (groot) JobProgress: {'identifier': 'groot', 'progress': 'install'}
+[23.873957] (groot) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/vboxuser/ros2_ws/build/groot'], 'cwd': '/home/vboxuser/ros2_ws/build/groot', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'de_DE:en'), ('USER', 'vboxuser'), ('LC_TIME', 'de_DE.UTF-8'), ('SSH_AGENT_PID', '1671'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/vboxuser/ros2_ws/install/realsense2_camera/lib:/home/vboxuser/ros2_ws/install/realsense2_camera_msgs/lib:/home/vboxuser/ros2_ws/install/kr_msgs/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/vboxuser'), ('OLDPWD', '/home/vboxuser/ros2_ws/src'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/terminator.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'de_DE.UTF-8'), ('MANAGERPID', '1532'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3651'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/vboxuser/ros2_ws/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'vboxuser'), ('JOURNAL_STREAM', '8:38487'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'vboxuser'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/home/vboxuser/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/KassowRobot:@/tmp/.ICE-unix/1748,unix/KassowRobot:/tmp/.ICE-unix/1748'), ('INVOCATION_ID', 'e274ef62441a43a3adb3e1bffb43f2b1'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'de_DE.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'de_DE.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'de_DE.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '18'), ('AMENT_PREFIX_PATH', '/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/realsense2_description:/home/vboxuser/ros2_ws/install/realsense2_camera:/home/vboxuser/ros2_ws/install/realsense2_camera_msgs:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/kr_example_cpp:/home/vboxuser/ros2_ws/install/kr_msgs:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'de_DE.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:2a7753e0-17fa-4476-a0b3-900cb9309396'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'de_DE.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('LC_IDENTIFICATION', 'de_DE.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/vboxuser/ros2_ws/build/groot'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/realsense2_camera_msgs/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/kr_example_python/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'de_DE.UTF-8'), ('LC_PAPER', 'de_DE.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/vboxuser/ros2_ws/install/realsense2_description:/home/vboxuser/ros2_ws/install/realsense2_camera:/home/vboxuser/ros2_ws/install/realsense2_camera_msgs:/home/vboxuser/ros2_ws/install/kr_example_cpp:/home/vboxuser/ros2_ws/install/kr_msgs:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/opt/ros/foxy')]), 'shell': False}
+[23.886572] (groot) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[23.887545] (groot) StdoutLine: {'line': b'-- Installing: /home/vboxuser/ros2_ws/install/groot/lib/libbehavior_tree_editor.so\n'}
+[23.894427] (groot) StdoutLine: {'line': b'-- Set runtime path of "/home/vboxuser/ros2_ws/install/groot/lib/libbehavior_tree_editor.so" to ""\n'}
+[23.894797] (groot) StdoutLine: {'line': b'-- Installing: /home/vboxuser/ros2_ws/install/groot/lib/groot/Groot\n'}
+[23.896340] (groot) StdoutLine: {'line': b'-- Set runtime path of "/home/vboxuser/ros2_ws/install/groot/lib/groot/Groot" to ""\n'}
+[23.896909] (groot) StdoutLine: {'line': b'-- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/library_path.sh\n'}
+[23.897006] (groot) StdoutLine: {'line': b'-- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/library_path.dsv\n'}
+[23.897772] (groot) StdoutLine: {'line': b'-- Installing: /home/vboxuser/ros2_ws/install/groot/share/ament_index/resource_index/package_run_dependencies/groot\n'}
+[23.898137] (groot) StdoutLine: {'line': b'-- Installing: /home/vboxuser/ros2_ws/install/groot/share/ament_index/resource_index/parent_prefix_path/groot\n'}
+[23.898467] (groot) StdoutLine: {'line': b'-- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/ament_prefix_path.sh\n'}
+[23.898693] (groot) StdoutLine: {'line': b'-- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/ament_prefix_path.dsv\n'}
+[23.898966] (groot) StdoutLine: {'line': b'-- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/path.sh\n'}
+[23.899137] (groot) StdoutLine: {'line': b'-- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/path.dsv\n'}
+[23.899406] (groot) StdoutLine: {'line': b'-- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/local_setup.bash\n'}
+[23.899711] (groot) StdoutLine: {'line': b'-- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/local_setup.sh\n'}
+[23.899800] (groot) StdoutLine: {'line': b'-- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/local_setup.zsh\n'}
+[23.900103] (groot) StdoutLine: {'line': b'-- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/local_setup.dsv\n'}
+[23.900341] (groot) StdoutLine: {'line': b'-- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/package.dsv\n'}
+[23.900529] (groot) StdoutLine: {'line': b'-- Installing: /home/vboxuser/ros2_ws/install/groot/share/ament_index/resource_index/packages/groot\n'}
+[23.900836] (groot) StdoutLine: {'line': b'-- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[23.901428] (groot) StdoutLine: {'line': b'-- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[23.902207] (groot) StdoutLine: {'line': b'-- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[23.902590] (groot) StdoutLine: {'line': b'-- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/cmake/grootConfig.cmake\n'}
+[23.902735] (groot) StdoutLine: {'line': b'-- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/cmake/grootConfig-version.cmake\n'}
+[23.902801] (groot) StdoutLine: {'line': b'-- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/package.xml\n'}
+[23.906096] (groot) CommandEnded: {'returncode': 0}
+[23.951581] (-) TimerEvent: {}
+[24.053081] (-) TimerEvent: {}
+[24.064475] (groot) JobEnded: {'identifier': 'groot', 'rc': 0}
+[24.066355] (-) EventReactorShutdown: {}

@@ -1,0 +1,10 @@
+[console_scripts]
+calibration = vision.calibration:main
+image_filters = vision.img_filters:main
+image_receiver = vision.image_receiver:main
+point_finder_2d = vision.point_finder_2d:main
+point_finder_3d = vision.point_finder_3d:main
+stereo_triangulation = vision.stereo_triangulation:main
+stereo_triangulation_with_robot = vision.stereo_triangulation_with_robot:main
+test_node = vision.test_node:main
+

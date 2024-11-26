@@ -1,0 +1,24 @@
+[1.486s] Invoking command in '/home/vboxuser/ros2_ws/src/bt_pkg': PYTHONPATH=/home/vboxuser/ros2_ws/build/bt_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/bt_pkg/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/bt_pkg build --build-base /home/vboxuser/ros2_ws/build/bt_pkg/build install --record /home/vboxuser/ros2_ws/build/bt_pkg/install.log --install-scripts $base/lib/bt_pkg --single-version-externally-managed install_data
+[1.751s] running egg_info
+[1.759s] writing ../../build/bt_pkg/bt_pkg.egg-info/PKG-INFO
+[1.760s] writing dependency_links to ../../build/bt_pkg/bt_pkg.egg-info/dependency_links.txt
+[1.760s] writing entry points to ../../build/bt_pkg/bt_pkg.egg-info/entry_points.txt
+[1.761s] writing requirements to ../../build/bt_pkg/bt_pkg.egg-info/requires.txt
+[1.762s] writing top-level names to ../../build/bt_pkg/bt_pkg.egg-info/top_level.txt
+[1.815s] reading manifest file '../../build/bt_pkg/bt_pkg.egg-info/SOURCES.txt'
+[1.816s] writing manifest file '../../build/bt_pkg/bt_pkg.egg-info/SOURCES.txt'
+[1.816s] running build
+[1.816s] running build_py
+[1.816s] copying bt_pkg/bt_scan_hookstrip.py -> /home/vboxuser/ros2_ws/build/bt_pkg/build/lib/bt_pkg
+[1.816s] running install
+[1.816s] running install_lib
+[1.816s] copying /home/vboxuser/ros2_ws/build/bt_pkg/build/lib/bt_pkg/bt_scan_hookstrip.py -> /home/vboxuser/ros2_ws/install/bt_pkg/lib/python3.8/site-packages/bt_pkg
+[1.816s] byte-compiling /home/vboxuser/ros2_ws/install/bt_pkg/lib/python3.8/site-packages/bt_pkg/bt_scan_hookstrip.py to bt_scan_hookstrip.cpython-38.pyc
+[1.819s] running install_data
+[1.819s] running install_egg_info
+[1.821s] removing '/home/vboxuser/ros2_ws/install/bt_pkg/lib/python3.8/site-packages/bt_pkg-0.0.0-py3.8.egg-info' (and everything under it)
+[1.822s] Copying ../../build/bt_pkg/bt_pkg.egg-info to /home/vboxuser/ros2_ws/install/bt_pkg/lib/python3.8/site-packages/bt_pkg-0.0.0-py3.8.egg-info
+[1.823s] running install_scripts
+[1.862s] Installing bt_scan_hookstrip script to /home/vboxuser/ros2_ws/install/bt_pkg/lib/bt_pkg
+[1.877s] writing list of installed files to '/home/vboxuser/ros2_ws/build/bt_pkg/install.log'
+[1.947s] Invoked command in '/home/vboxuser/ros2_ws/src/bt_pkg' returned '0': PYTHONPATH=/home/vboxuser/ros2_ws/build/bt_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/bt_pkg/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/bt_pkg build --build-base /home/vboxuser/ros2_ws/build/bt_pkg/build install --record /home/vboxuser/ros2_ws/build/bt_pkg/install.log --install-scripts $base/lib/bt_pkg --single-version-externally-managed install_data

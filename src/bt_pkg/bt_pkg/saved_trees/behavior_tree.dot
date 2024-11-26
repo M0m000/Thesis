@@ -1,0 +1,11 @@
+digraph pastafarianism {
+ordering=out;
+graph [fontname="times-roman"];
+node [fontname="times-roman"];
+edge [fontname="times-roman"];
+"Root Sequence" [fillcolor=orange, fontcolor=black, fontsize=9, label="Ⓜ Root Sequence", shape=box, style=filled];
+"Success Node" [fillcolor=gray, fontcolor=black, fontsize=9, label="Success Node", shape=ellipse, style=filled];
+"Root Sequence" -> "Success Node";
+"Failure Node" [fillcolor=gray, fontcolor=black, fontsize=9, label="Failure Node", shape=ellipse, style=filled];
+"Root Sequence" -> "Failure Node";
+}

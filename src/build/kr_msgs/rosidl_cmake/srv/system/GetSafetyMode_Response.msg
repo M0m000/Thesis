@@ -1,0 +1,3 @@
+
+SafetyMode  mode  
+bool        success
