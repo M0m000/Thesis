@@ -1,0 +1,1299 @@
+[0.070s] Invoking command in '/home/vboxuser/ros2_ws/build/kr_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/kr_msgs -- -j8 -l8
+[1.170s] [  0%] Built target kr_msgs__cpp
+[1.171s] [ 12%] Built target kr_msgs__rosidl_generator_c
+[1.171s] [ 12%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/unsuspend_robot__type_support.cpp.o[0m
+[1.171s] [ 12%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/action/move_tcp_along_axis__type_support.cpp.o[0m
+[1.171s] [ 12%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/robot_state__type_support.cpp.o[0m
+[1.171s] [ 12%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/resume_motion__type_support.cpp.o[0m
+[1.171s] [ 13%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/pause_motion__type_support.cpp.o[0m
+[1.171s] [ 14%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/safety_event__type_support.cpp.o[0m
+[1.171s] [ 26%] Built target kr_msgs__rosidl_typesupport_c
+[1.171s] [ 39%] Built target kr_msgs__rosidl_typesupport_introspection_c
+[1.171s] [ 39%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/safety_mode__type_support.cpp.o[0m
+[1.171s] [ 39%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/select_jogging_frame__type_support.cpp.o[0m
+[1.171s] [ 39%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/set_custom_frame__type_support.cpp.o[0m
+[1.171s] [ 39%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/set_interactivity__type_support.cpp.o[0m
+[1.171s] [ 40%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/safety_zone__type_support.cpp.o[0m
+[1.172s] [ 41%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/terminate_motion__type_support.cpp.o[0m
+[1.172s] [ 41%] [32m[1mLinking CXX shared library libkr_msgs__rosidl_typesupport_cpp.so[0m
+[1.172s] [ 41%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/self_motion__type_support.cpp.o[0m
+[1.216s] [ 53%] Built target kr_msgs__rosidl_typesupport_cpp
+[1.228s] [ 53%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/system_state__type_support.cpp.o[0m
+[1.238s] [ 53%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/config_analog_output__type_support.cpp.o[0m
+[1.247s] [ 53%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/config_discrete_output__type_support.cpp.o[0m
+[1.474s] [ 53%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/move_tcp_along_axis__type_support.cpp.o[0m
+[1.475s] [ 53%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/get_program_state__type_support.cpp.o[0m
+[1.484s] [ 53%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/pause_program__type_support.cpp.o[0m
+[1.699s] [ 53%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/get_analog_input__type_support.cpp.o[0m
+[1.741s] [ 54%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/config_quadrature_input__type_support.cpp.o[0m
+[2.064s] [ 54%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/program_recovery__type_support.cpp.o[0m
+[2.089s] [ 55%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/resume_program__type_support.cpp.o[0m
+[2.090s] [ 55%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/get_discrete_input__type_support.cpp.o[0m
+[2.236s] [ 55%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/step_program__type_support.cpp.o[0m
+[2.248s] [ 55%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/get_quadrature_input__type_support.cpp.o[0m
+[2.331s] [ 55%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/set_analog_output__type_support.cpp.o[0m
+[2.392s] [ 56%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/set_discrete_output__type_support.cpp.o[0m
+[2.452s] [ 56%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/move_joint__type_support.cpp.o[0m
+[2.512s] [ 56%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/stop_program__type_support.cpp.o[0m
+[2.617s] [ 56%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/get_robot_pose__type_support.cpp.o[0m
+[2.833s] [ 57%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/get_system_frame__type_support.cpp.o[0m
+[2.879s] [ 57%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/move_linear__type_support.cpp.o[0m
+[2.943s] [ 57%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/get_system_load__type_support.cpp.o[0m
+[2.943s] [ 57%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/set_system_frame__type_support.cpp.o[0m
+[2.966s] [ 57%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/move_spline__type_support.cpp.o[0m
+[2.994s] [ 57%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/set_system_load__type_support.cpp.o[0m
+[3.016s] [ 57%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/get_master_speed__type_support.cpp.o[0m
+[3.094s] [ 58%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/pause_motion__type_support.cpp.o[0m
+[3.334s] [ 59%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/get_robot_mode__type_support.cpp.o[0m
+[3.444s] [ 59%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/get_robot_state__type_support.cpp.o[0m
+[3.503s] [ 59%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/get_safety_zones__type_support.cpp.o[0m
+[3.513s] [ 59%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/get_safety_mode__type_support.cpp.o[0m
+[3.549s] [ 59%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/resume_motion__type_support.cpp.o[0m
+[3.562s] [ 59%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/select_jogging_frame__type_support.cpp.o[0m
+[3.567s] [ 59%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/log_alarm__type_support.cpp.o[0m
+[3.756s] [ 60%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/suspend_robot__type_support.cpp.o[0m
+[3.787s] [ 60%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/set_custom_frame__type_support.cpp.o[0m
+[3.808s] [ 60%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/unlock_robot__type_support.cpp.o[0m
+[3.881s] [ 60%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/unsuspend_robot__type_support.cpp.o[0m
+[3.968s] [ 60%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/action/detail/move_tcp_along_axis__type_support.cpp.o[0m
+[3.982s] [ 60%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/set_interactivity__type_support.cpp.o[0m
+[4.035s] [ 61%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/terminate_motion__type_support.cpp.o[0m
+[4.053s] [ 61%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/move_tcp_along_axis__type_support.cpp.o[0m
+[4.084s] [ 61%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/get_program_state__type_support.cpp.o[0m
+[4.246s] [ 61%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/pause_program__type_support.cpp.o[0m
+[4.260s] [ 61%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/program_recovery__type_support.cpp.o[0m
+[4.358s] [ 62%] [32m[1mLinking CXX shared library libkr_msgs__rosidl_typesupport_introspection_cpp.so[0m
+[4.409s] [ 63%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/resume_program__type_support.cpp.o[0m
+[4.483s] [ 63%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/step_program__type_support.cpp.o[0m
+[4.614s] [ 63%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/get_robot_pose__type_support.cpp.o[0m
+[4.614s] [ 63%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/stop_program__type_support.cpp.o[0m
+[4.635s] [ 69%] Built target kr_msgs__rosidl_typesupport_introspection_cpp
+[4.663s] [ 69%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/get_system_frame__type_support.cpp.o[0m
+[4.673s] [ 70%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/get_system_load__type_support.cpp.o[0m
+[4.822s] [ 70%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/set_system_frame__type_support.cpp.o[0m
+[4.830s] [ 70%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/set_system_load__type_support.cpp.o[0m
+[4.906s] [ 70%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/get_master_speed__type_support.cpp.o[0m
+[5.113s] [ 71%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/get_robot_mode__type_support.cpp.o[0m
+[5.116s] [ 71%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/get_robot_state__type_support.cpp.o[0m
+[5.162s] [ 71%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/get_safety_mode__type_support.cpp.o[0m
+[5.204s] [ 71%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/log_alarm__type_support.cpp.o[0m
+[5.219s] [ 71%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/get_safety_zones__type_support.cpp.o[0m
+[5.346s] [ 72%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/suspend_robot__type_support.cpp.o[0m
+[5.375s] [ 72%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/unlock_robot__type_support.cpp.o[0m
+[5.422s] [ 72%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/srv/detail/dds_fastrtps/unsuspend_robot__type_support.cpp.o[0m
+[5.795s] [ 72%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/action/detail/dds_fastrtps/move_tcp_along_axis__type_support.cpp.o[0m
+[6.541s] [ 72%] [32m[1mLinking CXX shared library libkr_msgs__rosidl_typesupport_fastrtps_cpp.so[0m
+[6.682s] [ 75%] Built target kr_msgs__rosidl_typesupport_fastrtps_cpp
+[6.709s] [ 76%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[11.175s] [35m[1mScanning dependencies of target kr_msgs__rosidl_typesupport_fastrtps_c[0m
+[11.338s] [ 76%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/msg/detail/motion_heartbeat__type_support_c.cpp.o[0m
+[11.338s] [ 76%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/msg/detail/geometry_plane__type_support_c.cpp.o[0m
+[11.338s] [ 77%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/msg/detail/follow_linear__type_support_c.cpp.o[0m
+[11.338s] [ 76%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/msg/detail/follow_joint__type_support_c.cpp.o[0m
+[11.339s] [ 77%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/msg/detail/jog_joint__type_support_c.cpp.o[0m
+[11.339s] [ 77%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/msg/detail/jog_linear__type_support_c.cpp.o[0m
+[11.343s] [ 77%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/msg/detail/number__type_support_c.cpp.o[0m
+[11.358s] [ 77%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/msg/detail/program_interact__type_support_c.cpp.o[0m
+[11.682s] [ 78%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/msg/detail/quadrature__type_support_c.cpp.o[0m
+[11.689s] [ 78%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/msg/detail/robot_mode__type_support_c.cpp.o[0m
+[11.695s] [ 78%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/msg/detail/robot_pose__type_support_c.cpp.o[0m
+[11.695s] [ 78%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/msg/detail/robot_state__type_support_c.cpp.o[0m
+[11.706s] [ 79%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/msg/detail/safety_mode__type_support_c.cpp.o[0m
+[11.711s] [ 79%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/msg/detail/safety_event__type_support_c.cpp.o[0m
+[11.739s] [ 79%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/msg/detail/safety_zone__type_support_c.cpp.o[0m
+[11.961s] [ 79%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/msg/detail/self_motion__type_support_c.cpp.o[0m
+[12.060s] [ 79%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/msg/detail/system_state__type_support_c.cpp.o[0m
+[12.065s] [ 79%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/config_analog_output__type_support_c.cpp.o[0m
+[12.066s] [ 79%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/config_quadrature_input__type_support_c.cpp.o[0m
+[12.068s] [ 80%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/config_discrete_output__type_support_c.cpp.o[0m
+[12.079s] [ 80%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/get_analog_input__type_support_c.cpp.o[0m
+[12.080s] [ 80%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/get_discrete_input__type_support_c.cpp.o[0m
+[12.136s] [ 80%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/get_quadrature_input__type_support_c.cpp.o[0m
+[12.356s] [ 81%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/set_analog_output__type_support_c.cpp.o[0m
+[12.426s] [ 81%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/set_discrete_output__type_support_c.cpp.o[0m
+[12.435s] [ 81%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/move_joint__type_support_c.cpp.o[0m
+[12.436s] [ 81%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/move_linear__type_support_c.cpp.o[0m
+[12.438s] [ 82%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/move_spline__type_support_c.cpp.o[0m
+[12.443s] [ 82%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/pause_motion__type_support_c.cpp.o[0m
+[12.511s] [ 82%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/select_jogging_frame__type_support_c.cpp.o[0m
+[12.651s] [ 82%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/resume_motion__type_support_c.cpp.o[0m
+[12.724s] [ 82%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/set_custom_frame__type_support_c.cpp.o[0m
+[12.782s] [ 83%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/set_interactivity__type_support_c.cpp.o[0m
+[12.795s] [ 83%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/terminate_motion__type_support_c.cpp.o[0m
+[12.795s] [ 83%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/get_program_state__type_support_c.cpp.o[0m
+[12.796s] [ 83%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/move_tcp_along_axis__type_support_c.cpp.o[0m
+[12.804s] [ 83%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/pause_program__type_support_c.cpp.o[0m
+[12.868s] [ 84%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/program_recovery__type_support_c.cpp.o[0m
+[13.043s] [ 84%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/resume_program__type_support_c.cpp.o[0m
+[13.090s] [ 84%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/step_program__type_support_c.cpp.o[0m
+[13.162s] [ 84%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/stop_program__type_support_c.cpp.o[0m
+[13.175s] [ 85%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/get_robot_pose__type_support_c.cpp.o[0m
+[13.177s] [ 85%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/get_system_frame__type_support_c.cpp.o[0m
+[13.181s] [ 85%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/get_system_load__type_support_c.cpp.o[0m
+[13.200s] [ 85%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/set_system_frame__type_support_c.cpp.o[0m
+[13.242s] [ 85%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/set_system_load__type_support_c.cpp.o[0m
+[13.409s] [ 86%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/get_master_speed__type_support_c.cpp.o[0m
+[13.458s] [ 86%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/get_robot_mode__type_support_c.cpp.o[0m
+[13.531s] [ 86%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/get_robot_state__type_support_c.cpp.o[0m
+[13.540s] [ 86%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/get_safety_mode__type_support_c.cpp.o[0m
+[13.568s] [ 87%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/log_alarm__type_support_c.cpp.o[0m
+[13.568s] [ 87%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/get_safety_zones__type_support_c.cpp.o[0m
+[13.569s] [ 87%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/suspend_robot__type_support_c.cpp.o[0m
+[13.606s] [ 87%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/unlock_robot__type_support_c.cpp.o[0m
+[13.803s] [ 87%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/srv/detail/unsuspend_robot__type_support_c.cpp.o[0m
+[13.847s] [ 87%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/kr_msgs/action/detail/move_tcp_along_axis__type_support_c.cpp.o[0m
+[14.252s] [ 88%] [32m[1mLinking CXX shared library libkr_msgs__rosidl_typesupport_fastrtps_c.so[0m
+[14.381s] [ 88%] Built target kr_msgs__rosidl_typesupport_fastrtps_c
+[14.412s] [ 88%] Built target kr_msgs
+[14.444s] [ 88%] [34m[1mGenerating Python code for ROS interfaces[0m
+[24.356s] [ 88%] Built target kr_msgs__py
+[24.388s] [35m[1mScanning dependencies of target kr_msgs__python[0m
+[24.559s] [ 88%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/msg/_jog_joint_s.c.o[0m
+[24.560s] [ 88%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/msg/_jog_linear_s.c.o[0m
+[24.560s] [ 89%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/msg/_geometry_plane_s.c.o[0m
+[24.560s] [ 88%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/msg/_follow_joint_s.c.o[0m
+[24.561s] [ 88%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/msg/_follow_linear_s.c.o[0m
+[24.561s] [ 89%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/msg/_motion_heartbeat_s.c.o[0m
+[24.563s] [ 89%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/msg/_number_s.c.o[0m
+[24.571s] [ 90%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/msg/_program_interact_s.c.o[0m
+[24.667s] [ 90%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/msg/_robot_mode_s.c.o[0m
+[24.667s] [ 90%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/msg/_quadrature_s.c.o[0m
+[24.672s] [ 90%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/msg/_robot_pose_s.c.o[0m
+[24.674s] [ 90%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/msg/_robot_state_s.c.o[0m
+[24.677s] [ 91%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/msg/_safety_event_s.c.o[0m
+[24.678s] [ 91%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/msg/_safety_mode_s.c.o[0m
+[24.698s] [ 91%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/msg/_safety_zone_s.c.o[0m
+[24.767s] [ 91%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/msg/_self_motion_s.c.o[0m
+[24.767s] [ 92%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/msg/_system_state_s.c.o[0m
+[24.779s] [ 92%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_config_analog_output_s.c.o[0m
+[24.780s] [ 92%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_config_discrete_output_s.c.o[0m
+[24.799s] [ 92%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_config_quadrature_input_s.c.o[0m
+[24.810s] [ 92%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_get_analog_input_s.c.o[0m
+[24.826s] [ 93%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_get_discrete_input_s.c.o[0m
+[24.838s] [ 93%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_get_quadrature_input_s.c.o[0m
+[24.906s] [ 93%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_set_discrete_output_s.c.o[0m
+[24.912s] [ 93%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_set_analog_output_s.c.o[0m
+[24.920s] [ 93%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_move_joint_s.c.o[0m
+[24.931s] [ 94%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_move_linear_s.c.o[0m
+[24.942s] [ 94%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_move_spline_s.c.o[0m
+[24.961s] [ 94%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_pause_motion_s.c.o[0m
+[24.976s] [ 94%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_resume_motion_s.c.o[0m
+[25.016s] [ 95%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_select_jogging_frame_s.c.o[0m
+[25.028s] [ 95%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_set_custom_frame_s.c.o[0m
+[25.028s] [ 95%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_set_interactivity_s.c.o[0m
+[25.061s] [ 95%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_terminate_motion_s.c.o[0m
+[25.066s] [ 95%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_move_tcp_along_axis_s.c.o[0m
+[25.124s] [ 96%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_pause_program_s.c.o[0m
+[25.125s] [ 96%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_get_program_state_s.c.o[0m
+[25.125s] [ 96%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_program_recovery_s.c.o[0m
+[25.127s] [ 96%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_resume_program_s.c.o[0m
+[25.143s] [ 96%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_step_program_s.c.o[0m
+[25.152s] [ 97%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_stop_program_s.c.o[0m
+[25.162s] [ 97%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_get_robot_pose_s.c.o[0m
+[25.178s] [ 97%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_get_system_frame_s.c.o[0m
+[25.231s] [ 97%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_get_system_load_s.c.o[0m
+[25.237s] [ 98%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_set_system_frame_s.c.o[0m
+[25.238s] [ 98%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_set_system_load_s.c.o[0m
+[25.241s] [ 98%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_get_master_speed_s.c.o[0m
+[25.250s] [ 98%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_get_robot_mode_s.c.o[0m
+[25.253s] [ 98%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_get_robot_state_s.c.o[0m
+[25.298s] [ 99%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_get_safety_mode_s.c.o[0m
+[25.339s] [ 99%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_get_safety_zones_s.c.o[0m
+[25.350s] [ 99%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_log_alarm_s.c.o[0m
+[25.356s] [ 99%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_suspend_robot_s.c.o[0m
+[25.356s] [ 99%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_unlock_robot_s.c.o[0m
+[25.365s] [100%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_unsuspend_robot_s.c.o[0m
+[25.368s] [100%] [32mBuilding C object CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/action/_move_tcp_along_axis_s.c.o[0m
+[25.511s] [100%] [32m[1mLinking C shared library rosidl_generator_py/kr_msgs/libkr_msgs__python.so[0m
+[25.586s] [100%] Built target kr_msgs__python
+[25.603s] [35m[1mScanning dependencies of target kr_msgs__rosidl_typesupport_c__pyext[0m
+[25.603s] [35m[1mScanning dependencies of target kr_msgs__rosidl_typesupport_introspection_c__pyext[0m
+[25.603s] [35m[1mScanning dependencies of target kr_msgs__rosidl_typesupport_fastrtps_c__pyext[0m
+[25.642s] [100%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/kr_msgs/_kr_msgs_s.ep.rosidl_typesupport_c.c.o[0m
+[25.642s] [100%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/kr_msgs/_kr_msgs_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[25.648s] [100%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/kr_msgs/_kr_msgs_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[26.027s] [100%] [32m[1mLinking C shared library rosidl_generator_py/kr_msgs/kr_msgs_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so[0m
+[26.028s] [100%] [32m[1mLinking C shared library rosidl_generator_py/kr_msgs/kr_msgs_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so[0m
+[26.038s] [100%] [32m[1mLinking CXX shared library rosidl_generator_py/kr_msgs/kr_msgs_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so[0m
+[26.092s] [100%] Built target kr_msgs__rosidl_typesupport_c__pyext
+[26.093s] [100%] Built target kr_msgs__rosidl_typesupport_introspection_c__pyext
+[26.132s] [100%] Built target kr_msgs__rosidl_typesupport_fastrtps_c__pyext
+[26.155s] Invoked command in '/home/vboxuser/ros2_ws/build/kr_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/kr_msgs -- -j8 -l8
+[28.192s] Invoking command in '/home/vboxuser/ros2_ws/build/kr_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/opt/ros/foxy /usr/bin/cmake --install /home/vboxuser/ros2_ws/build/kr_msgs
+[28.201s] -- Install configuration: ""
+[28.203s] -- Execute custom install script
+[28.203s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/ament_index/resource_index/rosidl_interfaces/kr_msgs
+[28.207s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/action/detail/move_tcp_along_axis__functions.h
+[28.207s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/action/detail/move_tcp_along_axis__struct.h
+[28.207s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/action/detail/move_tcp_along_axis__type_support.h
+[28.207s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/action/move_tcp_along_axis.h
+[28.208s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/follow_joint__functions.h
+[28.208s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/follow_joint__struct.h
+[28.208s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/follow_joint__type_support.h
+[28.208s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/follow_linear__functions.h
+[28.208s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/follow_linear__struct.h
+[28.209s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/follow_linear__type_support.h
+[28.209s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/geometry_plane__functions.h
+[28.209s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/geometry_plane__struct.h
+[28.209s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/geometry_plane__type_support.h
+[28.210s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/jog_joint__functions.h
+[28.210s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/jog_joint__struct.h
+[28.210s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/jog_joint__type_support.h
+[28.210s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/jog_linear__functions.h
+[28.211s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/jog_linear__struct.h
+[28.211s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/jog_linear__type_support.h
+[28.211s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/motion_heartbeat__functions.h
+[28.211s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/motion_heartbeat__struct.h
+[28.212s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/motion_heartbeat__type_support.h
+[28.212s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/number__functions.h
+[28.212s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/number__struct.h
+[28.212s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/number__type_support.h
+[28.213s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/program_interact__functions.h
+[28.213s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/program_interact__struct.h
+[28.213s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/program_interact__type_support.h
+[28.213s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/quadrature__functions.h
+[28.214s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/quadrature__struct.h
+[28.214s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/quadrature__type_support.h
+[28.214s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_mode__functions.h
+[28.214s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_mode__struct.h
+[28.215s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_mode__type_support.h
+[28.215s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_pose__functions.h
+[28.215s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_pose__struct.h
+[28.215s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_pose__type_support.h
+[28.216s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_state__functions.h
+[28.216s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_state__struct.h
+[28.216s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_state__type_support.h
+[28.216s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_event__functions.h
+[28.217s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_event__struct.h
+[28.217s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_event__type_support.h
+[28.217s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_mode__functions.h
+[28.217s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_mode__struct.h
+[28.218s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_mode__type_support.h
+[28.218s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_zone__functions.h
+[28.218s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_zone__struct.h
+[28.218s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_zone__type_support.h
+[28.218s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/self_motion__functions.h
+[28.219s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/self_motion__struct.h
+[28.219s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/self_motion__type_support.h
+[28.219s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/system_state__functions.h
+[28.219s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/system_state__struct.h
+[28.220s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/system_state__type_support.h
+[28.220s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/follow_joint.h
+[28.220s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/follow_linear.h
+[28.220s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/geometry_plane.h
+[28.221s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/jog_joint.h
+[28.221s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/jog_linear.h
+[28.221s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/motion_heartbeat.h
+[28.222s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/number.h
+[28.222s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/program_interact.h
+[28.222s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/quadrature.h
+[28.222s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/robot_mode.h
+[28.222s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/robot_pose.h
+[28.223s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/robot_state.h
+[28.223s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/rosidl_generator_c__visibility_control.h
+[28.223s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/safety_event.h
+[28.223s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/safety_mode.h
+[28.224s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/safety_zone.h
+[28.224s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/self_motion.h
+[28.224s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/system_state.h
+[28.224s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/config_analog_output.h
+[28.224s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/config_discrete_output.h
+[28.225s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/config_quadrature_input.h
+[28.225s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_analog_output__functions.h
+[28.225s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_analog_output__struct.h
+[28.226s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_analog_output__type_support.h
+[28.226s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_discrete_output__functions.h
+[28.226s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_discrete_output__struct.h
+[28.227s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_discrete_output__type_support.h
+[28.227s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_quadrature_input__functions.h
+[28.227s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_quadrature_input__struct.h
+[28.227s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_quadrature_input__type_support.h
+[28.227s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_analog_input__functions.h
+[28.228s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_analog_input__struct.h
+[28.228s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_analog_input__type_support.h
+[28.228s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_discrete_input__functions.h
+[28.228s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_discrete_input__struct.h
+[28.229s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_discrete_input__type_support.h
+[28.229s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_master_speed__functions.h
+[28.229s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_master_speed__struct.h
+[28.230s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_master_speed__type_support.h
+[28.230s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_program_state__functions.h
+[28.230s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_program_state__struct.h
+[28.231s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_program_state__type_support.h
+[28.231s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_quadrature_input__functions.h
+[28.231s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_quadrature_input__struct.h
+[28.231s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_quadrature_input__type_support.h
+[28.231s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_mode__functions.h
+[28.231s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_mode__struct.h
+[28.232s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_mode__type_support.h
+[28.232s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_pose__functions.h
+[28.232s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_pose__struct.h
+[28.232s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_pose__type_support.h
+[28.232s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_state__functions.h
+[28.233s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_state__struct.h
+[28.233s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_state__type_support.h
+[28.233s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_safety_mode__functions.h
+[28.233s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_safety_mode__struct.h
+[28.234s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_safety_mode__type_support.h
+[28.234s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_safety_zones__functions.h
+[28.234s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_safety_zones__struct.h
+[28.234s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_safety_zones__type_support.h
+[28.235s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_system_frame__functions.h
+[28.235s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_system_frame__struct.h
+[28.235s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_system_frame__type_support.h
+[28.235s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_system_load__functions.h
+[28.236s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_system_load__struct.h
+[28.236s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_system_load__type_support.h
+[28.236s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/log_alarm__functions.h
+[28.236s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/log_alarm__struct.h
+[28.237s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/log_alarm__type_support.h
+[28.237s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_joint__functions.h
+[28.237s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_joint__struct.h
+[28.237s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_joint__type_support.h
+[28.238s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_linear__functions.h
+[28.238s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_linear__struct.h
+[28.238s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_linear__type_support.h
+[28.239s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_spline__functions.h
+[28.239s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_spline__struct.h
+[28.239s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_spline__type_support.h
+[28.239s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_tcp_along_axis__functions.h
+[28.239s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_tcp_along_axis__struct.h
+[28.240s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_tcp_along_axis__type_support.h
+[28.240s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/pause_motion__functions.h
+[28.240s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/pause_motion__struct.h
+[28.240s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/pause_motion__type_support.h
+[28.241s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/pause_program__functions.h
+[28.241s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/pause_program__struct.h
+[28.241s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/pause_program__type_support.h
+[28.242s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/program_recovery__functions.h
+[28.242s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/program_recovery__struct.h
+[28.242s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/program_recovery__type_support.h
+[28.242s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/resume_motion__functions.h
+[28.243s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/resume_motion__struct.h
+[28.243s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/resume_motion__type_support.h
+[28.243s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/resume_program__functions.h
+[28.243s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/resume_program__struct.h
+[28.244s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/resume_program__type_support.h
+[28.244s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/select_jogging_frame__functions.h
+[28.244s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/select_jogging_frame__struct.h
+[28.244s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/select_jogging_frame__type_support.h
+[28.245s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_analog_output__functions.h
+[28.245s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_analog_output__struct.h
+[28.245s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_analog_output__type_support.h
+[28.245s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_custom_frame__functions.h
+[28.245s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_custom_frame__struct.h
+[28.246s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_custom_frame__type_support.h
+[28.246s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_discrete_output__functions.h
+[28.246s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_discrete_output__struct.h
+[28.247s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_discrete_output__type_support.h
+[28.247s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_interactivity__functions.h
+[28.247s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_interactivity__struct.h
+[28.247s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_interactivity__type_support.h
+[28.247s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_system_frame__functions.h
+[28.248s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_system_frame__struct.h
+[28.248s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_system_frame__type_support.h
+[28.248s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_system_load__functions.h
+[28.248s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_system_load__struct.h
+[28.248s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_system_load__type_support.h
+[28.249s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/step_program__functions.h
+[28.249s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/step_program__struct.h
+[28.249s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/step_program__type_support.h
+[28.250s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/stop_program__functions.h
+[28.250s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/stop_program__struct.h
+[28.250s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/stop_program__type_support.h
+[28.251s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/suspend_robot__functions.h
+[28.251s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/suspend_robot__struct.h
+[28.251s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/suspend_robot__type_support.h
+[28.251s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/terminate_motion__functions.h
+[28.252s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/terminate_motion__struct.h
+[28.252s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/terminate_motion__type_support.h
+[28.252s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/unlock_robot__functions.h
+[28.252s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/unlock_robot__struct.h
+[28.253s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/unlock_robot__type_support.h
+[28.253s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/unsuspend_robot__functions.h
+[28.253s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/unsuspend_robot__struct.h
+[28.253s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/unsuspend_robot__type_support.h
+[28.254s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_analog_input.h
+[28.254s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_discrete_input.h
+[28.254s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_master_speed.h
+[28.254s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_program_state.h
+[28.255s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_quadrature_input.h
+[28.255s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_robot_mode.h
+[28.255s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_robot_pose.h
+[28.255s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_robot_state.h
+[28.256s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_safety_mode.h
+[28.256s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_safety_zones.h
+[28.256s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_system_frame.h
+[28.256s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_system_load.h
+[28.257s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/log_alarm.h
+[28.257s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/move_joint.h
+[28.257s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/move_linear.h
+[28.257s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/move_spline.h
+[28.258s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/move_tcp_along_axis.h
+[28.258s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/pause_motion.h
+[28.258s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/pause_program.h
+[28.258s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/program_recovery.h
+[28.259s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/resume_motion.h
+[28.259s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/resume_program.h
+[28.259s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/select_jogging_frame.h
+[28.259s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/set_analog_output.h
+[28.260s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/set_custom_frame.h
+[28.260s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/set_discrete_output.h
+[28.260s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/set_interactivity.h
+[28.260s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/set_system_frame.h
+[28.260s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/set_system_load.h
+[28.261s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/step_program.h
+[28.261s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/stop_program.h
+[28.261s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/suspend_robot.h
+[28.262s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/terminate_motion.h
+[28.262s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/unlock_robot.h
+[28.262s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/unsuspend_robot.h
+[28.262s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/environment/library_path.sh
+[28.263s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/environment/library_path.dsv
+[28.266s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/action/detail/move_tcp_along_axis__rosidl_typesupport_fastrtps_c.h
+[28.266s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/follow_joint__rosidl_typesupport_fastrtps_c.h
+[28.267s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/follow_linear__rosidl_typesupport_fastrtps_c.h
+[28.267s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/geometry_plane__rosidl_typesupport_fastrtps_c.h
+[28.267s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/jog_joint__rosidl_typesupport_fastrtps_c.h
+[28.267s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/jog_linear__rosidl_typesupport_fastrtps_c.h
+[28.267s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/motion_heartbeat__rosidl_typesupport_fastrtps_c.h
+[28.268s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/number__rosidl_typesupport_fastrtps_c.h
+[28.268s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/program_interact__rosidl_typesupport_fastrtps_c.h
+[28.268s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/quadrature__rosidl_typesupport_fastrtps_c.h
+[28.268s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_mode__rosidl_typesupport_fastrtps_c.h
+[28.268s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_pose__rosidl_typesupport_fastrtps_c.h
+[28.269s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_state__rosidl_typesupport_fastrtps_c.h
+[28.269s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_event__rosidl_typesupport_fastrtps_c.h
+[28.270s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_mode__rosidl_typesupport_fastrtps_c.h
+[28.270s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_zone__rosidl_typesupport_fastrtps_c.h
+[28.270s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/self_motion__rosidl_typesupport_fastrtps_c.h
+[28.270s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/system_state__rosidl_typesupport_fastrtps_c.h
+[28.270s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[28.271s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_analog_output__rosidl_typesupport_fastrtps_c.h
+[28.271s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_discrete_output__rosidl_typesupport_fastrtps_c.h
+[28.271s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_quadrature_input__rosidl_typesupport_fastrtps_c.h
+[28.271s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_analog_input__rosidl_typesupport_fastrtps_c.h
+[28.272s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_discrete_input__rosidl_typesupport_fastrtps_c.h
+[28.272s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_master_speed__rosidl_typesupport_fastrtps_c.h
+[28.272s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_program_state__rosidl_typesupport_fastrtps_c.h
+[28.273s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_quadrature_input__rosidl_typesupport_fastrtps_c.h
+[28.273s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_mode__rosidl_typesupport_fastrtps_c.h
+[28.273s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_pose__rosidl_typesupport_fastrtps_c.h
+[28.273s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_state__rosidl_typesupport_fastrtps_c.h
+[28.274s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_safety_mode__rosidl_typesupport_fastrtps_c.h
+[28.274s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_safety_zones__rosidl_typesupport_fastrtps_c.h
+[28.274s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_system_frame__rosidl_typesupport_fastrtps_c.h
+[28.274s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_system_load__rosidl_typesupport_fastrtps_c.h
+[28.275s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/log_alarm__rosidl_typesupport_fastrtps_c.h
+[28.275s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_joint__rosidl_typesupport_fastrtps_c.h
+[28.275s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_linear__rosidl_typesupport_fastrtps_c.h
+[28.275s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_spline__rosidl_typesupport_fastrtps_c.h
+[28.276s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_tcp_along_axis__rosidl_typesupport_fastrtps_c.h
+[28.276s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/pause_motion__rosidl_typesupport_fastrtps_c.h
+[28.276s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/pause_program__rosidl_typesupport_fastrtps_c.h
+[28.276s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/program_recovery__rosidl_typesupport_fastrtps_c.h
+[28.277s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/resume_motion__rosidl_typesupport_fastrtps_c.h
+[28.277s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/resume_program__rosidl_typesupport_fastrtps_c.h
+[28.277s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/select_jogging_frame__rosidl_typesupport_fastrtps_c.h
+[28.277s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_analog_output__rosidl_typesupport_fastrtps_c.h
+[28.277s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_custom_frame__rosidl_typesupport_fastrtps_c.h
+[28.278s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_discrete_output__rosidl_typesupport_fastrtps_c.h
+[28.278s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_interactivity__rosidl_typesupport_fastrtps_c.h
+[28.279s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_system_frame__rosidl_typesupport_fastrtps_c.h
+[28.279s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_system_load__rosidl_typesupport_fastrtps_c.h
+[28.279s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/step_program__rosidl_typesupport_fastrtps_c.h
+[28.279s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/stop_program__rosidl_typesupport_fastrtps_c.h
+[28.279s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/suspend_robot__rosidl_typesupport_fastrtps_c.h
+[28.280s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/terminate_motion__rosidl_typesupport_fastrtps_c.h
+[28.280s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/unlock_robot__rosidl_typesupport_fastrtps_c.h
+[28.280s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/unsuspend_robot__rosidl_typesupport_fastrtps_c.h
+[28.281s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/libkr_msgs__rosidl_typesupport_fastrtps_c.so
+[28.284s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/action/detail/move_tcp_along_axis__rosidl_typesupport_fastrtps_cpp.hpp
+[28.284s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/follow_joint__rosidl_typesupport_fastrtps_cpp.hpp
+[28.284s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/follow_linear__rosidl_typesupport_fastrtps_cpp.hpp
+[28.284s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/geometry_plane__rosidl_typesupport_fastrtps_cpp.hpp
+[28.285s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/jog_joint__rosidl_typesupport_fastrtps_cpp.hpp
+[28.285s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/jog_linear__rosidl_typesupport_fastrtps_cpp.hpp
+[28.285s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/motion_heartbeat__rosidl_typesupport_fastrtps_cpp.hpp
+[28.285s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/number__rosidl_typesupport_fastrtps_cpp.hpp
+[28.286s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/program_interact__rosidl_typesupport_fastrtps_cpp.hpp
+[28.286s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/quadrature__rosidl_typesupport_fastrtps_cpp.hpp
+[28.286s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_mode__rosidl_typesupport_fastrtps_cpp.hpp
+[28.287s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_pose__rosidl_typesupport_fastrtps_cpp.hpp
+[28.287s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_state__rosidl_typesupport_fastrtps_cpp.hpp
+[28.287s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_event__rosidl_typesupport_fastrtps_cpp.hpp
+[28.287s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_mode__rosidl_typesupport_fastrtps_cpp.hpp
+[28.288s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_zone__rosidl_typesupport_fastrtps_cpp.hpp
+[28.288s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/self_motion__rosidl_typesupport_fastrtps_cpp.hpp
+[28.288s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/system_state__rosidl_typesupport_fastrtps_cpp.hpp
+[28.288s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[28.289s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_analog_output__rosidl_typesupport_fastrtps_cpp.hpp
+[28.289s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_discrete_output__rosidl_typesupport_fastrtps_cpp.hpp
+[28.289s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_quadrature_input__rosidl_typesupport_fastrtps_cpp.hpp
+[28.289s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_analog_input__rosidl_typesupport_fastrtps_cpp.hpp
+[28.290s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_discrete_input__rosidl_typesupport_fastrtps_cpp.hpp
+[28.290s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_master_speed__rosidl_typesupport_fastrtps_cpp.hpp
+[28.290s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_program_state__rosidl_typesupport_fastrtps_cpp.hpp
+[28.290s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_quadrature_input__rosidl_typesupport_fastrtps_cpp.hpp
+[28.290s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_mode__rosidl_typesupport_fastrtps_cpp.hpp
+[28.291s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_pose__rosidl_typesupport_fastrtps_cpp.hpp
+[28.291s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_state__rosidl_typesupport_fastrtps_cpp.hpp
+[28.291s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_safety_mode__rosidl_typesupport_fastrtps_cpp.hpp
+[28.291s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_safety_zones__rosidl_typesupport_fastrtps_cpp.hpp
+[28.292s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_system_frame__rosidl_typesupport_fastrtps_cpp.hpp
+[28.292s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_system_load__rosidl_typesupport_fastrtps_cpp.hpp
+[28.292s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/log_alarm__rosidl_typesupport_fastrtps_cpp.hpp
+[28.294s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_joint__rosidl_typesupport_fastrtps_cpp.hpp
+[28.294s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_linear__rosidl_typesupport_fastrtps_cpp.hpp
+[28.295s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_spline__rosidl_typesupport_fastrtps_cpp.hpp
+[28.295s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_tcp_along_axis__rosidl_typesupport_fastrtps_cpp.hpp
+[28.295s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/pause_motion__rosidl_typesupport_fastrtps_cpp.hpp
+[28.295s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/pause_program__rosidl_typesupport_fastrtps_cpp.hpp
+[28.295s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/program_recovery__rosidl_typesupport_fastrtps_cpp.hpp
+[28.295s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/resume_motion__rosidl_typesupport_fastrtps_cpp.hpp
+[28.295s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/resume_program__rosidl_typesupport_fastrtps_cpp.hpp
+[28.296s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/select_jogging_frame__rosidl_typesupport_fastrtps_cpp.hpp
+[28.296s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_analog_output__rosidl_typesupport_fastrtps_cpp.hpp
+[28.296s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_custom_frame__rosidl_typesupport_fastrtps_cpp.hpp
+[28.296s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_discrete_output__rosidl_typesupport_fastrtps_cpp.hpp
+[28.297s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_interactivity__rosidl_typesupport_fastrtps_cpp.hpp
+[28.297s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_system_frame__rosidl_typesupport_fastrtps_cpp.hpp
+[28.297s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_system_load__rosidl_typesupport_fastrtps_cpp.hpp
+[28.297s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/step_program__rosidl_typesupport_fastrtps_cpp.hpp
+[28.298s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/stop_program__rosidl_typesupport_fastrtps_cpp.hpp
+[28.298s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/suspend_robot__rosidl_typesupport_fastrtps_cpp.hpp
+[28.298s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/terminate_motion__rosidl_typesupport_fastrtps_cpp.hpp
+[28.298s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/unlock_robot__rosidl_typesupport_fastrtps_cpp.hpp
+[28.299s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/unsuspend_robot__rosidl_typesupport_fastrtps_cpp.hpp
+[28.299s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/libkr_msgs__rosidl_typesupport_fastrtps_cpp.so
+[28.300s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/action/detail/move_tcp_along_axis__rosidl_typesupport_introspection_c.h
+[28.301s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/follow_joint__rosidl_typesupport_introspection_c.h
+[28.301s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/follow_linear__rosidl_typesupport_introspection_c.h
+[28.301s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/geometry_plane__rosidl_typesupport_introspection_c.h
+[28.302s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/jog_joint__rosidl_typesupport_introspection_c.h
+[28.302s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/jog_linear__rosidl_typesupport_introspection_c.h
+[28.302s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/motion_heartbeat__rosidl_typesupport_introspection_c.h
+[28.302s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/number__rosidl_typesupport_introspection_c.h
+[28.303s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/program_interact__rosidl_typesupport_introspection_c.h
+[28.303s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/quadrature__rosidl_typesupport_introspection_c.h
+[28.303s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_mode__rosidl_typesupport_introspection_c.h
+[28.303s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_pose__rosidl_typesupport_introspection_c.h
+[28.304s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_state__rosidl_typesupport_introspection_c.h
+[28.304s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_event__rosidl_typesupport_introspection_c.h
+[28.304s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_mode__rosidl_typesupport_introspection_c.h
+[28.304s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_zone__rosidl_typesupport_introspection_c.h
+[28.305s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/self_motion__rosidl_typesupport_introspection_c.h
+[28.305s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/system_state__rosidl_typesupport_introspection_c.h
+[28.305s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[28.305s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_analog_output__rosidl_typesupport_introspection_c.h
+[28.306s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_discrete_output__rosidl_typesupport_introspection_c.h
+[28.306s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_quadrature_input__rosidl_typesupport_introspection_c.h
+[28.306s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_analog_input__rosidl_typesupport_introspection_c.h
+[28.307s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_discrete_input__rosidl_typesupport_introspection_c.h
+[28.307s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_master_speed__rosidl_typesupport_introspection_c.h
+[28.307s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_program_state__rosidl_typesupport_introspection_c.h
+[28.307s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_quadrature_input__rosidl_typesupport_introspection_c.h
+[28.307s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_mode__rosidl_typesupport_introspection_c.h
+[28.308s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_pose__rosidl_typesupport_introspection_c.h
+[28.308s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_state__rosidl_typesupport_introspection_c.h
+[28.308s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_safety_mode__rosidl_typesupport_introspection_c.h
+[28.309s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_safety_zones__rosidl_typesupport_introspection_c.h
+[28.309s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_system_frame__rosidl_typesupport_introspection_c.h
+[28.309s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_system_load__rosidl_typesupport_introspection_c.h
+[28.309s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/log_alarm__rosidl_typesupport_introspection_c.h
+[28.309s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_joint__rosidl_typesupport_introspection_c.h
+[28.310s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_linear__rosidl_typesupport_introspection_c.h
+[28.310s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_spline__rosidl_typesupport_introspection_c.h
+[28.310s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_tcp_along_axis__rosidl_typesupport_introspection_c.h
+[28.311s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/pause_motion__rosidl_typesupport_introspection_c.h
+[28.311s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/pause_program__rosidl_typesupport_introspection_c.h
+[28.311s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/program_recovery__rosidl_typesupport_introspection_c.h
+[28.311s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/resume_motion__rosidl_typesupport_introspection_c.h
+[28.312s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/resume_program__rosidl_typesupport_introspection_c.h
+[28.312s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/select_jogging_frame__rosidl_typesupport_introspection_c.h
+[28.312s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_analog_output__rosidl_typesupport_introspection_c.h
+[28.312s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_custom_frame__rosidl_typesupport_introspection_c.h
+[28.312s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_discrete_output__rosidl_typesupport_introspection_c.h
+[28.313s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_interactivity__rosidl_typesupport_introspection_c.h
+[28.313s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_system_frame__rosidl_typesupport_introspection_c.h
+[28.313s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_system_load__rosidl_typesupport_introspection_c.h
+[28.314s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/step_program__rosidl_typesupport_introspection_c.h
+[28.314s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/stop_program__rosidl_typesupport_introspection_c.h
+[28.314s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/suspend_robot__rosidl_typesupport_introspection_c.h
+[28.314s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/terminate_motion__rosidl_typesupport_introspection_c.h
+[28.315s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/unlock_robot__rosidl_typesupport_introspection_c.h
+[28.315s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/unsuspend_robot__rosidl_typesupport_introspection_c.h
+[28.319s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/action/detail/move_tcp_along_axis__builder.hpp
+[28.319s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/action/detail/move_tcp_along_axis__struct.hpp
+[28.319s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/action/detail/move_tcp_along_axis__traits.hpp
+[28.319s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/action/detail/move_tcp_along_axis__type_support.hpp
+[28.320s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/action/move_tcp_along_axis.hpp
+[28.320s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/follow_joint__builder.hpp
+[28.320s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/follow_joint__struct.hpp
+[28.320s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/follow_joint__traits.hpp
+[28.321s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/follow_joint__type_support.hpp
+[28.321s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/follow_linear__builder.hpp
+[28.321s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/follow_linear__struct.hpp
+[28.321s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/follow_linear__traits.hpp
+[28.322s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/follow_linear__type_support.hpp
+[28.322s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/geometry_plane__builder.hpp
+[28.322s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/geometry_plane__struct.hpp
+[28.323s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/geometry_plane__traits.hpp
+[28.323s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/geometry_plane__type_support.hpp
+[28.323s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/jog_joint__builder.hpp
+[28.323s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/jog_joint__struct.hpp
+[28.324s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/jog_joint__traits.hpp
+[28.324s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/jog_joint__type_support.hpp
+[28.324s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/jog_linear__builder.hpp
+[28.324s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/jog_linear__struct.hpp
+[28.325s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/jog_linear__traits.hpp
+[28.325s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/jog_linear__type_support.hpp
+[28.325s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/motion_heartbeat__builder.hpp
+[28.325s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/motion_heartbeat__struct.hpp
+[28.326s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/motion_heartbeat__traits.hpp
+[28.326s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/motion_heartbeat__type_support.hpp
+[28.326s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/number__builder.hpp
+[28.326s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/number__struct.hpp
+[28.327s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/number__traits.hpp
+[28.327s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/number__type_support.hpp
+[28.327s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/program_interact__builder.hpp
+[28.328s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/program_interact__struct.hpp
+[28.328s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/program_interact__traits.hpp
+[28.328s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/program_interact__type_support.hpp
+[28.328s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/quadrature__builder.hpp
+[28.328s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/quadrature__struct.hpp
+[28.329s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/quadrature__traits.hpp
+[28.329s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/quadrature__type_support.hpp
+[28.329s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_mode__builder.hpp
+[28.330s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_mode__struct.hpp
+[28.330s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_mode__traits.hpp
+[28.330s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_mode__type_support.hpp
+[28.331s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_pose__builder.hpp
+[28.331s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_pose__struct.hpp
+[28.331s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_pose__traits.hpp
+[28.331s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_pose__type_support.hpp
+[28.331s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_state__builder.hpp
+[28.332s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_state__struct.hpp
+[28.332s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_state__traits.hpp
+[28.332s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_state__type_support.hpp
+[28.332s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_event__builder.hpp
+[28.333s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_event__struct.hpp
+[28.333s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_event__traits.hpp
+[28.333s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_event__type_support.hpp
+[28.334s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_mode__builder.hpp
+[28.334s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_mode__struct.hpp
+[28.334s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_mode__traits.hpp
+[28.334s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_mode__type_support.hpp
+[28.335s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_zone__builder.hpp
+[28.335s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_zone__struct.hpp
+[28.335s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_zone__traits.hpp
+[28.335s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_zone__type_support.hpp
+[28.336s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/self_motion__builder.hpp
+[28.336s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/self_motion__struct.hpp
+[28.336s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/self_motion__traits.hpp
+[28.336s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/self_motion__type_support.hpp
+[28.336s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/system_state__builder.hpp
+[28.337s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/system_state__struct.hpp
+[28.337s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/system_state__traits.hpp
+[28.338s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/system_state__type_support.hpp
+[28.338s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/follow_joint.hpp
+[28.338s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/follow_linear.hpp
+[28.338s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/geometry_plane.hpp
+[28.338s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/jog_joint.hpp
+[28.339s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/jog_linear.hpp
+[28.339s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/motion_heartbeat.hpp
+[28.339s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/number.hpp
+[28.339s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/program_interact.hpp
+[28.340s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/quadrature.hpp
+[28.340s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/robot_mode.hpp
+[28.340s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/robot_pose.hpp
+[28.340s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/robot_state.hpp
+[28.341s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
+[28.341s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/safety_event.hpp
+[28.342s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/safety_mode.hpp
+[28.342s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/safety_zone.hpp
+[28.342s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/self_motion.hpp
+[28.343s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/system_state.hpp
+[28.343s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/config_analog_output.hpp
+[28.343s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/config_discrete_output.hpp
+[28.344s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/config_quadrature_input.hpp
+[28.344s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_analog_output__builder.hpp
+[28.345s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_analog_output__struct.hpp
+[28.345s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_analog_output__traits.hpp
+[28.345s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_analog_output__type_support.hpp
+[28.346s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_discrete_output__builder.hpp
+[28.346s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_discrete_output__struct.hpp
+[28.346s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_discrete_output__traits.hpp
+[28.346s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_discrete_output__type_support.hpp
+[28.347s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_quadrature_input__builder.hpp
+[28.347s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_quadrature_input__struct.hpp
+[28.347s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_quadrature_input__traits.hpp
+[28.347s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_quadrature_input__type_support.hpp
+[28.347s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_analog_input__builder.hpp
+[28.348s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_analog_input__struct.hpp
+[28.348s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_analog_input__traits.hpp
+[28.348s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_analog_input__type_support.hpp
+[28.348s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_discrete_input__builder.hpp
+[28.349s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_discrete_input__struct.hpp
+[28.349s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_discrete_input__traits.hpp
+[28.349s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_discrete_input__type_support.hpp
+[28.350s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_master_speed__builder.hpp
+[28.350s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_master_speed__struct.hpp
+[28.350s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_master_speed__traits.hpp
+[28.350s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_master_speed__type_support.hpp
+[28.350s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_program_state__builder.hpp
+[28.351s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_program_state__struct.hpp
+[28.351s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_program_state__traits.hpp
+[28.351s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_program_state__type_support.hpp
+[28.352s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_quadrature_input__builder.hpp
+[28.352s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_quadrature_input__struct.hpp
+[28.352s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_quadrature_input__traits.hpp
+[28.352s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_quadrature_input__type_support.hpp
+[28.352s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_mode__builder.hpp
+[28.353s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_mode__struct.hpp
+[28.353s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_mode__traits.hpp
+[28.353s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_mode__type_support.hpp
+[28.354s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_pose__builder.hpp
+[28.354s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_pose__struct.hpp
+[28.354s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_pose__traits.hpp
+[28.354s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_pose__type_support.hpp
+[28.354s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_state__builder.hpp
+[28.355s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_state__struct.hpp
+[28.355s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_state__traits.hpp
+[28.355s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_state__type_support.hpp
+[28.355s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_safety_mode__builder.hpp
+[28.356s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_safety_mode__struct.hpp
+[28.356s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_safety_mode__traits.hpp
+[28.356s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_safety_mode__type_support.hpp
+[28.356s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_safety_zones__builder.hpp
+[28.357s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_safety_zones__struct.hpp
+[28.357s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_safety_zones__traits.hpp
+[28.357s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_safety_zones__type_support.hpp
+[28.358s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_system_frame__builder.hpp
+[28.358s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_system_frame__struct.hpp
+[28.358s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_system_frame__traits.hpp
+[28.358s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_system_frame__type_support.hpp
+[28.359s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_system_load__builder.hpp
+[28.359s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_system_load__struct.hpp
+[28.359s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_system_load__traits.hpp
+[28.359s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_system_load__type_support.hpp
+[28.360s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/log_alarm__builder.hpp
+[28.360s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/log_alarm__struct.hpp
+[28.360s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/log_alarm__traits.hpp
+[28.360s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/log_alarm__type_support.hpp
+[28.361s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_joint__builder.hpp
+[28.361s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_joint__struct.hpp
+[28.361s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_joint__traits.hpp
+[28.361s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_joint__type_support.hpp
+[28.362s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_linear__builder.hpp
+[28.362s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_linear__struct.hpp
+[28.362s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_linear__traits.hpp
+[28.362s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_linear__type_support.hpp
+[28.363s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_spline__builder.hpp
+[28.363s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_spline__struct.hpp
+[28.363s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_spline__traits.hpp
+[28.363s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_spline__type_support.hpp
+[28.364s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_tcp_along_axis__builder.hpp
+[28.364s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_tcp_along_axis__struct.hpp
+[28.364s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_tcp_along_axis__traits.hpp
+[28.364s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_tcp_along_axis__type_support.hpp
+[28.365s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/pause_motion__builder.hpp
+[28.365s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/pause_motion__struct.hpp
+[28.365s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/pause_motion__traits.hpp
+[28.366s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/pause_motion__type_support.hpp
+[28.366s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/pause_program__builder.hpp
+[28.366s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/pause_program__struct.hpp
+[28.366s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/pause_program__traits.hpp
+[28.367s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/pause_program__type_support.hpp
+[28.368s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/program_recovery__builder.hpp
+[28.368s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/program_recovery__struct.hpp
+[28.368s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/program_recovery__traits.hpp
+[28.369s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/program_recovery__type_support.hpp
+[28.369s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/resume_motion__builder.hpp
+[28.370s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/resume_motion__struct.hpp
+[28.370s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/resume_motion__traits.hpp
+[28.370s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/resume_motion__type_support.hpp
+[28.370s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/resume_program__builder.hpp
+[28.370s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/resume_program__struct.hpp
+[28.370s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/resume_program__traits.hpp
+[28.371s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/resume_program__type_support.hpp
+[28.371s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/select_jogging_frame__builder.hpp
+[28.371s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/select_jogging_frame__struct.hpp
+[28.371s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/select_jogging_frame__traits.hpp
+[28.372s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/select_jogging_frame__type_support.hpp
+[28.372s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_analog_output__builder.hpp
+[28.372s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_analog_output__struct.hpp
+[28.372s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_analog_output__traits.hpp
+[28.373s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_analog_output__type_support.hpp
+[28.373s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_custom_frame__builder.hpp
+[28.373s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_custom_frame__struct.hpp
+[28.374s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_custom_frame__traits.hpp
+[28.374s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_custom_frame__type_support.hpp
+[28.374s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_discrete_output__builder.hpp
+[28.374s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_discrete_output__struct.hpp
+[28.374s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_discrete_output__traits.hpp
+[28.375s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_discrete_output__type_support.hpp
+[28.375s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_interactivity__builder.hpp
+[28.375s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_interactivity__struct.hpp
+[28.376s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_interactivity__traits.hpp
+[28.376s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_interactivity__type_support.hpp
+[28.376s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_system_frame__builder.hpp
+[28.376s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_system_frame__struct.hpp
+[28.377s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_system_frame__traits.hpp
+[28.377s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_system_frame__type_support.hpp
+[28.377s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_system_load__builder.hpp
+[28.377s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_system_load__struct.hpp
+[28.378s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_system_load__traits.hpp
+[28.378s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_system_load__type_support.hpp
+[28.378s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/step_program__builder.hpp
+[28.379s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/step_program__struct.hpp
+[28.379s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/step_program__traits.hpp
+[28.380s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/step_program__type_support.hpp
+[28.380s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/stop_program__builder.hpp
+[28.380s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/stop_program__struct.hpp
+[28.380s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/stop_program__traits.hpp
+[28.381s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/stop_program__type_support.hpp
+[28.381s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/suspend_robot__builder.hpp
+[28.381s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/suspend_robot__struct.hpp
+[28.382s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/suspend_robot__traits.hpp
+[28.382s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/suspend_robot__type_support.hpp
+[28.382s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/terminate_motion__builder.hpp
+[28.382s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/terminate_motion__struct.hpp
+[28.382s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/terminate_motion__traits.hpp
+[28.383s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/terminate_motion__type_support.hpp
+[28.383s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/unlock_robot__builder.hpp
+[28.383s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/unlock_robot__struct.hpp
+[28.383s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/unlock_robot__traits.hpp
+[28.384s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/unlock_robot__type_support.hpp
+[28.384s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/unsuspend_robot__builder.hpp
+[28.384s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/unsuspend_robot__struct.hpp
+[28.384s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/unsuspend_robot__traits.hpp
+[28.385s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/unsuspend_robot__type_support.hpp
+[28.385s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_analog_input.hpp
+[28.385s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_discrete_input.hpp
+[28.385s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_master_speed.hpp
+[28.386s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_program_state.hpp
+[28.386s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_quadrature_input.hpp
+[28.386s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_robot_mode.hpp
+[28.386s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_robot_pose.hpp
+[28.387s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_robot_state.hpp
+[28.387s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_safety_mode.hpp
+[28.387s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_safety_zones.hpp
+[28.387s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_system_frame.hpp
+[28.388s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/get_system_load.hpp
+[28.388s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/log_alarm.hpp
+[28.388s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/move_joint.hpp
+[28.388s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/move_linear.hpp
+[28.389s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/move_spline.hpp
+[28.389s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/move_tcp_along_axis.hpp
+[28.389s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/pause_motion.hpp
+[28.389s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/pause_program.hpp
+[28.390s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/program_recovery.hpp
+[28.390s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/resume_motion.hpp
+[28.390s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/resume_program.hpp
+[28.390s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/select_jogging_frame.hpp
+[28.391s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/set_analog_output.hpp
+[28.391s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/set_custom_frame.hpp
+[28.391s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/set_discrete_output.hpp
+[28.391s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/set_interactivity.hpp
+[28.391s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/set_system_frame.hpp
+[28.392s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/set_system_load.hpp
+[28.392s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/step_program.hpp
+[28.392s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/stop_program.hpp
+[28.392s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/suspend_robot.hpp
+[28.393s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/terminate_motion.hpp
+[28.393s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/unlock_robot.hpp
+[28.393s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/unsuspend_robot.hpp
+[28.395s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/action/detail/move_tcp_along_axis__rosidl_typesupport_introspection_cpp.hpp
+[28.395s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/follow_joint__rosidl_typesupport_introspection_cpp.hpp
+[28.395s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/follow_linear__rosidl_typesupport_introspection_cpp.hpp
+[28.396s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/geometry_plane__rosidl_typesupport_introspection_cpp.hpp
+[28.396s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/jog_joint__rosidl_typesupport_introspection_cpp.hpp
+[28.396s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/jog_linear__rosidl_typesupport_introspection_cpp.hpp
+[28.396s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/motion_heartbeat__rosidl_typesupport_introspection_cpp.hpp
+[28.397s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/number__rosidl_typesupport_introspection_cpp.hpp
+[28.397s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/program_interact__rosidl_typesupport_introspection_cpp.hpp
+[28.397s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/quadrature__rosidl_typesupport_introspection_cpp.hpp
+[28.398s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_mode__rosidl_typesupport_introspection_cpp.hpp
+[28.398s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_pose__rosidl_typesupport_introspection_cpp.hpp
+[28.398s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/robot_state__rosidl_typesupport_introspection_cpp.hpp
+[28.398s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_event__rosidl_typesupport_introspection_cpp.hpp
+[28.398s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_mode__rosidl_typesupport_introspection_cpp.hpp
+[28.399s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/safety_zone__rosidl_typesupport_introspection_cpp.hpp
+[28.399s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/self_motion__rosidl_typesupport_introspection_cpp.hpp
+[28.399s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/msg/detail/system_state__rosidl_typesupport_introspection_cpp.hpp
+[28.399s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_analog_output__rosidl_typesupport_introspection_cpp.hpp
+[28.400s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_discrete_output__rosidl_typesupport_introspection_cpp.hpp
+[28.400s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/config_quadrature_input__rosidl_typesupport_introspection_cpp.hpp
+[28.400s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_analog_input__rosidl_typesupport_introspection_cpp.hpp
+[28.400s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_discrete_input__rosidl_typesupport_introspection_cpp.hpp
+[28.400s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_master_speed__rosidl_typesupport_introspection_cpp.hpp
+[28.401s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_program_state__rosidl_typesupport_introspection_cpp.hpp
+[28.401s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_quadrature_input__rosidl_typesupport_introspection_cpp.hpp
+[28.401s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_mode__rosidl_typesupport_introspection_cpp.hpp
+[28.402s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_pose__rosidl_typesupport_introspection_cpp.hpp
+[28.402s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_robot_state__rosidl_typesupport_introspection_cpp.hpp
+[28.402s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_safety_mode__rosidl_typesupport_introspection_cpp.hpp
+[28.402s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_safety_zones__rosidl_typesupport_introspection_cpp.hpp
+[28.403s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_system_frame__rosidl_typesupport_introspection_cpp.hpp
+[28.403s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/get_system_load__rosidl_typesupport_introspection_cpp.hpp
+[28.403s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/log_alarm__rosidl_typesupport_introspection_cpp.hpp
+[28.404s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_joint__rosidl_typesupport_introspection_cpp.hpp
+[28.404s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_linear__rosidl_typesupport_introspection_cpp.hpp
+[28.404s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_spline__rosidl_typesupport_introspection_cpp.hpp
+[28.404s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/move_tcp_along_axis__rosidl_typesupport_introspection_cpp.hpp
+[28.405s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/pause_motion__rosidl_typesupport_introspection_cpp.hpp
+[28.405s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/pause_program__rosidl_typesupport_introspection_cpp.hpp
+[28.405s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/program_recovery__rosidl_typesupport_introspection_cpp.hpp
+[28.406s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/resume_motion__rosidl_typesupport_introspection_cpp.hpp
+[28.406s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/resume_program__rosidl_typesupport_introspection_cpp.hpp
+[28.406s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/select_jogging_frame__rosidl_typesupport_introspection_cpp.hpp
+[28.406s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_analog_output__rosidl_typesupport_introspection_cpp.hpp
+[28.407s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_custom_frame__rosidl_typesupport_introspection_cpp.hpp
+[28.407s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_discrete_output__rosidl_typesupport_introspection_cpp.hpp
+[28.407s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_interactivity__rosidl_typesupport_introspection_cpp.hpp
+[28.407s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_system_frame__rosidl_typesupport_introspection_cpp.hpp
+[28.407s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/set_system_load__rosidl_typesupport_introspection_cpp.hpp
+[28.408s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/step_program__rosidl_typesupport_introspection_cpp.hpp
+[28.408s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/stop_program__rosidl_typesupport_introspection_cpp.hpp
+[28.408s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/suspend_robot__rosidl_typesupport_introspection_cpp.hpp
+[28.409s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/terminate_motion__rosidl_typesupport_introspection_cpp.hpp
+[28.409s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/unlock_robot__rosidl_typesupport_introspection_cpp.hpp
+[28.409s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/include/kr_msgs/srv/detail/unsuspend_robot__rosidl_typesupport_introspection_cpp.hpp
+[28.409s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/environment/pythonpath.sh
+[28.410s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/environment/pythonpath.dsv
+[28.410s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/__init__.py
+[28.411s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/msg/__init__.py
+[28.411s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/msg/_follow_joint.py
+[28.411s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/msg/_follow_linear.py
+[28.412s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/msg/_geometry_plane.py
+[28.412s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/msg/_jog_joint.py
+[28.412s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/msg/_jog_linear.py
+[28.412s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/msg/_motion_heartbeat.py
+[28.412s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/msg/_number.py
+[28.413s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/msg/_program_interact.py
+[28.413s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/msg/_quadrature.py
+[28.413s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/msg/_robot_mode.py
+[28.414s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/msg/_robot_pose.py
+[28.414s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/msg/_robot_state.py
+[28.414s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/msg/_safety_event.py
+[28.414s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/msg/_safety_mode.py
+[28.415s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/msg/_safety_zone.py
+[28.415s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/msg/_self_motion.py
+[28.415s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/msg/_system_state.py
+[28.416s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/__init__.py
+[28.417s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_config_analog_output.py
+[28.417s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_config_discrete_output.py
+[28.418s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_config_quadrature_input.py
+[28.418s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_get_analog_input.py
+[28.418s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_get_discrete_input.py
+[28.418s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_get_master_speed.py
+[28.418s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_get_program_state.py
+[28.419s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_get_quadrature_input.py
+[28.419s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_get_robot_mode.py
+[28.419s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_get_robot_pose.py
+[28.419s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_get_robot_state.py
+[28.420s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_get_safety_mode.py
+[28.420s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_get_safety_zones.py
+[28.420s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_get_system_frame.py
+[28.420s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_get_system_load.py
+[28.421s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_log_alarm.py
+[28.421s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_move_joint.py
+[28.421s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_move_linear.py
+[28.421s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_move_spline.py
+[28.422s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_move_tcp_along_axis.py
+[28.422s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_pause_motion.py
+[28.422s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_pause_program.py
+[28.422s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_program_recovery.py
+[28.423s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_resume_motion.py
+[28.423s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_resume_program.py
+[28.423s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_select_jogging_frame.py
+[28.423s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_set_analog_output.py
+[28.424s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_set_custom_frame.py
+[28.424s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_set_discrete_output.py
+[28.424s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_set_interactivity.py
+[28.424s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_set_system_frame.py
+[28.425s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_set_system_load.py
+[28.425s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_step_program.py
+[28.425s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_stop_program.py
+[28.425s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_suspend_robot.py
+[28.426s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_terminate_motion.py
+[28.426s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_unlock_robot.py
+[28.427s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/srv/_unsuspend_robot.py
+[28.427s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/action/__init__.py
+[28.427s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/action/_move_tcp_along_axis.py
+[28.428s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/kr_msgs_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so
+[28.428s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/kr_msgs_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so
+[28.429s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/kr_msgs_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so
+[28.429s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/lib/libkr_msgs__python.so
+[28.430s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/FollowJoint.idl
+[28.430s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/FollowLinear.idl
+[28.430s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/GeometryPlane.idl
+[28.431s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/JogJoint.idl
+[28.431s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/JogLinear.idl
+[28.431s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/MotionHeartbeat.idl
+[28.432s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/Number.idl
+[28.432s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/ProgramInteract.idl
+[28.432s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/Quadrature.idl
+[28.432s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/RobotMode.idl
+[28.433s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/RobotPose.idl
+[28.433s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/RobotState.idl
+[28.433s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/SafetyEvent.idl
+[28.434s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/SafetyMode.idl
+[28.434s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/SafetyZone.idl
+[28.435s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/SelfMotion.idl
+[28.435s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/SystemState.idl
+[28.435s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/ConfigAnalogOutput.idl
+[28.435s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/ConfigDiscreteOutput.idl
+[28.436s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/ConfigQuadratureInput.idl
+[28.436s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/GetAnalogInput.idl
+[28.436s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/GetDiscreteInput.idl
+[28.437s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/GetQuadratureInput.idl
+[28.437s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/SetAnalogOutput.idl
+[28.438s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/SetDiscreteOutput.idl
+[28.438s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/MoveJoint.idl
+[28.438s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/MoveLinear.idl
+[28.439s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/MoveSpline.idl
+[28.439s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/PauseMotion.idl
+[28.439s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/ResumeMotion.idl
+[28.440s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/SelectJoggingFrame.idl
+[28.440s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/SetCustomFrame.idl
+[28.440s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/SetInteractivity.idl
+[28.440s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/TerminateMotion.idl
+[28.441s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/MoveTCPAlongAxis.idl
+[28.441s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/GetProgramState.idl
+[28.441s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/PauseProgram.idl
+[28.442s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/ProgramRecovery.idl
+[28.442s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/ResumeProgram.idl
+[28.442s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/StepProgram.idl
+[28.443s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/StopProgram.idl
+[28.443s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/GetRobotPose.idl
+[28.445s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/GetSystemFrame.idl
+[28.445s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/GetSystemLoad.idl
+[28.446s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/SetSystemFrame.idl
+[28.446s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/SetSystemLoad.idl
+[28.446s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/GetMasterSpeed.idl
+[28.446s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/GetRobotMode.idl
+[28.446s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/GetRobotState.idl
+[28.447s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/GetSafetyMode.idl
+[28.447s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/GetSafetyZones.idl
+[28.447s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/LogAlarm.idl
+[28.448s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/SuspendRobot.idl
+[28.448s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/UnlockRobot.idl
+[28.448s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/UnsuspendRobot.idl
+[28.449s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/action/MoveTCPAlongAxis.idl
+[28.449s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/FollowJoint.msg
+[28.449s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/FollowLinear.msg
+[28.450s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/GeometryPlane.msg
+[28.450s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/JogJoint.msg
+[28.450s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/JogLinear.msg
+[28.450s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/MotionHeartbeat.msg
+[28.451s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/Number.msg
+[28.451s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/ProgramInteract.msg
+[28.451s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/Quadrature.msg
+[28.452s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/RobotMode.msg
+[28.452s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/RobotPose.msg
+[28.452s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/RobotState.msg
+[28.453s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/SafetyEvent.msg
+[28.453s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/SafetyMode.msg
+[28.453s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/SafetyZone.msg
+[28.454s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/SelfMotion.msg
+[28.454s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/msg/SystemState.msg
+[28.454s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/ConfigAnalogOutput.srv
+[28.455s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/ConfigAnalogOutput_Request.msg
+[28.455s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/ConfigAnalogOutput_Response.msg
+[28.455s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/ConfigDiscreteOutput.srv
+[28.455s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/ConfigDiscreteOutput_Request.msg
+[28.456s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/ConfigDiscreteOutput_Response.msg
+[28.456s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/ConfigQuadratureInput.srv
+[28.456s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/ConfigQuadratureInput_Request.msg
+[28.457s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/ConfigQuadratureInput_Response.msg
+[28.457s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/GetAnalogInput.srv
+[28.457s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/GetAnalogInput_Request.msg
+[28.458s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/GetAnalogInput_Response.msg
+[28.459s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/GetDiscreteInput.srv
+[28.460s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/GetDiscreteInput_Request.msg
+[28.460s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/GetDiscreteInput_Response.msg
+[28.460s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/GetQuadratureInput.srv
+[28.461s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/GetQuadratureInput_Request.msg
+[28.461s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/GetQuadratureInput_Response.msg
+[28.461s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/SetAnalogOutput.srv
+[28.462s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/SetAnalogOutput_Request.msg
+[28.462s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/SetAnalogOutput_Response.msg
+[28.462s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/SetDiscreteOutput.srv
+[28.463s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/SetDiscreteOutput_Request.msg
+[28.463s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/io/SetDiscreteOutput_Response.msg
+[28.463s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/MoveJoint.srv
+[28.464s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/MoveJoint_Request.msg
+[28.464s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/MoveJoint_Response.msg
+[28.464s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/MoveLinear.srv
+[28.465s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/MoveLinear_Request.msg
+[28.465s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/MoveLinear_Response.msg
+[28.466s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/MoveSpline.srv
+[28.466s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/MoveSpline_Request.msg
+[28.466s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/MoveSpline_Response.msg
+[28.467s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/PauseMotion.srv
+[28.467s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/PauseMotion_Request.msg
+[28.467s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/PauseMotion_Response.msg
+[28.467s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/ResumeMotion.srv
+[28.468s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/ResumeMotion_Request.msg
+[28.468s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/ResumeMotion_Response.msg
+[28.468s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/SelectJoggingFrame.srv
+[28.469s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/SelectJoggingFrame_Request.msg
+[28.469s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/SelectJoggingFrame_Response.msg
+[28.469s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/SetCustomFrame.srv
+[28.470s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/SetCustomFrame_Request.msg
+[28.470s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/SetCustomFrame_Response.msg
+[28.470s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/SetInteractivity.srv
+[28.471s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/SetInteractivity_Request.msg
+[28.471s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/SetInteractivity_Response.msg
+[28.471s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/TerminateMotion.srv
+[28.472s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/TerminateMotion_Request.msg
+[28.472s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/TerminateMotion_Response.msg
+[28.473s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/MoveTCPAlongAxis.srv
+[28.473s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/MoveTCPAlongAxis_Request.msg
+[28.473s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/MoveTCPAlongAxis_Response.msg
+[28.474s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/program/GetProgramState.srv
+[28.474s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/program/GetProgramState_Request.msg
+[28.475s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/program/GetProgramState_Response.msg
+[28.475s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/program/PauseProgram.srv
+[28.475s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/program/PauseProgram_Request.msg
+[28.476s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/program/PauseProgram_Response.msg
+[28.476s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/program/ProgramRecovery.srv
+[28.476s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/program/ProgramRecovery_Request.msg
+[28.477s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/program/ProgramRecovery_Response.msg
+[28.477s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/program/ResumeProgram.srv
+[28.477s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/program/ResumeProgram_Request.msg
+[28.478s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/program/ResumeProgram_Response.msg
+[28.478s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/program/StepProgram.srv
+[28.478s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/program/StepProgram_Request.msg
+[28.479s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/program/StepProgram_Response.msg
+[28.479s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/program/StopProgram.srv
+[28.479s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/program/StopProgram_Request.msg
+[28.480s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/program/StopProgram_Response.msg
+[28.480s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/robot/GetRobotPose.srv
+[28.480s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/robot/GetRobotPose_Request.msg
+[28.481s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/robot/GetRobotPose_Response.msg
+[28.481s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/robot/GetSystemFrame.srv
+[28.481s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/robot/GetSystemFrame_Request.msg
+[28.482s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/robot/GetSystemFrame_Response.msg
+[28.482s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/robot/GetSystemLoad.srv
+[28.482s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/robot/GetSystemLoad_Request.msg
+[28.482s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/robot/GetSystemLoad_Response.msg
+[28.483s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/robot/SetSystemFrame.srv
+[28.483s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/robot/SetSystemFrame_Request.msg
+[28.484s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/robot/SetSystemFrame_Response.msg
+[28.484s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/robot/SetSystemLoad.srv
+[28.484s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/robot/SetSystemLoad_Request.msg
+[28.485s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/robot/SetSystemLoad_Response.msg
+[28.485s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/GetMasterSpeed.srv
+[28.486s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/GetMasterSpeed_Request.msg
+[28.487s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/GetMasterSpeed_Response.msg
+[28.487s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/GetRobotMode.srv
+[28.487s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/GetRobotMode_Request.msg
+[28.487s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/GetRobotMode_Response.msg
+[28.488s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/GetRobotState.srv
+[28.488s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/GetRobotState_Request.msg
+[28.488s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/GetRobotState_Response.msg
+[28.488s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/GetSafetyMode.srv
+[28.489s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/GetSafetyMode_Request.msg
+[28.489s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/GetSafetyMode_Response.msg
+[28.489s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/GetSafetyZones.srv
+[28.490s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/GetSafetyZones_Request.msg
+[28.490s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/GetSafetyZones_Response.msg
+[28.490s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/LogAlarm.srv
+[28.491s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/LogAlarm_Request.msg
+[28.491s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/LogAlarm_Response.msg
+[28.491s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/SuspendRobot.srv
+[28.492s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/SuspendRobot_Request.msg
+[28.492s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/SuspendRobot_Response.msg
+[28.493s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/UnlockRobot.srv
+[28.493s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/UnlockRobot_Request.msg
+[28.493s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/UnlockRobot_Response.msg
+[28.494s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/UnsuspendRobot.srv
+[28.494s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/UnsuspendRobot_Request.msg
+[28.494s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/system/UnsuspendRobot_Response.msg
+[28.494s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/motion/MoveTCPAlongAxis.action
+[28.495s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/io/ConfigAnalogOutput.srv
+[28.496s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/io/ConfigDiscreteOutput.srv
+[28.496s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/io/ConfigQuadratureInput.srv
+[28.496s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/io/GetAnalogInput.srv
+[28.496s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/io/GetDiscreteInput.srv
+[28.496s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/io/GetQuadratureInput.srv
+[28.497s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/io/SetAnalogOutput.srv
+[28.497s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/io/SetDiscreteOutput.srv
+[28.497s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/motion/MoveJoint.srv
+[28.497s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/motion/MoveLinear.srv
+[28.498s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/motion/MoveSpline.srv
+[28.498s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/motion/MoveTCPAlongAxis.srv
+[28.499s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/motion/PauseMotion.srv
+[28.499s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/motion/ResumeMotion.srv
+[28.499s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/motion/SelectJoggingFrame.srv
+[28.499s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/motion/SetCustomFrame.srv
+[28.500s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/motion/SetInteractivity.srv
+[28.500s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/motion/TerminateMotion.srv
+[28.500s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/program/GetProgramState.srv
+[28.500s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/program/PauseProgram.srv
+[28.501s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/program/ProgramRecovery.srv
+[28.501s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/program/ResumeProgram.srv
+[28.501s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/program/StepProgram.srv
+[28.501s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/program/StopProgram.srv
+[28.502s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/robot/GetRobotPose.srv
+[28.502s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/robot/GetSystemFrame.srv
+[28.502s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/robot/GetSystemLoad.srv
+[28.503s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/robot/SetSystemFrame.srv
+[28.503s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/robot/SetSystemLoad.srv
+[28.503s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/system/GetMasterSpeed.srv
+[28.503s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/system/GetRobotMode.srv
+[28.503s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/system/GetRobotState.srv
+[28.504s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/system/GetSafetyMode.srv
+[28.504s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/system/GetSafetyZones.srv
+[28.504s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/system/LogAlarm.srv
+[28.504s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/system/SuspendRobot.srv
+[28.505s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/system/UnlockRobot.srv
+[28.505s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/srv/srv/system/UnsuspendRobot.srv
+[28.505s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/ament_index/resource_index/package_run_dependencies/kr_msgs
+[28.506s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/ament_index/resource_index/parent_prefix_path/kr_msgs
+[28.507s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/environment/ament_prefix_path.sh
+[28.507s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/environment/ament_prefix_path.dsv
+[28.507s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/environment/path.sh
+[28.508s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/environment/path.dsv
+[28.508s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/local_setup.bash
+[28.508s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/local_setup.sh
+[28.509s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/local_setup.zsh
+[28.509s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/local_setup.dsv
+[28.510s] -- Symlinking: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/package.dsv
+[28.522s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/ament_index/resource_index/packages/kr_msgs
+[28.522s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/cmake/rosidl_cmake-extras.cmake
+[28.523s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/cmake/ament_cmake_export_dependencies-extras.cmake
+[28.523s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/cmake/ament_cmake_export_libraries-extras.cmake
+[28.523s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/cmake/ament_cmake_export_targets-extras.cmake
+[28.524s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/cmake/ament_cmake_export_include_directories-extras.cmake
+[28.524s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[28.524s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[28.525s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/cmake/kr_msgsConfig.cmake
+[28.525s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/cmake/kr_msgsConfig-version.cmake
+[28.525s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/package.xml
+[28.526s] -- Installing: /home/vboxuser/ros2_ws/install/kr_msgs/lib/libkr_msgs__rosidl_generator_c.so
+[28.527s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/kr_msgs/lib/libkr_msgs__rosidl_generator_c.so" to ""
+[28.527s] -- Installing: /home/vboxuser/ros2_ws/install/kr_msgs/lib/libkr_msgs__rosidl_typesupport_introspection_c.so
+[28.529s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/kr_msgs/lib/libkr_msgs__rosidl_typesupport_introspection_c.so" to ""
+[28.529s] -- Installing: /home/vboxuser/ros2_ws/install/kr_msgs/lib/libkr_msgs__rosidl_typesupport_c.so
+[28.530s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/kr_msgs/lib/libkr_msgs__rosidl_typesupport_c.so" to ""
+[28.530s] -- Installing: /home/vboxuser/ros2_ws/install/kr_msgs/lib/libkr_msgs__rosidl_typesupport_introspection_cpp.so
+[28.532s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/kr_msgs/lib/libkr_msgs__rosidl_typesupport_introspection_cpp.so" to ""
+[28.533s] -- Installing: /home/vboxuser/ros2_ws/install/kr_msgs/lib/libkr_msgs__rosidl_typesupport_cpp.so
+[28.534s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/kr_msgs/lib/libkr_msgs__rosidl_typesupport_cpp.so" to ""
+[28.569s] Compiling '/home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages/kr_msgs/__init__.py'...
+[28.573s] -- Up-to-date: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/cmake/kr_msgs__rosidl_generator_cExport.cmake
+[28.574s] -- Installing: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/cmake/kr_msgs__rosidl_generator_cExport-noconfig.cmake
+[28.574s] -- Up-to-date: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/cmake/kr_msgs__rosidl_typesupport_introspection_cExport.cmake
+[28.574s] -- Installing: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/cmake/kr_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[28.574s] -- Up-to-date: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/cmake/kr_msgs__rosidl_typesupport_cExport.cmake
+[28.574s] -- Installing: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/cmake/kr_msgs__rosidl_typesupport_cExport-noconfig.cmake
+[28.575s] -- Up-to-date: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/cmake/kr_msgs__rosidl_generator_cppExport.cmake
+[28.575s] -- Up-to-date: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/cmake/kr_msgs__rosidl_typesupport_introspection_cppExport.cmake
+[28.575s] -- Installing: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/cmake/kr_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[28.575s] -- Up-to-date: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/cmake/kr_msgs__rosidl_typesupport_cppExport.cmake
+[28.575s] -- Installing: /home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/cmake/kr_msgs__rosidl_typesupport_cppExport-noconfig.cmake
+[28.580s] Invoked command in '/home/vboxuser/ros2_ws/build/kr_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/opt/ros/foxy /usr/bin/cmake --install /home/vboxuser/ros2_ws/build/kr_msgs

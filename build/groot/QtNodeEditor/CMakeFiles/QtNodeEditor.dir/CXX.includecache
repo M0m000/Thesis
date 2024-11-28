@@ -6,6 +6,8 @@
 
 #IncludeRegexTransform: 
 
+/home/vboxuser/ros2_ws/build/groot/QtNodeEditor/QtNodeEditor_autogen/mocs_compilation.cpp
+
 /home/vboxuser/ros2_ws/build/groot/QtNodeEditor/include/nodes/internal/moc_Compiler.cpp
 
 /home/vboxuser/ros2_ws/build/groot/QtNodeEditor/include/nodes/internal/moc_Connection.cpp

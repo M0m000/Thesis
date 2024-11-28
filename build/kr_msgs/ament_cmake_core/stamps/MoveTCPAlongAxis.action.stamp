@@ -1,0 +1,12 @@
+# Goal
+float64 baseline
+string movement_frame
+string movement_axis
+
+---
+# Feedback
+float64 current_time
+
+---
+# Result
+bool success

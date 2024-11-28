@@ -37,6 +37,7 @@
     "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:srv/SetCustomFrame.idl",
     "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:srv/SetInteractivity.idl",
     "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:srv/TerminateMotion.idl",
+    "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:srv/MoveTCPAlongAxis.idl",
     "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:srv/GetProgramState.idl",
     "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:srv/PauseProgram.idl",
     "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:srv/ProgramRecovery.idl",
@@ -56,11 +57,17 @@
     "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:srv/LogAlarm.idl",
     "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:srv/SuspendRobot.idl",
     "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:srv/UnlockRobot.idl",
-    "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:srv/UnsuspendRobot.idl"
+    "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:srv/UnsuspendRobot.idl",
+    "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:action/MoveTCPAlongAxis.idl"
   ],
   "ros_interface_dependencies": [
+    "action_msgs:/opt/ros/foxy/share/action_msgs/msg/GoalInfo.idl",
+    "action_msgs:/opt/ros/foxy/share/action_msgs/msg/GoalStatus.idl",
+    "action_msgs:/opt/ros/foxy/share/action_msgs/msg/GoalStatusArray.idl",
+    "action_msgs:/opt/ros/foxy/share/action_msgs/srv/CancelGoal.idl",
     "builtin_interfaces:/opt/ros/foxy/share/builtin_interfaces/msg/Duration.idl",
     "builtin_interfaces:/opt/ros/foxy/share/builtin_interfaces/msg/Time.idl",
+    "unique_identifier_msgs:/opt/ros/foxy/share/unique_identifier_msgs/msg/UUID.idl",
     "std_msgs:/opt/ros/foxy/share/std_msgs/msg/Bool.idl",
     "std_msgs:/opt/ros/foxy/share/std_msgs/msg/Byte.idl",
     "std_msgs:/opt/ros/foxy/share/std_msgs/msg/ByteMultiArray.idl",
@@ -90,8 +97,7 @@
     "std_msgs:/opt/ros/foxy/share/std_msgs/msg/UInt64.idl",
     "std_msgs:/opt/ros/foxy/share/std_msgs/msg/UInt64MultiArray.idl",
     "std_msgs:/opt/ros/foxy/share/std_msgs/msg/UInt8.idl",
-    "std_msgs:/opt/ros/foxy/share/std_msgs/msg/UInt8MultiArray.idl",
-    "unique_identifier_msgs:/opt/ros/foxy/share/unique_identifier_msgs/msg/UUID.idl"
+    "std_msgs:/opt/ros/foxy/share/std_msgs/msg/UInt8MultiArray.idl"
   ],
   "target_dependencies": [
     "/opt/ros/foxy/lib/rosidl_typesupport_introspection_cpp/rosidl_typesupport_introspection_cpp",
@@ -136,6 +142,7 @@
     "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/srv/SetCustomFrame.idl",
     "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/srv/SetInteractivity.idl",
     "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/srv/TerminateMotion.idl",
+    "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/srv/MoveTCPAlongAxis.idl",
     "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/srv/GetProgramState.idl",
     "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/srv/PauseProgram.idl",
     "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/srv/ProgramRecovery.idl",
@@ -156,8 +163,14 @@
     "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/srv/SuspendRobot.idl",
     "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/srv/UnlockRobot.idl",
     "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/srv/UnsuspendRobot.idl",
+    "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/action/MoveTCPAlongAxis.idl",
+    "/opt/ros/foxy/share/action_msgs/msg/GoalInfo.idl",
+    "/opt/ros/foxy/share/action_msgs/msg/GoalStatus.idl",
+    "/opt/ros/foxy/share/action_msgs/msg/GoalStatusArray.idl",
+    "/opt/ros/foxy/share/action_msgs/srv/CancelGoal.idl",
     "/opt/ros/foxy/share/builtin_interfaces/msg/Duration.idl",
     "/opt/ros/foxy/share/builtin_interfaces/msg/Time.idl",
+    "/opt/ros/foxy/share/unique_identifier_msgs/msg/UUID.idl",
     "/opt/ros/foxy/share/std_msgs/msg/Bool.idl",
     "/opt/ros/foxy/share/std_msgs/msg/Byte.idl",
     "/opt/ros/foxy/share/std_msgs/msg/ByteMultiArray.idl",
@@ -187,7 +200,6 @@
     "/opt/ros/foxy/share/std_msgs/msg/UInt64.idl",
     "/opt/ros/foxy/share/std_msgs/msg/UInt64MultiArray.idl",
     "/opt/ros/foxy/share/std_msgs/msg/UInt8.idl",
-    "/opt/ros/foxy/share/std_msgs/msg/UInt8MultiArray.idl",
-    "/opt/ros/foxy/share/unique_identifier_msgs/msg/UUID.idl"
+    "/opt/ros/foxy/share/std_msgs/msg/UInt8MultiArray.idl"
   ]
 }

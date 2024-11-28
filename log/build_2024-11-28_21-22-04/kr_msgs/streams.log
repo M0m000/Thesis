@@ -1,0 +1,42 @@
+[0.076s] Invoking command in '/home/vboxuser/ros2_ws/build/kr_msgs': /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/kr_msgs -- -j8 -l8
+[0.617s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.618s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.620s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.623s] -- Found builtin_interfaces: 1.0.0 (/opt/ros/foxy/share/builtin_interfaces/cmake)
+[0.624s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.624s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.627s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.627s] -- Found rosidl_default_generators: 1.0.1 (/opt/ros/foxy/share/rosidl_default_generators/cmake)
+[0.628s] -- Found unique_identifier_msgs: 2.1.3 (/opt/ros/foxy/share/unique_identifier_msgs/cmake)
+[0.628s] -- Found std_msgs: 2.0.5 (/opt/ros/foxy/share/std_msgs/cmake)
+[0.628s] -- Found action_msgs: 1.0.0 (/opt/ros/foxy/share/action_msgs/cmake)
+[0.633s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[0.690s] Error parsing '/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs/package.xml':
+[0.780s] Traceback (most recent call last):
+[0.780s]   File "/opt/ros/foxy/share/ament_cmake_core/cmake/core/package_xml_2_cmake.py", line 143, in <module>
+[0.780s]     main()
+[0.780s]   File "/opt/ros/foxy/share/ament_cmake_core/cmake/core/package_xml_2_cmake.py", line 52, in main
+[0.780s]     raise e
+[0.780s]   File "/opt/ros/foxy/share/ament_cmake_core/cmake/core/package_xml_2_cmake.py", line 48, in main
+[0.780s]     package = parse_package_string(
+[0.780s]   File "/usr/lib/python3/dist-packages/catkin_pkg/package.py", line 786, in parse_package_string
+[0.780s]     raise InvalidPackage('Error(s):%s' % (''.join(['\n- %s' % e for e in errors])), filename)
+[0.780s] catkin_pkg.package.InvalidPackage: Error(s) in package '/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs/package.xml':
+[0.780s] Error(s):
+[0.780s] - The generic dependency on 'builtin_interfaces' is redundant with: build_depend
+[0.799s] CMake Error at /opt/ros/foxy/share/ament_cmake_core/cmake/core/ament_package_xml.cmake:94 (message):
+[0.799s]   execute_process(/usr/bin/python3
+[0.799s]   /opt/ros/foxy/share/ament_cmake_core/cmake/core/package_xml_2_cmake.py
+[0.799s]   /home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs/package.xml
+[0.799s]   /home/vboxuser/ros2_ws/build/kr_msgs/ament_cmake_core/package.cmake)
+[0.799s]   returned error code 1
+[0.799s] Call Stack (most recent call first):
+[0.799s]   /opt/ros/foxy/share/ament_cmake_core/cmake/core/ament_package_xml.cmake:49 (_ament_package_xml)
+[0.800s]   /opt/ros/foxy/share/ament_lint_auto/cmake/ament_lint_auto_find_test_dependencies.cmake:31 (ament_package_xml)
+[0.800s]   CMakeLists.txt:32 (ament_lint_auto_find_test_dependencies)
+[0.800s] 
+[0.800s] 
+[0.801s] -- Configuring incomplete, errors occurred!
+[0.801s] See also "/home/vboxuser/ros2_ws/build/kr_msgs/CMakeFiles/CMakeOutput.log".
+[0.808s] make: *** [Makefile:13948: cmake_check_build_system] Fehler 1
+[0.908s] Invoked command in '/home/vboxuser/ros2_ws/build/kr_msgs' returned '2': /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/kr_msgs -- -j8 -l8

@@ -1,0 +1,333 @@
+[0.075s] Invoking command in '/home/vboxuser/ros2_ws/build/kr_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/kr_msgs -- -j8 -l8
+[0.866s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.869s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.870s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.870s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.870s] -- Found builtin_interfaces: 1.0.0 (/opt/ros/foxy/share/builtin_interfaces/cmake)
+[0.870s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.870s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.870s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.870s] -- Found rosidl_default_generators: 1.0.1 (/opt/ros/foxy/share/rosidl_default_generators/cmake)
+[0.871s] -- Found unique_identifier_msgs: 2.1.3 (/opt/ros/foxy/share/unique_identifier_msgs/cmake)
+[0.871s] -- Found std_msgs: 2.0.5 (/opt/ros/foxy/share/std_msgs/cmake)
+[0.871s] -- Found action_msgs: 1.0.0 (/opt/ros/foxy/share/action_msgs/cmake)
+[0.872s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[0.950s] -- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") 
+[1.432s] -- Found ament_cmake_ros: 0.9.2 (/opt/ros/foxy/share/ament_cmake_ros/cmake)
+[1.698s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.792s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.834s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3.5") 
+[1.834s] -- Found python_cmake_module: 0.8.1 (/opt/ros/foxy/share/python_cmake_module/cmake)
+[1.869s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[1.869s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.8
+[1.869s] -- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.8.so
+[2.033s] -- Added test 'copyright' to check source files copyright and LICENSE
+[2.040s] -- Added test 'lint_cmake' to check CMake code style
+[2.048s] -- Added test 'xmllint' to check XML markup files
+[2.073s] -- Configuring done
+[2.296s] -- Generating done
+[2.300s] -- Build files have been written to: /home/vboxuser/ros2_ws/build/kr_msgs
+[2.350s] [  0%] [34m[1mGenerating C code for ROS interfaces[0m
+[2.364s] [  0%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[9.024s] [  0%] Built target kr_msgs__cpp
+[9.050s] [  0%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[9.057s] [  0%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[9.069s] [  0%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[9.249s] [35m[1mScanning dependencies of target kr_msgs__rosidl_generator_c[0m
+[9.298s] [  1%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/msg/detail/follow_linear__functions.c.o[0m
+[9.299s] [  1%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/msg/detail/jog_joint__functions.c.o[0m
+[9.301s] [  1%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/msg/detail/geometry_plane__functions.c.o[0m
+[9.302s] [  1%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/msg/detail/follow_joint__functions.c.o[0m
+[9.305s] [  1%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/msg/detail/jog_linear__functions.c.o[0m
+[9.377s] [  2%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/msg/detail/motion_heartbeat__functions.c.o[0m
+[9.392s] [  2%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/msg/detail/number__functions.c.o[0m
+[9.393s] [  2%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/msg/detail/program_interact__functions.c.o[0m
+[9.411s] [  2%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/msg/detail/robot_mode__functions.c.o[0m
+[9.425s] [  2%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/msg/detail/quadrature__functions.c.o[0m
+[9.459s] [  3%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/msg/detail/robot_pose__functions.c.o[0m
+[9.467s] [  3%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/msg/detail/safety_event__functions.c.o[0m
+[9.476s] [  3%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/msg/detail/robot_state__functions.c.o[0m
+[9.492s] [  3%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/msg/detail/safety_mode__functions.c.o[0m
+[9.582s] [  3%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/msg/detail/safety_zone__functions.c.o[0m
+[9.587s] [  3%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/msg/detail/system_state__functions.c.o[0m
+[9.600s] [  4%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/msg/detail/self_motion__functions.c.o[0m
+[9.641s] [  4%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/config_analog_output__functions.c.o[0m
+[9.681s] [  4%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/config_discrete_output__functions.c.o[0m
+[9.694s] [  4%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/config_quadrature_input__functions.c.o[0m
+[9.729s] [  5%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/get_analog_input__functions.c.o[0m
+[9.760s] [  5%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/get_discrete_input__functions.c.o[0m
+[9.778s] [  5%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/get_quadrature_input__functions.c.o[0m
+[9.834s] [  5%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/set_analog_output__functions.c.o[0m
+[9.863s] [  6%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/set_discrete_output__functions.c.o[0m
+[9.866s] [  6%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/move_joint__functions.c.o[0m
+[9.942s] [  6%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/pause_motion__functions.c.o[0m
+[9.945s] [  6%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/move_spline__functions.c.o[0m
+[9.959s] [  6%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/move_linear__functions.c.o[0m
+[10.017s] [  6%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/select_jogging_frame__functions.c.o[0m
+[10.019s] [  7%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/resume_motion__functions.c.o[0m
+[10.086s] [  7%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/set_interactivity__functions.c.o[0m
+[10.111s] [  7%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/set_custom_frame__functions.c.o[0m
+[10.122s] [  7%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/terminate_motion__functions.c.o[0m
+[10.141s] [  7%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/get_program_state__functions.c.o[0m
+[10.151s] [  8%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/move_tcp_along_axis__functions.c.o[0m
+[10.190s] [  8%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/pause_program__functions.c.o[0m
+[10.214s] [  8%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/program_recovery__functions.c.o[0m
+[10.234s] [  9%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/resume_program__functions.c.o[0m
+[10.257s] [  9%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/stop_program__functions.c.o[0m
+[10.270s] [  9%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/step_program__functions.c.o[0m
+[10.310s] [  9%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/get_robot_pose__functions.c.o[0m
+[10.321s] [  9%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/get_system_frame__functions.c.o[0m
+[10.328s] [ 10%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/get_system_load__functions.c.o[0m
+[10.342s] [ 10%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/set_system_load__functions.c.o[0m
+[10.343s] [ 10%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/set_system_frame__functions.c.o[0m
+[10.383s] [ 10%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/get_master_speed__functions.c.o[0m
+[10.391s] [ 10%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/get_robot_mode__functions.c.o[0m
+[10.409s] [ 11%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/get_robot_state__functions.c.o[0m
+[10.413s] [ 11%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/get_safety_mode__functions.c.o[0m
+[10.433s] [ 11%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/get_safety_zones__functions.c.o[0m
+[10.457s] [ 11%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/log_alarm__functions.c.o[0m
+[10.463s] [ 11%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/suspend_robot__functions.c.o[0m
+[10.484s] [ 12%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/unlock_robot__functions.c.o[0m
+[10.490s] [ 12%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/srv/detail/unsuspend_robot__functions.c.o[0m
+[10.521s] [ 12%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_generator_c.dir/rosidl_generator_c/kr_msgs/action/detail/move_tcp_along_axis__functions.c.o[0m
+[10.653s] [ 12%] [32m[1mLinking C shared library libkr_msgs__rosidl_generator_c.so[0m
+[10.723s] [ 12%] Built target kr_msgs__rosidl_generator_c
+[10.743s] [ 13%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[10.746s] [ 14%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[13.478s] [35m[1mScanning dependencies of target kr_msgs__rosidl_typesupport_cpp[0m
+[13.538s] [ 15%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/msg/follow_joint__type_support.cpp.o[0m
+[13.544s] [ 15%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/msg/follow_linear__type_support.cpp.o[0m
+[13.547s] [ 15%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/msg/jog_joint__type_support.cpp.o[0m
+[13.559s] [ 15%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/msg/geometry_plane__type_support.cpp.o[0m
+[13.870s] [ 16%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/msg/motion_heartbeat__type_support.cpp.o[0m
+[13.871s] [ 16%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/msg/jog_linear__type_support.cpp.o[0m
+[13.934s] [ 16%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/msg/number__type_support.cpp.o[0m
+[14.183s] [ 16%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/msg/program_interact__type_support.cpp.o[0m
+[14.352s] [ 16%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/msg/quadrature__type_support.cpp.o[0m
+[14.420s] [ 16%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/msg/robot_mode__type_support.cpp.o[0m
+[14.476s] [ 17%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/msg/robot_pose__type_support.cpp.o[0m
+[14.720s] [ 17%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/msg/robot_state__type_support.cpp.o[0m
+[14.849s] [ 17%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/msg/safety_event__type_support.cpp.o[0m
+[14.895s] [ 17%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/msg/safety_mode__type_support.cpp.o[0m
+[14.906s] [ 17%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/msg/safety_zone__type_support.cpp.o[0m
+[15.114s] [ 18%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/msg/self_motion__type_support.cpp.o[0m
+[15.204s] [ 18%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/msg/system_state__type_support.cpp.o[0m
+[15.246s] [ 18%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/config_analog_output__type_support.cpp.o[0m
+[15.309s] [ 18%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/config_discrete_output__type_support.cpp.o[0m
+[15.530s] [ 19%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/config_quadrature_input__type_support.cpp.o[0m
+[15.562s] [ 19%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/get_analog_input__type_support.cpp.o[0m
+[15.572s] [35m[1mScanning dependencies of target kr_msgs__rosidl_typesupport_c[0m
+[15.626s] [ 19%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/msg/follow_joint__type_support.cpp.o[0m
+[15.670s] [ 19%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/msg/follow_linear__type_support.cpp.o[0m
+[15.688s] [ 19%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/msg/geometry_plane__type_support.cpp.o[0m
+[15.692s] [ 19%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/get_discrete_input__type_support.cpp.o[0m
+[15.728s] [ 19%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/msg/jog_joint__type_support.cpp.o[0m
+[15.733s] [ 20%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/msg/jog_linear__type_support.cpp.o[0m
+[15.770s] [35m[1mScanning dependencies of target kr_msgs__rosidl_typesupport_introspection_cpp[0m
+[15.775s] [ 20%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/msg/motion_heartbeat__type_support.cpp.o[0m
+[15.818s] [ 20%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/msg/number__type_support.cpp.o[0m
+[15.849s] [ 20%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/msg/program_interact__type_support.cpp.o[0m
+[15.878s] [ 21%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/msg/detail/follow_joint__type_support.cpp.o[0m
+[15.878s] [ 21%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/get_quadrature_input__type_support.cpp.o[0m
+[15.878s] [ 21%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/set_analog_output__type_support.cpp.o[0m
+[15.919s] [ 21%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/msg/quadrature__type_support.cpp.o[0m
+[15.979s] [ 22%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/msg/robot_mode__type_support.cpp.o[0m
+[16.006s] [ 22%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/msg/robot_pose__type_support.cpp.o[0m
+[16.041s] [ 22%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/msg/robot_state__type_support.cpp.o[0m
+[16.052s] [ 23%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/set_discrete_output__type_support.cpp.o[0m
+[16.082s] [ 23%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/msg/safety_event__type_support.cpp.o[0m
+[16.128s] [ 24%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/msg/safety_mode__type_support.cpp.o[0m
+[16.175s] [ 24%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/msg/safety_zone__type_support.cpp.o[0m
+[16.213s] [ 24%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/move_joint__type_support.cpp.o[0m
+[16.222s] [ 24%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/msg/self_motion__type_support.cpp.o[0m
+[16.223s] [ 24%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/msg/detail/follow_linear__type_support.cpp.o[0m
+[16.223s] [ 24%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/move_linear__type_support.cpp.o[0m
+[16.231s] [ 24%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/msg/detail/geometry_plane__type_support.cpp.o[0m
+[16.259s] [ 24%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/msg/system_state__type_support.cpp.o[0m
+[16.302s] [ 24%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/config_analog_output__type_support.cpp.o[0m
+[16.349s] [ 25%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/config_discrete_output__type_support.cpp.o[0m
+[16.369s] [ 25%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/move_spline__type_support.cpp.o[0m
+[16.386s] [ 25%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/config_quadrature_input__type_support.cpp.o[0m
+[16.414s] [35m[1mScanning dependencies of target kr_msgs__rosidl_typesupport_fastrtps_cpp[0m
+[16.424s] [ 25%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/get_analog_input__type_support.cpp.o[0m
+[16.462s] [ 25%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/get_discrete_input__type_support.cpp.o[0m
+[16.517s] [ 25%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/pause_motion__type_support.cpp.o[0m
+[16.517s] [ 25%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/get_quadrature_input__type_support.cpp.o[0m
+[16.538s] [ 25%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/msg/detail/jog_joint__type_support.cpp.o[0m
+[16.549s] [ 25%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/msg/detail/jog_linear__type_support.cpp.o[0m
+[16.562s] [ 26%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/follow_joint__type_support.cpp.o[0m
+[16.570s] [ 27%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/resume_motion__type_support.cpp.o[0m
+[16.588s] [ 28%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/set_analog_output__type_support.cpp.o[0m
+[16.666s] [ 28%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/select_jogging_frame__type_support.cpp.o[0m
+[16.811s] [ 28%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/set_discrete_output__type_support.cpp.o[0m
+[16.979s] [ 28%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/move_joint__type_support.cpp.o[0m
+[16.991s] [ 28%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/set_custom_frame__type_support.cpp.o[0m
+[17.006s] [ 29%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/msg/detail/motion_heartbeat__type_support.cpp.o[0m
+[17.026s] [ 29%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/move_linear__type_support.cpp.o[0m
+[17.037s] [ 29%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/msg/detail/number__type_support.cpp.o[0m
+[17.053s] [ 29%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/move_spline__type_support.cpp.o[0m
+[17.110s] [ 30%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/pause_motion__type_support.cpp.o[0m
+[17.111s] [ 30%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/resume_motion__type_support.cpp.o[0m
+[17.174s] [ 30%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/set_interactivity__type_support.cpp.o[0m
+[17.177s] [ 30%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/select_jogging_frame__type_support.cpp.o[0m
+[17.183s] [ 30%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/set_custom_frame__type_support.cpp.o[0m
+[17.230s] [ 30%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/follow_linear__type_support.cpp.o[0m
+[17.261s] [ 30%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/geometry_plane__type_support.cpp.o[0m
+[17.282s] [ 31%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/set_interactivity__type_support.cpp.o[0m
+[17.328s] [ 31%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/terminate_motion__type_support.cpp.o[0m
+[17.346s] [ 32%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/terminate_motion__type_support.cpp.o[0m
+[17.359s] [ 32%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/msg/detail/quadrature__type_support.cpp.o[0m
+[17.359s] [ 32%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/msg/detail/program_interact__type_support.cpp.o[0m
+[17.371s] [ 32%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/move_tcp_along_axis__type_support.cpp.o[0m
+[17.388s] [35m[1mScanning dependencies of target kr_msgs__rosidl_typesupport_introspection_c[0m
+[17.408s] [ 32%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/get_program_state__type_support.cpp.o[0m
+[17.489s] [ 32%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/msg/detail/follow_joint__type_support.c.o[0m
+[17.509s] [ 32%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/pause_program__type_support.cpp.o[0m
+[17.521s] [ 32%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/move_tcp_along_axis__type_support.cpp.o[0m
+[17.531s] [ 32%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/msg/detail/follow_linear__type_support.c.o[0m
+[17.574s] [ 32%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/msg/detail/geometry_plane__type_support.c.o[0m
+[17.612s] [ 33%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/program_recovery__type_support.cpp.o[0m
+[17.633s] [ 34%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/msg/detail/jog_joint__type_support.c.o[0m
+[17.659s] [ 34%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/get_program_state__type_support.cpp.o[0m
+[17.659s] [ 34%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/resume_program__type_support.cpp.o[0m
+[17.661s] [ 35%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/msg/detail/robot_mode__type_support.cpp.o[0m
+[17.664s] [ 35%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/msg/detail/robot_pose__type_support.cpp.o[0m
+[17.697s] [ 35%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/jog_joint__type_support.cpp.o[0m
+[17.701s] [ 35%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/step_program__type_support.cpp.o[0m
+[17.717s] [ 35%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/jog_linear__type_support.cpp.o[0m
+[17.744s] [ 35%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/stop_program__type_support.cpp.o[0m
+[17.789s] [ 35%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/get_robot_pose__type_support.cpp.o[0m
+[17.830s] [ 36%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/get_system_frame__type_support.cpp.o[0m
+[17.830s] [ 36%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/pause_program__type_support.cpp.o[0m
+[17.871s] [ 36%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/get_system_load__type_support.cpp.o[0m
+[17.924s] [ 36%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/msg/detail/jog_linear__type_support.c.o[0m
+[17.924s] [ 36%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/set_system_frame__type_support.cpp.o[0m
+[17.945s] [ 36%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/msg/detail/robot_state__type_support.cpp.o[0m
+[17.954s] [ 36%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/program_recovery__type_support.cpp.o[0m
+[17.972s] [ 36%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/set_system_load__type_support.cpp.o[0m
+[17.978s] [ 36%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/msg/detail/motion_heartbeat__type_support.c.o[0m
+[17.996s] [ 36%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/msg/detail/safety_event__type_support.cpp.o[0m
+[18.019s] [ 37%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/get_master_speed__type_support.cpp.o[0m
+[18.022s] [ 37%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/msg/detail/number__type_support.c.o[0m
+[18.085s] [ 37%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/get_robot_mode__type_support.cpp.o[0m
+[18.085s] [ 37%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/msg/detail/program_interact__type_support.c.o[0m
+[18.137s] [ 38%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/msg/detail/quadrature__type_support.c.o[0m
+[18.151s] [ 38%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/get_robot_state__type_support.cpp.o[0m
+[18.172s] [ 38%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/number__type_support.cpp.o[0m
+[18.173s] [ 39%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/motion_heartbeat__type_support.cpp.o[0m
+[18.200s] [ 40%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/resume_program__type_support.cpp.o[0m
+[18.201s] [ 40%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/msg/detail/robot_mode__type_support.c.o[0m
+[18.235s] [ 40%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/get_safety_mode__type_support.cpp.o[0m
+[18.275s] [ 40%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/msg/detail/robot_pose__type_support.c.o[0m
+[18.280s] [ 40%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/step_program__type_support.cpp.o[0m
+[18.294s] [ 40%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/get_safety_zones__type_support.cpp.o[0m
+[18.301s] [ 40%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/msg/detail/safety_mode__type_support.cpp.o[0m
+[18.322s] [ 40%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/msg/detail/robot_state__type_support.c.o[0m
+[18.345s] [ 41%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/log_alarm__type_support.cpp.o[0m
+[18.354s] [ 42%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/msg/detail/safety_zone__type_support.cpp.o[0m
+[18.368s] [ 42%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/msg/detail/safety_event__type_support.c.o[0m
+[18.425s] [ 42%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/suspend_robot__type_support.cpp.o[0m
+[18.530s] [ 42%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/unlock_robot__type_support.cpp.o[0m
+[18.534s] [ 43%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/msg/detail/safety_mode__type_support.c.o[0m
+[18.614s] [ 43%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/msg/detail/safety_zone__type_support.c.o[0m
+[18.619s] [ 43%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/srv/unsuspend_robot__type_support.cpp.o[0m
+[18.683s] [ 43%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/stop_program__type_support.cpp.o[0m
+[18.708s] [ 43%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/msg/detail/self_motion__type_support.c.o[0m
+[18.711s] [ 43%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/kr_msgs/action/move_tcp_along_axis__type_support.cpp.o[0m
+[18.754s] [ 43%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/msg/detail/self_motion__type_support.cpp.o[0m
+[18.779s] [ 43%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/get_robot_pose__type_support.cpp.o[0m
+[18.810s] [ 43%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/msg/detail/system_state__type_support.c.o[0m
+[18.822s] [ 44%] [32m[1mLinking CXX shared library libkr_msgs__rosidl_typesupport_c.so[0m
+[18.843s] [ 44%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/get_system_frame__type_support.cpp.o[0m
+[18.943s] [ 44%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/config_analog_output__type_support.c.o[0m
+[18.956s] [ 44%] Built target kr_msgs__rosidl_typesupport_c
+[18.980s] [ 45%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/config_discrete_output__type_support.c.o[0m
+[19.046s] [ 45%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/msg/detail/system_state__type_support.cpp.o[0m
+[19.049s] [ 45%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/program_interact__type_support.cpp.o[0m
+[19.061s] [ 45%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/config_quadrature_input__type_support.c.o[0m
+[19.063s] [ 45%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/get_analog_input__type_support.c.o[0m
+[19.128s] [ 45%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/get_discrete_input__type_support.c.o[0m
+[19.187s] [ 45%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/set_analog_output__type_support.c.o[0m
+[19.190s] [ 46%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/get_quadrature_input__type_support.c.o[0m
+[19.202s] [ 47%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/get_system_load__type_support.cpp.o[0m
+[19.242s] [ 47%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/set_discrete_output__type_support.c.o[0m
+[19.245s] [ 47%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/config_analog_output__type_support.cpp.o[0m
+[19.252s] [ 47%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/move_joint__type_support.c.o[0m
+[19.265s] [ 47%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/set_system_frame__type_support.cpp.o[0m
+[19.308s] [ 47%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/move_linear__type_support.c.o[0m
+[19.330s] [ 48%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/move_spline__type_support.c.o[0m
+[19.358s] [ 48%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/set_system_load__type_support.cpp.o[0m
+[19.387s] [ 48%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/pause_motion__type_support.c.o[0m
+[19.401s] [ 48%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/resume_motion__type_support.c.o[0m
+[19.434s] [ 48%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/select_jogging_frame__type_support.c.o[0m
+[19.447s] [ 48%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/set_custom_frame__type_support.c.o[0m
+[19.477s] [ 49%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/set_interactivity__type_support.c.o[0m
+[19.491s] [ 49%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/terminate_motion__type_support.c.o[0m
+[19.552s] [ 49%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/move_tcp_along_axis__type_support.c.o[0m
+[19.570s] [ 49%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/get_program_state__type_support.c.o[0m
+[19.570s] [ 49%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/get_master_speed__type_support.cpp.o[0m
+[19.577s] [ 49%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/config_discrete_output__type_support.cpp.o[0m
+[19.590s] [ 49%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/quadrature__type_support.cpp.o[0m
+[19.642s] [ 50%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/pause_program__type_support.c.o[0m
+[19.659s] [ 50%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/get_robot_mode__type_support.cpp.o[0m
+[19.661s] [ 50%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/resume_program__type_support.c.o[0m
+[19.693s] [ 50%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/program_recovery__type_support.c.o[0m
+[19.736s] [ 50%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/step_program__type_support.c.o[0m
+[19.758s] [ 51%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/get_robot_pose__type_support.c.o[0m
+[19.767s] [ 51%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/stop_program__type_support.c.o[0m
+[19.782s] [ 51%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/get_system_frame__type_support.c.o[0m
+[19.865s] [ 51%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/get_system_load__type_support.c.o[0m
+[19.890s] [ 51%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/set_system_frame__type_support.c.o[0m
+[19.897s] [ 51%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/set_system_load__type_support.c.o[0m
+[19.911s] [ 52%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/get_master_speed__type_support.c.o[0m
+[19.993s] [ 52%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/get_robot_state__type_support.c.o[0m
+[19.995s] [ 52%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/get_robot_mode__type_support.c.o[0m
+[20.036s] [ 52%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/get_safety_mode__type_support.c.o[0m
+[20.084s] [ 52%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/get_safety_zones__type_support.c.o[0m
+[20.103s] [ 53%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/log_alarm__type_support.c.o[0m
+[20.119s] [ 54%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/config_quadrature_input__type_support.cpp.o[0m
+[20.120s] [ 55%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/get_robot_state__type_support.cpp.o[0m
+[20.122s] [ 55%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/suspend_robot__type_support.c.o[0m
+[20.143s] [ 55%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/unlock_robot__type_support.c.o[0m
+[20.185s] [ 55%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/get_safety_mode__type_support.cpp.o[0m
+[20.189s] [ 55%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/srv/detail/unsuspend_robot__type_support.c.o[0m
+[20.199s] [ 56%] [32mBuilding C object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/kr_msgs/action/detail/move_tcp_along_axis__type_support.c.o[0m
+[20.211s] [ 56%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/get_analog_input__type_support.cpp.o[0m
+[20.236s] [ 56%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/get_discrete_input__type_support.cpp.o[0m
+[20.289s] [ 56%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/get_quadrature_input__type_support.cpp.o[0m
+[20.304s] [ 56%] [32m[1mLinking C shared library libkr_msgs__rosidl_typesupport_introspection_c.so[0m
+[20.341s] [ 56%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/robot_mode__type_support.cpp.o[0m
+[20.389s] [ 56%] Built target kr_msgs__rosidl_typesupport_introspection_c
+[20.402s] [ 57%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/robot_pose__type_support.cpp.o[0m
+[20.497s] [ 57%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/get_safety_zones__type_support.cpp.o[0m
+[20.509s] [ 57%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/set_analog_output__type_support.cpp.o[0m
+[20.543s] [ 57%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/log_alarm__type_support.cpp.o[0m
+[20.577s] [ 58%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/set_discrete_output__type_support.cpp.o[0m
+[20.597s] [ 58%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/move_joint__type_support.cpp.o[0m
+[20.622s] [ 58%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/move_linear__type_support.cpp.o[0m
+[20.811s] [ 59%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/suspend_robot__type_support.cpp.o[0m
+[20.819s] [ 59%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/move_spline__type_support.cpp.o[0m
+[20.832s] [ 59%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/unlock_robot__type_support.cpp.o[0m
+[20.837s] [ 59%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/robot_state__type_support.cpp.o[0m
+[20.839s] [ 59%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/safety_event__type_support.cpp.o[0m
+[20.917s] [ 60%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/pause_motion__type_support.cpp.o[0m
+[20.943s] [ 60%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/resume_motion__type_support.cpp.o[0m
+[20.967s] [ 60%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/select_jogging_frame__type_support.cpp.o[0m
+[21.127s] [ 60%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/srv/unsuspend_robot__type_support.cpp.o[0m
+[21.154s] [ 60%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/set_custom_frame__type_support.cpp.o[0m
+[21.155s] [ 60%] [32mBuilding CXX object CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/action/move_tcp_along_axis__type_support.cpp.o[0m
+[21.226s] make[2]: *** [CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/build.make:864: CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/pause_motion__type_support.cpp.o] Unterbrechung
+[21.227s] make[2]: *** [CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/build.make:877: CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/resume_motion__type_support.cpp.o] Unterbrechung
+[21.227s] make[2]: *** [CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/build.make:890: CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/select_jogging_frame__type_support.cpp.o] Unterbrechung
+[21.228s] make[2]: *** [CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/build.make:903: CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/set_custom_frame__type_support.cpp.o] Unterbrechung
+[21.230s] make[2]: *** [CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/build.make:1045: CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/action/move_tcp_along_axis__type_support.cpp.o] Unterbrechung
+[21.231s] make[2]: *** wait: Keine Kind-Prozesse.  Schluss.
+[21.231s] make[2]: *** Auf noch nicht beendete Prozesse wird gewartet …
+[21.231s] make[2]: *** wait: Keine Kind-Prozesse.  Schluss.
+[21.231s] make[2]: *** [CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/build.make:656: CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/safety_event__type_support.cpp.o] Unterbrechung
+[21.231s] make[2]: *** [CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/build.make:643: CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/robot_state__type_support.cpp.o] Unterbrechung
+[21.231s] make[1]: *** [CMakeFiles/Makefile2:526: CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/all] Fehler 2
+[21.231s] make[1]: *** [CMakeFiles/Makefile2:499: CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/all] Unterbrechung
+[21.231s] make[1]: *** [CMakeFiles/Makefile2:327: CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/all] Unterbrechung
+[21.231s] make: *** [Makefile:141: all] Unterbrechung
+[21.238s] Invoked command in '/home/vboxuser/ros2_ws/build/kr_msgs' returned '-2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/kr_msgs -- -j8 -l8

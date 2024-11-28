@@ -1,0 +1,27 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from kr_msgs/srv/motion/MoveTCPAlongAxis.srv
+// generated code does not contain a copyright notice
+
+
+module kr_msgs {
+  module srv {
+    struct MoveTCPAlongAxis_Request {
+      @verbatim (language="comment", text=
+        " Die Entfernung, die zurückgelegt werden soll")
+      float baseline;
+
+      @verbatim (language="comment", text=
+        " Das Koordinatensystem, in dem gearbeitet werden soll")
+      string frame;
+
+      @verbatim (language="comment", text=
+        " Die Achse, auf der die Bewegung ausgeführt werden soll (in frame)")
+      string axis;
+    };
+    struct MoveTCPAlongAxis_Response {
+      @verbatim (language="comment", text=
+        " Rückgabewert, ob erfolgreich abgeschlossen")
+      boolean success;
+    };
+  };
+};

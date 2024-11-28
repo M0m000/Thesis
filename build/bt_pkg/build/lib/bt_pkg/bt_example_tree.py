@@ -15,7 +15,7 @@ class WaitForKey(py_trees.behaviour.Behaviour):
     def update(self):
         if self.key_pressed:
             self.logger.info(f"Key {self.key} pressed, moving to next node.")
-            self.key_pressed = False  # Reset the flag after processing the input
+            self.key_pressed = False
             return py_trees.common.Status.SUCCESS
         return py_trees.common.Status.RUNNING
 
@@ -25,7 +25,6 @@ class WaitForKey(py_trees.behaviour.Behaviour):
             if key.char == self.key:
                 self.key_pressed = True
             else:
-                # Reset key_pressed if the wrong key was pressed
                 self.key_pressed = False
         except AttributeError:
             pass
@@ -39,19 +38,19 @@ class WaitForKeyWithTimer(py_trees.behaviour.Behaviour):
         self.start_time = None
         self.key_pressed = False
         self.logger = logger
-        self.waiting_for_input = False  # Flag für das Warten auf Tasteneingaben
+        self.waiting_for_input = False
 
     def update(self):
         if self.key_pressed and self.start_time is None:
             self.logger.info(f"Waiting for key {self.key} and starting timer.")
             self.start_time = time.time()
-            self.waiting_for_input = True  # Blockiere Eingaben während des Timers
-            self.key_pressed = False  # Reset the flag after starting the timer
+            self.waiting_for_input = True
+            self.key_pressed = False
 
         if self.waiting_for_input:
             if time.time() - self.start_time >= self.timeout:
                 self.logger.info(f"Timer for {self.timeout} seconds finished.")
-                self.waiting_for_input = False  # Timer abgelaufen, Eingaben sind wieder möglich
+                self.waiting_for_input = False
                 return py_trees.common.Status.SUCCESS
             else:
                 self.logger.info(f"Waiting for {self.timeout - (time.time() - self.start_time):.2f} more seconds.")
@@ -61,12 +60,11 @@ class WaitForKeyWithTimer(py_trees.behaviour.Behaviour):
 
     def on_key_press(self, key):
         """Callback function to be called when the key is pressed"""
-        if not self.waiting_for_input:  # Eingabe nur zulassen, wenn der Timer abgelaufen ist
+        if not self.waiting_for_input:
             try:
                 if key.char == self.key:
                     self.key_pressed = True
                 else:
-                    # Reset key_pressed if the wrong key was pressed
                     self.key_pressed = False
             except AttributeError:
                 pass

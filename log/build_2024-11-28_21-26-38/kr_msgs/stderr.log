@@ -1,0 +1,14 @@
+make[2]: *** [CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/build.make:864: CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/pause_motion__type_support.cpp.o] Unterbrechung
+make[2]: *** [CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/build.make:877: CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/resume_motion__type_support.cpp.o] Unterbrechung
+make[2]: *** [CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/build.make:890: CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/select_jogging_frame__type_support.cpp.o] Unterbrechung
+make[2]: *** [CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/build.make:903: CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/kr_msgs/srv/detail/set_custom_frame__type_support.cpp.o] Unterbrechung
+make[2]: *** [CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/build.make:1045: CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/kr_msgs/action/move_tcp_along_axis__type_support.cpp.o] Unterbrechung
+make[2]: *** wait: Keine Kind-Prozesse.  Schluss.
+make[2]: *** Auf noch nicht beendete Prozesse wird gewartet …
+make[2]: *** wait: Keine Kind-Prozesse.  Schluss.
+make[2]: *** [CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/build.make:656: CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/safety_event__type_support.cpp.o] Unterbrechung
+make[2]: *** [CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/build.make:643: CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/kr_msgs/msg/detail/dds_fastrtps/robot_state__type_support.cpp.o] Unterbrechung
+make[1]: *** [CMakeFiles/Makefile2:526: CMakeFiles/kr_msgs__rosidl_typesupport_cpp.dir/all] Fehler 2
+make[1]: *** [CMakeFiles/Makefile2:499: CMakeFiles/kr_msgs__rosidl_typesupport_introspection_cpp.dir/all] Unterbrechung
+make[1]: *** [CMakeFiles/Makefile2:327: CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_cpp.dir/all] Unterbrechung
+make: *** [Makefile:141: all] Unterbrechung
