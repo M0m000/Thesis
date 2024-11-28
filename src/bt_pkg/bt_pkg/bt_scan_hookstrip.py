@@ -22,11 +22,14 @@ class SetCameraAngle(py_trees.behaviour.Behaviour):
 
 
 class TraverseLine(py_trees.behaviour.Behaviour):
-    def __init__(self, node, direction, baseline, movement_frame, movement_axis):
+    def __init__(self, node, direction, baseline, movement_frame, movement_axis, robot_srv_node):
         super().__init__(name=f"TraverseLine({direction})")
         self.node = node
         self.direction = direction
         self.baseline = baseline
+        self.frame = movement_frame
+        self.axis = movement_axis
+        self.robot_srv_client = robot_srv_node
         self.current_position = 0.0
         self.end_position = 10.0  # Beispiel: Länge der Leiste
 
@@ -43,6 +46,11 @@ class TraverseLine(py_trees.behaviour.Behaviour):
             self.node.get_logger().info(
                 f"Moving to position {self.current_position}, capturing image."
             )
+
+            success = self.robot_srv_client.call_service(baseline = self.baseline, frame = self.frame, axis = self.axis)
+            if not success:
+                self.node.get_logger().info("ERROR in Robot Movement Service!")
+
             return py_trees.common.Status.RUNNING
 
 
@@ -69,7 +77,7 @@ class WaitAfterScan(py_trees.behaviour.Behaviour):
         
         if self.key_pressed:
             self.finished = True
-            # Beende den gesamten ROS2 Knoten
+
             self.node.get_logger().info("Shutting down node after 'i' pressed.")
             rclpy.shutdown()  # Beendet den ROS2 Knoten
             return py_trees.common.Status.SUCCESS
@@ -77,18 +85,18 @@ class WaitAfterScan(py_trees.behaviour.Behaviour):
             return py_trees.common.Status.RUNNING
 
 
-def create_behavior_tree(node: Node, baseline: float, movement_frame, movement_axis):
+def create_behavior_tree(node: Node, baseline: float, movement_frame, movement_axis, robot_srv_node):
     root = py_trees.composites.Sequence(name="MainSequence")
 
     # Front-Ansicht
     front_view = py_trees.composites.Sequence(name="FrontViewSequence")
     front_view.add_child(SetCameraAngle(node, "front"))
-    front_view.add_child(TraverseLine(node, direction="front", baseline=baseline, movement_frame=movement_frame, movement_axis=movement_axis))
+    front_view.add_child(TraverseLine(node, direction="front", baseline=baseline, movement_frame=movement_frame, movement_axis=movement_axis, robot_srv_node=robot_srv_node))
 
     # Top-Ansicht
     top_view = py_trees.composites.Sequence(name="TopViewSequence")
     top_view.add_child(SetCameraAngle(node, "top"))
-    top_view.add_child(TraverseLine(node, direction="top", baseline=baseline, movement_frame=movement_frame, movement_axis=movement_axis))
+    top_view.add_child(TraverseLine(node, direction="top", baseline=baseline, movement_frame=movement_frame, movement_axis=movement_axis, robot_srv_node=robot_srv_node))
     top_view.add_child(WaitAfterScan(node))
 
     root.add_child(front_view)
@@ -116,7 +124,7 @@ class RobotMovementService(Node):
         rclpy.spin_until_future_complete(self, future)
 
         if future.result() is not None:
-            self.get_logger().info(f"Service response: {future.result().success}")
+            # self.get_logger().info(f"Service response: {future.result().success}")
             return future.result().success
         else:
             self.get_logger().error("Service call failed")
@@ -127,11 +135,11 @@ class BTScanHookstrip(Node):
     def __init__(self):
         super().__init__("bt_scan_hookstrip")
         self.get_logger().info("ScanHookstrip Node started.")
+        self.robot_srv_node = RobotMovementService()
 
         self.declare_parameter("baseline", 1.0)
         self.declare_parameter("movement_frame", 'tcp')
         self.declare_parameter("movement_axis", 'x')
-        baseline = self.get_parameter("baseline").value
 
         self.listener = keyboard.Listener(on_press=self.on_key_press)
         self.listener.start()
@@ -155,7 +163,7 @@ class BTScanHookstrip(Node):
             movement_frame = self.get_parameter("movement_frame").value
             movement_axis = self.get_parameter("movement_axis").value
 
-            self.tree = py_trees.trees.BehaviourTree(create_behavior_tree(self, baseline, movement_frame, movement_axis))
+            self.tree = py_trees.trees.BehaviourTree(create_behavior_tree(self, baseline, movement_frame, movement_axis, robot_srv_node = self.robot_srv_node))
             self.tree_started = True
             self.get_logger().info("Behavior Tree started.")
 

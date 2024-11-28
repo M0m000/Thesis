@@ -1,0 +1,15 @@
+# MoveRobot.action
+
+# Goal: Das Ziel der Bewegung (z.B. Position)
+float64 target_position
+string axis
+
+---
+# Result: Das Ergebnis der Bewegung
+bool success
+string message
+
+---
+# Feedback: Fortschritt der Bewegung
+float64 current_position
+string status

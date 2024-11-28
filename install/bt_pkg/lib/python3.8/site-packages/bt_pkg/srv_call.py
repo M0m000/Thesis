@@ -33,7 +33,7 @@ def main(args=None):
     srv_call_client = SrvCallClient()
 
     # Beispielaufruf des Services
-    success = srv_call_client.call_service(10.0, 'x')
+    success = srv_call_client.call_service(10.0, 'world', 'x')
     if success:
         srv_call_client.get_logger().info("Movement successful!")
     else:

@@ -6,6 +6,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rclpy REQUIRED)
 find_package(kr_msgs REQUIRED)  # Abhängig von kr_msgs für den Service-Typ
 find_package(ament_cmake_python REQUIRED)
+find_package(rosidl_default_generators REQUIRED)  # Notwendig für die Generierung der Action-Dateien
 
 # Installiere Python-Quellcode-Dateien
 install(PROGRAMS
