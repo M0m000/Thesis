@@ -76,6 +76,8 @@ file(REMOVE_RECURSE
   "../rosidl_generator_py/kr_msgs/srv/_move_linear_s.c"
   "../rosidl_generator_py/kr_msgs/srv/_move_spline.py"
   "../rosidl_generator_py/kr_msgs/srv/_move_spline_s.c"
+  "../rosidl_generator_py/kr_msgs/srv/_move_tcp_along_axis.py"
+  "../rosidl_generator_py/kr_msgs/srv/_move_tcp_along_axis_s.c"
   "../rosidl_generator_py/kr_msgs/srv/_pause_motion.py"
   "../rosidl_generator_py/kr_msgs/srv/_pause_motion_s.c"
   "../rosidl_generator_py/kr_msgs/srv/_pause_program.py"

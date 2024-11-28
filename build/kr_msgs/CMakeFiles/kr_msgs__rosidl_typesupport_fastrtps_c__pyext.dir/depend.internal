@@ -206,6 +206,9 @@ CMakeFiles/kr_msgs__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py
  rosidl_generator_c/kr_msgs/srv/detail/move_spline__functions.h
  rosidl_generator_c/kr_msgs/srv/detail/move_spline__struct.h
  rosidl_generator_c/kr_msgs/srv/detail/move_spline__type_support.h
+ rosidl_generator_c/kr_msgs/srv/detail/move_tcp_along_axis__functions.h
+ rosidl_generator_c/kr_msgs/srv/detail/move_tcp_along_axis__struct.h
+ rosidl_generator_c/kr_msgs/srv/detail/move_tcp_along_axis__type_support.h
  rosidl_generator_c/kr_msgs/srv/detail/pause_motion__functions.h
  rosidl_generator_c/kr_msgs/srv/detail/pause_motion__struct.h
  rosidl_generator_c/kr_msgs/srv/detail/pause_motion__type_support.h

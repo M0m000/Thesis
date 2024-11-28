@@ -20,8 +20,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'bt_example_tree = bt_pkg.bt_example_tree:main',
             'bt_scan_hookstrip = bt_pkg.bt_scan_hookstrip:main',
-            'bt_example_tree = bt_pkg.bt_example_tree:main'
+            'srv_call = bt_pkg.srv_call:main'
         ],
     },
 )

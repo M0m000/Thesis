@@ -17,6 +17,7 @@ from kr_msgs.srv._log_alarm import LogAlarm  # noqa: F401
 from kr_msgs.srv._move_joint import MoveJoint  # noqa: F401
 from kr_msgs.srv._move_linear import MoveLinear  # noqa: F401
 from kr_msgs.srv._move_spline import MoveSpline  # noqa: F401
+from kr_msgs.srv._move_tcp_along_axis import MoveTCPAlongAxis  # noqa: F401
 from kr_msgs.srv._pause_motion import PauseMotion  # noqa: F401
 from kr_msgs.srv._pause_program import PauseProgram  # noqa: F401
 from kr_msgs.srv._program_recovery import ProgramRecovery  # noqa: F401

@@ -35,6 +35,7 @@
     "/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs:srv/motion/SetCustomFrame.srv",
     "/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs:srv/motion/SetInteractivity.srv",
     "/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs:srv/motion/TerminateMotion.srv",
+    "/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs:srv/motion/MoveTCPAlongAxis.srv",
     "/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs:srv/program/GetProgramState.srv",
     "/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs:srv/program/PauseProgram.srv",
     "/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs:srv/program/ProgramRecovery.srv",

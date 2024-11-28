@@ -28,7 +28,8 @@ setup(
             'transformation_snapshot = robot_control.transformation_snapshot:main',
             'read_transformation_snapshot = robot_control.read_transformation_snapshot:main',
             'transformation_delta = robot_control.transformation_delta:main',
-            'read_transformation_delta = robot_control.read_transformation_delta:main'
+            'read_transformation_delta = robot_control.read_transformation_delta:main',
+            'move_robot_service_server = robot_control.move_robot_service_server:main'
         ],
     },
 )

@@ -1,0 +1,39 @@
+[0.037s] Invoking command in '/home/vboxuser/ros2_ws/build/bt_pkg': AMENT_PREFIX_PATH=/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/realsense2_description:/home/vboxuser/ros2_ws/install/realsense2_camera:/home/vboxuser/ros2_ws/install/realsense2_camera_msgs:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/kr_example_cpp:/home/vboxuser/ros2_ws/install/kr_msgs:/home/vboxuser/ros2_ws/install/groot:/home/vboxuser/ros2_ws/install/bt_pkg:/opt/ros/foxy CMAKE_PREFIX_PATH=/home/vboxuser/ros2_ws/install/kr_msgs:/home/vboxuser/ros2_ws/install/realsense2_description:/home/vboxuser/ros2_ws/install/realsense2_camera:/home/vboxuser/ros2_ws/install/realsense2_camera_msgs:/home/vboxuser/ros2_ws/install/kr_example_cpp:/home/vboxuser/ros2_ws/install/groot LD_LIBRARY_PATH=/home/vboxuser/ros2_ws/install/kr_msgs/lib:/home/vboxuser/ros2_ws/install/realsense2_camera/lib:/home/vboxuser/ros2_ws/install/realsense2_camera_msgs/lib:/home/vboxuser/ros2_ws/install/groot/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib PYTHONPATH=/home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/realsense2_camera_msgs/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/kr_example_python/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/bt_pkg/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/cmake /home/vboxuser/ros2_ws/src/bt_pkg -DCMAKE_INSTALL_PREFIX=/home/vboxuser/ros2_ws/install/bt_pkg
+[0.144s] -- The C compiler identification is GNU 9.4.0
+[0.217s] -- The CXX compiler identification is GNU 9.4.0
+[0.224s] -- Check for working C compiler: /usr/bin/cc
+[0.314s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.317s] -- Detecting C compiler ABI info
+[0.414s] -- Detecting C compiler ABI info - done
+[0.424s] -- Detecting C compile features
+[0.425s] -- Detecting C compile features - done
+[0.428s] -- Check for working CXX compiler: /usr/bin/c++
+[0.530s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.531s] -- Detecting CXX compiler ABI info
+[0.632s] -- Detecting CXX compiler ABI info - done
+[0.642s] -- Detecting CXX compile features
+[0.642s] -- Detecting CXX compile features - done
+[0.648s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.680s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.680s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.915s] -- Found rclpy: 1.0.13 (/opt/ros/foxy/share/rclpy/cmake)
+[0.928s] CMake Error at CMakeLists.txt:7 (find_package):
+[0.928s]   By not providing "Findpy_trees.cmake" in CMAKE_MODULE_PATH this project has
+[0.928s]   asked CMake to find a package configuration file provided by "py_trees",
+[0.928s]   but CMake did not find one.
+[0.929s] 
+[0.929s]   Could not find a package configuration file provided by "py_trees" with any
+[0.929s]   of the following names:
+[0.929s] 
+[0.929s]     py_treesConfig.cmake
+[0.929s]     py_trees-config.cmake
+[0.929s] 
+[0.929s]   Add the installation prefix of "py_trees" to CMAKE_PREFIX_PATH or set
+[0.929s]   "py_trees_DIR" to a directory containing one of the above files.  If
+[0.929s]   "py_trees" provides a separate development package or SDK, be sure it has
+[0.929s]   been installed.
+[0.929s] 
+[0.929s] 
+[0.929s] -- Configuring incomplete, errors occurred!
+[0.930s] See also "/home/vboxuser/ros2_ws/build/bt_pkg/CMakeFiles/CMakeOutput.log".
+[0.936s] Invoked command in '/home/vboxuser/ros2_ws/build/bt_pkg' returned '1': AMENT_PREFIX_PATH=/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/realsense2_description:/home/vboxuser/ros2_ws/install/realsense2_camera:/home/vboxuser/ros2_ws/install/realsense2_camera_msgs:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/kr_example_cpp:/home/vboxuser/ros2_ws/install/kr_msgs:/home/vboxuser/ros2_ws/install/groot:/home/vboxuser/ros2_ws/install/bt_pkg:/opt/ros/foxy CMAKE_PREFIX_PATH=/home/vboxuser/ros2_ws/install/kr_msgs:/home/vboxuser/ros2_ws/install/realsense2_description:/home/vboxuser/ros2_ws/install/realsense2_camera:/home/vboxuser/ros2_ws/install/realsense2_camera_msgs:/home/vboxuser/ros2_ws/install/kr_example_cpp:/home/vboxuser/ros2_ws/install/groot LD_LIBRARY_PATH=/home/vboxuser/ros2_ws/install/kr_msgs/lib:/home/vboxuser/ros2_ws/install/realsense2_camera/lib:/home/vboxuser/ros2_ws/install/realsense2_camera_msgs/lib:/home/vboxuser/ros2_ws/install/groot/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib PYTHONPATH=/home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/realsense2_camera_msgs/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/kr_example_python/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/bt_pkg/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/cmake /home/vboxuser/ros2_ws/src/bt_pkg -DCMAKE_INSTALL_PREFIX=/home/vboxuser/ros2_ws/install/bt_pkg

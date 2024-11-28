@@ -12,6 +12,7 @@ resource/robot_control
 robot_control/__init__.py
 robot_control/hello_node.py
 robot_control/move_lin_by_key.py
+robot_control/move_robot_service_server.py
 robot_control/print_frames.py
 robot_control/print_tcp_pose.py
 robot_control/read_transformation_delta.py
