@@ -1,1 +1,5 @@
-/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_cmake/srv/io/GetAnalogInput_Request.msg
+######################################################
+#                GET ANALOG INPUT SRV                #
+######################################################
+
+int8       index    # input index

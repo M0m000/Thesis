@@ -1,1 +1,7 @@
-/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs/msg/GeometryPlane.msg
+######################################################
+#                  GEOMETRY PLANE                    #
+######################################################
+
+string     name       # user defined name
+float64[3] point      # point on plane - x, y, z [mm]
+float64[3] normal     # plane normal - x, y, z [mm]

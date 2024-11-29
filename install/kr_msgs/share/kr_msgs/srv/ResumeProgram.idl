@@ -1,1 +1,19 @@
-/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/srv/ResumeProgram.idl
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from kr_msgs/srv/program/ResumeProgram.srv
+// generated code does not contain a copyright notice
+
+
+module kr_msgs {
+  module srv {
+    @verbatim (language="comment", text=
+      "#####################################################" "\n"
+      "             RESUME PROGRAM EXECUTION               #" "\n"
+      "#####################################################")
+    struct ResumeProgram_Request {
+      uint8 structure_needs_at_least_one_member;
+    };
+    struct ResumeProgram_Response {
+      boolean success;
+    };
+  };
+};

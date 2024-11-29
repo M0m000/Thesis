@@ -1,1 +1,9 @@
-/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_cmake/srv/program/GetProgramState_Response.msg
+
+# SUPPORTED_STATES
+int8 NONE        = 0  # program not running
+int8 RUNNING     = 1  # standard program execution
+int8 PAUSED      = 2  # program paused (by user)
+int8 HALTED      = 3  # program halted (due to alarm)
+
+uint32     state      # see SUPPORTED_STATES
+bool       success

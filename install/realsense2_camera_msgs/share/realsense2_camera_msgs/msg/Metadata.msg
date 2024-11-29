@@ -1,1 +1,2 @@
-/home/vboxuser/ros2_ws/src/realsense-ros/realsense2_camera_msgs/msg/Metadata.msg
+std_msgs/Header header
+string json_data

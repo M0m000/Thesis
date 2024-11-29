@@ -1,1 +1,12 @@
-/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_cmake/srv/robot/SetSystemLoad_Request.msg
+######################################################
+#                 SET SYSTEM LOAD                    #
+######################################################
+
+# SUPPORTED_LOADS
+string TOOLLOAD  = "toolload"
+string PAYLOAD   = "payload"
+
+string      name     # see SUPPORTED_LOADS
+float64     mass
+float64[3]  cog      # center of gravity - x, y, z [mm]
+float64[6]  imx      # inertia matrix - xx, yy, zz, xy, xz, yz [kg/m2]

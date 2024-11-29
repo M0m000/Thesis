@@ -1,1 +1,7 @@
-/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs/srv/system/GetRobotMode.srv
+######################################################
+#                  GET ROBOT MODE                    #
+######################################################
+
+---
+RobotMode  mode    
+bool       success

@@ -1,3 +1,0 @@
-
-SafetyZone[]  zones  
-bool          success

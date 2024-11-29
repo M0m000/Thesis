@@ -1,1 +1,31 @@
-/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/srv/GetProgramState.idl
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from kr_msgs/srv/program/GetProgramState.srv
+// generated code does not contain a copyright notice
+
+
+module kr_msgs {
+  module srv {
+    @verbatim (language="comment", text=
+      "#####################################################" "\n"
+      "                  GET PROGRAM STATE                 #" "\n"
+      "#####################################################")
+    struct GetProgramState_Request {
+      uint8 structure_needs_at_least_one_member;
+    };
+    module GetProgramState_Response_Constants {
+      const int8 NONE = 0;
+      const int8 RUNNING = 1;
+      const int8 PAUSED = 2;
+      const int8 HALTED = 3;
+    };
+    @verbatim (language="comment", text=
+      " SUPPORTED_STATES")
+    struct GetProgramState_Response {
+      @verbatim (language="comment", text=
+        " see SUPPORTED_STATES")
+      uint32 state;
+
+      boolean success;
+    };
+  };
+};

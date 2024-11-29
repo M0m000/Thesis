@@ -1,1 +1,3 @@
-/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_cmake/srv/system/GetMasterSpeed_Response.msg
+
+float64    speed    # master speed (0 < speed <= 1)
+bool       success

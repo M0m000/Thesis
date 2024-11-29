@@ -1,1 +1,12 @@
-/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_generator_c/kr_msgs/srv/get_robot_mode.h
+// generated from rosidl_generator_c/resource/idl.h.em
+// with input from kr_msgs:srv/GetRobotMode.idl
+// generated code does not contain a copyright notice
+
+#ifndef KR_MSGS__SRV__GET_ROBOT_MODE_H_
+#define KR_MSGS__SRV__GET_ROBOT_MODE_H_
+
+#include "kr_msgs/srv/detail/get_robot_mode__struct.h"
+#include "kr_msgs/srv/detail/get_robot_mode__functions.h"
+#include "kr_msgs/srv/detail/get_robot_mode__type_support.h"
+
+#endif  // KR_MSGS__SRV__GET_ROBOT_MODE_H_

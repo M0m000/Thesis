@@ -1,1 +1,20 @@
-/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/msg/JogJoint.idl
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from kr_msgs/msg/JogJoint.msg
+// generated code does not contain a copyright notice
+
+
+module kr_msgs {
+  module msg {
+    typedef double double__7[7];
+    @verbatim (language="comment", text=
+      "#####################################################" "\n"
+      "                JOG IN JOINT SPACE                  #" "\n"
+      "#####################################################")
+    struct JogJoint {
+      @verbatim (language="comment", text=
+        " target joint velocity")
+      @unit (value="deg/s")
+      double__7 jsvel;
+    };
+  };
+};

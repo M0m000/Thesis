@@ -1,0 +1,216 @@
+[0.299s] Invoking command in '/home/vboxuser/ros2_ws/build/groot': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/vboxuser/ros2_ws/src/Groot -DCMAKE_INSTALL_PREFIX=/home/vboxuser/ros2_ws/install/groot
+[0.382s] -- The C compiler identification is GNU 9.4.0
+[0.463s] -- The CXX compiler identification is GNU 9.4.0
+[0.467s] -- Check for working C compiler: /usr/bin/cc
+[0.562s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.563s] -- Detecting C compiler ABI info
+[0.687s] -- Detecting C compiler ABI info - done
+[0.698s] -- Detecting C compile features
+[0.699s] -- Detecting C compile features - done
+[0.701s] -- Check for working CXX compiler: /usr/bin/c++
+[0.827s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.845s] -- Detecting CXX compiler ABI info
+[0.989s] -- Detecting CXX compiler ABI info - done
+[1.003s] -- Detecting CXX compile features
+[1.004s] -- Detecting CXX compile features - done
+[1.053s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[1.054s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[1.266s] -- Found ament_index_cpp: 1.1.0 (/opt/ros/foxy/share/ament_index_cpp/cmake)
+[1.269s] -- ---------------------
+[1.269s] -- Compiling with AMENT.
+[1.269s] -- ---------------------
+[1.286s] -- Found ZMQ: /usr/lib/x86_64-linux-gnu/libzmq.so  
+[1.286s] -- ZeroMQ found.
+[1.385s] -- Configuring done
+[1.540s] -- Generating done
+[1.542s] -- Build files have been written to: /home/vboxuser/ros2_ws/build/groot
+[1.550s] Invoked command in '/home/vboxuser/ros2_ws/build/groot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/vboxuser/ros2_ws/src/Groot -DCMAKE_INSTALL_PREFIX=/home/vboxuser/ros2_ws/install/groot
+[1.555s] Invoking command in '/home/vboxuser/ros2_ws/build/groot': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/groot -- -j8 -l8
+[1.612s] [35m[1mScanning dependencies of target QtNodeEditor_autogen[0m
+[1.632s] [  1%] [34m[1mAutomatic MOC and UIC for target QtNodeEditor[0m
+[1.678s] [  1%] Built target QtNodeEditor_autogen
+[1.692s] [  1%] [34m[1mGenerating qrc_resources.cpp[0m
+[1.693s] [  2%] [34m[1mGenerating include/nodes/internal/moc_Compiler.cpp[0m
+[1.693s] [  3%] [34m[1mGenerating include/nodes/internal/moc_memory.cpp[0m
+[1.694s] [  3%] [34m[1mGenerating include/nodes/internal/moc_ConnectionGraphicsObject.cpp[0m
+[1.700s] [  4%] [34m[1mGenerating include/nodes/internal/moc_Connection.cpp[0m
+[1.702s] [  5%] [34m[1mGenerating include/nodes/internal/moc_ConnectionState.cpp[0m
+[1.704s] [  6%] [34m[1mGenerating include/nodes/internal/moc_ConnectionStyle.cpp[0m
+[1.712s] [  7%] [34m[1mGenerating include/nodes/internal/moc_ConnectionGeometry.cpp[0m
+[1.712s] [  7%] [34m[1mGenerating include/nodes/internal/moc_DataModelRegistry.cpp[0m
+[1.723s] [  8%] [34m[1mGenerating include/nodes/internal/moc_Export.cpp[0m
+[1.729s] [  9%] [34m[1mGenerating include/nodes/internal/moc_FlowScene.cpp[0m
+[1.758s] [ 10%] [34m[1mGenerating include/nodes/internal/moc_FlowView.cpp[0m
+[1.758s] [ 10%] [34m[1mGenerating include/nodes/internal/moc_FlowViewStyle.cpp[0m
+[1.815s] [ 11%] [34m[1mGenerating include/nodes/internal/moc_Node.cpp[0m
+[1.816s] [ 12%] [34m[1mGenerating include/nodes/internal/moc_NodeData.cpp[0m
+[1.819s] [ 12%] [34m[1mGenerating include/nodes/internal/moc_NodeDataModel.cpp[0m
+[1.838s] [ 13%] [34m[1mGenerating include/nodes/internal/moc_NodeGeometry.cpp[0m
+[1.839s] [ 14%] [34m[1mGenerating include/nodes/internal/moc_NodeGraphicsObject.cpp[0m
+[1.840s] [ 15%] [34m[1mGenerating include/nodes/internal/moc_NodePainterDelegate.cpp[0m
+[1.872s] [ 15%] [34m[1mGenerating include/nodes/internal/moc_NodeState.cpp[0m
+[1.880s] [ 16%] [34m[1mGenerating include/nodes/internal/moc_OperatingSystem.cpp[0m
+[1.898s] [ 16%] [34m[1mGenerating include/nodes/internal/moc_PortType.cpp[0m
+[1.910s] [ 17%] [34m[1mGenerating include/nodes/internal/moc_NodeStyle.cpp[0m
+[1.928s] [ 18%] [34m[1mGenerating include/nodes/internal/moc_QUuidStdHash.cpp[0m
+[1.928s] [ 19%] [34m[1mGenerating include/nodes/internal/moc_QStringStdHash.cpp[0m
+[1.929s] [ 20%] [34m[1mGenerating include/nodes/internal/moc_Serializable.cpp[0m
+[1.955s] [ 21%] [34m[1mGenerating include/nodes/internal/moc_TypeConverter.cpp[0m
+[1.963s] [ 21%] [34m[1mGenerating include/nodes/internal/moc_Style.cpp[0m
+[1.993s] [35m[1mScanning dependencies of target QtNodeEditor[0m
+[2.171s] [ 21%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/QtNodeEditor_autogen/mocs_compilation.cpp.o[0m
+[2.173s] [ 22%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/Connection.cpp.o[0m
+[2.180s] [ 23%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/ConnectionBlurEffect.cpp.o[0m
+[2.184s] [ 24%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/ConnectionGeometry.cpp.o[0m
+[2.196s] [ 24%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/ConnectionGraphicsObject.cpp.o[0m
+[2.212s] [ 25%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/ConnectionPainter.cpp.o[0m
+[2.227s] [ 26%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/ConnectionState.cpp.o[0m
+[2.328s] [ 26%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/ConnectionStyle.cpp.o[0m
+[2.343s] [ 27%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/DataModelRegistry.cpp.o[0m
+[3.626s] [ 28%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/FlowScene.cpp.o[0m
+[3.825s] [ 29%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/FlowView.cpp.o[0m
+[4.024s] [ 29%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/FlowViewStyle.cpp.o[0m
+[4.078s] [ 30%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/Node.cpp.o[0m
+[4.754s] [ 31%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/NodeConnectionInteraction.cpp.o[0m
+[4.953s] [ 31%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/NodeDataModel.cpp.o[0m
+[4.988s] [ 32%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/NodeGeometry.cpp.o[0m
+[5.511s] [ 33%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/NodeGraphicsObject.cpp.o[0m
+[6.201s] [ 34%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/NodePainter.cpp.o[0m
+[7.384s] [ 35%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/NodeStyle.cpp.o[0m
+[7.408s] [ 35%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/NodeState.cpp.o[0m
+[7.844s] [ 36%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/Properties.cpp.o[0m
+[7.891s] [ 37%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/qrc_resources.cpp.o[0m
+[7.899s] [ 37%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/StyleCollection.cpp.o[0m
+[8.127s] [ 38%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_Compiler.cpp.o[0m
+[8.380s] [ 39%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_Connection.cpp.o[0m
+[8.780s] [ 39%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_ConnectionGeometry.cpp.o[0m
+[9.050s] [ 40%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_ConnectionGraphicsObject.cpp.o[0m
+[9.078s] [ 41%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_ConnectionState.cpp.o[0m
+[9.183s] [ 41%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_ConnectionStyle.cpp.o[0m
+[9.217s] [ 42%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_Export.cpp.o[0m
+[9.245s] [ 43%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_FlowScene.cpp.o[0m
+[9.266s] [ 43%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_FlowView.cpp.o[0m
+[9.374s] [ 44%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_FlowViewStyle.cpp.o[0m
+[9.424s] [ 45%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_Node.cpp.o[0m
+[9.466s] [ 46%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_NodeDataModel.cpp.o[0m
+[9.468s] [ 46%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_NodeData.cpp.o[0m
+[9.489s] [ 47%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_DataModelRegistry.cpp.o[0m
+[9.760s] [ 49%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_NodeGraphicsObject.cpp.o[0m
+[9.776s] [ 49%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_NodeGeometry.cpp.o[0m
+[10.003s] [ 49%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_NodePainterDelegate.cpp.o[0m
+[10.036s] [ 50%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_NodeState.cpp.o[0m
+[10.092s] [ 51%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_NodeStyle.cpp.o[0m
+[10.171s] [ 52%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_PortType.cpp.o[0m
+[10.190s] [ 52%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_OperatingSystem.cpp.o[0m
+[10.256s] [ 53%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_QStringStdHash.cpp.o[0m
+[10.262s] [ 54%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_QUuidStdHash.cpp.o[0m
+[10.274s] [ 54%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_Serializable.cpp.o[0m
+[10.333s] [ 55%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_Style.cpp.o[0m
+[10.337s] [ 56%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_TypeConverter.cpp.o[0m
+[10.342s] [ 56%] [32mBuilding CXX object QtNodeEditor/CMakeFiles/QtNodeEditor.dir/include/nodes/internal/moc_memory.cpp.o[0m
+[11.168s] [ 57%] [32m[1mLinking CXX static library ../lib/libQtNodeEditor.a[0m
+[11.318s] [ 57%] Built target QtNodeEditor
+[11.335s] [35m[1mScanning dependencies of target behavior_tree_editor_autogen[0m
+[11.360s] [ 58%] [34m[1mAutomatic MOC and UIC for target behavior_tree_editor[0m
+[11.823s] [ 58%] Built target behavior_tree_editor_autogen
+[11.889s] [ 59%] [34m[1mGenerating ui_sidepanel_monitor.h[0m
+[11.895s] [ 60%] [34m[1mGenerating ui_about_dialog.h[0m
+[11.897s] [ 61%] [34m[1mGenerating ui_action_form.h[0m
+[11.900s] [ 62%] [34m[1mGenerating ui_sidepanel_editor.h[0m
+[11.909s] [ 62%] [34m[1mGenerating ui_mainwindow.h[0m
+[11.911s] [ 62%] [34m[1mGenerating ui_sidepanel_replay.h[0m
+[11.950s] [ 63%] [34m[1mGenerating ui_custom_node_dialog.h[0m
+[11.955s] [ 64%] [34m[1mGenerating ui_startup_dialog.h[0m
+[11.980s] [35m[1mScanning dependencies of target behavior_tree_editor[0m
+[12.131s] [ 64%] [32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/behavior_tree_editor_autogen/mocs_compilation.cpp.o[0m
+[12.134s] [ 65%] [32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/models/BehaviorTreeNodeModel.cpp.o[0m
+[12.162s] [ 66%] [32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/models/SubtreeNodeModel.cpp.o[0m
+[12.173s] [ 67%] [32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/utils.cpp.o[0m
+[12.175s] [ 68%] [32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/editor_flowscene.cpp.o[0m
+[12.194s] [ 69%] [32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/bt_editor_base.cpp.o[0m
+[12.197s] [ 69%] [32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/graphic_container.cpp.o[0m
+[12.294s] [ 69%] [32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/mainwindow.cpp.o[0m
+[14.836s] [ 70%] [32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/startup_dialog.cpp.o[0m
+[15.120s] [ 71%] [32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/sidepanel_editor.cpp.o[0m
+[15.734s] [ 71%] [32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/sidepanel_replay.cpp.o[0m
+[15.807s] [ 72%] [32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/custom_node_dialog.cpp.o[0m
+[15.820s] [ 73%] [32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/XML_utilities.cpp.o[0m
+[16.684s] [ 74%] [32mBuilding CXX object CMakeFiles/behavior_tree_editor.dir/bt_editor/sidepanel_monitor.cpp.o[0m
+[20.325s] [ 74%] [32m[1mLinking CXX shared library libbehavior_tree_editor.so[0m
+[21.050s] [ 74%] Built target behavior_tree_editor
+[21.064s] [35m[1mScanning dependencies of target Groot_autogen[0m
+[21.065s] [35m[1mScanning dependencies of target replay_test_autogen[0m
+[21.077s] [35m[1mScanning dependencies of target editor_test_autogen[0m
+[21.082s] [ 75%] [34m[1mAutomatic MOC and UIC for target replay_test[0m
+[21.084s] [ 76%] [34m[1mAutomatic MOC and UIC for target Groot[0m
+[21.126s] [ 76%] [34m[1mAutomatic MOC and UIC for target editor_test[0m
+[21.681s] [ 76%] Built target Groot_autogen
+[21.749s] [ 77%] [34m[1mAutomatic RCC for test_data/test_files.qrc[0m
+[21.754s] [ 77%] [34m[1mAutomatic RCC for bt_editor/resources/icons.qrc[0m
+[21.759s] [ 78%] [34m[1mAutomatic RCC for bt_editor/resources/style.qrc[0m
+[21.789s] [ 78%] Built target replay_test_autogen
+[21.802s] [ 78%] Built target editor_test_autogen
+[21.812s] [ 79%] [34m[1mAutomatic RCC for ../test_data/test_files.qrc[0m
+[21.825s] [ 80%] [34m[1mAutomatic RCC for ../test_data/test_files.qrc[0m
+[21.836s] [ 80%] [34m[1mAutomatic RCC for ../bt_editor/resources/style.qrc[0m
+[21.840s] [ 80%] [34m[1mAutomatic RCC for ../bt_editor/resources/icons.qrc[0m
+[21.840s] [35m[1mScanning dependencies of target Groot[0m
+[21.841s] [ 81%] [34m[1mAutomatic RCC for ../QtNodeEditor/resources/resources.qrc[0m
+[21.879s] [ 82%] [34m[1mAutomatic RCC for ../bt_editor/resources/style.qrc[0m
+[21.911s] [ 82%] [32mBuilding CXX object CMakeFiles/Groot.dir/Groot_autogen/mocs_compilation.cpp.o[0m
+[21.918s] [ 84%] [32mBuilding CXX object CMakeFiles/Groot.dir/Groot_autogen/OQ4J2MLGYJ/qrc_style.cpp.o[0m
+[21.920s] [ 83%] [32mBuilding CXX object CMakeFiles/Groot.dir/Groot_autogen/OQ4J2MLGYJ/qrc_icons.cpp.o[0m
+[21.927s] [ 84%] [32mBuilding CXX object CMakeFiles/Groot.dir/Groot_autogen/NYYW7IJ2JN/qrc_test_files.cpp.o[0m
+[21.958s] [ 85%] [32mBuilding CXX object CMakeFiles/Groot.dir/bt_editor/main.cpp.o[0m
+[22.623s] [ 86%] [34m[1mAutomatic RCC for ../bt_editor/resources/icons.qrc[0m
+[22.633s] [35m[1mScanning dependencies of target editor_test[0m
+[22.796s] [ 87%] [32mBuilding CXX object test/CMakeFiles/editor_test.dir/groot_test_base.cpp.o[0m
+[22.814s] [ 88%] [32mBuilding CXX object test/CMakeFiles/editor_test.dir/editor_test_autogen/EB4OVBCXLB/qrc_resources.cpp.o[0m
+[22.828s] [ 88%] [32mBuilding CXX object test/CMakeFiles/editor_test.dir/editor_test_autogen/K3L5NHU5SO/qrc_icons.cpp.o[0m
+[22.865s] [ 88%] [32mBuilding CXX object test/CMakeFiles/editor_test.dir/editor_test.cpp.o[0m
+[22.986s] [ 89%] [32mBuilding CXX object test/CMakeFiles/editor_test.dir/editor_test_autogen/mocs_compilation.cpp.o[0m
+[23.018s] [ 90%] [34m[1mAutomatic RCC for ../QtNodeEditor/resources/resources.qrc[0m
+[23.043s] [ 91%] [32mBuilding CXX object test/CMakeFiles/editor_test.dir/editor_test_autogen/K3L5NHU5SO/qrc_style.cpp.o[0m
+[23.130s] [35m[1mScanning dependencies of target replay_test[0m
+[23.134s] [ 92%] [32mBuilding CXX object test/CMakeFiles/editor_test.dir/editor_test_autogen/4L4FNCFPKD/qrc_test_files.cpp.o[0m
+[23.379s] [ 93%] [32mBuilding CXX object test/CMakeFiles/replay_test.dir/replay_test_autogen/mocs_compilation.cpp.o[0m
+[23.439s] [ 94%] [32mBuilding CXX object test/CMakeFiles/replay_test.dir/replay_test.cpp.o[0m
+[23.488s] [ 94%] [32mBuilding CXX object test/CMakeFiles/replay_test.dir/groot_test_base.cpp.o[0m
+[26.492s] [ 95%] [32mBuilding CXX object test/CMakeFiles/replay_test.dir/replay_test_autogen/EB4OVBCXLB/qrc_resources.cpp.o[0m
+[26.651s] [ 96%] [32m[1mLinking CXX executable Groot[0m
+[26.929s] [ 97%] [32mBuilding CXX object test/CMakeFiles/replay_test.dir/replay_test_autogen/K3L5NHU5SO/qrc_icons.cpp.o[0m
+[27.171s] [ 97%] [32mBuilding CXX object test/CMakeFiles/replay_test.dir/replay_test_autogen/K3L5NHU5SO/qrc_style.cpp.o[0m
+[27.410s] [ 98%] [32mBuilding CXX object test/CMakeFiles/replay_test.dir/replay_test_autogen/4L4FNCFPKD/qrc_test_files.cpp.o[0m
+[27.784s] [ 99%] [32m[1mLinking CXX executable editor_test[0m
+[28.060s] [ 99%] Built target Groot
+[28.179s] [100%] [32m[1mLinking CXX executable replay_test[0m
+[28.583s] [100%] Built target editor_test
+[28.959s] [100%] Built target replay_test
+[28.995s] Invoked command in '/home/vboxuser/ros2_ws/build/groot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/groot -- -j8 -l8
+[29.321s] Invoking command in '/home/vboxuser/ros2_ws/build/groot': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/vboxuser/ros2_ws/build/groot
+[29.363s] -- Install configuration: ""
+[29.364s] -- Installing: /home/vboxuser/ros2_ws/install/groot/lib/libbehavior_tree_editor.so
+[29.377s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/groot/lib/libbehavior_tree_editor.so" to ""
+[29.378s] -- Installing: /home/vboxuser/ros2_ws/install/groot/lib/groot/Groot
+[29.378s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/groot/lib/groot/Groot" to ""
+[29.378s] -- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/library_path.sh
+[29.378s] -- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/library_path.dsv
+[29.378s] -- Installing: /home/vboxuser/ros2_ws/install/groot/share/ament_index/resource_index/package_run_dependencies/groot
+[29.378s] -- Installing: /home/vboxuser/ros2_ws/install/groot/share/ament_index/resource_index/parent_prefix_path/groot
+[29.378s] -- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/ament_prefix_path.sh
+[29.378s] -- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/ament_prefix_path.dsv
+[29.378s] -- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/path.sh
+[29.378s] -- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/path.dsv
+[29.378s] -- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/local_setup.bash
+[29.378s] -- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/local_setup.sh
+[29.378s] -- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/local_setup.zsh
+[29.378s] -- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/local_setup.dsv
+[29.379s] -- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/package.dsv
+[29.379s] -- Installing: /home/vboxuser/ros2_ws/install/groot/share/ament_index/resource_index/packages/groot
+[29.379s] -- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/cmake/ament_cmake_export_include_directories-extras.cmake
+[29.379s] -- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/cmake/ament_cmake_export_dependencies-extras.cmake
+[29.379s] -- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/cmake/ament_cmake_export_libraries-extras.cmake
+[29.379s] -- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/cmake/grootConfig.cmake
+[29.379s] -- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/cmake/grootConfig-version.cmake
+[29.379s] -- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/package.xml
+[29.379s] Invoked command in '/home/vboxuser/ros2_ws/build/groot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/vboxuser/ros2_ws/build/groot

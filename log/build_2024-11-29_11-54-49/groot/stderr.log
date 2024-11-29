@@ -1,6 +1,0 @@
-make[2]: *** Datei „Groot“ wird gelöscht
-make[2]: *** [test/CMakeFiles/replay_test.dir/build.make:174: test/CMakeFiles/replay_test.dir/replay_test.cpp.o] Unterbrechung
-make[2]: *** [CMakeFiles/Groot.dir/build.make:242: Groot] Unterbrechung
-make[1]: *** [CMakeFiles/Makefile2:349: test/CMakeFiles/replay_test.dir/all] Unterbrechung
-make[1]: *** [CMakeFiles/Makefile2:130: CMakeFiles/Groot.dir/all] Unterbrechung
-make: *** [Makefile:141: all] Unterbrechung

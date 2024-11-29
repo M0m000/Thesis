@@ -1,1 +1,3 @@
-/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_cmake/srv/system/GetRobotState_Response.msg
+
+RobotState  state    
+bool        success

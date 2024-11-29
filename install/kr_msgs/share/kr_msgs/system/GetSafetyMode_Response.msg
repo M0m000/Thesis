@@ -1,1 +1,3 @@
-/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_cmake/srv/system/GetSafetyMode_Response.msg
+
+SafetyMode  mode  
+bool        success

@@ -1,1 +1,5 @@
-/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_cmake/srv/robot/GetSystemLoad_Response.msg
+
+float64     mass
+float64[3]  cog       # center of gravity - x, y, z [mm]
+float64[6]  imx       # inertia matrix - xx, yy, zz, xy, xz, yz [kg/m2]
+bool        success

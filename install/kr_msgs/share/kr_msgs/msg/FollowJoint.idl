@@ -1,1 +1,50 @@
-/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/msg/FollowJoint.idl
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from kr_msgs/msg/FollowJoint.msg
+// generated code does not contain a copyright notice
+
+
+module kr_msgs {
+  module msg {
+    typedef double double__7[7];
+    module FollowJoint_Constants {
+      const int8 TT_VEL = 0;
+      const int8 TT_TIME = 1;
+      const int8 BP_STOP = 0;
+      const int8 BP_VIA = 1;
+      const int8 BT_ACC = 0;
+      const int8 BT_TIME = 1;
+      const int8 CH_INT = 0;
+      const int8 CH_COM = 1;
+    };
+    @verbatim (language="comment", text=
+      "#####################################################" "\n"
+      "               MOVE IN JOINT SPACE                  #" "\n"
+      "#####################################################")
+    struct FollowJoint {
+      @verbatim (language="comment", text=
+        " target joint configuration")
+      @unit (value="degrees")
+      double__7 jsconf;
+
+      @verbatim (language="comment", text=
+        " see TRACKING_TYPE")
+      int8 ttype;
+
+      @verbatim (language="comment", text=
+        " tracking value (in deg/s or seconds)")
+      double tvalue;
+
+      @verbatim (language="comment", text=
+        " see BLEND_POINT")
+      int8 bpoint;
+
+      @verbatim (language="comment", text=
+        " see BLEND_TYPE")
+      int8 btype;
+
+      @verbatim (language="comment", text=
+        " blend value (in deg/s^2 or seconds)")
+      double bvalue;
+    };
+  };
+};

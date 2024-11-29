@@ -1,1 +1,2 @@
-/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_cmake/srv/system/UnlockRobot_Response.msg
+
+bool       success

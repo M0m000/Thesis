@@ -1,0 +1,90 @@
+[0.019s] Invoking command in '/home/vboxuser/ros2_ws/build/kr_example_cpp': AMENT_PREFIX_PATH=/home/vboxuser/ros2_ws/install/kr_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/vboxuser/ros2_ws/install/kr_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/vboxuser/ros2_ws/install/kr_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /home/vboxuser/ros2_ws/src/orange-ros2/kr_example/cpp -DCMAKE_INSTALL_PREFIX=/home/vboxuser/ros2_ws/install/kr_example_cpp
+[0.088s] -- The C compiler identification is GNU 9.4.0
+[0.146s] -- The CXX compiler identification is GNU 9.4.0
+[0.152s] -- Check for working C compiler: /usr/bin/cc
+[0.237s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.238s] -- Detecting C compiler ABI info
+[0.326s] -- Detecting C compiler ABI info - done
+[0.336s] -- Detecting C compile features
+[0.336s] -- Detecting C compile features - done
+[0.338s] -- Check for working CXX compiler: /usr/bin/c++
+[0.433s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.434s] -- Detecting CXX compiler ABI info
+[0.532s] -- Detecting CXX compiler ABI info - done
+[0.542s] -- Detecting CXX compile features
+[0.543s] -- Detecting CXX compile features - done
+[0.545s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.569s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.569s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.765s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.809s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.816s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.920s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[0.952s] -- Found FastRTPS: /opt/ros/foxy/include  
+[1.034s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.085s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[1.086s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[1.087s] -- Looking for pthread.h
+[1.179s] -- Looking for pthread.h - found
+[1.180s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[1.270s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[1.271s] -- Looking for pthread_create in pthreads
+[1.347s] -- Looking for pthread_create in pthreads - not found
+[1.347s] -- Looking for pthread_create in pthread
+[1.434s] -- Looking for pthread_create in pthread - found
+[1.434s] -- Found Threads: TRUE  
+[1.571s] -- Found kr_msgs: 0.0.0 (/home/vboxuser/ros2_ws/install/kr_msgs/share/kr_msgs/cmake)
+[1.702s] -- Configuring done
+[1.726s] -- Generating done
+[1.729s] -- Build files have been written to: /home/vboxuser/ros2_ws/build/kr_example_cpp
+[1.741s] Invoked command in '/home/vboxuser/ros2_ws/build/kr_example_cpp' returned '0': AMENT_PREFIX_PATH=/home/vboxuser/ros2_ws/install/kr_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/vboxuser/ros2_ws/install/kr_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/vboxuser/ros2_ws/install/kr_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /home/vboxuser/ros2_ws/src/orange-ros2/kr_example/cpp -DCMAKE_INSTALL_PREFIX=/home/vboxuser/ros2_ws/install/kr_example_cpp
+[1.743s] Invoking command in '/home/vboxuser/ros2_ws/build/kr_example_cpp': AMENT_PREFIX_PATH=/home/vboxuser/ros2_ws/install/kr_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/vboxuser/ros2_ws/install/kr_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/vboxuser/ros2_ws/install/kr_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/kr_example_cpp -- -j8 -l8
+[1.791s] [35m[1mScanning dependencies of target self_motion[0m
+[1.792s] [35m[1mScanning dependencies of target jog_linear[0m
+[1.793s] [35m[1mScanning dependencies of target robot_state[0m
+[1.793s] [35m[1mScanning dependencies of target move_joint[0m
+[1.804s] [35m[1mScanning dependencies of target follow_joint[0m
+[1.845s] [ 20%] [32mBuilding CXX object CMakeFiles/jog_linear.dir/src/jog_linear.cpp.o[0m
+[1.846s] [ 20%] [32mBuilding CXX object CMakeFiles/robot_state.dir/src/robot_state.cpp.o[0m
+[1.846s] [ 30%] [32mBuilding CXX object CMakeFiles/self_motion.dir/src/self_motion.cpp.o[0m
+[1.855s] [ 40%] [32mBuilding CXX object CMakeFiles/move_joint.dir/src/move_joint.cpp.o[0m
+[1.855s] [ 50%] [32mBuilding CXX object CMakeFiles/follow_joint.dir/src/follow_joint.cpp.o[0m
+[4.245s] [ 60%] [32m[1mLinking CXX executable move_joint[0m
+[4.419s] [ 60%] Built target move_joint
+[4.737s] [ 70%] [32m[1mLinking CXX executable self_motion[0m
+[4.771s] [ 80%] [32m[1mLinking CXX executable follow_joint[0m
+[4.916s] [ 80%] Built target self_motion
+[4.950s] [ 80%] Built target follow_joint
+[5.296s] [ 90%] [32m[1mLinking CXX executable jog_linear[0m
+[5.494s] [ 90%] Built target jog_linear
+[6.345s] [100%] [32m[1mLinking CXX executable robot_state[0m
+[6.568s] [100%] Built target robot_state
+[6.583s] Invoked command in '/home/vboxuser/ros2_ws/build/kr_example_cpp' returned '0': AMENT_PREFIX_PATH=/home/vboxuser/ros2_ws/install/kr_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/vboxuser/ros2_ws/install/kr_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/vboxuser/ros2_ws/install/kr_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/kr_example_cpp -- -j8 -l8
+[6.647s] Invoking command in '/home/vboxuser/ros2_ws/build/kr_example_cpp': AMENT_PREFIX_PATH=/home/vboxuser/ros2_ws/install/kr_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/vboxuser/ros2_ws/install/kr_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/vboxuser/ros2_ws/install/kr_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/vboxuser/ros2_ws/build/kr_example_cpp
+[6.656s] -- Install configuration: ""
+[6.657s] -- Installing: /home/vboxuser/ros2_ws/install/kr_example_cpp/lib/kr_example_cpp/robot_state
+[6.659s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/kr_example_cpp/lib/kr_example_cpp/robot_state" to ""
+[6.659s] -- Installing: /home/vboxuser/ros2_ws/install/kr_example_cpp/lib/kr_example_cpp/follow_joint
+[6.661s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/kr_example_cpp/lib/kr_example_cpp/follow_joint" to ""
+[6.661s] -- Installing: /home/vboxuser/ros2_ws/install/kr_example_cpp/lib/kr_example_cpp/move_joint
+[6.662s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/kr_example_cpp/lib/kr_example_cpp/move_joint" to ""
+[6.662s] -- Installing: /home/vboxuser/ros2_ws/install/kr_example_cpp/lib/kr_example_cpp/jog_linear
+[6.664s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/kr_example_cpp/lib/kr_example_cpp/jog_linear" to ""
+[6.664s] -- Installing: /home/vboxuser/ros2_ws/install/kr_example_cpp/lib/kr_example_cpp/self_motion
+[6.665s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/kr_example_cpp/lib/kr_example_cpp/self_motion" to ""
+[6.666s] -- Installing: /home/vboxuser/ros2_ws/install/kr_example_cpp/share/ament_index/resource_index/package_run_dependencies/kr_example_cpp
+[6.666s] -- Installing: /home/vboxuser/ros2_ws/install/kr_example_cpp/share/ament_index/resource_index/parent_prefix_path/kr_example_cpp
+[6.666s] -- Installing: /home/vboxuser/ros2_ws/install/kr_example_cpp/share/kr_example_cpp/environment/ament_prefix_path.sh
+[6.667s] -- Installing: /home/vboxuser/ros2_ws/install/kr_example_cpp/share/kr_example_cpp/environment/ament_prefix_path.dsv
+[6.667s] -- Installing: /home/vboxuser/ros2_ws/install/kr_example_cpp/share/kr_example_cpp/environment/path.sh
+[6.667s] -- Installing: /home/vboxuser/ros2_ws/install/kr_example_cpp/share/kr_example_cpp/environment/path.dsv
+[6.667s] -- Installing: /home/vboxuser/ros2_ws/install/kr_example_cpp/share/kr_example_cpp/local_setup.bash
+[6.667s] -- Installing: /home/vboxuser/ros2_ws/install/kr_example_cpp/share/kr_example_cpp/local_setup.sh
+[6.668s] -- Installing: /home/vboxuser/ros2_ws/install/kr_example_cpp/share/kr_example_cpp/local_setup.zsh
+[6.668s] -- Installing: /home/vboxuser/ros2_ws/install/kr_example_cpp/share/kr_example_cpp/local_setup.dsv
+[6.668s] -- Installing: /home/vboxuser/ros2_ws/install/kr_example_cpp/share/kr_example_cpp/package.dsv
+[6.668s] -- Installing: /home/vboxuser/ros2_ws/install/kr_example_cpp/share/ament_index/resource_index/packages/kr_example_cpp
+[6.669s] -- Installing: /home/vboxuser/ros2_ws/install/kr_example_cpp/share/kr_example_cpp/cmake/kr_example_cppConfig.cmake
+[6.669s] -- Installing: /home/vboxuser/ros2_ws/install/kr_example_cpp/share/kr_example_cpp/cmake/kr_example_cppConfig-version.cmake
+[6.669s] -- Installing: /home/vboxuser/ros2_ws/install/kr_example_cpp/share/kr_example_cpp/package.xml
+[6.673s] Invoked command in '/home/vboxuser/ros2_ws/build/kr_example_cpp' returned '0': AMENT_PREFIX_PATH=/home/vboxuser/ros2_ws/install/kr_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/vboxuser/ros2_ws/install/kr_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/vboxuser/ros2_ws/install/kr_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/vboxuser/ros2_ws/build/kr_example_cpp

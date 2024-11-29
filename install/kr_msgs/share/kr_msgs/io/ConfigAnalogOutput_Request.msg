@@ -1,1 +1,10 @@
-/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_cmake/srv/io/ConfigAnalogOutput_Request.msg
+######################################################
+#             CONFIG ANALOG OUTPUT SRV               #
+######################################################
+
+# OUTPUT_TYPE
+int8 CURRENT = 0
+int8 VOLTAGE = 1
+
+int8       index    # output index
+int8       type     # see OUTPUT_TYPE
