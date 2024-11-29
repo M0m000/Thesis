@@ -37,30 +37,53 @@ struct MoveTcpAlongAxis_Goal_
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
     {
-      this->order = 0l;
+      this->baseline = 0.0;
+      this->movement_frame = "";
+      this->movement_axis = "";
     }
   }
 
   explicit MoveTcpAlongAxis_Goal_(const ContainerAllocator & _alloc, rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
+  : movement_frame(_alloc),
+    movement_axis(_alloc)
   {
-    (void)_alloc;
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
     {
-      this->order = 0l;
+      this->baseline = 0.0;
+      this->movement_frame = "";
+      this->movement_axis = "";
     }
   }
 
   // field types and members
-  using _order_type =
-    int32_t;
-  _order_type order;
+  using _baseline_type =
+    double;
+  _baseline_type baseline;
+  using _movement_frame_type =
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+  _movement_frame_type movement_frame;
+  using _movement_axis_type =
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+  _movement_axis_type movement_axis;
 
   // setters for named parameter idiom
-  Type & set__order(
-    const int32_t & _arg)
+  Type & set__baseline(
+    const double & _arg)
   {
-    this->order = _arg;
+    this->baseline = _arg;
+    return *this;
+  }
+  Type & set__movement_frame(
+    const std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other> & _arg)
+  {
+    this->movement_frame = _arg;
+    return *this;
+  }
+  Type & set__movement_axis(
+    const std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other> & _arg)
+  {
+    this->movement_axis = _arg;
     return *this;
   }
 
@@ -106,7 +129,13 @@ struct MoveTcpAlongAxis_Goal_
   // comparison operators
   bool operator==(const MoveTcpAlongAxis_Goal_ & other) const
   {
-    if (this->order != other.order) {
+    if (this->baseline != other.baseline) {
+      return false;
+    }
+    if (this->movement_frame != other.movement_frame) {
+      return false;
+    }
+    if (this->movement_axis != other.movement_axis) {
       return false;
     }
     return true;
@@ -148,25 +177,33 @@ struct MoveTcpAlongAxis_Result_
 
   explicit MoveTcpAlongAxis_Result_(rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
   {
-    (void)_init;
+    if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
+      rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
+    {
+      this->success = false;
+    }
   }
 
   explicit MoveTcpAlongAxis_Result_(const ContainerAllocator & _alloc, rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
   {
-    (void)_init;
     (void)_alloc;
+    if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
+      rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
+    {
+      this->success = false;
+    }
   }
 
   // field types and members
-  using _sequence_type =
-    std::vector<int32_t, typename ContainerAllocator::template rebind<int32_t>::other>;
-  _sequence_type sequence;
+  using _success_type =
+    bool;
+  _success_type success;
 
   // setters for named parameter idiom
-  Type & set__sequence(
-    const std::vector<int32_t, typename ContainerAllocator::template rebind<int32_t>::other> & _arg)
+  Type & set__success(
+    const bool & _arg)
   {
-    this->sequence = _arg;
+    this->success = _arg;
     return *this;
   }
 
@@ -212,7 +249,7 @@ struct MoveTcpAlongAxis_Result_
   // comparison operators
   bool operator==(const MoveTcpAlongAxis_Result_ & other) const
   {
-    if (this->sequence != other.sequence) {
+    if (this->success != other.success) {
       return false;
     }
     return true;
@@ -254,25 +291,33 @@ struct MoveTcpAlongAxis_Feedback_
 
   explicit MoveTcpAlongAxis_Feedback_(rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
   {
-    (void)_init;
+    if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
+      rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
+    {
+      this->current_position = 0.0;
+    }
   }
 
   explicit MoveTcpAlongAxis_Feedback_(const ContainerAllocator & _alloc, rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
   {
-    (void)_init;
     (void)_alloc;
+    if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
+      rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
+    {
+      this->current_position = 0.0;
+    }
   }
 
   // field types and members
-  using _partial_sequence_type =
-    std::vector<int32_t, typename ContainerAllocator::template rebind<int32_t>::other>;
-  _partial_sequence_type partial_sequence;
+  using _current_position_type =
+    double;
+  _current_position_type current_position;
 
   // setters for named parameter idiom
-  Type & set__partial_sequence(
-    const std::vector<int32_t, typename ContainerAllocator::template rebind<int32_t>::other> & _arg)
+  Type & set__current_position(
+    const double & _arg)
   {
-    this->partial_sequence = _arg;
+    this->current_position = _arg;
     return *this;
   }
 
@@ -318,7 +363,7 @@ struct MoveTcpAlongAxis_Feedback_
   // comparison operators
   bool operator==(const MoveTcpAlongAxis_Feedback_ & other) const
   {
-    if (this->partial_sequence != other.partial_sequence) {
+    if (this->current_position != other.current_position) {
       return false;
     }
     return true;

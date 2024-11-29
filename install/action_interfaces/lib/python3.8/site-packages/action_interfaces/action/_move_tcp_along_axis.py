@@ -53,22 +53,30 @@ class MoveTcpAlongAxis_Goal(metaclass=Metaclass_MoveTcpAlongAxis_Goal):
     """Message class 'MoveTcpAlongAxis_Goal'."""
 
     __slots__ = [
-        '_order',
+        '_baseline',
+        '_movement_frame',
+        '_movement_axis',
     ]
 
     _fields_and_field_types = {
-        'order': 'int32',
+        'baseline': 'double',
+        'movement_frame': 'string',
+        'movement_axis': 'string',
     }
 
     SLOT_TYPES = (
-        rosidl_parser.definition.BasicType('int32'),  # noqa: E501
+        rosidl_parser.definition.BasicType('double'),  # noqa: E501
+        rosidl_parser.definition.UnboundedString(),  # noqa: E501
+        rosidl_parser.definition.UnboundedString(),  # noqa: E501
     )
 
     def __init__(self, **kwargs):
         assert all('_' + key in self.__slots__ for key in kwargs.keys()), \
             'Invalid arguments passed to constructor: %s' % \
             ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
-        self.order = kwargs.get('order', int())
+        self.baseline = kwargs.get('baseline', float())
+        self.movement_frame = kwargs.get('movement_frame', str())
+        self.movement_axis = kwargs.get('movement_axis', str())
 
     def __repr__(self):
         typename = self.__class__.__module__.split('.')
@@ -99,7 +107,11 @@ class MoveTcpAlongAxis_Goal(metaclass=Metaclass_MoveTcpAlongAxis_Goal):
     def __eq__(self, other):
         if not isinstance(other, self.__class__):
             return False
-        if self.order != other.order:
+        if self.baseline != other.baseline:
+            return False
+        if self.movement_frame != other.movement_frame:
+            return False
+        if self.movement_axis != other.movement_axis:
             return False
         return True
 
@@ -109,25 +121,46 @@ class MoveTcpAlongAxis_Goal(metaclass=Metaclass_MoveTcpAlongAxis_Goal):
         return copy(cls._fields_and_field_types)
 
     @property
-    def order(self):
-        """Message field 'order'."""
-        return self._order
+    def baseline(self):
+        """Message field 'baseline'."""
+        return self._baseline
 
-    @order.setter
-    def order(self, value):
+    @baseline.setter
+    def baseline(self, value):
         if __debug__:
             assert \
-                isinstance(value, int), \
-                "The 'order' field must be of type 'int'"
-            assert value >= -2147483648 and value < 2147483648, \
-                "The 'order' field must be an integer in [-2147483648, 2147483647]"
-        self._order = value
+                isinstance(value, float), \
+                "The 'baseline' field must be of type 'float'"
+        self._baseline = value
+
+    @property
+    def movement_frame(self):
+        """Message field 'movement_frame'."""
+        return self._movement_frame
+
+    @movement_frame.setter
+    def movement_frame(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, str), \
+                "The 'movement_frame' field must be of type 'str'"
+        self._movement_frame = value
+
+    @property
+    def movement_axis(self):
+        """Message field 'movement_axis'."""
+        return self._movement_axis
+
+    @movement_axis.setter
+    def movement_axis(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, str), \
+                "The 'movement_axis' field must be of type 'str'"
+        self._movement_axis = value
 
 
 # Import statements for member types
-
-# Member 'sequence'
-import array  # noqa: E402, I100
 
 # already imported above
 # import rosidl_parser.definition
@@ -178,22 +211,22 @@ class MoveTcpAlongAxis_Result(metaclass=Metaclass_MoveTcpAlongAxis_Result):
     """Message class 'MoveTcpAlongAxis_Result'."""
 
     __slots__ = [
-        '_sequence',
+        '_success',
     ]
 
     _fields_and_field_types = {
-        'sequence': 'sequence<int32>',
+        'success': 'boolean',
     }
 
     SLOT_TYPES = (
-        rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.BasicType('int32')),  # noqa: E501
+        rosidl_parser.definition.BasicType('boolean'),  # noqa: E501
     )
 
     def __init__(self, **kwargs):
         assert all('_' + key in self.__slots__ for key in kwargs.keys()), \
             'Invalid arguments passed to constructor: %s' % \
             ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
-        self.sequence = array.array('i', kwargs.get('sequence', []))
+        self.success = kwargs.get('success', bool())
 
     def __repr__(self):
         typename = self.__class__.__module__.split('.')
@@ -224,7 +257,7 @@ class MoveTcpAlongAxis_Result(metaclass=Metaclass_MoveTcpAlongAxis_Result):
     def __eq__(self, other):
         if not isinstance(other, self.__class__):
             return False
-        if self.sequence != other.sequence:
+        if self.success != other.success:
             return False
         return True
 
@@ -234,39 +267,20 @@ class MoveTcpAlongAxis_Result(metaclass=Metaclass_MoveTcpAlongAxis_Result):
         return copy(cls._fields_and_field_types)
 
     @property
-    def sequence(self):
-        """Message field 'sequence'."""
-        return self._sequence
+    def success(self):
+        """Message field 'success'."""
+        return self._success
 
-    @sequence.setter
-    def sequence(self, value):
-        if isinstance(value, array.array):
-            assert value.typecode == 'i', \
-                "The 'sequence' array.array() must have the type code of 'i'"
-            self._sequence = value
-            return
+    @success.setter
+    def success(self, value):
         if __debug__:
-            from collections.abc import Sequence
-            from collections.abc import Set
-            from collections import UserList
-            from collections import UserString
             assert \
-                ((isinstance(value, Sequence) or
-                  isinstance(value, Set) or
-                  isinstance(value, UserList)) and
-                 not isinstance(value, str) and
-                 not isinstance(value, UserString) and
-                 all(isinstance(v, int) for v in value) and
-                 all(val >= -2147483648 and val < 2147483648 for val in value)), \
-                "The 'sequence' field must be a set or sequence and each value of type 'int' and each integer in [-2147483648, 2147483647]"
-        self._sequence = array.array('i', value)
+                isinstance(value, bool), \
+                "The 'success' field must be of type 'bool'"
+        self._success = value
 
 
 # Import statements for member types
-
-# Member 'partial_sequence'
-# already imported above
-# import array
 
 # already imported above
 # import rosidl_parser.definition
@@ -317,22 +331,22 @@ class MoveTcpAlongAxis_Feedback(metaclass=Metaclass_MoveTcpAlongAxis_Feedback):
     """Message class 'MoveTcpAlongAxis_Feedback'."""
 
     __slots__ = [
-        '_partial_sequence',
+        '_current_position',
     ]
 
     _fields_and_field_types = {
-        'partial_sequence': 'sequence<int32>',
+        'current_position': 'double',
     }
 
     SLOT_TYPES = (
-        rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.BasicType('int32')),  # noqa: E501
+        rosidl_parser.definition.BasicType('double'),  # noqa: E501
     )
 
     def __init__(self, **kwargs):
         assert all('_' + key in self.__slots__ for key in kwargs.keys()), \
             'Invalid arguments passed to constructor: %s' % \
             ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
-        self.partial_sequence = array.array('i', kwargs.get('partial_sequence', []))
+        self.current_position = kwargs.get('current_position', float())
 
     def __repr__(self):
         typename = self.__class__.__module__.split('.')
@@ -363,7 +377,7 @@ class MoveTcpAlongAxis_Feedback(metaclass=Metaclass_MoveTcpAlongAxis_Feedback):
     def __eq__(self, other):
         if not isinstance(other, self.__class__):
             return False
-        if self.partial_sequence != other.partial_sequence:
+        if self.current_position != other.current_position:
             return False
         return True
 
@@ -373,32 +387,17 @@ class MoveTcpAlongAxis_Feedback(metaclass=Metaclass_MoveTcpAlongAxis_Feedback):
         return copy(cls._fields_and_field_types)
 
     @property
-    def partial_sequence(self):
-        """Message field 'partial_sequence'."""
-        return self._partial_sequence
+    def current_position(self):
+        """Message field 'current_position'."""
+        return self._current_position
 
-    @partial_sequence.setter
-    def partial_sequence(self, value):
-        if isinstance(value, array.array):
-            assert value.typecode == 'i', \
-                "The 'partial_sequence' array.array() must have the type code of 'i'"
-            self._partial_sequence = value
-            return
+    @current_position.setter
+    def current_position(self, value):
         if __debug__:
-            from collections.abc import Sequence
-            from collections.abc import Set
-            from collections import UserList
-            from collections import UserString
             assert \
-                ((isinstance(value, Sequence) or
-                  isinstance(value, Set) or
-                  isinstance(value, UserList)) and
-                 not isinstance(value, str) and
-                 not isinstance(value, UserString) and
-                 all(isinstance(v, int) for v in value) and
-                 all(val >= -2147483648 and val < 2147483648 for val in value)), \
-                "The 'partial_sequence' field must be a set or sequence and each value of type 'int' and each integer in [-2147483648, 2147483647]"
-        self._partial_sequence = array.array('i', value)
+                isinstance(value, float), \
+                "The 'current_position' field must be of type 'float'"
+        self._current_position = value
 
 
 # Import statements for member types

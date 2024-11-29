@@ -1,4 +1,5 @@
 [console_scripts]
+MoveTcpAlongAxis_action_client = robot_control.MoveTcpAlongAxis_action_client:main
 fibonacci_action_client = robot_control.fibonacci_action_client:main
 hello_node = robot_control.hello_node:main
 move_lin_by_key = robot_control.move_lin_by_key:main

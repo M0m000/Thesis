@@ -32,8 +32,12 @@ cdr_serialize(
   const action_interfaces::action::MoveTcpAlongAxis_Goal & ros_message,
   eprosima::fastcdr::Cdr & cdr)
 {
-  // Member: order
-  cdr << ros_message.order;
+  // Member: baseline
+  cdr << ros_message.baseline;
+  // Member: movement_frame
+  cdr << ros_message.movement_frame;
+  // Member: movement_axis
+  cdr << ros_message.movement_axis;
   return true;
 }
 
@@ -43,8 +47,14 @@ cdr_deserialize(
   eprosima::fastcdr::Cdr & cdr,
   action_interfaces::action::MoveTcpAlongAxis_Goal & ros_message)
 {
-  // Member: order
-  cdr >> ros_message.order;
+  // Member: baseline
+  cdr >> ros_message.baseline;
+
+  // Member: movement_frame
+  cdr >> ros_message.movement_frame;
+
+  // Member: movement_axis
+  cdr >> ros_message.movement_axis;
 
   return true;
 }
@@ -62,12 +72,20 @@ get_serialized_size(
   (void)padding;
   (void)wchar_size;
 
-  // Member: order
+  // Member: baseline
   {
-    size_t item_size = sizeof(ros_message.order);
+    size_t item_size = sizeof(ros_message.baseline);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+  // Member: movement_frame
+  current_alignment += padding +
+    eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
+    (ros_message.movement_frame.size() + 1);
+  // Member: movement_axis
+  current_alignment += padding +
+    eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
+    (ros_message.movement_axis.size() + 1);
 
   return current_alignment - initial_alignment;
 }
@@ -87,12 +105,36 @@ max_serialized_size_MoveTcpAlongAxis_Goal(
   (void)full_bounded;
 
 
-  // Member: order
+  // Member: baseline
   {
     size_t array_size = 1;
 
-    current_alignment += array_size * sizeof(uint32_t) +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Member: movement_frame
+  {
+    size_t array_size = 1;
+
+    full_bounded = false;
+    for (size_t index = 0; index < array_size; ++index) {
+      current_alignment += padding +
+        eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
+        1;
+    }
+  }
+
+  // Member: movement_axis
+  {
+    size_t array_size = 1;
+
+    full_bounded = false;
+    for (size_t index = 0; index < array_size; ++index) {
+      current_alignment += padding +
+        eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
+        1;
+    }
   }
 
   return current_alignment - initial_alignment;
@@ -216,10 +258,8 @@ cdr_serialize(
   const action_interfaces::action::MoveTcpAlongAxis_Result & ros_message,
   eprosima::fastcdr::Cdr & cdr)
 {
-  // Member: sequence
-  {
-    cdr << ros_message.sequence;
-  }
+  // Member: success
+  cdr << (ros_message.success ? true : false);
   return true;
 }
 
@@ -229,9 +269,11 @@ cdr_deserialize(
   eprosima::fastcdr::Cdr & cdr,
   action_interfaces::action::MoveTcpAlongAxis_Result & ros_message)
 {
-  // Member: sequence
+  // Member: success
   {
-    cdr >> ros_message.sequence;
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message.success = tmp ? true : false;
   }
 
   return true;
@@ -250,14 +292,10 @@ get_serialized_size(
   (void)padding;
   (void)wchar_size;
 
-  // Member: sequence
+  // Member: success
   {
-    size_t array_size = ros_message.sequence.size();
-
-    current_alignment += padding +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
-    size_t item_size = sizeof(ros_message.sequence[0]);
-    current_alignment += array_size * item_size +
+    size_t item_size = sizeof(ros_message.success);
+    current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
 
@@ -279,15 +317,11 @@ max_serialized_size_MoveTcpAlongAxis_Result(
   (void)full_bounded;
 
 
-  // Member: sequence
+  // Member: success
   {
-    size_t array_size = 0;
-    full_bounded = false;
-    current_alignment += padding +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
+    size_t array_size = 1;
 
-    current_alignment += array_size * sizeof(uint32_t) +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+    current_alignment += array_size * sizeof(uint8_t);
   }
 
   return current_alignment - initial_alignment;
@@ -411,10 +445,8 @@ cdr_serialize(
   const action_interfaces::action::MoveTcpAlongAxis_Feedback & ros_message,
   eprosima::fastcdr::Cdr & cdr)
 {
-  // Member: partial_sequence
-  {
-    cdr << ros_message.partial_sequence;
-  }
+  // Member: current_position
+  cdr << ros_message.current_position;
   return true;
 }
 
@@ -424,10 +456,8 @@ cdr_deserialize(
   eprosima::fastcdr::Cdr & cdr,
   action_interfaces::action::MoveTcpAlongAxis_Feedback & ros_message)
 {
-  // Member: partial_sequence
-  {
-    cdr >> ros_message.partial_sequence;
-  }
+  // Member: current_position
+  cdr >> ros_message.current_position;
 
   return true;
 }
@@ -445,14 +475,10 @@ get_serialized_size(
   (void)padding;
   (void)wchar_size;
 
-  // Member: partial_sequence
+  // Member: current_position
   {
-    size_t array_size = ros_message.partial_sequence.size();
-
-    current_alignment += padding +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
-    size_t item_size = sizeof(ros_message.partial_sequence[0]);
-    current_alignment += array_size * item_size +
+    size_t item_size = sizeof(ros_message.current_position);
+    current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
 
@@ -474,15 +500,12 @@ max_serialized_size_MoveTcpAlongAxis_Feedback(
   (void)full_bounded;
 
 
-  // Member: partial_sequence
+  // Member: current_position
   {
-    size_t array_size = 0;
-    full_bounded = false;
-    current_alignment += padding +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
+    size_t array_size = 1;
 
-    current_alignment += array_size * sizeof(uint32_t) +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
 
   return current_alignment - initial_alignment;

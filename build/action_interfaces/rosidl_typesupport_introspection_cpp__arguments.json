@@ -3,7 +3,8 @@
   "output_dir": "/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_typesupport_introspection_cpp/action_interfaces",
   "template_dir": "/opt/ros/foxy/share/rosidl_typesupport_introspection_cpp/resource",
   "idl_tuples": [
-    "/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_adapter/action_interfaces:action/Fibonacci.idl"
+    "/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_adapter/action_interfaces:action/Fibonacci.idl",
+    "/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_adapter/action_interfaces:action/MoveTcpAlongAxis.idl"
   ],
   "ros_interface_dependencies": [
     "action_msgs:/opt/ros/foxy/share/action_msgs/msg/GoalInfo.idl",
@@ -24,6 +25,7 @@
     "/opt/ros/foxy/share/rosidl_typesupport_introspection_cpp/resource/srv__rosidl_typesupport_introspection_cpp.hpp.em",
     "/opt/ros/foxy/share/rosidl_typesupport_introspection_cpp/resource/srv__type_support.cpp.em",
     "/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_adapter/action_interfaces/action/Fibonacci.idl",
+    "/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_adapter/action_interfaces/action/MoveTcpAlongAxis.idl",
     "/opt/ros/foxy/share/action_msgs/msg/GoalInfo.idl",
     "/opt/ros/foxy/share/action_msgs/msg/GoalStatus.idl",
     "/opt/ros/foxy/share/action_msgs/msg/GoalStatusArray.idl",

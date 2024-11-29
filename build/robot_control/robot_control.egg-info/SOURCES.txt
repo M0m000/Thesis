@@ -9,6 +9,7 @@ setup.py
 ../../build/robot_control/robot_control.egg-info/top_level.txt
 ../../build/robot_control/robot_control.egg-info/zip-safe
 resource/robot_control
+robot_control/MoveTcpAlongAxis_action_client.py
 robot_control/__init__.py
 robot_control/fibonacci_action_client.py
 robot_control/hello_node.py

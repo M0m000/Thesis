@@ -34,6 +34,8 @@ extern "C"
 {
 #endif
 
+#include "rosidl_runtime_c/string.h"  // movement_axis, movement_frame
+#include "rosidl_runtime_c/string_functions.h"  // movement_axis, movement_frame
 
 // forward declare type support functions
 
@@ -49,9 +51,37 @@ static bool _MoveTcpAlongAxis_Goal__cdr_serialize(
     return false;
   }
   const _MoveTcpAlongAxis_Goal__ros_msg_type * ros_message = static_cast<const _MoveTcpAlongAxis_Goal__ros_msg_type *>(untyped_ros_message);
-  // Field name: order
+  // Field name: baseline
   {
-    cdr << ros_message->order;
+    cdr << ros_message->baseline;
+  }
+
+  // Field name: movement_frame
+  {
+    const rosidl_runtime_c__String * str = &ros_message->movement_frame;
+    if (str->capacity == 0 || str->capacity <= str->size) {
+      fprintf(stderr, "string capacity not greater than size\n");
+      return false;
+    }
+    if (str->data[str->size] != '\0') {
+      fprintf(stderr, "string not null-terminated\n");
+      return false;
+    }
+    cdr << str->data;
+  }
+
+  // Field name: movement_axis
+  {
+    const rosidl_runtime_c__String * str = &ros_message->movement_axis;
+    if (str->capacity == 0 || str->capacity <= str->size) {
+      fprintf(stderr, "string capacity not greater than size\n");
+      return false;
+    }
+    if (str->data[str->size] != '\0') {
+      fprintf(stderr, "string not null-terminated\n");
+      return false;
+    }
+    cdr << str->data;
   }
 
   return true;
@@ -66,9 +96,41 @@ static bool _MoveTcpAlongAxis_Goal__cdr_deserialize(
     return false;
   }
   _MoveTcpAlongAxis_Goal__ros_msg_type * ros_message = static_cast<_MoveTcpAlongAxis_Goal__ros_msg_type *>(untyped_ros_message);
-  // Field name: order
+  // Field name: baseline
   {
-    cdr >> ros_message->order;
+    cdr >> ros_message->baseline;
+  }
+
+  // Field name: movement_frame
+  {
+    std::string tmp;
+    cdr >> tmp;
+    if (!ros_message->movement_frame.data) {
+      rosidl_runtime_c__String__init(&ros_message->movement_frame);
+    }
+    bool succeeded = rosidl_runtime_c__String__assign(
+      &ros_message->movement_frame,
+      tmp.c_str());
+    if (!succeeded) {
+      fprintf(stderr, "failed to assign string into field 'movement_frame'\n");
+      return false;
+    }
+  }
+
+  // Field name: movement_axis
+  {
+    std::string tmp;
+    cdr >> tmp;
+    if (!ros_message->movement_axis.data) {
+      rosidl_runtime_c__String__init(&ros_message->movement_axis);
+    }
+    bool succeeded = rosidl_runtime_c__String__assign(
+      &ros_message->movement_axis,
+      tmp.c_str());
+    if (!succeeded) {
+      fprintf(stderr, "failed to assign string into field 'movement_axis'\n");
+      return false;
+    }
   }
 
   return true;
@@ -88,12 +150,20 @@ size_t get_serialized_size_action_interfaces__action__MoveTcpAlongAxis_Goal(
   (void)padding;
   (void)wchar_size;
 
-  // field.name order
+  // field.name baseline
   {
-    size_t item_size = sizeof(ros_message->order);
+    size_t item_size = sizeof(ros_message->baseline);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+  // field.name movement_frame
+  current_alignment += padding +
+    eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
+    (ros_message->movement_frame.size + 1);
+  // field.name movement_axis
+  current_alignment += padding +
+    eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
+    (ros_message->movement_axis.size + 1);
 
   return current_alignment - initial_alignment;
 }
@@ -118,12 +188,34 @@ size_t max_serialized_size_action_interfaces__action__MoveTcpAlongAxis_Goal(
   (void)wchar_size;
   (void)full_bounded;
 
-  // member: order
+  // member: baseline
   {
     size_t array_size = 1;
 
-    current_alignment += array_size * sizeof(uint32_t) +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+  // member: movement_frame
+  {
+    size_t array_size = 1;
+
+    full_bounded = false;
+    for (size_t index = 0; index < array_size; ++index) {
+      current_alignment += padding +
+        eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
+        1;
+    }
+  }
+  // member: movement_axis
+  {
+    size_t array_size = 1;
+
+    full_bounded = false;
+    for (size_t index = 0; index < array_size; ++index) {
+      current_alignment += padding +
+        eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
+        1;
+    }
   }
 
   return current_alignment - initial_alignment;
@@ -200,8 +292,6 @@ extern "C"
 {
 #endif
 
-#include "rosidl_runtime_c/primitives_sequence.h"  // sequence
-#include "rosidl_runtime_c/primitives_sequence_functions.h"  // sequence
 
 // forward declare type support functions
 
@@ -217,12 +307,9 @@ static bool _MoveTcpAlongAxis_Result__cdr_serialize(
     return false;
   }
   const _MoveTcpAlongAxis_Result__ros_msg_type * ros_message = static_cast<const _MoveTcpAlongAxis_Result__ros_msg_type *>(untyped_ros_message);
-  // Field name: sequence
+  // Field name: success
   {
-    size_t size = ros_message->sequence.size;
-    auto array_ptr = ros_message->sequence.data;
-    cdr << static_cast<uint32_t>(size);
-    cdr.serializeArray(array_ptr, size);
+    cdr << (ros_message->success ? true : false);
   }
 
   return true;
@@ -237,19 +324,11 @@ static bool _MoveTcpAlongAxis_Result__cdr_deserialize(
     return false;
   }
   _MoveTcpAlongAxis_Result__ros_msg_type * ros_message = static_cast<_MoveTcpAlongAxis_Result__ros_msg_type *>(untyped_ros_message);
-  // Field name: sequence
+  // Field name: success
   {
-    uint32_t cdrSize;
-    cdr >> cdrSize;
-    size_t size = static_cast<size_t>(cdrSize);
-    if (ros_message->sequence.data) {
-      rosidl_runtime_c__int32__Sequence__fini(&ros_message->sequence);
-    }
-    if (!rosidl_runtime_c__int32__Sequence__init(&ros_message->sequence, size)) {
-      return "failed to create array for field 'sequence'";
-    }
-    auto array_ptr = ros_message->sequence.data;
-    cdr.deserializeArray(array_ptr, size);
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message->success = tmp ? true : false;
   }
 
   return true;
@@ -269,15 +348,10 @@ size_t get_serialized_size_action_interfaces__action__MoveTcpAlongAxis_Result(
   (void)padding;
   (void)wchar_size;
 
-  // field.name sequence
+  // field.name success
   {
-    size_t array_size = ros_message->sequence.size;
-    auto array_ptr = ros_message->sequence.data;
-    current_alignment += padding +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
-    (void)array_ptr;
-    size_t item_size = sizeof(array_ptr[0]);
-    current_alignment += array_size * item_size +
+    size_t item_size = sizeof(ros_message->success);
+    current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
 
@@ -304,15 +378,11 @@ size_t max_serialized_size_action_interfaces__action__MoveTcpAlongAxis_Result(
   (void)wchar_size;
   (void)full_bounded;
 
-  // member: sequence
+  // member: success
   {
-    size_t array_size = 0;
-    full_bounded = false;
-    current_alignment += padding +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
+    size_t array_size = 1;
 
-    current_alignment += array_size * sizeof(uint32_t) +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+    current_alignment += array_size * sizeof(uint8_t);
   }
 
   return current_alignment - initial_alignment;
@@ -389,10 +459,6 @@ extern "C"
 {
 #endif
 
-// already included above
-// #include "rosidl_runtime_c/primitives_sequence.h"  // partial_sequence
-// already included above
-// #include "rosidl_runtime_c/primitives_sequence_functions.h"  // partial_sequence
 
 // forward declare type support functions
 
@@ -408,12 +474,9 @@ static bool _MoveTcpAlongAxis_Feedback__cdr_serialize(
     return false;
   }
   const _MoveTcpAlongAxis_Feedback__ros_msg_type * ros_message = static_cast<const _MoveTcpAlongAxis_Feedback__ros_msg_type *>(untyped_ros_message);
-  // Field name: partial_sequence
+  // Field name: current_position
   {
-    size_t size = ros_message->partial_sequence.size;
-    auto array_ptr = ros_message->partial_sequence.data;
-    cdr << static_cast<uint32_t>(size);
-    cdr.serializeArray(array_ptr, size);
+    cdr << ros_message->current_position;
   }
 
   return true;
@@ -428,19 +491,9 @@ static bool _MoveTcpAlongAxis_Feedback__cdr_deserialize(
     return false;
   }
   _MoveTcpAlongAxis_Feedback__ros_msg_type * ros_message = static_cast<_MoveTcpAlongAxis_Feedback__ros_msg_type *>(untyped_ros_message);
-  // Field name: partial_sequence
+  // Field name: current_position
   {
-    uint32_t cdrSize;
-    cdr >> cdrSize;
-    size_t size = static_cast<size_t>(cdrSize);
-    if (ros_message->partial_sequence.data) {
-      rosidl_runtime_c__int32__Sequence__fini(&ros_message->partial_sequence);
-    }
-    if (!rosidl_runtime_c__int32__Sequence__init(&ros_message->partial_sequence, size)) {
-      return "failed to create array for field 'partial_sequence'";
-    }
-    auto array_ptr = ros_message->partial_sequence.data;
-    cdr.deserializeArray(array_ptr, size);
+    cdr >> ros_message->current_position;
   }
 
   return true;
@@ -460,15 +513,10 @@ size_t get_serialized_size_action_interfaces__action__MoveTcpAlongAxis_Feedback(
   (void)padding;
   (void)wchar_size;
 
-  // field.name partial_sequence
+  // field.name current_position
   {
-    size_t array_size = ros_message->partial_sequence.size;
-    auto array_ptr = ros_message->partial_sequence.data;
-    current_alignment += padding +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
-    (void)array_ptr;
-    size_t item_size = sizeof(array_ptr[0]);
-    current_alignment += array_size * item_size +
+    size_t item_size = sizeof(ros_message->current_position);
+    current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
 
@@ -495,15 +543,12 @@ size_t max_serialized_size_action_interfaces__action__MoveTcpAlongAxis_Feedback(
   (void)wchar_size;
   (void)full_bounded;
 
-  // member: partial_sequence
+  // member: current_position
   {
-    size_t array_size = 0;
-    full_bounded = false;
-    current_alignment += padding +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
+    size_t array_size = 1;
 
-    current_alignment += array_size * sizeof(uint32_t) +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
 
   return current_alignment - initial_alignment;

@@ -17,10 +17,17 @@ extern "C"
 
 // Constants defined in the message
 
+// Include directives for member types
+// Member 'movement_frame'
+// Member 'movement_axis'
+#include "rosidl_runtime_c/string.h"
+
 // Struct defined in action/MoveTcpAlongAxis in the package action_interfaces.
 typedef struct action_interfaces__action__MoveTcpAlongAxis_Goal
 {
-  int32_t order;
+  double baseline;
+  rosidl_runtime_c__String movement_frame;
+  rosidl_runtime_c__String movement_axis;
 } action_interfaces__action__MoveTcpAlongAxis_Goal;
 
 // Struct for a sequence of action_interfaces__action__MoveTcpAlongAxis_Goal.
@@ -36,14 +43,10 @@ typedef struct action_interfaces__action__MoveTcpAlongAxis_Goal__Sequence
 
 // Constants defined in the message
 
-// Include directives for member types
-// Member 'sequence'
-#include "rosidl_runtime_c/primitives_sequence.h"
-
 // Struct defined in action/MoveTcpAlongAxis in the package action_interfaces.
 typedef struct action_interfaces__action__MoveTcpAlongAxis_Result
 {
-  rosidl_runtime_c__int32__Sequence sequence;
+  bool success;
 } action_interfaces__action__MoveTcpAlongAxis_Result;
 
 // Struct for a sequence of action_interfaces__action__MoveTcpAlongAxis_Result.
@@ -59,15 +62,10 @@ typedef struct action_interfaces__action__MoveTcpAlongAxis_Result__Sequence
 
 // Constants defined in the message
 
-// Include directives for member types
-// Member 'partial_sequence'
-// already included above
-// #include "rosidl_runtime_c/primitives_sequence.h"
-
 // Struct defined in action/MoveTcpAlongAxis in the package action_interfaces.
 typedef struct action_interfaces__action__MoveTcpAlongAxis_Feedback
 {
-  rosidl_runtime_c__int32__Sequence partial_sequence;
+  double current_position;
 } action_interfaces__action__MoveTcpAlongAxis_Feedback;
 
 // Struct for a sequence of action_interfaces__action__MoveTcpAlongAxis_Feedback.

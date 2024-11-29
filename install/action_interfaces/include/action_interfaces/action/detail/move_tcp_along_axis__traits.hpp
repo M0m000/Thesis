@@ -27,11 +27,11 @@ inline const char * name<action_interfaces::action::MoveTcpAlongAxis_Goal>()
 
 template<>
 struct has_fixed_size<action_interfaces::action::MoveTcpAlongAxis_Goal>
-  : std::integral_constant<bool, true> {};
+  : std::integral_constant<bool, false> {};
 
 template<>
 struct has_bounded_size<action_interfaces::action::MoveTcpAlongAxis_Goal>
-  : std::integral_constant<bool, true> {};
+  : std::integral_constant<bool, false> {};
 
 template<>
 struct is_message<action_interfaces::action::MoveTcpAlongAxis_Goal>
@@ -56,11 +56,11 @@ inline const char * name<action_interfaces::action::MoveTcpAlongAxis_Result>()
 
 template<>
 struct has_fixed_size<action_interfaces::action::MoveTcpAlongAxis_Result>
-  : std::integral_constant<bool, false> {};
+  : std::integral_constant<bool, true> {};
 
 template<>
 struct has_bounded_size<action_interfaces::action::MoveTcpAlongAxis_Result>
-  : std::integral_constant<bool, false> {};
+  : std::integral_constant<bool, true> {};
 
 template<>
 struct is_message<action_interfaces::action::MoveTcpAlongAxis_Result>
@@ -85,11 +85,11 @@ inline const char * name<action_interfaces::action::MoveTcpAlongAxis_Feedback>()
 
 template<>
 struct has_fixed_size<action_interfaces::action::MoveTcpAlongAxis_Feedback>
-  : std::integral_constant<bool, false> {};
+  : std::integral_constant<bool, true> {};
 
 template<>
 struct has_bounded_size<action_interfaces::action::MoveTcpAlongAxis_Feedback>
-  : std::integral_constant<bool, false> {};
+  : std::integral_constant<bool, true> {};
 
 template<>
 struct is_message<action_interfaces::action::MoveTcpAlongAxis_Feedback>

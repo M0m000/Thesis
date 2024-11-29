@@ -20,16 +20,48 @@ namespace action
 namespace builder
 {
 
-class Init_MoveTcpAlongAxis_Goal_order
+class Init_MoveTcpAlongAxis_Goal_movement_axis
 {
 public:
-  Init_MoveTcpAlongAxis_Goal_order()
+  explicit Init_MoveTcpAlongAxis_Goal_movement_axis(::action_interfaces::action::MoveTcpAlongAxis_Goal & msg)
+  : msg_(msg)
+  {}
+  ::action_interfaces::action::MoveTcpAlongAxis_Goal movement_axis(::action_interfaces::action::MoveTcpAlongAxis_Goal::_movement_axis_type arg)
+  {
+    msg_.movement_axis = std::move(arg);
+    return std::move(msg_);
+  }
+
+private:
+  ::action_interfaces::action::MoveTcpAlongAxis_Goal msg_;
+};
+
+class Init_MoveTcpAlongAxis_Goal_movement_frame
+{
+public:
+  explicit Init_MoveTcpAlongAxis_Goal_movement_frame(::action_interfaces::action::MoveTcpAlongAxis_Goal & msg)
+  : msg_(msg)
+  {}
+  Init_MoveTcpAlongAxis_Goal_movement_axis movement_frame(::action_interfaces::action::MoveTcpAlongAxis_Goal::_movement_frame_type arg)
+  {
+    msg_.movement_frame = std::move(arg);
+    return Init_MoveTcpAlongAxis_Goal_movement_axis(msg_);
+  }
+
+private:
+  ::action_interfaces::action::MoveTcpAlongAxis_Goal msg_;
+};
+
+class Init_MoveTcpAlongAxis_Goal_baseline
+{
+public:
+  Init_MoveTcpAlongAxis_Goal_baseline()
   : msg_(::rosidl_runtime_cpp::MessageInitialization::SKIP)
   {}
-  ::action_interfaces::action::MoveTcpAlongAxis_Goal order(::action_interfaces::action::MoveTcpAlongAxis_Goal::_order_type arg)
+  Init_MoveTcpAlongAxis_Goal_movement_frame baseline(::action_interfaces::action::MoveTcpAlongAxis_Goal::_baseline_type arg)
   {
-    msg_.order = std::move(arg);
-    return std::move(msg_);
+    msg_.baseline = std::move(arg);
+    return Init_MoveTcpAlongAxis_Goal_movement_frame(msg_);
   }
 
 private:
@@ -47,7 +79,7 @@ template<>
 inline
 auto build<::action_interfaces::action::MoveTcpAlongAxis_Goal>()
 {
-  return action_interfaces::action::builder::Init_MoveTcpAlongAxis_Goal_order();
+  return action_interfaces::action::builder::Init_MoveTcpAlongAxis_Goal_baseline();
 }
 
 }  // namespace action_interfaces
@@ -62,15 +94,15 @@ namespace action
 namespace builder
 {
 
-class Init_MoveTcpAlongAxis_Result_sequence
+class Init_MoveTcpAlongAxis_Result_success
 {
 public:
-  Init_MoveTcpAlongAxis_Result_sequence()
+  Init_MoveTcpAlongAxis_Result_success()
   : msg_(::rosidl_runtime_cpp::MessageInitialization::SKIP)
   {}
-  ::action_interfaces::action::MoveTcpAlongAxis_Result sequence(::action_interfaces::action::MoveTcpAlongAxis_Result::_sequence_type arg)
+  ::action_interfaces::action::MoveTcpAlongAxis_Result success(::action_interfaces::action::MoveTcpAlongAxis_Result::_success_type arg)
   {
-    msg_.sequence = std::move(arg);
+    msg_.success = std::move(arg);
     return std::move(msg_);
   }
 
@@ -89,7 +121,7 @@ template<>
 inline
 auto build<::action_interfaces::action::MoveTcpAlongAxis_Result>()
 {
-  return action_interfaces::action::builder::Init_MoveTcpAlongAxis_Result_sequence();
+  return action_interfaces::action::builder::Init_MoveTcpAlongAxis_Result_success();
 }
 
 }  // namespace action_interfaces
@@ -104,15 +136,15 @@ namespace action
 namespace builder
 {
 
-class Init_MoveTcpAlongAxis_Feedback_partial_sequence
+class Init_MoveTcpAlongAxis_Feedback_current_position
 {
 public:
-  Init_MoveTcpAlongAxis_Feedback_partial_sequence()
+  Init_MoveTcpAlongAxis_Feedback_current_position()
   : msg_(::rosidl_runtime_cpp::MessageInitialization::SKIP)
   {}
-  ::action_interfaces::action::MoveTcpAlongAxis_Feedback partial_sequence(::action_interfaces::action::MoveTcpAlongAxis_Feedback::_partial_sequence_type arg)
+  ::action_interfaces::action::MoveTcpAlongAxis_Feedback current_position(::action_interfaces::action::MoveTcpAlongAxis_Feedback::_current_position_type arg)
   {
-    msg_.partial_sequence = std::move(arg);
+    msg_.current_position = std::move(arg);
     return std::move(msg_);
   }
 
@@ -131,7 +163,7 @@ template<>
 inline
 auto build<::action_interfaces::action::MoveTcpAlongAxis_Feedback>()
 {
-  return action_interfaces::action::builder::Init_MoveTcpAlongAxis_Feedback_partial_sequence();
+  return action_interfaces::action::builder::Init_MoveTcpAlongAxis_Feedback_current_position();
 }
 
 }  // namespace action_interfaces

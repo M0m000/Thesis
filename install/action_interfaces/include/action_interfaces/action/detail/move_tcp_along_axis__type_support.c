@@ -12,6 +12,11 @@
 #include "action_interfaces/action/detail/move_tcp_along_axis__struct.h"
 
 
+// Include directives for member types
+// Member `movement_frame`
+// Member `movement_axis`
+#include "rosidl_runtime_c/string_functions.h"
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -31,16 +36,46 @@ void MoveTcpAlongAxis_Goal__rosidl_typesupport_introspection_c__MoveTcpAlongAxis
   action_interfaces__action__MoveTcpAlongAxis_Goal__fini(message_memory);
 }
 
-static rosidl_typesupport_introspection_c__MessageMember MoveTcpAlongAxis_Goal__rosidl_typesupport_introspection_c__MoveTcpAlongAxis_Goal_message_member_array[1] = {
+static rosidl_typesupport_introspection_c__MessageMember MoveTcpAlongAxis_Goal__rosidl_typesupport_introspection_c__MoveTcpAlongAxis_Goal_message_member_array[3] = {
   {
-    "order",  // name
-    rosidl_typesupport_introspection_c__ROS_TYPE_INT32,  // type
+    "baseline",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_DOUBLE,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
     false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(action_interfaces__action__MoveTcpAlongAxis_Goal, order),  // bytes offset in struct
+    offsetof(action_interfaces__action__MoveTcpAlongAxis_Goal, baseline),  // bytes offset in struct
+    NULL,  // default value
+    NULL,  // size() function pointer
+    NULL,  // get_const(index) function pointer
+    NULL,  // get(index) function pointer
+    NULL  // resize(index) function pointer
+  },
+  {
+    "movement_frame",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_STRING,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(action_interfaces__action__MoveTcpAlongAxis_Goal, movement_frame),  // bytes offset in struct
+    NULL,  // default value
+    NULL,  // size() function pointer
+    NULL,  // get_const(index) function pointer
+    NULL,  // get(index) function pointer
+    NULL  // resize(index) function pointer
+  },
+  {
+    "movement_axis",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_STRING,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(action_interfaces__action__MoveTcpAlongAxis_Goal, movement_axis),  // bytes offset in struct
     NULL,  // default value
     NULL,  // size() function pointer
     NULL,  // get_const(index) function pointer
@@ -52,7 +87,7 @@ static rosidl_typesupport_introspection_c__MessageMember MoveTcpAlongAxis_Goal__
 static const rosidl_typesupport_introspection_c__MessageMembers MoveTcpAlongAxis_Goal__rosidl_typesupport_introspection_c__MoveTcpAlongAxis_Goal_message_members = {
   "action_interfaces__action",  // message namespace
   "MoveTcpAlongAxis_Goal",  // message name
-  1,  // number of fields
+  3,  // number of fields
   sizeof(action_interfaces__action__MoveTcpAlongAxis_Goal),
   MoveTcpAlongAxis_Goal__rosidl_typesupport_introspection_c__MoveTcpAlongAxis_Goal_message_member_array,  // message members
   MoveTcpAlongAxis_Goal__rosidl_typesupport_introspection_c__MoveTcpAlongAxis_Goal_init_function,  // function to initialize message memory (memory has to be allocated)
@@ -98,10 +133,6 @@ ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspecti
 // #include "action_interfaces/action/detail/move_tcp_along_axis__struct.h"
 
 
-// Include directives for member types
-// Member `sequence`
-#include "rosidl_runtime_c/primitives_sequence_functions.h"
-
 #ifdef __cplusplus
 extern "C"
 {
@@ -123,14 +154,14 @@ void MoveTcpAlongAxis_Result__rosidl_typesupport_introspection_c__MoveTcpAlongAx
 
 static rosidl_typesupport_introspection_c__MessageMember MoveTcpAlongAxis_Result__rosidl_typesupport_introspection_c__MoveTcpAlongAxis_Result_message_member_array[1] = {
   {
-    "sequence",  // name
-    rosidl_typesupport_introspection_c__ROS_TYPE_INT32,  // type
+    "success",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
-    true,  // is array
+    false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(action_interfaces__action__MoveTcpAlongAxis_Result, sequence),  // bytes offset in struct
+    offsetof(action_interfaces__action__MoveTcpAlongAxis_Result, success),  // bytes offset in struct
     NULL,  // default value
     NULL,  // size() function pointer
     NULL,  // get_const(index) function pointer
@@ -188,11 +219,6 @@ ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspecti
 // #include "action_interfaces/action/detail/move_tcp_along_axis__struct.h"
 
 
-// Include directives for member types
-// Member `partial_sequence`
-// already included above
-// #include "rosidl_runtime_c/primitives_sequence_functions.h"
-
 #ifdef __cplusplus
 extern "C"
 {
@@ -214,14 +240,14 @@ void MoveTcpAlongAxis_Feedback__rosidl_typesupport_introspection_c__MoveTcpAlong
 
 static rosidl_typesupport_introspection_c__MessageMember MoveTcpAlongAxis_Feedback__rosidl_typesupport_introspection_c__MoveTcpAlongAxis_Feedback_message_member_array[1] = {
   {
-    "partial_sequence",  // name
-    rosidl_typesupport_introspection_c__ROS_TYPE_INT32,  // type
+    "current_position",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_DOUBLE,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
-    true,  // is array
+    false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(action_interfaces__action__MoveTcpAlongAxis_Feedback, partial_sequence),  // bytes offset in struct
+    offsetof(action_interfaces__action__MoveTcpAlongAxis_Feedback, current_position),  // bytes offset in struct
     NULL,  // default value
     NULL,  // size() function pointer
     NULL,  // get_const(index) function pointer

@@ -1,0 +1,16 @@
+[0.350s] Invoking command in '/home/vboxuser/ros2_ws/build/groot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_servers:/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/groot -- -j8 -l8
+[0.434s] [  1%] [34m[1mAutomatic MOC and UIC for target QtNodeEditor[0m
+[0.462s] [  1%] Built target QtNodeEditor_autogen
+[0.526s] [ 57%] Built target QtNodeEditor
+[0.555s] [ 58%] [34m[1mAutomatic MOC and UIC for target behavior_tree_editor[0m
+[0.582s] [ 58%] Built target behavior_tree_editor_autogen
+[0.643s] [ 74%] Built target behavior_tree_editor
+[0.674s] [ 74%] [34m[1mAutomatic MOC and UIC for target editor_test[0m
+[0.674s] [ 75%] [34m[1mAutomatic MOC and UIC for target replay_test[0m
+[0.676s] [ 76%] [34m[1mAutomatic MOC and UIC for target Groot[0m
+[0.711s] [ 76%] Built target editor_test_autogen
+[0.712s] [ 76%] Built target replay_test_autogen
+[0.728s] [ 76%] Built target Groot_autogen
+[0.762s] [ 85%] Built target editor_test
+[0.769s] [ 94%] Built target replay_test
+[0.776s] [100%] Built target Groot
