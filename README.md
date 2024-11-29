@@ -70,6 +70,21 @@ Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers K
 ***
 # ROS2-Befehle
 
+## **Action Interface Package**
+Enthält alle Interfaces (Action-Types) für selbst geschriebene Actions - keine weiteren Aufrufe notwendig! <br>
+<br>
+
+## **Action Server Package**
+Enthält alle Server für selbst geschriebene Actions - müssen gestartet werden, damit Action an deren Stellen für Clients verfügbar. <br>
+<br>
+
+### **Fibonacci Action Server** Node <br>
+```bash
+ros2 run action_servers fibonacci_action_server
+```
+>Dieser Knoten öffnet den Server für eine Test Action - hier wird beispielhaft eine Fibonacci-Folge berechnet. <br>
+<br>
+
 ## **Behavior Tree Package**
 Enthält alle Behavior Trees (Ablaufsteuerungen) als Nodes geschrieben - Kommunikation mit allen anderen Topics/Nodes/etc. möglich. <br>
 <br>
@@ -153,6 +168,13 @@ ros2 run robot_control transformation_delta --ros-args -p desired_frame:='tcp' -
 ros2 run robot_control read_transformation_delta
 ```
 >vgl. Red Transformation Snapshot - für Testzwecke.<br>
+<br>
+
+### **Fibonacci Action Client** Node <br>
+```bash
+ros2 run action_servers fibonacci_action_server
+```
+>Dieser Knoten öffnet einen Client auf die Fibonacci-Action (Beispielprogramm) - ACHTUNG: Server unter Package action_servers (siehe oben) muss aktiviert sein! <br>
 <br>
 
 
