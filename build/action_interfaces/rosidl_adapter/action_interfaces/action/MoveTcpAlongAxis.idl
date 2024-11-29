@@ -1,0 +1,18 @@
+// generated from rosidl_adapter/resource/action.idl.em
+// with input from action_interfaces/action/MoveTcpAlongAxis.action
+// generated code does not contain a copyright notice
+
+
+module action_interfaces {
+  module action {
+    struct MoveTcpAlongAxis_Goal {
+      int32 order;
+    };
+    struct MoveTcpAlongAxis_Result {
+      sequence<int32> sequence;
+    };
+    struct MoveTcpAlongAxis_Feedback {
+      sequence<int32> partial_sequence;
+    };
+  };
+};

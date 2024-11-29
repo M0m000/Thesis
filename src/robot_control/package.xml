@@ -7,16 +7,9 @@
   <maintainer email="vboxuser@todo.todo">vboxuser</maintainer>
   <license>TODO: License declaration</license>
 
-  <buildtool_depend>ament_cmake</buildtool_depend>
-
   <depend>rclpy</depend>
-  <depend>action_msgs</depend>
-  <depend>std_msgs</depend>
-
-  <member_of_group>rosidl_interface_packages</member_of_group>
+  <depend>action_interfaces</depend>
   
-  <test_depend>ament_lint_auto</test_depend>
-  <test_depend>ament_lint_common</test_depend>
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
   <test_depend>ament_pep257</test_depend>

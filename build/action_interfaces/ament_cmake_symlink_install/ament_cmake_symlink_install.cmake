@@ -367,11 +367,11 @@ include("/home/vboxuser/ros2_ws/build/action_interfaces/ament_cmake_symlink_inst
 # install("TARGETS" "action_interfaces__python" "ARCHIVE_DESTINATION" "lib" "LIBRARY_DESTINATION" "lib" "RUNTIME_DESTINATION" "bin")
 include("/home/vboxuser/ros2_ws/build/action_interfaces/ament_cmake_symlink_install_targets_5_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
 
-# install(FILES "/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_adapter/action_interfaces/action/Fibonacci.idl" "DESTINATION" "share/action_interfaces/action")
-ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/action_interfaces" FILES "/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_adapter/action_interfaces/action/Fibonacci.idl" "DESTINATION" "share/action_interfaces/action")
+# install(FILES "/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_adapter/action_interfaces/action/MoveTcpAlongAxis.idl" "DESTINATION" "share/action_interfaces/action")
+ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/action_interfaces" FILES "/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_adapter/action_interfaces/action/MoveTcpAlongAxis.idl" "DESTINATION" "share/action_interfaces/action")
 
-# install(FILES "/home/vboxuser/ros2_ws/src/action_interfaces/action/Fibonacci.action" "DESTINATION" "share/action_interfaces/action")
-ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/action_interfaces" FILES "/home/vboxuser/ros2_ws/src/action_interfaces/action/Fibonacci.action" "DESTINATION" "share/action_interfaces/action")
+# install(FILES "/home/vboxuser/ros2_ws/src/action_interfaces/action/MoveTcpAlongAxis.action" "DESTINATION" "share/action_interfaces/action")
+ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/action_interfaces" FILES "/home/vboxuser/ros2_ws/src/action_interfaces/action/MoveTcpAlongAxis.action" "DESTINATION" "share/action_interfaces/action")
 
 # install(FILES "/home/vboxuser/ros2_ws/build/action_interfaces/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/action_interfaces" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
 ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/action_interfaces" FILES "/home/vboxuser/ros2_ws/build/action_interfaces/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/action_interfaces" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")

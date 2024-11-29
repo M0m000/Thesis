@@ -1,0 +1,21 @@
+[0.081s] Invoking command in '/home/vboxuser/ros2_ws/build/action_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_tutorials_py:/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/action_interfaces -- -j8 -l8
+[0.684s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.689s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.692s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.693s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.696s] -- Found rosidl_default_generators: 1.0.1 (/opt/ros/foxy/share/rosidl_default_generators/cmake)
+[0.696s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.696s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.697s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.697s] -- Configuring incomplete, errors occurred!
+[0.697s] See also "/home/vboxuser/ros2_ws/build/action_interfaces/CMakeFiles/CMakeOutput.log".
+[0.697s] CMake Error at /opt/ros/foxy/share/rosidl_cmake/cmake/rosidl_generate_interfaces.cmake:93 (message):
+[0.697s]   rosidl_generate_interfaces() the passed file 'action/Fibonacci.action'
+[0.697s]   doesn't exist relative to the CMAKE_CURRENT_SOURCE_DIR
+[0.697s]   '/home/vboxuser/ros2_ws/src/action_interfaces'
+[0.697s] Call Stack (most recent call first):
+[0.697s]   CMakeLists.txt:25 (rosidl_generate_interfaces)
+[0.697s] 
+[0.697s] 
+[0.697s] make: *** [Makefile:748: cmake_check_build_system] Fehler 1
+[0.960s] Invoked command in '/home/vboxuser/ros2_ws/build/action_interfaces' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_tutorials_py:/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/action_interfaces -- -j8 -l8

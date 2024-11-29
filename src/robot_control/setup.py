@@ -35,7 +35,8 @@ setup(
             'transformation_snapshot = robot_control.transformation_snapshot:main',
             'read_transformation_snapshot = robot_control.read_transformation_snapshot:main',
             'transformation_delta = robot_control.transformation_delta:main',
-            'read_transformation_delta = robot_control.read_transformation_delta:main'
+            'read_transformation_delta = robot_control.read_transformation_delta:main',
+            'fibonacci_action_client = action_servers.fibonacci_action_client:main'
         ],
     },
 )

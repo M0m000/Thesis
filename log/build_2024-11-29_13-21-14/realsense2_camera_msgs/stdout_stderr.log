@@ -1,0 +1,14 @@
+[  1%] Built target realsense2_camera_msgs__cpp
+[ 12%] Built target realsense2_camera_msgs__rosidl_generator_c
+[ 23%] Built target realsense2_camera_msgs__rosidl_typesupport_fastrtps_cpp
+[ 36%] Built target realsense2_camera_msgs__rosidl_typesupport_cpp
+[ 46%] Built target realsense2_camera_msgs__rosidl_typesupport_introspection_cpp
+[ 57%] Built target realsense2_camera_msgs__rosidl_typesupport_introspection_c
+[ 68%] Built target realsense2_camera_msgs__rosidl_typesupport_c
+[ 79%] Built target realsense2_camera_msgs__rosidl_typesupport_fastrtps_c
+[ 79%] Built target realsense2_camera_msgs
+[ 80%] Built target realsense2_camera_msgs__py
+[ 90%] Built target realsense2_camera_msgs__python
+[ 93%] Built target realsense2_camera_msgs__rosidl_typesupport_c__pyext
+[ 96%] Built target realsense2_camera_msgs__rosidl_typesupport_introspection_c__pyext
+[100%] Built target realsense2_camera_msgs__rosidl_typesupport_fastrtps_c__pyext

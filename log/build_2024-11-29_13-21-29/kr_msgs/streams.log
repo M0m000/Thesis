@@ -1,0 +1,16 @@
+[0.084s] Invoking command in '/home/vboxuser/ros2_ws/build/kr_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_tutorials_py:/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/kr_msgs -- -j8 -l8
+[0.656s] [  0%] Built target kr_msgs__cpp
+[0.672s] [ 12%] Built target kr_msgs__rosidl_generator_c
+[0.673s] [ 24%] Built target kr_msgs__rosidl_typesupport_cpp
+[0.673s] [ 37%] Built target kr_msgs__rosidl_typesupport_introspection_cpp
+[0.674s] [ 50%] Built target kr_msgs__rosidl_typesupport_c
+[0.674s] [ 63%] Built target kr_msgs__rosidl_typesupport_introspection_c
+[0.674s] [ 75%] Built target kr_msgs__rosidl_typesupport_fastrtps_cpp
+[0.678s] [ 88%] Built target kr_msgs__rosidl_typesupport_fastrtps_c
+[0.679s] [ 88%] Built target kr_msgs
+[0.679s] [ 88%] Built target kr_msgs__py
+[0.679s] [100%] Built target kr_msgs__python
+[0.679s] [100%] Built target kr_msgs__rosidl_typesupport_c__pyext
+[0.679s] [100%] Built target kr_msgs__rosidl_typesupport_introspection_c__pyext
+[0.679s] [100%] Built target kr_msgs__rosidl_typesupport_fastrtps_c__pyext
+[0.932s] Invoked command in '/home/vboxuser/ros2_ws/build/kr_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_tutorials_py:/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/kr_msgs -- -j8 -l8

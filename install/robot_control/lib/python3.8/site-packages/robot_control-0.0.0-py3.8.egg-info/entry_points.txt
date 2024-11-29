@@ -1,4 +1,5 @@
 [console_scripts]
+fibonacci_action_client = action_servers.fibonacci_action_client:main
 hello_node = robot_control.hello_node:main
 move_lin_by_key = robot_control.move_lin_by_key:main
 print_frames = robot_control.print_frames:main

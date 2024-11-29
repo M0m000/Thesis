@@ -1,0 +1,3 @@
+[console_scripts]
+fibonacci_action_server = action_servers.fibonacci_action_server:main
+
