@@ -179,14 +179,14 @@ ros2 run robot_control read_transformation_delta
 
 ### **Fibonacci Action Client** Node <br>
 ```bash
-ros2 run action_servers fibonacci_action_server
+ros2 run robot_control fibonacci_action_client
 ```
 >Dieser Knoten öffnet einen Client auf die Fibonacci-Action (Beispielprogramm) - ACHTUNG: Server unter Package action_servers (siehe oben) muss aktiviert sein! <br>
 <br>
 
 ### **MoveTcpAlongAxis Action Client** Node <br>
 ```bash
-ros2 run action_servers MoveTcpAlongAxis_action_server
+ros2 run robot_control MoveTcpAlongAxis_action_client
 ```
 >Client für die Action MoveTcpAlongAxis (siehe oben bei Package action_servers). <br>
 <br>
