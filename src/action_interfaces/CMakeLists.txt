@@ -23,7 +23,7 @@ find_package(rosidl_default_generators REQUIRED)
 # find_package(<dependency> REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
-  "action/MoveTcpAlongAxis.action"
+  "action/Fibonacci.action"
 )
 
 if(BUILD_TESTING)

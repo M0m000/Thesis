@@ -2,7 +2,7 @@ import time
 import rclpy
 from rclpy.action import ActionServer
 from rclpy.node import Node
-from action_interfaces.action import MoveTcpAlongAxis
+from action_interfaces.action import Fibonacci
 
 
 class FibonacciActionServer(Node):
@@ -11,14 +11,14 @@ class FibonacciActionServer(Node):
         super().__init__('fibonacci_action_server')
         self._action_server = ActionServer(
             self,
-            MoveTcpAlongAxis,
+            Fibonacci,
             'fibonacci',
             self.execute_callback)
 
     def execute_callback(self, goal_handle):
         self.get_logger().info('Executing goal...')
 
-        feedback_msg = MoveTcpAlongAxis.Feedback()
+        feedback_msg = Fibonacci.Feedback()
         feedback_msg.partial_sequence = [0, 1]
 
         for i in range(1, goal_handle.request.order):
@@ -30,7 +30,7 @@ class FibonacciActionServer(Node):
 
         goal_handle.succeed()
 
-        result = MoveTcpAlongAxis.Result()
+        result = Fibonacci.Result()
         result.sequence = feedback_msg.partial_sequence
         return result
 
