@@ -7,4 +7,9 @@ Maintainer: vboxuser
 Maintainer-email: vboxuser@todo.todo
 License: TODO: License declaration
 Description: UNKNOWN
+Keywords: ROS
 Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development

@@ -1,1 +1,0 @@
-/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_generator_cpp/kr_msgs/action/detail/move_tcp_along_axis__traits.hpp

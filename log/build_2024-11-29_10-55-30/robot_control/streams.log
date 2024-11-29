@@ -1,0 +1,29 @@
+[1.487s] Invoking command in '/home/vboxuser/ros2_ws/src/robot_control': PYTHONPATH=/home/vboxuser/ros2_ws/build/robot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/robot_control build --build-base /home/vboxuser/ros2_ws/build/robot_control/build install --record /home/vboxuser/ros2_ws/build/robot_control/install.log --install-scripts $base/lib/robot_control --single-version-externally-managed install_data
+[1.709s] running egg_info
+[1.709s] writing ../../build/robot_control/robot_control.egg-info/PKG-INFO
+[1.710s] writing dependency_links to ../../build/robot_control/robot_control.egg-info/dependency_links.txt
+[1.711s] writing entry points to ../../build/robot_control/robot_control.egg-info/entry_points.txt
+[1.712s] writing requirements to ../../build/robot_control/robot_control.egg-info/requires.txt
+[1.712s] writing top-level names to ../../build/robot_control/robot_control.egg-info/top_level.txt
+[1.745s] reading manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'
+[1.746s] writing manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'
+[1.747s] running build
+[1.747s] running build_py
+[1.748s] running install
+[1.755s] running install_lib
+[1.755s] running install_data
+[1.755s] running install_egg_info
+[1.755s] removing '/home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info' (and everything under it)
+[1.755s] Copying ../../build/robot_control/robot_control.egg-info to /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info
+[1.756s] running install_scripts
+[1.778s] Installing hello_node script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+[1.778s] Installing move_lin_by_key script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+[1.781s] Installing print_frames script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+[1.782s] Installing print_tcp_pose script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+[1.783s] Installing read_transformation_delta = robot_control.read_transformation_delta:mainfibonacci_action_server script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+[1.785s] Installing read_transformation_snapshot script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+[1.789s] Installing set_frame_client script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+[1.789s] Installing transformation_delta script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+[1.790s] Installing transformation_snapshot script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+[1.790s] writing list of installed files to '/home/vboxuser/ros2_ws/build/robot_control/install.log'
+[1.841s] Invoked command in '/home/vboxuser/ros2_ws/src/robot_control' returned '0': PYTHONPATH=/home/vboxuser/ros2_ws/build/robot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/robot_control build --build-base /home/vboxuser/ros2_ws/build/robot_control/build install --record /home/vboxuser/ros2_ws/build/robot_control/install.log --install-scripts $base/lib/robot_control --single-version-externally-managed install_data

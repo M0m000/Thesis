@@ -1,0 +1,22 @@
+[1.585s] Invoking command in '/home/vboxuser/ros2_ws/src/action_pkg': PYTHONPATH=/home/vboxuser/ros2_ws/build/action_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/action_pkg/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/action_pkg build --build-base /home/vboxuser/ros2_ws/build/action_pkg/build install --record /home/vboxuser/ros2_ws/build/action_pkg/install.log --single-version-externally-managed install_data
+[1.847s] running egg_info
+[1.847s] writing ../../build/action_pkg/action_pkg.egg-info/PKG-INFO
+[1.848s] writing dependency_links to ../../build/action_pkg/action_pkg.egg-info/dependency_links.txt
+[1.848s] writing entry points to ../../build/action_pkg/action_pkg.egg-info/entry_points.txt
+[1.849s] writing requirements to ../../build/action_pkg/action_pkg.egg-info/requires.txt
+[1.849s] writing top-level names to ../../build/action_pkg/action_pkg.egg-info/top_level.txt
+[1.881s] reading manifest file '../../build/action_pkg/action_pkg.egg-info/SOURCES.txt'
+[1.882s] writing manifest file '../../build/action_pkg/action_pkg.egg-info/SOURCES.txt'
+[1.882s] running build
+[1.883s] running build_py
+[1.884s] running install
+[1.885s] running install_lib
+[1.885s] running install_data
+[1.886s] running install_egg_info
+[1.892s] removing '/home/vboxuser/ros2_ws/install/action_pkg/lib/python3.8/site-packages/action_pkg-0.1.0-py3.8.egg-info' (and everything under it)
+[1.892s] Copying ../../build/action_pkg/action_pkg.egg-info to /home/vboxuser/ros2_ws/install/action_pkg/lib/python3.8/site-packages/action_pkg-0.1.0-py3.8.egg-info
+[1.892s] running install_scripts
+[1.907s] Installing action_client script to /home/vboxuser/ros2_ws/install/action_pkg/bin
+[1.911s] Installing action_server script to /home/vboxuser/ros2_ws/install/action_pkg/bin
+[1.911s] writing list of installed files to '/home/vboxuser/ros2_ws/build/action_pkg/install.log'
+[1.946s] Invoked command in '/home/vboxuser/ros2_ws/src/action_pkg' returned '0': PYTHONPATH=/home/vboxuser/ros2_ws/build/action_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/action_pkg/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/action_pkg build --build-base /home/vboxuser/ros2_ws/build/action_pkg/build install --record /home/vboxuser/ros2_ws/build/action_pkg/install.log --single-version-externally-managed install_data

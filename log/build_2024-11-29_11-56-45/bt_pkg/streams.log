@@ -1,0 +1,37 @@
+[1.408s] Invoking command in '/home/vboxuser/ros2_ws/build/bt_pkg': PYTHONPATH=/home/vboxuser/ros2_ws/build/bt_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/bt_pkg/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --uninstall --editable --build-directory /home/vboxuser/ros2_ws/build/bt_pkg/build
+[1.732s] running develop
+[2.187s] Removing /home/vboxuser/ros2_ws/install/bt_pkg/lib/python3.8/site-packages/bt-pkg.egg-link (link to .)
+[2.218s] Invoked command in '/home/vboxuser/ros2_ws/build/bt_pkg' returned '0': PYTHONPATH=/home/vboxuser/ros2_ws/build/bt_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/bt_pkg/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --uninstall --editable --build-directory /home/vboxuser/ros2_ws/build/bt_pkg/build
+[2.219s] Invoking command in '/home/vboxuser/ros2_ws/src/bt_pkg': PYTHONPATH=/home/vboxuser/ros2_ws/build/bt_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/bt_pkg/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/bt_pkg build --build-base /home/vboxuser/ros2_ws/build/bt_pkg/build install --record /home/vboxuser/ros2_ws/build/bt_pkg/install.log --install-scripts $base/lib/bt_pkg --single-version-externally-managed install_data --force
+[3.018s] running egg_info
+[3.021s] writing ../../build/bt_pkg/bt_pkg.egg-info/PKG-INFO
+[3.022s] writing dependency_links to ../../build/bt_pkg/bt_pkg.egg-info/dependency_links.txt
+[3.023s] writing entry points to ../../build/bt_pkg/bt_pkg.egg-info/entry_points.txt
+[3.023s] writing requirements to ../../build/bt_pkg/bt_pkg.egg-info/requires.txt
+[3.024s] writing top-level names to ../../build/bt_pkg/bt_pkg.egg-info/top_level.txt
+[3.128s] reading manifest file '../../build/bt_pkg/bt_pkg.egg-info/SOURCES.txt'
+[3.132s] writing manifest file '../../build/bt_pkg/bt_pkg.egg-info/SOURCES.txt'
+[3.137s] running build
+[3.138s] running build_py
+[3.139s] creating /home/vboxuser/ros2_ws/build/bt_pkg/build
+[3.139s] creating /home/vboxuser/ros2_ws/build/bt_pkg/build/lib
+[3.140s] creating /home/vboxuser/ros2_ws/build/bt_pkg/build/lib/bt_pkg
+[3.140s] copying bt_pkg/bt_example_tree.py -> /home/vboxuser/ros2_ws/build/bt_pkg/build/lib/bt_pkg
+[3.141s] copying bt_pkg/__init__.py -> /home/vboxuser/ros2_ws/build/bt_pkg/build/lib/bt_pkg
+[3.143s] running install
+[3.150s] running install_lib
+[3.152s] creating /home/vboxuser/ros2_ws/install/bt_pkg/lib/python3.8/site-packages/bt_pkg
+[3.153s] copying /home/vboxuser/ros2_ws/build/bt_pkg/build/lib/bt_pkg/bt_example_tree.py -> /home/vboxuser/ros2_ws/install/bt_pkg/lib/python3.8/site-packages/bt_pkg
+[3.153s] copying /home/vboxuser/ros2_ws/build/bt_pkg/build/lib/bt_pkg/__init__.py -> /home/vboxuser/ros2_ws/install/bt_pkg/lib/python3.8/site-packages/bt_pkg
+[3.154s] byte-compiling /home/vboxuser/ros2_ws/install/bt_pkg/lib/python3.8/site-packages/bt_pkg/bt_example_tree.py to bt_example_tree.cpython-38.pyc
+[3.160s] byte-compiling /home/vboxuser/ros2_ws/install/bt_pkg/lib/python3.8/site-packages/bt_pkg/__init__.py to __init__.cpython-38.pyc
+[3.160s] running install_data
+[3.161s] copying resource/bt_pkg -> /home/vboxuser/ros2_ws/install/bt_pkg/share/ament_index/resource_index/packages
+[3.161s] copying package.xml -> /home/vboxuser/ros2_ws/install/bt_pkg/share/bt_pkg
+[3.162s] running install_egg_info
+[3.164s] Copying ../../build/bt_pkg/bt_pkg.egg-info to /home/vboxuser/ros2_ws/install/bt_pkg/lib/python3.8/site-packages/bt_pkg-0.0.0-py3.8.egg-info
+[3.165s] running install_scripts
+[3.190s] Installing bt_example_tree script to /home/vboxuser/ros2_ws/install/bt_pkg/lib/bt_pkg
+[3.191s] Installing bt_scan_hookstrip script to /home/vboxuser/ros2_ws/install/bt_pkg/lib/bt_pkg
+[3.191s] writing list of installed files to '/home/vboxuser/ros2_ws/build/bt_pkg/install.log'
+[3.895s] Invoked command in '/home/vboxuser/ros2_ws/src/bt_pkg' returned '0': PYTHONPATH=/home/vboxuser/ros2_ws/build/bt_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/bt_pkg/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/bt_pkg build --build-base /home/vboxuser/ros2_ws/build/bt_pkg/build install --record /home/vboxuser/ros2_ws/build/bt_pkg/install.log --install-scripts $base/lib/bt_pkg --single-version-externally-managed install_data --force

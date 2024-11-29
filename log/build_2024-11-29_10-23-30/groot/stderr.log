@@ -1,0 +1,10 @@
+make[2]: *** [QtNodeEditor/CMakeFiles/QtNodeEditor.dir/build.make:386: QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/NodeGraphicsObject.cpp.o] Unterbrechung
+make[2]: *** [QtNodeEditor/CMakeFiles/QtNodeEditor.dir/build.make:399: QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/NodePainter.cpp.o] Unterbrechung
+make[2]: *** [QtNodeEditor/CMakeFiles/QtNodeEditor.dir/build.make:425: QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/NodeStyle.cpp.o] Unterbrechung
+make[2]: *** [QtNodeEditor/CMakeFiles/QtNodeEditor.dir/build.make:308: QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/FlowView.cpp.o] Unterbrechung
+make[2]: *** [QtNodeEditor/CMakeFiles/QtNodeEditor.dir/build.make:412: QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/NodeState.cpp.o] Unterbrechung
+make[2]: *** [QtNodeEditor/CMakeFiles/QtNodeEditor.dir/build.make:438: QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/Properties.cpp.o] Unterbrechung
+make[2]: *** [QtNodeEditor/CMakeFiles/QtNodeEditor.dir/build.make:451: QtNodeEditor/CMakeFiles/QtNodeEditor.dir/src/StyleCollection.cpp.o] Unterbrechung
+make[2]: *** [QtNodeEditor/CMakeFiles/QtNodeEditor.dir/build.make:464: QtNodeEditor/CMakeFiles/QtNodeEditor.dir/qrc_resources.cpp.o] Unterbrechung
+make[1]: *** [CMakeFiles/Makefile2:293: QtNodeEditor/CMakeFiles/QtNodeEditor.dir/all] Unterbrechung
+make: *** [Makefile:141: all] Unterbrechung

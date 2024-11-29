@@ -15,6 +15,13 @@ setup(
     zip_safe=True,
     maintainer='vboxuser',
     maintainer_email='vboxuser@todo.todo',
+    keywords=['ROS'],
+    classifiers=[
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: Apache Software License',
+        'Programming Language :: Python',
+        'Topic :: Software Development',
+    ],
     description='TODO: Package description',
     license='TODO: License declaration',
     tests_require=['pytest'],
@@ -28,9 +35,8 @@ setup(
             'transformation_snapshot = robot_control.transformation_snapshot:main',
             'read_transformation_snapshot = robot_control.read_transformation_snapshot:main',
             'transformation_delta = robot_control.transformation_delta:main',
-            'read_transformation_delta = robot_control.read_transformation_delta:main',
-            'move_tcp_along_axis_action_server = robot_control.move_tcp_along_axis_action_server:main',
-            'move_tcp_along_axis_action_client = robot_control.move_tcp_along_axis_action_client:main',
+            'read_transformation_delta = robot_control.read_transformation_delta:main'
         ],
     },
 )
+

@@ -1,0 +1,22 @@
+running develop
+running egg_info
+creating action_pkg.egg-info
+writing action_pkg.egg-info/PKG-INFO
+writing dependency_links to action_pkg.egg-info/dependency_links.txt
+writing entry points to action_pkg.egg-info/entry_points.txt
+writing requirements to action_pkg.egg-info/requires.txt
+writing top-level names to action_pkg.egg-info/top_level.txt
+writing manifest file 'action_pkg.egg-info/SOURCES.txt'
+reading manifest file 'action_pkg.egg-info/SOURCES.txt'
+writing manifest file 'action_pkg.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/vboxuser/ros2_ws/install/action_tutorials_py/lib/python3.8/site-packages/site.py
+Creating /home/vboxuser/ros2_ws/install/action_tutorials_py/lib/python3.8/site-packages/action-pkg.egg-link (link to .)
+Installing fibonacci_action_client script to /home/vboxuser/ros2_ws/install/action_tutorials_py/lib/action_pkg
+Installing fibonacci_action_server script to /home/vboxuser/ros2_ws/install/action_tutorials_py/lib/action_pkg
+
+Installed /home/vboxuser/ros2_ws/build/action_tutorials_py
+running symlink_data
+symbolically linking /home/vboxuser/ros2_ws/build/action_tutorials_py/resource/action_pkg -> /home/vboxuser/ros2_ws/install/action_tutorials_py/share/ament_index/resource_index/packages
+creating /home/vboxuser/ros2_ws/install/action_tutorials_py/share/action_pkg
+symbolically linking /home/vboxuser/ros2_ws/build/action_tutorials_py/package.xml -> /home/vboxuser/ros2_ws/install/action_tutorials_py/share/action_pkg

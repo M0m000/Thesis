@@ -1,8 +1,6 @@
 [console_scripts]
 hello_node = robot_control.hello_node:main
 move_lin_by_key = robot_control.move_lin_by_key:main
-move_tcp_along_axis_action_client = robot_control.move_tcp_along_axis_action_client:main
-move_tcp_along_axis_action_server = robot_control.move_tcp_along_axis_action_server:main
 print_frames = robot_control.print_frames:main
 print_tcp_pose = robot_control.print_tcp_pose:main
 read_transformation_delta = robot_control.read_transformation_delta:main

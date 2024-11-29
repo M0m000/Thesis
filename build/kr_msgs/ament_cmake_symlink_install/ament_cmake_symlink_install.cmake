@@ -358,9 +358,6 @@ ament_cmake_symlink_install_directory("/home/vboxuser/ros2_ws/src/orange-ros2/kr
 # install(DIRECTORY "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_generator_py/kr_msgs/srv/" "DESTINATION" "lib/python3.8/site-packages/kr_msgs/srv" "PATTERN" "*.py")
 ament_cmake_symlink_install_directory("/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs" DIRECTORY "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_generator_py/kr_msgs/srv/" "DESTINATION" "lib/python3.8/site-packages/kr_msgs/srv" "PATTERN" "*.py")
 
-# install(DIRECTORY "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_generator_py/kr_msgs/action/" "DESTINATION" "lib/python3.8/site-packages/kr_msgs/action" "PATTERN" "*.py")
-ament_cmake_symlink_install_directory("/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs" DIRECTORY "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_generator_py/kr_msgs/action/" "DESTINATION" "lib/python3.8/site-packages/kr_msgs/action" "PATTERN" "*.py")
-
 # install("TARGETS" "kr_msgs__rosidl_typesupport_fastrtps_c__pyext" "DESTINATION" "lib/python3.8/site-packages/kr_msgs")
 include("/home/vboxuser/ros2_ws/build/kr_msgs/ament_cmake_symlink_install_targets_2_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
 
@@ -475,9 +472,6 @@ ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/orange-ros2/kr_msg
 # install(FILES "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/srv/TerminateMotion.idl" "DESTINATION" "share/kr_msgs/srv")
 ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs" FILES "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/srv/TerminateMotion.idl" "DESTINATION" "share/kr_msgs/srv")
 
-# install(FILES "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/srv/MoveTCPAlongAxis.idl" "DESTINATION" "share/kr_msgs/srv")
-ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs" FILES "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/srv/MoveTCPAlongAxis.idl" "DESTINATION" "share/kr_msgs/srv")
-
 # install(FILES "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/srv/GetProgramState.idl" "DESTINATION" "share/kr_msgs/srv")
 ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs" FILES "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/srv/GetProgramState.idl" "DESTINATION" "share/kr_msgs/srv")
 
@@ -537,9 +531,6 @@ ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/orange-ros2/kr_msg
 
 # install(FILES "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/srv/UnsuspendRobot.idl" "DESTINATION" "share/kr_msgs/srv")
 ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs" FILES "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/srv/UnsuspendRobot.idl" "DESTINATION" "share/kr_msgs/srv")
-
-# install(FILES "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/action/MoveTCPAlongAxis.idl" "DESTINATION" "share/kr_msgs/action")
-ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs" FILES "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/action/MoveTCPAlongAxis.idl" "DESTINATION" "share/kr_msgs/action")
 
 # install(FILES "/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs/msg/FollowJoint.msg" "DESTINATION" "share/kr_msgs/msg")
 ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs" FILES "/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs/msg/FollowJoint.msg" "DESTINATION" "share/kr_msgs/msg")
@@ -745,15 +736,6 @@ ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/orange-ros2/kr_msg
 # install(FILES "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_cmake/srv/motion/TerminateMotion_Response.msg" "DESTINATION" "share/kr_msgs/motion")
 ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs" FILES "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_cmake/srv/motion/TerminateMotion_Response.msg" "DESTINATION" "share/kr_msgs/motion")
 
-# install(FILES "/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs/srv/motion/MoveTCPAlongAxis.srv" "DESTINATION" "share/kr_msgs/motion")
-ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs" FILES "/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs/srv/motion/MoveTCPAlongAxis.srv" "DESTINATION" "share/kr_msgs/motion")
-
-# install(FILES "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_cmake/srv/motion/MoveTCPAlongAxis_Request.msg" "DESTINATION" "share/kr_msgs/motion")
-ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs" FILES "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_cmake/srv/motion/MoveTCPAlongAxis_Request.msg" "DESTINATION" "share/kr_msgs/motion")
-
-# install(FILES "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_cmake/srv/motion/MoveTCPAlongAxis_Response.msg" "DESTINATION" "share/kr_msgs/motion")
-ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs" FILES "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_cmake/srv/motion/MoveTCPAlongAxis_Response.msg" "DESTINATION" "share/kr_msgs/motion")
-
 # install(FILES "/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs/srv/program/GetProgramState.srv" "DESTINATION" "share/kr_msgs/program")
 ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs" FILES "/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs/srv/program/GetProgramState.srv" "DESTINATION" "share/kr_msgs/program")
 
@@ -933,12 +915,6 @@ ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/orange-ros2/kr_msg
 
 # install(FILES "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_cmake/srv/system/UnsuspendRobot_Response.msg" "DESTINATION" "share/kr_msgs/system")
 ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs" FILES "/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_cmake/srv/system/UnsuspendRobot_Response.msg" "DESTINATION" "share/kr_msgs/system")
-
-# install(FILES "/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs/action/motion/MoveTCPAlongAxis.action" "DESTINATION" "share/kr_msgs/motion")
-ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs" FILES "/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs/action/motion/MoveTCPAlongAxis.action" "DESTINATION" "share/kr_msgs/motion")
-
-# install(DIRECTORY "srv" "DESTINATION" "share/kr_msgs/srv")
-ament_cmake_symlink_install_directory("/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs" DIRECTORY "srv" "DESTINATION" "share/kr_msgs/srv")
 
 # install(FILES "/home/vboxuser/ros2_ws/build/kr_msgs/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/kr_msgs" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
 ament_cmake_symlink_install_files("/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs" FILES "/home/vboxuser/ros2_ws/build/kr_msgs/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/kr_msgs" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")

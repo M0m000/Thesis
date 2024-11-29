@@ -1,0 +1,6 @@
+Invoking command in '/home/vboxuser/ros2_ws/build/action_tutorial_interfaces': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/vboxuser/ros2_ws/src/action_tutorial_interfaces -DCMAKE_INSTALL_PREFIX=/home/vboxuser/ros2_ws/install/action_tutorial_interfaces
+Invoked command in '/home/vboxuser/ros2_ws/build/action_tutorial_interfaces' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/vboxuser/ros2_ws/src/action_tutorial_interfaces -DCMAKE_INSTALL_PREFIX=/home/vboxuser/ros2_ws/install/action_tutorial_interfaces
+Invoking command in '/home/vboxuser/ros2_ws/build/action_tutorial_interfaces': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/action_tutorial_interfaces -- -j8 -l8
+Invoked command in '/home/vboxuser/ros2_ws/build/action_tutorial_interfaces' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/action_tutorial_interfaces -- -j8 -l8
+Invoking command in '/home/vboxuser/ros2_ws/build/action_tutorial_interfaces': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/vboxuser/ros2_ws/build/action_tutorial_interfaces
+Invoked command in '/home/vboxuser/ros2_ws/build/action_tutorial_interfaces' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/vboxuser/ros2_ws/build/action_tutorial_interfaces

@@ -1,0 +1,70 @@
+[1.261s] Invoking command in '/home/vboxuser/ros2_ws/src/robot_control': CMAKE_PREFIX_PATH=/home/vboxuser/ros2_ws/install/action_interfaces:/home/vboxuser/ros2_ws/install/realsense2_description:/home/vboxuser/ros2_ws/install/realsense2_camera:/home/vboxuser/ros2_ws/install/realsense2_camera_msgs:/home/vboxuser/ros2_ws/install/kr_example_cpp:/home/vboxuser/ros2_ws/install/kr_msgs:/home/vboxuser/ros2_ws/install/groot:/home/vboxuser/ros2_ws/install/action_tutorials_interfaces:/home/vboxuser/ros2_ws/install/action_tutorial_interfaces LD_LIBRARY_PATH=/home/vboxuser/ros2_ws/install/action_interfaces/lib:/home/vboxuser/ros2_ws/install/realsense2_camera/lib:/home/vboxuser/ros2_ws/install/realsense2_camera_msgs/lib:/home/vboxuser/ros2_ws/install/kr_msgs/lib:/home/vboxuser/ros2_ws/install/groot/lib:/home/vboxuser/ros2_ws/install/action_tutorials_interfaces/lib:/home/vboxuser/ros2_ws/install/action_tutorial_interfaces/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib PYTHONPATH=/home/vboxuser/ros2_ws/build/robot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/action_interfaces/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/realsense2_camera_msgs/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/kr_example_python/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/bt_pkg/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/action_tutorials_py/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/action_tutorials_interfaces/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/action_tutorial_interfaces/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/action_pkg/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/robot_control build --build-base /home/vboxuser/ros2_ws/build/robot_control/build install --record /home/vboxuser/ros2_ws/build/robot_control/install.log --install-scripts $base/lib/robot_control --single-version-externally-managed install_data
+[3.085s] running egg_info
+[3.085s] creating ../../build/robot_control/robot_control.egg-info
+[3.098s] writing ../../build/robot_control/robot_control.egg-info/PKG-INFO
+[3.099s] writing dependency_links to ../../build/robot_control/robot_control.egg-info/dependency_links.txt
+[3.099s] writing entry points to ../../build/robot_control/robot_control.egg-info/entry_points.txt
+[3.100s] writing requirements to ../../build/robot_control/robot_control.egg-info/requires.txt
+[3.101s] writing top-level names to ../../build/robot_control/robot_control.egg-info/top_level.txt
+[3.102s] writing manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'
+[3.103s] reading manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'
+[3.103s] writing manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'
+[3.104s] running build
+[3.105s] running build_py
+[3.105s] creating /home/vboxuser/ros2_ws/build/robot_control/build
+[3.106s] creating /home/vboxuser/ros2_ws/build/robot_control/build/lib
+[3.106s] creating /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control
+[3.107s] copying robot_control/transformation_snapshot.py -> /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control
+[3.108s] copying robot_control/transformation_delta.py -> /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control
+[3.108s] copying robot_control/print_frames.py -> /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control
+[3.109s] copying robot_control/hello_node.py -> /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control
+[3.109s] copying robot_control/print_tcp_pose.py -> /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control
+[3.110s] copying robot_control/read_transformation_delta.py -> /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control
+[3.111s] copying robot_control/__init__.py -> /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control
+[3.111s] copying robot_control/set_frame_client.py -> /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control
+[3.112s] copying robot_control/move_lin_by_key.py -> /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control
+[3.112s] copying robot_control/read_transformation_snapshot.py -> /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control
+[3.113s] running install
+[3.114s] running install_lib
+[3.114s] creating /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control
+[3.114s] copying /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control/transformation_snapshot.py -> /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control
+[3.115s] copying /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control/transformation_delta.py -> /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control
+[3.116s] copying /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control/print_frames.py -> /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control
+[3.116s] copying /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control/hello_node.py -> /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control
+[3.117s] copying /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control/print_tcp_pose.py -> /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control
+[3.118s] copying /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control/read_transformation_delta.py -> /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control
+[3.118s] copying /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control/__init__.py -> /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control
+[3.119s] copying /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control/set_frame_client.py -> /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control
+[3.119s] copying /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control/move_lin_by_key.py -> /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control
+[3.120s] copying /home/vboxuser/ros2_ws/build/robot_control/build/lib/robot_control/read_transformation_snapshot.py -> /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control
+[3.121s] byte-compiling /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control/transformation_snapshot.py to transformation_snapshot.cpython-38.pyc
+[3.121s] byte-compiling /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control/transformation_delta.py to transformation_delta.cpython-38.pyc
+[3.122s] byte-compiling /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control/print_frames.py to print_frames.cpython-38.pyc
+[3.122s] byte-compiling /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control/hello_node.py to hello_node.cpython-38.pyc
+[3.123s] byte-compiling /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control/print_tcp_pose.py to print_tcp_pose.cpython-38.pyc
+[3.124s] byte-compiling /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control/read_transformation_delta.py to read_transformation_delta.cpython-38.pyc
+[3.124s] byte-compiling /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control/__init__.py to __init__.cpython-38.pyc
+[3.124s] byte-compiling /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control/set_frame_client.py to set_frame_client.cpython-38.pyc
+[3.124s] byte-compiling /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control/move_lin_by_key.py to move_lin_by_key.cpython-38.pyc
+[3.124s] byte-compiling /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control/read_transformation_snapshot.py to read_transformation_snapshot.cpython-38.pyc
+[3.124s] running install_data
+[3.124s] creating /home/vboxuser/ros2_ws/install/robot_control/share/ament_index
+[3.124s] creating /home/vboxuser/ros2_ws/install/robot_control/share/ament_index/resource_index
+[3.124s] creating /home/vboxuser/ros2_ws/install/robot_control/share/ament_index/resource_index/packages
+[3.124s] copying resource/robot_control -> /home/vboxuser/ros2_ws/install/robot_control/share/ament_index/resource_index/packages
+[3.124s] copying package.xml -> /home/vboxuser/ros2_ws/install/robot_control/share/robot_control
+[3.124s] running install_egg_info
+[3.124s] Copying ../../build/robot_control/robot_control.egg-info to /home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info
+[3.124s] running install_scripts
+[3.124s] Installing fibonacci_action_client script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+[3.125s] Installing hello_node script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+[3.125s] Installing move_lin_by_key script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+[3.125s] Installing print_frames script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+[3.125s] Installing print_tcp_pose script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+[3.125s] Installing read_transformation_delta = robot_control.read_transformation_delta:mainfibonacci_action_server script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+[3.125s] Installing read_transformation_snapshot script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+[3.125s] Installing set_frame_client script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+[3.125s] Installing transformation_delta script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+[3.125s] Installing transformation_snapshot script to /home/vboxuser/ros2_ws/install/robot_control/lib/robot_control
+[3.125s] writing list of installed files to '/home/vboxuser/ros2_ws/build/robot_control/install.log'
+[3.125s] Invoked command in '/home/vboxuser/ros2_ws/src/robot_control' returned '0': CMAKE_PREFIX_PATH=/home/vboxuser/ros2_ws/install/action_interfaces:/home/vboxuser/ros2_ws/install/realsense2_description:/home/vboxuser/ros2_ws/install/realsense2_camera:/home/vboxuser/ros2_ws/install/realsense2_camera_msgs:/home/vboxuser/ros2_ws/install/kr_example_cpp:/home/vboxuser/ros2_ws/install/kr_msgs:/home/vboxuser/ros2_ws/install/groot:/home/vboxuser/ros2_ws/install/action_tutorials_interfaces:/home/vboxuser/ros2_ws/install/action_tutorial_interfaces LD_LIBRARY_PATH=/home/vboxuser/ros2_ws/install/action_interfaces/lib:/home/vboxuser/ros2_ws/install/realsense2_camera/lib:/home/vboxuser/ros2_ws/install/realsense2_camera_msgs/lib:/home/vboxuser/ros2_ws/install/kr_msgs/lib:/home/vboxuser/ros2_ws/install/groot/lib:/home/vboxuser/ros2_ws/install/action_tutorials_interfaces/lib:/home/vboxuser/ros2_ws/install/action_tutorial_interfaces/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib PYTHONPATH=/home/vboxuser/ros2_ws/build/robot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/action_interfaces/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/robot_control/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/realsense2_camera_msgs/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/kr_example_python/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/bt_pkg/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/action_tutorials_py/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/action_tutorials_interfaces/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/action_tutorial_interfaces/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/action_pkg/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/robot_control build --build-base /home/vboxuser/ros2_ws/build/robot_control/build install --record /home/vboxuser/ros2_ws/build/robot_control/install.log --install-scripts $base/lib/robot_control --single-version-externally-managed install_data

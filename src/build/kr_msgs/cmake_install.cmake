@@ -491,6 +491,10 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/kr_msgs/srv" TYPE FILE FILES "/home/vboxuser/ros2_ws/src/build/kr_msgs/rosidl_adapter/kr_msgs/srv/MoveTCPAlongAxis.idl")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/kr_msgs/srv" TYPE FILE FILES "/home/vboxuser/ros2_ws/src/build/kr_msgs/rosidl_adapter/kr_msgs/srv/GetProgramState.idl")
 endif()
 
@@ -843,6 +847,18 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/kr_msgs/motion" TYPE FILE FILES "/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs/srv/motion/MoveTCPAlongAxis.srv")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/kr_msgs/motion" TYPE FILE FILES "/home/vboxuser/ros2_ws/src/build/kr_msgs/rosidl_cmake/srv/motion/MoveTCPAlongAxis_Request.msg")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/kr_msgs/motion" TYPE FILE FILES "/home/vboxuser/ros2_ws/src/build/kr_msgs/rosidl_cmake/srv/motion/MoveTCPAlongAxis_Response.msg")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/kr_msgs/program" TYPE FILE FILES "/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs/srv/program/GetProgramState.srv")
 endif()
 
@@ -1080,6 +1096,10 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/kr_msgs/system" TYPE FILE FILES "/home/vboxuser/ros2_ws/src/build/kr_msgs/rosidl_cmake/srv/system/UnsuspendRobot_Response.msg")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/kr_msgs/srv" TYPE DIRECTORY FILES "/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs/srv")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)

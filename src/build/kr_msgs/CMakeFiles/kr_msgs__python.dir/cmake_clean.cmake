@@ -35,6 +35,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_move_joint_s.c.o"
   "CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_move_linear_s.c.o"
   "CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_move_spline_s.c.o"
+  "CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_move_tcp_along_axis_s.c.o"
   "CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_pause_motion_s.c.o"
   "CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_pause_program_s.c.o"
   "CMakeFiles/kr_msgs__python.dir/rosidl_generator_py/kr_msgs/srv/_program_recovery_s.c.o"

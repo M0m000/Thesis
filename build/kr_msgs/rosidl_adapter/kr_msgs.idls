@@ -32,7 +32,6 @@
 /home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:srv/SetCustomFrame.idl
 /home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:srv/SetInteractivity.idl
 /home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:srv/TerminateMotion.idl
-/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:srv/MoveTCPAlongAxis.idl
 /home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:srv/GetProgramState.idl
 /home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:srv/PauseProgram.idl
 /home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:srv/ProgramRecovery.idl
@@ -53,4 +52,3 @@
 /home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:srv/SuspendRobot.idl
 /home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:srv/UnlockRobot.idl
 /home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:srv/UnsuspendRobot.idl
-/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs:action/MoveTCPAlongAxis.idl

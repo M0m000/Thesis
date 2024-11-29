@@ -119,11 +119,6 @@ self_motion: /opt/ros/foxy/lib/libstd_msgs__rosidl_generator_c.so
 self_motion: /opt/ros/foxy/lib/libstd_msgs__rosidl_typesupport_c.so
 self_motion: /opt/ros/foxy/lib/libstd_msgs__rosidl_typesupport_introspection_cpp.so
 self_motion: /opt/ros/foxy/lib/libstd_msgs__rosidl_typesupport_cpp.so
-self_motion: /opt/ros/foxy/lib/libaction_msgs__rosidl_typesupport_introspection_c.so
-self_motion: /opt/ros/foxy/lib/libaction_msgs__rosidl_generator_c.so
-self_motion: /opt/ros/foxy/lib/libaction_msgs__rosidl_typesupport_c.so
-self_motion: /opt/ros/foxy/lib/libaction_msgs__rosidl_typesupport_introspection_cpp.so
-self_motion: /opt/ros/foxy/lib/libaction_msgs__rosidl_typesupport_cpp.so
 self_motion: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_introspection_c.so
 self_motion: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_generator_c.so
 self_motion: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_c.so

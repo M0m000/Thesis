@@ -31,6 +31,9 @@ motion/MoveLinear_Response.msg
 motion/MoveSpline.srv
 motion/MoveSpline_Request.msg
 motion/MoveSpline_Response.msg
+motion/MoveTCPAlongAxis.srv
+motion/MoveTCPAlongAxis_Request.msg
+motion/MoveTCPAlongAxis_Response.msg
 motion/PauseMotion.srv
 motion/PauseMotion_Request.msg
 motion/PauseMotion_Response.msg
@@ -135,6 +138,7 @@ srv/LogAlarm.idl
 srv/MoveJoint.idl
 srv/MoveLinear.idl
 srv/MoveSpline.idl
+srv/MoveTCPAlongAxis.idl
 srv/PauseMotion.idl
 srv/PauseProgram.idl
 srv/ProgramRecovery.idl

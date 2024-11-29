@@ -1,0 +1,120 @@
+[0.072s] Invoking command in '/home/vboxuser/ros2_ws/build/action_tutorials_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/action_tutorials_py:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_pkg:/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/action_tutorials_interfaces -- -j8 -l8
+[0.391s] [  3%] Built target action_tutorials_interfaces__cpp
+[0.392s] [ 12%] Built target action_tutorials_interfaces__rosidl_generator_c
+[0.392s] [ 22%] Built target action_tutorials_interfaces__rosidl_typesupport_cpp
+[0.392s] [ 32%] Built target action_tutorials_interfaces__rosidl_typesupport_introspection_cpp
+[0.392s] [ 41%] Built target action_tutorials_interfaces__rosidl_typesupport_fastrtps_cpp
+[0.393s] [ 51%] Built target action_tutorials_interfaces__rosidl_typesupport_introspection_c
+[0.393s] [ 61%] Built target action_tutorials_interfaces__rosidl_typesupport_c
+[0.393s] [ 70%] Built target action_tutorials_interfaces__rosidl_typesupport_fastrtps_c
+[0.393s] [ 70%] Built target action_tutorials_interfaces
+[0.393s] [ 74%] Built target action_tutorials_interfaces__py
+[0.394s] [ 80%] Built target action_tutorials_interfaces__python
+[0.430s] [ 87%] Built target action_tutorials_interfaces__rosidl_typesupport_introspection_c__pyext
+[0.434s] [ 93%] Built target action_tutorials_interfaces__rosidl_typesupport_fastrtps_c__pyext
+[0.434s] [100%] Built target action_tutorials_interfaces__rosidl_typesupport_c__pyext
+[0.668s] Invoked command in '/home/vboxuser/ros2_ws/build/action_tutorials_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/action_tutorials_py:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_pkg:/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/action_tutorials_interfaces -- -j8 -l8
+[0.877s] Invoking command in '/home/vboxuser/ros2_ws/build/action_tutorials_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/action_tutorials_py:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_pkg:/opt/ros/foxy /usr/bin/cmake --install /home/vboxuser/ros2_ws/build/action_tutorials_interfaces
+[0.892s] -- Install configuration: ""
+[0.893s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/ament_index/resource_index/rosidl_interfaces/action_tutorials_interfaces
+[0.893s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces
+[0.893s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action
+[0.894s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/detail
+[0.894s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/detail/fibonacci__functions.h
+[0.894s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/detail/fibonacci__functions.c
+[0.894s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/detail/fibonacci__struct.h
+[0.894s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/detail/fibonacci__type_support.h
+[0.895s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/fibonacci.h
+[0.895s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/msg
+[0.895s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/msg/rosidl_generator_c__visibility_control.h
+[0.895s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/environment/library_path.sh
+[0.895s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/environment/library_path.dsv
+[0.895s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/lib/libaction_tutorials_interfaces__rosidl_generator_c.so
+[0.895s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces
+[0.896s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action
+[0.896s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/detail
+[0.896s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/detail/fibonacci__rosidl_typesupport_fastrtps_c.h
+[0.896s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/msg
+[0.896s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[0.896s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/lib/libaction_tutorials_interfaces__rosidl_typesupport_fastrtps_c.so
+[0.896s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces
+[0.896s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action
+[0.896s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/detail
+[0.896s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/detail/fibonacci__rosidl_typesupport_fastrtps_cpp.hpp
+[0.896s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/detail/dds_fastrtps
+[0.897s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/msg
+[0.897s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[0.897s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/lib/libaction_tutorials_interfaces__rosidl_typesupport_fastrtps_cpp.so
+[0.897s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces
+[0.897s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action
+[0.897s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/detail
+[0.897s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/detail/fibonacci__type_support.c
+[0.897s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h
+[0.897s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/msg
+[0.897s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[0.898s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/lib/libaction_tutorials_interfaces__rosidl_typesupport_introspection_c.so
+[0.898s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/lib/libaction_tutorials_interfaces__rosidl_typesupport_c.so
+[0.899s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces
+[0.899s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action
+[0.899s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/fibonacci.hpp
+[0.899s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/detail
+[0.899s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/detail/fibonacci__traits.hpp
+[0.899s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/detail/fibonacci__builder.hpp
+[0.899s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/detail/fibonacci__type_support.hpp
+[0.899s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/detail/fibonacci__struct.hpp
+[0.899s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/msg
+[0.899s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp
+[0.899s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces
+[0.899s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action
+[0.899s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/detail
+[0.899s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_cpp.hpp
+[0.900s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/include/action_tutorials_interfaces/action/detail/fibonacci__type_support.cpp
+[0.900s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/lib/libaction_tutorials_interfaces__rosidl_typesupport_introspection_cpp.so
+[0.903s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/lib/libaction_tutorials_interfaces__rosidl_typesupport_cpp.so
+[0.904s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/environment/pythonpath.sh
+[0.904s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/environment/pythonpath.dsv
+[0.904s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/lib/python3.8/site-packages/action_tutorials_interfaces/__init__.py
+[0.945s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/lib/python3.8/site-packages/action_tutorials_interfaces/action
+[0.945s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/lib/python3.8/site-packages/action_tutorials_interfaces/action/_fibonacci.py
+[0.946s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/lib/python3.8/site-packages/action_tutorials_interfaces/action/_fibonacci_s.c
+[0.948s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/lib/python3.8/site-packages/action_tutorials_interfaces/action/__init__.py
+[0.948s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/lib/python3.8/site-packages/action_tutorials_interfaces/action_tutorials_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so
+[0.949s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/lib/python3.8/site-packages/action_tutorials_interfaces/action_tutorials_interfaces_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so
+[0.949s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/lib/python3.8/site-packages/action_tutorials_interfaces/action_tutorials_interfaces_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so
+[0.950s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/lib/libaction_tutorials_interfaces__python.so
+[0.952s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/action/Fibonacci.idl
+[0.952s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/action/Fibonacci.action
+[0.952s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/ament_index/resource_index/package_run_dependencies/action_tutorials_interfaces
+[0.954s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/ament_index/resource_index/parent_prefix_path/action_tutorials_interfaces
+[0.954s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/environment/ament_prefix_path.sh
+[0.954s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/environment/ament_prefix_path.dsv
+[0.955s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/environment/path.sh
+[0.955s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/environment/path.dsv
+[0.955s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/local_setup.bash
+[0.955s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/local_setup.sh
+[0.955s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/local_setup.zsh
+[0.955s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/local_setup.dsv
+[0.955s] -- Installing: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/package.dsv
+[0.955s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/ament_index/resource_index/packages/action_tutorials_interfaces
+[0.955s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/cmake/action_tutorials_interfaces__rosidl_generator_cExport.cmake
+[0.955s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/cmake/action_tutorials_interfaces__rosidl_generator_cExport-noconfig.cmake
+[0.955s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/cmake/action_tutorials_interfaces__rosidl_typesupport_introspection_cExport.cmake
+[0.955s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/cmake/action_tutorials_interfaces__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[0.955s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/cmake/action_tutorials_interfaces__rosidl_typesupport_cExport.cmake
+[0.956s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/cmake/action_tutorials_interfaces__rosidl_typesupport_cExport-noconfig.cmake
+[0.956s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/cmake/action_tutorials_interfaces__rosidl_generator_cppExport.cmake
+[0.956s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/cmake/action_tutorials_interfaces__rosidl_typesupport_introspection_cppExport.cmake
+[0.956s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/cmake/action_tutorials_interfaces__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[0.956s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/cmake/action_tutorials_interfaces__rosidl_typesupport_cppExport.cmake
+[0.956s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/cmake/action_tutorials_interfaces__rosidl_typesupport_cppExport-noconfig.cmake
+[0.956s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/cmake/rosidl_cmake-extras.cmake
+[0.956s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake
+[0.956s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/cmake/ament_cmake_export_libraries-extras.cmake
+[0.956s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/cmake/ament_cmake_export_targets-extras.cmake
+[0.956s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/cmake/ament_cmake_export_include_directories-extras.cmake
+[0.956s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[0.957s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[0.957s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/cmake/action_tutorials_interfacesConfig.cmake
+[0.957s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/cmake/action_tutorials_interfacesConfig-version.cmake
+[0.957s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_tutorials_interfaces/share/action_tutorials_interfaces/package.xml
+[0.961s] Invoked command in '/home/vboxuser/ros2_ws/build/action_tutorials_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/action_tutorials_py:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_pkg:/opt/ros/foxy /usr/bin/cmake --install /home/vboxuser/ros2_ws/build/action_tutorials_interfaces
