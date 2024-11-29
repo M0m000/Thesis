@@ -85,6 +85,13 @@ ros2 run action_servers fibonacci_action_server
 >Dieser Knoten öffnet den Server für eine Test Action - hier wird beispielhaft eine Fibonacci-Folge berechnet. <br>
 <br>
 
+### **MoveTcpAlongAxis Action Server** Node <br>
+```bash
+ros2 run action_servers MoveTcpAlongAxis_action_server
+```
+>Dieser Knoten öffnet den Server für eine Action, die den TCP des Roboters entlang einer Achse (movement_axis) in einem definierten Koordinatensystem (movement_frame) linear bewegt. Die Distanz, die entlang der Achse zurückgelegt werden soll, wird mit dem Parameter Baseline übergeben. <br>
+<br>
+
 ## **Behavior Tree Package**
 Enthält alle Behavior Trees (Ablaufsteuerungen) als Nodes geschrieben - Kommunikation mit allen anderen Topics/Nodes/etc. möglich. <br>
 <br>
@@ -175,6 +182,13 @@ ros2 run robot_control read_transformation_delta
 ros2 run action_servers fibonacci_action_server
 ```
 >Dieser Knoten öffnet einen Client auf die Fibonacci-Action (Beispielprogramm) - ACHTUNG: Server unter Package action_servers (siehe oben) muss aktiviert sein! <br>
+<br>
+
+### **MoveTcpAlongAxis Action Client** Node <br>
+```bash
+ros2 run action_servers MoveTcpAlongAxis_action_server
+```
+>Client für die Action MoveTcpAlongAxis (siehe oben bei Package action_servers). <br>
 <br>
 
 
