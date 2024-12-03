@@ -72,13 +72,13 @@ Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers K
 
 <br>
 
-## **VCnanoZ ROS2 Package**
+## **VCnanoZ Package**
 Package zum Verbindungsaufbau mit VCnanoZ Kamera. Auf Kamera mus "vcimgnetsrv &" sowie "vctp" ausgeführt werden, dass der Stream aktiv ist. <br>
 <br>
 
 ### **VC Image Receiver** Node <br>
 ```bash
-ros2 run vcnanoz_ros2 vc_img_receiver --ros-args -p ipv4:="192.168.3.15" -p port:=2002 -p img_width:=2048 -p img_height:=1536 -p rgb_stream:=False -p show_img:=True
+ros2 run vcnanoz vc_img_receiver --ros-args -p ipv4:="192.168.3.15" -p port:=2002 -p img_width:=2048 -p img_height:=1536 -p rgb_stream:=False -p show_img:=True
 ```
 >Dieser Knoten stellt eine Verbindung zum Socket her und streamt das Graubild der Kamera (Auflösung einstellbar) auf dem Topic "/vcnanoz/stream/image_raw". <br>
 <br>
