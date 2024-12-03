@@ -1,1 +1,5 @@
-/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs/msg/JogJoint.msg
+######################################################
+#                JOG IN JOINT SPACE                  #
+######################################################
+
+float64[7]  jsvel   # target joint velocity [deg/s]

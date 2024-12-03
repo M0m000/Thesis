@@ -1,1 +1,19 @@
-/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/srv/UnsuspendRobot.idl
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from kr_msgs/srv/system/UnsuspendRobot.srv
+// generated code does not contain a copyright notice
+
+
+module kr_msgs {
+  module srv {
+    @verbatim (language="comment", text=
+      "#####################################################" "\n"
+      "                 UNSUSPEND ROBOT                    #" "\n"
+      "#####################################################")
+    struct UnsuspendRobot_Request {
+      uint8 structure_needs_at_least_one_member;
+    };
+    struct UnsuspendRobot_Response {
+      boolean success;
+    };
+  };
+};

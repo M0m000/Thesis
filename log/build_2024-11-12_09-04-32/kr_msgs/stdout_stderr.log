@@ -1,4 +1,0 @@
-CMake Error: The current CMakeCache.txt directory /home/vboxuser/thesis/ros2_ws/build/kr_msgs/CMakeCache.txt is different than the directory /home/vboxuser/ros2_ws/build/kr_msgs where CMakeCache.txt was created. This may result in binaries being created in the wrong place. If you are not sure, reedit the CMakeCache.txt
-CMake Error: The source directory "/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs" does not exist.
-Specify --help for usage, or press the help button on the CMake GUI.
-make: *** [Makefile:13468: cmake_check_build_system] Fehler 1

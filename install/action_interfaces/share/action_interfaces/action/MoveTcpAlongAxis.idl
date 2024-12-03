@@ -1,0 +1,28 @@
+// generated from rosidl_adapter/resource/action.idl.em
+// with input from action_interfaces/action/MoveTcpAlongAxis.action
+// generated code does not contain a copyright notice
+
+
+module action_interfaces {
+  module action {
+    @verbatim (language="comment", text=
+      " Goal (Eingabewerte für die Action)")
+    struct MoveTcpAlongAxis_Goal {
+      double baseline;
+
+      string movement_frame;
+
+      string movement_axis;
+    };
+    struct MoveTcpAlongAxis_Result {
+      @verbatim (language="comment", text=
+        " Result (Ausgabe nach der Action)")
+      boolean success;
+    };
+    struct MoveTcpAlongAxis_Feedback {
+      @verbatim (language="comment", text=
+        " Feedback (Wiederholende Rückmeldung während der Aktion)")
+      double current_position;
+    };
+  };
+};

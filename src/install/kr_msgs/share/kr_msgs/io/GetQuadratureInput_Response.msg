@@ -1,3 +1,0 @@
-
-Quadrature quad
-bool       success 

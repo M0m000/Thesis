@@ -1,1 +1,3 @@
-/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_cmake/srv/system/GetSafetyZones_Response.msg
+
+SafetyZone[]  zones  
+bool          success

@@ -1,0 +1,12 @@
+# Goal (Eingabewerte für die Action)
+float64 baseline
+string movement_frame
+string movement_axis
+
+---
+# Result (Ausgabe nach der Action)
+bool success
+
+---
+# Feedback (Wiederholende Rückmeldung während der Aktion)
+float64 current_position

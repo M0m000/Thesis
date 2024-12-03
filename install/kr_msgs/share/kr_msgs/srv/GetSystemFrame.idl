@@ -1,1 +1,44 @@
-/home/vboxuser/ros2_ws/build/kr_msgs/rosidl_adapter/kr_msgs/srv/GetSystemFrame.idl
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from kr_msgs/srv/robot/GetSystemFrame.srv
+// generated code does not contain a copyright notice
+
+
+module kr_msgs {
+  module srv {
+    module GetSystemFrame_Request_Constants {
+      const string WORLD = "world";
+      const string BASE = "base";
+      const string ELBOW = "elbow";
+      const string FLANGE = "tfc";
+      const string TCP = "tcp";
+      const string TARGET = "target";
+    };
+    @verbatim (language="comment", text=
+      "#####################################################" "\n"
+      "                 GET SYSTEM FRAME                   #" "\n"
+      "#####################################################")
+    struct GetSystemFrame_Request {
+      @verbatim (language="comment", text=
+        " SUPPORTED_FRAMES")
+      string name;
+
+      @verbatim (language="comment", text=
+        " SUPPORTED_FRAMES")
+      string ref;
+    };
+    typedef double double__3[3];
+    struct GetSystemFrame_Response {
+      @verbatim (language="comment", text=
+        " position - x, y, z")
+      @unit (value="mm")
+      double__3 pos;
+
+      @verbatim (language="comment", text=
+        " orientation - r, p, y")
+      @unit (value="degrees")
+      double__3 rot;
+
+      boolean success;
+    };
+  };
+};

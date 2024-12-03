@@ -1,5 +1,0 @@
-  File "/home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision/stereo_triangulation.py", line 128
-    def
-       ^
-SyntaxError: invalid syntax
-

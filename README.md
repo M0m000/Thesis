@@ -72,6 +72,45 @@ Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers K
 
 <br>
 
+<<<<<<< HEAD
+=======
+## **VCnanoZ Package**
+Package zum Verbindungsaufbau mit VCnanoZ Kamera. Auf Kamera mus "vcimgnetsrv &" sowie "vctp" ausgeführt werden, dass der Stream aktiv ist. <br>
+<br>
+
+### **VC Image Receiver** Node <br>
+```bash
+ros2 run vcnanoz vc_img_receiver --ros-args -p ipv4:="192.168.3.15" -p port:=2002 -p img_width:=1280 -p img_height:=720 -p rgb_stream:=False -p show_img:=True
+```
+>Dieser Knoten stellt eine Verbindung zum Socket her und streamt das Graubild der Kamera (Auflösung einstellbar) auf dem Topic "/vcnanoz/stream/image_raw". <br>
+<br>
+
+<br>
+
+## **Action Interface Package**
+Enthält alle Interfaces (Action-Types) für selbst geschriebene Actions - keine weiteren Aufrufe notwendig! <br>
+<br>
+
+## **Action Server Package**
+Enthält alle Server für selbst geschriebene Actions - müssen gestartet werden, damit Action an deren Stellen für Clients verfügbar. <br>
+<br>
+
+### **Fibonacci Action Server** Node <br>
+```bash
+ros2 run action_servers fibonacci_action_server
+```
+>Dieser Knoten öffnet den Server für eine Test Action - hier wird beispielhaft eine Fibonacci-Folge berechnet. <br>
+<br>
+
+### **MoveTcpAlongAxis Action Server** Node <br>
+```bash
+ros2 run action_servers MoveTcpAlongAxis_action_server
+```
+>Dieser Knoten öffnet den Server für eine Action, die den TCP des Roboters entlang einer Achse (movement_axis) in einem definierten Koordinatensystem (movement_frame) linear bewegt. Die Distanz, die entlang der Achse zurückgelegt werden soll, wird mit dem Parameter Baseline übergeben. <br>
+<br>
+
+<br>
+>>>>>>> action_test
 
 ## **Behavior Tree Package**
 Enthält alle Behavior Trees (Ablaufsteuerungen) als Nodes geschrieben - Kommunikation mit allen anderen Topics/Nodes/etc. möglich. <br>
@@ -160,6 +199,23 @@ ros2 run robot_control read_transformation_delta
 >vgl. Red Transformation Snapshot - für Testzwecke.<br>
 <br>
 
+<<<<<<< HEAD
+=======
+### **Fibonacci Action Client** Node <br>
+```bash
+ros2 run robot_control fibonacci_action_client
+```
+>Dieser Knoten öffnet einen Client auf die Fibonacci-Action (Beispielprogramm) - ACHTUNG: Server unter Package action_servers (siehe oben) muss aktiviert sein! <br>
+<br>
+
+### **MoveTcpAlongAxis Action Client** Node <br>
+```bash
+ros2 run robot_control MoveTcpAlongAxis_action_client
+```
+>Client für die Action MoveTcpAlongAxis (siehe oben bei Package action_servers). <br>
+<br>
+
+>>>>>>> action_test
 <br>
 
 ## **Intel RealSense Package**

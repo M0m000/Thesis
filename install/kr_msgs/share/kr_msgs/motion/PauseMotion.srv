@@ -1,1 +1,7 @@
-/home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs/srv/motion/PauseMotion.srv
+######################################################
+#                  PAUSE MOTION                      #
+######################################################
+
+bool       blocking # wait until robot is stopped
+---
+bool       success

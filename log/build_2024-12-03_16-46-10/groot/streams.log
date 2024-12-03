@@ -1,0 +1,56 @@
+[0.339s] Invoking command in '/home/vboxuser/ros2_ws/build/groot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/vcnanoz:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_servers:/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/groot -- -j8 -l8
+[0.619s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.621s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.661s] -- Found ament_index_cpp: 1.1.0 (/opt/ros/foxy/share/ament_index_cpp/cmake)
+[0.664s] -- ---------------------
+[0.664s] -- Compiling with AMENT.
+[0.664s] -- ---------------------
+[0.675s] -- ZeroMQ found.
+[0.756s] -- Configuring done
+[0.894s] -- Generating done
+[0.901s] -- Build files have been written to: /home/vboxuser/ros2_ws/build/groot
+[0.950s] [  1%] [34m[1mAutomatic MOC and UIC for target QtNodeEditor[0m
+[1.019s] [  1%] Built target QtNodeEditor_autogen
+[1.123s] [ 57%] Built target QtNodeEditor
+[1.153s] [ 58%] [34m[1mAutomatic MOC and UIC for target behavior_tree_editor[0m
+[1.182s] [ 58%] Built target behavior_tree_editor_autogen
+[1.240s] [ 74%] Built target behavior_tree_editor
+[1.280s] [ 75%] [34m[1mAutomatic MOC and UIC for target Groot[0m
+[1.283s] [ 75%] [34m[1mAutomatic MOC and UIC for target editor_test[0m
+[1.298s] [ 76%] [34m[1mAutomatic MOC and UIC for target replay_test[0m
+[1.348s] [ 76%] Built target editor_test_autogen
+[1.356s] [ 76%] Built target replay_test_autogen
+[1.384s] [ 76%] Built target Groot_autogen
+[1.473s] [ 77%] [32m[1mLinking CXX executable editor_test[0m
+[1.483s] [ 78%] [32m[1mLinking CXX executable replay_test[0m
+[1.493s] [ 79%] [32m[1mLinking CXX executable Groot[0m
+[2.578s] [ 87%] Built target replay_test
+[2.633s] [ 92%] Built target Groot
+[2.649s] [100%] Built target editor_test
+[2.674s] Invoked command in '/home/vboxuser/ros2_ws/build/groot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/vcnanoz:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_servers:/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/groot -- -j8 -l8
+[2.696s] Invoking command in '/home/vboxuser/ros2_ws/build/groot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/vcnanoz:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_servers:/opt/ros/foxy /usr/bin/cmake --install /home/vboxuser/ros2_ws/build/groot
+[2.710s] -- Install configuration: ""
+[2.711s] -- Execute custom install script
+[2.711s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/groot/lib/libbehavior_tree_editor.so
+[2.712s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/groot/lib/groot/Groot
+[2.713s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/library_path.sh
+[2.713s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/library_path.dsv
+[2.713s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/groot/share/ament_index/resource_index/package_run_dependencies/groot
+[2.713s] -- Symlinking: /home/vboxuser/ros2_ws/install/groot/share/ament_index/resource_index/parent_prefix_path/groot
+[2.739s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/ament_prefix_path.sh
+[2.740s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/ament_prefix_path.dsv
+[2.740s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/path.sh
+[2.740s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/path.dsv
+[2.741s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/groot/share/groot/local_setup.bash
+[2.741s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/groot/share/groot/local_setup.sh
+[2.742s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/groot/share/groot/local_setup.zsh
+[2.742s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/groot/share/groot/local_setup.dsv
+[2.743s] -- Symlinking: /home/vboxuser/ros2_ws/install/groot/share/groot/package.dsv
+[2.771s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/groot/share/ament_index/resource_index/packages/groot
+[2.771s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/groot/share/groot/cmake/ament_cmake_export_include_directories-extras.cmake
+[2.772s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/groot/share/groot/cmake/ament_cmake_export_dependencies-extras.cmake
+[2.772s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/groot/share/groot/cmake/ament_cmake_export_libraries-extras.cmake
+[2.772s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/groot/share/groot/cmake/grootConfig.cmake
+[2.772s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/groot/share/groot/cmake/grootConfig-version.cmake
+[2.772s] -- Up-to-date symlink: /home/vboxuser/ros2_ws/install/groot/share/groot/package.xml
+[2.792s] Invoked command in '/home/vboxuser/ros2_ws/build/groot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/vcnanoz:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_servers:/opt/ros/foxy /usr/bin/cmake --install /home/vboxuser/ros2_ws/build/groot

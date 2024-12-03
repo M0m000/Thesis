@@ -1,0 +1,3 @@
+[console_scripts]
+vc_img_receiver = vcnanoz.vc_img_receiver:main
+
