@@ -69,7 +69,7 @@ Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers K
 
 ***
 # ROS2-Befehle
-
+<br>
 
 ## **VCnanoZ ROS2 Package**
 Package zum Verbindungsaufbau mit VCnanoZ Kamera. Auf Kamera mus "vcimgnetsrv &" sowie "vctp" ausgeführt werden, dass der Stream aktiv ist. <br>
@@ -81,7 +81,10 @@ Package zum Verbindungsaufbau mit VCnanoZ Kamera. Auf Kamera mus "vcimgnetsrv &"
 ros2 run vcnanoz_ros2 vc_image_receiver --ros-args -p ipv4:="192.168.3.15" -p port:=2002 -p img_width:=2048 -p img_height:=1536 -p rgb_stream:=False -p show_img:=True
 ```
 >Dieser Knoten stellt eine Verbindung zum Socket her und streamt das Graubild der Kamera (Auflösung einstellbar) auf dem Topic "/vcnanoz/stream/image_raw". <br>
+<br>
 
+
+<br>
 ## **Behavior Tree Package**
 Enthält alle Behavior Trees (Ablaufsteuerungen) als Nodes geschrieben - Kommunikation mit allen anderen Topics/Nodes/etc. möglich. <br>
 <br>
@@ -93,6 +96,8 @@ ros2 run bt_pkg bt_example_tree
 >Dieser Knoten erstellt einen Test-Behavior-Tree. Dabei gibt es drei Knoten. Der erste wartet auf die Eingabe der Taste 1. Der zweite wartet auf die Eingabe der Taste 2, startet dann einen Timer von 20sec und ist nach Ablauf der Zeit beednet. Der dritte Knoten wartet dann auf die Eingabe der Taste 3 und beendet den Behavior Tree. <br>
 <br>
 
+
+<br>
 ## **Robot Control Package**
 Enthält alle Roboteransteuerungen - kommuniziert mit orange-ros2-Package von Kassow Robots. <br>
 <br>
@@ -168,6 +173,7 @@ ros2 run robot_control read_transformation_delta
 <br>
 
 
+<br>
 ## **Intel RealSense Package**
 Standardpaket von Intel RealSense - aktiviert den Kamerasystem und enthält einstellbare Parameter. <br>
 <br>
@@ -179,6 +185,8 @@ ros2 launch realsense2_camera rs_align_depth_launch.py
 >Startet den Kamerastream mit Tiefeninformation. <br>
 <br>
 
+
+<br>
 ## **Vision Package**
 Enthält alle Programme zur Bildverarbeitung - Filterung, NNs... <br>
 <br>
@@ -239,5 +247,3 @@ https://gitlab.com/kassowrobots/orange-ros2 <br>
 **RealSense** <br>
 https://github.com/IntelRealSense/realsense-ros <br>
 <br>
-
-
