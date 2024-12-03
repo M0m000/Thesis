@@ -82,9 +82,10 @@ ros2 run vcnanoz_ros2 vc_image_receiver --ros-args -p ipv4:="192.168.3.15" -p po
 ```
 >Dieser Knoten stellt eine Verbindung zum Socket her und streamt das Graubild der Kamera (Auflösung einstellbar) auf dem Topic "/vcnanoz/stream/image_raw". <br>
 <br>
-
-
 <br>
+
+
+
 ## **Behavior Tree Package**
 Enthält alle Behavior Trees (Ablaufsteuerungen) als Nodes geschrieben - Kommunikation mit allen anderen Topics/Nodes/etc. möglich. <br>
 <br>
