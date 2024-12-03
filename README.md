@@ -72,8 +72,6 @@ Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers K
 
 <br>
 
-<<<<<<< HEAD
-=======
 ## **VCnanoZ Package**
 Package zum Verbindungsaufbau mit VCnanoZ Kamera. Auf Kamera mus "vcimgnetsrv &" sowie "vctp" ausgeführt werden, dass der Stream aktiv ist. <br>
 <br>
@@ -110,7 +108,6 @@ ros2 run action_servers MoveTcpAlongAxis_action_server
 <br>
 
 <br>
->>>>>>> action_test
 
 ## **Behavior Tree Package**
 Enthält alle Behavior Trees (Ablaufsteuerungen) als Nodes geschrieben - Kommunikation mit allen anderen Topics/Nodes/etc. möglich. <br>
@@ -199,8 +196,6 @@ ros2 run robot_control read_transformation_delta
 >vgl. Red Transformation Snapshot - für Testzwecke.<br>
 <br>
 
-<<<<<<< HEAD
-=======
 ### **Fibonacci Action Client** Node <br>
 ```bash
 ros2 run robot_control fibonacci_action_client
@@ -215,7 +210,6 @@ ros2 run robot_control MoveTcpAlongAxis_action_client
 >Client für die Action MoveTcpAlongAxis (siehe oben bei Package action_servers). <br>
 <br>
 
->>>>>>> action_test
 <br>
 
 ## **Intel RealSense Package**
