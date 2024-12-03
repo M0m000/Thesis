@@ -1,0 +1,24 @@
+[1.624s] Invoking command in '/home/vboxuser/ros2_ws/src/vcnanoz_ros2': PYTHONPATH=/home/vboxuser/ros2_ws/build/vcnanoz_ros2/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/vcnanoz_ros2/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/vcnanoz_ros2 build --build-base /home/vboxuser/ros2_ws/build/vcnanoz_ros2/build install --record /home/vboxuser/ros2_ws/build/vcnanoz_ros2/install.log --install-scripts $base/lib/vcnanoz_ros2 --single-version-externally-managed install_data
+[1.908s] running egg_info
+[1.911s] writing ../../build/vcnanoz_ros2/vcnanoz_ros2.egg-info/PKG-INFO
+[1.911s] writing dependency_links to ../../build/vcnanoz_ros2/vcnanoz_ros2.egg-info/dependency_links.txt
+[1.911s] writing entry points to ../../build/vcnanoz_ros2/vcnanoz_ros2.egg-info/entry_points.txt
+[1.912s] writing requirements to ../../build/vcnanoz_ros2/vcnanoz_ros2.egg-info/requires.txt
+[1.912s] writing top-level names to ../../build/vcnanoz_ros2/vcnanoz_ros2.egg-info/top_level.txt
+[1.912s] reading manifest file '../../build/vcnanoz_ros2/vcnanoz_ros2.egg-info/SOURCES.txt'
+[1.915s] writing manifest file '../../build/vcnanoz_ros2/vcnanoz_ros2.egg-info/SOURCES.txt'
+[1.916s] running build
+[1.916s] running build_py
+[1.916s] copying vcnanoz_ros2/vc_img_receiver.py -> /home/vboxuser/ros2_ws/build/vcnanoz_ros2/build/lib/vcnanoz_ros2
+[1.918s] running install
+[1.919s] running install_lib
+[1.919s] copying /home/vboxuser/ros2_ws/build/vcnanoz_ros2/build/lib/vcnanoz_ros2/vc_img_receiver.py -> /home/vboxuser/ros2_ws/install/vcnanoz_ros2/lib/python3.8/site-packages/vcnanoz_ros2
+[1.919s] byte-compiling /home/vboxuser/ros2_ws/install/vcnanoz_ros2/lib/python3.8/site-packages/vcnanoz_ros2/vc_img_receiver.py to vc_img_receiver.cpython-38.pyc
+[1.919s] running install_data
+[1.919s] running install_egg_info
+[1.919s] removing '/home/vboxuser/ros2_ws/install/vcnanoz_ros2/lib/python3.8/site-packages/vcnanoz_ros2-0.0.0-py3.8.egg-info' (and everything under it)
+[1.919s] Copying ../../build/vcnanoz_ros2/vcnanoz_ros2.egg-info to /home/vboxuser/ros2_ws/install/vcnanoz_ros2/lib/python3.8/site-packages/vcnanoz_ros2-0.0.0-py3.8.egg-info
+[1.919s] running install_scripts
+[1.919s] Installing vc_img_receiver script to /home/vboxuser/ros2_ws/install/vcnanoz_ros2/lib/vcnanoz_ros2
+[1.919s] writing list of installed files to '/home/vboxuser/ros2_ws/build/vcnanoz_ros2/install.log'
+[1.985s] Invoked command in '/home/vboxuser/ros2_ws/src/vcnanoz_ros2' returned '0': PYTHONPATH=/home/vboxuser/ros2_ws/build/vcnanoz_ros2/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/vcnanoz_ros2/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/vcnanoz_ros2 build --build-base /home/vboxuser/ros2_ws/build/vcnanoz_ros2/build install --record /home/vboxuser/ros2_ws/build/vcnanoz_ros2/install.log --install-scripts $base/lib/vcnanoz_ros2 --single-version-externally-managed install_data

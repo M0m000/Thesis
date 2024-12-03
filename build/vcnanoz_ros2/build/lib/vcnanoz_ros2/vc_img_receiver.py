@@ -10,6 +10,7 @@ from PIL import Image
 import numpy as np
 import cv2
 from cv_bridge import CvBridge
+import paramiko
 
 
 class VCImageReceiver(Node):
@@ -43,10 +44,10 @@ class VCImageReceiver(Node):
         self.ipv4 = self.get_parameter('ipv4').get_parameter_value().string_value
         self.declare_parameter('port', 2002)
         self.port = self.get_parameter('port').get_parameter_value().integer_value
-        self.declare_parameter('pixel_width', 2048)
-        self.dx = self.get_parameter('pixel_width').get_parameter_value().integer_value
-        self.declare_parameter('pixel_height', 1536)
-        self.dy = self.get_parameter('pixel_height').get_parameter_value().integer_value
+        self.declare_parameter('img_width', 2048)
+        self.dx = self.get_parameter('img_width').get_parameter_value().integer_value
+        self.declare_parameter('img_height', 1536)
+        self.dy = self.get_parameter('img_height').get_parameter_value().integer_value
         self.declare_parameter('rgb_stream', False)
         self.rgb_stream = self.get_parameter('rgb_stream').get_parameter_value().bool_value
         self.declare_parameter('show_img', True)
@@ -56,6 +57,9 @@ class VCImageReceiver(Node):
         self.bridge = CvBridge()
 
         self.get_logger().info(f'IPv4: {self.ipv4} - Port: {self.port}')
+
+        # Starte den VC Stream
+        self.startVCstream()
 
         # verbinden
         self.connect()
@@ -74,7 +78,6 @@ class VCImageReceiver(Node):
 
 
     def receive_img(self):
-        # self.get_logger().info("Receive Img from VC nano Z")
         if(None == self.sock):
             return False
         
@@ -85,11 +88,6 @@ class VCImageReceiver(Node):
             self.fps = 1.0 / frame_time
         self.last_frame_time = current_time
         self.get_logger().info(f"Streaming {self.fps:.2f} fps")
-        
-        '''
-        self.get_logger().info('requesting image size: ([x0,y0],[dx,dy],[incrx,incry]):([%4d,%4d],[%4d,%4d],[%2d,%2d])'
-                        % (self.x0, self.y0, self.dx, self.dy, self.incrx, self.incry))
-        '''
         
         hdr_req = struct.pack("IIIIII", self.x0, self.y0, self.dx, self.dy, self.incrx, self.incry)
 
@@ -113,11 +111,6 @@ class VCImageReceiver(Node):
         if img_bytes < 0:
             raise
 
-        '''
-        self.get_logger().info('receiving  image size: ([x0,y0],[dx,dy],[incrx,incry]):([%4d,%4d],[%4d,%4d],[%2d,%2d])'
-                                % (img_x0, img_y0, img_dx, img_dy, img_incrx, img_incry))
-        '''
-
         img_data = bytearray(img_bytes)
         mv_img_data = memoryview(img_data)
         len_img_data = 0
@@ -128,9 +121,7 @@ class VCImageReceiver(Node):
 
         self.img = dict(x0=int(img_x0), y0=int(img_y0), dx=int(img_dx), dy=int(img_dy), incrx=img_incrx, incry=img_incry, data=img_data)
         
-        # Numpy Tensor Wandlung und Publish auf Topic
         self.create_img_tensor()
-        # self.publish_image()
 
         if self.show_img:
             self.visualize()
@@ -200,6 +191,29 @@ class VCImageReceiver(Node):
         self.sock = None
         self.sock_to = None
 
+    def startVCstream(self):
+        try:
+            ssh = paramiko.SSHClient()
+            ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+            ssh.connect(self.ipv4, 22, "root", "root")
+            print(f"Connected successfully to {self.ipv4}")
+
+            command_1 = "vcimgnetsrv &"
+            stdin, stdout, stderr = ssh.exec_command(command_1)
+            print(stdout.read().decode())  # Ausgabe des ersten Befehls
+            print(stderr.read().decode())
+
+            time.sleep(2)
+
+            command_2 = "vctp"
+            stdin, stdout, stderr = ssh.exec_command(command_2)
+            print(stdout.read().decode())  # Ausgabe des zweiten Befehls
+            print(stderr.read().decode())
+
+        except Exception as e:
+            print(f"Fehler: {e}")
+
 
 def main(args=None):
     rclpy.init(args=args)
@@ -211,4 +225,5 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
 

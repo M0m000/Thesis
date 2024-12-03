@@ -20,8 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'vc_img_receiver = vcnanoz_ros2.vc_img_receiver:main'
+            'vc_img_receiver = vcnanoz_ros2.vc_img_receiver:main',
         ],
     },
 )
-

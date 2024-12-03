@@ -1,0 +1,30 @@
+[0.733s] Invoking command in '/home/vboxuser/ros2_ws/src/vcnanoz_ros2': PYTHONPATH=/home/vboxuser/ros2_ws/build/vcnanoz_ros2/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/vcnanoz_ros2/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/vcnanoz_ros2 build --build-base /home/vboxuser/ros2_ws/build/vcnanoz_ros2/build install --record /home/vboxuser/ros2_ws/build/vcnanoz_ros2/install.log --install-scripts $base/lib/vcnanoz_ros2 --single-version-externally-managed install_data
+[0.962s] running egg_info
+[0.963s] writing ../../build/vcnanoz_ros2/vcnanoz_ros2.egg-info/PKG-INFO
+[0.963s] writing dependency_links to ../../build/vcnanoz_ros2/vcnanoz_ros2.egg-info/dependency_links.txt
+[0.964s] writing entry points to ../../build/vcnanoz_ros2/vcnanoz_ros2.egg-info/entry_points.txt
+[0.964s] writing requirements to ../../build/vcnanoz_ros2/vcnanoz_ros2.egg-info/requires.txt
+[0.965s] writing top-level names to ../../build/vcnanoz_ros2/vcnanoz_ros2.egg-info/top_level.txt
+[0.992s] reading manifest file '../../build/vcnanoz_ros2/vcnanoz_ros2.egg-info/SOURCES.txt'
+[0.993s] writing manifest file '../../build/vcnanoz_ros2/vcnanoz_ros2.egg-info/SOURCES.txt'
+[0.993s] running build
+[0.993s] running build_py
+[0.993s] copying vcnanoz_ros2/startvcstream_server.py -> /home/vboxuser/ros2_ws/build/vcnanoz_ros2/build/lib/vcnanoz_ros2
+[0.993s] copying vcnanoz_ros2/startvcstream_client.py -> /home/vboxuser/ros2_ws/build/vcnanoz_ros2/build/lib/vcnanoz_ros2
+[0.994s] copying vcnanoz_ros2/vc_img_receiver.py -> /home/vboxuser/ros2_ws/build/vcnanoz_ros2/build/lib/vcnanoz_ros2
+[0.994s] running install
+[0.994s] running install_lib
+[0.995s] copying /home/vboxuser/ros2_ws/build/vcnanoz_ros2/build/lib/vcnanoz_ros2/startvcstream_server.py -> /home/vboxuser/ros2_ws/install/vcnanoz_ros2/lib/python3.8/site-packages/vcnanoz_ros2
+[0.996s] copying /home/vboxuser/ros2_ws/build/vcnanoz_ros2/build/lib/vcnanoz_ros2/startvcstream_client.py -> /home/vboxuser/ros2_ws/install/vcnanoz_ros2/lib/python3.8/site-packages/vcnanoz_ros2
+[0.996s] copying /home/vboxuser/ros2_ws/build/vcnanoz_ros2/build/lib/vcnanoz_ros2/vc_img_receiver.py -> /home/vboxuser/ros2_ws/install/vcnanoz_ros2/lib/python3.8/site-packages/vcnanoz_ros2
+[0.997s] byte-compiling /home/vboxuser/ros2_ws/install/vcnanoz_ros2/lib/python3.8/site-packages/vcnanoz_ros2/startvcstream_server.py to startvcstream_server.cpython-38.pyc
+[0.998s] byte-compiling /home/vboxuser/ros2_ws/install/vcnanoz_ros2/lib/python3.8/site-packages/vcnanoz_ros2/startvcstream_client.py to startvcstream_client.cpython-38.pyc
+[0.998s] byte-compiling /home/vboxuser/ros2_ws/install/vcnanoz_ros2/lib/python3.8/site-packages/vcnanoz_ros2/vc_img_receiver.py to vc_img_receiver.cpython-38.pyc
+[1.000s] running install_data
+[1.000s] running install_egg_info
+[1.001s] removing '/home/vboxuser/ros2_ws/install/vcnanoz_ros2/lib/python3.8/site-packages/vcnanoz_ros2-0.0.0-py3.8.egg-info' (and everything under it)
+[1.002s] Copying ../../build/vcnanoz_ros2/vcnanoz_ros2.egg-info to /home/vboxuser/ros2_ws/install/vcnanoz_ros2/lib/python3.8/site-packages/vcnanoz_ros2-0.0.0-py3.8.egg-info
+[1.003s] running install_scripts
+[1.017s] Installing vc_img_receiver script to /home/vboxuser/ros2_ws/install/vcnanoz_ros2/lib/vcnanoz_ros2
+[1.019s] writing list of installed files to '/home/vboxuser/ros2_ws/build/vcnanoz_ros2/install.log'
+[1.040s] Invoked command in '/home/vboxuser/ros2_ws/src/vcnanoz_ros2' returned '0': PYTHONPATH=/home/vboxuser/ros2_ws/build/vcnanoz_ros2/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/vcnanoz_ros2/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/vcnanoz_ros2 build --build-base /home/vboxuser/ros2_ws/build/vcnanoz_ros2/build install --record /home/vboxuser/ros2_ws/build/vcnanoz_ros2/install.log --install-scripts $base/lib/vcnanoz_ros2 --single-version-externally-managed install_data
