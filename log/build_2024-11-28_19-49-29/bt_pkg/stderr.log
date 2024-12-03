@@ -1,5 +1,0 @@
-  File "/home/vboxuser/ros2_ws/install/bt_pkg/lib/python3.8/site-packages/bt_pkg/bt_scan_hookstrip.py", line 94
-    front_view.add_child(TraverseLine(node, direction="front", baseline=baseline, movement_frame=movement_frame, movement_axis=movement_axis, self.robot_srv_node))
-                                                                                                                                              ^
-SyntaxError: positional argument follows keyword argument
-
