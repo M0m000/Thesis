@@ -1,0 +1,15 @@
+[0.085s] Invoking command in '/home/vboxuser/ros2_ws/build/action_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_servers:/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/action_interfaces -- -j8 -l8
+[0.787s] [  2%] Built target action_interfaces__cpp
+[0.787s] [ 12%] Built target action_interfaces__rosidl_generator_c
+[0.788s] [ 23%] Built target action_interfaces__rosidl_typesupport_introspection_cpp
+[0.788s] [ 33%] Built target action_interfaces__rosidl_typesupport_c
+[0.788s] [ 43%] Built target action_interfaces__rosidl_typesupport_cpp
+[0.790s] [ 53%] Built target action_interfaces__rosidl_typesupport_fastrtps_cpp
+[0.790s] [ 64%] Built target action_interfaces__rosidl_typesupport_introspection_c
+[0.790s] [ 74%] Built target action_interfaces__rosidl_typesupport_fastrtps_c
+[0.790s] [ 74%] Built target action_interfaces
+[0.790s] [ 76%] Built target action_interfaces__py
+[0.790s] [ 84%] Built target action_interfaces__python
+[0.790s] [ 89%] Built target action_interfaces__rosidl_typesupport_fastrtps_c__pyext
+[0.790s] [ 94%] Built target action_interfaces__rosidl_typesupport_introspection_c__pyext
+[0.790s] [100%] Built target action_interfaces__rosidl_typesupport_c__pyext

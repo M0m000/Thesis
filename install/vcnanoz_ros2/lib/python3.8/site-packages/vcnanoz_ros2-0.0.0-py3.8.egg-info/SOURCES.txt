@@ -13,3 +13,4 @@ test/test_copyright.py
 test/test_flake8.py
 test/test_pep257.py
 vcnanoz_ros2/__init__.py
+vcnanoz_ros2/vc_img_receiver.py
