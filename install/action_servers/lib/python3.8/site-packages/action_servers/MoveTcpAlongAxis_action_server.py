@@ -19,12 +19,10 @@ class MoveTcpAlongAxisActionServer(Node):
     def execute_callback(self, goal_handle):
         self.get_logger().info(f"Starting TCP movement with goal: {goal_handle.request}")
 
-        # Goal Parameter auslesen
         baseline = goal_handle.request.baseline
         movement_frame = goal_handle.request.movement_frame
         movement_axis = goal_handle.request.movement_axis
 
-        # Beispielhafte Roboterbewegung (hier einfach simuliert)
         feedback_msg = MoveTcpAlongAxis.Feedback()
         feedback_msg.current_position = baseline  # Startposition
 
@@ -53,3 +51,4 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+    

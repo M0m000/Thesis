@@ -1,0 +1,15 @@
+package.xml
+setup.cfg
+setup.py
+../../build/VCnanoZ_ros2/VCnanoZ_ros2.egg-info/PKG-INFO
+../../build/VCnanoZ_ros2/VCnanoZ_ros2.egg-info/SOURCES.txt
+../../build/VCnanoZ_ros2/VCnanoZ_ros2.egg-info/dependency_links.txt
+../../build/VCnanoZ_ros2/VCnanoZ_ros2.egg-info/entry_points.txt
+../../build/VCnanoZ_ros2/VCnanoZ_ros2.egg-info/requires.txt
+../../build/VCnanoZ_ros2/VCnanoZ_ros2.egg-info/top_level.txt
+../../build/VCnanoZ_ros2/VCnanoZ_ros2.egg-info/zip-safe
+VCnanoZ_ros2/__init__.py
+resource/VCnanoZ_ros2
+test/test_copyright.py
+test/test_flake8.py
+test/test_pep257.py
