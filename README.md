@@ -70,6 +70,21 @@ Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers K
 ***
 # ROS2-Befehle
 
+<br>
+
+## **VCnanoZ ROS2 Package**
+Package zum Verbindungsaufbau mit VCnanoZ Kamera. Auf Kamera mus "vcimgnetsrv &" sowie "vctp" ausgeführt werden, dass der Stream aktiv ist. <br>
+<br>
+
+### **VC Image Receiver** Node <br>
+```bash
+ros2 run vcnanoz_ros2 vc_image_receiver --ros-args -p ipv4:="192.168.3.15" -p port:=2002 -p img_width:=2048 -p img_height:=1536 -p rgb_stream:=False -p show_img:=True
+```
+>Dieser Knoten stellt eine Verbindung zum Socket her und streamt das Graubild der Kamera (Auflösung einstellbar) auf dem Topic "/vcnanoz/stream/image_raw". <br>
+<br>
+
+<br>
+
 ## **Action Interface Package**
 Enthält alle Interfaces (Action-Types) für selbst geschriebene Actions - keine weiteren Aufrufe notwendig! <br>
 <br>
@@ -92,6 +107,8 @@ ros2 run action_servers MoveTcpAlongAxis_action_server
 >Dieser Knoten öffnet den Server für eine Action, die den TCP des Roboters entlang einer Achse (movement_axis) in einem definierten Koordinatensystem (movement_frame) linear bewegt. Die Distanz, die entlang der Achse zurückgelegt werden soll, wird mit dem Parameter Baseline übergeben. <br>
 <br>
 
+<br>
+
 ## **Behavior Tree Package**
 Enthält alle Behavior Trees (Ablaufsteuerungen) als Nodes geschrieben - Kommunikation mit allen anderen Topics/Nodes/etc. möglich. <br>
 <br>
@@ -101,6 +118,8 @@ Enthält alle Behavior Trees (Ablaufsteuerungen) als Nodes geschrieben - Kommuni
 ros2 run bt_pkg bt_example_tree
 ```
 >Dieser Knoten erstellt einen Test-Behavior-Tree. Dabei gibt es drei Knoten. Der erste wartet auf die Eingabe der Taste 1. Der zweite wartet auf die Eingabe der Taste 2, startet dann einen Timer von 20sec und ist nach Ablauf der Zeit beednet. Der dritte Knoten wartet dann auf die Eingabe der Taste 3 und beendet den Behavior Tree. <br>
+<br>
+
 <br>
 
 ## **Robot Control Package**
@@ -191,6 +210,7 @@ ros2 run robot_control MoveTcpAlongAxis_action_client
 >Client für die Action MoveTcpAlongAxis (siehe oben bei Package action_servers). <br>
 <br>
 
+<br>
 
 ## **Intel RealSense Package**
 Standardpaket von Intel RealSense - aktiviert den Kamerasystem und enthält einstellbare Parameter. <br>
@@ -201,6 +221,8 @@ Standardpaket von Intel RealSense - aktiviert den Kamerasystem und enthält eins
 ros2 launch realsense2_camera rs_align_depth_launch.py
 ```
 >Startet den Kamerastream mit Tiefeninformation. <br>
+<br>
+
 <br>
 
 ## **Vision Package**
