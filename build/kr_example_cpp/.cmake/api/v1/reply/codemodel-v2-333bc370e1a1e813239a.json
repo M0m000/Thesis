@@ -1,0 +1,114 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "kr_example_cpp",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "follow_joint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-follow_joint-f562f2527e80bb7897dc.json",
+					"name" : "follow_joint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "jog_linear::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-jog_linear-f1470ed5457497cc0e54.json",
+					"name" : "jog_linear",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "kr_example_cpp_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-kr_example_cpp_uninstall-425790e3e3e4650cd2c0.json",
+					"name" : "kr_example_cpp_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "move_joint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-move_joint-d60249f09762920bd5df.json",
+					"name" : "move_joint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "robot_state::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-robot_state-7950e0aa632095de2d80.json",
+					"name" : "robot_state",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "self_motion::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-self_motion-9987db2f8b3a2616d507.json",
+					"name" : "self_motion",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-64df90a161c74f4f8175.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/vboxuser/ros2_ws/build/kr_example_cpp",
+		"source" : "/home/vboxuser/ros2_ws/src/orange-ros2/kr_example/cpp"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}

@@ -1,6 +1,0 @@
-Invoking command in '/home/vboxuser/ros2_ws/build/groot': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/vboxuser/ros2_ws/src/Groot -DCMAKE_INSTALL_PREFIX=/home/vboxuser/ros2_ws/install/groot
-Invoked command in '/home/vboxuser/ros2_ws/build/groot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/vboxuser/ros2_ws/src/Groot -DCMAKE_INSTALL_PREFIX=/home/vboxuser/ros2_ws/install/groot
-Invoking command in '/home/vboxuser/ros2_ws/build/groot': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/groot -- -j8 -l8
-Invoked command in '/home/vboxuser/ros2_ws/build/groot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/groot -- -j8 -l8
-Invoking command in '/home/vboxuser/ros2_ws/build/groot': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/vboxuser/ros2_ws/build/groot
-Invoked command in '/home/vboxuser/ros2_ws/build/groot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/vboxuser/ros2_ws/build/groot

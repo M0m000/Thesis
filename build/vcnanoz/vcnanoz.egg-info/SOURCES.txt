@@ -1,0 +1,16 @@
+package.xml
+setup.cfg
+setup.py
+../../build/vcnanoz/vcnanoz.egg-info/PKG-INFO
+../../build/vcnanoz/vcnanoz.egg-info/SOURCES.txt
+../../build/vcnanoz/vcnanoz.egg-info/dependency_links.txt
+../../build/vcnanoz/vcnanoz.egg-info/entry_points.txt
+../../build/vcnanoz/vcnanoz.egg-info/requires.txt
+../../build/vcnanoz/vcnanoz.egg-info/top_level.txt
+../../build/vcnanoz/vcnanoz.egg-info/zip-safe
+resource/vcnanoz
+test/test_copyright.py
+test/test_flake8.py
+test/test_pep257.py
+vcnanoz/__init__.py
+vcnanoz/vc_img_receiver.py

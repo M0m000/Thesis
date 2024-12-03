@@ -1,0 +1,248 @@
+[0.075s] Invoking command in '/home/vboxuser/ros2_ws/build/action_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/vcnanoz_ros2:/home/vboxuser/ros2_ws/install/vcnanoz:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_servers:/home/vboxuser/ros2_ws/install/VCnanoZ_ros2:/opt/ros/foxy /usr/bin/cmake /home/vboxuser/ros2_ws/src/action_interfaces -DCMAKE_INSTALL_PREFIX=/home/vboxuser/ros2_ws/install/action_interfaces
+[0.703s] -- The C compiler identification is GNU 9.4.0
+[0.703s] -- The CXX compiler identification is GNU 9.4.0
+[0.704s] -- Check for working C compiler: /usr/bin/cc
+[0.704s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.704s] -- Detecting C compiler ABI info
+[0.704s] -- Detecting C compiler ABI info - done
+[0.704s] -- Detecting C compile features
+[0.705s] -- Detecting C compile features - done
+[0.706s] -- Check for working CXX compiler: /usr/bin/c++
+[0.706s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.706s] -- Detecting CXX compiler ABI info
+[0.768s] -- Detecting CXX compiler ABI info - done
+[0.777s] -- Detecting CXX compile features
+[0.778s] -- Detecting CXX compile features - done
+[0.780s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.806s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.806s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[1.055s] -- Found rosidl_default_generators: 1.0.1 (/opt/ros/foxy/share/rosidl_default_generators/cmake)
+[1.060s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.067s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[1.192s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[1.245s] -- Found FastRTPS: /opt/ros/foxy/include  
+[1.386s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.436s] -- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") 
+[1.657s] -- Found ament_cmake_ros: 0.9.2 (/opt/ros/foxy/share/ament_cmake_ros/cmake)
+[1.811s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.820s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.850s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3.5") 
+[1.852s] -- Found python_cmake_module: 0.8.1 (/opt/ros/foxy/share/python_cmake_module/cmake)
+[1.881s] -- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.8.so (found suitable version "3.8.10", minimum required is "3.5") 
+[1.881s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[1.881s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.8
+[1.881s] -- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.8.so
+[1.932s] -- Found PythonExtra: .so  
+[1.996s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[2.021s] -- Added test 'copyright' to check source files copyright and LICENSE
+[2.024s] -- Added test 'lint_cmake' to check CMake code style
+[2.025s] -- Added test 'xmllint' to check XML markup files
+[2.032s] -- Configuring done
+[2.090s] -- Generating done
+[2.112s] -- Build files have been written to: /home/vboxuser/ros2_ws/build/action_interfaces
+[2.129s] Invoked command in '/home/vboxuser/ros2_ws/build/action_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/vcnanoz_ros2:/home/vboxuser/ros2_ws/install/vcnanoz:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_servers:/home/vboxuser/ros2_ws/install/VCnanoZ_ros2:/opt/ros/foxy /usr/bin/cmake /home/vboxuser/ros2_ws/src/action_interfaces -DCMAKE_INSTALL_PREFIX=/home/vboxuser/ros2_ws/install/action_interfaces
+[2.130s] Invoking command in '/home/vboxuser/ros2_ws/build/action_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/vcnanoz_ros2:/home/vboxuser/ros2_ws/install/vcnanoz:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_servers:/home/vboxuser/ros2_ws/install/VCnanoZ_ros2:/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/action_interfaces -- -j8 -l8
+[2.187s] [35m[1mScanning dependencies of target action_interfaces__cpp[0m
+[2.201s] [  2%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[2.835s] [  2%] Built target action_interfaces__cpp
+[2.850s] [  5%] [34m[1mGenerating C code for ROS interfaces[0m
+[3.411s] [35m[1mScanning dependencies of target action_interfaces__rosidl_generator_c[0m
+[3.429s] [  7%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_generator_c.dir/rosidl_generator_c/action_interfaces/action/detail/fibonacci__functions.c.o[0m
+[3.549s] [ 10%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_generator_c.dir/rosidl_generator_c/action_interfaces/action/detail/move_tcp_along_axis__functions.c.o[0m
+[3.683s] [ 12%] [32m[1mLinking C shared library libaction_interfaces__rosidl_generator_c.so[0m
+[3.737s] [ 12%] Built target action_interfaces__rosidl_generator_c
+[3.751s] [ 15%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[4.195s] [35m[1mScanning dependencies of target action_interfaces__rosidl_typesupport_fastrtps_cpp[0m
+[4.229s] [ 17%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/action_interfaces/action/detail/dds_fastrtps/fibonacci__type_support.cpp.o[0m
+[4.724s] [ 20%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/action_interfaces/action/detail/dds_fastrtps/move_tcp_along_axis__type_support.cpp.o[0m
+[5.176s] [ 23%] [32m[1mLinking CXX shared library libaction_interfaces__rosidl_typesupport_fastrtps_cpp.so[0m
+[5.269s] [ 23%] Built target action_interfaces__rosidl_typesupport_fastrtps_cpp
+[5.283s] [ 25%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[5.559s] [35m[1mScanning dependencies of target action_interfaces__rosidl_typesupport_c[0m
+[5.578s] [ 28%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/action_interfaces/action/fibonacci__type_support.cpp.o[0m
+[5.630s] [ 30%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/action_interfaces/action/move_tcp_along_axis__type_support.cpp.o[0m
+[5.700s] [ 33%] [32m[1mLinking CXX shared library libaction_interfaces__rosidl_typesupport_c.so[0m
+[5.750s] [ 33%] Built target action_interfaces__rosidl_typesupport_c
+[5.764s] [ 35%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[6.208s] [35m[1mScanning dependencies of target action_interfaces__rosidl_typesupport_fastrtps_c[0m
+[6.234s] [ 38%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/action_interfaces/action/detail/fibonacci__type_support_c.cpp.o[0m
+[6.575s] [ 41%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/action_interfaces/action/detail/move_tcp_along_axis__type_support_c.cpp.o[0m
+[7.024s] [ 43%] [32m[1mLinking CXX shared library libaction_interfaces__rosidl_typesupport_fastrtps_c.so[0m
+[7.147s] [ 43%] Built target action_interfaces__rosidl_typesupport_fastrtps_c
+[7.160s] [ 46%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[7.730s] [35m[1mScanning dependencies of target action_interfaces__rosidl_typesupport_introspection_c[0m
+[7.751s] [ 48%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__type_support.c.o[0m
+[7.805s] [ 51%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_tcp_along_axis__type_support.c.o[0m
+[7.860s] [ 53%] [32m[1mLinking C shared library libaction_interfaces__rosidl_typesupport_introspection_c.so[0m
+[7.902s] [ 53%] Built target action_interfaces__rosidl_typesupport_introspection_c
+[7.914s] [ 56%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[8.211s] [35m[1mScanning dependencies of target action_interfaces__rosidl_typesupport_cpp[0m
+[8.256s] [ 58%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/action_interfaces/action/fibonacci__type_support.cpp.o[0m
+[8.567s] [ 61%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/action_interfaces/action/move_tcp_along_axis__type_support.cpp.o[0m
+[8.882s] [ 64%] [32m[1mLinking CXX shared library libaction_interfaces__rosidl_typesupport_cpp.so[0m
+[8.934s] [ 64%] Built target action_interfaces__rosidl_typesupport_cpp
+[8.948s] [ 66%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[9.349s] [35m[1mScanning dependencies of target action_interfaces__rosidl_typesupport_introspection_cpp[0m
+[9.370s] [ 69%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/fibonacci__type_support.cpp.o[0m
+[9.729s] [ 71%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/move_tcp_along_axis__type_support.cpp.o[0m
+[10.064s] [ 74%] [32m[1mLinking CXX shared library libaction_interfaces__rosidl_typesupport_introspection_cpp.so[0m
+[10.172s] [ 74%] Built target action_interfaces__rosidl_typesupport_introspection_cpp
+[10.186s] [35m[1mScanning dependencies of target action_interfaces[0m
+[10.201s] [ 74%] Built target action_interfaces
+[10.216s] [35m[1mScanning dependencies of target action_interfaces__py[0m
+[10.231s] [ 76%] [34m[1mGenerating Python code for ROS interfaces[0m
+[11.353s] [ 76%] Built target action_interfaces__py
+[11.366s] [35m[1mScanning dependencies of target action_interfaces__python[0m
+[11.393s] [ 79%] [32mBuilding C object CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/action/_fibonacci_s.c.o[0m
+[11.540s] [ 82%] [32mBuilding C object CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/action/_move_tcp_along_axis_s.c.o[0m
+[11.673s] [ 84%] [32m[1mLinking C shared library rosidl_generator_py/action_interfaces/libaction_interfaces__python.so[0m
+[11.725s] [ 84%] Built target action_interfaces__python
+[11.739s] [35m[1mScanning dependencies of target action_interfaces__rosidl_typesupport_c__pyext[0m
+[11.787s] [ 87%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_c.c.o[0m
+[11.908s] [ 89%] [32m[1mLinking C shared library rosidl_generator_py/action_interfaces/action_interfaces_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so[0m
+[11.954s] [ 89%] Built target action_interfaces__rosidl_typesupport_c__pyext
+[11.968s] [35m[1mScanning dependencies of target action_interfaces__rosidl_typesupport_fastrtps_c__pyext[0m
+[11.994s] [ 92%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[12.135s] [ 94%] [32m[1mLinking CXX shared library rosidl_generator_py/action_interfaces/action_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so[0m
+[12.209s] [ 94%] Built target action_interfaces__rosidl_typesupport_fastrtps_c__pyext
+[12.223s] [35m[1mScanning dependencies of target action_interfaces__rosidl_typesupport_introspection_c__pyext[0m
+[12.246s] [ 97%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[12.395s] [100%] [32m[1mLinking C shared library rosidl_generator_py/action_interfaces/action_interfaces_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so[0m
+[12.466s] [100%] Built target action_interfaces__rosidl_typesupport_introspection_c__pyext
+[12.488s] Invoked command in '/home/vboxuser/ros2_ws/build/action_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/vcnanoz_ros2:/home/vboxuser/ros2_ws/install/vcnanoz:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_servers:/home/vboxuser/ros2_ws/install/VCnanoZ_ros2:/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/action_interfaces -- -j8 -l8
+[12.512s] Invoking command in '/home/vboxuser/ros2_ws/build/action_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/vcnanoz_ros2:/home/vboxuser/ros2_ws/install/vcnanoz:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_servers:/home/vboxuser/ros2_ws/install/VCnanoZ_ros2:/opt/ros/foxy /usr/bin/cmake --install /home/vboxuser/ros2_ws/build/action_interfaces
+[12.526s] -- Install configuration: ""
+[12.527s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/ament_index/resource_index/rosidl_interfaces/action_interfaces
+[12.528s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces
+[12.529s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action
+[12.529s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/move_tcp_along_axis.h
+[12.530s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail
+[12.531s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__functions.h
+[12.532s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__functions.c
+[12.532s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__struct.h
+[12.532s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__type_support.h
+[12.532s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__functions.h
+[12.532s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__functions.c
+[12.533s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__type_support.h
+[12.533s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__struct.h
+[12.533s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/fibonacci.h
+[12.533s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/msg
+[12.533s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/msg/rosidl_generator_c__visibility_control.h
+[12.534s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/environment/library_path.sh
+[12.534s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/environment/library_path.dsv
+[12.534s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/lib/libaction_interfaces__rosidl_generator_c.so
+[12.535s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/action_interfaces/lib/libaction_interfaces__rosidl_generator_c.so" to ""
+[12.535s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces
+[12.535s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action
+[12.535s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail
+[12.535s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__rosidl_typesupport_fastrtps_c.h
+[12.535s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__rosidl_typesupport_fastrtps_c.h
+[12.536s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/msg
+[12.536s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[12.536s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_fastrtps_c.so
+[12.537s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_fastrtps_c.so" to ""
+[12.537s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces
+[12.537s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action
+[12.537s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail
+[12.537s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__rosidl_typesupport_fastrtps_cpp.hpp
+[12.537s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/dds_fastrtps
+[12.537s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__rosidl_typesupport_fastrtps_cpp.hpp
+[12.538s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/msg
+[12.538s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[12.538s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_fastrtps_cpp.so
+[12.539s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_fastrtps_cpp.so" to ""
+[12.539s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces
+[12.539s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action
+[12.539s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail
+[12.539s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__type_support.c
+[12.539s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__rosidl_typesupport_introspection_c.h
+[12.539s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__type_support.c
+[12.540s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h
+[12.540s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/msg
+[12.540s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[12.540s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_introspection_c.so
+[12.542s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_introspection_c.so" to ""
+[12.542s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_c.so
+[12.542s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_c.so" to ""
+[12.542s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces
+[12.543s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action
+[12.543s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/fibonacci.hpp
+[12.543s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/move_tcp_along_axis.hpp
+[12.543s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail
+[12.543s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__traits.hpp
+[12.543s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__builder.hpp
+[12.543s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__type_support.hpp
+[12.544s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__struct.hpp
+[12.545s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__traits.hpp
+[12.545s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__builder.hpp
+[12.545s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__type_support.hpp
+[12.545s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__struct.hpp
+[12.545s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/msg
+[12.546s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp
+[12.546s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces
+[12.546s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action
+[12.548s] -- Up-to-date: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail
+[12.548s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_cpp.hpp
+[12.549s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__type_support.cpp
+[12.549s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__type_support.cpp
+[12.549s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__rosidl_typesupport_introspection_cpp.hpp
+[12.549s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_introspection_cpp.so
+[12.549s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_introspection_cpp.so" to ""
+[12.550s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_cpp.so
+[12.550s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_cpp.so" to ""
+[12.550s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/environment/pythonpath.sh
+[12.550s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/environment/pythonpath.dsv
+[12.550s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/__init__.py
+[12.585s] Compiling '/home/vboxuser/ros2_ws/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/__init__.py'...
+[12.591s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action
+[12.592s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action/_move_tcp_along_axis_s.c
+[12.592s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action/_fibonacci.py
+[12.593s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action/_fibonacci_s.c
+[12.593s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action/_move_tcp_along_axis.py
+[12.593s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action/__init__.py
+[12.593s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so
+[12.594s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so" to ""
+[12.595s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action_interfaces_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so
+[12.595s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action_interfaces_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so" to ""
+[12.596s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action_interfaces_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so
+[12.597s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action_interfaces_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so" to ""
+[12.597s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/lib/libaction_interfaces__python.so
+[12.598s] -- Set runtime path of "/home/vboxuser/ros2_ws/install/action_interfaces/lib/libaction_interfaces__python.so" to ""
+[12.598s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/action/Fibonacci.idl
+[12.598s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/action/MoveTcpAlongAxis.idl
+[12.598s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/action/Fibonacci.action
+[12.598s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/action/MoveTcpAlongAxis.action
+[12.599s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/ament_index/resource_index/package_run_dependencies/action_interfaces
+[12.599s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/ament_index/resource_index/parent_prefix_path/action_interfaces
+[12.599s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/environment/ament_prefix_path.sh
+[12.599s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/environment/ament_prefix_path.dsv
+[12.600s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/environment/path.sh
+[12.600s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/environment/path.dsv
+[12.600s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/local_setup.bash
+[12.601s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/local_setup.sh
+[12.601s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/local_setup.zsh
+[12.601s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/local_setup.dsv
+[12.601s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/package.dsv
+[12.602s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/ament_index/resource_index/packages/action_interfaces
+[12.602s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/cmake/action_interfaces__rosidl_generator_cExport.cmake
+[12.602s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/cmake/action_interfaces__rosidl_generator_cExport-noconfig.cmake
+[12.603s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/cmake/action_interfaces__rosidl_typesupport_introspection_cExport.cmake
+[12.603s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/cmake/action_interfaces__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[12.603s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/cmake/action_interfaces__rosidl_typesupport_cExport.cmake
+[12.603s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/cmake/action_interfaces__rosidl_typesupport_cExport-noconfig.cmake
+[12.604s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/cmake/action_interfaces__rosidl_generator_cppExport.cmake
+[12.604s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/cmake/action_interfaces__rosidl_typesupport_introspection_cppExport.cmake
+[12.604s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/cmake/action_interfaces__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[12.605s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/cmake/action_interfaces__rosidl_typesupport_cppExport.cmake
+[12.605s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/cmake/action_interfaces__rosidl_typesupport_cppExport-noconfig.cmake
+[12.605s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/cmake/rosidl_cmake-extras.cmake
+[12.605s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake
+[12.606s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/cmake/ament_cmake_export_libraries-extras.cmake
+[12.606s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/cmake/ament_cmake_export_targets-extras.cmake
+[12.606s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/cmake/ament_cmake_export_include_directories-extras.cmake
+[12.606s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[12.607s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[12.607s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/cmake/action_interfacesConfig.cmake
+[12.607s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/cmake/action_interfacesConfig-version.cmake
+[12.607s] -- Installing: /home/vboxuser/ros2_ws/install/action_interfaces/share/action_interfaces/package.xml
+[12.614s] Invoked command in '/home/vboxuser/ros2_ws/build/action_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/vcnanoz_ros2:/home/vboxuser/ros2_ws/install/vcnanoz:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_servers:/home/vboxuser/ros2_ws/install/VCnanoZ_ros2:/opt/ros/foxy /usr/bin/cmake --install /home/vboxuser/ros2_ws/build/action_interfaces
