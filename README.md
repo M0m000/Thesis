@@ -73,7 +73,8 @@ Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers K
 <br>
 
 ## **VCnanoZ Package**
-Package zum Verbindungsaufbau mit VCnanoZ Kamera. Auf Kamera mus "vcimgnetsrv &" sowie "vctp" ausgeführt werden, dass der Stream aktiv ist. <br>
+Package zum Verbindungsaufbau mit VCnanoZ Kamera. Auf Kamera muss "vcimgnetsrv &" sowie "vctp" ausgeführt werden, dass der Stream aktiv ist. <br>
+Verbindung zu Kamera über SSH "ssh root@192.168.3.15" <br>
 <br>
 
 ### **VC Image Receiver** Node <br>
