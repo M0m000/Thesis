@@ -15,6 +15,7 @@ class MoveTcpAlongAxisActionServer(Node):
         self.twist_publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
         self.timer_period = 0.002
         self.timer = self.create_timer(self.timer_period, self.publish_callback)
+        self.TwistPublisher_active = False
 
         # Bei Serverstart Stillstand
         self.ServerInit_movement()
@@ -34,7 +35,8 @@ class MoveTcpAlongAxisActionServer(Node):
     
 
     def execute_callback(self, goal_handle):
-        self.get_logger().info(f"Starting TCP movement with goal: {goal_handle.request}")
+        self.TwistPublisher_active = True
+        self.get_logger().info(f"Starting TCP movement") # with goal: {goal_handle.request}")
 
         baseline = goal_handle.request.baseline
         movement_frame = goal_handle.request.movement_frame
@@ -61,6 +63,7 @@ class MoveTcpAlongAxisActionServer(Node):
 
             time.sleep(1)  # Simuliere Pause während Bewegung
 
+        self.TwistPublisher_active = False
         result = MoveTcpAlongAxis.Result()
         result.success = True
         
@@ -84,8 +87,9 @@ class MoveTcpAlongAxisActionServer(Node):
         self.jog_msg.rot = [0.0, 0.0, 0.0]        
 
     def publish_callback(self):
-        self.twist_publisher.publish(self.jog_msg)
-        self.get_logger().info("---------- Twist published! ----------")
+        if self.TwistPublisher_active:
+            self.twist_publisher.publish(self.jog_msg)
+            self.get_logger().info("---------- Twist published! ----------")
 
 
 def main(args=None):
@@ -97,3 +101,4 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
