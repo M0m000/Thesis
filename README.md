@@ -193,7 +193,7 @@ ros2 run robot_control transformation_delta --ros-args -p desired_frame:='tcp' -
 ```bash
 ros2 run robot_control read_transformation_delta
 ```
->vgl. Red Transformation Snapshot - für Testzwecke.<br>
+>vgl. Read Transformation Snapshot - für Testzwecke.<br>
 <br>
 
 ### **Fibonacci Action Client** Node <br>
