@@ -26,6 +26,8 @@ class MoveTcpAlongAxisActionServer(Node):
         self.pos = None
         self.rot = None
         self.jconf = None
+        self.pos_target = None
+        self.rot_target = None
 
         # Init des Action Servers
         self._action_server = ActionServer(
@@ -185,3 +187,4 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
