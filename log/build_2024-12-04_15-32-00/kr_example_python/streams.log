@@ -1,0 +1,53 @@
+[2.010s] Invoking command in '/home/vboxuser/ros2_ws/src/orange-ros2/kr_example/python': AMENT_PREFIX_PATH=/home/vboxuser/ros2_ws/install/kr_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/vboxuser/ros2_ws/install/kr_msgs LD_LIBRARY_PATH=/home/vboxuser/ros2_ws/install/kr_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/vboxuser/ros2_ws/build/kr_example_python/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/kr_example_python/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../../build/kr_example_python build --build-base /home/vboxuser/ros2_ws/build/kr_example_python/build install --record /home/vboxuser/ros2_ws/build/kr_example_python/install.log --install-scripts $base/lib/kr_example_python --single-version-externally-managed install_data
+[2.437s] running egg_info
+[2.438s] creating ../../../../build/kr_example_python/kr_example_python.egg-info
+[2.438s] writing ../../../../build/kr_example_python/kr_example_python.egg-info/PKG-INFO
+[2.438s] writing dependency_links to ../../../../build/kr_example_python/kr_example_python.egg-info/dependency_links.txt
+[2.439s] writing entry points to ../../../../build/kr_example_python/kr_example_python.egg-info/entry_points.txt
+[2.439s] writing requirements to ../../../../build/kr_example_python/kr_example_python.egg-info/requires.txt
+[2.439s] writing top-level names to ../../../../build/kr_example_python/kr_example_python.egg-info/top_level.txt
+[2.440s] writing manifest file '../../../../build/kr_example_python/kr_example_python.egg-info/SOURCES.txt'
+[2.467s] reading manifest file '../../../../build/kr_example_python/kr_example_python.egg-info/SOURCES.txt'
+[2.469s] writing manifest file '../../../../build/kr_example_python/kr_example_python.egg-info/SOURCES.txt'
+[2.469s] running build
+[2.469s] running build_py
+[2.469s] creating /home/vboxuser/ros2_ws/build/kr_example_python/build
+[2.469s] creating /home/vboxuser/ros2_ws/build/kr_example_python/build/lib
+[2.469s] creating /home/vboxuser/ros2_ws/build/kr_example_python/build/lib/kr_example_python
+[2.469s] copying kr_example_python/jog_linear.py -> /home/vboxuser/ros2_ws/build/kr_example_python/build/lib/kr_example_python
+[2.469s] copying kr_example_python/self_motion.py -> /home/vboxuser/ros2_ws/build/kr_example_python/build/lib/kr_example_python
+[2.469s] copying kr_example_python/robot_state.py -> /home/vboxuser/ros2_ws/build/kr_example_python/build/lib/kr_example_python
+[2.469s] copying kr_example_python/follow_joint.py -> /home/vboxuser/ros2_ws/build/kr_example_python/build/lib/kr_example_python
+[2.469s] copying kr_example_python/move_joint.py -> /home/vboxuser/ros2_ws/build/kr_example_python/build/lib/kr_example_python
+[2.470s] copying kr_example_python/__init__.py -> /home/vboxuser/ros2_ws/build/kr_example_python/build/lib/kr_example_python
+[2.470s] running install
+[2.471s] running install_lib
+[2.472s] creating /home/vboxuser/ros2_ws/install/kr_example_python/lib/python3.8/site-packages/kr_example_python
+[2.472s] copying /home/vboxuser/ros2_ws/build/kr_example_python/build/lib/kr_example_python/jog_linear.py -> /home/vboxuser/ros2_ws/install/kr_example_python/lib/python3.8/site-packages/kr_example_python
+[2.472s] copying /home/vboxuser/ros2_ws/build/kr_example_python/build/lib/kr_example_python/self_motion.py -> /home/vboxuser/ros2_ws/install/kr_example_python/lib/python3.8/site-packages/kr_example_python
+[2.472s] copying /home/vboxuser/ros2_ws/build/kr_example_python/build/lib/kr_example_python/robot_state.py -> /home/vboxuser/ros2_ws/install/kr_example_python/lib/python3.8/site-packages/kr_example_python
+[2.472s] copying /home/vboxuser/ros2_ws/build/kr_example_python/build/lib/kr_example_python/follow_joint.py -> /home/vboxuser/ros2_ws/install/kr_example_python/lib/python3.8/site-packages/kr_example_python
+[2.472s] copying /home/vboxuser/ros2_ws/build/kr_example_python/build/lib/kr_example_python/move_joint.py -> /home/vboxuser/ros2_ws/install/kr_example_python/lib/python3.8/site-packages/kr_example_python
+[2.473s] copying /home/vboxuser/ros2_ws/build/kr_example_python/build/lib/kr_example_python/__init__.py -> /home/vboxuser/ros2_ws/install/kr_example_python/lib/python3.8/site-packages/kr_example_python
+[2.473s] byte-compiling /home/vboxuser/ros2_ws/install/kr_example_python/lib/python3.8/site-packages/kr_example_python/jog_linear.py to jog_linear.cpython-38.pyc
+[2.475s] byte-compiling /home/vboxuser/ros2_ws/install/kr_example_python/lib/python3.8/site-packages/kr_example_python/self_motion.py to self_motion.cpython-38.pyc
+[2.476s] byte-compiling /home/vboxuser/ros2_ws/install/kr_example_python/lib/python3.8/site-packages/kr_example_python/robot_state.py to robot_state.cpython-38.pyc
+[2.476s] byte-compiling /home/vboxuser/ros2_ws/install/kr_example_python/lib/python3.8/site-packages/kr_example_python/follow_joint.py to follow_joint.cpython-38.pyc
+[2.477s] byte-compiling /home/vboxuser/ros2_ws/install/kr_example_python/lib/python3.8/site-packages/kr_example_python/move_joint.py to move_joint.cpython-38.pyc
+[2.478s] byte-compiling /home/vboxuser/ros2_ws/install/kr_example_python/lib/python3.8/site-packages/kr_example_python/__init__.py to __init__.cpython-38.pyc
+[2.478s] running install_data
+[2.478s] creating /home/vboxuser/ros2_ws/install/kr_example_python/share/ament_index
+[2.479s] creating /home/vboxuser/ros2_ws/install/kr_example_python/share/ament_index/resource_index
+[2.479s] creating /home/vboxuser/ros2_ws/install/kr_example_python/share/ament_index/resource_index/packages
+[2.480s] copying resource/kr_example_python -> /home/vboxuser/ros2_ws/install/kr_example_python/share/ament_index/resource_index/packages
+[2.480s] copying package.xml -> /home/vboxuser/ros2_ws/install/kr_example_python/share/kr_example_python
+[2.481s] running install_egg_info
+[2.481s] Copying ../../../../build/kr_example_python/kr_example_python.egg-info to /home/vboxuser/ros2_ws/install/kr_example_python/lib/python3.8/site-packages/kr_example_python-0.0.0-py3.8.egg-info
+[2.482s] running install_scripts
+[2.495s] Installing follow_joint script to /home/vboxuser/ros2_ws/install/kr_example_python/lib/kr_example_python
+[2.496s] Installing jog_linear script to /home/vboxuser/ros2_ws/install/kr_example_python/lib/kr_example_python
+[2.497s] Installing move_joint script to /home/vboxuser/ros2_ws/install/kr_example_python/lib/kr_example_python
+[2.497s] Installing robot_state script to /home/vboxuser/ros2_ws/install/kr_example_python/lib/kr_example_python
+[2.497s] Installing self_motion script to /home/vboxuser/ros2_ws/install/kr_example_python/lib/kr_example_python
+[2.498s] writing list of installed files to '/home/vboxuser/ros2_ws/build/kr_example_python/install.log'
+[2.537s] Invoked command in '/home/vboxuser/ros2_ws/src/orange-ros2/kr_example/python' returned '0': AMENT_PREFIX_PATH=/home/vboxuser/ros2_ws/install/kr_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/vboxuser/ros2_ws/install/kr_msgs LD_LIBRARY_PATH=/home/vboxuser/ros2_ws/install/kr_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/vboxuser/ros2_ws/build/kr_example_python/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/kr_example_python/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/kr_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../../build/kr_example_python build --build-base /home/vboxuser/ros2_ws/build/kr_example_python/build install --record /home/vboxuser/ros2_ws/build/kr_example_python/install.log --install-scripts $base/lib/kr_example_python --single-version-externally-managed install_data

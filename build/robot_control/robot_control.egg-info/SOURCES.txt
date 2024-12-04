@@ -19,6 +19,7 @@ robot_control/print_frames.py
 robot_control/print_tcp_pose.py
 robot_control/read_transformation_delta.py
 robot_control/read_transformation_snapshot.py
+robot_control/robot_TcpPose_node.py
 robot_control/set_frame_client.py
 robot_control/transformation_delta.py
 robot_control/transformation_snapshot.py

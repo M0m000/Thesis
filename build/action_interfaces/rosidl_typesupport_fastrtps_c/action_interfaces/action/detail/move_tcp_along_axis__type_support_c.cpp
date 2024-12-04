@@ -507,6 +507,11 @@ static bool _MoveTcpAlongAxis_Feedback__cdr_serialize(
     cdr.serializeArray(array_ptr, size);
   }
 
+  // Field name: current_diff
+  {
+    cdr << ros_message->current_diff;
+  }
+
   return true;
 }
 
@@ -532,6 +537,11 @@ static bool _MoveTcpAlongAxis_Feedback__cdr_deserialize(
     }
     auto array_ptr = ros_message->current_position.data;
     cdr.deserializeArray(array_ptr, size);
+  }
+
+  // Field name: current_diff
+  {
+    cdr >> ros_message->current_diff;
   }
 
   return true;
@@ -560,6 +570,12 @@ size_t get_serialized_size_action_interfaces__action__MoveTcpAlongAxis_Feedback(
     (void)array_ptr;
     size_t item_size = sizeof(array_ptr[0]);
     current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+  // field.name current_diff
+  {
+    size_t item_size = sizeof(ros_message->current_diff);
+    current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
 
@@ -592,6 +608,13 @@ size_t max_serialized_size_action_interfaces__action__MoveTcpAlongAxis_Feedback(
     full_bounded = false;
     current_alignment += padding +
       eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
+
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+  // member: current_diff
+  {
+    size_t array_size = 1;
 
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));

@@ -468,6 +468,8 @@ cdr_serialize(
   {
     cdr << ros_message.current_position;
   }
+  // Member: current_diff
+  cdr << ros_message.current_diff;
   return true;
 }
 
@@ -481,6 +483,9 @@ cdr_deserialize(
   {
     cdr >> ros_message.current_position;
   }
+
+  // Member: current_diff
+  cdr >> ros_message.current_diff;
 
   return true;
 }
@@ -508,6 +513,12 @@ get_serialized_size(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+  // Member: current_diff
+  {
+    size_t item_size = sizeof(ros_message.current_diff);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
 
   return current_alignment - initial_alignment;
 }
@@ -533,6 +544,14 @@ max_serialized_size_MoveTcpAlongAxis_Feedback(
     full_bounded = false;
     current_alignment += padding +
       eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
+
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Member: current_diff
+  {
+    size_t array_size = 1;
 
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));

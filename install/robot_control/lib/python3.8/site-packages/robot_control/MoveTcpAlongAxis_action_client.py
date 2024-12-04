@@ -22,7 +22,8 @@ class MoveTcpAlongAxisActionClient(Node):
 
     def feedback_callback(self, feedback_msg):
         feedback = feedback_msg.feedback
-        self.get_logger().info('Received feedback: {0}'.format(feedback.current_position))
+        self.get_logger().info('Feedback - Current Position: {0}'.format(feedback.current_position))
+        self.get_logger().info('Feedback - Current Difference: {0}'.format(feedback.current_diff))
 
     def goal_response_callback(self, future):
         goal_handle = future.result()
@@ -44,7 +45,7 @@ class MoveTcpAlongAxisActionClient(Node):
 def main(args=None):
     rclpy.init(args=args)
     action_client = MoveTcpAlongAxisActionClient()
-    action_client.send_goal(5.0, "tcp", "axis_x", 30.0)
+    action_client.send_goal(5.0, "tcp", "axis_x", 10.0)
     rclpy.spin(action_client)
 
 if __name__ == '__main__':

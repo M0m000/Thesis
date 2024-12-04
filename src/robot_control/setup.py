@@ -37,7 +37,8 @@ setup(
             'transformation_delta = robot_control.transformation_delta:main',
             'read_transformation_delta = robot_control.read_transformation_delta:main',
             'fibonacci_action_client = robot_control.fibonacci_action_client:main',
-            'MoveTcpAlongAxis_action_client = robot_control.MoveTcpAlongAxis_action_client:main'
+            'MoveTcpAlongAxis_action_client = robot_control.MoveTcpAlongAxis_action_client:main',
+            'robot_TcpPose_node = robot_control.robot_TcpPose_node:main'
         ],
     },
 )

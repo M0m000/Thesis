@@ -257,7 +257,7 @@ void MoveTcpAlongAxis_Feedback__rosidl_typesupport_introspection_c__MoveTcpAlong
   action_interfaces__action__MoveTcpAlongAxis_Feedback__fini(message_memory);
 }
 
-static rosidl_typesupport_introspection_c__MessageMember MoveTcpAlongAxis_Feedback__rosidl_typesupport_introspection_c__MoveTcpAlongAxis_Feedback_message_member_array[1] = {
+static rosidl_typesupport_introspection_c__MessageMember MoveTcpAlongAxis_Feedback__rosidl_typesupport_introspection_c__MoveTcpAlongAxis_Feedback_message_member_array[2] = {
   {
     "current_position",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_DOUBLE,  // type
@@ -272,13 +272,28 @@ static rosidl_typesupport_introspection_c__MessageMember MoveTcpAlongAxis_Feedba
     NULL,  // get_const(index) function pointer
     NULL,  // get(index) function pointer
     NULL  // resize(index) function pointer
+  },
+  {
+    "current_diff",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_DOUBLE,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(action_interfaces__action__MoveTcpAlongAxis_Feedback, current_diff),  // bytes offset in struct
+    NULL,  // default value
+    NULL,  // size() function pointer
+    NULL,  // get_const(index) function pointer
+    NULL,  // get(index) function pointer
+    NULL  // resize(index) function pointer
   }
 };
 
 static const rosidl_typesupport_introspection_c__MessageMembers MoveTcpAlongAxis_Feedback__rosidl_typesupport_introspection_c__MoveTcpAlongAxis_Feedback_message_members = {
   "action_interfaces__action",  // message namespace
   "MoveTcpAlongAxis_Feedback",  // message name
-  1,  // number of fields
+  2,  // number of fields
   sizeof(action_interfaces__action__MoveTcpAlongAxis_Feedback),
   MoveTcpAlongAxis_Feedback__rosidl_typesupport_introspection_c__MoveTcpAlongAxis_Feedback_message_member_array,  // message members
   MoveTcpAlongAxis_Feedback__rosidl_typesupport_introspection_c__MoveTcpAlongAxis_Feedback_init_function,  // function to initialize message memory (memory has to be allocated)

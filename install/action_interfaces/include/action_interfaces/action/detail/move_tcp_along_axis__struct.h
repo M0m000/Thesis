@@ -71,6 +71,7 @@ typedef struct action_interfaces__action__MoveTcpAlongAxis_Result__Sequence
 typedef struct action_interfaces__action__MoveTcpAlongAxis_Feedback
 {
   rosidl_runtime_c__double__Sequence current_position;
+  double current_diff;
 } action_interfaces__action__MoveTcpAlongAxis_Feedback;
 
 // Struct for a sequence of action_interfaces__action__MoveTcpAlongAxis_Feedback.

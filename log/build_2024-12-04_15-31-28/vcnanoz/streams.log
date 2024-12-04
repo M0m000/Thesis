@@ -1,0 +1,36 @@
+[1.464s] Invoking command in '/home/vboxuser/ros2_ws/src/vcnanoz': PYTHONPATH=/home/vboxuser/ros2_ws/build/vcnanoz/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/vcnanoz/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/vcnanoz build --build-base /home/vboxuser/ros2_ws/build/vcnanoz/build install --record /home/vboxuser/ros2_ws/build/vcnanoz/install.log --install-scripts $base/lib/vcnanoz --single-version-externally-managed install_data
+[1.759s] running egg_info
+[1.759s] creating ../../build/vcnanoz/vcnanoz.egg-info
+[1.760s] writing ../../build/vcnanoz/vcnanoz.egg-info/PKG-INFO
+[1.760s] writing dependency_links to ../../build/vcnanoz/vcnanoz.egg-info/dependency_links.txt
+[1.761s] writing entry points to ../../build/vcnanoz/vcnanoz.egg-info/entry_points.txt
+[1.761s] writing requirements to ../../build/vcnanoz/vcnanoz.egg-info/requires.txt
+[1.762s] writing top-level names to ../../build/vcnanoz/vcnanoz.egg-info/top_level.txt
+[1.765s] writing manifest file '../../build/vcnanoz/vcnanoz.egg-info/SOURCES.txt'
+[1.842s] reading manifest file '../../build/vcnanoz/vcnanoz.egg-info/SOURCES.txt'
+[1.843s] writing manifest file '../../build/vcnanoz/vcnanoz.egg-info/SOURCES.txt'
+[1.844s] running build
+[1.844s] running build_py
+[1.845s] creating /home/vboxuser/ros2_ws/build/vcnanoz/build
+[1.845s] creating /home/vboxuser/ros2_ws/build/vcnanoz/build/lib
+[1.845s] creating /home/vboxuser/ros2_ws/build/vcnanoz/build/lib/vcnanoz
+[1.845s] copying vcnanoz/vc_img_receiver.py -> /home/vboxuser/ros2_ws/build/vcnanoz/build/lib/vcnanoz
+[1.846s] copying vcnanoz/__init__.py -> /home/vboxuser/ros2_ws/build/vcnanoz/build/lib/vcnanoz
+[1.846s] running install
+[1.847s] running install_lib
+[1.849s] creating /home/vboxuser/ros2_ws/install/vcnanoz/lib/python3.8/site-packages/vcnanoz
+[1.849s] copying /home/vboxuser/ros2_ws/build/vcnanoz/build/lib/vcnanoz/vc_img_receiver.py -> /home/vboxuser/ros2_ws/install/vcnanoz/lib/python3.8/site-packages/vcnanoz
+[1.850s] copying /home/vboxuser/ros2_ws/build/vcnanoz/build/lib/vcnanoz/__init__.py -> /home/vboxuser/ros2_ws/install/vcnanoz/lib/python3.8/site-packages/vcnanoz
+[1.855s] byte-compiling /home/vboxuser/ros2_ws/install/vcnanoz/lib/python3.8/site-packages/vcnanoz/vc_img_receiver.py to vc_img_receiver.cpython-38.pyc
+[1.860s] byte-compiling /home/vboxuser/ros2_ws/install/vcnanoz/lib/python3.8/site-packages/vcnanoz/__init__.py to __init__.cpython-38.pyc
+[1.860s] running install_data
+[1.861s] creating /home/vboxuser/ros2_ws/install/vcnanoz/share/ament_index
+[1.861s] creating /home/vboxuser/ros2_ws/install/vcnanoz/share/ament_index/resource_index
+[1.861s] creating /home/vboxuser/ros2_ws/install/vcnanoz/share/ament_index/resource_index/packages
+[1.861s] copying resource/vcnanoz -> /home/vboxuser/ros2_ws/install/vcnanoz/share/ament_index/resource_index/packages
+[1.862s] copying package.xml -> /home/vboxuser/ros2_ws/install/vcnanoz/share/vcnanoz
+[1.862s] running install_egg_info
+[1.866s] Copying ../../build/vcnanoz/vcnanoz.egg-info to /home/vboxuser/ros2_ws/install/vcnanoz/lib/python3.8/site-packages/vcnanoz-0.0.0-py3.8.egg-info
+[1.868s] running install_scripts
+[1.893s] Installing vc_img_receiver script to /home/vboxuser/ros2_ws/install/vcnanoz/lib/vcnanoz
+[1.893s] writing list of installed files to '/home/vboxuser/ros2_ws/build/vcnanoz/install.log'

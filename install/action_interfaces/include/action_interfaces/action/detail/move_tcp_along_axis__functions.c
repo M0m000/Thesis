@@ -517,6 +517,7 @@ action_interfaces__action__MoveTcpAlongAxis_Feedback__init(action_interfaces__ac
     action_interfaces__action__MoveTcpAlongAxis_Feedback__fini(msg);
     return false;
   }
+  // current_diff
   return true;
 }
 
@@ -528,6 +529,7 @@ action_interfaces__action__MoveTcpAlongAxis_Feedback__fini(action_interfaces__ac
   }
   // current_position
   rosidl_runtime_c__double__Sequence__fini(&msg->current_position);
+  // current_diff
 }
 
 bool
@@ -540,6 +542,10 @@ action_interfaces__action__MoveTcpAlongAxis_Feedback__are_equal(const action_int
   if (!rosidl_runtime_c__double__Sequence__are_equal(
       &(lhs->current_position), &(rhs->current_position)))
   {
+    return false;
+  }
+  // current_diff
+  if (lhs->current_diff != rhs->current_diff) {
     return false;
   }
   return true;
@@ -559,6 +565,8 @@ action_interfaces__action__MoveTcpAlongAxis_Feedback__copy(
   {
     return false;
   }
+  // current_diff
+  output->current_diff = input->current_diff;
   return true;
 }
 

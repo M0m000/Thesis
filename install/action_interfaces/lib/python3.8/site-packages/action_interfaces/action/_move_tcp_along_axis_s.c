@@ -392,6 +392,15 @@ bool action_interfaces__action__move_tcp_along_axis__feedback__convert_from_py(P
     }
     Py_DECREF(field);
   }
+  {  // current_diff
+    PyObject * field = PyObject_GetAttrString(_pymsg, "current_diff");
+    if (!field) {
+      return false;
+    }
+    assert(PyFloat_Check(field));
+    ros_message->current_diff = PyFloat_AS_DOUBLE(field);
+    Py_DECREF(field);
+  }
 
   return true;
 }
@@ -470,6 +479,17 @@ PyObject * action_interfaces__action__move_tcp_along_axis__feedback__convert_to_
       Py_DECREF(ret);
     }
     Py_DECREF(field);
+  }
+  {  // current_diff
+    PyObject * field = NULL;
+    field = PyFloat_FromDouble(ros_message->current_diff);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "current_diff", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
   }
 
   // ownership of _pymessage is transferred to the caller

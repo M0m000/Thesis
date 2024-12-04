@@ -343,7 +343,7 @@ void resize_function__MoveTcpAlongAxis_Feedback__current_position(void * untyped
   member->resize(size);
 }
 
-static const ::rosidl_typesupport_introspection_cpp::MessageMember MoveTcpAlongAxis_Feedback_message_member_array[1] = {
+static const ::rosidl_typesupport_introspection_cpp::MessageMember MoveTcpAlongAxis_Feedback_message_member_array[2] = {
   {
     "current_position",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_DOUBLE,  // type
@@ -358,13 +358,28 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember MoveTcpAlongA
     get_const_function__MoveTcpAlongAxis_Feedback__current_position,  // get_const(index) function pointer
     get_function__MoveTcpAlongAxis_Feedback__current_position,  // get(index) function pointer
     resize_function__MoveTcpAlongAxis_Feedback__current_position  // resize(index) function pointer
+  },
+  {
+    "current_diff",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_DOUBLE,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(action_interfaces::action::MoveTcpAlongAxis_Feedback, current_diff),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr  // resize(index) function pointer
   }
 };
 
 static const ::rosidl_typesupport_introspection_cpp::MessageMembers MoveTcpAlongAxis_Feedback_message_members = {
   "action_interfaces::action",  // message namespace
   "MoveTcpAlongAxis_Feedback",  // message name
-  1,  // number of fields
+  2,  // number of fields
   sizeof(action_interfaces::action::MoveTcpAlongAxis_Feedback),
   MoveTcpAlongAxis_Feedback_message_member_array,  // message members
   MoveTcpAlongAxis_Feedback_init_function,  // function to initialize message memory (memory has to be allocated)

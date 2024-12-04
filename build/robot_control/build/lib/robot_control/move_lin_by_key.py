@@ -23,7 +23,9 @@ class MoveLinByKey(Node):
         self.jog_msg.vel = [0.0, 0.0, 0.0]
 
     def publish_callback(self):
+        self.get_logger().info(f"Publishing: {self.jog_msg}")
         self.publisher.publish(self.jog_msg)
+
 
     def on_press(self, key):
         try:

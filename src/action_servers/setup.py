@@ -21,7 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'fibonacci_action_server = action_servers.fibonacci_action_server:main',
-            'MoveTcpAlongAxis_action_server = action_servers.MoveTcpAlongAxis_action_server:main'
+            'MoveTcpAlongAxis_action_server = action_servers.MoveTcpAlongAxis_action_server:main',        
         ],
     },
 )

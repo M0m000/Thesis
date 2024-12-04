@@ -354,14 +354,17 @@ class MoveTcpAlongAxis_Feedback(metaclass=Metaclass_MoveTcpAlongAxis_Feedback):
 
     __slots__ = [
         '_current_position',
+        '_current_diff',
     ]
 
     _fields_and_field_types = {
         'current_position': 'sequence<double>',
+        'current_diff': 'double',
     }
 
     SLOT_TYPES = (
         rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.BasicType('double')),  # noqa: E501
+        rosidl_parser.definition.BasicType('double'),  # noqa: E501
     )
 
     def __init__(self, **kwargs):
@@ -369,6 +372,7 @@ class MoveTcpAlongAxis_Feedback(metaclass=Metaclass_MoveTcpAlongAxis_Feedback):
             'Invalid arguments passed to constructor: %s' % \
             ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
         self.current_position = array.array('d', kwargs.get('current_position', []))
+        self.current_diff = kwargs.get('current_diff', float())
 
     def __repr__(self):
         typename = self.__class__.__module__.split('.')
@@ -400,6 +404,8 @@ class MoveTcpAlongAxis_Feedback(metaclass=Metaclass_MoveTcpAlongAxis_Feedback):
         if not isinstance(other, self.__class__):
             return False
         if self.current_position != other.current_position:
+            return False
+        if self.current_diff != other.current_diff:
             return False
         return True
 
@@ -435,6 +441,19 @@ class MoveTcpAlongAxis_Feedback(metaclass=Metaclass_MoveTcpAlongAxis_Feedback):
                  True), \
                 "The 'current_position' field must be a set or sequence and each value of type 'float'"
         self._current_position = array.array('d', value)
+
+    @property
+    def current_diff(self):
+        """Message field 'current_diff'."""
+        return self._current_diff
+
+    @current_diff.setter
+    def current_diff(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, float), \
+                "The 'current_diff' field must be of type 'float'"
+        self._current_diff = value
 
 
 # Import statements for member types
