@@ -38,16 +38,16 @@ class MoveTcpAlongAxisActionServer(Node):
         # Service Clients Kassow
         self.client_GetRobotPose = self.create_client(GetRobotPose, '/kr/robot/get_robot_pose')
         while not self.client_GetRobotPose.wait_for_service(timeout_sec=1.0):
-            self.get_logger().info('Warten auf Service Kassow: GetRobotPose')
+            self.get_logger().info('Waiting for Service Kassow: GetRobotPose')
             self.Srv_GetRobotPose_available = False
-        self.get_logger().info(f"Service Kassow: GetRobotPose gefunden!")
+        self.get_logger().info(f"Service Kassow: GetRobotPose available!")
         self.Srv_GetRobotPose_available = True
 
         self.client_SelectJoggingFrame = self.create_client(SelectJoggingFrame, '/kr/motion/select_jogging_frame')
         while not self.client_SelectJoggingFrame.wait_for_service(timeout_sec=1.0):
-            self.get_logger().info('Warten auf Service Kassow: SelectJoggingFrame')
+            self.get_logger().info('Waiting for Service Kassow: SelectJoggingFrame')
             self.Srv_SelectJoggingFrame_available = False
-        self.get_logger().info(f"Service Kassow: SelectJoggingFrame gefunden!")
+        self.get_logger().info(f"Service Kassow: SelectJoggingFrame available!")
         self.Srv_SelectJoggingFrame_available = True
 
 
@@ -88,15 +88,16 @@ class MoveTcpAlongAxisActionServer(Node):
                 # self.get_logger().info(f"Robot Orientation: {response.rot}")
                 self.rot = [response.rot[0], response.rot[1], response.rot[2]]
                 # self.get_logger().info(f"Current Joint Config: {response.jsconf}")
-                self.jconf = [response.jscon[0],
-                                response.jscon[1],
-                                response.jscon[2],
-                                response.jscon[3],
-                                response.jscon[4],
-                                response.jscon[5],
-                                response.jscon[6]]
+                self.jconf = [response.jsconf[0],
+                                response.jsconf[1],
+                                response.jsconf[2],
+                                response.jsconf[3],
+                                response.jsconf[4],
+                                response.jsconf[5],
+                                response.jsconf[6]]
+                self.get_logger().info(f"Got Robot Pose successfully!")
         except Exception as e:
-            self.get_logger().info(f"Service Call GetRobotPose failed!")
+            self.get_logger().info("Service Call GetRobotPose failed!")
 
 
     def ServerInit_movement(self):
@@ -131,7 +132,7 @@ class MoveTcpAlongAxisActionServer(Node):
             self.set_movement()
             self.publish_callback()
 
-            time.sleep(1)  # Simuliere Pause während Bewegung
+            time.sleep(0.1)  # Simuliere Pause während Bewegung
 
         self.TwistPublisher_active = False
         result = MoveTcpAlongAxis.Result()
@@ -150,8 +151,19 @@ class MoveTcpAlongAxisActionServer(Node):
     def get_current_position(self, goal_handle):
         self.get_logger().info("Get Current Pose...")
         self.callSrv_GetRobotPose()
-        self.feedback_msg.current_position = self.pos
-        goal_handle.publish_feedback(self.feedback_msg)
+
+        # Warte auf Antwort
+        timeout = 2.0  # max Timeout Zeit
+        start_time = time.time()
+        while self.pos is None and (time.time() - start_time) < timeout:
+            rclpy.spin_once(self, timeout_sec=0.01)
+
+        if self.pos is not None:
+            self.feedback_msg.current_position = self.pos
+            goal_handle.publish_feedback(self.feedback_msg)
+        else:
+            self.get_logger().warning("Failed to get current position within timeout.")
+
 
     def set_movement(self):
         self.get_logger().info("Set Movement on Axis...")
