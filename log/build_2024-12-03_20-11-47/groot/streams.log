@@ -1,0 +1,42 @@
+[0.510s] Invoking command in '/home/vboxuser/ros2_ws/build/groot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/vcnanoz:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_servers:/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/groot -- -j8 -l8
+[0.970s] [  1%] [34m[1mAutomatic MOC and UIC for target QtNodeEditor[0m
+[0.970s] [  1%] Built target QtNodeEditor_autogen
+[0.970s] [ 57%] Built target QtNodeEditor
+[0.977s] [ 58%] [34m[1mAutomatic MOC and UIC for target behavior_tree_editor[0m
+[0.997s] [ 58%] Built target behavior_tree_editor_autogen
+[1.090s] [ 74%] Built target behavior_tree_editor
+[1.131s] [ 75%] [34m[1mAutomatic MOC and UIC for target Groot[0m
+[1.132s] [ 76%] [34m[1mAutomatic MOC and UIC for target replay_test[0m
+[1.134s] [ 76%] [34m[1mAutomatic MOC and UIC for target editor_test[0m
+[1.177s] [ 76%] Built target Groot_autogen
+[1.181s] [ 76%] Built target editor_test_autogen
+[1.182s] [ 76%] Built target replay_test_autogen
+[1.243s] [ 82%] Built target Groot
+[1.257s] [ 91%] Built target editor_test
+[1.317s] [100%] Built target replay_test
+[1.480s] Invoked command in '/home/vboxuser/ros2_ws/build/groot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/vcnanoz:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_servers:/opt/ros/foxy /usr/bin/cmake --build /home/vboxuser/ros2_ws/build/groot -- -j8 -l8
+[1.481s] Invoking command in '/home/vboxuser/ros2_ws/build/groot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/vcnanoz:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_servers:/opt/ros/foxy /usr/bin/cmake --install /home/vboxuser/ros2_ws/build/groot
+[1.544s] -- Install configuration: ""
+[1.544s] -- Up-to-date: /home/vboxuser/ros2_ws/install/groot/lib/libbehavior_tree_editor.so
+[1.549s] -- Up-to-date: /home/vboxuser/ros2_ws/install/groot/lib/groot/Groot
+[1.583s] -- Up-to-date: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/library_path.sh
+[1.591s] -- Up-to-date: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/library_path.dsv
+[1.605s] -- Up-to-date: /home/vboxuser/ros2_ws/install/groot/share/ament_index/resource_index/package_run_dependencies/groot
+[1.608s] -- Up-to-date: /home/vboxuser/ros2_ws/install/groot/share/ament_index/resource_index/parent_prefix_path/groot
+[1.617s] -- Up-to-date: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/ament_prefix_path.sh
+[1.618s] -- Up-to-date: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/ament_prefix_path.dsv
+[1.618s] -- Up-to-date: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/path.sh
+[1.619s] -- Up-to-date: /home/vboxuser/ros2_ws/install/groot/share/groot/environment/path.dsv
+[1.619s] -- Up-to-date: /home/vboxuser/ros2_ws/install/groot/share/groot/local_setup.bash
+[1.620s] -- Up-to-date: /home/vboxuser/ros2_ws/install/groot/share/groot/local_setup.sh
+[1.621s] -- Up-to-date: /home/vboxuser/ros2_ws/install/groot/share/groot/local_setup.zsh
+[1.621s] -- Up-to-date: /home/vboxuser/ros2_ws/install/groot/share/groot/local_setup.dsv
+[1.621s] -- Installing: /home/vboxuser/ros2_ws/install/groot/share/groot/package.dsv
+[1.639s] -- Up-to-date: /home/vboxuser/ros2_ws/install/groot/share/ament_index/resource_index/packages/groot
+[1.640s] -- Up-to-date: /home/vboxuser/ros2_ws/install/groot/share/groot/cmake/ament_cmake_export_include_directories-extras.cmake
+[1.640s] -- Up-to-date: /home/vboxuser/ros2_ws/install/groot/share/groot/cmake/ament_cmake_export_dependencies-extras.cmake
+[1.640s] -- Up-to-date: /home/vboxuser/ros2_ws/install/groot/share/groot/cmake/ament_cmake_export_libraries-extras.cmake
+[1.640s] -- Up-to-date: /home/vboxuser/ros2_ws/install/groot/share/groot/cmake/grootConfig.cmake
+[1.641s] -- Up-to-date: /home/vboxuser/ros2_ws/install/groot/share/groot/cmake/grootConfig-version.cmake
+[1.641s] -- Up-to-date: /home/vboxuser/ros2_ws/install/groot/share/groot/package.xml
+[2.118s] Invoked command in '/home/vboxuser/ros2_ws/build/groot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/vboxuser/ros2_ws/install/vision:/home/vboxuser/ros2_ws/install/vcnanoz:/home/vboxuser/ros2_ws/install/robot_control:/home/vboxuser/ros2_ws/install/kr_example_python:/home/vboxuser/ros2_ws/install/bt_pkg:/home/vboxuser/ros2_ws/install/action_servers:/opt/ros/foxy /usr/bin/cmake --install /home/vboxuser/ros2_ws/build/groot
