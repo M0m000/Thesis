@@ -37,7 +37,7 @@ void MoveTcpAlongAxis_Goal_fini_function(void * message_memory)
   typed_message->~MoveTcpAlongAxis_Goal();
 }
 
-static const ::rosidl_typesupport_introspection_cpp::MessageMember MoveTcpAlongAxis_Goal_message_member_array[3] = {
+static const ::rosidl_typesupport_introspection_cpp::MessageMember MoveTcpAlongAxis_Goal_message_member_array[4] = {
   {
     "baseline",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_DOUBLE,  // type
@@ -82,13 +82,28 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember MoveTcpAlongA
     nullptr,  // get_const(index) function pointer
     nullptr,  // get(index) function pointer
     nullptr  // resize(index) function pointer
+  },
+  {
+    "speed_in_mm_per_s",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_DOUBLE,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(action_interfaces::action::MoveTcpAlongAxis_Goal, speed_in_mm_per_s),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr  // resize(index) function pointer
   }
 };
 
 static const ::rosidl_typesupport_introspection_cpp::MessageMembers MoveTcpAlongAxis_Goal_message_members = {
   "action_interfaces::action",  // message namespace
   "MoveTcpAlongAxis_Goal",  // message name
-  3,  // number of fields
+  4,  // number of fields
   sizeof(action_interfaces::action::MoveTcpAlongAxis_Goal),
   MoveTcpAlongAxis_Goal_message_member_array,  // message members
   MoveTcpAlongAxis_Goal_init_function,  // function to initialize message memory (memory has to be allocated)

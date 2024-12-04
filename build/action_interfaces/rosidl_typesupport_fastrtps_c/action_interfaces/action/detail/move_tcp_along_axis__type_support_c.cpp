@@ -84,6 +84,11 @@ static bool _MoveTcpAlongAxis_Goal__cdr_serialize(
     cdr << str->data;
   }
 
+  // Field name: speed_in_mm_per_s
+  {
+    cdr << ros_message->speed_in_mm_per_s;
+  }
+
   return true;
 }
 
@@ -133,6 +138,11 @@ static bool _MoveTcpAlongAxis_Goal__cdr_deserialize(
     }
   }
 
+  // Field name: speed_in_mm_per_s
+  {
+    cdr >> ros_message->speed_in_mm_per_s;
+  }
+
   return true;
 }
 
@@ -164,6 +174,12 @@ size_t get_serialized_size_action_interfaces__action__MoveTcpAlongAxis_Goal(
   current_alignment += padding +
     eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
     (ros_message->movement_axis.size + 1);
+  // field.name speed_in_mm_per_s
+  {
+    size_t item_size = sizeof(ros_message->speed_in_mm_per_s);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
 
   return current_alignment - initial_alignment;
 }
@@ -216,6 +232,13 @@ size_t max_serialized_size_action_interfaces__action__MoveTcpAlongAxis_Goal(
         eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
         1;
     }
+  }
+  // member: speed_in_mm_per_s
+  {
+    size_t array_size = 1;
+
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
 
   return current_alignment - initial_alignment;

@@ -33,6 +33,7 @@ action_interfaces__action__MoveTcpAlongAxis_Goal__init(action_interfaces__action
     action_interfaces__action__MoveTcpAlongAxis_Goal__fini(msg);
     return false;
   }
+  // speed_in_mm_per_s
   return true;
 }
 
@@ -47,6 +48,7 @@ action_interfaces__action__MoveTcpAlongAxis_Goal__fini(action_interfaces__action
   rosidl_runtime_c__String__fini(&msg->movement_frame);
   // movement_axis
   rosidl_runtime_c__String__fini(&msg->movement_axis);
+  // speed_in_mm_per_s
 }
 
 bool
@@ -69,6 +71,10 @@ action_interfaces__action__MoveTcpAlongAxis_Goal__are_equal(const action_interfa
   if (!rosidl_runtime_c__String__are_equal(
       &(lhs->movement_axis), &(rhs->movement_axis)))
   {
+    return false;
+  }
+  // speed_in_mm_per_s
+  if (lhs->speed_in_mm_per_s != rhs->speed_in_mm_per_s) {
     return false;
   }
   return true;
@@ -96,6 +102,8 @@ action_interfaces__action__MoveTcpAlongAxis_Goal__copy(
   {
     return false;
   }
+  // speed_in_mm_per_s
+  output->speed_in_mm_per_s = input->speed_in_mm_per_s;
   return true;
 }
 

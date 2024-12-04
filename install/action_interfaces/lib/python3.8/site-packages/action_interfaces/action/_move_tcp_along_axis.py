@@ -56,18 +56,21 @@ class MoveTcpAlongAxis_Goal(metaclass=Metaclass_MoveTcpAlongAxis_Goal):
         '_baseline',
         '_movement_frame',
         '_movement_axis',
+        '_speed_in_mm_per_s',
     ]
 
     _fields_and_field_types = {
         'baseline': 'double',
         'movement_frame': 'string',
         'movement_axis': 'string',
+        'speed_in_mm_per_s': 'double',
     }
 
     SLOT_TYPES = (
         rosidl_parser.definition.BasicType('double'),  # noqa: E501
         rosidl_parser.definition.UnboundedString(),  # noqa: E501
         rosidl_parser.definition.UnboundedString(),  # noqa: E501
+        rosidl_parser.definition.BasicType('double'),  # noqa: E501
     )
 
     def __init__(self, **kwargs):
@@ -77,6 +80,7 @@ class MoveTcpAlongAxis_Goal(metaclass=Metaclass_MoveTcpAlongAxis_Goal):
         self.baseline = kwargs.get('baseline', float())
         self.movement_frame = kwargs.get('movement_frame', str())
         self.movement_axis = kwargs.get('movement_axis', str())
+        self.speed_in_mm_per_s = kwargs.get('speed_in_mm_per_s', float())
 
     def __repr__(self):
         typename = self.__class__.__module__.split('.')
@@ -112,6 +116,8 @@ class MoveTcpAlongAxis_Goal(metaclass=Metaclass_MoveTcpAlongAxis_Goal):
         if self.movement_frame != other.movement_frame:
             return False
         if self.movement_axis != other.movement_axis:
+            return False
+        if self.speed_in_mm_per_s != other.speed_in_mm_per_s:
             return False
         return True
 
@@ -158,6 +164,19 @@ class MoveTcpAlongAxis_Goal(metaclass=Metaclass_MoveTcpAlongAxis_Goal):
                 isinstance(value, str), \
                 "The 'movement_axis' field must be of type 'str'"
         self._movement_axis = value
+
+    @property
+    def speed_in_mm_per_s(self):
+        """Message field 'speed_in_mm_per_s'."""
+        return self._speed_in_mm_per_s
+
+    @speed_in_mm_per_s.setter
+    def speed_in_mm_per_s(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, float), \
+                "The 'speed_in_mm_per_s' field must be of type 'float'"
+        self._speed_in_mm_per_s = value
 
 
 # Import statements for member types

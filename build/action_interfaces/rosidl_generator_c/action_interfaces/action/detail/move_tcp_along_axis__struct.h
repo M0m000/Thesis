@@ -28,6 +28,7 @@ typedef struct action_interfaces__action__MoveTcpAlongAxis_Goal
   double baseline;
   rosidl_runtime_c__String movement_frame;
   rosidl_runtime_c__String movement_axis;
+  double speed_in_mm_per_s;
 } action_interfaces__action__MoveTcpAlongAxis_Goal;
 
 // Struct for a sequence of action_interfaces__action__MoveTcpAlongAxis_Goal.

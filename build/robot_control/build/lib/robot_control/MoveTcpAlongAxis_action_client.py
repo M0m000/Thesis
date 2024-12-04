@@ -9,11 +9,12 @@ class MoveTcpAlongAxisActionClient(Node):
         super().__init__('move_tcp_along_axis_action_client')
         self._action_client = ActionClient(self, MoveTcpAlongAxis, 'move_tcp_along_axis')
 
-    def send_goal(self, baseline, movement_frame, movement_axis):
+    def send_goal(self, baseline, movement_frame, movement_axis, speed):
         goal_msg = MoveTcpAlongAxis.Goal()
         goal_msg.baseline = baseline
         goal_msg.movement_frame = movement_frame
         goal_msg.movement_axis = movement_axis
+        goal_msg.speed_in_mm_per_s = speed
 
         self._action_client.wait_for_server()
         self._send_goal_future = self._action_client.send_goal_async(goal_msg, feedback_callback=self.feedback_callback)
@@ -36,16 +37,16 @@ class MoveTcpAlongAxisActionClient(Node):
 
     def get_result_callback(self, future):
         result = future.result().result
-        self.get_logger().info('Movement successful' if result.success else 'Movement ERROR!')
+        self.get_logger().info('Movement successful!' if result.success else 'Movement ERROR!')
         rclpy.shutdown()
 
-    
 
 def main(args=None):
     rclpy.init(args=args)
     action_client = MoveTcpAlongAxisActionClient()
-    action_client.send_goal(5.0, "tcp", "axis_x")
+    action_client.send_goal(5.0, "tcp", "axis_x", 30.0)
     rclpy.spin(action_client)
 
 if __name__ == '__main__':
     main()
+

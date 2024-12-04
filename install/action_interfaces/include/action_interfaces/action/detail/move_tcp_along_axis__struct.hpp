@@ -40,6 +40,7 @@ struct MoveTcpAlongAxis_Goal_
       this->baseline = 0.0;
       this->movement_frame = "";
       this->movement_axis = "";
+      this->speed_in_mm_per_s = 0.0;
     }
   }
 
@@ -53,6 +54,7 @@ struct MoveTcpAlongAxis_Goal_
       this->baseline = 0.0;
       this->movement_frame = "";
       this->movement_axis = "";
+      this->speed_in_mm_per_s = 0.0;
     }
   }
 
@@ -66,6 +68,9 @@ struct MoveTcpAlongAxis_Goal_
   using _movement_axis_type =
     std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _movement_axis_type movement_axis;
+  using _speed_in_mm_per_s_type =
+    double;
+  _speed_in_mm_per_s_type speed_in_mm_per_s;
 
   // setters for named parameter idiom
   Type & set__baseline(
@@ -84,6 +89,12 @@ struct MoveTcpAlongAxis_Goal_
     const std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other> & _arg)
   {
     this->movement_axis = _arg;
+    return *this;
+  }
+  Type & set__speed_in_mm_per_s(
+    const double & _arg)
+  {
+    this->speed_in_mm_per_s = _arg;
     return *this;
   }
 
@@ -136,6 +147,9 @@ struct MoveTcpAlongAxis_Goal_
       return false;
     }
     if (this->movement_axis != other.movement_axis) {
+      return false;
+    }
+    if (this->speed_in_mm_per_s != other.speed_in_mm_per_s) {
       return false;
     }
     return true;

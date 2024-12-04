@@ -2,6 +2,7 @@
 float64 baseline
 string movement_frame
 string movement_axis
+float64 speed_in_mm_per_s
 
 ---
 # Result (Ausgabe nach der Action)

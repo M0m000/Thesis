@@ -20,16 +20,32 @@ namespace action
 namespace builder
 {
 
+class Init_MoveTcpAlongAxis_Goal_speed_in_mm_per_s
+{
+public:
+  explicit Init_MoveTcpAlongAxis_Goal_speed_in_mm_per_s(::action_interfaces::action::MoveTcpAlongAxis_Goal & msg)
+  : msg_(msg)
+  {}
+  ::action_interfaces::action::MoveTcpAlongAxis_Goal speed_in_mm_per_s(::action_interfaces::action::MoveTcpAlongAxis_Goal::_speed_in_mm_per_s_type arg)
+  {
+    msg_.speed_in_mm_per_s = std::move(arg);
+    return std::move(msg_);
+  }
+
+private:
+  ::action_interfaces::action::MoveTcpAlongAxis_Goal msg_;
+};
+
 class Init_MoveTcpAlongAxis_Goal_movement_axis
 {
 public:
   explicit Init_MoveTcpAlongAxis_Goal_movement_axis(::action_interfaces::action::MoveTcpAlongAxis_Goal & msg)
   : msg_(msg)
   {}
-  ::action_interfaces::action::MoveTcpAlongAxis_Goal movement_axis(::action_interfaces::action::MoveTcpAlongAxis_Goal::_movement_axis_type arg)
+  Init_MoveTcpAlongAxis_Goal_speed_in_mm_per_s movement_axis(::action_interfaces::action::MoveTcpAlongAxis_Goal::_movement_axis_type arg)
   {
     msg_.movement_axis = std::move(arg);
-    return std::move(msg_);
+    return Init_MoveTcpAlongAxis_Goal_speed_in_mm_per_s(msg_);
   }
 
 private:

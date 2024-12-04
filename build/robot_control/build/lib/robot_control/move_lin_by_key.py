@@ -3,6 +3,7 @@ from rclpy.node import Node
 from pynput import keyboard
 from kr_msgs.msg import JogLinear
 
+
 class MoveLinByKey(Node):
     def __init__(self):
         super().__init__('move_lin_by_key')

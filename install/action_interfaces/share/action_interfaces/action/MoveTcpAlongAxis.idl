@@ -13,6 +13,8 @@ module action_interfaces {
       string movement_frame;
 
       string movement_axis;
+
+      double speed_in_mm_per_s;
     };
     struct MoveTcpAlongAxis_Result {
       @verbatim (language="comment", text=

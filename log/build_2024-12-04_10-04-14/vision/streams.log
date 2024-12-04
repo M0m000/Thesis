@@ -1,0 +1,28 @@
+[1.593s] Invoking command in '/home/vboxuser/ros2_ws/src/vision': PYTHONPATH=/home/vboxuser/ros2_ws/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/vboxuser/ros2_ws/build/vision/build install --record /home/vboxuser/ros2_ws/build/vision/install.log --install-scripts $base/lib/vision --single-version-externally-managed install_data
+[2.170s] running egg_info
+[2.170s] writing ../../build/vision/vision.egg-info/PKG-INFO
+[2.170s] writing dependency_links to ../../build/vision/vision.egg-info/dependency_links.txt
+[2.171s] writing entry points to ../../build/vision/vision.egg-info/entry_points.txt
+[2.174s] writing requirements to ../../build/vision/vision.egg-info/requires.txt
+[2.174s] writing top-level names to ../../build/vision/vision.egg-info/top_level.txt
+[2.175s] reading manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[2.175s] writing manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[2.175s] running build
+[2.175s] running build_py
+[2.176s] running install
+[2.176s] running install_lib
+[2.176s] running install_data
+[2.176s] running install_egg_info
+[2.177s] removing '/home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision-0.0.0-py3.8.egg-info' (and everything under it)
+[2.177s] Copying ../../build/vision/vision.egg-info to /home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages/vision-0.0.0-py3.8.egg-info
+[2.177s] running install_scripts
+[2.177s] Installing calibration script to /home/vboxuser/ros2_ws/install/vision/lib/vision
+[2.178s] Installing image_filters script to /home/vboxuser/ros2_ws/install/vision/lib/vision
+[2.178s] Installing image_receiver script to /home/vboxuser/ros2_ws/install/vision/lib/vision
+[2.178s] Installing point_finder_2d script to /home/vboxuser/ros2_ws/install/vision/lib/vision
+[2.179s] Installing point_finder_3d script to /home/vboxuser/ros2_ws/install/vision/lib/vision
+[2.179s] Installing stereo_triangulation script to /home/vboxuser/ros2_ws/install/vision/lib/vision
+[2.179s] Installing stereo_triangulation_with_robot script to /home/vboxuser/ros2_ws/install/vision/lib/vision
+[2.180s] Installing test_node script to /home/vboxuser/ros2_ws/install/vision/lib/vision
+[2.180s] writing list of installed files to '/home/vboxuser/ros2_ws/build/vision/install.log'
+[2.209s] Invoked command in '/home/vboxuser/ros2_ws/src/vision' returned '0': PYTHONPATH=/home/vboxuser/ros2_ws/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/vboxuser/ros2_ws/build/vision/build install --record /home/vboxuser/ros2_ws/build/vision/install.log --install-scripts $base/lib/vision --single-version-externally-managed install_data

@@ -92,6 +92,15 @@ bool action_interfaces__action__move_tcp_along_axis__goal__convert_from_py(PyObj
     Py_DECREF(encoded_field);
     Py_DECREF(field);
   }
+  {  // speed_in_mm_per_s
+    PyObject * field = PyObject_GetAttrString(_pymsg, "speed_in_mm_per_s");
+    if (!field) {
+      return false;
+    }
+    assert(PyFloat_Check(field));
+    ros_message->speed_in_mm_per_s = PyFloat_AS_DOUBLE(field);
+    Py_DECREF(field);
+  }
 
   return true;
 }
@@ -153,6 +162,17 @@ PyObject * action_interfaces__action__move_tcp_along_axis__goal__convert_to_py(v
     }
     {
       int rc = PyObject_SetAttrString(_pymessage, "movement_axis", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // speed_in_mm_per_s
+    PyObject * field = NULL;
+    field = PyFloat_FromDouble(ros_message->speed_in_mm_per_s);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "speed_in_mm_per_s", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;
