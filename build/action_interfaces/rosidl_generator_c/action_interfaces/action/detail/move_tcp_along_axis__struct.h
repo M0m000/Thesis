@@ -63,10 +63,14 @@ typedef struct action_interfaces__action__MoveTcpAlongAxis_Result__Sequence
 
 // Constants defined in the message
 
+// Include directives for member types
+// Member 'current_position'
+#include "rosidl_runtime_c/primitives_sequence.h"
+
 // Struct defined in action/MoveTcpAlongAxis in the package action_interfaces.
 typedef struct action_interfaces__action__MoveTcpAlongAxis_Feedback
 {
-  double current_position;
+  rosidl_runtime_c__double__Sequence current_position;
 } action_interfaces__action__MoveTcpAlongAxis_Feedback;
 
 // Struct for a sequence of action_interfaces__action__MoveTcpAlongAxis_Feedback.

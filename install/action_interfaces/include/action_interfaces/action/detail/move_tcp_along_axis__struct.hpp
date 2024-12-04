@@ -305,31 +305,23 @@ struct MoveTcpAlongAxis_Feedback_
 
   explicit MoveTcpAlongAxis_Feedback_(rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
   {
-    if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
-      rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
-    {
-      this->current_position = 0.0;
-    }
+    (void)_init;
   }
 
   explicit MoveTcpAlongAxis_Feedback_(const ContainerAllocator & _alloc, rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
   {
+    (void)_init;
     (void)_alloc;
-    if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
-      rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
-    {
-      this->current_position = 0.0;
-    }
   }
 
   // field types and members
   using _current_position_type =
-    double;
+    std::vector<double, typename ContainerAllocator::template rebind<double>::other>;
   _current_position_type current_position;
 
   // setters for named parameter idiom
   Type & set__current_position(
-    const double & _arg)
+    const std::vector<double, typename ContainerAllocator::template rebind<double>::other> & _arg)
   {
     this->current_position = _arg;
     return *this;

@@ -234,6 +234,10 @@ ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspecti
 // #include "action_interfaces/action/detail/move_tcp_along_axis__struct.h"
 
 
+// Include directives for member types
+// Member `current_position`
+#include "rosidl_runtime_c/primitives_sequence_functions.h"
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -259,7 +263,7 @@ static rosidl_typesupport_introspection_c__MessageMember MoveTcpAlongAxis_Feedba
     rosidl_typesupport_introspection_c__ROS_TYPE_DOUBLE,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
-    false,  // is array
+    true,  // is array
     0,  // array size
     false,  // is upper bound
     offsetof(action_interfaces__action__MoveTcpAlongAxis_Feedback, current_position),  // bytes offset in struct

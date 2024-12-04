@@ -138,7 +138,7 @@ class MoveTcpAlongAxisActionServer(Node):
         self.get_current_position(goal_handle)
         self.feedback_msg.current_position = self.baseline
 
-        ### Case-Anweisung - auf welcher Achse soll verfahren werden
+        ### Twist aufbauen
         self.set_movement()
 
         for i in range(5):
@@ -163,16 +163,18 @@ class MoveTcpAlongAxisActionServer(Node):
 
     def set_frame(self):
         self.get_logger().info("Set Frame...")
+        self.callSrv_SelectJoggingFrame()
     
     def get_current_position(self, goal_handle):
         self.get_logger().info("Get Current Pose...")
-        self.feedback_msg.current_position = 0.0
+        self.callSrv_GetRobotPose()
+        self.feedback_msg.current_position = self.pos
         goal_handle.publish_feedback(self.feedback_msg)
 
     def set_movement(self):
         self.get_logger().info("Set Movement on Axis...")
         self.jog_msg.vel = [0.0, 0.0, 0.0]
-        self.jog_msg.rot = [0.0, 0.0, 0.0]        
+        self.jog_msg.rot = [0.0, 0.0, 0.0]
 
     def publish_callback(self):
         if self.TwistPublisher_active:

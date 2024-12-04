@@ -163,10 +163,12 @@ class MoveTcpAlongAxisActionServer(Node):
 
     def set_frame(self):
         self.get_logger().info("Set Frame...")
+        self.callSrv_SelectJoggingFrame()
     
     def get_current_position(self, goal_handle):
         self.get_logger().info("Get Current Pose...")
-        self.feedback_msg.current_position = 0.0
+        self.callSrv_GetRobotPose()
+        self.feedback_msg.current_position = self.pos
         goal_handle.publish_feedback(self.feedback_msg)
 
     def set_movement(self):

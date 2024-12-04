@@ -301,6 +301,9 @@ class MoveTcpAlongAxis_Result(metaclass=Metaclass_MoveTcpAlongAxis_Result):
 
 # Import statements for member types
 
+# Member 'current_position'
+import array  # noqa: E402, I100
+
 # already imported above
 # import rosidl_parser.definition
 
@@ -354,18 +357,18 @@ class MoveTcpAlongAxis_Feedback(metaclass=Metaclass_MoveTcpAlongAxis_Feedback):
     ]
 
     _fields_and_field_types = {
-        'current_position': 'double',
+        'current_position': 'sequence<double>',
     }
 
     SLOT_TYPES = (
-        rosidl_parser.definition.BasicType('double'),  # noqa: E501
+        rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.BasicType('double')),  # noqa: E501
     )
 
     def __init__(self, **kwargs):
         assert all('_' + key in self.__slots__ for key in kwargs.keys()), \
             'Invalid arguments passed to constructor: %s' % \
             ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
-        self.current_position = kwargs.get('current_position', float())
+        self.current_position = array.array('d', kwargs.get('current_position', []))
 
     def __repr__(self):
         typename = self.__class__.__module__.split('.')
@@ -412,11 +415,26 @@ class MoveTcpAlongAxis_Feedback(metaclass=Metaclass_MoveTcpAlongAxis_Feedback):
 
     @current_position.setter
     def current_position(self, value):
+        if isinstance(value, array.array):
+            assert value.typecode == 'd', \
+                "The 'current_position' array.array() must have the type code of 'd'"
+            self._current_position = value
+            return
         if __debug__:
+            from collections.abc import Sequence
+            from collections.abc import Set
+            from collections import UserList
+            from collections import UserString
             assert \
-                isinstance(value, float), \
-                "The 'current_position' field must be of type 'float'"
-        self._current_position = value
+                ((isinstance(value, Sequence) or
+                  isinstance(value, Set) or
+                  isinstance(value, UserList)) and
+                 not isinstance(value, str) and
+                 not isinstance(value, UserString) and
+                 all(isinstance(v, float) for v in value) and
+                 True), \
+                "The 'current_position' field must be a set or sequence and each value of type 'float'"
+        self._current_position = array.array('d', value)
 
 
 # Import statements for member types

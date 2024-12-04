@@ -71,6 +71,10 @@ rosidl_runtime_c/string.h
 /home/vboxuser/ros2_ws/build/action_interfaces/rosidl_typesupport_fastrtps_c/action_interfaces/action/detail/rosidl_runtime_c/string.h
 rosidl_runtime_c/string_functions.h
 /home/vboxuser/ros2_ws/build/action_interfaces/rosidl_typesupport_fastrtps_c/action_interfaces/action/detail/rosidl_runtime_c/string_functions.h
+rosidl_runtime_c/primitives_sequence.h
+/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_typesupport_fastrtps_c/action_interfaces/action/detail/rosidl_runtime_c/primitives_sequence.h
+rosidl_runtime_c/primitives_sequence_functions.h
+/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_typesupport_fastrtps_c/action_interfaces/action/detail/rosidl_runtime_c/primitives_sequence_functions.h
 unique_identifier_msgs/msg/detail/uuid__functions.h
 /home/vboxuser/ros2_ws/build/action_interfaces/rosidl_typesupport_fastrtps_c/action_interfaces/action/detail/unique_identifier_msgs/msg/detail/uuid__functions.h
 builtin_interfaces/msg/detail/time__functions.h
@@ -633,6 +637,8 @@ stdint.h
 -
 rosidl_runtime_c/string.h
 rosidl_generator_c/action_interfaces/action/detail/rosidl_runtime_c/string.h
+rosidl_runtime_c/primitives_sequence.h
+rosidl_generator_c/action_interfaces/action/detail/rosidl_runtime_c/primitives_sequence.h
 unique_identifier_msgs/msg/detail/uuid__struct.h
 rosidl_generator_c/action_interfaces/action/detail/unique_identifier_msgs/msg/detail/uuid__struct.h
 action_interfaces/action/detail/move_tcp_along_axis__struct.h
