@@ -40,24 +40,15 @@ class MoveTcpAlongAxisActionServer(Node):
         while not self.client_GetRobotPose.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('Warten auf Service Kassow: GetRobotPose')
             self.Srv_GetRobotPose_available = False
+        self.get_logger().info(f"Service Kassow: GetRobotPose gefunden!")
         self.Srv_GetRobotPose_available = True
 
         self.client_SelectJoggingFrame = self.create_client(SelectJoggingFrame, '/kr/motion/select_jogging_frame')
         while not self.client_SelectJoggingFrame.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('Warten auf Service Kassow: SelectJoggingFrame')
             self.Srv_SelectJoggingFrame_available = False
+        self.get_logger().info(f"Service Kassow: SelectJoggingFrame gefunden!")
         self.Srv_SelectJoggingFrame_available = True
-
-        self.set_init_system_frame()
-    
-
-
-    
-    def set_init_system_frame(self):
-        if self.Srv_SelectJoggingFrame_available:
-            self.callSrv_SelectJoggingFrame()
-
-
 
 
     def callSrv_SelectJoggingFrame(self):
@@ -108,17 +99,11 @@ class MoveTcpAlongAxisActionServer(Node):
             self.get_logger().info(f"Service Call GetRobotPose failed!")
 
 
-
-
-
     def ServerInit_movement(self):
         self.jog_msg = JogLinear()
         self.jog_msg.vel = [0.0, 0.0, 0.0]
         self.jog_msg.rot = [0.0, 0.0, 0.0]
     
-
-
-
 
     def execute_callback(self, goal_handle):
         self.TwistPublisher_active = True
@@ -136,9 +121,8 @@ class MoveTcpAlongAxisActionServer(Node):
 
         ### Aktuelle Startposition auslesen und als Feedback zurueckgeben
         self.get_current_position(goal_handle)
-        self.feedback_msg.current_position = self.baseline
 
-        ### Case-Anweisung - auf welcher Achse soll verfahren werden
+        ### Twist aufbauen
         self.set_movement()
 
         for i in range(5):
@@ -157,8 +141,6 @@ class MoveTcpAlongAxisActionServer(Node):
         goal_handle.succeed()
 
         return result
-    
-
 
 
     def set_frame(self):
@@ -174,14 +156,12 @@ class MoveTcpAlongAxisActionServer(Node):
     def set_movement(self):
         self.get_logger().info("Set Movement on Axis...")
         self.jog_msg.vel = [0.0, 0.0, 0.0]
-        self.jog_msg.rot = [0.0, 0.0, 0.0]        
+        self.jog_msg.rot = [0.0, 0.0, 0.0]
 
     def publish_callback(self):
         if self.TwistPublisher_active:
             self.twist_publisher.publish(self.jog_msg)
-            self.get_logger().info("---------- Twist published! ----------")
-
-
+            # self.get_logger().info("---------- Twist published! ----------")
 
 
 def main(args=None):
@@ -193,4 +173,3 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
-
