@@ -63,6 +63,11 @@ CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action
 CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/move_tcp_along_axis__struct.hpp
 CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/move_tcp_along_axis__traits.hpp
 CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/move_tcp_along_axis__type_support.hpp
+CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/move_along_baseline.hpp
+CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/move_along_baseline__builder.hpp
+CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/move_along_baseline__struct.hpp
+CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/move_along_baseline__traits.hpp
+CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/move_along_baseline__type_support.hpp
 CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp
 
 
@@ -87,6 +92,7 @@ rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: /opt/ros/foxy/share
 rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/srv__type_support.hpp.em
 rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: rosidl_adapter/action_interfaces/action/Fibonacci.idl
 rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: rosidl_adapter/action_interfaces/action/MoveTcpAlongAxis.idl
+rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: rosidl_adapter/action_interfaces/action/MoveAlongBaseline.idl
 rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: /opt/ros/foxy/share/action_msgs/msg/GoalInfo.idl
 rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: /opt/ros/foxy/share/action_msgs/msg/GoalStatus.idl
 rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: /opt/ros/foxy/share/action_msgs/msg/GoalStatusArray.idl
@@ -124,6 +130,21 @@ rosidl_generator_cpp/action_interfaces/action/detail/move_tcp_along_axis__traits
 rosidl_generator_cpp/action_interfaces/action/detail/move_tcp_along_axis__type_support.hpp: rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/action_interfaces/action/detail/move_tcp_along_axis__type_support.hpp
 
+rosidl_generator_cpp/action_interfaces/action/move_along_baseline.hpp: rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/action_interfaces/action/move_along_baseline.hpp
+
+rosidl_generator_cpp/action_interfaces/action/detail/move_along_baseline__builder.hpp: rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/action_interfaces/action/detail/move_along_baseline__builder.hpp
+
+rosidl_generator_cpp/action_interfaces/action/detail/move_along_baseline__struct.hpp: rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/action_interfaces/action/detail/move_along_baseline__struct.hpp
+
+rosidl_generator_cpp/action_interfaces/action/detail/move_along_baseline__traits.hpp: rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/action_interfaces/action/detail/move_along_baseline__traits.hpp
+
+rosidl_generator_cpp/action_interfaces/action/detail/move_along_baseline__type_support.hpp: rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/action_interfaces/action/detail/move_along_baseline__type_support.hpp
+
 action_interfaces__cpp: CMakeFiles/action_interfaces__cpp
 action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp
 action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/fibonacci__builder.hpp
@@ -135,6 +156,11 @@ action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/mov
 action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/move_tcp_along_axis__struct.hpp
 action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/move_tcp_along_axis__traits.hpp
 action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/move_tcp_along_axis__type_support.hpp
+action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/move_along_baseline.hpp
+action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/move_along_baseline__builder.hpp
+action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/move_along_baseline__struct.hpp
+action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/move_along_baseline__traits.hpp
+action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/move_along_baseline__type_support.hpp
 action_interfaces__cpp: CMakeFiles/action_interfaces__cpp.dir/build.make
 
 .PHONY : action_interfaces__cpp

@@ -2,8 +2,8 @@ import rclpy
 from rclpy.action import ActionServer
 from rclpy.node import Node
 from action_interfaces.action import MoveTcpAlongAxis
-from kr_msgs.msg import FollowLinear
 from kr_msgs.srv import GetRobotPose
+from kr_msgs.msg import JogLinear
 import numpy as np
 
 
@@ -11,11 +11,7 @@ class MoveTcpAlongAxisActionServer(Node):
 
     def __init__(self):
         super().__init__('MoveTcpAlongAxis_action_server')
-
-        # Publisher Move Linear Kassow
-        self.movement_publisher = self.create_publisher(FollowLinear, '/kr/motion/follow_linear', 10)
-        self.timer_period = 0.01
-        self.timer = self.create_timer(self.timer_period, self.publish_callback)
+        self.get_logger().info("Initializing Action Server")
 
         # Init des Action Servers
         self._action_server = ActionServer(
@@ -25,47 +21,140 @@ class MoveTcpAlongAxisActionServer(Node):
             self.execute_callback
         )
 
+        # Client für GetRobotPose
         self.get_robot_pose_client = self.create_client(GetRobotPose, '/kr/robot/get_robot_pose')
-        while not self.get_robot_pose_client.wait_for_service(timeout_sec=1.0):
-            self.get_logger().info('Service "Get Robot Pose" nicht verfügbar, warte...')
-        self.get_logger().info('Service "Get Robot Pose" verfügbar.')
 
+        # Publisher Move Linear Kassow
+        self.jog_publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
 
-        self.activate_publisher = False
         self.pos = None
         self.rot = None
         self.jconf = None
         self.axis_idx = None
         self.dest_pos = None
         self.frame_idx = None
-
+        self.actual_pos_diff = None
+        self.abs_diff_pos = None
+        self.tolerance = 0.5
 
     def execute_callback(self, goal_handle):
-        self.get_logger().info(f"Starting TCP movement")
+        self.get_logger().info("Starting TCP movement")
 
-        self.baseline = goal_handle.request.baseline
-        self.movement_frame = goal_handle.request.movement_frame
-        self.movement_axis = goal_handle.request.movement_axis
-        self.speed_in_mm_per_s = goal_handle.request.speed_in_mm_per_s
+        if goal_handle.is_cancel_requested:
+            self.get_logger().info("Action canceled by client.")
 
-        self.feedback_msg = MoveTcpAlongAxis.Feedback()
+        try:
+            while not self.get_robot_pose_client.wait_for_service(timeout_sec=1.0):
+                self.get_logger().warn("Waiting for GetRobotPose service...")
+            self.get_logger().info("GetRobotPose service available!")
 
-        self.get_robot_pose()
-        self.get_axis_idx()
-        self.get_frame_idx()
-        self.calc_destination_pose()
-        
+            self.reset_variables()
 
-        # Publish der Ziel-Pose auf Topic
-        # self.activate_publisher = True
+            # Zielparameter von der Action Request
+            self.baseline = goal_handle.request.baseline
+            self.movement_frame = goal_handle.request.movement_frame
+            self.movement_axis = goal_handle.request.movement_axis
+            self.speed_in_mm_per_s = goal_handle.request.speed_in_mm_per_s
+
+            pose_client_request = GetRobotPose.Request()
+            future = self.get_robot_pose_client.call_async(pose_client_request)
+            rclpy.spin_until_future_complete(self, future)
+            response = future.result()
+
+            if not response.success:
+                self.get_logger().warn("Failed to get robot pose.")
+                goal_handle.abort()
+                return MoveTcpAlongAxis.Result(success=False)
+
+            self.set_pos(response)
+            self.get_logger().info(f"Start Pose: {self.pos}")
+
+            self.get_axis_idx()
+            self.get_frame_idx()
+            self.calc_destination_pose()
+            self.get_logger().info(f"Destination Pose: {self.dest_pos}")
+
+            goal_reached = False  # Flag to track when the goal is achieved
+
+            while rclpy.ok():
+                if goal_handle.is_cancel_requested:
+                    self.get_logger().info("Goal canceled by the client.")
+                    goal_handle.canceled()
+                    self.jog_publisher.destroy()
+                    self.jog_publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
+                    return MoveTcpAlongAxis.Result(success=False)
+
+                future = self.get_robot_pose_client.call_async(pose_client_request)
+                rclpy.spin_until_future_complete(self, future)
+                response = future.result()
+
+                if not response.success:
+                    self.get_logger().warn("Failed to get robot pose.")
+                    continue
+
+                self.set_pos(response)
+                self.calc_diff()
+                self.calc_abs_dist()
+
+                action_feedback = MoveTcpAlongAxis.Feedback()
+                action_feedback.current_position = self.pos
+                action_feedback.current_diff = self.abs_diff_pos
+                goal_handle.publish_feedback(action_feedback)
+
+                if abs(self.abs_diff_pos) <= self.tolerance:
+                    self.get_logger().info("Target position reached!")
+                    goal_reached = True
+                    break
+
+                self.set_velocity()
+                self.publish_velocity()
+
+            # After the loop
+            if goal_reached:
+                goal_handle.succeed()
+                self.jog_publisher.destroy()
+                self.jog_publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
+                return MoveTcpAlongAxis.Result(success=True)
+
+            self.get_logger().info("Action failed unexpectedly.")
+            goal_handle.abort()
+            self.jog_publisher.destroy()
+            self.jog_publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
+            return MoveTcpAlongAxis.Result(success=False)
+        except Exception as e:
+            self.get_logger().info(f"Error during execution: {e}")
+        finally:
+            self.get_logger().info("Callback execution finished!")
 
 
-        goal_handle.succeed()
-        self.activate_publisher = False
-        result = MoveTcpAlongAxis.Result()
-        result.success = True
-        return result
+    def reset_variables(self):
+        self.pos = None
+        self.rot = None
+        self.jconf = None
+        self.axis_idx = None
+        self.dest_pos = None
+        self.frame_idx = None
+        self.actual_pos_diff = None
+        self.abs_diff_pos = None
 
+    def publish_velocity(self):
+        msg = JogLinear()
+        msg.vel = self.actual_vel
+        msg.rot = self.actual_rot
+        self.jog_publisher.publish(msg)
+
+    def set_velocity(self):
+        self.actual_vel = [0.0, 0.0, 0.0]
+        self.actual_vel[self.axis_idx] = self.speed_in_mm_per_s * (self.baseline / (abs(self.baseline)))
+        self.actual_rot = [0.0, 0.0, 0.0]
+
+    def calc_abs_dist(self):
+        self.abs_diff_pos = np.sqrt((self.dest_pos[0] - self.pos[0])**2 + (self.dest_pos[1] - self.pos[1])**2 + (self.dest_pos[2] - self.pos[2])**2)
+
+    def set_pos(self, srv_response):
+        self.pos = [srv_response.pos[0], srv_response.pos[1], srv_response.pos[2]]
+        self.rot = [srv_response.rot[0], srv_response.rot[1], srv_response.rot[2]]
+        self.jconf = [srv_response.jsconf[0], srv_response.jsconf[1], srv_response.jsconf[2]]
 
     def get_axis_idx(self):
         if self.movement_axis == 'axis_x':
@@ -75,32 +164,13 @@ class MoveTcpAlongAxisActionServer(Node):
         elif self.movement_axis == 'axis_z':
             self.axis_idx = 2
 
+    def calc_diff(self):
+        self.actual_pos_diff = np.array(self.dest_pos) - np.array(self.pos)
 
     def calc_destination_pose(self):
         self.dest_pos = self.pos
         self.dest_pos[self.axis_idx] = self.pos[self.axis_idx] + self.baseline
 
-
-    def get_robot_pose(self):
-        request = GetRobotPose.Request()
-        future = self.get_robot_pose_client.call_async(request)
-        rclpy.spin_until_future_complete(self, future)
-
-        if future.result() is not None:
-            robot_pose = future.result()
-            self.pos = [robot_pose.pos[0], robot_pose.pos[1], robot_pose.pos[2]]
-            self.rot = [robot_pose.rot[0], robot_pose.rot[1], robot_pose.rot[2]]
-            self.jconf = [robot_pose.jsconf[0],
-                          robot_pose.jsconf[1],
-                          robot_pose.jsconf[2],
-                          robot_pose.jsconf[3],
-                          robot_pose.jsconf[4],
-                          robot_pose.jsconf[5],
-                          robot_pose.jsconf[6]]
-        else:
-            self.get_logger().error("Service call failed")
-
-    
     def get_frame_idx(self):
         if self.movement_frame == 'world':
             self.frame_idx = 0
@@ -112,29 +182,11 @@ class MoveTcpAlongAxisActionServer(Node):
             self.frame_idx = None
 
 
-    def publish_callback(self):
-        if self.activate_publisher:
-            msg = FollowLinear()
-
-            msg.pos = self.dest_pos
-            msg.rot = self.rot
-            msg.ref = self.frame_idx
-            msg.ttype = 0                           # Bewegung geschwindigkeitsbasiert
-            msg.tvalue = self.speed_in_mm_per_s     # Geschwindigkeit in mm/s
-            msg.bpoint = 0      
-            msg.btype = 0
-            msg.bvalue = 100.0
-
-            self.movement_publisher.publish(msg)
-            self.get_logger().info(f"Publishing {msg}")
-
-
-
 def main(args=None):
     rclpy.init(args=args)
     MoveTcpAlongAxis_action_server = MoveTcpAlongAxisActionServer()
     rclpy.spin(MoveTcpAlongAxis_action_server)
 
+
 if __name__ == '__main__':
     main()
-

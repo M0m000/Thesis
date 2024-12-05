@@ -12,7 +12,9 @@ resource/robot_control
 robot_control/MoveTcpAlongAxis_action_client.py
 robot_control/__init__.py
 robot_control/fibonacci_action_client.py
+robot_control/get_robot_pose_node.py
 robot_control/hello_node.py
+robot_control/move_along_baseline_client.py
 robot_control/move_lin_by_key.py
 robot_control/move_robot_service_server.py
 robot_control/print_frames.py

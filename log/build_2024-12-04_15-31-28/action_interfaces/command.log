@@ -1,2 +1,0 @@
-Invoking command in '/home/vboxuser/ros2_ws/build/action_interfaces': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/vboxuser/ros2_ws/src/action_interfaces -DCMAKE_INSTALL_PREFIX=/home/vboxuser/ros2_ws/install/action_interfaces
-Invoked command in '/home/vboxuser/ros2_ws/build/action_interfaces' returned '1': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/vboxuser/ros2_ws/src/action_interfaces -DCMAKE_INSTALL_PREFIX=/home/vboxuser/ros2_ws/install/action_interfaces

@@ -1,0 +1,34 @@
+// generated from rosidl_adapter/resource/action.idl.em
+// with input from action_interfaces/action/MoveAlongBaseline.action
+// generated code does not contain a copyright notice
+
+
+module action_interfaces {
+  module action {
+    @verbatim (language="comment", text=
+      " Ziel (Goal)")
+    struct MoveAlongBaseline_Goal {
+      @verbatim (language="comment", text=
+        " Strecke in x-Richtung, die der Roboter fahren soll")
+      @unit (value="mm")
+      double baseline;
+    };
+    struct MoveAlongBaseline_Result {
+      @verbatim (language="comment", text=
+        " Ergebnis" "\n"
+        " True, wenn Ziel erreicht")
+      boolean success;
+
+      @verbatim (language="comment", text=
+        " Nachricht mit dem Ergebnisstatus")
+      string message;
+    };
+    struct MoveAlongBaseline_Feedback {
+      @verbatim (language="comment", text=
+        " Feedback" "\n"
+        " Aktuelle Position des Roboters in x-Richtung")
+      @unit (value="mm")
+      double current_x;
+    };
+  };
+};
