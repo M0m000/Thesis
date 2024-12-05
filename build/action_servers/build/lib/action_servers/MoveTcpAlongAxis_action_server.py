@@ -1,11 +1,9 @@
-import time
 import rclpy
 from rclpy.action import ActionServer
 from rclpy.node import Node
 from action_interfaces.action import MoveTcpAlongAxis
 from kr_msgs.msg import FollowLinear
 from kr_msgs.srv import GetRobotPose
-from kr_msgs.srv import SelectJoggingFrame
 import numpy as np
 
 
@@ -15,8 +13,8 @@ class MoveTcpAlongAxisActionServer(Node):
         super().__init__('MoveTcpAlongAxis_action_server')
 
         # Publisher Move Linear Kassow
-        self.twist_publisher = self.create_publisher(FollowLinear, '/kr/motion/follow_linear', 10)
-        self.timer_period = 0.002
+        self.movement_publisher = self.create_publisher(FollowLinear, '/kr/motion/follow_linear', 10)
+        self.timer_period = 0.01
         self.timer = self.create_timer(self.timer_period, self.publish_callback)
 
         # Init des Action Servers
@@ -39,6 +37,7 @@ class MoveTcpAlongAxisActionServer(Node):
         self.jconf = None
         self.axis_idx = None
         self.dest_pos = None
+        self.frame_idx = None
 
 
     def execute_callback(self, goal_handle):
@@ -52,13 +51,13 @@ class MoveTcpAlongAxisActionServer(Node):
         self.feedback_msg = MoveTcpAlongAxis.Feedback()
 
         self.get_robot_pose()
-        print(self.pos)
         self.get_axis_idx()
+        self.get_frame_idx()
         self.calc_destination_pose()
-        print(self.dest_pos)
+        
 
         # Publish der Ziel-Pose auf Topic
-        self.activate_publisher = True
+        # self.activate_publisher = True
 
 
         goal_handle.succeed()
@@ -66,7 +65,7 @@ class MoveTcpAlongAxisActionServer(Node):
         result = MoveTcpAlongAxis.Result()
         result.success = True
         return result
-    
+
 
     def get_axis_idx(self):
         if self.movement_axis == 'axis_x':
@@ -80,7 +79,7 @@ class MoveTcpAlongAxisActionServer(Node):
     def calc_destination_pose(self):
         self.dest_pos = self.pos
         self.dest_pos[self.axis_idx] = self.pos[self.axis_idx] + self.baseline
-    
+
 
     def get_robot_pose(self):
         request = GetRobotPose.Request()
@@ -101,9 +100,33 @@ class MoveTcpAlongAxisActionServer(Node):
         else:
             self.get_logger().error("Service call failed")
 
+    
+    def get_frame_idx(self):
+        if self.movement_frame == 'world':
+            self.frame_idx = 0
+        elif self.movement_frame == 'base':
+            self.frame_idx = 1
+        elif self.movement_frame == 'tcp':
+            self.frame_idx = 2
+        else:
+            self.frame_idx = None
+
 
     def publish_callback(self):
-        pass
+        if self.activate_publisher:
+            msg = FollowLinear()
+
+            msg.pos = self.dest_pos
+            msg.rot = self.rot
+            msg.ref = self.frame_idx
+            msg.ttype = 0                           # Bewegung geschwindigkeitsbasiert
+            msg.tvalue = self.speed_in_mm_per_s     # Geschwindigkeit in mm/s
+            msg.bpoint = 0      
+            msg.btype = 0
+            msg.bvalue = 100.0
+
+            self.movement_publisher.publish(msg)
+            self.get_logger().info(f"Publishing {msg}")
 
 
 
@@ -115,4 +138,3 @@ def main(args=None):
 if __name__ == '__main__':
     main()
 
-    

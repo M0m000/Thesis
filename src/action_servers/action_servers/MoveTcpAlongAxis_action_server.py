@@ -1,11 +1,9 @@
-import time
 import rclpy
 from rclpy.action import ActionServer
 from rclpy.node import Node
 from action_interfaces.action import MoveTcpAlongAxis
 from kr_msgs.msg import FollowLinear
 from kr_msgs.srv import GetRobotPose
-from kr_msgs.srv import SelectJoggingFrame
 import numpy as np
 
 
@@ -59,7 +57,7 @@ class MoveTcpAlongAxisActionServer(Node):
         
 
         # Publish der Ziel-Pose auf Topic
-        self.activate_publisher = True
+        # self.activate_publisher = True
 
 
         goal_handle.succeed()
@@ -139,6 +137,4 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
-
-
 
