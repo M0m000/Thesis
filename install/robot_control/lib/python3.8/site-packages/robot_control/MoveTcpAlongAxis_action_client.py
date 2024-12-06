@@ -50,7 +50,7 @@ def main(args=None):
     action_client = MoveTcpAlongAxisActionClient()
 
     try:
-        action_client.send_goal(baseline=-50.0, movement_frame="tcp", movement_axis="axis_x", speed=20.0)
+        action_client.send_goal(baseline=-50.0, movement_frame="tcp", movement_axis="axis_z", speed=20.0)
     except Exception as e:
         action_client.get_logger().error(f"Error during action: {e}")
     finally:
