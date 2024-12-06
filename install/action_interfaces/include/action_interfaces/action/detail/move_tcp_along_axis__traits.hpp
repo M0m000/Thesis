@@ -85,11 +85,11 @@ inline const char * name<action_interfaces::action::MoveTcpAlongAxis_Feedback>()
 
 template<>
 struct has_fixed_size<action_interfaces::action::MoveTcpAlongAxis_Feedback>
-  : std::integral_constant<bool, true> {};
+  : std::integral_constant<bool, false> {};
 
 template<>
 struct has_bounded_size<action_interfaces::action::MoveTcpAlongAxis_Feedback>
-  : std::integral_constant<bool, true> {};
+  : std::integral_constant<bool, false> {};
 
 template<>
 struct is_message<action_interfaces::action::MoveTcpAlongAxis_Feedback>

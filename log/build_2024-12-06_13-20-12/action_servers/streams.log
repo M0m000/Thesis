@@ -1,0 +1,42 @@
+[3.515s] Invoking command in '/home/vboxuser/ros2_ws/src/action_servers': AMENT_PREFIX_PATH=/home/vboxuser/ros2_ws/install/action_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/vboxuser/ros2_ws/install/action_interfaces LD_LIBRARY_PATH=/home/vboxuser/ros2_ws/install/action_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/vboxuser/ros2_ws/build/action_servers/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/action_servers/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/action_interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/action_servers build --build-base /home/vboxuser/ros2_ws/build/action_servers/build install --record /home/vboxuser/ros2_ws/build/action_servers/install.log --install-scripts $base/lib/action_servers --single-version-externally-managed install_data
+[3.954s] running egg_info
+[3.956s] creating ../../build/action_servers/action_servers.egg-info
+[3.959s] writing ../../build/action_servers/action_servers.egg-info/PKG-INFO
+[3.960s] writing dependency_links to ../../build/action_servers/action_servers.egg-info/dependency_links.txt
+[3.961s] writing entry points to ../../build/action_servers/action_servers.egg-info/entry_points.txt
+[3.963s] writing requirements to ../../build/action_servers/action_servers.egg-info/requires.txt
+[3.964s] writing top-level names to ../../build/action_servers/action_servers.egg-info/top_level.txt
+[3.970s] writing manifest file '../../build/action_servers/action_servers.egg-info/SOURCES.txt'
+[4.077s] reading manifest file '../../build/action_servers/action_servers.egg-info/SOURCES.txt'
+[4.079s] writing manifest file '../../build/action_servers/action_servers.egg-info/SOURCES.txt'
+[4.080s] running build
+[4.081s] running build_py
+[4.081s] creating /home/vboxuser/ros2_ws/build/action_servers/build
+[4.082s] creating /home/vboxuser/ros2_ws/build/action_servers/build/lib
+[4.082s] creating /home/vboxuser/ros2_ws/build/action_servers/build/lib/action_servers
+[4.083s] copying action_servers/fibonacci_action_server.py -> /home/vboxuser/ros2_ws/build/action_servers/build/lib/action_servers
+[4.084s] copying action_servers/MoveTcpAlongAxis_action_server.py -> /home/vboxuser/ros2_ws/build/action_servers/build/lib/action_servers
+[4.086s] copying action_servers/__init__.py -> /home/vboxuser/ros2_ws/build/action_servers/build/lib/action_servers
+[4.088s] running install
+[4.099s] running install_lib
+[4.102s] creating /home/vboxuser/ros2_ws/install/action_servers/lib/python3.8/site-packages/action_servers
+[4.102s] copying /home/vboxuser/ros2_ws/build/action_servers/build/lib/action_servers/fibonacci_action_server.py -> /home/vboxuser/ros2_ws/install/action_servers/lib/python3.8/site-packages/action_servers
+[4.111s] copying /home/vboxuser/ros2_ws/build/action_servers/build/lib/action_servers/MoveTcpAlongAxis_action_server.py -> /home/vboxuser/ros2_ws/install/action_servers/lib/python3.8/site-packages/action_servers
+[4.112s] copying /home/vboxuser/ros2_ws/build/action_servers/build/lib/action_servers/__init__.py -> /home/vboxuser/ros2_ws/install/action_servers/lib/python3.8/site-packages/action_servers
+[4.112s] byte-compiling /home/vboxuser/ros2_ws/install/action_servers/lib/python3.8/site-packages/action_servers/fibonacci_action_server.py to fibonacci_action_server.cpython-38.pyc
+[4.112s] byte-compiling /home/vboxuser/ros2_ws/install/action_servers/lib/python3.8/site-packages/action_servers/MoveTcpAlongAxis_action_server.py to MoveTcpAlongAxis_action_server.cpython-38.pyc
+[4.114s] byte-compiling /home/vboxuser/ros2_ws/install/action_servers/lib/python3.8/site-packages/action_servers/__init__.py to __init__.cpython-38.pyc
+[4.115s] running install_data
+[4.115s] creating /home/vboxuser/ros2_ws/install/action_servers/share/ament_index
+[4.115s] creating /home/vboxuser/ros2_ws/install/action_servers/share/ament_index/resource_index
+[4.115s] creating /home/vboxuser/ros2_ws/install/action_servers/share/ament_index/resource_index/packages
+[4.115s] copying resource/action_servers -> /home/vboxuser/ros2_ws/install/action_servers/share/ament_index/resource_index/packages
+[4.116s] copying package.xml -> /home/vboxuser/ros2_ws/install/action_servers/share/action_servers
+[4.116s] running install_egg_info
+[4.117s] Copying ../../build/action_servers/action_servers.egg-info to /home/vboxuser/ros2_ws/install/action_servers/lib/python3.8/site-packages/action_servers-0.0.0-py3.8.egg-info
+[4.121s] running install_scripts
+[4.154s] Installing MoveTcpAlongAxis_action_server script to /home/vboxuser/ros2_ws/install/action_servers/lib/action_servers
+[4.155s] Installing fibonacci_action_server script to /home/vboxuser/ros2_ws/install/action_servers/lib/action_servers
+[4.155s] Installing move_along_baseline_server script to /home/vboxuser/ros2_ws/install/action_servers/lib/action_servers
+[4.156s] writing list of installed files to '/home/vboxuser/ros2_ws/build/action_servers/install.log'
+[4.255s] Invoked command in '/home/vboxuser/ros2_ws/src/action_servers' returned '0': AMENT_PREFIX_PATH=/home/vboxuser/ros2_ws/install/action_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/vboxuser/ros2_ws/install/action_interfaces LD_LIBRARY_PATH=/home/vboxuser/ros2_ws/install/action_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/vboxuser/ros2_ws/build/action_servers/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ros2_ws/install/action_servers/lib/python3.8/site-packages:/home/vboxuser/ros2_ws/install/action_interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/action_servers build --build-base /home/vboxuser/ros2_ws/build/action_servers/build install --record /home/vboxuser/ros2_ws/build/action_servers/install.log --install-scripts $base/lib/action_servers --single-version-externally-managed install_data

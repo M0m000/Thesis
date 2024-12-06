@@ -39,6 +39,10 @@ class MoveTcpAlongAxisActionServer(Node):
         self.actual_pos_diff = None
         self.abs_diff_pos = None
         self.tolerance = 0.5
+        self.init_pos = None
+        self.init_rot = None
+        self.end_pos = None
+        self.end_rot = None
 
     def execute_callback(self, goal_handle):
         self.get_logger().info("Starting TCP movement")
@@ -118,6 +122,11 @@ class MoveTcpAlongAxisActionServer(Node):
             self.get_logger().info("Callback execution finished!")
 
 
+    def calc_exact_baseline(self):
+        return np.sqrt((self.end_pos[0] - self.init_pos[0])**2 + 
+                       (self.end_pos[1] - self.init_pos[1])**2 + 
+                       (self.end_pos[2] - self.init_pos[2])**2)
+
     def reset_variables(self):
         self.pos = None
         self.rot = None
@@ -146,7 +155,7 @@ class MoveTcpAlongAxisActionServer(Node):
         self.pos = [srv_response.pos[0], srv_response.pos[1], srv_response.pos[2]]
         self.rot = [srv_response.rot[0], srv_response.rot[1], srv_response.rot[2]]
         self.jconf = [srv_response.jsconf[0], srv_response.jsconf[1], srv_response.jsconf[2]]
-
+    
     def get_axis_idx(self):
         if self.movement_axis == 'axis_x':
             self.axis_idx = 0

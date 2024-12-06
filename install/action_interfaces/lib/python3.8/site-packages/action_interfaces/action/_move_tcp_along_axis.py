@@ -301,6 +301,9 @@ class MoveTcpAlongAxis_Result(metaclass=Metaclass_MoveTcpAlongAxis_Result):
 
 # Import statements for member types
 
+# Member 'current_position'
+import array  # noqa: E402, I100
+
 # already imported above
 # import rosidl_parser.definition
 
@@ -350,14 +353,17 @@ class MoveTcpAlongAxis_Feedback(metaclass=Metaclass_MoveTcpAlongAxis_Feedback):
     """Message class 'MoveTcpAlongAxis_Feedback'."""
 
     __slots__ = [
+        '_current_position',
         '_current_diff',
     ]
 
     _fields_and_field_types = {
+        'current_position': 'sequence<double>',
         'current_diff': 'double',
     }
 
     SLOT_TYPES = (
+        rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.BasicType('double')),  # noqa: E501
         rosidl_parser.definition.BasicType('double'),  # noqa: E501
     )
 
@@ -365,6 +371,7 @@ class MoveTcpAlongAxis_Feedback(metaclass=Metaclass_MoveTcpAlongAxis_Feedback):
         assert all('_' + key in self.__slots__ for key in kwargs.keys()), \
             'Invalid arguments passed to constructor: %s' % \
             ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
+        self.current_position = array.array('d', kwargs.get('current_position', []))
         self.current_diff = kwargs.get('current_diff', float())
 
     def __repr__(self):
@@ -396,6 +403,8 @@ class MoveTcpAlongAxis_Feedback(metaclass=Metaclass_MoveTcpAlongAxis_Feedback):
     def __eq__(self, other):
         if not isinstance(other, self.__class__):
             return False
+        if self.current_position != other.current_position:
+            return False
         if self.current_diff != other.current_diff:
             return False
         return True
@@ -404,6 +413,34 @@ class MoveTcpAlongAxis_Feedback(metaclass=Metaclass_MoveTcpAlongAxis_Feedback):
     def get_fields_and_field_types(cls):
         from copy import copy
         return copy(cls._fields_and_field_types)
+
+    @property
+    def current_position(self):
+        """Message field 'current_position'."""
+        return self._current_position
+
+    @current_position.setter
+    def current_position(self, value):
+        if isinstance(value, array.array):
+            assert value.typecode == 'd', \
+                "The 'current_position' array.array() must have the type code of 'd'"
+            self._current_position = value
+            return
+        if __debug__:
+            from collections.abc import Sequence
+            from collections.abc import Set
+            from collections import UserList
+            from collections import UserString
+            assert \
+                ((isinstance(value, Sequence) or
+                  isinstance(value, Set) or
+                  isinstance(value, UserList)) and
+                 not isinstance(value, str) and
+                 not isinstance(value, UserString) and
+                 all(isinstance(v, float) for v in value) and
+                 True), \
+                "The 'current_position' field must be a set or sequence and each value of type 'float'"
+        self._current_position = array.array('d', value)
 
     @property
     def current_diff(self):
