@@ -1,13 +1,10 @@
 file(REMOVE_RECURSE
   "CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__type_support.c.o"
-  "CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__type_support.c.o"
   "CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_tcp_along_axis__type_support.c.o"
   "libaction_interfaces__rosidl_typesupport_introspection_c.pdb"
   "libaction_interfaces__rosidl_typesupport_introspection_c.so"
   "rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h"
   "rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__type_support.c"
-  "rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__rosidl_typesupport_introspection_c.h"
-  "rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__type_support.c"
   "rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_tcp_along_axis__rosidl_typesupport_introspection_c.h"
   "rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_tcp_along_axis__type_support.c"
 )

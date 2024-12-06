@@ -1,6 +1,4 @@
 action/Fibonacci.action
 action/Fibonacci.idl
-action/MoveAlongBaseline.action
-action/MoveAlongBaseline.idl
 action/MoveTcpAlongAxis.action
 action/MoveTcpAlongAxis.idl

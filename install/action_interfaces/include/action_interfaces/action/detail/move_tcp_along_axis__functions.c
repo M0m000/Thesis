@@ -502,19 +502,10 @@ action_interfaces__action__MoveTcpAlongAxis_Result__Sequence__copy(
 }
 
 
-// Include directives for member types
-// Member `current_position`
-#include "rosidl_runtime_c/primitives_sequence_functions.h"
-
 bool
 action_interfaces__action__MoveTcpAlongAxis_Feedback__init(action_interfaces__action__MoveTcpAlongAxis_Feedback * msg)
 {
   if (!msg) {
-    return false;
-  }
-  // current_position
-  if (!rosidl_runtime_c__double__Sequence__init(&msg->current_position, 0)) {
-    action_interfaces__action__MoveTcpAlongAxis_Feedback__fini(msg);
     return false;
   }
   // current_diff
@@ -527,8 +518,6 @@ action_interfaces__action__MoveTcpAlongAxis_Feedback__fini(action_interfaces__ac
   if (!msg) {
     return;
   }
-  // current_position
-  rosidl_runtime_c__double__Sequence__fini(&msg->current_position);
   // current_diff
 }
 
@@ -536,12 +525,6 @@ bool
 action_interfaces__action__MoveTcpAlongAxis_Feedback__are_equal(const action_interfaces__action__MoveTcpAlongAxis_Feedback * lhs, const action_interfaces__action__MoveTcpAlongAxis_Feedback * rhs)
 {
   if (!lhs || !rhs) {
-    return false;
-  }
-  // current_position
-  if (!rosidl_runtime_c__double__Sequence__are_equal(
-      &(lhs->current_position), &(rhs->current_position)))
-  {
     return false;
   }
   // current_diff
@@ -557,12 +540,6 @@ action_interfaces__action__MoveTcpAlongAxis_Feedback__copy(
   action_interfaces__action__MoveTcpAlongAxis_Feedback * output)
 {
   if (!input || !output) {
-    return false;
-  }
-  // current_position
-  if (!rosidl_runtime_c__double__Sequence__copy(
-      &(input->current_position), &(output->current_position)))
-  {
     return false;
   }
   // current_diff

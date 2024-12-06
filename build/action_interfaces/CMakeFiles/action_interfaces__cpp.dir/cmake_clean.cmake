@@ -4,16 +4,11 @@ file(REMOVE_RECURSE
   "rosidl_generator_cpp/action_interfaces/action/detail/fibonacci__struct.hpp"
   "rosidl_generator_cpp/action_interfaces/action/detail/fibonacci__traits.hpp"
   "rosidl_generator_cpp/action_interfaces/action/detail/fibonacci__type_support.hpp"
-  "rosidl_generator_cpp/action_interfaces/action/detail/move_along_baseline__builder.hpp"
-  "rosidl_generator_cpp/action_interfaces/action/detail/move_along_baseline__struct.hpp"
-  "rosidl_generator_cpp/action_interfaces/action/detail/move_along_baseline__traits.hpp"
-  "rosidl_generator_cpp/action_interfaces/action/detail/move_along_baseline__type_support.hpp"
   "rosidl_generator_cpp/action_interfaces/action/detail/move_tcp_along_axis__builder.hpp"
   "rosidl_generator_cpp/action_interfaces/action/detail/move_tcp_along_axis__struct.hpp"
   "rosidl_generator_cpp/action_interfaces/action/detail/move_tcp_along_axis__traits.hpp"
   "rosidl_generator_cpp/action_interfaces/action/detail/move_tcp_along_axis__type_support.hpp"
   "rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp"
-  "rosidl_generator_cpp/action_interfaces/action/move_along_baseline.hpp"
   "rosidl_generator_cpp/action_interfaces/action/move_tcp_along_axis.hpp"
 )
 

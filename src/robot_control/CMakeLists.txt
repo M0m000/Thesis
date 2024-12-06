@@ -7,6 +7,9 @@ find_package(rclpy REQUIRED)
 find_package(kr_msgs REQUIRED)
 find_package(ament_cmake_python REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
+find_package(action_interfaces REQUIRED)
+
+ament_target_dependencies(target_name action_interfaces)
 
 # Installiere Python-Quellcode-Dateien
 install(PROGRAMS

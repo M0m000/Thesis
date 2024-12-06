@@ -155,29 +155,13 @@ namespace builder
 class Init_MoveTcpAlongAxis_Feedback_current_diff
 {
 public:
-  explicit Init_MoveTcpAlongAxis_Feedback_current_diff(::action_interfaces::action::MoveTcpAlongAxis_Feedback & msg)
-  : msg_(msg)
+  Init_MoveTcpAlongAxis_Feedback_current_diff()
+  : msg_(::rosidl_runtime_cpp::MessageInitialization::SKIP)
   {}
   ::action_interfaces::action::MoveTcpAlongAxis_Feedback current_diff(::action_interfaces::action::MoveTcpAlongAxis_Feedback::_current_diff_type arg)
   {
     msg_.current_diff = std::move(arg);
     return std::move(msg_);
-  }
-
-private:
-  ::action_interfaces::action::MoveTcpAlongAxis_Feedback msg_;
-};
-
-class Init_MoveTcpAlongAxis_Feedback_current_position
-{
-public:
-  Init_MoveTcpAlongAxis_Feedback_current_position()
-  : msg_(::rosidl_runtime_cpp::MessageInitialization::SKIP)
-  {}
-  Init_MoveTcpAlongAxis_Feedback_current_diff current_position(::action_interfaces::action::MoveTcpAlongAxis_Feedback::_current_position_type arg)
-  {
-    msg_.current_position = std::move(arg);
-    return Init_MoveTcpAlongAxis_Feedback_current_diff(msg_);
   }
 
 private:
@@ -195,7 +179,7 @@ template<>
 inline
 auto build<::action_interfaces::action::MoveTcpAlongAxis_Feedback>()
 {
-  return action_interfaces::action::builder::Init_MoveTcpAlongAxis_Feedback_current_position();
+  return action_interfaces::action::builder::Init_MoveTcpAlongAxis_Feedback_current_diff();
 }
 
 }  // namespace action_interfaces

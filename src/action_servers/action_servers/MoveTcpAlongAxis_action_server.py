@@ -23,6 +23,9 @@ class MoveTcpAlongAxisActionServer(Node):
 
         # Client für GetRobotPose
         self.get_robot_pose_client = self.create_client(GetRobotPose, '/kr/robot/get_robot_pose')
+        while not self.get_robot_pose_client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().warn("Waiting for GetRobotPose service...")
+        self.get_logger().info("GetRobotPose service available!")
 
         # Publisher Move Linear Kassow
         self.jog_publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
@@ -44,13 +47,8 @@ class MoveTcpAlongAxisActionServer(Node):
             self.get_logger().info("Action canceled by client.")
 
         try:
-            while not self.get_robot_pose_client.wait_for_service(timeout_sec=1.0):
-                self.get_logger().warn("Waiting for GetRobotPose service...")
-            self.get_logger().info("GetRobotPose service available!")
-
             self.reset_variables()
 
-            # Zielparameter von der Action Request
             self.baseline = goal_handle.request.baseline
             self.movement_frame = goal_handle.request.movement_frame
             self.movement_axis = goal_handle.request.movement_axis
@@ -74,9 +72,9 @@ class MoveTcpAlongAxisActionServer(Node):
             self.calc_destination_pose()
             self.get_logger().info(f"Destination Pose: {self.dest_pos}")
 
-            goal_reached = False  # Flag to track when the goal is achieved
+            goal_reached = False
 
-            while rclpy.ok():
+            while True:
                 if goal_handle.is_cancel_requested:
                     self.get_logger().info("Goal canceled by the client.")
                     goal_handle.canceled()
@@ -85,7 +83,8 @@ class MoveTcpAlongAxisActionServer(Node):
                     return MoveTcpAlongAxis.Result(success=False)
 
                 future = self.get_robot_pose_client.call_async(pose_client_request)
-                rclpy.spin_until_future_complete(self, future)
+                while not future.done():
+                    rclpy.spin_once(self, timeout_sec=0.1)
                 response = future.result()
 
                 if not response.success:
@@ -97,7 +96,6 @@ class MoveTcpAlongAxisActionServer(Node):
                 self.calc_abs_dist()
 
                 action_feedback = MoveTcpAlongAxis.Feedback()
-                action_feedback.current_position = self.pos
                 action_feedback.current_diff = self.abs_diff_pos
                 goal_handle.publish_feedback(action_feedback)
 
@@ -109,21 +107,14 @@ class MoveTcpAlongAxisActionServer(Node):
                 self.set_velocity()
                 self.publish_velocity()
 
-            # After the loop
             if goal_reached:
                 goal_handle.succeed()
-                self.jog_publisher.destroy()
-                self.jog_publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
                 return MoveTcpAlongAxis.Result(success=True)
-
-            self.get_logger().info("Action failed unexpectedly.")
-            goal_handle.abort()
-            self.jog_publisher.destroy()
-            self.jog_publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
-            return MoveTcpAlongAxis.Result(success=False)
+        
         except Exception as e:
             self.get_logger().info(f"Error during execution: {e}")
         finally:
+            self.reset_variables()
             self.get_logger().info("Callback execution finished!")
 
 
@@ -181,12 +172,18 @@ class MoveTcpAlongAxisActionServer(Node):
         else:
             self.frame_idx = None
 
-
 def main(args=None):
     rclpy.init(args=args)
-    MoveTcpAlongAxis_action_server = MoveTcpAlongAxisActionServer()
-    rclpy.spin(MoveTcpAlongAxis_action_server)
+    action_server_node = MoveTcpAlongAxisActionServer()
 
+    try:
+        while rclpy.ok():
+            rclpy.spin_once(action_server_node, timeout_sec=0.1)
+    except KeyboardInterrupt:
+        action_server_node.get_logger().info("Shutting down Action Server.")
+    finally:
+        action_server_node.destroy_node()
+        rclpy.shutdown()
 
 if __name__ == '__main__':
     main()

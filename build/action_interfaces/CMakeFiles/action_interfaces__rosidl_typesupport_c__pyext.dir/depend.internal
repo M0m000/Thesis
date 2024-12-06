@@ -102,9 +102,6 @@ CMakeFiles/action_interfaces__rosidl_typesupport_c__pyext.dir/rosidl_generator_p
  rosidl_generator_c/action_interfaces/action/detail/fibonacci__functions.h
  rosidl_generator_c/action_interfaces/action/detail/fibonacci__struct.h
  rosidl_generator_c/action_interfaces/action/detail/fibonacci__type_support.h
- rosidl_generator_c/action_interfaces/action/detail/move_along_baseline__functions.h
- rosidl_generator_c/action_interfaces/action/detail/move_along_baseline__struct.h
- rosidl_generator_c/action_interfaces/action/detail/move_along_baseline__type_support.h
  rosidl_generator_c/action_interfaces/action/detail/move_tcp_along_axis__functions.h
  rosidl_generator_c/action_interfaces/action/detail/move_tcp_along_axis__struct.h
  rosidl_generator_c/action_interfaces/action/detail/move_tcp_along_axis__type_support.h

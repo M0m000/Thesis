@@ -67,13 +67,12 @@ rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__ro
 rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h: /opt/ros/foxy/share/rosidl_typesupport_introspection_c/resource/srv__type_support.c.em
 rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h: rosidl_adapter/action_interfaces/action/Fibonacci.idl
 rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h: rosidl_adapter/action_interfaces/action/MoveTcpAlongAxis.idl
-rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h: rosidl_adapter/action_interfaces/action/MoveAlongBaseline.idl
+rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h: /opt/ros/foxy/share/builtin_interfaces/msg/Duration.idl
+rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h: /opt/ros/foxy/share/builtin_interfaces/msg/Time.idl
 rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h: /opt/ros/foxy/share/action_msgs/msg/GoalInfo.idl
 rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h: /opt/ros/foxy/share/action_msgs/msg/GoalStatus.idl
 rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h: /opt/ros/foxy/share/action_msgs/msg/GoalStatusArray.idl
 rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h: /opt/ros/foxy/share/action_msgs/srv/CancelGoal.idl
-rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h: /opt/ros/foxy/share/builtin_interfaces/msg/Duration.idl
-rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h: /opt/ros/foxy/share/builtin_interfaces/msg/Time.idl
 rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h: /opt/ros/foxy/share/unique_identifier_msgs/msg/UUID.idl
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/vboxuser/ros2_ws/build/action_interfaces/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C introspection for ROS interfaces"
 	/usr/bin/python3 /opt/ros/foxy/lib/rosidl_typesupport_introspection_c/rosidl_typesupport_introspection_c --generator-arguments-file /home/vboxuser/ros2_ws/build/action_interfaces/rosidl_typesupport_introspection_c__arguments.json
@@ -81,17 +80,11 @@ rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__ro
 rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_tcp_along_axis__rosidl_typesupport_introspection_c.h: rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_tcp_along_axis__rosidl_typesupport_introspection_c.h
 
-rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__rosidl_typesupport_introspection_c.h: rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h
-	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__rosidl_typesupport_introspection_c.h
-
 rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__type_support.c: rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__type_support.c
 
 rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_tcp_along_axis__type_support.c: rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_tcp_along_axis__type_support.c
-
-rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__type_support.c: rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h
-	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__type_support.c
 
 CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__type_support.c.o: CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/flags.make
 CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__type_support.c.o: rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__type_support.c
@@ -119,31 +112,16 @@ CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_type
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_tcp_along_axis__type_support.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/vboxuser/ros2_ws/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_tcp_along_axis__type_support.c -o CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_tcp_along_axis__type_support.c.s
 
-CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__type_support.c.o: CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/flags.make
-CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__type_support.c.o: rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__type_support.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vboxuser/ros2_ws/build/action_interfaces/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__type_support.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__type_support.c.o   -c /home/vboxuser/ros2_ws/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__type_support.c
-
-CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__type_support.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__type_support.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/vboxuser/ros2_ws/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__type_support.c > CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__type_support.c.i
-
-CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__type_support.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__type_support.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/vboxuser/ros2_ws/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__type_support.c -o CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__type_support.c.s
-
 # Object files for target action_interfaces__rosidl_typesupport_introspection_c
 action_interfaces__rosidl_typesupport_introspection_c_OBJECTS = \
 "CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__type_support.c.o" \
-"CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_tcp_along_axis__type_support.c.o" \
-"CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__type_support.c.o"
+"CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_tcp_along_axis__type_support.c.o"
 
 # External object files for target action_interfaces__rosidl_typesupport_introspection_c
 action_interfaces__rosidl_typesupport_introspection_c_EXTERNAL_OBJECTS =
 
 libaction_interfaces__rosidl_typesupport_introspection_c.so: CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__type_support.c.o
 libaction_interfaces__rosidl_typesupport_introspection_c.so: CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_tcp_along_axis__type_support.c.o
-libaction_interfaces__rosidl_typesupport_introspection_c.so: CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__type_support.c.o
 libaction_interfaces__rosidl_typesupport_introspection_c.so: CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/build.make
 libaction_interfaces__rosidl_typesupport_introspection_c.so: libaction_interfaces__rosidl_generator_c.so
 libaction_interfaces__rosidl_typesupport_introspection_c.so: /opt/ros/foxy/lib/libaction_msgs__rosidl_typesupport_c.so
@@ -169,7 +147,7 @@ libaction_interfaces__rosidl_typesupport_introspection_c.so: /opt/ros/foxy/lib/l
 libaction_interfaces__rosidl_typesupport_introspection_c.so: /opt/ros/foxy/lib/librosidl_runtime_c.so
 libaction_interfaces__rosidl_typesupport_introspection_c.so: /opt/ros/foxy/lib/librcutils.so
 libaction_interfaces__rosidl_typesupport_introspection_c.so: CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/vboxuser/ros2_ws/build/action_interfaces/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C shared library libaction_interfaces__rosidl_typesupport_introspection_c.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/vboxuser/ros2_ws/build/action_interfaces/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C shared library libaction_interfaces__rosidl_typesupport_introspection_c.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -183,10 +161,8 @@ CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/clean:
 
 CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h
 CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_tcp_along_axis__rosidl_typesupport_introspection_c.h
-CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__rosidl_typesupport_introspection_c.h
 CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__type_support.c
 CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_tcp_along_axis__type_support.c
-CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_along_baseline__type_support.c
 	cd /home/vboxuser/ros2_ws/build/action_interfaces && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/vboxuser/ros2_ws/src/action_interfaces /home/vboxuser/ros2_ws/src/action_interfaces /home/vboxuser/ros2_ws/build/action_interfaces /home/vboxuser/ros2_ws/build/action_interfaces /home/vboxuser/ros2_ws/build/action_interfaces/CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/depend
 
