@@ -14,7 +14,7 @@ class MoveJointPublisher(Node):
         self.req = MoveJoint.Request()
 
     def send_request(self):
-        config_1 = [0., 35., 9., 116., 0., 0., 0.]
+        config_1 = [180., 0., 0., 90., 0., 0., 0.]
 
         self.req.jsconf = config_1
 

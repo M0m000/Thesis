@@ -7,7 +7,7 @@ class MoveTcpAlongAxisActionClient(Node):
 
     def __init__(self):
         super().__init__('move_tcp_along_axis_action_client')
-        
+
         # ROS 2 Parameter deklarieren
         self.declare_parameter('baseline', 0.0)
         self.declare_parameter('movement_frame', 'tcp')
@@ -79,3 +79,6 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
+
+
