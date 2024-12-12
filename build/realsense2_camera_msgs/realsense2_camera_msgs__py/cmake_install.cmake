@@ -1,8 +1,8 @@
-# Install script for directory: /home/vboxuser/ros2_ws/build/realsense2_camera_msgs/realsense2_camera_msgs__py
+# Install script for directory: /home/vboxuser/Thesis/build/realsense2_camera_msgs/realsense2_camera_msgs__py
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/vboxuser/ros2_ws/install/realsense2_camera_msgs")
+  set(CMAKE_INSTALL_PREFIX "/home/vboxuser/Thesis/install/realsense2_camera_msgs")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

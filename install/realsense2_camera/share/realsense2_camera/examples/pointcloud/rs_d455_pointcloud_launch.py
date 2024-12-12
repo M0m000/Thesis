@@ -36,7 +36,7 @@ import rs_launch
 
 local_parameters = [{'name': 'camera_name',                  'default': 'camera', 'description': 'camera unique name'},
                     {'name': 'camera_namespace',             'default': 'camera', 'description': 'camera namespace'},
-                    {'name': 'device_type',                  'default': "d435", 'description': 'choose device by type'},
+                    {'name': 'device_type',                  'default': "d455", 'description': 'choose device by type'},
                     {'name': 'enable_color',                 'default': 'true', 'description': 'enable color stream'},
                     {'name': 'enable_depth',                 'default': 'true', 'description': 'enable depth stream'},
                     {'name': 'pointcloud.enable',            'default': 'true', 'description': 'enable pointcloud'},

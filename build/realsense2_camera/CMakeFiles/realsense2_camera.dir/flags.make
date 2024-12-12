@@ -6,5 +6,5 @@ CXX_FLAGS = -O2  -fPIE -fstack-protector-strong -fPIC -fno-operator-names -Wform
 
 CXX_DEFINES = -DDEFAULT_RMW_IMPLEMENTATION=rmw_fastrtps_cpp -DELPP_NO_DEFAULT_LOG_FILE -DRCUTILS_ENABLE_FAULT_INJECTION -DSPDLOG_COMPILED_LIB -Drealsense2_camera_EXPORTS
 
-CXX_INCLUDES = -I/home/vboxuser/ros2_ws/src/realsense-ros/realsense2_camera/include -isystem /usr/include/opencv4 -isystem /home/vboxuser/ros2_ws/install/realsense2_camera_msgs/include -isystem /opt/ros/foxy/include 
+CXX_INCLUDES = -I/home/vboxuser/Thesis/src/realsense-ros/realsense2_camera/include -isystem /usr/include/opencv4 -isystem /home/vboxuser/Thesis/install/realsense2_camera_msgs/include -isystem /opt/ros/foxy/include 
 

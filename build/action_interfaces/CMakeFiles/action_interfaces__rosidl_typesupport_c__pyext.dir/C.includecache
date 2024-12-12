@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_c.c
+/home/vboxuser/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_c.c
 Python.h
 -
 stdbool.h
@@ -14,25 +14,25 @@ stdbool.h
 stdint.h
 -
 rosidl_runtime_c/visibility_control.h
-/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_generator_py/action_interfaces/rosidl_runtime_c/visibility_control.h
+/home/vboxuser/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/rosidl_runtime_c/visibility_control.h
 rosidl_runtime_c/message_type_support_struct.h
-/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_generator_py/action_interfaces/rosidl_runtime_c/message_type_support_struct.h
+/home/vboxuser/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/rosidl_runtime_c/message_type_support_struct.h
 rosidl_runtime_c/service_type_support_struct.h
-/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_generator_py/action_interfaces/rosidl_runtime_c/service_type_support_struct.h
+/home/vboxuser/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/rosidl_runtime_c/service_type_support_struct.h
 rosidl_runtime_c/action_type_support_struct.h
-/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_generator_py/action_interfaces/rosidl_runtime_c/action_type_support_struct.h
+/home/vboxuser/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/rosidl_runtime_c/action_type_support_struct.h
 action_interfaces/action/detail/fibonacci__type_support.h
-/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_generator_py/action_interfaces/action_interfaces/action/detail/fibonacci__type_support.h
+/home/vboxuser/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/action_interfaces/action/detail/fibonacci__type_support.h
 action_interfaces/action/detail/fibonacci__struct.h
-/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_generator_py/action_interfaces/action_interfaces/action/detail/fibonacci__struct.h
+/home/vboxuser/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/action_interfaces/action/detail/fibonacci__struct.h
 action_interfaces/action/detail/fibonacci__functions.h
-/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_generator_py/action_interfaces/action_interfaces/action/detail/fibonacci__functions.h
+/home/vboxuser/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/action_interfaces/action/detail/fibonacci__functions.h
 action_interfaces/action/detail/move_tcp_along_axis__type_support.h
-/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_generator_py/action_interfaces/action_interfaces/action/detail/move_tcp_along_axis__type_support.h
+/home/vboxuser/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/action_interfaces/action/detail/move_tcp_along_axis__type_support.h
 action_interfaces/action/detail/move_tcp_along_axis__struct.h
-/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_generator_py/action_interfaces/action_interfaces/action/detail/move_tcp_along_axis__struct.h
+/home/vboxuser/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/action_interfaces/action/detail/move_tcp_along_axis__struct.h
 action_interfaces/action/detail/move_tcp_along_axis__functions.h
-/home/vboxuser/ros2_ws/build/action_interfaces/rosidl_generator_py/action_interfaces/action_interfaces/action/detail/move_tcp_along_axis__functions.h
+/home/vboxuser/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/action_interfaces/action/detail/move_tcp_along_axis__functions.h
 
 /opt/ros/foxy/include/builtin_interfaces/msg/detail/time__struct.h
 stdbool.h

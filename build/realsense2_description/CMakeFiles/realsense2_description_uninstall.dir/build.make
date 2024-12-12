@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/vboxuser/ros2_ws/src/realsense-ros/realsense2_description
+CMAKE_SOURCE_DIR = /home/vboxuser/Thesis/src/realsense-ros/realsense2_description
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/vboxuser/ros2_ws/build/realsense2_description
+CMAKE_BINARY_DIR = /home/vboxuser/Thesis/build/realsense2_description
 
 # Utility rule file for realsense2_description_uninstall.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/vboxuser/ros2_ws/build/realsense2_description
 include CMakeFiles/realsense2_description_uninstall.dir/progress.make
 
 CMakeFiles/realsense2_description_uninstall:
-	/usr/bin/cmake -P /home/vboxuser/ros2_ws/build/realsense2_description/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
+	/usr/bin/cmake -P /home/vboxuser/Thesis/build/realsense2_description/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
 
 realsense2_description_uninstall: CMakeFiles/realsense2_description_uninstall
 realsense2_description_uninstall: CMakeFiles/realsense2_description_uninstall.dir/build.make
@@ -71,6 +71,6 @@ CMakeFiles/realsense2_description_uninstall.dir/clean:
 .PHONY : CMakeFiles/realsense2_description_uninstall.dir/clean
 
 CMakeFiles/realsense2_description_uninstall.dir/depend:
-	cd /home/vboxuser/ros2_ws/build/realsense2_description && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/vboxuser/ros2_ws/src/realsense-ros/realsense2_description /home/vboxuser/ros2_ws/src/realsense-ros/realsense2_description /home/vboxuser/ros2_ws/build/realsense2_description /home/vboxuser/ros2_ws/build/realsense2_description /home/vboxuser/ros2_ws/build/realsense2_description/CMakeFiles/realsense2_description_uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/vboxuser/Thesis/build/realsense2_description && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/vboxuser/Thesis/src/realsense-ros/realsense2_description /home/vboxuser/Thesis/src/realsense-ros/realsense2_description /home/vboxuser/Thesis/build/realsense2_description /home/vboxuser/Thesis/build/realsense2_description /home/vboxuser/Thesis/build/realsense2_description/CMakeFiles/realsense2_description_uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/realsense2_description_uninstall.dir/depend
 

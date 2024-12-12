@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/vboxuser/ros2_ws/src/orange-ros2/kr_example/cpp/src/jog_linear.cpp" "/home/vboxuser/ros2_ws/build/kr_example_cpp/CMakeFiles/jog_linear.dir/src/jog_linear.cpp.o"
+  "/home/vboxuser/Thesis/src/orange-ros2/kr_example/cpp/src/jog_linear.cpp" "/home/vboxuser/Thesis/build/kr_example_cpp/CMakeFiles/jog_linear.dir/src/jog_linear.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -17,7 +17,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/home/vboxuser/ros2_ws/install/kr_msgs/include"
+  "/home/vboxuser/Thesis/install/kr_msgs/include"
   "/opt/ros/foxy/include"
   )
 

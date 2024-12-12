@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs
+CMAKE_SOURCE_DIR = /home/vboxuser/Thesis/src/orange-ros2/kr_msgs
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/vboxuser/ros2_ws/build/kr_msgs
+CMAKE_BINARY_DIR = /home/vboxuser/Thesis/build/kr_msgs
 
 # Utility rule file for kr_msgs_uninstall.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/vboxuser/ros2_ws/build/kr_msgs
 include CMakeFiles/kr_msgs_uninstall.dir/progress.make
 
 CMakeFiles/kr_msgs_uninstall:
-	/usr/bin/cmake -P /home/vboxuser/ros2_ws/build/kr_msgs/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
+	/usr/bin/cmake -P /home/vboxuser/Thesis/build/kr_msgs/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
 
 kr_msgs_uninstall: CMakeFiles/kr_msgs_uninstall
 kr_msgs_uninstall: CMakeFiles/kr_msgs_uninstall.dir/build.make
@@ -71,6 +71,6 @@ CMakeFiles/kr_msgs_uninstall.dir/clean:
 .PHONY : CMakeFiles/kr_msgs_uninstall.dir/clean
 
 CMakeFiles/kr_msgs_uninstall.dir/depend:
-	cd /home/vboxuser/ros2_ws/build/kr_msgs && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs /home/vboxuser/ros2_ws/src/orange-ros2/kr_msgs /home/vboxuser/ros2_ws/build/kr_msgs /home/vboxuser/ros2_ws/build/kr_msgs /home/vboxuser/ros2_ws/build/kr_msgs/CMakeFiles/kr_msgs_uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/vboxuser/Thesis/build/kr_msgs && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/vboxuser/Thesis/src/orange-ros2/kr_msgs /home/vboxuser/Thesis/src/orange-ros2/kr_msgs /home/vboxuser/Thesis/build/kr_msgs /home/vboxuser/Thesis/build/kr_msgs /home/vboxuser/Thesis/build/kr_msgs/CMakeFiles/kr_msgs_uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/kr_msgs_uninstall.dir/depend
 

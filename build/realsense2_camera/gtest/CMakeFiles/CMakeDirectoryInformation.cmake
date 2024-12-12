@@ -3,7 +3,7 @@
 
 # Relative path conversion top directories.
 set(CMAKE_RELATIVE_PATH_TOP_SOURCE "/opt/ros/foxy/src/gtest_vendor")
-set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/vboxuser/ros2_ws/build/realsense2_camera")
+set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/vboxuser/Thesis/build/realsense2_camera")
 
 # Force unix paths in dependencies.
 set(CMAKE_FORCE_UNIX_PATHS 1)

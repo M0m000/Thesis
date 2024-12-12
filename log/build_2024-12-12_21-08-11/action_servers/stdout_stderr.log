@@ -1,0 +1,40 @@
+running egg_info
+creating ../../build/action_servers/action_servers.egg-info
+writing ../../build/action_servers/action_servers.egg-info/PKG-INFO
+writing dependency_links to ../../build/action_servers/action_servers.egg-info/dependency_links.txt
+writing entry points to ../../build/action_servers/action_servers.egg-info/entry_points.txt
+writing requirements to ../../build/action_servers/action_servers.egg-info/requires.txt
+writing top-level names to ../../build/action_servers/action_servers.egg-info/top_level.txt
+writing manifest file '../../build/action_servers/action_servers.egg-info/SOURCES.txt'
+reading manifest file '../../build/action_servers/action_servers.egg-info/SOURCES.txt'
+writing manifest file '../../build/action_servers/action_servers.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/vboxuser/Thesis/build/action_servers/build
+creating /home/vboxuser/Thesis/build/action_servers/build/lib
+creating /home/vboxuser/Thesis/build/action_servers/build/lib/action_servers
+copying action_servers/fibonacci_action_server.py -> /home/vboxuser/Thesis/build/action_servers/build/lib/action_servers
+copying action_servers/MoveTcpAlongAxis_action_server.py -> /home/vboxuser/Thesis/build/action_servers/build/lib/action_servers
+copying action_servers/__init__.py -> /home/vboxuser/Thesis/build/action_servers/build/lib/action_servers
+running install
+running install_lib
+creating /home/vboxuser/Thesis/install/action_servers/lib/python3.8/site-packages/action_servers
+copying /home/vboxuser/Thesis/build/action_servers/build/lib/action_servers/fibonacci_action_server.py -> /home/vboxuser/Thesis/install/action_servers/lib/python3.8/site-packages/action_servers
+copying /home/vboxuser/Thesis/build/action_servers/build/lib/action_servers/MoveTcpAlongAxis_action_server.py -> /home/vboxuser/Thesis/install/action_servers/lib/python3.8/site-packages/action_servers
+copying /home/vboxuser/Thesis/build/action_servers/build/lib/action_servers/__init__.py -> /home/vboxuser/Thesis/install/action_servers/lib/python3.8/site-packages/action_servers
+byte-compiling /home/vboxuser/Thesis/install/action_servers/lib/python3.8/site-packages/action_servers/fibonacci_action_server.py to fibonacci_action_server.cpython-38.pyc
+byte-compiling /home/vboxuser/Thesis/install/action_servers/lib/python3.8/site-packages/action_servers/MoveTcpAlongAxis_action_server.py to MoveTcpAlongAxis_action_server.cpython-38.pyc
+byte-compiling /home/vboxuser/Thesis/install/action_servers/lib/python3.8/site-packages/action_servers/__init__.py to __init__.cpython-38.pyc
+running install_data
+creating /home/vboxuser/Thesis/install/action_servers/share/ament_index
+creating /home/vboxuser/Thesis/install/action_servers/share/ament_index/resource_index
+creating /home/vboxuser/Thesis/install/action_servers/share/ament_index/resource_index/packages
+copying resource/action_servers -> /home/vboxuser/Thesis/install/action_servers/share/ament_index/resource_index/packages
+copying package.xml -> /home/vboxuser/Thesis/install/action_servers/share/action_servers
+running install_egg_info
+Copying ../../build/action_servers/action_servers.egg-info to /home/vboxuser/Thesis/install/action_servers/lib/python3.8/site-packages/action_servers-0.0.0-py3.8.egg-info
+running install_scripts
+Installing MoveTcpAlongAxis_action_server script to /home/vboxuser/Thesis/install/action_servers/lib/action_servers
+Installing fibonacci_action_server script to /home/vboxuser/Thesis/install/action_servers/lib/action_servers
+Installing move_along_baseline_server script to /home/vboxuser/Thesis/install/action_servers/lib/action_servers
+writing list of installed files to '/home/vboxuser/Thesis/build/action_servers/install.log'

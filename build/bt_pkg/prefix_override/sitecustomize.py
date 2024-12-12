@@ -1,4 +1,4 @@
 import sys
 if sys.prefix == '/usr':
     sys.real_prefix = sys.prefix
-    sys.prefix = sys.exec_prefix = '/home/vboxuser/ros2_ws/install/bt_pkg'
+    sys.prefix = sys.exec_prefix = '/home/vboxuser/Thesis/install/bt_pkg'

@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/vboxuser/ros2_ws/src/realsense-ros/realsense2_camera/test/gtest_template.cpp
+/home/vboxuser/Thesis/src/realsense-ros/realsense2_camera/test/gtest_template.cpp
 gtest/gtest.h
 -
 

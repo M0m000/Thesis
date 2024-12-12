@@ -6,5 +6,5 @@ CXX_FLAGS = -fPIC   -Wall -std=gnu++14
 
 CXX_DEFINES = -DRCUTILS_ENABLE_FAULT_INJECTION -DROS_PACKAGE_NAME=\"realsense2_camera_msgs\" -Drealsense2_camera_msgs__rosidl_typesupport_c_EXPORTS
 
-CXX_INCLUDES = -I/home/vboxuser/ros2_ws/build/realsense2_camera_msgs/rosidl_generator_c -I/home/vboxuser/ros2_ws/build/realsense2_camera_msgs/rosidl_typesupport_c -isystem /opt/ros/foxy/include 
+CXX_INCLUDES = -I/home/vboxuser/Thesis/build/realsense2_camera_msgs/rosidl_generator_c -I/home/vboxuser/Thesis/build/realsense2_camera_msgs/rosidl_typesupport_c -isystem /opt/ros/foxy/include 
 

@@ -4,14 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/opt/ros/foxy/src/gtest_vendor/src/gtest-all.cc" "/home/vboxuser/ros2_ws/build/realsense2_camera/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o"
+  "/opt/ros/foxy/src/gtest_vendor/src/gtest-all.cc" "/home/vboxuser/Thesis/build/realsense2_camera/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/opt/ros/foxy/src/gtest_vendor/include"
-  "/home/vboxuser/ros2_ws/src/realsense-ros/realsense2_camera/include"
+  "/home/vboxuser/Thesis/src/realsense-ros/realsense2_camera/include"
   "/usr/include/opencv4"
   "/opt/ros/foxy/src/gtest_vendor/."
   )

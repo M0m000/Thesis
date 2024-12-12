@@ -6,5 +6,5 @@ CXX_FLAGS = -O2  -fPIE -fstack-protector-strong -fPIC -fno-operator-names -Wform
 
 CXX_DEFINES = -DRCUTILS_ENABLE_FAULT_INJECTION
 
-CXX_INCLUDES = -I/opt/ros/foxy/src/gtest_vendor/include -I/home/vboxuser/ros2_ws/src/realsense-ros/realsense2_camera/include -I/usr/include/opencv4 -isystem /opt/ros/foxy/include 
+CXX_INCLUDES = -I/opt/ros/foxy/src/gtest_vendor/include -I/home/vboxuser/Thesis/src/realsense-ros/realsense2_camera/include -I/usr/include/opencv4 -isystem /opt/ros/foxy/include 
 

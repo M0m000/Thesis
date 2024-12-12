@@ -6,5 +6,5 @@ C_FLAGS = -fPIC   -Wall -Wextra
 
 C_DEFINES = -DRCUTILS_ENABLE_FAULT_INJECTION -DROS_PACKAGE_NAME=\"realsense2_camera_msgs\" -Drealsense2_camera_msgs__python_EXPORTS
 
-C_INCLUDES = -I/home/vboxuser/ros2_ws/build/realsense2_camera_msgs/rosidl_generator_c -I/home/vboxuser/ros2_ws/build/realsense2_camera_msgs/rosidl_generator_py -I/usr/include/python3.8 -I/home/vboxuser/ros2_ws/build/realsense2_camera_msgs/rosidl_typesupport_c -isystem /opt/ros/foxy/include 
+C_INCLUDES = -I/home/vboxuser/Thesis/build/realsense2_camera_msgs/rosidl_generator_c -I/home/vboxuser/Thesis/build/realsense2_camera_msgs/rosidl_generator_py -I/usr/include/python3.8 -I/home/vboxuser/Thesis/build/realsense2_camera_msgs/rosidl_typesupport_c -isystem /opt/ros/foxy/include 
 
