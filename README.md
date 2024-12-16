@@ -206,7 +206,7 @@ ros2 run robot_control fibonacci_action_client
 
 ### **MoveTcpAlongAxis Action Client** Node <br>
 ```bash
-ros2 run robot_control MoveTcpAlongAxis_action_client
+ros2 run robot_control MoveTcpAlongAxis_action_client --ros-args -p baseline:=30.0 -p movement_axis:="axis_x" -p movement_frame:="tcp" -p speed:=30.0
 ```
 >Client für die Action MoveTcpAlongAxis (siehe oben bei Package action_servers). <br>
 <br>
