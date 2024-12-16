@@ -3,6 +3,7 @@ from rclpy.action import ActionServer
 from rclpy.node import Node
 from action_interfaces.action import MoveTcpAlongAxis
 from kr_msgs.srv import GetRobotPose
+from kr_msgs.srv import SelectJoggingFrame
 from kr_msgs.msg import JogLinear
 import numpy as np
 
@@ -24,8 +25,14 @@ class MoveTcpAlongAxisActionServer(Node):
         # Client für GetRobotPose
         self.get_robot_pose_client = self.create_client(GetRobotPose, '/kr/robot/get_robot_pose')
         while not self.get_robot_pose_client.wait_for_service(timeout_sec=1.0):
-            self.get_logger().warn("Waiting for GetRobotPose service...")
+            self.get_logger().warn("Waiting for Kassow Robot services...")
         self.get_logger().info("GetRobotPose service available!")
+
+        # Client für SelectJoggingFrame
+        self.set_jogging_frame_client = self.create_client(SelectJoggingFrame, 'kr/motion/select_jogging_frame')
+        while not self.set_jogging_frame_client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().warn("Waiting for Kassow Robot services...")
+        self.get_logger().info("SelectJoggingFrame service available!")
 
         # Publisher Move Linear Kassow
         self.jog_publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
@@ -73,6 +80,7 @@ class MoveTcpAlongAxisActionServer(Node):
 
             self.get_axis_idx()
             self.get_frame_idx()
+            self.select_frame()
             self.calc_destination_pose()
             self.get_logger().info(f"Destination Pose: {self.dest_pos}")
 
@@ -120,6 +128,22 @@ class MoveTcpAlongAxisActionServer(Node):
         finally:
             self.reset_variables()
             self.get_logger().info("Callback execution finished!")
+
+
+    def select_frame(self):
+        request = SelectJoggingFrame.Request()
+        request.ref = self.frame_idx
+        future = self.set_jogging_frame_client.call_async(request)
+        rclpy.spin_until_future_complete(self, future)
+
+        if future.result() is not None:
+            response = future.result()
+            if response.success:
+                self.get_logger().info("Jogging Frame selected successfully!")
+            else:
+                self.get_logger().error("Jogging Frame Selection failed!")
+        else:
+            self.get_logger().error("Jogging Frame Selection failed!")
 
 
     def calc_exact_baseline(self):
