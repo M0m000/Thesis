@@ -27,7 +27,8 @@ setup(
             'calibration = vision.calibration:main',
             'stereo_triangulation = vision.stereo_triangulation:main',
             'image_filters = vision.img_filters:main',
-            'stereo_triangulation_with_robot = vision.stereo_triangulation_with_robot:main'
+            'stereo_triangulation_with_robot = vision.stereo_triangulation_with_robot:main',
+            'hook_detector = vision.hook_detector:main'
         ],
     },
 )

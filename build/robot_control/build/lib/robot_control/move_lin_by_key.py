@@ -2,6 +2,7 @@ import rclpy
 from rclpy.node import Node
 from pynput import keyboard
 from kr_msgs.msg import JogLinear
+from kr_msgs.srv import SelectJoggingFrame
 
 
 class MoveLinByKey(Node):
@@ -11,6 +12,29 @@ class MoveLinByKey(Node):
         self.declare_parameter('speed', 10.0)
         self.speed = self.get_parameter('speed').get_parameter_value().double_value
 
+        ### TCP Frame auswählen
+        self.set_jogging_frame_client = self.create_client(SelectJoggingFrame, 'kr/motion/select_jogging_frame')
+        while self.set_jogging_frame_client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info("Waiting for SelectJoggingFrame service...")
+        self.get_logger().info("SelectJoggingFrame service available!")
+
+        request = SelectJoggingFrame.Request()
+        request.ref = 2
+        future = self.set_jogging_frame_client.call_async(request)
+
+        rclpy.spin_until_future_complete(self, future)
+
+        if future.result() is not None:
+            response = future.result()
+            if response.success:
+                self.get_logger().info("Movement Frame selected successfully!")
+            else:
+                self.get_logger().info("Movement Frame Selection failed!")
+        else:
+            self.get_logger().info("Movement Frame Selection failed!")
+
+        
+        ### Publisher für Twist Msg
         self.publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
 
         self.timer_period = 0.002  # Sekunden

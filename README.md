@@ -272,6 +272,12 @@ ros2 run vision image_filters --ros-args -p show_img:=True -p use_sobel:=True
 >Startet einen Knoten zum Testen von Filterfunktionen aus OpenCV. Momentan ist Canny und Vergleich von Referenzkonturen implementiert. <br>
 <br>
 
+### **Hook Detector** <br>
+```bash
+ros2 run vision hook_detector
+```
+>Startet einen Knoten zur Erkennung der Haken mit Hilfe von klassischer Bildverarbeitung (Gaussfilter, Kantenerkennung, etc.) <br>
+<br>
 
 
 

@@ -1,0 +1,37 @@
+[1.465s] Invoking command in '/home/vboxuser/Thesis/src/robot_control': CMAKE_PREFIX_PATH=/home/vboxuser/Thesis/install/action_interfaces:/home/vboxuser/Thesis/install/realsense2_description:/home/vboxuser/Thesis/install/realsense2_camera:/home/vboxuser/Thesis/install/realsense2_camera_msgs:/home/vboxuser/Thesis/install/kr_example_cpp:/home/vboxuser/Thesis/install/kr_msgs LD_LIBRARY_PATH=/home/vboxuser/Thesis/install/action_interfaces/lib:/home/vboxuser/Thesis/install/realsense2_camera/lib:/home/vboxuser/Thesis/install/realsense2_camera_msgs/lib:/home/vboxuser/Thesis/install/kr_msgs/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib PYTHONPATH=/home/vboxuser/Thesis/build/robot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/Thesis/install/robot_control/lib/python3.8/site-packages:/home/vboxuser/Thesis/install/action_interfaces/lib/python3.8/site-packages:/home/vboxuser/Thesis/install/vision/lib/python3.8/site-packages:/home/vboxuser/Thesis/install/vcnanoz/lib/python3.8/site-packages:/home/vboxuser/Thesis/install/robot_control/lib/python3.8/site-packages:/home/vboxuser/Thesis/install/realsense2_camera_msgs/lib/python3.8/site-packages:/home/vboxuser/Thesis/install/kr_example_python/lib/python3.8/site-packages:/home/vboxuser/Thesis/install/kr_msgs/lib/python3.8/site-packages:/home/vboxuser/Thesis/install/bt_pkg/lib/python3.8/site-packages:/home/vboxuser/Thesis/install/action_servers/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/robot_control build --build-base /home/vboxuser/Thesis/build/robot_control/build install --record /home/vboxuser/Thesis/build/robot_control/install.log --install-scripts $base/lib/robot_control --single-version-externally-managed install_data
+[1.749s] running egg_info
+[1.753s] writing ../../build/robot_control/robot_control.egg-info/PKG-INFO
+[1.753s] writing dependency_links to ../../build/robot_control/robot_control.egg-info/dependency_links.txt
+[1.754s] writing entry points to ../../build/robot_control/robot_control.egg-info/entry_points.txt
+[1.754s] writing requirements to ../../build/robot_control/robot_control.egg-info/requires.txt
+[1.754s] writing top-level names to ../../build/robot_control/robot_control.egg-info/top_level.txt
+[1.790s] reading manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'
+[1.793s] writing manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'
+[1.795s] running build
+[1.796s] running build_py
+[1.796s] copying robot_control/move_lin_by_key.py -> /home/vboxuser/Thesis/build/robot_control/build/lib/robot_control
+[1.799s] running install
+[1.801s] running install_lib
+[1.803s] copying /home/vboxuser/Thesis/build/robot_control/build/lib/robot_control/move_lin_by_key.py -> /home/vboxuser/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[1.805s] byte-compiling /home/vboxuser/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/move_lin_by_key.py to move_lin_by_key.cpython-38.pyc
+[1.818s] running install_data
+[1.818s] running install_egg_info
+[1.820s] removing '/home/vboxuser/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info' (and everything under it)
+[1.821s] Copying ../../build/robot_control/robot_control.egg-info to /home/vboxuser/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info
+[1.824s] running install_scripts
+[1.846s] Installing MoveTcpAlongAxis_action_client script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.856s] Installing fibonacci_action_client script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.856s] Installing get_robot_pose_node script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.856s] Installing hello_node script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.856s] Installing move_along_baseline_client script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.856s] Installing move_lin_by_key script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.856s] Installing print_frames script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.856s] Installing print_tcp_pose script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.856s] Installing read_transformation_delta script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.856s] Installing read_transformation_snapshot script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.856s] Installing robot_TcpPose_node script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.857s] Installing set_frame_client script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.857s] Installing transformation_delta script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.857s] Installing transformation_snapshot script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.859s] writing list of installed files to '/home/vboxuser/Thesis/build/robot_control/install.log'
+[1.891s] Invoked command in '/home/vboxuser/Thesis/src/robot_control' returned '0': CMAKE_PREFIX_PATH=/home/vboxuser/Thesis/install/action_interfaces:/home/vboxuser/Thesis/install/realsense2_description:/home/vboxuser/Thesis/install/realsense2_camera:/home/vboxuser/Thesis/install/realsense2_camera_msgs:/home/vboxuser/Thesis/install/kr_example_cpp:/home/vboxuser/Thesis/install/kr_msgs LD_LIBRARY_PATH=/home/vboxuser/Thesis/install/action_interfaces/lib:/home/vboxuser/Thesis/install/realsense2_camera/lib:/home/vboxuser/Thesis/install/realsense2_camera_msgs/lib:/home/vboxuser/Thesis/install/kr_msgs/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib PYTHONPATH=/home/vboxuser/Thesis/build/robot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/Thesis/install/robot_control/lib/python3.8/site-packages:/home/vboxuser/Thesis/install/action_interfaces/lib/python3.8/site-packages:/home/vboxuser/Thesis/install/vision/lib/python3.8/site-packages:/home/vboxuser/Thesis/install/vcnanoz/lib/python3.8/site-packages:/home/vboxuser/Thesis/install/robot_control/lib/python3.8/site-packages:/home/vboxuser/Thesis/install/realsense2_camera_msgs/lib/python3.8/site-packages:/home/vboxuser/Thesis/install/kr_example_python/lib/python3.8/site-packages:/home/vboxuser/Thesis/install/kr_msgs/lib/python3.8/site-packages:/home/vboxuser/Thesis/install/bt_pkg/lib/python3.8/site-packages:/home/vboxuser/Thesis/install/action_servers/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/robot_control build --build-base /home/vboxuser/Thesis/build/robot_control/build install --record /home/vboxuser/Thesis/build/robot_control/install.log --install-scripts $base/lib/robot_control --single-version-externally-managed install_data
