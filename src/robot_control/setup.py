@@ -40,7 +40,8 @@ setup(
             'MoveTcpAlongAxis_action_client = robot_control.MoveTcpAlongAxis_action_client:main',
             'robot_TcpPose_node = robot_control.robot_TcpPose_node:main',
             'move_along_baseline_client = robot_control.move_along_baseline_client:main',
-            'get_robot_pose_node = robot_control.get_robot_pose_node:main'
+            'get_robot_pose_node = robot_control.get_robot_pose_node:main',
+            'tf_frames_publisher = robot_control.tf_frames_publisher:main'
         ],
     },
 )

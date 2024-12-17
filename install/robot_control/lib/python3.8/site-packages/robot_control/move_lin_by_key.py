@@ -22,9 +22,8 @@ class MoveLinByKey(Node):
         request = SelectJoggingFrame.Request()
         request.ref = 2
         future = self.set_jogging_frame_client.call_async(request)
-        print("Test 1")
         rclpy.spin_until_future_complete(self, future)
-        print("Test 2")
+
         if future.result() is not None:
             response = future.result()
             if response.success:
