@@ -42,7 +42,7 @@ setup(
             'move_along_baseline_client = robot_control.move_along_baseline_client:main',
             'get_robot_pose_node = robot_control.get_robot_pose_node:main',
             'tf_frames_publisher = robot_control.tf_frames_publisher:main',
-            'tf_test_transformation = robot_control.tf_test_transformation:main'
+            'tcp_frame_listener = robot_control.tcp_frame_listener:main'
         ],
     },
 )
