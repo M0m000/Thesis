@@ -1,0 +1,25 @@
+[2.414s] Invoking command in '/home/vboxuser/Thesis/src/vcnanoz': PYTHONPATH=/home/vboxuser/Thesis/build/vcnanoz/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/Thesis/install/vcnanoz/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/vcnanoz build --build-base /home/vboxuser/Thesis/build/vcnanoz/build install --record /home/vboxuser/Thesis/build/vcnanoz/install.log --install-scripts $base/lib/vcnanoz --single-version-externally-managed install_data
+[2.677s] running egg_info
+[2.681s] writing ../../build/vcnanoz/vcnanoz.egg-info/PKG-INFO
+[2.682s] writing dependency_links to ../../build/vcnanoz/vcnanoz.egg-info/dependency_links.txt
+[2.684s] writing entry points to ../../build/vcnanoz/vcnanoz.egg-info/entry_points.txt
+[2.686s] writing requirements to ../../build/vcnanoz/vcnanoz.egg-info/requires.txt
+[2.686s] writing top-level names to ../../build/vcnanoz/vcnanoz.egg-info/top_level.txt
+[2.719s] reading manifest file '../../build/vcnanoz/vcnanoz.egg-info/SOURCES.txt'
+[2.720s] writing manifest file '../../build/vcnanoz/vcnanoz.egg-info/SOURCES.txt'
+[2.721s] running build
+[2.722s] running build_py
+[2.723s] running install
+[2.724s] running install_lib
+[2.726s] running install_data
+[2.726s] running install_egg_info
+[2.728s] removing '/home/vboxuser/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz-0.0.0-py3.8.egg-info' (and everything under it)
+[2.729s] Copying ../../build/vcnanoz/vcnanoz.egg-info to /home/vboxuser/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz-0.0.0-py3.8.egg-info
+[2.730s] running install_scripts
+[2.759s] Installing srvClient_vc_startup script to /home/vboxuser/Thesis/install/vcnanoz/lib/vcnanoz
+[2.759s] Installing srvServer_vc_startup script to /home/vboxuser/Thesis/install/vcnanoz/lib/vcnanoz
+[2.759s] Installing vc_img_receiver script to /home/vboxuser/Thesis/install/vcnanoz/lib/vcnanoz
+[2.759s] Installing vc_shutdown script to /home/vboxuser/Thesis/install/vcnanoz/lib/vcnanoz
+[2.759s] Installing vc_startup script to /home/vboxuser/Thesis/install/vcnanoz/lib/vcnanoz
+[2.759s] writing list of installed files to '/home/vboxuser/Thesis/build/vcnanoz/install.log'
+[2.795s] Invoked command in '/home/vboxuser/Thesis/src/vcnanoz' returned '0': PYTHONPATH=/home/vboxuser/Thesis/build/vcnanoz/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/Thesis/install/vcnanoz/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/vcnanoz build --build-base /home/vboxuser/Thesis/build/vcnanoz/build install --record /home/vboxuser/Thesis/build/vcnanoz/install.log --install-scripts $base/lib/vcnanoz --single-version-externally-managed install_data
