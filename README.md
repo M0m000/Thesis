@@ -72,6 +72,26 @@ Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers K
 
 <br>
 
+## **Sensopart Visor Package**
+Package zum Hoch- bzw. Herunterfahren von SensoPart VISOR V20 <br>
+<br>
+
+### **Visor Startup** Node <br>
+```bash
+ros2 run sensopart_visor visor_startup
+```
+>Dieser Knoten schaltet die Stromversorgung für SensoPart VISOR (DOut 2) ein. <br>
+<br>
+
+### **Visor Shutdown** Node <br>
+```bash
+ros2 run sensopart_visor visor_shutdown
+```
+>Dieser Knoten schaltet die Stromversorgung für SensoPart VISOR (DOut 2) aus. <br>
+<br>
+
+<br>
+
 ## **VCnanoZ Package**
 Package zum Verbindungsaufbau mit VCnanoZ Kamera. Auf Kamera muss "vcimgnetsrv &" sowie "vctp" ausgeführt werden, dass der Stream aktiv ist. <br>
 Verbindung zu Kamera über SSH "ssh root@192.168.3.15" <br>
