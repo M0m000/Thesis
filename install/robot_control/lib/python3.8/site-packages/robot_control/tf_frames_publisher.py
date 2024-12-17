@@ -79,7 +79,6 @@ class TFFramesPublisher(Node):
             self.get_logger().error(f"Error in service callback: {e}")
 
     def publish_transforms(self):
-        # Veröffentlichen der gespeicherten Transformationen
         for frame, data in self.frames_data.items():
             position = data['position']
             orientation = data['orientation']
