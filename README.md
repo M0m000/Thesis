@@ -77,20 +77,20 @@ Package zum Verbindungsaufbau mit VCnanoZ Kamera. Auf Kamera muss "vcimgnetsrv &
 Verbindung zu Kamera über SSH "ssh root@192.168.3.15" <br>
 <br>
 
-### **VC Image Receiver** Node <br>
-```bash
-ros2 run vcnanoz vc_img_receiver --ros-args -p ipv4:="192.168.3.15" -p port:=2002 -p img_width:=1280 -p img_height:=720 -p rgb_stream:=False -p show_img:=True
-```
->Dieser Knoten stellt eine Verbindung zum Socket her und streamt das Graubild der Kamera (Auflösung einstellbar) auf dem Topic "/vcnanoz/stream/image_raw". <br>
-<br>
-
-<br>
-
 ### **VC Startup** Node <br>
 ```bash
 ros2 run vcnanoz vc_startup
 ```
 >Dieser Knoten schaltet die Stromversorgung für VCnanoZ (DOut 1) ein und startet den ImgNet-Server auf der Kamera. Nachdem alles ausgeführt wurde, fährt sich der Knoten selbst runter. Die Kamera läuft weiter. <br>
+<br>
+
+<br>
+
+### **VC Image Receiver** Node <br>
+```bash
+ros2 run vcnanoz vc_img_receiver --ros-args -p ipv4:="192.168.3.15" -p port:=2002 -p img_width:=1280 -p img_height:=720 -p rgb_stream:=False -p show_img:=True
+```
+>Dieser Knoten stellt eine Verbindung zum Socket her und streamt das Graubild der Kamera (Auflösung einstellbar) auf dem Topic "/vcnanoz/stream/image_raw". <br>
 <br>
 
 <br>
