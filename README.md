@@ -93,7 +93,7 @@ ros2 run sensopart_visor visor_shutdown
 <br>
 
 ## **VCnanoZ Package**
-Package zum Verbindungsaufbau mit VCnanoZ Kamera. Auf Kamera muss "vcimgnetsrv &" sowie "vctp" ausgeführt werden, dass der Stream aktiv ist. <br>
+Package zum Verbindungsaufbau mit VCnanoZ Kamera. Auf Kamera muss "vcimgnetsrv &" sowie "vctp" ausgeführt werden, dass der Stream aktiv ist - wird von Startup-Node gemacht. <br>
 Verbindung zu Kamera über SSH "ssh root@192.168.3.15" <br>
 <br>
 
