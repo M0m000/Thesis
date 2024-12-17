@@ -1,6 +1,1 @@
-######################################################
-#              SET ANALOG OUTPUT SRV                 #
-######################################################
-
-int8       index     # output index
-float32    value     # output value (various range)
+/home/vboxuser/Thesis/build/kr_msgs/rosidl_cmake/srv/io/SetAnalogOutput_Request.msg

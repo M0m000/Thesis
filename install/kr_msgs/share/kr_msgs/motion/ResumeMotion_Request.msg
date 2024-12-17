@@ -1,4 +1,1 @@
-######################################################
-#                  RESUME MOTION                     #
-######################################################
-
+/home/vboxuser/Thesis/build/kr_msgs/rosidl_cmake/srv/motion/ResumeMotion_Request.msg

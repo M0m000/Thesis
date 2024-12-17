@@ -1,3 +1,1 @@
-
-RobotMode  mode    
-bool       success
+/home/vboxuser/Thesis/build/kr_msgs/rosidl_cmake/srv/system/GetRobotMode_Response.msg

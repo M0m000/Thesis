@@ -1,5 +1,1 @@
-######################################################
-#                  PAUSE MOTION                      #
-######################################################
-
-bool       blocking # wait until robot is stopped
+/home/vboxuser/Thesis/build/kr_msgs/rosidl_cmake/srv/motion/PauseMotion_Request.msg

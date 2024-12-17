@@ -18,12 +18,13 @@ class MoveLinByKey(Node):
             self.get_logger().info("Waiting for SelectJoggingFrame service...")
         self.get_logger().info("SelectJoggingFrame service available!")
 
+        '''
         request = SelectJoggingFrame.Request()
         request.ref = 2
         future = self.set_jogging_frame_client.call_async(request)
-
+        print("Test 1")
         rclpy.spin_until_future_complete(self, future)
-
+        print("Test 2")
         if future.result() is not None:
             response = future.result()
             if response.success:
@@ -32,7 +33,7 @@ class MoveLinByKey(Node):
                 self.get_logger().info("Movement Frame Selection failed!")
         else:
             self.get_logger().info("Movement Frame Selection failed!")
-
+        '''
         
         ### Publisher für Twist Msg
         self.publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)

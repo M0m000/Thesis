@@ -1,6 +1,1 @@
-######################################################
-#                 JOG IN WORK SPACE                  #
-######################################################
-
-float64[3] vel      # velocity - x, y, z [mm/s]
-float64[3] rot      # velocity - r, p, y [deg/s]
+/home/vboxuser/Thesis/src/orange-ros2/kr_msgs/msg/JogLinear.msg

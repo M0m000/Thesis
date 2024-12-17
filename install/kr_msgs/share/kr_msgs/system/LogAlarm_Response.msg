@@ -1,3 +1,1 @@
-
-SafetyEvent[]    safety_events  
-bool             success
+/home/vboxuser/Thesis/build/kr_msgs/rosidl_cmake/srv/system/LogAlarm_Response.msg

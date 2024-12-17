@@ -13,4 +13,8 @@ test/test_copyright.py
 test/test_flake8.py
 test/test_pep257.py
 vcnanoz/__init__.py
+vcnanoz/srvClient_vc_startup.py
+vcnanoz/srvServer_vc_startup.py
 vcnanoz/vc_img_receiver.py
+vcnanoz/vc_shutdown.py
+vcnanoz/vc_startup.py

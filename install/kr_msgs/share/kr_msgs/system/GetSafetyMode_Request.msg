@@ -1,4 +1,1 @@
-######################################################
-#                  GET SAFETY MODE                   #
-######################################################
-
+/home/vboxuser/Thesis/build/kr_msgs/rosidl_cmake/srv/system/GetSafetyMode_Request.msg

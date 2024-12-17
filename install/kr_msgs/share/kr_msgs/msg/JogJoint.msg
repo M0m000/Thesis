@@ -1,5 +1,1 @@
-######################################################
-#                JOG IN JOINT SPACE                  #
-######################################################
-
-float64[7]  jsvel   # target joint velocity [deg/s]
+/home/vboxuser/Thesis/src/orange-ros2/kr_msgs/msg/JogJoint.msg

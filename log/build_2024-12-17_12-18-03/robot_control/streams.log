@@ -1,0 +1,38 @@
+[1.154s] Invoking command in '/home/vboxuser/Thesis/build/robot_control': AMENT_PREFIX_PATH=/home/vboxuser/Thesis/install/action_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/vboxuser/Thesis/install/action_interfaces LD_LIBRARY_PATH=/home/vboxuser/Thesis/install/action_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/vboxuser/Thesis/build/robot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/Thesis/install/robot_control/lib/python3.8/site-packages:/home/vboxuser/Thesis/install/action_interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/vboxuser/Thesis/build/robot_control/build --no-deps symlink_data
+[1.404s] running develop
+[1.587s] running egg_info
+[1.588s] creating robot_control.egg-info
+[1.589s] writing robot_control.egg-info/PKG-INFO
+[1.589s] writing dependency_links to robot_control.egg-info/dependency_links.txt
+[1.589s] writing entry points to robot_control.egg-info/entry_points.txt
+[1.589s] writing requirements to robot_control.egg-info/requires.txt
+[1.590s] writing top-level names to robot_control.egg-info/top_level.txt
+[1.591s] writing manifest file 'robot_control.egg-info/SOURCES.txt'
+[1.618s] reading manifest file 'robot_control.egg-info/SOURCES.txt'
+[1.618s] writing manifest file 'robot_control.egg-info/SOURCES.txt'
+[1.653s] running build_ext
+[1.653s] Creating /home/vboxuser/Thesis/install/robot_control/lib/python3.8/site-packages/site.py
+[1.655s] Creating /home/vboxuser/Thesis/install/robot_control/lib/python3.8/site-packages/robot-control.egg-link (link to .)
+[1.655s] Installing MoveTcpAlongAxis_action_client script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.656s] Installing fibonacci_action_client script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.657s] Installing get_robot_pose_node script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.657s] Installing hello_node script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.657s] Installing move_along_baseline_client script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.658s] Installing move_lin_by_key script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.658s] Installing print_frames script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.659s] Installing print_tcp_pose script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.659s] Installing read_transformation_delta script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.660s] Installing read_transformation_snapshot script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.660s] Installing robot_TcpPose_node script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.661s] Installing set_frame_client script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.661s] Installing transformation_delta script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.662s] Installing transformation_snapshot script to /home/vboxuser/Thesis/install/robot_control/lib/robot_control
+[1.663s] 
+[1.663s] Installed /home/vboxuser/Thesis/build/robot_control
+[1.664s] running symlink_data
+[1.664s] creating /home/vboxuser/Thesis/install/robot_control/share/ament_index
+[1.664s] creating /home/vboxuser/Thesis/install/robot_control/share/ament_index/resource_index
+[1.664s] creating /home/vboxuser/Thesis/install/robot_control/share/ament_index/resource_index/packages
+[1.664s] symbolically linking /home/vboxuser/Thesis/build/robot_control/resource/robot_control -> /home/vboxuser/Thesis/install/robot_control/share/ament_index/resource_index/packages
+[1.664s] symbolically linking /home/vboxuser/Thesis/build/robot_control/package.xml -> /home/vboxuser/Thesis/install/robot_control/share/robot_control
+[1.700s] Invoked command in '/home/vboxuser/Thesis/build/robot_control' returned '0': AMENT_PREFIX_PATH=/home/vboxuser/Thesis/install/action_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/vboxuser/Thesis/install/action_interfaces LD_LIBRARY_PATH=/home/vboxuser/Thesis/install/action_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/vboxuser/Thesis/build/robot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/Thesis/install/robot_control/lib/python3.8/site-packages:/home/vboxuser/Thesis/install/action_interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/vboxuser/Thesis/build/robot_control/build --no-deps symlink_data

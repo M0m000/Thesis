@@ -1,3 +1,1 @@
-
-SafetyMode  mode  
-bool        success
+/home/vboxuser/Thesis/build/kr_msgs/rosidl_cmake/srv/system/GetSafetyMode_Response.msg

@@ -1,0 +1,27 @@
+[1.505s] Invoking command in '/home/vboxuser/Thesis/build/bt_pkg': PYTHONPATH=/home/vboxuser/Thesis/build/bt_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/Thesis/install/bt_pkg/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/vboxuser/Thesis/build/bt_pkg/build --no-deps symlink_data
+[1.735s] running develop
+[1.890s] running egg_info
+[1.890s] creating bt_pkg.egg-info
+[1.890s] writing bt_pkg.egg-info/PKG-INFO
+[1.890s] writing dependency_links to bt_pkg.egg-info/dependency_links.txt
+[1.891s] writing entry points to bt_pkg.egg-info/entry_points.txt
+[1.891s] writing requirements to bt_pkg.egg-info/requires.txt
+[1.891s] writing top-level names to bt_pkg.egg-info/top_level.txt
+[1.891s] writing manifest file 'bt_pkg.egg-info/SOURCES.txt'
+[1.914s] reading manifest file 'bt_pkg.egg-info/SOURCES.txt'
+[1.915s] writing manifest file 'bt_pkg.egg-info/SOURCES.txt'
+[1.951s] running build_ext
+[1.951s] Creating /home/vboxuser/Thesis/install/bt_pkg/lib/python3.8/site-packages/site.py
+[1.952s] Creating /home/vboxuser/Thesis/install/bt_pkg/lib/python3.8/site-packages/bt-pkg.egg-link (link to .)
+[1.955s] Installing bt_example_tree script to /home/vboxuser/Thesis/install/bt_pkg/lib/bt_pkg
+[1.956s] Installing bt_scan_hookstrip script to /home/vboxuser/Thesis/install/bt_pkg/lib/bt_pkg
+[1.958s] Installing srv_call script to /home/vboxuser/Thesis/install/bt_pkg/lib/bt_pkg
+[1.958s] 
+[1.958s] Installed /home/vboxuser/Thesis/build/bt_pkg
+[1.958s] running symlink_data
+[1.959s] creating /home/vboxuser/Thesis/install/bt_pkg/share/ament_index
+[1.959s] creating /home/vboxuser/Thesis/install/bt_pkg/share/ament_index/resource_index
+[1.959s] creating /home/vboxuser/Thesis/install/bt_pkg/share/ament_index/resource_index/packages
+[1.960s] symbolically linking /home/vboxuser/Thesis/build/bt_pkg/resource/bt_pkg -> /home/vboxuser/Thesis/install/bt_pkg/share/ament_index/resource_index/packages
+[1.960s] symbolically linking /home/vboxuser/Thesis/build/bt_pkg/package.xml -> /home/vboxuser/Thesis/install/bt_pkg/share/bt_pkg
+[2.010s] Invoked command in '/home/vboxuser/Thesis/build/bt_pkg' returned '0': PYTHONPATH=/home/vboxuser/Thesis/build/bt_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/Thesis/install/bt_pkg/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/vboxuser/Thesis/build/bt_pkg/build --no-deps symlink_data

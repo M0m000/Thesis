@@ -1,0 +1,27 @@
+[1.245s] Invoking command in '/home/vboxuser/Thesis/build/action_servers': AMENT_PREFIX_PATH=/home/vboxuser/Thesis/install/action_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/vboxuser/Thesis/install/action_interfaces LD_LIBRARY_PATH=/home/vboxuser/Thesis/install/action_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/vboxuser/Thesis/build/action_servers/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/Thesis/install/action_servers/lib/python3.8/site-packages:/home/vboxuser/Thesis/install/action_interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/vboxuser/Thesis/build/action_servers/build --no-deps symlink_data
+[1.490s] running develop
+[1.676s] running egg_info
+[1.676s] creating action_servers.egg-info
+[1.676s] writing action_servers.egg-info/PKG-INFO
+[1.677s] writing dependency_links to action_servers.egg-info/dependency_links.txt
+[1.677s] writing entry points to action_servers.egg-info/entry_points.txt
+[1.677s] writing requirements to action_servers.egg-info/requires.txt
+[1.677s] writing top-level names to action_servers.egg-info/top_level.txt
+[1.679s] writing manifest file 'action_servers.egg-info/SOURCES.txt'
+[1.704s] reading manifest file 'action_servers.egg-info/SOURCES.txt'
+[1.704s] writing manifest file 'action_servers.egg-info/SOURCES.txt'
+[1.736s] running build_ext
+[1.736s] Creating /home/vboxuser/Thesis/install/action_servers/lib/python3.8/site-packages/site.py
+[1.739s] Creating /home/vboxuser/Thesis/install/action_servers/lib/python3.8/site-packages/action-servers.egg-link (link to .)
+[1.739s] Installing MoveTcpAlongAxis_action_server script to /home/vboxuser/Thesis/install/action_servers/lib/action_servers
+[1.739s] Installing fibonacci_action_server script to /home/vboxuser/Thesis/install/action_servers/lib/action_servers
+[1.739s] Installing move_along_baseline_server script to /home/vboxuser/Thesis/install/action_servers/lib/action_servers
+[1.739s] 
+[1.739s] Installed /home/vboxuser/Thesis/build/action_servers
+[1.739s] running symlink_data
+[1.739s] creating /home/vboxuser/Thesis/install/action_servers/share/ament_index
+[1.739s] creating /home/vboxuser/Thesis/install/action_servers/share/ament_index/resource_index
+[1.739s] creating /home/vboxuser/Thesis/install/action_servers/share/ament_index/resource_index/packages
+[1.740s] symbolically linking /home/vboxuser/Thesis/build/action_servers/resource/action_servers -> /home/vboxuser/Thesis/install/action_servers/share/ament_index/resource_index/packages
+[1.740s] symbolically linking /home/vboxuser/Thesis/build/action_servers/package.xml -> /home/vboxuser/Thesis/install/action_servers/share/action_servers
+[1.770s] Invoked command in '/home/vboxuser/Thesis/build/action_servers' returned '0': AMENT_PREFIX_PATH=/home/vboxuser/Thesis/install/action_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/vboxuser/Thesis/install/action_interfaces LD_LIBRARY_PATH=/home/vboxuser/Thesis/install/action_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/vboxuser/Thesis/build/action_servers/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/Thesis/install/action_servers/lib/python3.8/site-packages:/home/vboxuser/Thesis/install/action_interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/vboxuser/Thesis/build/action_servers/build --no-deps symlink_data

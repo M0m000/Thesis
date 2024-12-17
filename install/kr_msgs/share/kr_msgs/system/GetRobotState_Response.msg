@@ -1,3 +1,1 @@
-
-RobotState  state    
-bool        success
+/home/vboxuser/Thesis/build/kr_msgs/rosidl_cmake/srv/system/GetRobotState_Response.msg

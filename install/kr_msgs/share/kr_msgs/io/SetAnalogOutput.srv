@@ -1,8 +1,1 @@
-######################################################
-#              SET ANALOG OUTPUT SRV                 #
-######################################################
-
-int8       index     # output index
-float32    value     # output value (various range)
----
-bool       success
+/home/vboxuser/Thesis/src/orange-ros2/kr_msgs/srv/io/SetAnalogOutput.srv

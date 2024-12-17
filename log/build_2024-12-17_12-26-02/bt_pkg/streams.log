@@ -1,0 +1,44 @@
+[1.540s] Invoking command in '/home/vboxuser/Thesis/build/bt_pkg': PYTHONPATH=/home/vboxuser/Thesis/build/bt_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/Thesis/install/bt_pkg/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --uninstall --editable --build-directory /home/vboxuser/Thesis/build/bt_pkg/build
+[1.925s] running develop
+[2.103s] Removing /home/vboxuser/Thesis/install/bt_pkg/lib/python3.8/site-packages/bt-pkg.egg-link (link to .)
+[2.170s] Invoked command in '/home/vboxuser/Thesis/build/bt_pkg' returned '0': PYTHONPATH=/home/vboxuser/Thesis/build/bt_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/Thesis/install/bt_pkg/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --uninstall --editable --build-directory /home/vboxuser/Thesis/build/bt_pkg/build
+[2.175s] Invoking command in '/home/vboxuser/Thesis/src/bt_pkg': PYTHONPATH=/home/vboxuser/Thesis/build/bt_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/Thesis/install/bt_pkg/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/bt_pkg build --build-base /home/vboxuser/Thesis/build/bt_pkg/build install --record /home/vboxuser/Thesis/build/bt_pkg/install.log --install-scripts $base/lib/bt_pkg --single-version-externally-managed install_data --force
+[2.481s] running egg_info
+[2.482s] writing ../../build/bt_pkg/bt_pkg.egg-info/PKG-INFO
+[2.482s] writing dependency_links to ../../build/bt_pkg/bt_pkg.egg-info/dependency_links.txt
+[2.499s] writing entry points to ../../build/bt_pkg/bt_pkg.egg-info/entry_points.txt
+[2.501s] writing requirements to ../../build/bt_pkg/bt_pkg.egg-info/requires.txt
+[2.502s] writing top-level names to ../../build/bt_pkg/bt_pkg.egg-info/top_level.txt
+[2.545s] reading manifest file '../../build/bt_pkg/bt_pkg.egg-info/SOURCES.txt'
+[2.545s] writing manifest file '../../build/bt_pkg/bt_pkg.egg-info/SOURCES.txt'
+[2.545s] running build
+[2.545s] running build_py
+[2.545s] creating /home/vboxuser/Thesis/build/bt_pkg/build
+[2.546s] creating /home/vboxuser/Thesis/build/bt_pkg/build/lib
+[2.546s] creating /home/vboxuser/Thesis/build/bt_pkg/build/lib/bt_pkg
+[2.546s] copying bt_pkg/bt_scan_hookstrip.py -> /home/vboxuser/Thesis/build/bt_pkg/build/lib/bt_pkg
+[2.546s] copying bt_pkg/bt_example_tree.py -> /home/vboxuser/Thesis/build/bt_pkg/build/lib/bt_pkg
+[2.546s] copying bt_pkg/srv_call.py -> /home/vboxuser/Thesis/build/bt_pkg/build/lib/bt_pkg
+[2.546s] copying bt_pkg/__init__.py -> /home/vboxuser/Thesis/build/bt_pkg/build/lib/bt_pkg
+[2.547s] running install
+[2.548s] running install_lib
+[2.549s] creating /home/vboxuser/Thesis/install/bt_pkg/lib/python3.8/site-packages/bt_pkg
+[2.549s] copying /home/vboxuser/Thesis/build/bt_pkg/build/lib/bt_pkg/bt_scan_hookstrip.py -> /home/vboxuser/Thesis/install/bt_pkg/lib/python3.8/site-packages/bt_pkg
+[2.549s] copying /home/vboxuser/Thesis/build/bt_pkg/build/lib/bt_pkg/bt_example_tree.py -> /home/vboxuser/Thesis/install/bt_pkg/lib/python3.8/site-packages/bt_pkg
+[2.549s] copying /home/vboxuser/Thesis/build/bt_pkg/build/lib/bt_pkg/srv_call.py -> /home/vboxuser/Thesis/install/bt_pkg/lib/python3.8/site-packages/bt_pkg
+[2.550s] copying /home/vboxuser/Thesis/build/bt_pkg/build/lib/bt_pkg/__init__.py -> /home/vboxuser/Thesis/install/bt_pkg/lib/python3.8/site-packages/bt_pkg
+[2.550s] byte-compiling /home/vboxuser/Thesis/install/bt_pkg/lib/python3.8/site-packages/bt_pkg/bt_scan_hookstrip.py to bt_scan_hookstrip.cpython-38.pyc
+[2.552s] byte-compiling /home/vboxuser/Thesis/install/bt_pkg/lib/python3.8/site-packages/bt_pkg/bt_example_tree.py to bt_example_tree.cpython-38.pyc
+[2.553s] byte-compiling /home/vboxuser/Thesis/install/bt_pkg/lib/python3.8/site-packages/bt_pkg/srv_call.py to srv_call.cpython-38.pyc
+[2.553s] byte-compiling /home/vboxuser/Thesis/install/bt_pkg/lib/python3.8/site-packages/bt_pkg/__init__.py to __init__.cpython-38.pyc
+[2.554s] running install_data
+[2.554s] copying resource/bt_pkg -> /home/vboxuser/Thesis/install/bt_pkg/share/ament_index/resource_index/packages
+[2.554s] copying package.xml -> /home/vboxuser/Thesis/install/bt_pkg/share/bt_pkg
+[2.554s] running install_egg_info
+[2.558s] Copying ../../build/bt_pkg/bt_pkg.egg-info to /home/vboxuser/Thesis/install/bt_pkg/lib/python3.8/site-packages/bt_pkg-0.0.0-py3.8.egg-info
+[2.558s] running install_scripts
+[2.600s] Installing bt_example_tree script to /home/vboxuser/Thesis/install/bt_pkg/lib/bt_pkg
+[2.601s] Installing bt_scan_hookstrip script to /home/vboxuser/Thesis/install/bt_pkg/lib/bt_pkg
+[2.601s] Installing srv_call script to /home/vboxuser/Thesis/install/bt_pkg/lib/bt_pkg
+[2.603s] writing list of installed files to '/home/vboxuser/Thesis/build/bt_pkg/install.log'
+[2.690s] Invoked command in '/home/vboxuser/Thesis/src/bt_pkg' returned '0': PYTHONPATH=/home/vboxuser/Thesis/build/bt_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/Thesis/install/bt_pkg/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/bt_pkg build --build-base /home/vboxuser/Thesis/build/bt_pkg/build install --record /home/vboxuser/Thesis/build/bt_pkg/install.log --install-scripts $base/lib/bt_pkg --single-version-externally-managed install_data --force

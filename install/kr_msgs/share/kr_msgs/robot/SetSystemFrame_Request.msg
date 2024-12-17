@@ -1,16 +1,1 @@
-######################################################
-#                 SET SYSTEM FRAME                   #
-######################################################
-
-# SUPPORTED_FRAMES
-string WORLD  = "world"
-string BASE   = "base"
-string ELBOW  = "elbow"
-string FLANGE = "tfc"
-string TCP    = "tcp"
-string TARGET = "target"
-
-string      name     # [base, tcp]
-float64[3]  pos      # position - x, y, z [mm]
-float64[3]  rot      # orientation - r, p, y [degrees]
-string      ref      # SUPPORTED_FRAMES
+/home/vboxuser/Thesis/build/kr_msgs/rosidl_cmake/srv/robot/SetSystemFrame_Request.msg

@@ -3,11 +3,14 @@
 <package format="3">
   <name>vcnanoz</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>A package to manage VC Nano Z startup operations via SSH and ROS 2.</description>
   <maintainer email="vboxuser@todo.todo">vboxuser</maintainer>
-  <license>TODO: License declaration</license>
+  <license>MIT</license>
 
   <depend>rclpy</depend>
+
+  <build_depend>rosidl_default_generators</build_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>

@@ -1,10 +1,1 @@
-######################################################
-#             SET DISCRETE OUTPUT SRV                #
-######################################################
-
-# OUTPUT_VALUE
-int8 OFF = 0
-int8 ON  = 1
-
-int8       index    # output index
-int8       value    # see OUTPUT_VALUE
+/home/vboxuser/Thesis/build/kr_msgs/rosidl_cmake/srv/io/SetDiscreteOutput_Request.msg

@@ -1,4 +1,1 @@
-######################################################
-#                  GET ROBOT STATE                   #
-######################################################
-
+/home/vboxuser/Thesis/build/kr_msgs/rosidl_cmake/srv/system/GetRobotState_Request.msg

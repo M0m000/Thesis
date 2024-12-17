@@ -1,4 +1,1 @@
-######################################################
-#                  SUSPEND ROBOT                     #
-######################################################
-
+/home/vboxuser/Thesis/build/kr_msgs/rosidl_cmake/srv/system/SuspendRobot_Request.msg
