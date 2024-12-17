@@ -12,27 +12,13 @@ class MoveLinByKey(Node):
         self.declare_parameter('speed', 10.0)
         self.speed = self.get_parameter('speed').get_parameter_value().double_value
 
-        ### TCP Frame auswählen
-        self.set_jogging_frame_client = self.create_client(SelectJoggingFrame, 'kr/motion/select_jogging_frame')
-        while self.set_jogging_frame_client.wait_for_service(timeout_sec=1.0):
-            self.get_logger().info("Waiting for SelectJoggingFrame service...")
-        self.get_logger().info("SelectJoggingFrame service available!")
+        self.declare_parameter('movement_frame', 'tcp')
+        self.movement_frame = self.get_parameter('movement_frame').get_parameter_value().string_value
 
-        '''
-        request = SelectJoggingFrame.Request()
-        request.ref = 2
-        future = self.set_jogging_frame_client.call_async(request)
-        rclpy.spin_until_future_complete(self, future)
-
-        if future.result() is not None:
-            response = future.result()
-            if response.success:
-                self.get_logger().info("Movement Frame selected successfully!")
-            else:
-                self.get_logger().info("Movement Frame Selection failed!")
-        else:
-            self.get_logger().info("Movement Frame Selection failed!")
-        '''
+        self.client = self.create_client(SelectJoggingFrame, '/kr/motion/select_jogging_frame')
+        while not self.client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info('Wait for service SelectJoggingFrame...')
+        self.get_logger().info('Service SelectJoggingFrame available!')
         
         ### Publisher für Twist Msg
         self.publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
@@ -40,11 +26,40 @@ class MoveLinByKey(Node):
         self.timer_period = 0.002  # Sekunden
         self.timer = self.create_timer(self.timer_period, self.publish_callback)
 
-        self.listener = keyboard.Listener(on_press=self.on_press, on_release=self.on_release)
-        self.listener.start()
-
         self.jog_msg = JogLinear()
         self.jog_msg.vel = [0.0, 0.0, 0.0]
+
+        self.set_frame_idx()
+        self.call_service()     # rufe Service SelectJoggingFrame auf
+
+    
+    def call_service(self):
+        request = SelectJoggingFrame.Request()
+        request.ref = self.frame_idx if self.frame_idx is not None else 0
+        future = self.client.call_async(request)
+        future.add_done_callback(self.service_response_callback)
+
+    def service_response_callback(self, future):
+        try:
+            response = future.result()
+            if response.success:        # wenn Frame gesetzt -> Tastensteuerung kann beginnen
+                self.get_logger().info('Jogging Frame Selection successful.')
+                self.listener = keyboard.Listener(on_press=self.on_press, on_release=self.on_release)
+                self.listener.start()
+            else:
+                self.get_logger().warn('Jogging Frame Selection failed!')
+        except Exception as e:
+            self.get_logger().error(f'Error Service-Call: {e}')
+
+
+    def set_frame_idx(self):
+        if self.movement_frame == 'world':
+            self.frame_idx = 0
+        elif self.movement_frame == 'base':
+            self.frame_idx = 1
+        elif self.movement_frame == 'tcp':
+            self.frame_idx = 2
+
 
     def publish_callback(self):
         # self.get_logger().info(f"Publishing: {self.jog_msg}")
