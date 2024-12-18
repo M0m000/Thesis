@@ -1,0 +1,29 @@
+[1.782s] Invoking command in '/home/vboxuser/Thesis/src/vision': PYTHONPATH=/home/vboxuser/Thesis/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/Thesis/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/vboxuser/Thesis/build/vision/build install --record /home/vboxuser/Thesis/build/vision/install.log --install-scripts $base/lib/vision --single-version-externally-managed install_data
+[2.092s] running egg_info
+[2.092s] writing ../../build/vision/vision.egg-info/PKG-INFO
+[2.093s] writing dependency_links to ../../build/vision/vision.egg-info/dependency_links.txt
+[2.093s] writing entry points to ../../build/vision/vision.egg-info/entry_points.txt
+[2.094s] writing requirements to ../../build/vision/vision.egg-info/requires.txt
+[2.094s] writing top-level names to ../../build/vision/vision.egg-info/top_level.txt
+[2.131s] reading manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[2.131s] writing manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[2.132s] running build
+[2.137s] running build_py
+[2.137s] running install
+[2.138s] running install_lib
+[2.138s] running install_data
+[2.140s] running install_egg_info
+[2.146s] removing '/home/vboxuser/Thesis/install/vision/lib/python3.8/site-packages/vision-0.0.0-py3.8.egg-info' (and everything under it)
+[2.147s] Copying ../../build/vision/vision.egg-info to /home/vboxuser/Thesis/install/vision/lib/python3.8/site-packages/vision-0.0.0-py3.8.egg-info
+[2.148s] running install_scripts
+[2.168s] Installing calibration script to /home/vboxuser/Thesis/install/vision/lib/vision
+[2.170s] Installing hook_detector script to /home/vboxuser/Thesis/install/vision/lib/vision
+[2.172s] Installing image_filters script to /home/vboxuser/Thesis/install/vision/lib/vision
+[2.173s] Installing image_receiver script to /home/vboxuser/Thesis/install/vision/lib/vision
+[2.174s] Installing point_finder_2d script to /home/vboxuser/Thesis/install/vision/lib/vision
+[2.174s] Installing point_finder_3d script to /home/vboxuser/Thesis/install/vision/lib/vision
+[2.175s] Installing stereo_triangulation script to /home/vboxuser/Thesis/install/vision/lib/vision
+[2.175s] Installing stereo_triangulation_with_robot script to /home/vboxuser/Thesis/install/vision/lib/vision
+[2.176s] Installing test_node script to /home/vboxuser/Thesis/install/vision/lib/vision
+[2.176s] writing list of installed files to '/home/vboxuser/Thesis/build/vision/install.log'
+[2.550s] Invoked command in '/home/vboxuser/Thesis/src/vision' returned '0': PYTHONPATH=/home/vboxuser/Thesis/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/Thesis/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/vboxuser/Thesis/build/vision/build install --record /home/vboxuser/Thesis/build/vision/install.log --install-scripts $base/lib/vision --single-version-externally-managed install_data

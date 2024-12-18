@@ -22,7 +22,7 @@ setup(
         'console_scripts': [
             'fibonacci_action_server = action_servers.fibonacci_action_server:main',
             'MoveTcpAlongAxis_action_server = action_servers.MoveTcpAlongAxis_action_server:main', 
-            'move_along_baseline_server = action_servers.move_along_baseline_server:main'       
+            'srvServer_tf_frame_generator = action_servers.srvServer_tf_frame_generator:main'     
         ],
     },
 )

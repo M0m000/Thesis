@@ -57,6 +57,7 @@
 /home/vboxuser/Thesis/install/robot_control/lib/robot_control/read_transformation_snapshot
 /home/vboxuser/Thesis/install/robot_control/lib/robot_control/robot_TcpPose_node
 /home/vboxuser/Thesis/install/robot_control/lib/robot_control/set_frame_client
+/home/vboxuser/Thesis/install/robot_control/lib/robot_control/srvClient_tf_frame_generator
 /home/vboxuser/Thesis/install/robot_control/lib/robot_control/tcp_frame_listener
 /home/vboxuser/Thesis/install/robot_control/lib/robot_control/tf_frames_publisher
 /home/vboxuser/Thesis/install/robot_control/lib/robot_control/transformation_delta
