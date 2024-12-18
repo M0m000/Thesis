@@ -1,0 +1,29 @@
+[1.745s] Invoking command in '/home/vboxuser/Thesis/build/vcnanoz': PYTHONPATH=/home/vboxuser/Thesis/build/vcnanoz/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/Thesis/install/vcnanoz/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/vboxuser/Thesis/build/vcnanoz/build --no-deps symlink_data
+[2.033s] running develop
+[2.183s] running egg_info
+[2.183s] creating vcnanoz.egg-info
+[2.183s] writing vcnanoz.egg-info/PKG-INFO
+[2.184s] writing dependency_links to vcnanoz.egg-info/dependency_links.txt
+[2.184s] writing entry points to vcnanoz.egg-info/entry_points.txt
+[2.184s] writing requirements to vcnanoz.egg-info/requires.txt
+[2.184s] writing top-level names to vcnanoz.egg-info/top_level.txt
+[2.184s] writing manifest file 'vcnanoz.egg-info/SOURCES.txt'
+[2.215s] reading manifest file 'vcnanoz.egg-info/SOURCES.txt'
+[2.216s] writing manifest file 'vcnanoz.egg-info/SOURCES.txt'
+[2.257s] running build_ext
+[2.258s] Creating /home/vboxuser/Thesis/install/vcnanoz/lib/python3.8/site-packages/site.py
+[2.264s] Creating /home/vboxuser/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz.egg-link (link to .)
+[2.265s] Installing srvClient_vc_startup script to /home/vboxuser/Thesis/install/vcnanoz/lib/vcnanoz
+[2.265s] Installing srvServer_vc_startup script to /home/vboxuser/Thesis/install/vcnanoz/lib/vcnanoz
+[2.266s] Installing vc_img_receiver script to /home/vboxuser/Thesis/install/vcnanoz/lib/vcnanoz
+[2.266s] Installing vc_shutdown script to /home/vboxuser/Thesis/install/vcnanoz/lib/vcnanoz
+[2.267s] Installing vc_startup script to /home/vboxuser/Thesis/install/vcnanoz/lib/vcnanoz
+[2.267s] 
+[2.267s] Installed /home/vboxuser/Thesis/build/vcnanoz
+[2.267s] running symlink_data
+[2.267s] creating /home/vboxuser/Thesis/install/vcnanoz/share/ament_index
+[2.267s] creating /home/vboxuser/Thesis/install/vcnanoz/share/ament_index/resource_index
+[2.267s] creating /home/vboxuser/Thesis/install/vcnanoz/share/ament_index/resource_index/packages
+[2.268s] symbolically linking /home/vboxuser/Thesis/build/vcnanoz/resource/vcnanoz -> /home/vboxuser/Thesis/install/vcnanoz/share/ament_index/resource_index/packages
+[2.268s] symbolically linking /home/vboxuser/Thesis/build/vcnanoz/package.xml -> /home/vboxuser/Thesis/install/vcnanoz/share/vcnanoz
+[2.327s] Invoked command in '/home/vboxuser/Thesis/build/vcnanoz' returned '0': PYTHONPATH=/home/vboxuser/Thesis/build/vcnanoz/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/Thesis/install/vcnanoz/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/vboxuser/Thesis/build/vcnanoz/build --no-deps symlink_data

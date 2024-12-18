@@ -12,7 +12,7 @@ class MoveTcpAlongAxisActionClient(Node):
         self.declare_parameter('baseline', 0.0)
         self.declare_parameter('movement_frame', 'tcp')
         self.declare_parameter('movement_axis', 'axis_x')
-        self.declare_parameter('speed', 20.0)
+        self.declare_parameter('speed', 30.0)
 
         # Action Client erstellen
         self._action_client = ActionClient(self, MoveTcpAlongAxis, 'move_tcp_along_axis')

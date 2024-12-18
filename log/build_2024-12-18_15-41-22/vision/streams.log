@@ -1,0 +1,25 @@
+[1.901s] Invoking command in '/home/vboxuser/Thesis/build/vision': PYTHONPATH=/home/vboxuser/Thesis/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/Thesis/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/vboxuser/Thesis/build/vision/build --no-deps symlink_data
+[2.227s] running develop
+[2.343s] running egg_info
+[2.343s] writing vision.egg-info/PKG-INFO
+[2.344s] writing dependency_links to vision.egg-info/dependency_links.txt
+[2.344s] writing entry points to vision.egg-info/entry_points.txt
+[2.345s] writing requirements to vision.egg-info/requires.txt
+[2.345s] writing top-level names to vision.egg-info/top_level.txt
+[2.383s] reading manifest file 'vision.egg-info/SOURCES.txt'
+[2.384s] writing manifest file 'vision.egg-info/SOURCES.txt'
+[2.421s] running build_ext
+[2.434s] Creating /home/vboxuser/Thesis/install/vision/lib/python3.8/site-packages/vision.egg-link (link to .)
+[2.434s] Installing calibration script to /home/vboxuser/Thesis/install/vision/lib/vision
+[2.435s] Installing hook_detector script to /home/vboxuser/Thesis/install/vision/lib/vision
+[2.436s] Installing image_filters script to /home/vboxuser/Thesis/install/vision/lib/vision
+[2.436s] Installing image_receiver script to /home/vboxuser/Thesis/install/vision/lib/vision
+[2.436s] Installing point_finder_2d script to /home/vboxuser/Thesis/install/vision/lib/vision
+[2.437s] Installing point_finder_3d script to /home/vboxuser/Thesis/install/vision/lib/vision
+[2.437s] Installing stereo_triangulation script to /home/vboxuser/Thesis/install/vision/lib/vision
+[2.437s] Installing stereo_triangulation_with_robot script to /home/vboxuser/Thesis/install/vision/lib/vision
+[2.437s] Installing test_node script to /home/vboxuser/Thesis/install/vision/lib/vision
+[2.437s] 
+[2.437s] Installed /home/vboxuser/Thesis/build/vision
+[2.437s] running symlink_data
+[2.515s] Invoked command in '/home/vboxuser/Thesis/build/vision' returned '0': PYTHONPATH=/home/vboxuser/Thesis/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/Thesis/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/vboxuser/Thesis/build/vision/build --no-deps symlink_data

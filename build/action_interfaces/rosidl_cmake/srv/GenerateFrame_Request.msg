@@ -1,4 +1,0 @@
-string frame_new
-string frame_ref
-float64[3] translation
-float64[3] rotation_rpy

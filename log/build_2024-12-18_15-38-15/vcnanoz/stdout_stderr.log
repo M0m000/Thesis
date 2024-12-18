@@ -1,0 +1,27 @@
+running develop
+running egg_info
+creating vcnanoz.egg-info
+writing vcnanoz.egg-info/PKG-INFO
+writing dependency_links to vcnanoz.egg-info/dependency_links.txt
+writing entry points to vcnanoz.egg-info/entry_points.txt
+writing requirements to vcnanoz.egg-info/requires.txt
+writing top-level names to vcnanoz.egg-info/top_level.txt
+writing manifest file 'vcnanoz.egg-info/SOURCES.txt'
+reading manifest file 'vcnanoz.egg-info/SOURCES.txt'
+writing manifest file 'vcnanoz.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/vboxuser/Thesis/install/vcnanoz/lib/python3.8/site-packages/site.py
+Creating /home/vboxuser/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz.egg-link (link to .)
+Installing srvClient_vc_startup script to /home/vboxuser/Thesis/install/vcnanoz/lib/vcnanoz
+Installing srvServer_vc_startup script to /home/vboxuser/Thesis/install/vcnanoz/lib/vcnanoz
+Installing vc_img_receiver script to /home/vboxuser/Thesis/install/vcnanoz/lib/vcnanoz
+Installing vc_shutdown script to /home/vboxuser/Thesis/install/vcnanoz/lib/vcnanoz
+Installing vc_startup script to /home/vboxuser/Thesis/install/vcnanoz/lib/vcnanoz
+
+Installed /home/vboxuser/Thesis/build/vcnanoz
+running symlink_data
+creating /home/vboxuser/Thesis/install/vcnanoz/share/ament_index
+creating /home/vboxuser/Thesis/install/vcnanoz/share/ament_index/resource_index
+creating /home/vboxuser/Thesis/install/vcnanoz/share/ament_index/resource_index/packages
+symbolically linking /home/vboxuser/Thesis/build/vcnanoz/resource/vcnanoz -> /home/vboxuser/Thesis/install/vcnanoz/share/ament_index/resource_index/packages
+symbolically linking /home/vboxuser/Thesis/build/vcnanoz/package.xml -> /home/vboxuser/Thesis/install/vcnanoz/share/vcnanoz
