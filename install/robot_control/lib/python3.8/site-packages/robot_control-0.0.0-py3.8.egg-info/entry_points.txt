@@ -11,8 +11,8 @@ read_transformation_delta = robot_control.read_transformation_delta:main
 read_transformation_snapshot = robot_control.read_transformation_snapshot:main
 robot_TcpPose_node = robot_control.robot_TcpPose_node:main
 set_frame_client = robot_control.set_frame_client:main
+tcp_frame_listener = robot_control.tcp_frame_listener:main
 tf_frames_publisher = robot_control.tf_frames_publisher:main
-tf_test_transformation = robot_control.tf_test_transformation:main
 transformation_delta = robot_control.transformation_delta:main
 transformation_snapshot = robot_control.transformation_snapshot:main
 
