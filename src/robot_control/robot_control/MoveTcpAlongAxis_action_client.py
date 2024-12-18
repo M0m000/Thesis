@@ -35,8 +35,7 @@ class MoveTcpAlongAxisActionClient(Node):
 
     def feedback_callback(self, feedback_msg):
         feedback = feedback_msg.feedback
-        self.get_logger().info('Feedback - Current Position: {0}'.format(feedback.current_position))
-        self.get_logger().info('Feedback - Current Difference: {0}'.format(feedback.current_diff))
+        self.get_logger().info('Feedback - Currently Moving: {feedback.currently_moving}')
 
     def goal_response_callback(self, future):
         goal_handle = future.result()

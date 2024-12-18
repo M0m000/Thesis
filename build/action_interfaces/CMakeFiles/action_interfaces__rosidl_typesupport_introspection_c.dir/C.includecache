@@ -59,8 +59,6 @@ action_interfaces/action/detail/move_tcp_along_axis__struct.h
 /home/vboxuser/Thesis/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/action/detail/action_interfaces/action/detail/move_tcp_along_axis__struct.h
 rosidl_runtime_c/string_functions.h
 /home/vboxuser/Thesis/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/action/detail/rosidl_runtime_c/string_functions.h
-rosidl_runtime_c/primitives_sequence_functions.h
-/home/vboxuser/Thesis/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/action/detail/rosidl_runtime_c/primitives_sequence_functions.h
 unique_identifier_msgs/msg/uuid.h
 /home/vboxuser/Thesis/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/action/detail/unique_identifier_msgs/msg/uuid.h
 unique_identifier_msgs/msg/detail/uuid__rosidl_typesupport_introspection_c.h
@@ -329,8 +327,6 @@ stdint.h
 -
 rosidl_runtime_c/string.h
 rosidl_generator_c/action_interfaces/action/detail/rosidl_runtime_c/string.h
-rosidl_runtime_c/primitives_sequence.h
-rosidl_generator_c/action_interfaces/action/detail/rosidl_runtime_c/primitives_sequence.h
 unique_identifier_msgs/msg/detail/uuid__struct.h
 rosidl_generator_c/action_interfaces/action/detail/unique_identifier_msgs/msg/detail/uuid__struct.h
 action_interfaces/action/detail/move_tcp_along_axis__struct.h

@@ -308,7 +308,7 @@ struct MoveTcpAlongAxis_Feedback_
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
     {
-      this->current_diff = 0.0;
+      this->currently_moving = false;
     }
   }
 
@@ -318,29 +318,20 @@ struct MoveTcpAlongAxis_Feedback_
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
     {
-      this->current_diff = 0.0;
+      this->currently_moving = false;
     }
   }
 
   // field types and members
-  using _current_position_type =
-    std::vector<double, typename ContainerAllocator::template rebind<double>::other>;
-  _current_position_type current_position;
-  using _current_diff_type =
-    double;
-  _current_diff_type current_diff;
+  using _currently_moving_type =
+    bool;
+  _currently_moving_type currently_moving;
 
   // setters for named parameter idiom
-  Type & set__current_position(
-    const std::vector<double, typename ContainerAllocator::template rebind<double>::other> & _arg)
+  Type & set__currently_moving(
+    const bool & _arg)
   {
-    this->current_position = _arg;
-    return *this;
-  }
-  Type & set__current_diff(
-    const double & _arg)
-  {
-    this->current_diff = _arg;
+    this->currently_moving = _arg;
     return *this;
   }
 
@@ -386,10 +377,7 @@ struct MoveTcpAlongAxis_Feedback_
   // comparison operators
   bool operator==(const MoveTcpAlongAxis_Feedback_ & other) const
   {
-    if (this->current_position != other.current_position) {
-      return false;
-    }
-    if (this->current_diff != other.current_diff) {
+    if (this->currently_moving != other.currently_moving) {
       return false;
     }
     return true;

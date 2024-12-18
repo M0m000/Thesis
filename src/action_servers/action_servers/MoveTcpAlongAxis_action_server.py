@@ -67,7 +67,7 @@ class MoveTcpAlongAxisActionServer(Node):
 
             if future.result().success:
                 feedback_msg = MoveTcpAlongAxis.Feedback()
-                feedback_msg.current_diff = 0.0
+                feedback_msg.currently_moving = True
                 goal_handle.publish_feedback(feedback_msg)
 
                 goal_handle.succeed()

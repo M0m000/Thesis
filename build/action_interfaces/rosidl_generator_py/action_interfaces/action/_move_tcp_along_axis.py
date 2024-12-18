@@ -301,9 +301,6 @@ class MoveTcpAlongAxis_Result(metaclass=Metaclass_MoveTcpAlongAxis_Result):
 
 # Import statements for member types
 
-# Member 'current_position'
-import array  # noqa: E402, I100
-
 # already imported above
 # import rosidl_parser.definition
 
@@ -353,26 +350,22 @@ class MoveTcpAlongAxis_Feedback(metaclass=Metaclass_MoveTcpAlongAxis_Feedback):
     """Message class 'MoveTcpAlongAxis_Feedback'."""
 
     __slots__ = [
-        '_current_position',
-        '_current_diff',
+        '_currently_moving',
     ]
 
     _fields_and_field_types = {
-        'current_position': 'sequence<double>',
-        'current_diff': 'double',
+        'currently_moving': 'boolean',
     }
 
     SLOT_TYPES = (
-        rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.BasicType('double')),  # noqa: E501
-        rosidl_parser.definition.BasicType('double'),  # noqa: E501
+        rosidl_parser.definition.BasicType('boolean'),  # noqa: E501
     )
 
     def __init__(self, **kwargs):
         assert all('_' + key in self.__slots__ for key in kwargs.keys()), \
             'Invalid arguments passed to constructor: %s' % \
             ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
-        self.current_position = array.array('d', kwargs.get('current_position', []))
-        self.current_diff = kwargs.get('current_diff', float())
+        self.currently_moving = kwargs.get('currently_moving', bool())
 
     def __repr__(self):
         typename = self.__class__.__module__.split('.')
@@ -403,9 +396,7 @@ class MoveTcpAlongAxis_Feedback(metaclass=Metaclass_MoveTcpAlongAxis_Feedback):
     def __eq__(self, other):
         if not isinstance(other, self.__class__):
             return False
-        if self.current_position != other.current_position:
-            return False
-        if self.current_diff != other.current_diff:
+        if self.currently_moving != other.currently_moving:
             return False
         return True
 
@@ -415,45 +406,17 @@ class MoveTcpAlongAxis_Feedback(metaclass=Metaclass_MoveTcpAlongAxis_Feedback):
         return copy(cls._fields_and_field_types)
 
     @property
-    def current_position(self):
-        """Message field 'current_position'."""
-        return self._current_position
+    def currently_moving(self):
+        """Message field 'currently_moving'."""
+        return self._currently_moving
 
-    @current_position.setter
-    def current_position(self, value):
-        if isinstance(value, array.array):
-            assert value.typecode == 'd', \
-                "The 'current_position' array.array() must have the type code of 'd'"
-            self._current_position = value
-            return
-        if __debug__:
-            from collections.abc import Sequence
-            from collections.abc import Set
-            from collections import UserList
-            from collections import UserString
-            assert \
-                ((isinstance(value, Sequence) or
-                  isinstance(value, Set) or
-                  isinstance(value, UserList)) and
-                 not isinstance(value, str) and
-                 not isinstance(value, UserString) and
-                 all(isinstance(v, float) for v in value) and
-                 True), \
-                "The 'current_position' field must be a set or sequence and each value of type 'float'"
-        self._current_position = array.array('d', value)
-
-    @property
-    def current_diff(self):
-        """Message field 'current_diff'."""
-        return self._current_diff
-
-    @current_diff.setter
-    def current_diff(self, value):
+    @currently_moving.setter
+    def currently_moving(self, value):
         if __debug__:
             assert \
-                isinstance(value, float), \
-                "The 'current_diff' field must be of type 'float'"
-        self._current_diff = value
+                isinstance(value, bool), \
+                "The 'currently_moving' field must be of type 'bool'"
+        self._currently_moving = value
 
 
 # Import statements for member types

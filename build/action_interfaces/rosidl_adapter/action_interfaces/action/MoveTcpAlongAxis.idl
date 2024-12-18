@@ -24,9 +24,7 @@ module action_interfaces {
     struct MoveTcpAlongAxis_Feedback {
       @verbatim (language="comment", text=
         " Feedback (Wiederholende Rückmeldung während der Aktion)")
-      sequence<double> current_position;
-
-      double current_diff;
+      boolean currently_moving;
     };
   };
 };

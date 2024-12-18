@@ -10,5 +10,4 @@ bool success
 
 ---
 # Feedback (Wiederholende Rückmeldung während der Aktion)
-float64[] current_position
-float64 current_diff
+bool currently_moving

@@ -293,9 +293,6 @@ PyObject * action_interfaces__action__move_tcp_along_axis__result__convert_to_py
 // already included above
 // #include "action_interfaces/action/detail/move_tcp_along_axis__functions.h"
 
-#include "rosidl_runtime_c/primitives_sequence.h"
-#include "rosidl_runtime_c/primitives_sequence_functions.h"
-
 
 ROSIDL_GENERATOR_C_EXPORT
 bool action_interfaces__action__move_tcp_along_axis__feedback__convert_from_py(PyObject * _pymsg, void * _ros_message)
@@ -330,75 +327,13 @@ bool action_interfaces__action__move_tcp_along_axis__feedback__convert_from_py(P
     assert(strncmp("action_interfaces.action._move_tcp_along_axis.MoveTcpAlongAxis_Feedback", full_classname_dest, 71) == 0);
   }
   action_interfaces__action__MoveTcpAlongAxis_Feedback * ros_message = _ros_message;
-  {  // current_position
-    PyObject * field = PyObject_GetAttrString(_pymsg, "current_position");
+  {  // currently_moving
+    PyObject * field = PyObject_GetAttrString(_pymsg, "currently_moving");
     if (!field) {
       return false;
     }
-    if (PyObject_CheckBuffer(field)) {
-      // Optimization for converting arrays of primitives
-      Py_buffer view;
-      int rc = PyObject_GetBuffer(field, &view, PyBUF_SIMPLE);
-      if (rc < 0) {
-        Py_DECREF(field);
-        return false;
-      }
-      Py_ssize_t size = view.len / sizeof(double);
-      if (!rosidl_runtime_c__double__Sequence__init(&(ros_message->current_position), size)) {
-        PyErr_SetString(PyExc_RuntimeError, "unable to create double__Sequence ros_message");
-        PyBuffer_Release(&view);
-        Py_DECREF(field);
-        return false;
-      }
-      double * dest = ros_message->current_position.data;
-      rc = PyBuffer_ToContiguous(dest, &view, view.len, 'C');
-      if (rc < 0) {
-        PyBuffer_Release(&view);
-        Py_DECREF(field);
-        return false;
-      }
-      PyBuffer_Release(&view);
-    } else {
-      PyObject * seq_field = PySequence_Fast(field, "expected a sequence in 'current_position'");
-      if (!seq_field) {
-        Py_DECREF(field);
-        return false;
-      }
-      Py_ssize_t size = PySequence_Size(field);
-      if (-1 == size) {
-        Py_DECREF(seq_field);
-        Py_DECREF(field);
-        return false;
-      }
-      if (!rosidl_runtime_c__double__Sequence__init(&(ros_message->current_position), size)) {
-        PyErr_SetString(PyExc_RuntimeError, "unable to create double__Sequence ros_message");
-        Py_DECREF(seq_field);
-        Py_DECREF(field);
-        return false;
-      }
-      double * dest = ros_message->current_position.data;
-      for (Py_ssize_t i = 0; i < size; ++i) {
-        PyObject * item = PySequence_Fast_GET_ITEM(seq_field, i);
-        if (!item) {
-          Py_DECREF(seq_field);
-          Py_DECREF(field);
-          return false;
-        }
-        assert(PyFloat_Check(item));
-        double tmp = PyFloat_AS_DOUBLE(item);
-        memcpy(&dest[i], &tmp, sizeof(double));
-      }
-      Py_DECREF(seq_field);
-    }
-    Py_DECREF(field);
-  }
-  {  // current_diff
-    PyObject * field = PyObject_GetAttrString(_pymsg, "current_diff");
-    if (!field) {
-      return false;
-    }
-    assert(PyFloat_Check(field));
-    ros_message->current_diff = PyFloat_AS_DOUBLE(field);
+    assert(PyBool_Check(field));
+    ros_message->currently_moving = (Py_True == field);
     Py_DECREF(field);
   }
 
@@ -423,68 +358,11 @@ PyObject * action_interfaces__action__move_tcp_along_axis__feedback__convert_to_
     }
   }
   action_interfaces__action__MoveTcpAlongAxis_Feedback * ros_message = (action_interfaces__action__MoveTcpAlongAxis_Feedback *)raw_ros_message;
-  {  // current_position
+  {  // currently_moving
     PyObject * field = NULL;
-    field = PyObject_GetAttrString(_pymessage, "current_position");
-    if (!field) {
-      return NULL;
-    }
-    assert(field->ob_type != NULL);
-    assert(field->ob_type->tp_name != NULL);
-    assert(strcmp(field->ob_type->tp_name, "array.array") == 0);
-    // ensure that itemsize matches the sizeof of the ROS message field
-    PyObject * itemsize_attr = PyObject_GetAttrString(field, "itemsize");
-    assert(itemsize_attr != NULL);
-    size_t itemsize = PyLong_AsSize_t(itemsize_attr);
-    Py_DECREF(itemsize_attr);
-    if (itemsize != sizeof(double)) {
-      PyErr_SetString(PyExc_RuntimeError, "itemsize doesn't match expectation");
-      Py_DECREF(field);
-      return NULL;
-    }
-    // clear the array, poor approach to remove potential default values
-    Py_ssize_t length = PyObject_Length(field);
-    if (-1 == length) {
-      Py_DECREF(field);
-      return NULL;
-    }
-    if (length > 0) {
-      PyObject * pop = PyObject_GetAttrString(field, "pop");
-      assert(pop != NULL);
-      for (Py_ssize_t i = 0; i < length; ++i) {
-        PyObject * ret = PyObject_CallFunctionObjArgs(pop, NULL);
-        if (!ret) {
-          Py_DECREF(pop);
-          Py_DECREF(field);
-          return NULL;
-        }
-        Py_DECREF(ret);
-      }
-      Py_DECREF(pop);
-    }
-    if (ros_message->current_position.size > 0) {
-      // populating the array.array using the frombytes method
-      PyObject * frombytes = PyObject_GetAttrString(field, "frombytes");
-      assert(frombytes != NULL);
-      double * src = &(ros_message->current_position.data[0]);
-      PyObject * data = PyBytes_FromStringAndSize((const char *)src, ros_message->current_position.size * sizeof(double));
-      assert(data != NULL);
-      PyObject * ret = PyObject_CallFunctionObjArgs(frombytes, data, NULL);
-      Py_DECREF(data);
-      Py_DECREF(frombytes);
-      if (!ret) {
-        Py_DECREF(field);
-        return NULL;
-      }
-      Py_DECREF(ret);
-    }
-    Py_DECREF(field);
-  }
-  {  // current_diff
-    PyObject * field = NULL;
-    field = PyFloat_FromDouble(ros_message->current_diff);
+    field = PyBool_FromLong(ros_message->currently_moving ? 1 : 0);
     {
-      int rc = PyObject_SetAttrString(_pymessage, "current_diff", field);
+      int rc = PyObject_SetAttrString(_pymessage, "currently_moving", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;
