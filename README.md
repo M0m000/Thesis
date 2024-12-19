@@ -170,9 +170,9 @@ ros2 run robot_control hello_node
 
 ### **Move Linear By Key** <br>
 ```bash
-ros2 run robot_control move_lin_by_key --ros-args -p speed:=50.0
+ros2 run robot_control move_lin_by_key --ros-args -p speed:=50.0 -p movoement_frame:='tcp'
 ```
->Dieser Knoten dient zur Steuerung des Roboter über Tasten. Die Geschwindigkeit in mm/s kann als Argument beim Start übergeben werden. Der TCP wird linear verfahren, wenn eine der folgenden Tasten gedrückt ist: <br>
+>Dieser Knoten dient zur Steuerung des Roboter über Tasten. Die Geschwindigkeit in mm/s kann als Argument beim Start übergeben werden. Das Frame, in dem verfahren werden soll, kann beim Aufruf des Nodes angegeben werden - world, base oder tcp. Der TCP wird linear verfahren, wenn eine der folgenden Tasten gedrückt ist: <br>
 <br>
 >Taste L -> +X_tcp <br>
 >Taste J -> -X_tcp <br>
@@ -270,6 +270,13 @@ Standardpaket von Intel RealSense - aktiviert den Kamerasystem und enthält eins
 ros2 launch realsense2_camera rs_align_depth_launch.py
 ```
 >Startet den Kamerastream mit Tiefeninformation. <br>
+<br>
+
+### **Realsense RGB Camera Stream** <br>
+```bash
+ros2 launch realsense2_camera rs_launch.py align_depth.enable:=false
+```
+>Startet den Kamerastream ohne Tiefeninformation. <br>
 <br>
 
 <br>
