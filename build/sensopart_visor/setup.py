@@ -1,1 +1,0 @@
-/home/vboxuser/Thesis/src/sensopart_visor/setup.py
