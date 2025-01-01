@@ -49,7 +49,7 @@ class VCImageReceiver(Node):
         self.declare_parameter('rgb_stream', False)
         self.rgb_stream = self.get_parameter('rgb_stream').get_parameter_value().bool_value
         self.declare_parameter('show_img', True)
-        self.show_img = self.get_parameter('show_img').get_parameter_value().bool_value
+        self.show_img = self.get_parameter('show_img').get_parameter_value().bool_value        
 
         # Bridge für Publisher
         self.bridge = CvBridge()

@@ -9,6 +9,11 @@ class VCStartupNode(Node):
         super().__init__('vc_startup')
         self.client = self.create_client(SetDiscreteOutput, '/kr/iob/set_digital_output')
 
+        self.declare_parameter('shutter_time', 20000)
+        self.shutter_time = self.get_parameter('shutter_time').get_parameter_value().integer_value
+        self.declare_parameter('gain', 1)
+        self.gain = self.get_parameter('gain').get_parameter_value().integer_value
+
         # Warten, bis der Service verfügbar ist
         while not self.client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('wait for service SetDigitalOutput...')
@@ -59,7 +64,7 @@ class VCStartupNode(Node):
             time.sleep(10)
     
             # Zweiten Befehl ausführen und Ausgabe lesen
-            command2 = 'vctp -s 25000'
+            command2 = 'vctp -s '+ str(self.shutter_time) + ' -g ' + str(self.gain)
             self.get_logger().info(f'Send command: {command2}')
             stdin, stdout, stderr = ssh.exec_command(command2)
     

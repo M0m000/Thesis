@@ -99,7 +99,7 @@ Verbindung zu Kamera über SSH "ssh root@192.168.3.15" <br>
 
 ### **VC Startup** Node <br>
 ```bash
-ros2 run vcnanoz vc_startup
+ros2 run vcnanoz vc_startup --ros-args -p shutter_time:=20000 -p gain:=50
 ```
 >Dieser Knoten schaltet die Stromversorgung für VCnanoZ (DOut 1) ein und startet den ImgNet-Server auf der Kamera. Nachdem alles ausgeführt wurde, fährt sich der Knoten selbst runter. Die Kamera läuft weiter. <br>
 <br>
