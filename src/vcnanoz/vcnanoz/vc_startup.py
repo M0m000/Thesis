@@ -36,8 +36,8 @@ class VCStartupNode(Node):
             self.get_logger().info(f'Service call successful: {response}')
 
             # 30 Sekunden warten, bevor die SSH-Befehle ausgeführt werden
-            self.get_logger().info('wait for 30 sec - boot time VC nano Z ...')
-            time.sleep(30)
+            self.get_logger().info('wait for 10 sec - boot time VC nano Z ...')
+            time.sleep(10)
             self.execute_ssh_commands()
 
         except Exception as e:

@@ -50,6 +50,12 @@ class VCImageReceiver(Node):
         self.rgb_stream = self.get_parameter('rgb_stream').get_parameter_value().bool_value
         self.declare_parameter('show_img', True)
         self.show_img = self.get_parameter('show_img').get_parameter_value().bool_value
+        self.declare_parameter('take_pictures', False)
+        self.take_pictures = self.get_parameter('take_pictures').get_parameter_value().bool_value
+
+        # Bildspeicherpfad
+        self.declare_parameter('save_path', '/home/vboxuser/Thesis/vc_imgs')
+        self.save_path = self.get_parameter('save_path').get_parameter_value().string_value        
 
         # Bridge für Publisher
         self.bridge = CvBridge()
@@ -62,7 +68,6 @@ class VCImageReceiver(Node):
         # verbinden
         self.connect()
 
-    
     def publish_image(self):
         if self.img_tensor is not None:
             ros_image = self.bridge.cv2_to_imgmsg(self.img_tensor, encoding='passthrough')
@@ -73,11 +78,10 @@ class VCImageReceiver(Node):
 
             self.image_publisher.publish(ros_image)
 
-
     def receive_img(self):
         if None == self.sock:
             return False
-        
+
         # FPS
         current_time = time.time()
         if self.last_frame_time is not None:
@@ -85,7 +89,7 @@ class VCImageReceiver(Node):
             self.fps = 1.0 / frame_time
         self.last_frame_time = current_time
         self.get_logger().info(f"Streaming {self.fps:.2f} fps")
-        
+
         hdr_req = struct.pack("IIIIII", self.x0, self.y0, self.dx, self.dy, self.incrx, self.incry)
 
         try:
@@ -117,30 +121,38 @@ class VCImageReceiver(Node):
             len_img_data += bytesRead
 
         self.img = dict(x0=int(img_x0), y0=int(img_y0), dx=int(img_dx), dy=int(img_dy), incrx=img_incrx, incry=img_incry, data=img_data)
-        
+
         self.create_img_tensor()
 
         # Bild veröffentlichen, wenn es vorhanden ist
         self.publish_image()
 
-        if self.show_img:
+        if self.show_img or self.take_pictures:
             self.visualize()
-
 
     def visualize(self):
         if self.img_tensor is not None:
             cv2.imshow("Cam Img", self.img_tensor)
 
-            if cv2.waitKey(1) & 0xFF == ord('q'):
+            key = cv2.waitKey(1) & 0xFF
+            if key == ord('q'):
                 self.get_logger().info("Window closed")
                 rclpy.shutdown()
-    
-    
+            elif key == ord('z') and self.take_pictures:
+                self.save_image()
+
+    def save_image(self):
+        if self.img_tensor is not None:
+            timestamp = int(time.time())
+            filename = f"{self.save_path}/image_{timestamp}.png"
+            cv2.imwrite(filename, self.img_tensor)
+            self.get_logger().info(f"Image saved: {filename}")
+
     def create_img_tensor(self):
         if self.img is None:
             print("No Image available to save!")
             self.img_tensor = None
-        
+
         dx = int(self.img['dx']) / int(self.img['incrx'])
         dy = int(self.img['dy']) / int(self.img['incry'])
         pitch = dx
@@ -160,11 +172,10 @@ class VCImageReceiver(Node):
         if img_array is not None:
             self.img_tensor = img_array
 
-
     def connect(self):
         if((None != self.sock) and (self.ipv4 == self.sock_to[0]) and (self.port == self.sock_to[1])):
             return True
-    
+
         if(None != self.sock):
             self.disconnect()
 
@@ -183,7 +194,7 @@ class VCImageReceiver(Node):
 
         self.img_nr = 0
         return True
-    
+
     def disconnect(self):
         if(None != self.sock):
             print('disconnecting from %s port %s' % self.sock_to)
