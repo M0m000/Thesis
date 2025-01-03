@@ -106,9 +106,9 @@ ros2 run vcnanoz vc_startup --ros-args -p shutter_time:=20000 -p gain:=50
 
 ### **VC Image Receiver** Node <br>
 ```bash
-ros2 run vcnanoz vc_img_receiver --ros-args -p ipv4:="192.168.3.15" -p port:=2002 -p img_width:=1280 -p img_height:=720 -p rgb_stream:=False -p show_img:=True
+ros2 run vcnanoz vc_img_receiver --ros-args -p ipv4:="192.168.3.15" -p port:=2002 -p img_width:=1280 -p img_height:=720 -p rgb_stream:=False -p show_img:=True -p take_pitcures:=True
 ```
->Dieser Knoten stellt eine Verbindung zum Socket her und streamt das Graubild der Kamera (Auflösung einstellbar) auf dem Topic "/vcnanoz/stream/image_raw". <br>
+>Dieser Knoten stellt eine Verbindung zum Socket her und streamt das Graubild der Kamera (Auflösung einstellbar) auf dem Topic "/vcnanoz/stream/image_raw". Wenn das Argument "take_pitcures" auf True gesetzt ist. Kann mit der Taste z ein Bild aufgenommen und gespeichert werden, sobald der Stream läuft. Das Bildfenster von OpenCV muss dazu aktiv sein -> dort z druecken. Der Speicherpfad kann ebenfalls mit dem Argument "save_path" übergeben werden - standardmäßig auf '/home/vboxuser/Thesis/vc_imgs'. <br>
 <br>
 
 ### **VC Shutdown** Node <br>
