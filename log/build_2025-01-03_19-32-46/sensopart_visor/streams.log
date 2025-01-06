@@ -1,0 +1,22 @@
+[2.385s] Invoking command in '/home/vboxuser/Thesis/src/sensopart_visor': PYTHONPATH=/home/vboxuser/Thesis/build/sensopart_visor/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/Thesis/install/sensopart_visor/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/sensopart_visor build --build-base /home/vboxuser/Thesis/build/sensopart_visor/build install --record /home/vboxuser/Thesis/build/sensopart_visor/install.log --install-scripts $base/lib/sensopart_visor --single-version-externally-managed install_data
+[2.629s] running egg_info
+[2.638s] writing ../../build/sensopart_visor/sensopart_visor.egg-info/PKG-INFO
+[2.640s] writing dependency_links to ../../build/sensopart_visor/sensopart_visor.egg-info/dependency_links.txt
+[2.640s] writing entry points to ../../build/sensopart_visor/sensopart_visor.egg-info/entry_points.txt
+[2.641s] writing requirements to ../../build/sensopart_visor/sensopart_visor.egg-info/requires.txt
+[2.642s] writing top-level names to ../../build/sensopart_visor/sensopart_visor.egg-info/top_level.txt
+[2.700s] reading manifest file '../../build/sensopart_visor/sensopart_visor.egg-info/SOURCES.txt'
+[2.701s] writing manifest file '../../build/sensopart_visor/sensopart_visor.egg-info/SOURCES.txt'
+[2.701s] running build
+[2.701s] running build_py
+[2.701s] running install
+[2.701s] running install_lib
+[2.701s] running install_data
+[2.701s] running install_egg_info
+[2.701s] removing '/home/vboxuser/Thesis/install/sensopart_visor/lib/python3.8/site-packages/sensopart_visor-0.0.0-py3.8.egg-info' (and everything under it)
+[2.701s] Copying ../../build/sensopart_visor/sensopart_visor.egg-info to /home/vboxuser/Thesis/install/sensopart_visor/lib/python3.8/site-packages/sensopart_visor-0.0.0-py3.8.egg-info
+[2.702s] running install_scripts
+[2.725s] Installing visor_shutdown script to /home/vboxuser/Thesis/install/sensopart_visor/lib/sensopart_visor
+[2.725s] Installing visor_startup script to /home/vboxuser/Thesis/install/sensopart_visor/lib/sensopart_visor
+[2.726s] writing list of installed files to '/home/vboxuser/Thesis/build/sensopart_visor/install.log'
+[2.769s] Invoked command in '/home/vboxuser/Thesis/src/sensopart_visor' returned '0': PYTHONPATH=/home/vboxuser/Thesis/build/sensopart_visor/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/Thesis/install/sensopart_visor/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/sensopart_visor build --build-base /home/vboxuser/Thesis/build/sensopart_visor/build install --record /home/vboxuser/Thesis/build/sensopart_visor/install.log --install-scripts $base/lib/sensopart_visor --single-version-externally-managed install_data

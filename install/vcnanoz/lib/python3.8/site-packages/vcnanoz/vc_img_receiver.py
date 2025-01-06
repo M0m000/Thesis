@@ -50,7 +50,7 @@ class VCImageReceiver(Node):
         self.rgb_stream = self.get_parameter('rgb_stream').get_parameter_value().bool_value
         self.declare_parameter('show_img', True)
         self.show_img = self.get_parameter('show_img').get_parameter_value().bool_value
-        self.declare_parameter('take_pictures', False)
+        self.declare_parameter('take_pictures', True)
         self.take_pictures = self.get_parameter('take_pictures').get_parameter_value().bool_value
 
         # Bildspeicherpfad
