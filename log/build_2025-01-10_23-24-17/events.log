@@ -1,0 +1,91 @@
+[0.000000] (-) TimerEvent: {}
+[0.000524] (-) JobUnselected: {'identifier': 'action_interfaces'}
+[0.000637] (-) JobUnselected: {'identifier': 'action_servers'}
+[0.000710] (-) JobUnselected: {'identifier': 'bt_pkg'}
+[0.000732] (-) JobUnselected: {'identifier': 'kr_example_cpp'}
+[0.001026] (-) JobUnselected: {'identifier': 'kr_example_python'}
+[0.001154] (-) JobUnselected: {'identifier': 'kr_msgs'}
+[0.001227] (-) JobUnselected: {'identifier': 'realsense2_camera'}
+[0.001430] (-) JobUnselected: {'identifier': 'realsense2_camera_msgs'}
+[0.001541] (-) JobUnselected: {'identifier': 'realsense2_description'}
+[0.001631] (-) JobUnselected: {'identifier': 'robot_control'}
+[0.001652] (-) JobUnselected: {'identifier': 'sensopart_visor'}
+[0.001668] (-) JobUnselected: {'identifier': 'vcnanoz'}
+[0.001735] (vision) JobQueued: {'identifier': 'vision', 'dependencies': OrderedDict()}
+[0.001759] (vision) JobStarted: {'identifier': 'vision'}
+[0.099266] (-) TimerEvent: {}
+[0.202108] (-) TimerEvent: {}
+[0.303965] (-) TimerEvent: {}
+[0.404739] (-) TimerEvent: {}
+[0.505440] (-) TimerEvent: {}
+[0.560913] (vision) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/vision', 'build', '--build-base', '/home/mo/Thesis/build/vision/build', 'install', '--record', '/home/mo/Thesis/build/vision/install.log', '--install-scripts', '$base/lib/vision', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/mo/Thesis/src/vision', 'env': {'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'mo', 'SSH_AGENT_PID': '1743', 'XDG_SESSION_TYPE': 'x11', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib', 'HOME': '/home/mo', 'OLDPWD': '/home/mo', 'DESKTOP_SESSION': 'ubuntu', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/terminator.desktop', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'MANAGERPID': '1524', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'TERMINATOR_DBUS_NAME': 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '75646', 'IM_CONFIG_PHASE': '1', 'ROS_DISTRO': 'foxy', 'LOGNAME': 'mo', 'JOURNAL_STREAM': '8:34484', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'mo', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'SESSION_MANAGER': 'local/moVM:@/tmp/.ICE-unix/1813,unix/moVM:/tmp/.ICE-unix/1813', 'INVOCATION_ID': '54ad23a6feb44efcbe22805cf0d58581', 'XDG_MENU_PREFIX': 'gnome-', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'TERMINATOR_DBUS_PATH': '/net/tenshu/Terminator2', 'LANG': 'de_DE.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/opt/ros/foxy', 'SHELL': '/bin/bash', 'TERMINATOR_UUID': 'urn:uuid:358ef422-8998-4fd1-a3a8-6b947837e984', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'GJS_DEBUG_OUTPUT': 'stderr', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/mo/Thesis/build/vision', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/mo/Thesis/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages', 'COLCON': '1', 'VTE_VERSION': '6003'}, 'shell': False}
+[0.608311] (-) TimerEvent: {}
+[0.710818] (-) TimerEvent: {}
+[0.748263] (vision) StdoutLine: {'line': b'running egg_info\n'}
+[0.748834] (vision) StdoutLine: {'line': b'creating ../../build/vision/vision.egg-info\n'}
+[0.750243] (vision) StdoutLine: {'line': b'writing ../../build/vision/vision.egg-info/PKG-INFO\n'}
+[0.750883] (vision) StdoutLine: {'line': b'writing dependency_links to ../../build/vision/vision.egg-info/dependency_links.txt\n'}
+[0.751280] (vision) StdoutLine: {'line': b'writing entry points to ../../build/vision/vision.egg-info/entry_points.txt\n'}
+[0.751376] (vision) StdoutLine: {'line': b'writing requirements to ../../build/vision/vision.egg-info/requires.txt\n'}
+[0.751580] (vision) StdoutLine: {'line': b'writing top-level names to ../../build/vision/vision.egg-info/top_level.txt\n'}
+[0.754133] (vision) StdoutLine: {'line': b"writing manifest file '../../build/vision/vision.egg-info/SOURCES.txt'\n"}
+[0.780725] (vision) StdoutLine: {'line': b"reading manifest file '../../build/vision/vision.egg-info/SOURCES.txt'\n"}
+[0.781454] (vision) StdoutLine: {'line': b"writing manifest file '../../build/vision/vision.egg-info/SOURCES.txt'\n"}
+[0.782094] (vision) StdoutLine: {'line': b'running build\n'}
+[0.782193] (vision) StdoutLine: {'line': b'running build_py\n'}
+[0.782262] (vision) StdoutLine: {'line': b'creating /home/mo/Thesis/build/vision/build\n'}
+[0.782575] (vision) StdoutLine: {'line': b'creating /home/mo/Thesis/build/vision/build/lib\n'}
+[0.782696] (vision) StdoutLine: {'line': b'creating /home/mo/Thesis/build/vision/build/lib/vision\n'}
+[0.782782] (vision) StdoutLine: {'line': b'copying vision/calibration.py -> /home/mo/Thesis/build/vision/build/lib/vision\n'}
+[0.782960] (vision) StdoutLine: {'line': b'copying vision/point_finder_3d.py -> /home/mo/Thesis/build/vision/build/lib/vision\n'}
+[0.783100] (vision) StdoutLine: {'line': b'copying vision/point_finder_2d.py -> /home/mo/Thesis/build/vision/build/lib/vision\n'}
+[0.783271] (vision) StdoutLine: {'line': b'copying vision/image_receiver.py -> /home/mo/Thesis/build/vision/build/lib/vision\n'}
+[0.783344] (vision) StdoutLine: {'line': b'copying vision/img_filters.py -> /home/mo/Thesis/build/vision/build/lib/vision\n'}
+[0.783485] (vision) StdoutLine: {'line': b'copying vision/hook_detector.py -> /home/mo/Thesis/build/vision/build/lib/vision\n'}
+[0.783824] (vision) StdoutLine: {'line': b'copying vision/stereo_triangulation_with_robot.py -> /home/mo/Thesis/build/vision/build/lib/vision\n'}
+[0.783921] (vision) StdoutLine: {'line': b'copying vision/test_node.py -> /home/mo/Thesis/build/vision/build/lib/vision\n'}
+[0.784220] (vision) StdoutLine: {'line': b'copying vision/__init__.py -> /home/mo/Thesis/build/vision/build/lib/vision\n'}
+[0.784604] (vision) StdoutLine: {'line': b'running install\n'}
+[0.785416] (vision) StdoutLine: {'line': b'running install_lib\n'}
+[0.786304] (vision) StdoutLine: {'line': b'creating /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision\n'}
+[0.786569] (vision) StdoutLine: {'line': b'copying /home/mo/Thesis/build/vision/build/lib/vision/calibration.py -> /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision\n'}
+[0.786666] (vision) StdoutLine: {'line': b'copying /home/mo/Thesis/build/vision/build/lib/vision/point_finder_3d.py -> /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision\n'}
+[0.787170] (vision) StdoutLine: {'line': b'copying /home/mo/Thesis/build/vision/build/lib/vision/point_finder_2d.py -> /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision\n'}
+[0.787277] (vision) StdoutLine: {'line': b'copying /home/mo/Thesis/build/vision/build/lib/vision/image_receiver.py -> /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision\n'}
+[0.787680] (vision) StdoutLine: {'line': b'copying /home/mo/Thesis/build/vision/build/lib/vision/img_filters.py -> /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision\n'}
+[0.787872] (vision) StdoutLine: {'line': b'copying /home/mo/Thesis/build/vision/build/lib/vision/hook_detector.py -> /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision\n'}
+[0.788207] (vision) StdoutLine: {'line': b'copying /home/mo/Thesis/build/vision/build/lib/vision/stereo_triangulation_with_robot.py -> /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision\n'}
+[0.788318] (vision) StdoutLine: {'line': b'copying /home/mo/Thesis/build/vision/build/lib/vision/test_node.py -> /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision\n'}
+[0.788650] (vision) StdoutLine: {'line': b'copying /home/mo/Thesis/build/vision/build/lib/vision/__init__.py -> /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision\n'}
+[0.789716] (vision) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/calibration.py to calibration.cpython-38.pyc\n'}
+[0.792710] (vision) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/point_finder_3d.py to point_finder_3d.cpython-38.pyc\n'}
+[0.794030] (vision) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/point_finder_2d.py to point_finder_2d.cpython-38.pyc\n'}
+[0.794885] (vision) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/image_receiver.py to image_receiver.cpython-38.pyc\n'}
+[0.795530] (vision) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/img_filters.py to img_filters.cpython-38.pyc\n'}
+[0.796364] (vision) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/hook_detector.py to hook_detector.cpython-38.pyc\n'}
+[0.796863] (vision) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/stereo_triangulation_with_robot.py to stereo_triangulation_with_robot.cpython-38.pyc\n'}
+[0.797388] (vision) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/test_node.py to test_node.cpython-38.pyc\n'}
+[0.797939] (vision) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/__init__.py to __init__.cpython-38.pyc\n'}
+[0.798186] (vision) StdoutLine: {'line': b'running install_data\n'}
+[0.798259] (vision) StdoutLine: {'line': b'creating /home/mo/Thesis/install/vision/share/ament_index\n'}
+[0.798406] (vision) StdoutLine: {'line': b'creating /home/mo/Thesis/install/vision/share/ament_index/resource_index\n'}
+[0.798762] (vision) StdoutLine: {'line': b'creating /home/mo/Thesis/install/vision/share/ament_index/resource_index/packages\n'}
+[0.799189] (vision) StdoutLine: {'line': b'copying resource/vision -> /home/mo/Thesis/install/vision/share/ament_index/resource_index/packages\n'}
+[0.799284] (vision) StdoutLine: {'line': b'copying package.xml -> /home/mo/Thesis/install/vision/share/vision\n'}
+[0.799505] (vision) StdoutLine: {'line': b'running install_egg_info\n'}
+[0.800860] (vision) StdoutLine: {'line': b'Copying ../../build/vision/vision.egg-info to /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision-0.0.0-py3.8.egg-info\n'}
+[0.802407] (vision) StdoutLine: {'line': b'running install_scripts\n'}
+[0.811586] (-) TimerEvent: {}
+[0.818327] (vision) StdoutLine: {'line': b'Installing calibration script to /home/mo/Thesis/install/vision/lib/vision\n'}
+[0.819642] (vision) StdoutLine: {'line': b'Installing hook_detector script to /home/mo/Thesis/install/vision/lib/vision\n'}
+[0.819739] (vision) StdoutLine: {'line': b'Installing image_filters script to /home/mo/Thesis/install/vision/lib/vision\n'}
+[0.819806] (vision) StdoutLine: {'line': b'Installing image_receiver script to /home/mo/Thesis/install/vision/lib/vision\n'}
+[0.819968] (vision) StdoutLine: {'line': b'Installing point_finder_2d script to /home/mo/Thesis/install/vision/lib/vision\n'}
+[0.820039] (vision) StdoutLine: {'line': b'Installing point_finder_3d script to /home/mo/Thesis/install/vision/lib/vision\n'}
+[0.820194] (vision) StdoutLine: {'line': b'Installing stereo_triangulation script to /home/mo/Thesis/install/vision/lib/vision\n'}
+[0.820264] (vision) StdoutLine: {'line': b'Installing stereo_triangulation_with_robot script to /home/mo/Thesis/install/vision/lib/vision\n'}
+[0.820567] (vision) StdoutLine: {'line': b'Installing test_node script to /home/mo/Thesis/install/vision/lib/vision\n'}
+[0.820980] (vision) StdoutLine: {'line': b"writing list of installed files to '/home/mo/Thesis/build/vision/install.log'\n"}
+[0.842885] (vision) CommandEnded: {'returncode': 0}
+[0.853830] (vision) JobEnded: {'identifier': 'vision', 'rc': 0}
+[0.854738] (-) EventReactorShutdown: {}

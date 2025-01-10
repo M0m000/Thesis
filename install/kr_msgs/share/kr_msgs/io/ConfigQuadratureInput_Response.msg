@@ -1,1 +1,2 @@
-/home/vboxuser/Thesis/build/kr_msgs/rosidl_cmake/srv/io/ConfigQuadratureInput_Response.msg
+
+bool       success 

@@ -1,1 +1,19 @@
-/home/vboxuser/Thesis/build/kr_msgs/rosidl_adapter/kr_msgs/srv/TerminateMotion.idl
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from kr_msgs/srv/motion/TerminateMotion.srv
+// generated code does not contain a copyright notice
+
+
+module kr_msgs {
+  module srv {
+    @verbatim (language="comment", text=
+      "#####################################################" "\n"
+      "                   RESUME MOVE                      #" "\n"
+      "#####################################################")
+    struct TerminateMotion_Request {
+      uint8 structure_needs_at_least_one_member;
+    };
+    struct TerminateMotion_Response {
+      boolean success;
+    };
+  };
+};

@@ -1,1 +1,134 @@
-/home/vboxuser/Thesis/build/kr_msgs/rosidl_adapter/kr_msgs/msg/SystemState.idl
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from kr_msgs/msg/SystemState.msg
+// generated code does not contain a copyright notice
+
+#include "kr_msgs/msg/Quadrature.idl"
+#include "kr_msgs/msg/RobotMode.idl"
+#include "kr_msgs/msg/RobotState.idl"
+
+module kr_msgs {
+  module msg {
+    typedef double double__7[7];
+    typedef double double__3[3];
+    typedef int8 int8__8[8];
+    typedef int8 int8__4[4];
+    typedef float float__2[2];
+    typedef int8 int8__16[16];
+    typedef kr_msgs::msg::Quadrature kr_msgs__msg__Quadrature;
+    typedef kr_msgs__msg__Quadrature kr_msgs__msg__Quadrature__2[2];
+    typedef int8 int8__3[3];
+    typedef float float__1[1];
+    typedef float float__4[4];
+    @verbatim (language="comment", text=
+      "#####################################################" "\n"
+      "                 ROBOT STATE MSG                    #" "\n"
+      "#####################################################")
+    struct SystemState {
+      kr_msgs::msg::RobotMode robot_mode;
+
+      kr_msgs::msg::RobotState robot_state;
+
+      @verbatim (language="comment", text=
+        " sensed joint configuration")
+      double__7 sensed_pos;
+
+      @verbatim (language="comment", text=
+        " sensed joint velocity")
+      double__7 sensed_vel;
+
+      @verbatim (language="comment", text=
+        " sensed joint torque")
+      double__7 sensed_trq;
+
+      @verbatim (language="comment", text=
+        " target joint configuration")
+      double__7 target_pos;
+
+      @verbatim (language="comment", text=
+        " target joint configuration")
+      double__7 target_vel;
+
+      @verbatim (language="comment", text=
+        " target joint configuration")
+      double__7 target_trq;
+
+      @verbatim (language="comment", text=
+        " position of TCP")
+      double__3 pos;
+
+      @verbatim (language="comment", text=
+        " orientation of TCP")
+      double__3 rot;
+
+      @verbatim (language="comment", text=
+        " IOBoard - Outputs" "\n"
+        " IOBoard digital outputs")
+      int8__8 iob_digital_out;
+
+      @verbatim (language="comment", text=
+        " IOBoard relays")
+      int8__4 iob_relays;
+
+      @verbatim (language="comment", text=
+        " IOBoard current outputs")
+      float__2 iob_current_out;
+
+      @verbatim (language="comment", text=
+        " IOBoard voltage outputs")
+      float__2 iob_voltage_out;
+
+      @verbatim (language="comment", text=
+        " IOBoard - Inputs" "\n"
+        " IOBoard digital inputs")
+      int8__16 iob_digital_in;
+
+      @verbatim (language="comment", text=
+        " IOBoard safe inputs")
+      int8__4 iob_safe_in;
+
+      @verbatim (language="comment", text=
+        " IOBoard current inputs")
+      float__2 iob_current_in;
+
+      @verbatim (language="comment", text=
+        " IOBoard voltage inputs")
+      float__2 iob_voltage_in;
+
+      @verbatim (language="comment", text=
+        " IOBoard quadratures")
+      kr_msgs__msg__Quadrature__2 iob_quadratures;
+
+      @verbatim (language="comment", text=
+        " Tool IO - Outputs" "\n"
+        " Tool IO digital outputs")
+      int8__4 tio_digital_out;
+
+      @verbatim (language="comment", text=
+        " Tool IO pose supply")
+      int8__3 tio_power_supply;
+
+      @verbatim (language="comment", text=
+        " Tool IO analog outputs")
+      float__2 tio_analog_out;
+
+      @verbatim (language="comment", text=
+        " Tool IO - Inputs" "\n"
+        " Tool IO current inputs")
+      float__1 tio_current_in;
+
+      @verbatim (language="comment", text=
+        " Tool IO voltage inputs")
+      float__4 tio_voltage_in;
+
+      @verbatim (language="comment", text=
+        " Button flags")
+      boolean e_stop;
+
+      boolean p_stop;
+
+      boolean toggle;
+
+      boolean backdrive;
+    };
+  };
+};

@@ -1,1 +1,6 @@
-/home/vboxuser/Thesis/src/orange-ros2/kr_msgs/srv/motion/TerminateMotion.srv
+######################################################
+#                   RESUME MOVE                      #
+######################################################
+
+---
+bool       success

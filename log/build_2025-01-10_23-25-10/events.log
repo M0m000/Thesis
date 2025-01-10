@@ -1,0 +1,128 @@
+[0.000000] (-) TimerEvent: {}
+[0.000280] (-) JobUnselected: {'identifier': 'action_interfaces'}
+[0.000394] (-) JobUnselected: {'identifier': 'action_servers'}
+[0.000469] (-) JobUnselected: {'identifier': 'bt_pkg'}
+[0.000490] (-) JobUnselected: {'identifier': 'kr_example_cpp'}
+[0.000575] (-) JobUnselected: {'identifier': 'kr_example_python'}
+[0.001105] (-) JobUnselected: {'identifier': 'kr_msgs'}
+[0.001245] (-) JobUnselected: {'identifier': 'realsense2_camera'}
+[0.001333] (-) JobUnselected: {'identifier': 'realsense2_camera_msgs'}
+[0.001422] (-) JobUnselected: {'identifier': 'realsense2_description'}
+[0.001446] (-) JobUnselected: {'identifier': 'sensopart_visor'}
+[0.001618] (-) JobUnselected: {'identifier': 'vcnanoz'}
+[0.001731] (-) JobUnselected: {'identifier': 'vision'}
+[0.001815] (robot_control) JobQueued: {'identifier': 'robot_control', 'dependencies': OrderedDict([('action_interfaces', '/home/mo/Thesis/install/action_interfaces')])}
+[0.001841] (robot_control) JobStarted: {'identifier': 'robot_control'}
+[0.113668] (-) TimerEvent: {}
+[0.215257] (-) TimerEvent: {}
+[0.316666] (-) TimerEvent: {}
+[0.417266] (-) TimerEvent: {}
+[0.518240] (-) TimerEvent: {}
+[0.578576] (robot_control) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/robot_control', 'build', '--build-base', '/home/mo/Thesis/build/robot_control/build', 'install', '--record', '/home/mo/Thesis/build/robot_control/install.log', '--install-scripts', '$base/lib/robot_control', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/mo/Thesis/src/robot_control', 'env': {'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'mo', 'SSH_AGENT_PID': '1743', 'XDG_SESSION_TYPE': 'x11', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/mo/Thesis/install/action_interfaces/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib', 'HOME': '/home/mo', 'OLDPWD': '/home/mo', 'DESKTOP_SESSION': 'ubuntu', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/terminator.desktop', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'MANAGERPID': '1524', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'TERMINATOR_DBUS_NAME': 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '75646', 'IM_CONFIG_PHASE': '1', 'ROS_DISTRO': 'foxy', 'LOGNAME': 'mo', 'JOURNAL_STREAM': '8:34484', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'mo', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'SESSION_MANAGER': 'local/moVM:@/tmp/.ICE-unix/1813,unix/moVM:/tmp/.ICE-unix/1813', 'INVOCATION_ID': '54ad23a6feb44efcbe22805cf0d58581', 'XDG_MENU_PREFIX': 'gnome-', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'TERMINATOR_DBUS_PATH': '/net/tenshu/Terminator2', 'LANG': 'de_DE.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/mo/Thesis/install/action_interfaces:/opt/ros/foxy', 'SHELL': '/bin/bash', 'TERMINATOR_UUID': 'urn:uuid:358ef422-8998-4fd1-a3a8-6b947837e984', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'GJS_DEBUG_OUTPUT': 'stderr', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/mo/Thesis/build/robot_control', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/mo/Thesis/build/robot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages', 'COLCON': '1', 'VTE_VERSION': '6003', 'CMAKE_PREFIX_PATH': '/home/mo/Thesis/install/action_interfaces'}, 'shell': False}
+[0.619891] (-) TimerEvent: {}
+[0.722358] (-) TimerEvent: {}
+[0.768920] (robot_control) StdoutLine: {'line': b'running egg_info\n'}
+[0.769433] (robot_control) StdoutLine: {'line': b'creating ../../build/robot_control/robot_control.egg-info\n'}
+[0.769532] (robot_control) StdoutLine: {'line': b'writing ../../build/robot_control/robot_control.egg-info/PKG-INFO\n'}
+[0.770631] (robot_control) StdoutLine: {'line': b'writing dependency_links to ../../build/robot_control/robot_control.egg-info/dependency_links.txt\n'}
+[0.770832] (robot_control) StdoutLine: {'line': b'writing entry points to ../../build/robot_control/robot_control.egg-info/entry_points.txt\n'}
+[0.771257] (robot_control) StdoutLine: {'line': b'writing requirements to ../../build/robot_control/robot_control.egg-info/requires.txt\n'}
+[0.771372] (robot_control) StdoutLine: {'line': b'writing top-level names to ../../build/robot_control/robot_control.egg-info/top_level.txt\n'}
+[0.772137] (robot_control) StdoutLine: {'line': b"writing manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'\n"}
+[0.798296] (robot_control) StdoutLine: {'line': b"reading manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'\n"}
+[0.799246] (robot_control) StdoutLine: {'line': b"writing manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'\n"}
+[0.799416] (robot_control) StdoutLine: {'line': b'running build\n'}
+[0.799485] (robot_control) StdoutLine: {'line': b'running build_py\n'}
+[0.799629] (robot_control) StdoutLine: {'line': b'creating /home/mo/Thesis/build/robot_control/build\n'}
+[0.799712] (robot_control) StdoutLine: {'line': b'creating /home/mo/Thesis/build/robot_control/build/lib\n'}
+[0.810553] (robot_control) StdoutLine: {'line': b'creating /home/mo/Thesis/build/robot_control/build/lib/robot_control\n'}
+[0.810964] (robot_control) StdoutLine: {'line': b'copying robot_control/fibonacci_action_client.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control\n'}
+[0.811186] (robot_control) StdoutLine: {'line': b'copying robot_control/bt_test.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control\n'}
+[0.811284] (robot_control) StdoutLine: {'line': b'copying robot_control/print_frames.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control\n'}
+[0.811769] (robot_control) StdoutLine: {'line': b'copying robot_control/move_robot_service_server.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control\n'}
+[0.812046] (robot_control) StdoutLine: {'line': b'copying robot_control/print_tcp_pose.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control\n'}
+[0.812137] (robot_control) StdoutLine: {'line': b'copying robot_control/tcp_frame_listener.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control\n'}
+[0.812346] (robot_control) StdoutLine: {'line': b'copying robot_control/read_transformation_snapshot.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control\n'}
+[0.812450] (robot_control) StdoutLine: {'line': b'copying robot_control/bt_scan_hookstrip.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control\n'}
+[0.812717] (robot_control) StdoutLine: {'line': b'copying robot_control/transformation_delta.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control\n'}
+[0.812899] (robot_control) StdoutLine: {'line': b'copying robot_control/read_transformation_delta.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control\n'}
+[0.813260] (robot_control) StdoutLine: {'line': b'copying robot_control/set_frame_client.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control\n'}
+[0.813350] (robot_control) StdoutLine: {'line': b'copying robot_control/robot_TcpPose_node.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control\n'}
+[0.813957] (robot_control) StdoutLine: {'line': b'copying robot_control/move_lin_by_key.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control\n'}
+[0.814259] (robot_control) StdoutLine: {'line': b'copying robot_control/transformation_snapshot.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control\n'}
+[0.814354] (robot_control) StdoutLine: {'line': b'copying robot_control/MoveTcpAlongAxis_action_client.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control\n'}
+[0.814617] (robot_control) StdoutLine: {'line': b'copying robot_control/hello_node.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control\n'}
+[0.814787] (robot_control) StdoutLine: {'line': b'copying robot_control/tf_frames_publisher.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control\n'}
+[0.814947] (robot_control) StdoutLine: {'line': b'copying robot_control/get_robot_pose_node.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control\n'}
+[0.815053] (robot_control) StdoutLine: {'line': b'copying robot_control/__init__.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control\n'}
+[0.815643] (robot_control) StdoutLine: {'line': b'running install\n'}
+[0.816509] (robot_control) StdoutLine: {'line': b'running install_lib\n'}
+[0.817712] (robot_control) StdoutLine: {'line': b'creating /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control\n'}
+[0.817861] (robot_control) StdoutLine: {'line': b'copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/fibonacci_action_client.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control\n'}
+[0.818181] (robot_control) StdoutLine: {'line': b'copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/bt_test.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control\n'}
+[0.818443] (robot_control) StdoutLine: {'line': b'copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/print_frames.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control\n'}
+[0.818737] (robot_control) StdoutLine: {'line': b'copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/move_robot_service_server.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control\n'}
+[0.818845] (robot_control) StdoutLine: {'line': b'copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/print_tcp_pose.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control\n'}
+[0.819128] (robot_control) StdoutLine: {'line': b'copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/tcp_frame_listener.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control\n'}
+[0.819373] (robot_control) StdoutLine: {'line': b'copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/read_transformation_snapshot.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control\n'}
+[0.819799] (robot_control) StdoutLine: {'line': b'copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/bt_scan_hookstrip.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control\n'}
+[0.819973] (robot_control) StdoutLine: {'line': b'copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/transformation_delta.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control\n'}
+[0.820292] (robot_control) StdoutLine: {'line': b'copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/read_transformation_delta.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control\n'}
+[0.820383] (robot_control) StdoutLine: {'line': b'copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/set_frame_client.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control\n'}
+[0.820651] (robot_control) StdoutLine: {'line': b'copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/robot_TcpPose_node.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control\n'}
+[0.820745] (robot_control) StdoutLine: {'line': b'copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/move_lin_by_key.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control\n'}
+[0.820992] (robot_control) StdoutLine: {'line': b'copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/transformation_snapshot.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control\n'}
+[0.821082] (robot_control) StdoutLine: {'line': b'copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/MoveTcpAlongAxis_action_client.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control\n'}
+[0.821226] (robot_control) StdoutLine: {'line': b'copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/hello_node.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control\n'}
+[0.821486] (robot_control) StdoutLine: {'line': b'copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/tf_frames_publisher.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control\n'}
+[0.821770] (robot_control) StdoutLine: {'line': b'copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/get_robot_pose_node.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control\n'}
+[0.822330] (robot_control) StdoutLine: {'line': b'copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/__init__.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control\n'}
+[0.822514] (-) TimerEvent: {}
+[0.823235] (robot_control) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/fibonacci_action_client.py to fibonacci_action_client.cpython-38.pyc\n'}
+[0.824805] (robot_control) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/bt_test.py to bt_test.cpython-38.pyc\n'}
+[0.825347] (robot_control) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/print_frames.py to print_frames.cpython-38.pyc\n'}
+[0.826152] (robot_control) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/move_robot_service_server.py to move_robot_service_server.cpython-38.pyc\n'}
+[0.826727] (robot_control) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/print_tcp_pose.py to print_tcp_pose.cpython-38.pyc\n'}
+[0.827523] (robot_control) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/tcp_frame_listener.py to tcp_frame_listener.cpython-38.pyc\n'}
+[0.828403] (robot_control) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/read_transformation_snapshot.py to read_transformation_snapshot.cpython-38.pyc\n'}
+[0.828765] (robot_control) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/bt_scan_hookstrip.py to bt_scan_hookstrip.cpython-38.pyc\n'}
+[0.830406] (robot_control) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/transformation_delta.py to transformation_delta.cpython-38.pyc\n'}
+[0.831256] (robot_control) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/read_transformation_delta.py to read_transformation_delta.cpython-38.pyc\n'}
+[0.831567] (robot_control) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/set_frame_client.py to set_frame_client.cpython-38.pyc\n'}
+[0.832429] (robot_control) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/robot_TcpPose_node.py to robot_TcpPose_node.cpython-38.pyc\n'}
+[0.832944] (robot_control) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/move_lin_by_key.py to move_lin_by_key.cpython-38.pyc\n'}
+[0.833694] (robot_control) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/transformation_snapshot.py to transformation_snapshot.cpython-38.pyc\n'}
+[0.835431] (robot_control) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/MoveTcpAlongAxis_action_client.py to MoveTcpAlongAxis_action_client.cpython-38.pyc\n'}
+[0.835945] (robot_control) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/hello_node.py to hello_node.cpython-38.pyc\n'}
+[0.836328] (robot_control) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/tf_frames_publisher.py to tf_frames_publisher.cpython-38.pyc\n'}
+[0.837068] (robot_control) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/get_robot_pose_node.py to get_robot_pose_node.cpython-38.pyc\n'}
+[0.837806] (robot_control) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__init__.py to __init__.cpython-38.pyc\n'}
+[0.837976] (robot_control) StdoutLine: {'line': b'running install_data\n'}
+[0.838378] (robot_control) StdoutLine: {'line': b'creating /home/mo/Thesis/install/robot_control/share/ament_index\n'}
+[0.838472] (robot_control) StdoutLine: {'line': b'creating /home/mo/Thesis/install/robot_control/share/ament_index/resource_index\n'}
+[0.838540] (robot_control) StdoutLine: {'line': b'creating /home/mo/Thesis/install/robot_control/share/ament_index/resource_index/packages\n'}
+[0.838921] (robot_control) StdoutLine: {'line': b'copying resource/robot_control -> /home/mo/Thesis/install/robot_control/share/ament_index/resource_index/packages\n'}
+[0.839016] (robot_control) StdoutLine: {'line': b'copying package.xml -> /home/mo/Thesis/install/robot_control/share/robot_control\n'}
+[0.839084] (robot_control) StdoutLine: {'line': b'running install_egg_info\n'}
+[0.840644] (robot_control) StdoutLine: {'line': b'Copying ../../build/robot_control/robot_control.egg-info to /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info\n'}
+[0.842148] (robot_control) StdoutLine: {'line': b'running install_scripts\n'}
+[0.861198] (robot_control) StdoutLine: {'line': b'Installing MoveTcpAlongAxis_action_client script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[0.861523] (robot_control) StdoutLine: {'line': b'Installing fibonacci_action_client script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[0.861623] (robot_control) StdoutLine: {'line': b'Installing get_robot_pose_node script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[0.862358] (robot_control) StdoutLine: {'line': b'Installing hello_node script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[0.862585] (robot_control) StdoutLine: {'line': b'Installing move_along_baseline_client script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[0.862794] (robot_control) StdoutLine: {'line': b'Installing move_lin_by_key script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[0.863526] (robot_control) StdoutLine: {'line': b'Installing print_frames script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[0.863628] (robot_control) StdoutLine: {'line': b'Installing print_tcp_pose script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[0.864301] (robot_control) StdoutLine: {'line': b'Installing read_transformation_delta script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[0.864469] (robot_control) StdoutLine: {'line': b'Installing read_transformation_snapshot script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[0.864670] (robot_control) StdoutLine: {'line': b'Installing robot_TcpPose_node script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[0.864753] (robot_control) StdoutLine: {'line': b'Installing set_frame_client script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[0.865098] (robot_control) StdoutLine: {'line': b'Installing tcp_frame_listener script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[0.865198] (robot_control) StdoutLine: {'line': b'Installing tf_frames_publisher script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[0.865670] (robot_control) StdoutLine: {'line': b'Installing transformation_delta script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[0.866031] (robot_control) StdoutLine: {'line': b'Installing transformation_snapshot script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[0.867094] (robot_control) StdoutLine: {'line': b"writing list of installed files to '/home/mo/Thesis/build/robot_control/install.log'\n"}
+[0.892111] (robot_control) CommandEnded: {'returncode': 0}
+[0.904343] (robot_control) JobEnded: {'identifier': 'robot_control', 'rc': 0}
+[0.906751] (-) EventReactorShutdown: {}

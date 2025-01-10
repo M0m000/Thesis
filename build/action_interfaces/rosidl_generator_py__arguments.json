@@ -1,10 +1,10 @@
 {
   "package_name": "action_interfaces",
-  "output_dir": "/home/vboxuser/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces",
+  "output_dir": "/home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces",
   "template_dir": "/opt/ros/foxy/share/rosidl_generator_py/cmake/../resource",
   "idl_tuples": [
-    "/home/vboxuser/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces:action/Fibonacci.idl",
-    "/home/vboxuser/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces:action/MoveTcpAlongAxis.idl"
+    "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces:action/Fibonacci.idl",
+    "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces:action/MoveTcpAlongAxis.idl"
   ],
   "ros_interface_dependencies": [
     "builtin_interfaces:/opt/ros/foxy/share/builtin_interfaces/msg/Duration.idl",
@@ -29,8 +29,8 @@
     "/opt/ros/foxy/share/rosidl_generator_py/cmake/../resource/_msg.py.em",
     "/opt/ros/foxy/share/rosidl_generator_py/cmake/../resource/_srv_pkg_typesupport_entry_point.c.em",
     "/opt/ros/foxy/share/rosidl_generator_py/cmake/../resource/_srv.py.em",
-    "/home/vboxuser/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/action/Fibonacci.idl",
-    "/home/vboxuser/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/action/MoveTcpAlongAxis.idl",
+    "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/action/Fibonacci.idl",
+    "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/action/MoveTcpAlongAxis.idl",
     "/opt/ros/foxy/share/builtin_interfaces/msg/Duration.idl",
     "/opt/ros/foxy/share/builtin_interfaces/msg/Time.idl",
     "/opt/ros/foxy/share/action_msgs/msg/GoalInfo.idl",

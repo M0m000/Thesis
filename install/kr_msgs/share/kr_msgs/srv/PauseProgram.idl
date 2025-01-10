@@ -1,1 +1,19 @@
-/home/vboxuser/Thesis/build/kr_msgs/rosidl_adapter/kr_msgs/srv/PauseProgram.idl
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from kr_msgs/srv/program/PauseProgram.srv
+// generated code does not contain a copyright notice
+
+
+module kr_msgs {
+  module srv {
+    @verbatim (language="comment", text=
+      "#####################################################" "\n"
+      "             PAUSE PROGRAM EXECUTION                #" "\n"
+      "#####################################################")
+    struct PauseProgram_Request {
+      uint8 structure_needs_at_least_one_member;
+    };
+    struct PauseProgram_Response {
+      boolean success;
+    };
+  };
+};

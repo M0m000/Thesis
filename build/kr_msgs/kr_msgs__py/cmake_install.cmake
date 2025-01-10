@@ -1,8 +1,8 @@
-# Install script for directory: /home/vboxuser/Thesis/build/kr_msgs/kr_msgs__py
+# Install script for directory: /home/mo/Thesis/build/kr_msgs/kr_msgs__py
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/vboxuser/Thesis/install/kr_msgs")
+  set(CMAKE_INSTALL_PREFIX "/home/mo/Thesis/install/kr_msgs")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

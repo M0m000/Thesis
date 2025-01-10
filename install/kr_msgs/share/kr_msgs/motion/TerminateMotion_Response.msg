@@ -1,1 +1,2 @@
-/home/vboxuser/Thesis/build/kr_msgs/rosidl_cmake/srv/motion/TerminateMotion_Response.msg
+
+bool       success

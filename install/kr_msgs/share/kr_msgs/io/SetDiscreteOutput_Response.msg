@@ -1,1 +1,2 @@
-/home/vboxuser/Thesis/build/kr_msgs/rosidl_cmake/srv/io/SetDiscreteOutput_Response.msg
+
+bool       success

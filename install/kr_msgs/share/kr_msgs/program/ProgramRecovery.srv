@@ -1,1 +1,11 @@
-/home/vboxuser/Thesis/src/orange-ros2/kr_msgs/srv/program/ProgramRecovery.srv
+######################################################
+#                  PROGRAM RECOVERY                  #
+######################################################
+
+# SUPPORTED_ACTIONS
+int8 RECOVER = 0
+int8 SKIP    = 1
+
+int8 action  # see SUPPORTED_ACTIONS
+---
+bool       success

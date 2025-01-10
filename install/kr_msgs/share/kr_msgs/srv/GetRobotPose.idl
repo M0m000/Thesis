@@ -1,1 +1,36 @@
-/home/vboxuser/Thesis/build/kr_msgs/rosidl_adapter/kr_msgs/srv/GetRobotPose.idl
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from kr_msgs/srv/robot/GetRobotPose.srv
+// generated code does not contain a copyright notice
+
+
+module kr_msgs {
+  module srv {
+    @verbatim (language="comment", text=
+      "#####################################################" "\n"
+      "                  GET ROBOT POSE                    #" "\n"
+      "#####################################################")
+    struct GetRobotPose_Request {
+      uint8 structure_needs_at_least_one_member;
+    };
+    typedef double double__3[3];
+    typedef double double__7[7];
+    struct GetRobotPose_Response {
+      @verbatim (language="comment", text=
+        " position - x, y, z")
+      @unit (value="mm")
+      double__3 pos;
+
+      @verbatim (language="comment", text=
+        " orientation - r, p, y")
+      @unit (value="deg")
+      double__3 rot;
+
+      @verbatim (language="comment", text=
+        " joint configuration")
+      @unit (value="deg")
+      double__7 jsconf;
+
+      boolean success;
+    };
+  };
+};

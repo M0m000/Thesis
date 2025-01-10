@@ -1,0 +1,77 @@
+[0.000000] (-) TimerEvent: {}
+[0.000613] (-) JobUnselected: {'identifier': 'action_interfaces'}
+[0.000746] (-) JobUnselected: {'identifier': 'action_servers'}
+[0.000835] (-) JobUnselected: {'identifier': 'bt_pkg'}
+[0.000859] (-) JobUnselected: {'identifier': 'kr_example_cpp'}
+[0.000946] (-) JobUnselected: {'identifier': 'kr_example_python'}
+[0.001035] (-) JobUnselected: {'identifier': 'kr_msgs'}
+[0.001123] (-) JobUnselected: {'identifier': 'realsense2_camera'}
+[0.001146] (-) JobUnselected: {'identifier': 'realsense2_camera_msgs'}
+[0.001231] (-) JobUnselected: {'identifier': 'realsense2_description'}
+[0.001316] (-) JobUnselected: {'identifier': 'robot_control'}
+[0.001402] (-) JobUnselected: {'identifier': 'sensopart_visor'}
+[0.001501] (-) JobUnselected: {'identifier': 'vision'}
+[0.001595] (vcnanoz) JobQueued: {'identifier': 'vcnanoz', 'dependencies': OrderedDict()}
+[0.001622] (vcnanoz) JobStarted: {'identifier': 'vcnanoz'}
+[0.162090] (-) TimerEvent: {}
+[0.264375] (-) TimerEvent: {}
+[0.364879] (-) TimerEvent: {}
+[0.465394] (-) TimerEvent: {}
+[0.566342] (-) TimerEvent: {}
+[0.568904] (vcnanoz) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/vcnanoz', 'build', '--build-base', '/home/mo/Thesis/build/vcnanoz/build', 'install', '--record', '/home/mo/Thesis/build/vcnanoz/install.log', '--install-scripts', '$base/lib/vcnanoz', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/mo/Thesis/src/vcnanoz', 'env': {'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'mo', 'SSH_AGENT_PID': '1743', 'XDG_SESSION_TYPE': 'x11', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib', 'HOME': '/home/mo', 'OLDPWD': '/home/mo', 'DESKTOP_SESSION': 'ubuntu', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/terminator.desktop', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'MANAGERPID': '1524', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'TERMINATOR_DBUS_NAME': 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '75646', 'IM_CONFIG_PHASE': '1', 'ROS_DISTRO': 'foxy', 'LOGNAME': 'mo', 'JOURNAL_STREAM': '8:34484', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'mo', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'SESSION_MANAGER': 'local/moVM:@/tmp/.ICE-unix/1813,unix/moVM:/tmp/.ICE-unix/1813', 'INVOCATION_ID': '54ad23a6feb44efcbe22805cf0d58581', 'XDG_MENU_PREFIX': 'gnome-', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'TERMINATOR_DBUS_PATH': '/net/tenshu/Terminator2', 'LANG': 'de_DE.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/opt/ros/foxy', 'SHELL': '/bin/bash', 'TERMINATOR_UUID': 'urn:uuid:358ef422-8998-4fd1-a3a8-6b947837e984', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'GJS_DEBUG_OUTPUT': 'stderr', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/mo/Thesis/build/vcnanoz', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/mo/Thesis/build/vcnanoz/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages', 'COLCON': '1', 'VTE_VERSION': '6003'}, 'shell': False}
+[0.668466] (-) TimerEvent: {}
+[0.760499] (vcnanoz) StdoutLine: {'line': b'running egg_info\n'}
+[0.761013] (vcnanoz) StdoutLine: {'line': b'creating ../../build/vcnanoz/vcnanoz.egg-info\n'}
+[0.761131] (vcnanoz) StdoutLine: {'line': b'writing ../../build/vcnanoz/vcnanoz.egg-info/PKG-INFO\n'}
+[0.762097] (vcnanoz) StdoutLine: {'line': b'writing dependency_links to ../../build/vcnanoz/vcnanoz.egg-info/dependency_links.txt\n'}
+[0.762697] (vcnanoz) StdoutLine: {'line': b'writing entry points to ../../build/vcnanoz/vcnanoz.egg-info/entry_points.txt\n'}
+[0.763296] (vcnanoz) StdoutLine: {'line': b'writing requirements to ../../build/vcnanoz/vcnanoz.egg-info/requires.txt\n'}
+[0.763383] (vcnanoz) StdoutLine: {'line': b'writing top-level names to ../../build/vcnanoz/vcnanoz.egg-info/top_level.txt\n'}
+[0.764593] (vcnanoz) StdoutLine: {'line': b"writing manifest file '../../build/vcnanoz/vcnanoz.egg-info/SOURCES.txt'\n"}
+[0.769588] (-) TimerEvent: {}
+[0.790552] (vcnanoz) StdoutLine: {'line': b"reading manifest file '../../build/vcnanoz/vcnanoz.egg-info/SOURCES.txt'\n"}
+[0.791256] (vcnanoz) StdoutLine: {'line': b"writing manifest file '../../build/vcnanoz/vcnanoz.egg-info/SOURCES.txt'\n"}
+[0.791864] (vcnanoz) StdoutLine: {'line': b'running build\n'}
+[0.792029] (vcnanoz) StdoutLine: {'line': b'running build_py\n'}
+[0.792098] (vcnanoz) StdoutLine: {'line': b'creating /home/mo/Thesis/build/vcnanoz/build\n'}
+[0.792159] (vcnanoz) StdoutLine: {'line': b'creating /home/mo/Thesis/build/vcnanoz/build/lib\n'}
+[0.792217] (vcnanoz) StdoutLine: {'line': b'creating /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz\n'}
+[0.792504] (vcnanoz) StdoutLine: {'line': b'copying vcnanoz/srvClient_vc_startup.py -> /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz\n'}
+[0.792697] (vcnanoz) StdoutLine: {'line': b'copying vcnanoz/vc_shutdown.py -> /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz\n'}
+[0.793126] (vcnanoz) StdoutLine: {'line': b'copying vcnanoz/srvServer_vc_startup.py -> /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz\n'}
+[0.793223] (vcnanoz) StdoutLine: {'line': b'copying vcnanoz/vc_img_receiver.py -> /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz\n'}
+[0.793285] (vcnanoz) StdoutLine: {'line': b'copying vcnanoz/vc_startup.py -> /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz\n'}
+[0.793849] (vcnanoz) StdoutLine: {'line': b'copying vcnanoz/__init__.py -> /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz\n'}
+[0.794257] (vcnanoz) StdoutLine: {'line': b'running install\n'}
+[0.794950] (vcnanoz) StdoutLine: {'line': b'running install_lib\n'}
+[0.795892] (vcnanoz) StdoutLine: {'line': b'creating /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz\n'}
+[0.796050] (vcnanoz) StdoutLine: {'line': b'copying /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz/srvClient_vc_startup.py -> /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz\n'}
+[0.796215] (vcnanoz) StdoutLine: {'line': b'copying /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz/vc_shutdown.py -> /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz\n'}
+[0.796390] (vcnanoz) StdoutLine: {'line': b'copying /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz/srvServer_vc_startup.py -> /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz\n'}
+[0.796562] (vcnanoz) StdoutLine: {'line': b'copying /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz/vc_img_receiver.py -> /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz\n'}
+[0.796800] (vcnanoz) StdoutLine: {'line': b'copying /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz/vc_startup.py -> /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz\n'}
+[0.796973] (vcnanoz) StdoutLine: {'line': b'copying /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz/__init__.py -> /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz\n'}
+[0.797595] (vcnanoz) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz/srvClient_vc_startup.py to srvClient_vc_startup.cpython-38.pyc\n'}
+[0.799119] (vcnanoz) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz/vc_shutdown.py to vc_shutdown.cpython-38.pyc\n'}
+[0.800025] (vcnanoz) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz/srvServer_vc_startup.py to srvServer_vc_startup.cpython-38.pyc\n'}
+[0.800520] (vcnanoz) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz/vc_img_receiver.py to vc_img_receiver.cpython-38.pyc\n'}
+[0.801803] (vcnanoz) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz/vc_startup.py to vc_startup.cpython-38.pyc\n'}
+[0.802636] (vcnanoz) StdoutLine: {'line': b'byte-compiling /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz/__init__.py to __init__.cpython-38.pyc\n'}
+[0.802869] (vcnanoz) StdoutLine: {'line': b'running install_data\n'}
+[0.803470] (vcnanoz) StdoutLine: {'line': b'creating /home/mo/Thesis/install/vcnanoz/share/ament_index\n'}
+[0.803579] (vcnanoz) StdoutLine: {'line': b'creating /home/mo/Thesis/install/vcnanoz/share/ament_index/resource_index\n'}
+[0.803856] (vcnanoz) StdoutLine: {'line': b'creating /home/mo/Thesis/install/vcnanoz/share/ament_index/resource_index/packages\n'}
+[0.804023] (vcnanoz) StdoutLine: {'line': b'copying resource/vcnanoz -> /home/mo/Thesis/install/vcnanoz/share/ament_index/resource_index/packages\n'}
+[0.804130] (vcnanoz) StdoutLine: {'line': b'copying package.xml -> /home/mo/Thesis/install/vcnanoz/share/vcnanoz\n'}
+[0.804206] (vcnanoz) StdoutLine: {'line': b'running install_egg_info\n'}
+[0.805492] (vcnanoz) StdoutLine: {'line': b'Copying ../../build/vcnanoz/vcnanoz.egg-info to /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz-0.0.0-py3.8.egg-info\n'}
+[0.807205] (vcnanoz) StdoutLine: {'line': b'running install_scripts\n'}
+[0.822655] (vcnanoz) StdoutLine: {'line': b'Installing srvClient_vc_startup script to /home/mo/Thesis/install/vcnanoz/lib/vcnanoz\n'}
+[0.823289] (vcnanoz) StdoutLine: {'line': b'Installing srvServer_vc_startup script to /home/mo/Thesis/install/vcnanoz/lib/vcnanoz\n'}
+[0.823393] (vcnanoz) StdoutLine: {'line': b'Installing vc_img_receiver script to /home/mo/Thesis/install/vcnanoz/lib/vcnanoz\n'}
+[0.825181] (vcnanoz) StdoutLine: {'line': b'Installing vc_shutdown script to /home/mo/Thesis/install/vcnanoz/lib/vcnanoz\n'}
+[0.825303] (vcnanoz) StdoutLine: {'line': b'Installing vc_startup script to /home/mo/Thesis/install/vcnanoz/lib/vcnanoz\n'}
+[0.825388] (vcnanoz) StdoutLine: {'line': b"writing list of installed files to '/home/mo/Thesis/build/vcnanoz/install.log'\n"}
+[0.850165] (vcnanoz) CommandEnded: {'returncode': 0}
+[0.862233] (vcnanoz) JobEnded: {'identifier': 'vcnanoz', 'rc': 0}
+[0.862707] (-) EventReactorShutdown: {}

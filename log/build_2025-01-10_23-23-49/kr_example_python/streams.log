@@ -1,0 +1,53 @@
+[0.699s] Invoking command in '/home/mo/Thesis/src/orange-ros2/kr_example/python': AMENT_PREFIX_PATH=/home/mo/Thesis/install/kr_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mo/Thesis/install/kr_msgs LD_LIBRARY_PATH=/home/mo/Thesis/install/kr_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mo/Thesis/build/kr_example_python/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../../build/kr_example_python build --build-base /home/mo/Thesis/build/kr_example_python/build install --record /home/mo/Thesis/build/kr_example_python/install.log --install-scripts $base/lib/kr_example_python --single-version-externally-managed install_data
+[0.884s] running egg_info
+[0.884s] creating ../../../../build/kr_example_python/kr_example_python.egg-info
+[0.884s] writing ../../../../build/kr_example_python/kr_example_python.egg-info/PKG-INFO
+[0.884s] writing dependency_links to ../../../../build/kr_example_python/kr_example_python.egg-info/dependency_links.txt
+[0.885s] writing entry points to ../../../../build/kr_example_python/kr_example_python.egg-info/entry_points.txt
+[0.885s] writing requirements to ../../../../build/kr_example_python/kr_example_python.egg-info/requires.txt
+[0.885s] writing top-level names to ../../../../build/kr_example_python/kr_example_python.egg-info/top_level.txt
+[0.888s] writing manifest file '../../../../build/kr_example_python/kr_example_python.egg-info/SOURCES.txt'
+[0.918s] reading manifest file '../../../../build/kr_example_python/kr_example_python.egg-info/SOURCES.txt'
+[0.918s] writing manifest file '../../../../build/kr_example_python/kr_example_python.egg-info/SOURCES.txt'
+[0.918s] running build
+[0.919s] running build_py
+[0.919s] creating /home/mo/Thesis/build/kr_example_python/build
+[0.919s] creating /home/mo/Thesis/build/kr_example_python/build/lib
+[0.919s] creating /home/mo/Thesis/build/kr_example_python/build/lib/kr_example_python
+[0.919s] copying kr_example_python/follow_joint.py -> /home/mo/Thesis/build/kr_example_python/build/lib/kr_example_python
+[0.921s] copying kr_example_python/move_joint.py -> /home/mo/Thesis/build/kr_example_python/build/lib/kr_example_python
+[0.921s] copying kr_example_python/jog_linear.py -> /home/mo/Thesis/build/kr_example_python/build/lib/kr_example_python
+[0.921s] copying kr_example_python/self_motion.py -> /home/mo/Thesis/build/kr_example_python/build/lib/kr_example_python
+[0.921s] copying kr_example_python/robot_state.py -> /home/mo/Thesis/build/kr_example_python/build/lib/kr_example_python
+[0.922s] copying kr_example_python/__init__.py -> /home/mo/Thesis/build/kr_example_python/build/lib/kr_example_python
+[0.923s] running install
+[0.924s] running install_lib
+[0.925s] creating /home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages/kr_example_python
+[0.925s] copying /home/mo/Thesis/build/kr_example_python/build/lib/kr_example_python/follow_joint.py -> /home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages/kr_example_python
+[0.925s] copying /home/mo/Thesis/build/kr_example_python/build/lib/kr_example_python/move_joint.py -> /home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages/kr_example_python
+[0.926s] copying /home/mo/Thesis/build/kr_example_python/build/lib/kr_example_python/jog_linear.py -> /home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages/kr_example_python
+[0.926s] copying /home/mo/Thesis/build/kr_example_python/build/lib/kr_example_python/self_motion.py -> /home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages/kr_example_python
+[0.926s] copying /home/mo/Thesis/build/kr_example_python/build/lib/kr_example_python/robot_state.py -> /home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages/kr_example_python
+[0.926s] copying /home/mo/Thesis/build/kr_example_python/build/lib/kr_example_python/__init__.py -> /home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages/kr_example_python
+[0.926s] byte-compiling /home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages/kr_example_python/follow_joint.py to follow_joint.cpython-38.pyc
+[0.928s] byte-compiling /home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages/kr_example_python/move_joint.py to move_joint.cpython-38.pyc
+[0.929s] byte-compiling /home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages/kr_example_python/jog_linear.py to jog_linear.cpython-38.pyc
+[0.929s] byte-compiling /home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages/kr_example_python/self_motion.py to self_motion.cpython-38.pyc
+[0.929s] byte-compiling /home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages/kr_example_python/robot_state.py to robot_state.cpython-38.pyc
+[0.930s] byte-compiling /home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages/kr_example_python/__init__.py to __init__.cpython-38.pyc
+[0.931s] running install_data
+[0.931s] creating /home/mo/Thesis/install/kr_example_python/share/ament_index
+[0.931s] creating /home/mo/Thesis/install/kr_example_python/share/ament_index/resource_index
+[0.931s] creating /home/mo/Thesis/install/kr_example_python/share/ament_index/resource_index/packages
+[0.931s] copying resource/kr_example_python -> /home/mo/Thesis/install/kr_example_python/share/ament_index/resource_index/packages
+[0.931s] copying package.xml -> /home/mo/Thesis/install/kr_example_python/share/kr_example_python
+[0.931s] running install_egg_info
+[0.933s] Copying ../../../../build/kr_example_python/kr_example_python.egg-info to /home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages/kr_example_python-0.0.0-py3.8.egg-info
+[0.935s] running install_scripts
+[0.951s] Installing follow_joint script to /home/mo/Thesis/install/kr_example_python/lib/kr_example_python
+[0.951s] Installing jog_linear script to /home/mo/Thesis/install/kr_example_python/lib/kr_example_python
+[0.951s] Installing move_joint script to /home/mo/Thesis/install/kr_example_python/lib/kr_example_python
+[0.952s] Installing robot_state script to /home/mo/Thesis/install/kr_example_python/lib/kr_example_python
+[0.952s] Installing self_motion script to /home/mo/Thesis/install/kr_example_python/lib/kr_example_python
+[0.952s] writing list of installed files to '/home/mo/Thesis/build/kr_example_python/install.log'
+[0.976s] Invoked command in '/home/mo/Thesis/src/orange-ros2/kr_example/python' returned '0': AMENT_PREFIX_PATH=/home/mo/Thesis/install/kr_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mo/Thesis/install/kr_msgs LD_LIBRARY_PATH=/home/mo/Thesis/install/kr_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mo/Thesis/build/kr_example_python/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../../build/kr_example_python build --build-base /home/mo/Thesis/build/kr_example_python/build install --record /home/mo/Thesis/build/kr_example_python/install.log --install-scripts $base/lib/kr_example_python --single-version-externally-managed install_data

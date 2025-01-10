@@ -1,1 +1,0 @@
-/home/vboxuser/Thesis/src/realsense-ros/realsense2_camera/examples/align_depth/README.md

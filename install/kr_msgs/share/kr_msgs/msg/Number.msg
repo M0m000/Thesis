@@ -1,1 +1,5 @@
-/home/vboxuser/Thesis/src/orange-ros2/kr_msgs/msg/Number.msg
+######################################################
+#                      NUMBER                        #
+######################################################
+
+float64    value

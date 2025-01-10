@@ -1,1 +1,4 @@
-/home/vboxuser/Thesis/build/kr_msgs/rosidl_cmake/srv/system/GetSafetyZones_Request.msg
+######################################################
+#                  GET SAFETY ZONES                  #
+######################################################
+

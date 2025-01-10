@@ -6,5 +6,5 @@ CXX_FLAGS = -fPIC   -Wall -std=gnu++14
 
 CXX_DEFINES = -DRCUTILS_ENABLE_FAULT_INJECTION -DROS_PACKAGE_NAME=\"action_interfaces\" -Daction_interfaces__rosidl_typesupport_c_EXPORTS
 
-CXX_INCLUDES = -I/home/vboxuser/Thesis/build/action_interfaces/rosidl_generator_c -I/home/vboxuser/Thesis/build/action_interfaces/rosidl_typesupport_c -isystem /opt/ros/foxy/include 
+CXX_INCLUDES = -I/home/mo/Thesis/build/action_interfaces/rosidl_generator_c -I/home/mo/Thesis/build/action_interfaces/rosidl_typesupport_c -isystem /opt/ros/foxy/include 
 

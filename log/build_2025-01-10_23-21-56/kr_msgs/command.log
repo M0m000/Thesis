@@ -1,0 +1,6 @@
+Invoking command in '/home/mo/Thesis/build/kr_msgs': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/mo/Thesis/src/orange-ros2/kr_msgs -DCMAKE_INSTALL_PREFIX=/home/mo/Thesis/install/kr_msgs
+Invoked command in '/home/mo/Thesis/build/kr_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/mo/Thesis/src/orange-ros2/kr_msgs -DCMAKE_INSTALL_PREFIX=/home/mo/Thesis/install/kr_msgs
+Invoking command in '/home/mo/Thesis/build/kr_msgs': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/mo/Thesis/build/kr_msgs -- -j8 -l8
+Invoked command in '/home/mo/Thesis/build/kr_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/mo/Thesis/build/kr_msgs -- -j8 -l8
+Invoking command in '/home/mo/Thesis/build/kr_msgs': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/mo/Thesis/build/kr_msgs
+Invoked command in '/home/mo/Thesis/build/kr_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/mo/Thesis/build/kr_msgs

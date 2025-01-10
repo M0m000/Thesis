@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/vboxuser/Thesis/src/orange-ros2/kr_example/cpp
+CMAKE_SOURCE_DIR = /home/mo/Thesis/src/orange-ros2/kr_example/cpp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/vboxuser/Thesis/build/kr_example_cpp
+CMAKE_BINARY_DIR = /home/mo/Thesis/build/kr_example_cpp
 
 # Utility rule file for kr_example_cpp_uninstall.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/vboxuser/Thesis/build/kr_example_cpp
 include CMakeFiles/kr_example_cpp_uninstall.dir/progress.make
 
 CMakeFiles/kr_example_cpp_uninstall:
-	/usr/bin/cmake -P /home/vboxuser/Thesis/build/kr_example_cpp/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
+	/usr/bin/cmake -P /home/mo/Thesis/build/kr_example_cpp/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
 
 kr_example_cpp_uninstall: CMakeFiles/kr_example_cpp_uninstall
 kr_example_cpp_uninstall: CMakeFiles/kr_example_cpp_uninstall.dir/build.make
@@ -71,6 +71,6 @@ CMakeFiles/kr_example_cpp_uninstall.dir/clean:
 .PHONY : CMakeFiles/kr_example_cpp_uninstall.dir/clean
 
 CMakeFiles/kr_example_cpp_uninstall.dir/depend:
-	cd /home/vboxuser/Thesis/build/kr_example_cpp && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/vboxuser/Thesis/src/orange-ros2/kr_example/cpp /home/vboxuser/Thesis/src/orange-ros2/kr_example/cpp /home/vboxuser/Thesis/build/kr_example_cpp /home/vboxuser/Thesis/build/kr_example_cpp /home/vboxuser/Thesis/build/kr_example_cpp/CMakeFiles/kr_example_cpp_uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/mo/Thesis/build/kr_example_cpp && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/mo/Thesis/src/orange-ros2/kr_example/cpp /home/mo/Thesis/src/orange-ros2/kr_example/cpp /home/mo/Thesis/build/kr_example_cpp /home/mo/Thesis/build/kr_example_cpp /home/mo/Thesis/build/kr_example_cpp/CMakeFiles/kr_example_cpp_uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/kr_example_cpp_uninstall.dir/depend
 

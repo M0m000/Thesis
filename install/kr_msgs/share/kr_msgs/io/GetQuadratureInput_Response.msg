@@ -1,1 +1,3 @@
-/home/vboxuser/Thesis/build/kr_msgs/rosidl_cmake/srv/io/GetQuadratureInput_Response.msg
+
+Quadrature quad
+bool       success 

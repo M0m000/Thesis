@@ -1,1 +1,29 @@
-/home/vboxuser/Thesis/build/kr_msgs/rosidl_adapter/kr_msgs/srv/ConfigDiscreteOutput.idl
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from kr_msgs/srv/io/ConfigDiscreteOutput.srv
+// generated code does not contain a copyright notice
+
+
+module kr_msgs {
+  module srv {
+    module ConfigDiscreteOutput_Request_Constants {
+      const int8 RANGE_12V = 0;
+      const int8 RANGE_24V = 1;
+    };
+    @verbatim (language="comment", text=
+      "#####################################################" "\n"
+      "            CONFIG DISCRETE OUTPUT SRV              #" "\n"
+      "#####################################################")
+    struct ConfigDiscreteOutput_Request {
+      @verbatim (language="comment", text=
+        " output index")
+      int8 index;
+
+      @verbatim (language="comment", text=
+        " see OUTPUT_RANGE")
+      int8 range;
+    };
+    struct ConfigDiscreteOutput_Response {
+      boolean success;
+    };
+  };
+};

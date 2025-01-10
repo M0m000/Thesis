@@ -1,1 +1,5 @@
-/home/vboxuser/Thesis/src/action_interfaces/action/Fibonacci.action
+int32 order
+---
+int32[] sequence
+---
+int32[] partial_sequence

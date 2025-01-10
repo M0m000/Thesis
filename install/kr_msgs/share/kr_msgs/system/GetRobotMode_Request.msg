@@ -1,1 +1,4 @@
-/home/vboxuser/Thesis/build/kr_msgs/rosidl_cmake/srv/system/GetRobotMode_Request.msg
+######################################################
+#                  GET ROBOT MODE                    #
+######################################################
+

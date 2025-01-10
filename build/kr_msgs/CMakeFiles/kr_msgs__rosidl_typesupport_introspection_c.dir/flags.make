@@ -6,5 +6,5 @@ C_FLAGS = -fPIC   -Wall -std=gnu11
 
 C_DEFINES = -DRCUTILS_ENABLE_FAULT_INJECTION -DROS_PACKAGE_NAME=\"kr_msgs\" -Dkr_msgs__rosidl_typesupport_introspection_c_EXPORTS
 
-C_INCLUDES = -I/home/vboxuser/Thesis/build/kr_msgs/rosidl_generator_c -I/home/vboxuser/Thesis/build/kr_msgs/rosidl_typesupport_introspection_c -isystem /opt/ros/foxy/include 
+C_INCLUDES = -I/home/mo/Thesis/build/kr_msgs/rosidl_generator_c -I/home/mo/Thesis/build/kr_msgs/rosidl_typesupport_introspection_c -isystem /opt/ros/foxy/include 
 

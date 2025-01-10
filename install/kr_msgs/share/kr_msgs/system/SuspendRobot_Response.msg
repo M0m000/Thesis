@@ -1,1 +1,2 @@
-/home/vboxuser/Thesis/build/kr_msgs/rosidl_cmake/srv/system/SuspendRobot_Response.msg
+
+bool       success

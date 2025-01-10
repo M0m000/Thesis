@@ -1,1 +1,5 @@
-/home/vboxuser/Thesis/build/kr_msgs/rosidl_cmake/srv/io/GetQuadratureInput_Request.msg
+######################################################
+#              GET QUADRATURE INPUT SRV              #
+######################################################
+
+int8       index            # input index

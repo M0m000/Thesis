@@ -1,10 +1,10 @@
 {
   "package_name": "realsense2_camera_msgs",
   "non_idl_tuples": [
-    "/home/vboxuser/Thesis/src/realsense-ros/realsense2_camera_msgs:msg/IMUInfo.msg",
-    "/home/vboxuser/Thesis/src/realsense-ros/realsense2_camera_msgs:msg/Extrinsics.msg",
-    "/home/vboxuser/Thesis/src/realsense-ros/realsense2_camera_msgs:msg/Metadata.msg",
-    "/home/vboxuser/Thesis/src/realsense-ros/realsense2_camera_msgs:msg/RGBD.msg",
-    "/home/vboxuser/Thesis/src/realsense-ros/realsense2_camera_msgs:srv/DeviceInfo.srv"
+    "/home/mo/Thesis/src/realsense-ros/realsense2_camera_msgs:msg/IMUInfo.msg",
+    "/home/mo/Thesis/src/realsense-ros/realsense2_camera_msgs:msg/Extrinsics.msg",
+    "/home/mo/Thesis/src/realsense-ros/realsense2_camera_msgs:msg/Metadata.msg",
+    "/home/mo/Thesis/src/realsense-ros/realsense2_camera_msgs:msg/RGBD.msg",
+    "/home/mo/Thesis/src/realsense-ros/realsense2_camera_msgs:srv/DeviceInfo.srv"
   ]
 }
