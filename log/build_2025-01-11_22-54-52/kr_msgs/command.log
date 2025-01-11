@@ -1,0 +1,2 @@
+Invoking command in '/home/mo/Thesis/build/kr_msgs': /usr/bin/cmake --build /home/mo/Thesis/build/kr_msgs -- -j8 -l8
+Invoked command in '/home/mo/Thesis/build/kr_msgs' returned '2': /usr/bin/cmake --build /home/mo/Thesis/build/kr_msgs -- -j8 -l8

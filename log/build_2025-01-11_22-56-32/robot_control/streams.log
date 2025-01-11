@@ -1,0 +1,103 @@
+[0.969s] Invoking command in '/home/mo/Thesis/src/robot_control': AMENT_PREFIX_PATH=/home/mo/Thesis/install/action_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mo/Thesis/install/action_interfaces LD_LIBRARY_PATH=/home/mo/Thesis/install/action_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mo/Thesis/build/robot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/robot_control build --build-base /home/mo/Thesis/build/robot_control/build install --record /home/mo/Thesis/build/robot_control/install.log --install-scripts $base/lib/robot_control --single-version-externally-managed install_data
+[1.230s] running egg_info
+[1.230s] creating ../../build/robot_control/robot_control.egg-info
+[1.231s] writing ../../build/robot_control/robot_control.egg-info/PKG-INFO
+[1.231s] writing dependency_links to ../../build/robot_control/robot_control.egg-info/dependency_links.txt
+[1.232s] writing entry points to ../../build/robot_control/robot_control.egg-info/entry_points.txt
+[1.232s] writing requirements to ../../build/robot_control/robot_control.egg-info/requires.txt
+[1.232s] writing top-level names to ../../build/robot_control/robot_control.egg-info/top_level.txt
+[1.233s] writing manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'
+[1.264s] reading manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'
+[1.265s] writing manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'
+[1.265s] running build
+[1.266s] running build_py
+[1.266s] creating /home/mo/Thesis/build/robot_control/build
+[1.266s] creating /home/mo/Thesis/build/robot_control/build/lib
+[1.267s] creating /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[1.267s] copying robot_control/fibonacci_action_client.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[1.267s] copying robot_control/bt_test.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[1.268s] copying robot_control/print_frames.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[1.268s] copying robot_control/move_robot_service_server.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[1.268s] copying robot_control/print_tcp_pose.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[1.268s] copying robot_control/tcp_frame_listener.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[1.269s] copying robot_control/read_transformation_snapshot.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[1.269s] copying robot_control/bt_scan_hookstrip.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[1.269s] copying robot_control/transformation_delta.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[1.270s] copying robot_control/read_transformation_delta.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[1.270s] copying robot_control/set_frame_client.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[1.270s] copying robot_control/robot_TcpPose_node.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[1.270s] copying robot_control/move_lin_by_key.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[1.271s] copying robot_control/transformation_snapshot.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[1.271s] copying robot_control/MoveTcpAlongAxis_action_client.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[1.271s] copying robot_control/hello_node.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[1.271s] copying robot_control/tf_frames_publisher.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[1.273s] copying robot_control/get_robot_pose_node.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[1.274s] copying robot_control/__init__.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[1.275s] running install
+[1.278s] running install_lib
+[1.282s] creating /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[1.282s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/fibonacci_action_client.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[1.283s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/bt_test.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[1.283s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/print_frames.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[1.283s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/move_robot_service_server.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[1.284s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/print_tcp_pose.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[1.284s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/tcp_frame_listener.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[1.285s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/read_transformation_snapshot.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[1.287s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/bt_scan_hookstrip.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[1.289s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/transformation_delta.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[1.290s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/read_transformation_delta.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[1.290s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/set_frame_client.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[1.291s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/robot_TcpPose_node.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[1.292s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/move_lin_by_key.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[1.293s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/transformation_snapshot.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[1.295s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/MoveTcpAlongAxis_action_client.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[1.298s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/hello_node.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[1.299s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/tf_frames_publisher.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[1.299s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/get_robot_pose_node.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[1.300s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/__init__.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[1.301s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/fibonacci_action_client.py to fibonacci_action_client.cpython-38.pyc
+[1.305s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/bt_test.py to bt_test.cpython-38.pyc
+[1.306s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/print_frames.py to print_frames.cpython-38.pyc
+[1.306s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/move_robot_service_server.py to move_robot_service_server.cpython-38.pyc
+[1.308s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/print_tcp_pose.py to print_tcp_pose.cpython-38.pyc
+[1.309s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/tcp_frame_listener.py to tcp_frame_listener.cpython-38.pyc
+[1.311s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/read_transformation_snapshot.py to read_transformation_snapshot.cpython-38.pyc
+[1.312s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/bt_scan_hookstrip.py to bt_scan_hookstrip.cpython-38.pyc
+[1.315s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/transformation_delta.py to transformation_delta.cpython-38.pyc
+[1.317s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/read_transformation_delta.py to read_transformation_delta.cpython-38.pyc
+[1.318s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/set_frame_client.py to set_frame_client.cpython-38.pyc
+[1.318s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/robot_TcpPose_node.py to robot_TcpPose_node.cpython-38.pyc
+[1.319s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/move_lin_by_key.py to move_lin_by_key.cpython-38.pyc
+[1.321s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/transformation_snapshot.py to transformation_snapshot.cpython-38.pyc
+[1.322s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/MoveTcpAlongAxis_action_client.py to MoveTcpAlongAxis_action_client.cpython-38.pyc
+[1.324s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/hello_node.py to hello_node.cpython-38.pyc
+[1.325s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/tf_frames_publisher.py to tf_frames_publisher.cpython-38.pyc
+[1.327s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/get_robot_pose_node.py to get_robot_pose_node.cpython-38.pyc
+[1.328s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__init__.py to __init__.cpython-38.pyc
+[1.328s] running install_data
+[1.329s] creating /home/mo/Thesis/install/robot_control/share/ament_index
+[1.329s] creating /home/mo/Thesis/install/robot_control/share/ament_index/resource_index
+[1.329s] creating /home/mo/Thesis/install/robot_control/share/ament_index/resource_index/packages
+[1.330s] copying resource/robot_control -> /home/mo/Thesis/install/robot_control/share/ament_index/resource_index/packages
+[1.330s] copying package.xml -> /home/mo/Thesis/install/robot_control/share/robot_control
+[1.330s] running install_egg_info
+[1.333s] Copying ../../build/robot_control/robot_control.egg-info to /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info
+[1.334s] running install_scripts
+[1.356s] Installing MoveTcpAlongAxis_action_client script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.357s] Installing fibonacci_action_client script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.357s] Installing get_robot_pose_node script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.358s] Installing hello_node script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.358s] Installing move_along_baseline_client script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.358s] Installing move_lin_by_key script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.359s] Installing print_frames script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.359s] Installing print_tcp_pose script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.359s] Installing read_transformation_delta script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.359s] Installing read_transformation_snapshot script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.360s] Installing robot_TcpPose_node script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.360s] Installing set_frame_client script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.360s] Installing tcp_frame_listener script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.360s] Installing tf_frames_publisher script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.361s] Installing transformation_delta script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.361s] Installing transformation_snapshot script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.362s] writing list of installed files to '/home/mo/Thesis/build/robot_control/install.log'
+[1.428s] Invoked command in '/home/mo/Thesis/src/robot_control' returned '0': AMENT_PREFIX_PATH=/home/mo/Thesis/install/action_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mo/Thesis/install/action_interfaces LD_LIBRARY_PATH=/home/mo/Thesis/install/action_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mo/Thesis/build/robot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/robot_control build --build-base /home/mo/Thesis/build/robot_control/build install --record /home/mo/Thesis/build/robot_control/install.log --install-scripts $base/lib/robot_control --single-version-externally-managed install_data

@@ -1,0 +1,88 @@
+[0.000000] (-) TimerEvent: {}
+[0.000238] (action_interfaces) JobQueued: {'identifier': 'action_interfaces', 'dependencies': OrderedDict()}
+[0.000338] (bt_pkg) JobQueued: {'identifier': 'bt_pkg', 'dependencies': OrderedDict()}
+[0.000360] (kr_msgs) JobQueued: {'identifier': 'kr_msgs', 'dependencies': OrderedDict()}
+[0.000375] (sensopart_visor) JobQueued: {'identifier': 'sensopart_visor', 'dependencies': OrderedDict()}
+[0.000388] (vcnanoz) JobQueued: {'identifier': 'vcnanoz', 'dependencies': OrderedDict()}
+[0.000400] (vision) JobQueued: {'identifier': 'vision', 'dependencies': OrderedDict()}
+[0.000413] (action_servers) JobQueued: {'identifier': 'action_servers', 'dependencies': OrderedDict([('action_interfaces', '/home/mo/Thesis/install/action_interfaces')])}
+[0.000507] (kr_example_cpp) JobQueued: {'identifier': 'kr_example_cpp', 'dependencies': OrderedDict([('kr_msgs', '/home/mo/Thesis/install/kr_msgs')])}
+[0.000528] (kr_example_python) JobQueued: {'identifier': 'kr_example_python', 'dependencies': OrderedDict([('kr_msgs', '/home/mo/Thesis/install/kr_msgs')])}
+[0.000608] (robot_control) JobQueued: {'identifier': 'robot_control', 'dependencies': OrderedDict([('action_interfaces', '/home/mo/Thesis/install/action_interfaces')])}
+[0.000629] (action_interfaces) JobStarted: {'identifier': 'action_interfaces'}
+[0.017120] (kr_msgs) JobStarted: {'identifier': 'kr_msgs'}
+[0.022373] (bt_pkg) JobStarted: {'identifier': 'bt_pkg'}
+[0.030617] (sensopart_visor) JobStarted: {'identifier': 'sensopart_visor'}
+[0.039060] (vcnanoz) JobStarted: {'identifier': 'vcnanoz'}
+[0.053428] (vision) JobStarted: {'identifier': 'vision'}
+[0.063549] (action_interfaces) JobProgress: {'identifier': 'action_interfaces', 'progress': 'cmake'}
+[0.067955] (action_interfaces) JobProgress: {'identifier': 'action_interfaces', 'progress': 'build'}
+[0.068067] (action_interfaces) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/mo/Thesis/build/action_interfaces', '--', '-j8', '-l8'], 'cwd': '/home/mo/Thesis/build/action_interfaces', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'de_DE:en'), ('USER', 'mo'), ('LC_TIME', 'de_DE.UTF-8'), ('SSH_AGENT_PID', '1598'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('HOME', '/home/mo'), ('OLDPWD', '/home/mo'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/terminator.desktop'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'de_DE.UTF-8'), ('MANAGERPID', '1456'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '18954'), ('IM_CONFIG_PHASE', '1'), ('LOGNAME', 'mo'), ('JOURNAL_STREAM', '8:33351'), ('_', '/usr/bin/colcon'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'mo'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('WINDOWPATH', '2'), ('PATH', '/home/mo/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/moVM:@/tmp/.ICE-unix/1668,unix/moVM:/tmp/.ICE-unix/1668'), ('INVOCATION_ID', '52ac9a2c9a1442bb8293bdae7ca5fe32'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'de_DE.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'de_DE.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'de_DE.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('SHELL', '/bin/bash'), ('LC_NAME', 'de_DE.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:73c44877-811b-4314-a928-b982478ec15b'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'de_DE.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('LC_IDENTIFICATION', 'de_DE.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/mo/Thesis/build/action_interfaces'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('LC_NUMERIC', 'de_DE.UTF-8'), ('LC_PAPER', 'de_DE.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6003')]), 'shell': False}
+[0.072136] (kr_msgs) JobProgress: {'identifier': 'kr_msgs', 'progress': 'cmake'}
+[0.075363] (kr_msgs) JobProgress: {'identifier': 'kr_msgs', 'progress': 'build'}
+[0.075586] (kr_msgs) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/mo/Thesis/build/kr_msgs', '--', '-j8', '-l8'], 'cwd': '/home/mo/Thesis/build/kr_msgs', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'de_DE:en'), ('USER', 'mo'), ('LC_TIME', 'de_DE.UTF-8'), ('SSH_AGENT_PID', '1598'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('HOME', '/home/mo'), ('OLDPWD', '/home/mo'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/terminator.desktop'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'de_DE.UTF-8'), ('MANAGERPID', '1456'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '18954'), ('IM_CONFIG_PHASE', '1'), ('LOGNAME', 'mo'), ('JOURNAL_STREAM', '8:33351'), ('_', '/usr/bin/colcon'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'mo'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('WINDOWPATH', '2'), ('PATH', '/home/mo/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/moVM:@/tmp/.ICE-unix/1668,unix/moVM:/tmp/.ICE-unix/1668'), ('INVOCATION_ID', '52ac9a2c9a1442bb8293bdae7ca5fe32'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'de_DE.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'de_DE.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'de_DE.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('SHELL', '/bin/bash'), ('LC_NAME', 'de_DE.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:73c44877-811b-4314-a928-b982478ec15b'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'de_DE.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('LC_IDENTIFICATION', 'de_DE.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/mo/Thesis/build/kr_msgs'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('LC_NUMERIC', 'de_DE.UTF-8'), ('LC_PAPER', 'de_DE.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6003')]), 'shell': False}
+[0.100328] (-) TimerEvent: {}
+[0.200924] (-) TimerEvent: {}
+[0.301697] (-) TimerEvent: {}
+[0.406347] (-) TimerEvent: {}
+[0.511035] (-) TimerEvent: {}
+[0.679560] (-) TimerEvent: {}
+[0.687611] (action_interfaces) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[0.688308] (action_interfaces) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") \n'}
+[0.688858] (action_interfaces) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.689636] (action_interfaces) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[0.694044] (action_interfaces) StdoutLine: {'line': b'See also "/home/mo/Thesis/build/action_interfaces/CMakeFiles/CMakeOutput.log".\n'}
+[0.694668] (action_interfaces) StderrLine: {'line': b'Traceback (most recent call last):\n'}
+[0.695116] (action_interfaces) StderrLine: {'line': b'  File "/opt/ros/foxy/share/ament_cmake_core/cmake/package_templates/templates_2_cmake.py", line 21, in <module>\n'}
+[0.695556] (action_interfaces) StderrLine: {'line': b'    from ament_package.templates import get_environment_hook_template_path\n'}
+[0.696592] (action_interfaces) StderrLine: {'line': b"ModuleNotFoundError: No module named 'ament_package'\n"}
+[0.697551] (action_interfaces) StderrLine: {'line': b'CMake Error at /opt/ros/foxy/share/ament_cmake_core/cmake/ament_cmake_package_templates-extras.cmake:41 (message):\n'}
+[0.698682] (action_interfaces) StderrLine: {'line': b'  execute_process(/usr/bin/python3\n'}
+[0.699043] (action_interfaces) StderrLine: {'line': b'  /opt/ros/foxy/share/ament_cmake_core/cmake/package_templates/templates_2_cmake.py\n'}
+[0.699742] (action_interfaces) StderrLine: {'line': b'  /home/mo/Thesis/build/action_interfaces/ament_cmake_package_templates/templates.cmake)\n'}
+[0.699967] (action_interfaces) StderrLine: {'line': b'  returned error code 1\n'}
+[0.700133] (action_interfaces) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[0.702798] (action_interfaces) StderrLine: {'line': b'  /opt/ros/foxy/share/ament_cmake_core/cmake/ament_cmake_coreConfig.cmake:41 (include)\n'}
+[0.703003] (action_interfaces) StderrLine: {'line': b'  /opt/ros/foxy/share/ament_cmake/cmake/ament_cmake_export_dependencies-extras.cmake:15 (find_package)\n'}
+[0.703220] (action_interfaces) StderrLine: {'line': b'  /opt/ros/foxy/share/ament_cmake/cmake/ament_cmakeConfig.cmake:41 (include)\n'}
+[0.703295] (action_interfaces) StderrLine: {'line': b'  CMakeLists.txt:19 (find_package)\n'}
+[0.703350] (action_interfaces) StderrLine: {'line': b'\n'}
+[0.703401] (action_interfaces) StderrLine: {'line': b'\n'}
+[0.703453] (action_interfaces) StderrLine: {'line': b'make: *** [Makefile:988: cmake_check_build_system] Fehler 1\n'}
+[0.703507] (kr_msgs) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[0.703605] (kr_msgs) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") \n'}
+[0.703665] (kr_msgs) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.703716] (kr_msgs) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[0.703766] (kr_msgs) StdoutLine: {'line': b'See also "/home/mo/Thesis/build/kr_msgs/CMakeFiles/CMakeOutput.log".\n'}
+[0.703815] (kr_msgs) StderrLine: {'line': b'Traceback (most recent call last):\n'}
+[0.703876] (kr_msgs) StderrLine: {'line': b'  File "/opt/ros/foxy/share/ament_cmake_core/cmake/package_templates/templates_2_cmake.py", line 21, in <module>\n'}
+[0.703926] (kr_msgs) StderrLine: {'line': b'    from ament_package.templates import get_environment_hook_template_path\n'}
+[0.703972] (kr_msgs) StderrLine: {'line': b"ModuleNotFoundError: No module named 'ament_package'\n"}
+[0.704017] (kr_msgs) StderrLine: {'line': b'CMake Error at /opt/ros/foxy/share/ament_cmake_core/cmake/ament_cmake_package_templates-extras.cmake:41 (message):\n'}
+[0.704064] (kr_msgs) StderrLine: {'line': b'  execute_process(/usr/bin/python3\n'}
+[0.704109] (kr_msgs) StderrLine: {'line': b'  /opt/ros/foxy/share/ament_cmake_core/cmake/package_templates/templates_2_cmake.py\n'}
+[0.704155] (kr_msgs) StderrLine: {'line': b'  /home/mo/Thesis/build/kr_msgs/ament_cmake_package_templates/templates.cmake)\n'}
+[0.704202] (kr_msgs) StderrLine: {'line': b'  returned error code 1\n'}
+[0.704248] (kr_msgs) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[0.704293] (kr_msgs) StderrLine: {'line': b'  /opt/ros/foxy/share/ament_cmake_core/cmake/ament_cmake_coreConfig.cmake:41 (include)\n'}
+[0.704338] (kr_msgs) StderrLine: {'line': b'  /opt/ros/foxy/share/ament_cmake/cmake/ament_cmake_export_dependencies-extras.cmake:15 (find_package)\n'}
+[0.704382] (kr_msgs) StderrLine: {'line': b'  /opt/ros/foxy/share/ament_cmake/cmake/ament_cmakeConfig.cmake:41 (include)\n'}
+[0.704428] (kr_msgs) StderrLine: {'line': b'  CMakeLists.txt:19 (find_package)\n'}
+[0.704472] (kr_msgs) StderrLine: {'line': b'\n'}
+[0.704516] (kr_msgs) StderrLine: {'line': b'\n'}
+[0.704560] (kr_msgs) StderrLine: {'line': b'make: *** [Makefile:13468: cmake_check_build_system] Fehler 1\n'}
+[0.781309] (-) TimerEvent: {}
+[0.882400] (-) TimerEvent: {}
+[0.896519] (action_interfaces) CommandEnded: {'returncode': 2}
+[0.917348] (action_interfaces) JobEnded: {'identifier': 'action_interfaces', 'rc': 2}
+[0.919678] (kr_msgs) CommandEnded: {'returncode': 2}
+[0.936881] (kr_msgs) JobEnded: {'identifier': 'kr_msgs', 'rc': 2}
+[0.937424] (vision) JobEnded: {'identifier': 'vision', 'rc': 'SIGINT'}
+[0.938642] (bt_pkg) JobEnded: {'identifier': 'bt_pkg', 'rc': 'SIGINT'}
+[0.939117] (sensopart_visor) JobEnded: {'identifier': 'sensopart_visor', 'rc': 'SIGINT'}
+[0.939413] (vcnanoz) JobEnded: {'identifier': 'vcnanoz', 'rc': 'SIGINT'}
+[0.948495] (action_servers) JobSkipped: {'identifier': 'action_servers'}
+[0.948841] (kr_example_cpp) JobSkipped: {'identifier': 'kr_example_cpp'}
+[0.948872] (kr_example_python) JobSkipped: {'identifier': 'kr_example_python'}
+[0.948899] (robot_control) JobSkipped: {'identifier': 'robot_control'}
+[0.948916] (-) EventReactorShutdown: {}

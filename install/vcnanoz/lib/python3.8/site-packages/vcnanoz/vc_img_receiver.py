@@ -131,7 +131,7 @@ class VCImageReceiver(Node):
             self.visualize()
 
     def visualize(self):
-        if self.img_tensor is not None:
+        if self.img_tensor is not None and self.show_img == True:
             cv2.imshow("Cam Img", self.img_tensor)
 
             key = cv2.waitKey(1) & 0xFF
