@@ -308,6 +308,12 @@ ros2 launch realsense2_camera rs_launch.py align_depth.enable:=false
 ## **Vision Package**
 Enthält alle Programme zur Bildverarbeitung - Filterung, NNs... <br>
 <br>
+### **YoloV8 Inference Node**
+```bash
+ros2 run vision yolov8_inference --ros-args -p yolo_model_path:="/home/mo/Thesis/YoloV8_InstanceSeg/models/20250110_2023_yolo8nano_pruned.pt" -p confidence_threshold:=0.4 
+```
+>Lädt ein vortrainiertes Instance Segmentation Model YoloV8 (Segmentiert das Bild nach Instanzen auf die Klassen "bar", "hook", "tip" und "lowpoint"). Training des Models kann mit Jupyter-Notebook in Verzeichnis YoloV8_InstanceSeg/yolov8.ipynb gemacht werden. Dieser Knoten subscribed den Kameratopic der VC-Cam und führt in Echtzeit die Inferenz der Bilder durch. Beide Bilder werden in extra Fenstern angezeigt. Mit dem confidence threshold kann festgelegt werden, wie sicher sich das Netz bei der Erkennung der Objekte sein muss -> je höher, umso strenger. <br>
+<br>
 
 ### **Image Receiver** <br>
 ```bash
