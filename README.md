@@ -66,23 +66,33 @@ Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers K
 <br>
 <br>
 <br>
+
 ***
 ***
 # Klonen des Repositorys
+
 ```bash
 git clone https://github.com/M0m000/Thesis.git
 ```
+
 >Klont das Repository in einen Ordner "Thesis" (wird automatisch im gewählten Verzeichnis erstellt) <br>
 <br>
+
+
 # ROS2 Inital Build
+
 ```bash
 source /opt/ros/foxy/setup.bash
 ```
+
 >Sourcen der ROS2-Umgebung (sonst kann Build nicht funktionieren) <br>
+
 ```bash
 colcon build
 ```
+
 Build aller ROS2-Packages im Git. <br>
+
 <br>
 <br>
 
