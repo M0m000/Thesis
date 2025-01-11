@@ -28,7 +28,8 @@ setup(
             'stereo_triangulation = vision.stereo_triangulation:main',
             'image_filters = vision.img_filters:main',
             'stereo_triangulation_with_robot = vision.stereo_triangulation_with_robot:main',
-            'hook_detector = vision.hook_detector:main'
+            'hook_detector = vision.hook_detector:main',
+            'yolov8_inference = vision.yolov8_inference:main'
         ],
     },
 )
