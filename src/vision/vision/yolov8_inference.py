@@ -8,6 +8,7 @@ import cv2
 from ultralytics import YOLO
 import time
 import os
+import sys
 
 
 class YOLOv8InferenceNode(Node):
@@ -40,8 +41,6 @@ class YOLOv8InferenceNode(Node):
         self.inference_device = "cpu"
         self.set_device()
 
-        
-
     def set_device(self):
         self.get_logger().info("Setting device for neural network inferences...")
         if torch.cuda.is_available():
@@ -69,6 +68,7 @@ class YOLOv8InferenceNode(Node):
 
     def inference(self):
         start_time = time.perf_counter()
+
         results = self.yolo_model.predict(source = self.received_img,
                                 device = self.inference_device,
                                 conf = self.confidence_threshold,
@@ -85,9 +85,18 @@ class YOLOv8InferenceNode(Node):
                                 save_txt = False,
                                 save_crop = False,
                                 line_width = 2,
-                                box = False)
+                                box = False,
+                                verbose = False)
+            
         end_time = time.perf_counter()
-        self.get_logger().info(f"Inference time: {(end_time - start_time):.4f} sec")
+        inference_time = end_time - start_time
+        fps = 1 / inference_time if inference_time > 0 else 0
+
+        sys.stdout.write(f"\rInference time: {inference_time:.4f} sec | FPS: {fps:.4f}")
+        sys.stdout.flush()
+        
+        # self.get_logger().info(f"\rInference time: {(end_time - start_time):.4f} sec")
+        # self.get_logger().info(f"\rInference FPS: {(1/(end_time - start_time)):.4f} FPS")
 
         annotated_frame = self.annotate_frame(self.received_img, results)
         return annotated_frame

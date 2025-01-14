@@ -1,0 +1,36 @@
+[1.992s] Invoking command in '/home/mo/Thesis/src/robot_control': AMENT_PREFIX_PATH=/home/mo/Thesis/install/action_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mo/Thesis/install/action_interfaces LD_LIBRARY_PATH=/home/mo/Thesis/install/action_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mo/Thesis/build/robot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/robot_control build --build-base /home/mo/Thesis/build/robot_control/build install --record /home/mo/Thesis/build/robot_control/install.log --install-scripts $base/lib/robot_control --single-version-externally-managed install_data
+[2.380s] running egg_info
+[2.381s] writing ../../build/robot_control/robot_control.egg-info/PKG-INFO
+[2.381s] writing dependency_links to ../../build/robot_control/robot_control.egg-info/dependency_links.txt
+[2.382s] writing entry points to ../../build/robot_control/robot_control.egg-info/entry_points.txt
+[2.382s] writing requirements to ../../build/robot_control/robot_control.egg-info/requires.txt
+[2.382s] writing top-level names to ../../build/robot_control/robot_control.egg-info/top_level.txt
+[2.444s] reading manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'
+[2.446s] writing manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'
+[2.447s] running build
+[2.447s] running build_py
+[2.449s] running install
+[2.451s] running install_lib
+[2.461s] running install_data
+[2.463s] running install_egg_info
+[2.466s] removing '/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info' (and everything under it)
+[2.466s] Copying ../../build/robot_control/robot_control.egg-info to /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info
+[2.468s] running install_scripts
+[2.499s] Installing MoveTcpAlongAxis_action_client script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.499s] Installing fibonacci_action_client script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.500s] Installing get_robot_pose_node script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.500s] Installing hello_node script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.500s] Installing move_along_baseline_client script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.501s] Installing move_lin_by_key script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.501s] Installing print_frames script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.501s] Installing print_tcp_pose script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.501s] Installing read_transformation_delta script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.502s] Installing read_transformation_snapshot script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.502s] Installing robot_TcpPose_node script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.502s] Installing set_frame_client script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.502s] Installing tcp_frame_listener script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.502s] Installing tf_frames_publisher script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.503s] Installing transformation_delta script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.503s] Installing transformation_snapshot script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.504s] writing list of installed files to '/home/mo/Thesis/build/robot_control/install.log'
+[2.574s] Invoked command in '/home/mo/Thesis/src/robot_control' returned '0': AMENT_PREFIX_PATH=/home/mo/Thesis/install/action_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mo/Thesis/install/action_interfaces LD_LIBRARY_PATH=/home/mo/Thesis/install/action_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mo/Thesis/build/robot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/robot_control build --build-base /home/mo/Thesis/build/robot_control/build install --record /home/mo/Thesis/build/robot_control/install.log --install-scripts $base/lib/robot_control --single-version-externally-managed install_data

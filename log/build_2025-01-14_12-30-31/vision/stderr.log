@@ -1,0 +1,5 @@
+  File "/home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/yolov8_inference.py", line 88
+    verbose = False)
+            ^
+SyntaxError: invalid syntax
+
