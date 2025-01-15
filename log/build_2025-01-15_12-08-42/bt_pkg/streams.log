@@ -1,0 +1,23 @@
+[1.669s] Invoking command in '/home/mo/Thesis/src/bt_pkg': PYTHONPATH=/home/mo/Thesis/build/bt_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/bt_pkg/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/bt_pkg build --build-base /home/mo/Thesis/build/bt_pkg/build install --record /home/mo/Thesis/build/bt_pkg/install.log --install-scripts $base/lib/bt_pkg --single-version-externally-managed install_data
+[1.942s] running egg_info
+[1.942s] writing ../../build/bt_pkg/bt_pkg.egg-info/PKG-INFO
+[1.943s] writing dependency_links to ../../build/bt_pkg/bt_pkg.egg-info/dependency_links.txt
+[1.943s] writing entry points to ../../build/bt_pkg/bt_pkg.egg-info/entry_points.txt
+[1.943s] writing requirements to ../../build/bt_pkg/bt_pkg.egg-info/requires.txt
+[1.943s] writing top-level names to ../../build/bt_pkg/bt_pkg.egg-info/top_level.txt
+[1.944s] reading manifest file '../../build/bt_pkg/bt_pkg.egg-info/SOURCES.txt'
+[1.946s] writing manifest file '../../build/bt_pkg/bt_pkg.egg-info/SOURCES.txt'
+[1.946s] running build
+[1.946s] running build_py
+[1.946s] running install
+[1.947s] running install_lib
+[1.947s] running install_data
+[1.947s] running install_egg_info
+[1.947s] removing '/home/mo/Thesis/install/bt_pkg/lib/python3.8/site-packages/bt_pkg-0.0.0-py3.8.egg-info' (and everything under it)
+[1.947s] Copying ../../build/bt_pkg/bt_pkg.egg-info to /home/mo/Thesis/install/bt_pkg/lib/python3.8/site-packages/bt_pkg-0.0.0-py3.8.egg-info
+[1.947s] running install_scripts
+[1.953s] Installing bt_example_tree script to /home/mo/Thesis/install/bt_pkg/lib/bt_pkg
+[1.953s] Installing bt_scan_hookstrip script to /home/mo/Thesis/install/bt_pkg/lib/bt_pkg
+[1.954s] Installing srv_call script to /home/mo/Thesis/install/bt_pkg/lib/bt_pkg
+[1.954s] writing list of installed files to '/home/mo/Thesis/build/bt_pkg/install.log'
+[1.978s] Invoked command in '/home/mo/Thesis/src/bt_pkg' returned '0': PYTHONPATH=/home/mo/Thesis/build/bt_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/bt_pkg/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/bt_pkg build --build-base /home/mo/Thesis/build/bt_pkg/build install --record /home/mo/Thesis/build/bt_pkg/install.log --install-scripts $base/lib/bt_pkg --single-version-externally-managed install_data
