@@ -2,6 +2,7 @@
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/image_receiver.py
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/img_filters.py
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/point_finder_2d.py
+/home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/maskrcnn_inference.py
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/calibration.py
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/yolov8_inference.py
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/hook_detector.py
@@ -12,6 +13,7 @@
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/__pycache__/image_receiver.cpython-38.pyc
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/__pycache__/img_filters.cpython-38.pyc
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/__pycache__/point_finder_2d.cpython-38.pyc
+/home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/__pycache__/maskrcnn_inference.cpython-38.pyc
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/__pycache__/calibration.cpython-38.pyc
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/__pycache__/yolov8_inference.cpython-38.pyc
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/__pycache__/hook_detector.cpython-38.pyc
@@ -31,6 +33,7 @@
 /home/mo/Thesis/install/vision/lib/vision/hook_detector
 /home/mo/Thesis/install/vision/lib/vision/image_filters
 /home/mo/Thesis/install/vision/lib/vision/image_receiver
+/home/mo/Thesis/install/vision/lib/vision/maskrcnn_inference
 /home/mo/Thesis/install/vision/lib/vision/point_finder_2d
 /home/mo/Thesis/install/vision/lib/vision/point_finder_3d
 /home/mo/Thesis/install/vision/lib/vision/stereo_triangulation

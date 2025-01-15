@@ -348,55 +348,6 @@ class YOLOv8InferenceNode(Node):
         return img_copy
 
 
-    def annotate_frame(self, frame, results):
-        annotated_frame = frame.copy()
-
-        class_colors = {
-            0: (255, 0, 0),         # bar -> rot
-            1: (0, 255, 0),         # hook -> grün
-            2: (0, 0, 255),         # tip -> blau
-            3: (255, 255, 0),       # lowpoint -> cyan
-        }
-
-        labelnames = ["bar", "hook", "tip", "lowpoint"]
-
-        for result in results:
-            # Bounding Boxes
-            if result.boxes is not None:
-                for box in result.boxes:
-                    x1, y1, x2, y2 = map(int, box.xyxy[0])  # Boxkoordinaten
-                    conf = box.conf[0]                      # Konfidenzwert
-                    label = int(box.cls[0])                 # Klassenindex
-                    color = class_colors.get(label, (255, 255, 255))
-
-                    # Zeichne Rechteck und Beschriftung
-                    cv2.rectangle(annotated_frame, (x1, y1), (x2, y2), color, 2)
-                    cv2.putText(annotated_frame, f"{labelnames[label]} ({conf:.2f})",
-                                (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 1)
-
-            # Masken
-            if result.masks is not None:
-                for i, mask in enumerate(result.masks.data):
-                    mask = mask.cpu().numpy()
-                    mask = (mask > 0.5).astype(np.uint8)  # Binärmaske (0 und 1)
-
-                    # Skaliere Maske auf Größe des Originalbildes
-                    mask_resized = cv2.resize(mask, (frame.shape[1], frame.shape[0]))
-
-                    # Erzeuge farbige Maske
-                    label = int(result.boxes.cls[i])                    # Klasse der Maske
-                    color = class_colors.get(label, (255, 255, 255))
-                    colored_mask = np.zeros_like(annotated_frame)
-                    for c in range(3):                                  # Maske auf alle Kanäle anwenden
-                        colored_mask[:, :, c] = mask_resized * color[c]
-
-                    # Füge farbige Maske zum annotierten Bild hinzu
-                    annotated_frame = cv2.addWeighted(annotated_frame, 1.0, colored_mask, 0.5, 0)
-        return annotated_frame
-
-
-
-
 def main(args=None):
     rclpy.init(args=args)
 
@@ -409,7 +360,7 @@ def main(args=None):
     finally:
         node.destroy_node()
         rclpy.shutdown()
-        cv2.destroyAllWindows()  # Schließe alle OpenCV-Fenster
+        cv2.destroyAllWindows()
 
 if __name__ == '__main__':
     main()
