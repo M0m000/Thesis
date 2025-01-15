@@ -315,6 +315,13 @@ ros2 run vision yolov8_inference --ros-args -p yolo_model_path:="/home/mo/Thesis
 >Lädt ein vortrainiertes Instance Segmentation Model YoloV8 (Segmentiert das Bild nach Instanzen auf die Klassen "bar", "hook", "tip" und "lowpoint"). Training des Models kann mit Jupyter-Notebook in Verzeichnis YoloV8_InstanceSeg/yolov8.ipynb gemacht werden. Dieser Knoten subscribed den Kameratopic der VC-Cam und führt in Echtzeit die Inferenz der Bilder durch. Beide Bilder werden in extra Fenstern angezeigt. Mit dem confidence threshold kann festgelegt werden, wie sicher sich das Netz bei der Erkennung der Objekte sein muss -> je höher, umso strenger. <br>
 <br>
 
+### **MaskRCNN Inference Node**
+```bash
+ros2 run vision maskrcnn_inference --ros-args -p maskrcnn_model_path:="/home/mo/MaskRCNN_InstanceSeg/maskrcnn_trained_model.pth" -p confidence_threshold:=0.4 -p do_preprocessing:=True -p do_postprocessing:=True -p show_cam_img:=True -p show_output_img:=True
+```
+>Lädt ein vortrainiertes Instance Segmentation Model MaskRCNN (Segmentiert das Bild nach Instanzen auf die Klassen "bar", "hook", "tip" und "lowpoint"). Training des Models kann mit Jupyter-Notebook in Verzeichnis MaskRCNN_InstanceSeg/maskrcnn.ipynb gemacht werden. Dieser Knoten subscribed den Kameratopic der VC-Cam und führt in Echtzeit die Inferenz der Bilder durch. Beide Bilder werden in extra Fenstern angezeigt. Mit dem confidence threshold kann festgelegt werden, wie sicher sich das Netz bei der Erkennung der Objekte sein muss -> je höher, umso strenger. <br>
+<br>
+
 ### **Image Receiver** <br>
 ```bash
 ros2 run vision image_receiver --ros-args -p show_img:=False -p max_depth:=40
