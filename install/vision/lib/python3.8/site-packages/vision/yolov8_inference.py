@@ -55,12 +55,25 @@ class YOLOv8InferenceNode(Node):
 
     def set_device(self):
         self.get_logger().info("Setting device for neural network inferences...")
+
         if torch.cuda.is_available():
             self.inference_device = "cuda"
-            self.get_logger().info("GPU available - using GPU as inference device.")
+
+            # Begrenze prozessspezifischen Speicher auf 60%
+            torch.cuda.set_per_process_memory_fraction(0.6, 0)
+
+            # Begrenzung der Speicherwachstumsstrategie aktivieren
+            gpus = torch.cuda.device_count()
+            for gpu_id in range(gpus):
+                torch.cuda.set_device(gpu_id)
+                torch.cuda.empty_cache()  # Cache leeren, um Speicher freizugeben
+                torch.cuda.memory.set_per_process_memory_fraction(0.6, gpu_id)
+
+            self.get_logger().info(f"GPU available - using GPU as inference device. Total GPUs: {gpus}")
         else:
             self.inference_device = "cpu"
             self.get_logger().info("No GPU available - using CPU as inference device.")
+
     
     def image_callback(self, msg):
         try:

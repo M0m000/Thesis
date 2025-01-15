@@ -130,7 +130,7 @@ ros2 run vcnanoz vc_startup --ros-args -p shutter_time:=20000 -p gain:=50
 
 ### **VC Image Receiver** Node <br>
 ```bash
-ros2 run vcnanoz vc_img_receiver --ros-args -p ipv4:="192.168.3.15" -p port:=2002 -p img_width:=1280 -p img_height:=720 -p rgb_stream:=False -p show_img:=True -p take_pitcures:=True
+ros2 run vcnanoz vc_img_receiver --ros-args -p ipv4:="192.168.3.15" -p port:=2002 -p img_width:=1280 -p img_height:=720 -p rgb_stream:=False -p show_img:=False -p take_pitcures:=False
 ```
 >Dieser Knoten stellt eine Verbindung zum Socket her und streamt das Graubild der Kamera (Auflösung einstellbar) auf dem Topic "/vcnanoz/stream/image_raw". Wenn das Argument "take_pitcures" auf True gesetzt ist. Kann mit der Taste z ein Bild aufgenommen und gespeichert werden, sobald der Stream läuft. Das Bildfenster von OpenCV muss dazu aktiv sein -> dort z druecken. Der Speicherpfad kann ebenfalls mit dem Argument "save_path" übergeben werden - standardmäßig auf '/home/vboxuser/Thesis/vc_imgs'. <br>
 <br>
@@ -310,7 +310,7 @@ Enthält alle Programme zur Bildverarbeitung - Filterung, NNs... <br>
 <br>
 ### **YoloV8 Inference Node**
 ```bash
-ros2 run vision yolov8_inference --ros-args -p yolo_model_path:="/home/mo/Thesis/YoloV8_InstanceSeg/models/20250110_2023_yolo8nano_pruned.pt" -p confidence_threshold:=0.4 -p do_postprocessing:=True -p show_cam_img:=True -p show_output_img:=True
+ros2 run vision yolov8_inference --ros-args -p yolo_model_path:="/home/mo/Thesis/YoloV8_InstanceSeg/models/20250110_2023_yolo8nano_pruned.pt" -p confidence_threshold:=0.4 -p do_preprocessing:=True -p do_postprocessing:=True -p show_cam_img:=True -p show_output_img:=True
 ```
 >Lädt ein vortrainiertes Instance Segmentation Model YoloV8 (Segmentiert das Bild nach Instanzen auf die Klassen "bar", "hook", "tip" und "lowpoint"). Training des Models kann mit Jupyter-Notebook in Verzeichnis YoloV8_InstanceSeg/yolov8.ipynb gemacht werden. Dieser Knoten subscribed den Kameratopic der VC-Cam und führt in Echtzeit die Inferenz der Bilder durch. Beide Bilder werden in extra Fenstern angezeigt. Mit dem confidence threshold kann festgelegt werden, wie sicher sich das Netz bei der Erkennung der Objekte sein muss -> je höher, umso strenger. <br>
 <br>
