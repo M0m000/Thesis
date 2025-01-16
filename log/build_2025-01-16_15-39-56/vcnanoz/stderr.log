@@ -1,0 +1,5 @@
+  File "/home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz/vc_startup.py", line 80
+    self.light_vcc_on = True if response else self.light_vcc_on = False
+                        ^
+SyntaxError: cannot assign to conditional expression
+
