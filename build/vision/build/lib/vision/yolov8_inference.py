@@ -98,7 +98,7 @@ class YOLOv8InferenceNode(Node):
             self.get_logger().error(f'Error in image processing: {e}')
 
     def preprocess(self, cv_image):
-        cv_image[0:20, 0:275, :] = 255
+        cv_image[0:20, 0:300, :] = 255
         self.received_img = cv_image
         if self.do_preprocessing:
             w_units = self.received_img.shape[1] // 32

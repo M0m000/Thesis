@@ -51,8 +51,6 @@ class VCStartupNode(Node):
         if discrete_out_srv_available and analog_out_srv_available:
             self.powerup_light()
         
-        self.execute_ssh_commands()
-
     def powerup_vc(self):
         self.get_logger().info("Power Up VC nano Z...")
         request = SetDiscreteOutput.Request()
@@ -98,7 +96,7 @@ class VCStartupNode(Node):
             # 20 Sekunden warten, bevor die SSH-Befehle ausgeführt werden -> Bootzeit
             self.get_logger().info("wait for 20 sec - boot time VC nano Z ...")
             time.sleep(20)
-            # self.execute_ssh_commands()
+            self.execute_ssh_commands()
             self.get_logger().info("VC nano Z powered up and streaming...")
 
         except Exception as e:
