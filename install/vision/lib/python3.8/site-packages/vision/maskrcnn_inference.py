@@ -102,7 +102,7 @@ class MaskRCNNInferenceNode(Node):
             self.get_logger().error(f'Error in image processing: {e}')
 
     def preprocess(self, cv_image):
-        cv_image[0:20, 0:275, :] = 255
+        # cv_image[0:20, 0:275, :] = 255
         self.received_img = cv_image
 
     def inference(self):
