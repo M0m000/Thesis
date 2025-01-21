@@ -1,3 +1,4 @@
+# init
 ros2 service call /kr/motion/move_joint kr_msgs/srv/MoveJoint "jsconf: [90.0, -45.0, 0.0, 90.0, 180.0, -45.0, 90.0]
 ttype: 0
 tvalue: 30.0
@@ -7,7 +8,7 @@ bvalue: 15.0
 sync: 0.0
 chaining: 0"
 
-
+# vorne frontal
 ros2 service call /kr/motion/move_joint kr_msgs/srv/MoveJoint "jsconf: [88.47972986, 0.90124904, 1.42605318, 105.71299506, 180.10296786, 16.61115004, 89.85471523]
 ttype: 0
 tvalue: 30.0
@@ -17,7 +18,7 @@ bvalue: 15.0
 sync: 0.0
 chaining: 0"
 
-
+# links anfang
 ros2 service call /kr/motion/move_linear kr_msgs/srv/MoveLinear "pos: [-500.0, 200.0, 400.0]
 rot: [0.0, 0.0, 0.0]
 ref: 2
