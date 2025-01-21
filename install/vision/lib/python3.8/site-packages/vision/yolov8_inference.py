@@ -16,7 +16,7 @@ class YOLOv8InferenceNode(Node):
     def __init__(self):
         super().__init__('yolov8_inference')
 
-        self.declare_parameter('yolo_model_path', '/home/mo/Thesis/YoloV8_InstanceSeg/models/20250116_1600_yolo8nano.pt')
+        self.declare_parameter('yolo_model_path', '/home/mo/Thesis/YoloV8_InstanceSeg/models/nano_set1.pt')
         self.yolo_model_path = self.get_parameter('yolo_model_path').get_parameter_value().string_value
         self.declare_parameter('confidence_threshold', 0.2)
         self.confidence_threshold = self.get_parameter('confidence_threshold').get_parameter_value().double_value
