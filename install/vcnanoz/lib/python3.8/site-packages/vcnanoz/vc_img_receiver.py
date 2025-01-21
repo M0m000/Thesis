@@ -23,12 +23,6 @@ class VCImageReceiver(Node):
         self.sock = None
         self.sock_to = None
 
-        # Bild
-        self.x0 = 0
-        self.y0 = 0
-        self.incrx = 1
-        self.incry = 1
-
         # FPS
         self.last_frame_time = None
         self.fps = 0.0
@@ -53,8 +47,14 @@ class VCImageReceiver(Node):
         self.declare_parameter('take_pictures', True)
         self.take_pictures = self.get_parameter('take_pictures').get_parameter_value().bool_value
 
+        # Bild
+        self.x0 = int((2048 - self.dx)/2)
+        self.y0 = int((1536 - self.dy)/2)
+        self.incrx = 1
+        self.incry = 1
+
         # Bildspeicherpfad
-        self.declare_parameter('save_path', '/home/vboxuser/Thesis/vc_imgs')
+        self.declare_parameter('save_path', '/home/mo/Thesis/vc_imgs')
         self.save_path = self.get_parameter('save_path').get_parameter_value().string_value        
 
         # Bridge für Publisher
