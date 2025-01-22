@@ -12,6 +12,7 @@ import os
 import sys
 import matplotlib.pyplot as plt
 import json
+from vision.msg import HookData, Hook, BoundingBox, Mask
 
 
 class YOLOv8InferenceNode(Node):
@@ -37,6 +38,9 @@ class YOLOv8InferenceNode(Node):
             1
         )
         self.subscription
+
+        self.hooks_dict_publisher_ = self.create_publisher(HookData, 'yolov8_output/hooks_dict', 10)
+        self.timer = self.create_timer(0.01, self.publish_hooks)
 
         self.bridge = CvBridge()
         self.received_img = None
@@ -372,7 +376,6 @@ class YOLOv8InferenceNode(Node):
             cv2.putText(img_copy, f"Bar ({conf_bar:.2f})", (int(x1), int(y1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
 
         # Hooks (farblich segmentiert)
-        print(hooks_dict)
         if hooks_dict != {}:
             colors = plt.cm.get_cmap("tab20", len(hooks_dict))  # Farbpalette
             for idx, hook_name in enumerate(hooks_dict):
@@ -400,7 +403,6 @@ class YOLOv8InferenceNode(Node):
                 cv2.putText(img_copy, f"Hook {idx+1} ({conf_hook[0]:.2f})", (int(x1), int(y1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
 
                 # Bounding Box und Maske für Tip
-                print("TEST")
                 if tip_box is not None:
                     xt1, yt1, xt2, yt2 = tip_box
                     cv2.rectangle(img_copy, (int(xt1), int(yt1)), (int(xt2), int(yt2)), (color[0] * 255, color[1] * 255, color[2] * 255), 2)
@@ -439,6 +441,52 @@ class YOLOv8InferenceNode(Node):
                 p_lowpoint = tuple(map(int, self.hooks_dict_processed[key]['uv_lowpoint']))
                 cv2.drawMarker(img_copy, p_lowpoint, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)  
         return img_copy
+    
+
+    def publish_hooks(self):
+        msg = HookData()
+        msg.hooks = []
+
+        if self.hooks_dict != {}:
+            for hook_name, hook_data in self.hooks_dict.items():
+                hook = Hook()
+                hook.name = hook_name
+
+                hook.hook_box = BoundingBox(
+                    x_min=hook_data['hook_box'][0],
+                    y_min=hook_data['hook_box'][1],
+                    x_max=hook_data['hook_box'][2],
+                    y_max=hook_data['hook_box'][3]
+                )
+
+                if hook_data['hook_mask'] is not None:
+                    hook.hook_mask = Mask(data=hook_data['hook_mask'])
+                    hook.conf_hook = hook_data['conf_hook']
+
+                if hook_data['tip_box'] is not None:
+                    hook.tip_box = BoundingBox(
+                        x_min=hook_data['tip_box'][0],
+                        y_min=hook_data['tip_box'][1],
+                        x_max=hook_data['tip_box'][2],
+                        y_max=hook_data['tip_box'][3]
+                    )
+                    hook.tip_mask = Mask(data=hook_data['tip_mask'])
+                    hook.conf_tip = hook_data['conf_tip']
+
+                if hook_data['lowpoint_box'] is not None:
+                    hook.lowpoint_box = BoundingBox(
+                        x_min=hook_data['lowpoint_box'][0],
+                        y_min=hook_data['lowpoint_box'][1],
+                        x_max=hook_data['lowpoint_box'][2],
+                        y_max=hook_data['lowpoint_box'][3]
+                    )
+                    hook.lowpoint_mask = Mask(data=hook_data['lowpoint_mask'])
+                    hook.conf_lowpoint = hook_data['conf_lowpoint']
+
+                msg.hooks.append(hook)
+
+            self.publisher_.publish(msg)
+            self.get_logger().info(f'Published hook data: {msg}')
 
 
 def main(args=None):

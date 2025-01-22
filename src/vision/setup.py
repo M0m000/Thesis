@@ -34,4 +34,7 @@ setup(
             'process_nn_output = vision.process_nn_output:main'
         ],
     },
+    package_data={
+        '': ['msg/*.msg'],
+    },
 )
