@@ -1,6 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image
+from std_msgs.msg import String
 from cv_bridge import CvBridge
 import numpy as np
 import torch
@@ -10,20 +11,19 @@ import time
 import os
 import sys
 import matplotlib.pyplot as plt
+import json
 
 
 class YOLOv8InferenceNode(Node):
     def __init__(self):
         super().__init__('yolov8_inference')
 
-        self.declare_parameter('yolo_model_path', '/home/mo/Thesis/YoloV8_InstanceSeg/models/nano_set1.pt')
+        self.declare_parameter('yolo_model_path', '/home/mo/Thesis/YoloV8_InstanceSeg/runs/train/medium/full_set/20250118_1640/weights/best.pt')
         self.yolo_model_path = self.get_parameter('yolo_model_path').get_parameter_value().string_value
         self.declare_parameter('confidence_threshold', 0.2)
         self.confidence_threshold = self.get_parameter('confidence_threshold').get_parameter_value().double_value
         self.declare_parameter('do_preprocessing', True)
         self.do_preprocessing = self.get_parameter('do_preprocessing').get_parameter_value().bool_value
-        self.declare_parameter('do_postprocessing', True)
-        self.do_postprocessing = self.get_parameter('do_postprocessing').get_parameter_value().bool_value
         self.declare_parameter('show_cam_img', True)
         self.show_cam_img = self.get_parameter('show_cam_img').get_parameter_value().bool_value
         self.declare_parameter('show_output_img', True)
@@ -41,6 +41,7 @@ class YOLOv8InferenceNode(Node):
         self.bridge = CvBridge()
         self.received_img = None
         self.output_img = None
+        self.points_img = None
         self.get_logger().info('YOLOv8 Inference Node started...')
 
         self.get_logger().info("Loading YoloV8 model...")
@@ -51,7 +52,10 @@ class YOLOv8InferenceNode(Node):
         self.set_device()
 
         self.bar_dict = {}
+        self.bar_dict_processed = {}
         self.hooks_dict = {}
+        self.hooks_dict_processed = {}
+
 
     def set_device(self):
         self.get_logger().info("Setting device for neural network inferences...")
@@ -86,16 +90,47 @@ class YOLOv8InferenceNode(Node):
 
             results = self.inference()
 
-            if self.do_postprocessing:
-                self.bar_dict, self.hooks_dict = self.postprocess(results)
+            self.bar_dict, self.hooks_dict = self.postprocess(results)
+            self.process_output_hooks_dict()
+
+            # self.yolo_output_publisher_callback()
 
             if self.show_output_img:
-                self.output_img = self.plot_hooks_and_bars(self.received_img, self.hooks_dict, self.bar_dict)
+                self.output_img = self.plot_hooks_and_bars()
+                self.points_img = self.plot_points()
                 cv2.imshow('YoloV8 Output Img', self.output_img)
+                cv2.waitKey(1)
+                cv2.imshow('Points in Output', self.points_img)
                 cv2.waitKey(1)
 
         except Exception as e:
             self.get_logger().error(f'Error in image processing: {e}')
+
+
+    def process_output_hooks_dict(self):
+        self.hooks_dict_processed = self.hooks_dict.copy()
+
+        for idx, key in enumerate(self.hooks_dict):
+            hook_mask = self.hooks_dict[key].get('hook_mask', [])
+            tip_mask = self.hooks_dict[key].get('tip_mask', [])
+            lowpoint_mask = self.hooks_dict[key].get('lowpoint_mask', [])
+
+            uv_hook = self.calc_mean_of_mask(hook_mask)
+            uv_tip = self.calc_mean_of_mask(tip_mask)
+            uv_lowpoint = self.calc_mean_of_mask(lowpoint_mask)
+
+            self.hooks_dict_processed[key]['uv_hook'] = uv_hook
+            self.hooks_dict_processed[key]['uv_tip'] = uv_tip
+            self.hooks_dict_processed[key]['uv_lowpoint'] = uv_lowpoint
+        
+
+    
+    def calc_mean_of_mask(self, mask):
+        ys, xs = np.where(mask == 1)
+        cx = np.mean(xs)
+        cy = np.mean(ys)
+        return [cx, cy]
+    
 
     def preprocess(self, cv_image):
         # cv_image[0:20, 0:300, :] = 255
@@ -105,6 +140,7 @@ class YOLOv8InferenceNode(Node):
             h_units = self.received_img.shape[0] // 32
             input_img = self.received_img[0:(h_units * 32), 0:(w_units * 32), :]
             self.received_img = input_img
+
 
     def inference(self):
         start_time = time.perf_counter()
@@ -139,13 +175,15 @@ class YOLOv8InferenceNode(Node):
         # self.get_logger().info(f"\rInference FPS: {(1/(end_time - start_time)):.4f} FPS")
         return results
 
+
     def postprocess(self, results):
         boxes, masks, confs, classes = self.extract_output(results)
         boxes_bar, masks_bar, confs_bar, boxes_hooks, masks_hooks, boxes_tips, masks_tips, boxes_lowpoints, masks_lowpoints, confs_hooks, confs_tips, confs_lowpoints = self.split_outputs_by_class(boxes, masks, confs, classes)
         hooks_dict = self.create_hook_instances(boxes_hooks, masks_hooks, boxes_tips, masks_tips, boxes_lowpoints, masks_lowpoints, confs_hooks, confs_tips, confs_lowpoints)
         bar_dict = self.create_bar_instance(boxes_bar, masks_bar, confs_bar)
         return bar_dict, hooks_dict
-            
+
+
     def extract_output(self, results):
         res = results[0]
         if len(res.boxes.data.cpu().numpy()) != 0:
@@ -166,13 +204,16 @@ class YOLOv8InferenceNode(Node):
             masks = None
         return boxes, masks, confs, classes
 
+
     def calc_box_midpoint(self, box):
         return np.array([(box[0] + box[2]) / 2, (box[1] + box[3]) / 2])
+
 
     def box_distance(self, box1, box2):
         m1 = self.calc_box_midpoint(box1)
         m2 = self.calc_box_midpoint(box2)
         return abs(np.linalg.norm(m1, m2))
+
 
     def split_outputs_by_class(self, boxes, masks, confs, classes):
         if boxes is not None and masks is not None and confs is not None and classes is not None:
@@ -199,6 +240,7 @@ class YOLOv8InferenceNode(Node):
             return boxes_bar, masks_bar, confs_bar, boxes_hooks, masks_hooks, boxes_tips, masks_tips, boxes_lowpoints, masks_lowpoints, confs_hooks, confs_tips, confs_lowpoints
         else:
             return None, None, None, None, None, None, None, None, None, None, None, None
+
 
     def create_hook_instances(self, boxes_hooks, masks_hooks, 
                               boxes_tips, masks_tips, 
@@ -251,7 +293,12 @@ class YOLOv8InferenceNode(Node):
 
         # Sortiere das Dictionary nach der x1, y1 Koordinate der Bounding Box
         hooks_dict = dict(sorted(hooks_dict.items(), key=lambda item: (item[1]['hook_box'][0], item[1]['hook_box'][1])))
-        return hooks_dict
+
+        sorted_hooks_dict = {}
+        for idx, key in enumerate(hooks_dict):
+            sorted_hooks_dict['hook_' + str(idx + 1)] = hooks_dict[key]
+        return sorted_hooks_dict
+
 
     def create_bar_instance(self, boxes_bar, masks_bar, confs_bar):
         bar_dict = {}
@@ -277,8 +324,11 @@ class YOLOv8InferenceNode(Node):
                 }
         return bar_dict
 
-    def plot_hooks_and_bars(self, img_orig, hooks_dict, bar_dict):
-        img_copy = img_orig.copy()
+
+    def plot_hooks_and_bars(self):
+        hooks_dict = self.hooks_dict
+        bar_dict = self.bar_dict
+        img_copy = self.received_img.copy()
 
         # Bar (nur eine Instanz)
         if bar_dict['bar']['bar_box'] is not None:
@@ -346,6 +396,25 @@ class YOLOv8InferenceNode(Node):
                     img_copy = cv2.addWeighted(img_copy, 1, lowpoint_mask_color, 0.5, 0)
                     cv2.putText(img_copy, f"Lowpoint {idx+1} ({conf_lowpoint[0]:.2f})", (int(xl1), int(yl1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
         return img_copy
+
+
+    def plot_points(self):
+        img_copy = self.received_img.copy()
+
+        for idx, key in enumerate(self.hooks_dict_processed):
+            bb_hook = tuple(map(int, self.hooks_dict_processed[key]['hook_box']))
+
+            p_hook = tuple(map(int, self.hooks_dict_processed[key]['uv_hook']))
+            p_tip = tuple(map(int, self.hooks_dict_processed[key]['uv_tip']))
+            p_lowpoint = tuple(map(int, self.hooks_dict_processed[key]['uv_lowpoint']))
+
+            # cv2.rectangle(img_copy, (bb_hook[0], bb_hook[1]), (bb_hook[2], bb_hook[3]), (150, 150, 150), 2)
+
+            cv2.drawMarker(img_copy, p_hook, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
+            cv2.drawMarker(img_copy, p_tip, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
+            cv2.drawMarker(img_copy, p_lowpoint, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
+        return img_copy
+
 
 
 def main(args=None):

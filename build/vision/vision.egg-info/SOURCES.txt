@@ -20,6 +20,7 @@ vision/img_filters.py
 vision/maskrcnn_inference.py
 vision/point_finder_2d.py
 vision/point_finder_3d.py
+vision/process_nn_output.py
 vision/stereo_triangulation_with_robot.py
 vision/test_node.py
 vision/yolov8_inference.py
