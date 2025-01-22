@@ -110,19 +110,22 @@ class YOLOv8InferenceNode(Node):
 
     def prepare_hook_dict_for_topic_publish(self, hook_nr=1):
         key = 'hook_' + str(hook_nr)
-        hook_entry = self.hooks_dict_processed[key]
-        print(type(hook_entry['hook_box']))
-        print(type(hook_entry['hook_mask']))
-        print(type(hook_entry['conf_hook']))
-        print(type(hook_entry['tip_box']))
-        print(type(hook_entry['tip_mask']))
-        print(type(hook_entry['conf_tip']))
-        print(type(hook_entry['lowpoint_box']))
-        print(type(hook_entry['lowpoint_mask']))
-        print(type(hook_entry['conf_lowpoint']))
-        print(type(hook_entry['uv_hook']))
-        print(type(hook_entry['uv_tip']))
-        print(type(hook_entry['uv_lowpoint']))
+        if key in self.hooks_dict_processed:
+            hook_entry = self.hooks_dict_processed[key]
+            print(type(hook_entry['hook_box']))
+            print(type(hook_entry['hook_mask']))
+            print(type(hook_entry['conf_hook']))
+            print(type(hook_entry['tip_box']))
+            print(type(hook_entry['tip_mask']))
+            print(type(hook_entry['conf_tip']))
+            print(type(hook_entry['lowpoint_box']))
+            print(type(hook_entry['lowpoint_mask']))
+            print(type(hook_entry['conf_lowpoint']))
+            print(type(hook_entry['uv_hook']))
+            print(type(hook_entry['uv_tip']))
+            print(type(hook_entry['uv_lowpoint']))
+        else:
+            self.get_logger().warn(f"{key} not found!")
         
 
     def process_output_hooks_dict(self):
@@ -144,10 +147,11 @@ class YOLOv8InferenceNode(Node):
 
     
     def calc_mean_of_mask(self, mask):
-        ys, xs = np.where(mask == 1)
-        cx = np.mean(xs)
-        cy = np.mean(ys)
-        return [cx, cy]
+        if mask is not None:
+            ys, xs = np.where(mask == 1)
+            cx = np.mean(xs)
+            cy = np.mean(ys)
+            return [cx, cy]
     
 
     def preprocess(self, cv_image):
@@ -368,6 +372,7 @@ class YOLOv8InferenceNode(Node):
             cv2.putText(img_copy, f"Bar ({conf_bar:.2f})", (int(x1), int(y1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
 
         # Hooks (farblich segmentiert)
+        print(hooks_dict)
         if hooks_dict != {}:
             colors = plt.cm.get_cmap("tab20", len(hooks_dict))  # Farbpalette
             for idx, hook_name in enumerate(hooks_dict):
@@ -395,6 +400,7 @@ class YOLOv8InferenceNode(Node):
                 cv2.putText(img_copy, f"Hook {idx+1} ({conf_hook[0]:.2f})", (int(x1), int(y1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
 
                 # Bounding Box und Maske für Tip
+                print("TEST")
                 if tip_box is not None:
                     xt1, yt1, xt2, yt2 = tip_box
                     cv2.rectangle(img_copy, (int(xt1), int(yt1)), (int(xt2), int(yt2)), (color[0] * 255, color[1] * 255, color[2] * 255), 2)
@@ -420,17 +426,18 @@ class YOLOv8InferenceNode(Node):
         img_copy = self.received_img.copy()
 
         for idx, key in enumerate(self.hooks_dict_processed):
-            bb_hook = tuple(map(int, self.hooks_dict_processed[key]['hook_box']))
-
-            p_hook = tuple(map(int, self.hooks_dict_processed[key]['uv_hook']))
-            p_tip = tuple(map(int, self.hooks_dict_processed[key]['uv_tip']))
-            p_lowpoint = tuple(map(int, self.hooks_dict_processed[key]['uv_lowpoint']))
-
-            # cv2.rectangle(img_copy, (bb_hook[0], bb_hook[1]), (bb_hook[2], bb_hook[3]), (150, 150, 150), 2)
-
-            cv2.drawMarker(img_copy, p_hook, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
-            cv2.drawMarker(img_copy, p_tip, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
-            cv2.drawMarker(img_copy, p_lowpoint, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
+            if self.hooks_dict_processed[key]['hook_box'] is not None:
+                bb_hook = tuple(map(int, self.hooks_dict_processed[key]['hook_box']))
+                cv2.rectangle(img_copy, (bb_hook[0], bb_hook[1]), (bb_hook[2], bb_hook[3]), (150, 150, 150), 2)
+            if self.hooks_dict_processed[key]['uv_hook'] is not None:
+                p_hook = tuple(map(int, self.hooks_dict_processed[key]['uv_hook']))
+                cv2.drawMarker(img_copy, p_hook, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
+            if self.hooks_dict_processed[key]['uv_tip'] is not None:
+                p_tip = tuple(map(int, self.hooks_dict_processed[key]['uv_tip']))
+                cv2.drawMarker(img_copy, p_tip, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
+            if self.hooks_dict_processed[key]['uv_lowpoint'] is not None:
+                p_lowpoint = tuple(map(int, self.hooks_dict_processed[key]['uv_lowpoint']))
+                cv2.drawMarker(img_copy, p_lowpoint, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)  
         return img_copy
 
 
