@@ -1,5 +1,0 @@
-train: C:/Users/morit/Desktop/YoloV8_InstanceSeg/dataset\YOLOv8Dataset/train/images
-val: C:/Users/morit/Desktop/YoloV8_InstanceSeg/dataset\YOLOv8Dataset/val/images
-test: C:/Users/morit/Desktop/YoloV8_InstanceSeg/dataset\YOLOv8Dataset/test/images
-nc: 4
-names: ["bar", "hook", "tip", "lowpoint"]
