@@ -92,6 +92,7 @@ class YOLOv8InferenceNode(Node):
 
             self.bar_dict, self.hooks_dict = self.postprocess(results)
             self.process_output_hooks_dict()
+            self.prepare_hook_dict_for_topic_publish(hook_nr=1)
 
             # self.yolo_output_publisher_callback()
 
@@ -106,6 +107,23 @@ class YOLOv8InferenceNode(Node):
         except Exception as e:
             self.get_logger().error(f'Error in image processing: {e}')
 
+
+    def prepare_hook_dict_for_topic_publish(self, hook_nr=1):
+        key = 'hook_' + str(hook_nr)
+        hook_entry = self.hooks_dict_processed[key]
+        print(type(hook_entry['hook_box']))
+        print(type(hook_entry['hook_mask']))
+        print(type(hook_entry['conf_hook']))
+        print(type(hook_entry['tip_box']))
+        print(type(hook_entry['tip_mask']))
+        print(type(hook_entry['conf_tip']))
+        print(type(hook_entry['lowpoint_box']))
+        print(type(hook_entry['lowpoint_mask']))
+        print(type(hook_entry['conf_lowpoint']))
+        print(type(hook_entry['uv_hook']))
+        print(type(hook_entry['uv_tip']))
+        print(type(hook_entry['uv_lowpoint']))
+        
 
     def process_output_hooks_dict(self):
         self.hooks_dict_processed = self.hooks_dict.copy()
@@ -414,7 +432,6 @@ class YOLOv8InferenceNode(Node):
             cv2.drawMarker(img_copy, p_tip, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
             cv2.drawMarker(img_copy, p_lowpoint, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
         return img_copy
-
 
 
 def main(args=None):

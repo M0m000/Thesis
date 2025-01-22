@@ -1,0 +1,35 @@
+[1.687s] Invoking command in '/home/mo/Thesis/src/vision': PYTHONPATH=/home/mo/Thesis/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/mo/Thesis/build/vision/build install --record /home/mo/Thesis/build/vision/install.log --install-scripts $base/lib/vision --single-version-externally-managed install_data
+[1.984s] running egg_info
+[1.984s] writing ../../build/vision/vision.egg-info/PKG-INFO
+[1.985s] writing dependency_links to ../../build/vision/vision.egg-info/dependency_links.txt
+[1.985s] writing entry points to ../../build/vision/vision.egg-info/entry_points.txt
+[1.986s] writing requirements to ../../build/vision/vision.egg-info/requires.txt
+[1.986s] writing top-level names to ../../build/vision/vision.egg-info/top_level.txt
+[1.986s] reading manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[1.986s] writing manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[1.987s] running build
+[1.988s] running build_py
+[1.989s] copying vision/yolov8_inference.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[1.989s] running install
+[1.989s] running install_lib
+[1.989s] copying /home/mo/Thesis/build/vision/build/lib/vision/yolov8_inference.py -> /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision
+[1.989s] byte-compiling /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/yolov8_inference.py to yolov8_inference.cpython-38.pyc
+[1.989s] running install_data
+[1.989s] running install_egg_info
+[1.989s] removing '/home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision-0.0.0-py3.8.egg-info' (and everything under it)
+[1.990s] Copying ../../build/vision/vision.egg-info to /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision-0.0.0-py3.8.egg-info
+[1.990s] running install_scripts
+[1.990s] Installing calibration script to /home/mo/Thesis/install/vision/lib/vision
+[1.990s] Installing hook_detector script to /home/mo/Thesis/install/vision/lib/vision
+[1.990s] Installing image_filters script to /home/mo/Thesis/install/vision/lib/vision
+[1.990s] Installing image_receiver script to /home/mo/Thesis/install/vision/lib/vision
+[1.990s] Installing maskrcnn_inference script to /home/mo/Thesis/install/vision/lib/vision
+[1.990s] Installing point_finder_2d script to /home/mo/Thesis/install/vision/lib/vision
+[1.990s] Installing point_finder_3d script to /home/mo/Thesis/install/vision/lib/vision
+[1.990s] Installing process_nn_output script to /home/mo/Thesis/install/vision/lib/vision
+[1.990s] Installing stereo_triangulation script to /home/mo/Thesis/install/vision/lib/vision
+[1.992s] Installing stereo_triangulation_with_robot script to /home/mo/Thesis/install/vision/lib/vision
+[1.992s] Installing test_node script to /home/mo/Thesis/install/vision/lib/vision
+[1.992s] Installing yolov8_inference script to /home/mo/Thesis/install/vision/lib/vision
+[1.993s] writing list of installed files to '/home/mo/Thesis/build/vision/install.log'
+[2.014s] Invoked command in '/home/mo/Thesis/src/vision' returned '0': PYTHONPATH=/home/mo/Thesis/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/mo/Thesis/build/vision/build install --record /home/mo/Thesis/build/vision/install.log --install-scripts $base/lib/vision --single-version-externally-managed install_data
