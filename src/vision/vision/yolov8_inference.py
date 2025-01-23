@@ -31,6 +31,8 @@ class YOLOv8InferenceNode(Node):
         self.show_cam_img = self.get_parameter('show_cam_img').get_parameter_value().bool_value
         self.declare_parameter('show_output_img', True)
         self.show_output_img = self.get_parameter('show_output_img').get_parameter_value().bool_value
+        self.declare_parameter('show_point_img', True)
+        self.show_point_img = self.get_parameter('show_point_img').get_parameter_value().bool_value
         self.declare_parameter('publish_masks', True)
         self.publish_masks = self.get_parameter('publish_masks').get_parameter_value().bool_value
 
@@ -93,6 +95,7 @@ class YOLOv8InferenceNode(Node):
             self.preprocess(cv_image)
             results = self.inference()
             self.bar_dict, self.hooks_dict = self.postprocess(results)
+            self.process_output_hooks_dict()
 
             if self.show_cam_img:
                 cv2.imshow('VC Cam Img', self.received_img)
@@ -103,12 +106,60 @@ class YOLOv8InferenceNode(Node):
                 cv2.imshow('YoloV8 Output Img', self.output_img)
                 cv2.waitKey(1)
 
+            if self.show_point_img:
+                self.points_img = self.plot_points()
+                cv2.imshow('Point Output Img', self.points_img)
+                cv2.waitKey(1)
         except Exception as e:
             self.get_logger().error(f'Error in image processing: {e}')
 
+
+    def plot_points(self):
+        img_copy = self.received_img.copy()
+        for idx, key in enumerate(self.hooks_dict_processed):
+            if self.hooks_dict_processed[key]['hook_box'] is not None:
+                bb_hook = tuple(map(int, self.hooks_dict_processed[key]['hook_box']))
+                cv2.rectangle(img_copy, (bb_hook[0], bb_hook[1]), (bb_hook[2], bb_hook[3]), (150, 150, 150), 2)
+            if self.hooks_dict_processed[key]['uv_hook'] is not None:
+                p_hook = tuple(map(int, self.hooks_dict_processed[key]['uv_hook']))
+                cv2.drawMarker(img_copy, p_hook, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
+            if self.hooks_dict_processed[key]['uv_tip'] is not None:
+                p_tip = tuple(map(int, self.hooks_dict_processed[key]['uv_tip']))
+                cv2.drawMarker(img_copy, p_tip, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
+            if self.hooks_dict_processed[key]['uv_lowpoint'] is not None:
+                p_lowpoint = tuple(map(int, self.hooks_dict_processed[key]['uv_lowpoint']))
+                cv2.drawMarker(img_copy, p_lowpoint, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)  
+        return img_copy
     
-    def calc_mean_of_mask(self, mask):
-        if mask is not None:
+
+    def process_output_hooks_dict(self):
+        self.hooks_dict_processed = self.hooks_dict.copy()
+
+        for idx, key in enumerate(self.hooks_dict):
+            hook_mask = self.hooks_dict[key].get('hook_mask', [])
+            tip_mask = self.hooks_dict[key].get('tip_mask', [])
+            lowpoint_mask = self.hooks_dict[key].get('lowpoint_mask', [])
+
+            if hook_mask is not None and hook_mask != []:
+                uv_hook = self.calc_mean_of_mask(hook_mask, title='hook')
+            else:
+                uv_hook = None
+            if tip_mask is not None and tip_mask != []:
+                uv_tip = self.calc_mean_of_mask(tip_mask, title='tip')
+            else:
+                uv_tip = None
+            if lowpoint_mask is not None and lowpoint_mask != []:
+                uv_lowpoint = self.calc_mean_of_mask(lowpoint_mask, title='lowpoint')
+            else:
+                uv_lowpoint = None
+
+            self.hooks_dict_processed[key]['uv_hook'] = uv_hook
+            self.hooks_dict_processed[key]['uv_tip'] = uv_tip
+            self.hooks_dict_processed[key]['uv_lowpoint'] = uv_lowpoint
+
+    
+    def calc_mean_of_mask(self, mask, title='none'):
+        if mask is not None and mask != []:
             ys, xs = np.where(mask == 1)
             cx = np.mean(xs)
             cy = np.mean(ys)
@@ -388,17 +439,17 @@ class YOLOv8InferenceNode(Node):
         bridge = CvBridge()
 
         # Setze Hook Bounding Box
-        hook.hook_box = BoundingBox(
-            x_min=float(hook_data['hook_box'][0]),
-            y_min=float(hook_data['hook_box'][1]),
-            x_max=float(hook_data['hook_box'][2]),
-            y_max=float(hook_data['hook_box'][3])
-        )
-
-        # Setze Hook Mask als Image, falls verfügbar
-        if hook_data['hook_mask'] is not None and self.publish_masks:
-            hook.hook_mask = bridge.cv2_to_imgmsg(np.array(hook_data['hook_mask']), encoding="passthrough")
-        hook.conf_hook = float(hook_data['conf_hook'])
+        if hook_data['hook_box'] is not None:
+            hook.hook_box = BoundingBox(
+                x_min=float(hook_data['hook_box'][0]),
+                y_min=float(hook_data['hook_box'][1]),
+                x_max=float(hook_data['hook_box'][2]),
+                y_max=float(hook_data['hook_box'][3])
+            )
+            if hook_data['hook_mask'] is not None and self.publish_masks:
+                hook.hook_mask = bridge.cv2_to_imgmsg(np.array(hook_data['hook_mask']), encoding="32FC1")
+            hook.conf_hook = float(hook_data['conf_hook'])
+            hook.uv_hook = UV(data=[hook_data['uv_hook'][0], hook_data['uv_hook'][1]])
 
         # Setze Tip Box und Mask als Image, falls verfügbar
         if hook_data['tip_box'] is not None:
@@ -409,8 +460,9 @@ class YOLOv8InferenceNode(Node):
                 y_max=float(hook_data['tip_box'][3])
             )
             if hook_data['tip_mask'] is not None and self.publish_masks:
-                hook.tip_mask = bridge.cv2_to_imgmsg(np.array(hook_data['tip_mask']), encoding="passthrough")
+                hook.tip_mask = bridge.cv2_to_imgmsg(np.array(hook_data['tip_mask']), encoding="32FC1")
             hook.conf_tip = float(hook_data['conf_tip'])
+            hook.uv_tip = UV(data=[hook_data['uv_tip'][0], hook_data['uv_tip'][1]])
 
         # Setze Lowpoint Box und Mask als Image, falls verfügbar
         if hook_data['lowpoint_box'] is not None:
@@ -421,29 +473,23 @@ class YOLOv8InferenceNode(Node):
                 y_max=float(hook_data['lowpoint_box'][3])
             )
             if hook_data['lowpoint_mask'] is not None and self.publish_masks:
-                hook.lowpoint_mask = bridge.cv2_to_imgmsg(np.array(hook_data['lowpoint_mask']), encoding="passthrough")
+                hook.lowpoint_mask = bridge.cv2_to_imgmsg(np.array(hook_data['lowpoint_mask']), encoding="32FC1")
             hook.conf_lowpoint = float(hook_data['conf_lowpoint'])
-
-        # UV-Daten initialisieren
-        hook.uv_hook = UV(data=[])
-        hook.uv_tip = UV(data=[])
-        hook.uv_lowpoint = UV(data=[])
+            hook.uv_lowpoint = UV(data=[hook_data['uv_lowpoint'][0], hook_data['uv_lowpoint'][1]])
         return hook
-
 
 
     def publish_hooks_dict(self):
         # starttime = time.perf_counter()
-        msg = HookData()
 
-        if self.hooks_dict:
-            with ThreadPoolExecutor() as executor:
-                results = executor.map(
-                    lambda item: self.process_hook(item[0], item[1]),
-                    self.hooks_dict.items()
-                )
-                msg.hooks.extend(results)
-            self.hooks_dict_publisher_.publish(msg)
+        msg = HookData()
+        with ThreadPoolExecutor() as executor:
+            results = executor.map(
+                lambda item: self.process_hook(item[0], item[1]),
+                self.hooks_dict_processed.items()
+            )
+            msg.hooks.extend(results)
+        self.hooks_dict_publisher_.publish(msg) 
 
         # endtime = time.perf_counter()
         # self.get_logger().info(f"Execution time: {endtime - starttime} seconds")
@@ -452,9 +498,7 @@ class YOLOv8InferenceNode(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-
     node = YOLOv8InferenceNode()
-
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:

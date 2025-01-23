@@ -1,1 +1,0 @@
-/home/mo/Thesis/src/bt_pkg/setup.py
