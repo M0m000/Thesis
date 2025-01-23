@@ -1,4 +1,1 @@
-######################################################
-#                   RESUME MOVE                      #
-######################################################
-
+/home/mo/Thesis/build/kr_msgs/rosidl_cmake/srv/motion/TerminateMotion_Request.msg

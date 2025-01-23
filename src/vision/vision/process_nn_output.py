@@ -20,9 +20,9 @@ class ProcessNNOutputNode(Node):
 
         self.declare_parameter('print_output_dict', True)
         self.print_output_dict = self.get_parameter('print_output_dict').get_parameter_value().bool_value
-        self.declare_parameter('bar_dict_topic', 'yolov8_out/bar_dict')
+        self.declare_parameter('bar_dict_topic', 'yolov8_output/bar_dict')
         self.bar_dict_topic = self.get_parameter('bar_dict_topic').get_parameter_value().string_value
-        self.declare_parameter('hooks_dict_topic', 'yolov8_out/hooks_dict')
+        self.declare_parameter('hooks_dict_topic', 'yolov8_output/hooks_dict')
         self.hooks_dict_topic = self.get_parameter('hooks_dict_topic').get_parameter_value().string_value
 
         # Subscriber auf NN Output Dicts
@@ -30,6 +30,8 @@ class ProcessNNOutputNode(Node):
         self.bar_dict_subscription
         self.hooks_dict_subscription = self.create_subscription(Image, 'yolov8_out/hooks_dict', self.output_hooks_dict_received_callback, 10)
         self.hooks_dict_subscription
+        self.subscription = self.create_subscription(Image, 'vcnanoz/image_raw', self.image_callback, 1)
+        self.subscription
 
         self.bar_dict_publisher = self.create_publisher(dict, 'yolov8_out/bar_dict_processed', 10)
         self.hook_dict_publisher = self.create_publisher(dict, 'yolov8_out/hooks_dict_processed', 10)
@@ -41,7 +43,17 @@ class ProcessNNOutputNode(Node):
         self.bar_dict_processed = {}
         self.hooks_dict = {}
         self.hooks_dict_processed = {}
+        
+        self.points_img = None
+        self.received_img = None
+    
 
+    def image_callback(self, msg):
+        try:
+            self.received_img = self.bridge.imgmsg_to_cv2(msg, desired_encoding='passthrough')
+        except Exception as e:
+            self.get_logger().error(f'Error in image preprocessing: {e}')
+    
     
     def deserialize_json_string(self, msg):
         try:
@@ -52,30 +64,35 @@ class ProcessNNOutputNode(Node):
 
     
     def output_bar_dict_received_callback(self, msg):
-        self.bar_dict = self.deserialize_json_string(msg)
-        self.get_logger().info("Deserialization of JSON bar dict string successful!")
+        self.bar_dict = msg
     
 
     def output_hooks_dict_received_callback(self, msg):
-        self.hooks_dict = self.deserialize_json_string(msg)
-        self.get_logger().info("Deserialization of JSON hooks dict string successful!")
-        self.process_output_dict()
+        self.hooks_dict = msg
+        self.process_output_hooks_dict()
+        print(self.hooks_dict)
         
         if self.show_plot:
-            self.plot_points(self.hooks_dict_processed)
+            self.points_img = self.plot_points()
+            cv2.imshow('Points in Output', self.points_img)
+            cv2.waitKey(1)
 
 
-    def process_output_dict(self):
-        self.hooks_dict_processed = self.hooks_dict
+    def process_output_hooks_dict(self):
+        self.hooks_dict_processed = self.hooks_dict.copy()
 
         for idx, key in enumerate(self.hooks_dict):
-            hook_mask = self.hooks_dict[key]['hook_mask']
-            tip_mask = self.hooks_dict[key]['tip_mask']
-            lowpoint_mask = self.hooks_dict[key]['lowpoint_mask']
+            hook_mask = self.hooks_dict[key].get('hook_mask', [])
+            tip_mask = self.hooks_dict[key].get('tip_mask', [])
+            lowpoint_mask = self.hooks_dict[key].get('lowpoint_mask', [])
 
-            self.hooks_dict_processed[key]['uv_hook'] = self.calc_mean_of_mask(hook_mask)
-            self.hooks_dict_processed[key]['uv_tip'] = self.calc_mean_of_mask(tip_mask)
-            self.hooks_dict_processed[key]['uv_lowpoint'] = self.calc_mean_of_mask(lowpoint_mask)
+            uv_hook = self.calc_mean_of_mask(hook_mask)
+            uv_tip = self.calc_mean_of_mask(tip_mask)
+            uv_lowpoint = self.calc_mean_of_mask(lowpoint_mask)
+
+            self.hooks_dict_processed[key]['uv_hook'] = uv_hook
+            self.hooks_dict_processed[key]['uv_tip'] = uv_tip
+            self.hooks_dict_processed[key]['uv_lowpoint'] = uv_lowpoint
 
     
     def calc_mean_of_mask(self, mask):
@@ -85,37 +102,22 @@ class ProcessNNOutputNode(Node):
         return [cx, cy]
     
 
-    def plot_points(img, hook_dict):
-        img_copy = img.copy()
-        bb_hook = tuple(map(int, hook_dict['hook_box']))
-
-        p_hook = tuple(map(int, hook_dict['uv_hook']))
-        p_tip = tuple(map(int, hook_dict['uv_tip']))
-        p_lowpoint = tuple(map(int, hook_dict['uv_lowpoint']))
-
-        p_hook_bb = tuple(map(int, hook_dict['uv_hook_bb']))
-        p_tip_bb = tuple(map(int, hook_dict['uv_tip_bb']))
-        p_lowpoint_bb = tuple(map(int, hook_dict['uv_lowpoint_bb']))
-
-        p_hook_km = tuple(map(int, hook_dict['uv_hook_km']))
-        p_tip_km = tuple(map(int, hook_dict['uv_tip_km']))
-        p_lowpoint_km = tuple(map(int, hook_dict['uv_lowpoint_km']))
-
-        cv2.rectangle(img_copy, (bb_hook[0], bb_hook[1]), (bb_hook[2], bb_hook[3]), (150, 150, 150), 2)
-
-        cv2.drawMarker(img_copy, p_hook, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
-        cv2.drawMarker(img_copy, p_tip, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
-        cv2.drawMarker(img_copy, p_lowpoint, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
-
-        cv2.drawMarker(img_copy, p_hook_bb, color=(255, 0, 0), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
-        cv2.drawMarker(img_copy, p_tip_bb, color=(255, 0, 0), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
-        cv2.drawMarker(img_copy, p_lowpoint_bb, color=(255, 0, 0), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
-
-        #cv2.drawMarker(img_copy, p_hook_km, color=(0, 255, 0), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
-        #cv2.drawMarker(img_copy, p_tip_km, color=(0, 255, 0), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
-        #cv2.drawMarker(img_copy, p_lowpoint_km, color=(0, 255, 0), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
-        cv2.imshow(img_copy)
-        cv2.waitKey(1)
+    def plot_points(self):
+        img_copy = self.received_img.copy()
+        for idx, key in enumerate(self.hooks_dict_processed):
+            if self.hooks_dict_processed[key]['hook_box'] is not None:
+                bb_hook = tuple(map(int, self.hooks_dict_processed[key]['hook_box']))
+                cv2.rectangle(img_copy, (bb_hook[0], bb_hook[1]), (bb_hook[2], bb_hook[3]), (150, 150, 150), 2)
+            if self.hooks_dict_processed[key]['uv_hook'] is not None:
+                p_hook = tuple(map(int, self.hooks_dict_processed[key]['uv_hook']))
+                cv2.drawMarker(img_copy, p_hook, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
+            if self.hooks_dict_processed[key]['uv_tip'] is not None:
+                p_tip = tuple(map(int, self.hooks_dict_processed[key]['uv_tip']))
+                cv2.drawMarker(img_copy, p_tip, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
+            if self.hooks_dict_processed[key]['uv_lowpoint'] is not None:
+                p_lowpoint = tuple(map(int, self.hooks_dict_processed[key]['uv_lowpoint']))
+                cv2.drawMarker(img_copy, p_lowpoint, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)  
+        return img_copy
 
 
     def publisher_callback(self):
@@ -131,7 +133,6 @@ class ProcessNNOutputNode(Node):
             msg_hooks.data = hooks_dict_string
             self.hooks_dict_publisher._publish(msg_hooks)
             self.get_logger().info("Output -> Hooks Dict Processed published...")
-
 
 
 def main(args=None):

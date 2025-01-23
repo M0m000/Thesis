@@ -1,0 +1,12 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from action_interfaces/msg/UV.msg
+// generated code does not contain a copyright notice
+
+
+module action_interfaces {
+  module msg {
+    struct UV {
+      sequence<float> data;
+    };
+  };
+};

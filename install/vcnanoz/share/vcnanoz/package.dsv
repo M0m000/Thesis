@@ -4,3 +4,6 @@ source;share/vcnanoz/hook/pythonpath.sh
 source;share/vcnanoz/hook/ament_prefix_path.ps1
 source;share/vcnanoz/hook/ament_prefix_path.dsv
 source;share/vcnanoz/hook/ament_prefix_path.sh
+source;../../build/vcnanoz/share/vcnanoz/hook/pythonpath_develop.ps1
+source;../../build/vcnanoz/share/vcnanoz/hook/pythonpath_develop.dsv
+source;../../build/vcnanoz/share/vcnanoz/hook/pythonpath_develop.sh

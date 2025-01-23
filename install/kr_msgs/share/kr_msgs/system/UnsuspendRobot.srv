@@ -1,6 +1,1 @@
-######################################################
-#                 UNSUSPEND ROBOT                    #
-######################################################
-
----
-bool       success
+/home/mo/Thesis/src/orange-ros2/kr_msgs/srv/system/UnsuspendRobot.srv

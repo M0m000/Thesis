@@ -1,9 +1,1 @@
-######################################################
-#                    ROBOT MODE                      #
-######################################################
-
-int8 MANUAL=0      # controlled by user
-int8 AUTONOMOUS=1  # controlled by program
-
-int8       val     # [MANUAL, AUTONOMOUS]
-string     str     # string representation
+/home/mo/Thesis/src/orange-ros2/kr_msgs/msg/RobotMode.msg

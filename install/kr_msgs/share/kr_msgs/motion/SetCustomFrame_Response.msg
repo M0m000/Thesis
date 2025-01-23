@@ -1,2 +1,1 @@
-
-bool       success
+/home/mo/Thesis/build/kr_msgs/rosidl_cmake/srv/motion/SetCustomFrame_Response.msg

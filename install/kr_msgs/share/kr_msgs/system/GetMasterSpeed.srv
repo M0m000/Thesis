@@ -1,7 +1,1 @@
-######################################################
-#                   GET MASTER SPEED                 #
-######################################################
-
----
-float64    speed    # master speed (0 < speed <= 1)
-bool       success
+/home/mo/Thesis/src/orange-ros2/kr_msgs/srv/system/GetMasterSpeed.srv

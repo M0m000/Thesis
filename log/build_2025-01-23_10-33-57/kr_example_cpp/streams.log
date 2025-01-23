@@ -1,0 +1,87 @@
+[0.018s] Invoking command in '/home/mo/Thesis/build/kr_example_cpp': CMAKE_PREFIX_PATH=/home/mo/Thesis/install/kr_msgs:/home/mo/Thesis/install/kr_example_cpp:/home/mo/Thesis/install/action_interfaces:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/bt_pkg:/home/mo/Thesis/install/action_servers:/opt/ros/foxy PYTHONPATH=/home/mo/Thesis/install/kr_msgs/lib/python3.8/site-packages:/home/mo/Thesis/build/vision:/home/mo/Thesis/build/vcnanoz:/home/mo/Thesis/build/sensopart_visor:/home/mo/Thesis/build/robot_control:/home/mo/Thesis/build/kr_example_python:/home/mo/Thesis/build/bt_pkg:/home/mo/Thesis/build/action_servers:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:/home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages:/home/mo/Thesis/install/sensopart_visor/lib/python3.8/site-packages:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages:/home/mo/Thesis/install/bt_pkg/lib/python3.8/site-packages:/home/mo/Thesis/install/action_servers/lib/python3.8/site-packages:/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/cmake /home/mo/Thesis/src/orange-ros2/kr_example/cpp -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/mo/Thesis/install/kr_example_cpp
+[0.076s] -- The C compiler identification is GNU 9.4.0
+[0.126s] -- The CXX compiler identification is GNU 9.4.0
+[0.131s] -- Check for working C compiler: /usr/bin/cc
+[0.197s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.198s] -- Detecting C compiler ABI info
+[0.271s] -- Detecting C compiler ABI info - done
+[0.280s] -- Detecting C compile features
+[0.280s] -- Detecting C compile features - done
+[0.282s] -- Check for working CXX compiler: /usr/bin/c++
+[0.364s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.365s] -- Detecting CXX compiler ABI info
+[0.446s] -- Detecting CXX compiler ABI info - done
+[0.459s] -- Detecting CXX compile features
+[0.460s] -- Detecting CXX compile features - done
+[0.462s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.496s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.496s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.680s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.713s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.759s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.766s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.858s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[0.893s] -- Found FastRTPS: /opt/ros/foxy/include  
+[0.974s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.024s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[1.025s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[1.026s] -- Looking for pthread.h
+[1.099s] -- Looking for pthread.h - found
+[1.099s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[1.175s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[1.175s] -- Looking for pthread_create in pthreads
+[1.235s] -- Looking for pthread_create in pthreads - not found
+[1.235s] -- Looking for pthread_create in pthread
+[1.310s] -- Looking for pthread_create in pthread - found
+[1.311s] -- Found Threads: TRUE  
+[1.465s] -- Found kr_msgs: 0.0.0 (/home/mo/Thesis/install/kr_msgs/share/kr_msgs/cmake)
+[1.627s] -- Configuring done
+[1.648s] -- Generating done
+[1.656s] -- Build files have been written to: /home/mo/Thesis/build/kr_example_cpp
+[1.664s] Invoked command in '/home/mo/Thesis/build/kr_example_cpp' returned '0': CMAKE_PREFIX_PATH=/home/mo/Thesis/install/kr_msgs:/home/mo/Thesis/install/kr_example_cpp:/home/mo/Thesis/install/action_interfaces:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/bt_pkg:/home/mo/Thesis/install/action_servers:/opt/ros/foxy PYTHONPATH=/home/mo/Thesis/install/kr_msgs/lib/python3.8/site-packages:/home/mo/Thesis/build/vision:/home/mo/Thesis/build/vcnanoz:/home/mo/Thesis/build/sensopart_visor:/home/mo/Thesis/build/robot_control:/home/mo/Thesis/build/kr_example_python:/home/mo/Thesis/build/bt_pkg:/home/mo/Thesis/build/action_servers:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:/home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages:/home/mo/Thesis/install/sensopart_visor/lib/python3.8/site-packages:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages:/home/mo/Thesis/install/bt_pkg/lib/python3.8/site-packages:/home/mo/Thesis/install/action_servers/lib/python3.8/site-packages:/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/cmake /home/mo/Thesis/src/orange-ros2/kr_example/cpp -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/mo/Thesis/install/kr_example_cpp
+[1.667s] Invoking command in '/home/mo/Thesis/build/kr_example_cpp': CMAKE_PREFIX_PATH=/home/mo/Thesis/install/kr_msgs:/home/mo/Thesis/install/kr_example_cpp:/home/mo/Thesis/install/action_interfaces:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/bt_pkg:/home/mo/Thesis/install/action_servers:/opt/ros/foxy PYTHONPATH=/home/mo/Thesis/install/kr_msgs/lib/python3.8/site-packages:/home/mo/Thesis/build/vision:/home/mo/Thesis/build/vcnanoz:/home/mo/Thesis/build/sensopart_visor:/home/mo/Thesis/build/robot_control:/home/mo/Thesis/build/kr_example_python:/home/mo/Thesis/build/bt_pkg:/home/mo/Thesis/build/action_servers:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:/home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages:/home/mo/Thesis/install/sensopart_visor/lib/python3.8/site-packages:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages:/home/mo/Thesis/install/bt_pkg/lib/python3.8/site-packages:/home/mo/Thesis/install/action_servers/lib/python3.8/site-packages:/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/cmake --build /home/mo/Thesis/build/kr_example_cpp -- -j16 -l16
+[1.713s] [35m[1mScanning dependencies of target jog_linear[0m
+[1.714s] [35m[1mScanning dependencies of target follow_joint[0m
+[1.714s] [35m[1mScanning dependencies of target move_joint[0m
+[1.714s] [35m[1mScanning dependencies of target self_motion[0m
+[1.714s] [35m[1mScanning dependencies of target robot_state[0m
+[1.759s] [ 10%] [32mBuilding CXX object CMakeFiles/jog_linear.dir/src/jog_linear.cpp.o[0m
+[1.760s] [ 20%] [32mBuilding CXX object CMakeFiles/follow_joint.dir/src/follow_joint.cpp.o[0m
+[1.761s] [ 30%] [32mBuilding CXX object CMakeFiles/robot_state.dir/src/robot_state.cpp.o[0m
+[1.767s] [ 40%] [32mBuilding CXX object CMakeFiles/move_joint.dir/src/move_joint.cpp.o[0m
+[1.774s] [ 50%] [32mBuilding CXX object CMakeFiles/self_motion.dir/src/self_motion.cpp.o[0m
+[4.139s] [ 60%] [32m[1mLinking CXX executable move_joint[0m
+[4.274s] [ 60%] Built target move_joint
+[4.627s] [ 70%] [32m[1mLinking CXX executable follow_joint[0m
+[4.667s] [ 80%] [32m[1mLinking CXX executable self_motion[0m
+[4.785s] [ 80%] Built target follow_joint
+[4.813s] [ 80%] Built target self_motion
+[4.975s] [ 90%] [32m[1mLinking CXX executable jog_linear[0m
+[5.134s] [ 90%] Built target jog_linear
+[5.915s] [100%] [32m[1mLinking CXX executable robot_state[0m
+[6.116s] [100%] Built target robot_state
+[6.127s] Invoked command in '/home/mo/Thesis/build/kr_example_cpp' returned '0': CMAKE_PREFIX_PATH=/home/mo/Thesis/install/kr_msgs:/home/mo/Thesis/install/kr_example_cpp:/home/mo/Thesis/install/action_interfaces:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/bt_pkg:/home/mo/Thesis/install/action_servers:/opt/ros/foxy PYTHONPATH=/home/mo/Thesis/install/kr_msgs/lib/python3.8/site-packages:/home/mo/Thesis/build/vision:/home/mo/Thesis/build/vcnanoz:/home/mo/Thesis/build/sensopart_visor:/home/mo/Thesis/build/robot_control:/home/mo/Thesis/build/kr_example_python:/home/mo/Thesis/build/bt_pkg:/home/mo/Thesis/build/action_servers:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:/home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages:/home/mo/Thesis/install/sensopart_visor/lib/python3.8/site-packages:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages:/home/mo/Thesis/install/bt_pkg/lib/python3.8/site-packages:/home/mo/Thesis/install/action_servers/lib/python3.8/site-packages:/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/cmake --build /home/mo/Thesis/build/kr_example_cpp -- -j16 -l16
+[6.129s] Invoking command in '/home/mo/Thesis/build/kr_example_cpp': CMAKE_PREFIX_PATH=/home/mo/Thesis/install/kr_msgs:/home/mo/Thesis/install/kr_example_cpp:/home/mo/Thesis/install/action_interfaces:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/bt_pkg:/home/mo/Thesis/install/action_servers:/opt/ros/foxy PYTHONPATH=/home/mo/Thesis/install/kr_msgs/lib/python3.8/site-packages:/home/mo/Thesis/build/vision:/home/mo/Thesis/build/vcnanoz:/home/mo/Thesis/build/sensopart_visor:/home/mo/Thesis/build/robot_control:/home/mo/Thesis/build/kr_example_python:/home/mo/Thesis/build/bt_pkg:/home/mo/Thesis/build/action_servers:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:/home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages:/home/mo/Thesis/install/sensopart_visor/lib/python3.8/site-packages:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages:/home/mo/Thesis/install/bt_pkg/lib/python3.8/site-packages:/home/mo/Thesis/install/action_servers/lib/python3.8/site-packages:/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/cmake --install /home/mo/Thesis/build/kr_example_cpp
+[6.138s] -- Install configuration: ""
+[6.138s] -- Execute custom install script
+[6.139s] -- Symlinking: /home/mo/Thesis/install/kr_example_cpp/lib/kr_example_cpp/robot_state
+[6.148s] -- Symlinking: /home/mo/Thesis/install/kr_example_cpp/lib/kr_example_cpp/follow_joint
+[6.166s] -- Symlinking: /home/mo/Thesis/install/kr_example_cpp/lib/kr_example_cpp/move_joint
+[6.174s] -- Symlinking: /home/mo/Thesis/install/kr_example_cpp/lib/kr_example_cpp/jog_linear
+[6.182s] -- Symlinking: /home/mo/Thesis/install/kr_example_cpp/lib/kr_example_cpp/self_motion
+[6.190s] -- Symlinking: /home/mo/Thesis/install/kr_example_cpp/share/ament_index/resource_index/package_run_dependencies/kr_example_cpp
+[6.198s] -- Symlinking: /home/mo/Thesis/install/kr_example_cpp/share/ament_index/resource_index/parent_prefix_path/kr_example_cpp
+[6.212s] -- Symlinking: /home/mo/Thesis/install/kr_example_cpp/share/kr_example_cpp/environment/ament_prefix_path.sh
+[6.230s] -- Symlinking: /home/mo/Thesis/install/kr_example_cpp/share/kr_example_cpp/environment/ament_prefix_path.dsv
+[6.238s] -- Symlinking: /home/mo/Thesis/install/kr_example_cpp/share/kr_example_cpp/environment/path.sh
+[6.246s] -- Symlinking: /home/mo/Thesis/install/kr_example_cpp/share/kr_example_cpp/environment/path.dsv
+[6.254s] -- Symlinking: /home/mo/Thesis/install/kr_example_cpp/share/kr_example_cpp/local_setup.bash
+[6.261s] -- Symlinking: /home/mo/Thesis/install/kr_example_cpp/share/kr_example_cpp/local_setup.sh
+[6.269s] -- Symlinking: /home/mo/Thesis/install/kr_example_cpp/share/kr_example_cpp/local_setup.zsh
+[6.277s] -- Symlinking: /home/mo/Thesis/install/kr_example_cpp/share/kr_example_cpp/local_setup.dsv
+[6.286s] -- Symlinking: /home/mo/Thesis/install/kr_example_cpp/share/kr_example_cpp/package.dsv
+[6.295s] -- Symlinking: /home/mo/Thesis/install/kr_example_cpp/share/ament_index/resource_index/packages/kr_example_cpp
+[6.304s] -- Symlinking: /home/mo/Thesis/install/kr_example_cpp/share/kr_example_cpp/cmake/kr_example_cppConfig.cmake
+[6.312s] -- Symlinking: /home/mo/Thesis/install/kr_example_cpp/share/kr_example_cpp/cmake/kr_example_cppConfig-version.cmake
+[6.321s] -- Symlinking: /home/mo/Thesis/install/kr_example_cpp/share/kr_example_cpp/package.xml
+[6.338s] Invoked command in '/home/mo/Thesis/build/kr_example_cpp' returned '0': CMAKE_PREFIX_PATH=/home/mo/Thesis/install/kr_msgs:/home/mo/Thesis/install/kr_example_cpp:/home/mo/Thesis/install/action_interfaces:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/bt_pkg:/home/mo/Thesis/install/action_servers:/opt/ros/foxy PYTHONPATH=/home/mo/Thesis/install/kr_msgs/lib/python3.8/site-packages:/home/mo/Thesis/build/vision:/home/mo/Thesis/build/vcnanoz:/home/mo/Thesis/build/sensopart_visor:/home/mo/Thesis/build/robot_control:/home/mo/Thesis/build/kr_example_python:/home/mo/Thesis/build/bt_pkg:/home/mo/Thesis/build/action_servers:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:/home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages:/home/mo/Thesis/install/sensopart_visor/lib/python3.8/site-packages:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages:/home/mo/Thesis/install/bt_pkg/lib/python3.8/site-packages:/home/mo/Thesis/install/action_servers/lib/python3.8/site-packages:/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/cmake --install /home/mo/Thesis/build/kr_example_cpp

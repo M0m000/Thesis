@@ -1,2 +1,0 @@
-Invoking command in '/home/mo/Thesis/build/kr_msgs': /usr/bin/cmake /home/mo/Thesis/src/orange-ros2/kr_msgs -DCMAKE_INSTALL_PREFIX=/home/mo/Thesis/install/kr_msgs
-Invoked command in '/home/mo/Thesis/build/kr_msgs' returned '1': /usr/bin/cmake /home/mo/Thesis/src/orange-ros2/kr_msgs -DCMAKE_INSTALL_PREFIX=/home/mo/Thesis/install/kr_msgs

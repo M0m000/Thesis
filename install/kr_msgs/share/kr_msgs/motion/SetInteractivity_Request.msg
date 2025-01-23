@@ -1,5 +1,1 @@
-######################################################
-#                 SET INTERACTIVITY                  #
-######################################################
-
-bool       enable  
+/home/mo/Thesis/build/kr_msgs/rosidl_cmake/srv/motion/SetInteractivity_Request.msg

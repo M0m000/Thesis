@@ -1,3 +1,1 @@
-
-float32    value    
-bool       success
+/home/mo/Thesis/build/kr_msgs/rosidl_cmake/srv/io/GetAnalogInput_Response.msg

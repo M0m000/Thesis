@@ -2,3 +2,11 @@ action/Fibonacci.action
 action/Fibonacci.idl
 action/MoveTcpAlongAxis.action
 action/MoveTcpAlongAxis.idl
+msg/BoundingBox.idl
+msg/BoundingBox.msg
+msg/Hook.idl
+msg/Hook.msg
+msg/HookData.idl
+msg/HookData.msg
+msg/UV.idl
+msg/UV.msg

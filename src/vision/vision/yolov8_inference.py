@@ -12,7 +12,9 @@ import os
 import sys
 import matplotlib.pyplot as plt
 import json
-from vision.msg import HookData, Hook, BoundingBox, Mask
+from action_interfaces.msg import HookData, Hook, BoundingBox, UV
+from concurrent.futures import ThreadPoolExecutor
+
 
 
 class YOLOv8InferenceNode(Node):
@@ -29,6 +31,8 @@ class YOLOv8InferenceNode(Node):
         self.show_cam_img = self.get_parameter('show_cam_img').get_parameter_value().bool_value
         self.declare_parameter('show_output_img', True)
         self.show_output_img = self.get_parameter('show_output_img').get_parameter_value().bool_value
+        self.declare_parameter('publish_masks', True)
+        self.publish_masks = self.get_parameter('publish_masks').get_parameter_value().bool_value
 
         # Subscriber auf VC Cam
         self.subscription = self.create_subscription(
@@ -40,7 +44,7 @@ class YOLOv8InferenceNode(Node):
         self.subscription
 
         self.hooks_dict_publisher_ = self.create_publisher(HookData, 'yolov8_output/hooks_dict', 10)
-        self.timer = self.create_timer(0.01, self.publish_hooks)
+        self.timer = self.create_timer(0.01, self.publish_hooks_dict)
 
         self.bridge = CvBridge()
         self.received_img = None
@@ -67,7 +71,7 @@ class YOLOv8InferenceNode(Node):
         if torch.cuda.is_available():
             self.inference_device = "cuda"
 
-            # Begrenze prozessspezifischen Speicher auf 60%
+            # Begrenze Speicher auf 60%
             torch.cuda.set_per_process_memory_fraction(0.6, 0)
 
             # Begrenzung der Speicherwachstumsstrategie aktivieren
@@ -87,67 +91,20 @@ class YOLOv8InferenceNode(Node):
         try:
             cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='passthrough')
             self.preprocess(cv_image)
+            results = self.inference()
+            self.bar_dict, self.hooks_dict = self.postprocess(results)
 
             if self.show_cam_img:
                 cv2.imshow('VC Cam Img', self.received_img)
                 cv2.waitKey(1)
 
-            results = self.inference()
-
-            self.bar_dict, self.hooks_dict = self.postprocess(results)
-            self.process_output_hooks_dict()
-            self.prepare_hook_dict_for_topic_publish(hook_nr=1)
-
-            # self.yolo_output_publisher_callback()
-
             if self.show_output_img:
                 self.output_img = self.plot_hooks_and_bars()
-                self.points_img = self.plot_points()
                 cv2.imshow('YoloV8 Output Img', self.output_img)
-                cv2.waitKey(1)
-                cv2.imshow('Points in Output', self.points_img)
                 cv2.waitKey(1)
 
         except Exception as e:
             self.get_logger().error(f'Error in image processing: {e}')
-
-
-    def prepare_hook_dict_for_topic_publish(self, hook_nr=1):
-        key = 'hook_' + str(hook_nr)
-        if key in self.hooks_dict_processed:
-            hook_entry = self.hooks_dict_processed[key]
-            print(type(hook_entry['hook_box']))
-            print(type(hook_entry['hook_mask']))
-            print(type(hook_entry['conf_hook']))
-            print(type(hook_entry['tip_box']))
-            print(type(hook_entry['tip_mask']))
-            print(type(hook_entry['conf_tip']))
-            print(type(hook_entry['lowpoint_box']))
-            print(type(hook_entry['lowpoint_mask']))
-            print(type(hook_entry['conf_lowpoint']))
-            print(type(hook_entry['uv_hook']))
-            print(type(hook_entry['uv_tip']))
-            print(type(hook_entry['uv_lowpoint']))
-        else:
-            self.get_logger().warn(f"{key} not found!")
-        
-
-    def process_output_hooks_dict(self):
-        self.hooks_dict_processed = self.hooks_dict.copy()
-
-        for idx, key in enumerate(self.hooks_dict):
-            hook_mask = self.hooks_dict[key].get('hook_mask', [])
-            tip_mask = self.hooks_dict[key].get('tip_mask', [])
-            lowpoint_mask = self.hooks_dict[key].get('lowpoint_mask', [])
-
-            uv_hook = self.calc_mean_of_mask(hook_mask)
-            uv_tip = self.calc_mean_of_mask(tip_mask)
-            uv_lowpoint = self.calc_mean_of_mask(lowpoint_mask)
-
-            self.hooks_dict_processed[key]['uv_hook'] = uv_hook
-            self.hooks_dict_processed[key]['uv_tip'] = uv_tip
-            self.hooks_dict_processed[key]['uv_lowpoint'] = uv_lowpoint
-        
 
     
     def calc_mean_of_mask(self, mask):
@@ -305,6 +262,7 @@ class YOLOv8InferenceNode(Node):
                     box_lowpoint, mask_lowpoint, conf_lowpoint = None, None, None
 
                 # Ergebnis für den aktuellen Haken zusammenstellen
+
                 hooks_dict[f"hook_{i + 1}"] = {
                     "hook_box": box_hook,
                     "hook_mask": masks_hooks[i],
@@ -422,71 +380,74 @@ class YOLOv8InferenceNode(Node):
                     img_copy = cv2.addWeighted(img_copy, 1, lowpoint_mask_color, 0.5, 0)
                     cv2.putText(img_copy, f"Lowpoint {idx+1} ({conf_lowpoint[0]:.2f})", (int(xl1), int(yl1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
         return img_copy
-
-
-    def plot_points(self):
-        img_copy = self.received_img.copy()
-
-        for idx, key in enumerate(self.hooks_dict_processed):
-            if self.hooks_dict_processed[key]['hook_box'] is not None:
-                bb_hook = tuple(map(int, self.hooks_dict_processed[key]['hook_box']))
-                cv2.rectangle(img_copy, (bb_hook[0], bb_hook[1]), (bb_hook[2], bb_hook[3]), (150, 150, 150), 2)
-            if self.hooks_dict_processed[key]['uv_hook'] is not None:
-                p_hook = tuple(map(int, self.hooks_dict_processed[key]['uv_hook']))
-                cv2.drawMarker(img_copy, p_hook, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
-            if self.hooks_dict_processed[key]['uv_tip'] is not None:
-                p_tip = tuple(map(int, self.hooks_dict_processed[key]['uv_tip']))
-                cv2.drawMarker(img_copy, p_tip, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
-            if self.hooks_dict_processed[key]['uv_lowpoint'] is not None:
-                p_lowpoint = tuple(map(int, self.hooks_dict_processed[key]['uv_lowpoint']))
-                cv2.drawMarker(img_copy, p_lowpoint, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)  
-        return img_copy
     
 
-    def publish_hooks(self):
+    def process_hook(self, hook_name, hook_data):
+        hook = Hook()
+        hook.name = hook_name
+        bridge = CvBridge()
+
+        # Setze Hook Bounding Box
+        hook.hook_box = BoundingBox(
+            x_min=float(hook_data['hook_box'][0]),
+            y_min=float(hook_data['hook_box'][1]),
+            x_max=float(hook_data['hook_box'][2]),
+            y_max=float(hook_data['hook_box'][3])
+        )
+
+        # Setze Hook Mask als Image, falls verfügbar
+        if hook_data['hook_mask'] is not None and self.publish_masks:
+            hook.hook_mask = bridge.cv2_to_imgmsg(np.array(hook_data['hook_mask']), encoding="passthrough")
+        hook.conf_hook = float(hook_data['conf_hook'])
+
+        # Setze Tip Box und Mask als Image, falls verfügbar
+        if hook_data['tip_box'] is not None:
+            hook.tip_box = BoundingBox(
+                x_min=float(hook_data['tip_box'][0]),
+                y_min=float(hook_data['tip_box'][1]),
+                x_max=float(hook_data['tip_box'][2]),
+                y_max=float(hook_data['tip_box'][3])
+            )
+            if hook_data['tip_mask'] is not None and self.publish_masks:
+                hook.tip_mask = bridge.cv2_to_imgmsg(np.array(hook_data['tip_mask']), encoding="passthrough")
+            hook.conf_tip = float(hook_data['conf_tip'])
+
+        # Setze Lowpoint Box und Mask als Image, falls verfügbar
+        if hook_data['lowpoint_box'] is not None:
+            hook.lowpoint_box = BoundingBox(
+                x_min=float(hook_data['lowpoint_box'][0]),
+                y_min=float(hook_data['lowpoint_box'][1]),
+                x_max=float(hook_data['lowpoint_box'][2]),
+                y_max=float(hook_data['lowpoint_box'][3])
+            )
+            if hook_data['lowpoint_mask'] is not None and self.publish_masks:
+                hook.lowpoint_mask = bridge.cv2_to_imgmsg(np.array(hook_data['lowpoint_mask']), encoding="passthrough")
+            hook.conf_lowpoint = float(hook_data['conf_lowpoint'])
+
+        # UV-Daten initialisieren
+        hook.uv_hook = UV(data=[])
+        hook.uv_tip = UV(data=[])
+        hook.uv_lowpoint = UV(data=[])
+        return hook
+
+
+
+    def publish_hooks_dict(self):
+        # starttime = time.perf_counter()
         msg = HookData()
-        msg.hooks = []
 
-        if self.hooks_dict != {}:
-            for hook_name, hook_data in self.hooks_dict.items():
-                hook = Hook()
-                hook.name = hook_name
-
-                hook.hook_box = BoundingBox(
-                    x_min=hook_data['hook_box'][0],
-                    y_min=hook_data['hook_box'][1],
-                    x_max=hook_data['hook_box'][2],
-                    y_max=hook_data['hook_box'][3]
+        if self.hooks_dict:
+            with ThreadPoolExecutor() as executor:
+                results = executor.map(
+                    lambda item: self.process_hook(item[0], item[1]),
+                    self.hooks_dict.items()
                 )
+                msg.hooks.extend(results)
+            self.hooks_dict_publisher_.publish(msg)
 
-                if hook_data['hook_mask'] is not None:
-                    hook.hook_mask = Mask(data=hook_data['hook_mask'])
-                    hook.conf_hook = hook_data['conf_hook']
+        # endtime = time.perf_counter()
+        # self.get_logger().info(f"Execution time: {endtime - starttime} seconds")
 
-                if hook_data['tip_box'] is not None:
-                    hook.tip_box = BoundingBox(
-                        x_min=hook_data['tip_box'][0],
-                        y_min=hook_data['tip_box'][1],
-                        x_max=hook_data['tip_box'][2],
-                        y_max=hook_data['tip_box'][3]
-                    )
-                    hook.tip_mask = Mask(data=hook_data['tip_mask'])
-                    hook.conf_tip = hook_data['conf_tip']
-
-                if hook_data['lowpoint_box'] is not None:
-                    hook.lowpoint_box = BoundingBox(
-                        x_min=hook_data['lowpoint_box'][0],
-                        y_min=hook_data['lowpoint_box'][1],
-                        x_max=hook_data['lowpoint_box'][2],
-                        y_max=hook_data['lowpoint_box'][3]
-                    )
-                    hook.lowpoint_mask = Mask(data=hook_data['lowpoint_mask'])
-                    hook.conf_lowpoint = hook_data['conf_lowpoint']
-
-                msg.hooks.append(hook)
-
-            self.publisher_.publish(msg)
-            self.get_logger().info(f'Published hook data: {msg}')
 
 
 def main(args=None):

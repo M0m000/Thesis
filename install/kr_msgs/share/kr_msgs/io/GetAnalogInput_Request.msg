@@ -1,5 +1,1 @@
-######################################################
-#                GET ANALOG INPUT SRV                #
-######################################################
-
-int8       index    # input index
+/home/mo/Thesis/build/kr_msgs/rosidl_cmake/srv/io/GetAnalogInput_Request.msg

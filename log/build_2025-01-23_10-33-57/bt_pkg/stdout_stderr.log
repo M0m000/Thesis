@@ -1,0 +1,25 @@
+running develop
+running egg_info
+creating bt_pkg.egg-info
+writing bt_pkg.egg-info/PKG-INFO
+writing dependency_links to bt_pkg.egg-info/dependency_links.txt
+writing entry points to bt_pkg.egg-info/entry_points.txt
+writing requirements to bt_pkg.egg-info/requires.txt
+writing top-level names to bt_pkg.egg-info/top_level.txt
+writing manifest file 'bt_pkg.egg-info/SOURCES.txt'
+reading manifest file 'bt_pkg.egg-info/SOURCES.txt'
+writing manifest file 'bt_pkg.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/mo/Thesis/install/bt_pkg/lib/python3.8/site-packages/site.py
+Creating /home/mo/Thesis/install/bt_pkg/lib/python3.8/site-packages/bt-pkg.egg-link (link to .)
+Installing bt_example_tree script to /home/mo/Thesis/install/bt_pkg/lib/bt_pkg
+Installing bt_scan_hookstrip script to /home/mo/Thesis/install/bt_pkg/lib/bt_pkg
+Installing srv_call script to /home/mo/Thesis/install/bt_pkg/lib/bt_pkg
+
+Installed /home/mo/Thesis/build/bt_pkg
+running symlink_data
+creating /home/mo/Thesis/install/bt_pkg/share/ament_index
+creating /home/mo/Thesis/install/bt_pkg/share/ament_index/resource_index
+creating /home/mo/Thesis/install/bt_pkg/share/ament_index/resource_index/packages
+symbolically linking /home/mo/Thesis/build/bt_pkg/resource/bt_pkg -> /home/mo/Thesis/install/bt_pkg/share/ament_index/resource_index/packages
+symbolically linking /home/mo/Thesis/build/bt_pkg/package.xml -> /home/mo/Thesis/install/bt_pkg/share/bt_pkg

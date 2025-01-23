@@ -1,0 +1,1 @@
+ament_cmake_symlink_install_targets("TARGET_FILES" "/home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/libaction_interfaces__python.so" "TARGETS" "action_interfaces__python" "ARCHIVE_DESTINATION" "lib" "LIBRARY_DESTINATION" "lib" "RUNTIME_DESTINATION" "bin")
