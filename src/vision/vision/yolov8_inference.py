@@ -16,7 +16,6 @@ from action_interfaces.msg import HookData, Hook, BoundingBox, UV
 from concurrent.futures import ThreadPoolExecutor
 
 
-
 class YOLOv8InferenceNode(Node):
     def __init__(self):
         super().__init__('yolov8_inference')
@@ -204,7 +203,6 @@ class YOLOv8InferenceNode(Node):
 
         sys.stdout.write(f"\rInference time: {inference_time:.4f} sec | FPS: {fps:.4f}\n")
         sys.stdout.flush()
-        
         # self.get_logger().info(f"\rInference time: {(end_time - start_time):.4f} sec")
         # self.get_logger().info(f"\rInference FPS: {(1/(end_time - start_time)):.4f} FPS")
         return results
@@ -313,7 +311,6 @@ class YOLOv8InferenceNode(Node):
                     box_lowpoint, mask_lowpoint, conf_lowpoint = None, None, None
 
                 # Ergebnis für den aktuellen Haken zusammenstellen
-
                 hooks_dict[f"hook_{i + 1}"] = {
                     "hook_box": box_hook,
                     "hook_mask": masks_hooks[i],
@@ -510,3 +507,5 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
+
