@@ -11,9 +11,9 @@ from sensor_msgs.msg import Image
 
 
 
-class PBVS2DNode(Node):
+class IBVS2DNode(Node):
     def __init__(self):
-        super().__init__('pbvs_2d')
+        super().__init__('ibvs_2d')
 
         self.declare_parameter('speed_factor', 0.1)
         self.speed_factor = self.get_parameter('speed_factor').get_parameter_value().double_value
@@ -267,10 +267,9 @@ class PBVS2DNode(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    move_lin_by_key = PBVS2DNode()
+    move_lin_by_key = IBVS2DNode()
     rclpy.spin(move_lin_by_key)
     rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
-
