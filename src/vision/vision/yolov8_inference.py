@@ -1,17 +1,14 @@
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image
-from std_msgs.msg import String
 from cv_bridge import CvBridge
 import numpy as np
 import torch
 import cv2
 from ultralytics import YOLO
 import time
-import os
 import sys
 import matplotlib.pyplot as plt
-import json
 from action_interfaces.msg import HookData, Hook, BoundingBox, UV
 from concurrent.futures import ThreadPoolExecutor
 
