@@ -17,6 +17,8 @@ class PBVS2DNode(Node):
         self.speed_factor = self.get_parameter('speed_factor').get_parameter_value().double_value
         self.declare_parameter('target_point_in_px', [100.0, 100.0])
         self.target_point_in_px = self.get_parameter('target_point_in_px').get_parameter_value().double_array_value
+        self.declare_parameter('tolerance_in_px', [0.5, 0.5])
+        self.tolerance_in_px = self.get_parameter('tolerance_in_px').get_parameter_value().double_array_value
         self.declare_parameter('track_hooktip_num', 1)
         self.track_hooktip_num = self.get_parameter('track_hooktip_num').get_parameter_value().integer_value
 
@@ -44,8 +46,50 @@ class PBVS2DNode(Node):
         # self.srv_select_jogging_frame()     # rufe Service SelectJoggingFrame auf
 
         self.pbvs_active = False
-        self.act_speed = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        self.act_speed_cam = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        self.act_speed_tcp = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        self.gain_vector = [[self.speed_factor, 0.0], 
+                            [0.0, self.speed_factor],
+                            [0.0, 0.0],
+                            [0.0, 0.0],
+                            [0.0, 0.0],
+                            [0.0, 0.0]]
         self.track_hooktip_num = 1
+        
+        self.R_cam_in_tcp = self.calc_rotation_matrix(0.0, 0.0, 180.0)
+        self.block_diag_matrix = self.calc_block_diag_matrix(self.R_cam_in_tcp)
+
+        self.listener = keyboard.Listener(on_press=self.on_press)
+        self.listener.start()
+    
+
+
+    def calc_block_diag_matrix(self, R):
+        return np.array([[R[0][0], R[0][1], R[0][2], 0.0, 0.0, 0.0],
+                [R[1][0], R[1][1], R[1][2], 0.0, 0.0, 0.0],
+                [R[2][0], R[2][1], R[2][2], 0.0, 0.0, 0.0],
+                [0.0, 0.0, 0.0, R[0][0], R[0][1], R[0][2]],
+                [0.0, 0.0, 0.0, R[1][0], R[1][1], R[1][2]],
+                [0.0, 0.0, 0.0, R[2][0], R[2][1], R[2][2]]])
+    
+
+    def calc_rotation_matrix(self, angle_x, angle_y, angle_z):
+        angle_x = np.deg2rad(angle_x)
+        angle_y = np.deg2rad(angle_y)
+        angle_z = np.deg2rad(angle_z)
+
+        R_x = [[1.0, 0.0, 0.0],
+               [0.0, np.cos(angle_x), -np.sin(angle_x)],
+               [0.0, np.sin(angle_x), np.cos(angle_x)]]
+        
+        R_y = [[np.cos(angle_y), 0.0, np.sin(angle_y)],
+               [0.0, 1.0, 0.0],
+               [-np.sin(angle_y), 0.0, np.cos(angle_y)]]
+        
+        R_z = [[np.cos(angle_z), -np.sin(angle_z), 0.0],
+               [np.sin(angle_z), np.cos(angle_z), 0.0],
+               [0.0, 0.0, 1.0]]
+        return np.array(R_z) @ (np.array(R_y) @ np.array(R_x))
 
 
     def hooks_dict_callback(self, msg: HookData):
@@ -56,7 +100,7 @@ class PBVS2DNode(Node):
         for hook_msg in msg.hooks:
             hook_data = {}
             if hook_msg.hook_box:
-                hook_data['hook_box'] = [           # BoundingBox Hook
+                hook_data['hook_box'] = [       # BoundingBox Hook
                     hook_msg.hook_box.x_min,
                     hook_msg.hook_box.y_min,
                     hook_msg.hook_box.x_max,
@@ -73,8 +117,8 @@ class PBVS2DNode(Node):
                 hook_data['uv_hook'] = [hook_msg.uv_hook.u, hook_msg.uv_hook.v]     # Pixelposition Hook
 
             
-            if hook_msg.tip_box:                # BoundingBox Tip
-                hook_data['tip_box'] = [
+            if hook_msg.tip_box:
+                hook_data['tip_box'] = [        # BoundingBox Tip
                     hook_msg.tip_box.x_min,
                     hook_msg.tip_box.y_min,
                     hook_msg.tip_box.x_max,
@@ -92,7 +136,7 @@ class PBVS2DNode(Node):
 
 
             if hook_msg.lowpoint_box:
-                hook_data['lowpoint_box'] = [           # BoundingBox Lowpoint
+                hook_data['lowpoint_box'] = [       # BoundingBox Lowpoint
                     hook_msg.lowpoint_box.x_min,
                     hook_msg.lowpoint_box.y_min,
                     hook_msg.lowpoint_box.x_max,
@@ -124,8 +168,6 @@ class PBVS2DNode(Node):
             response = future.result()
             if response.success:        # wenn Frame gesetzt -> Tastensteuerung kann beginnen
                 self.get_logger().info('Jogging Frame set to TPC.')
-                self.listener = keyboard.Listener(on_press=self.on_press, on_release=self.on_release)
-                self.listener.start()
             else:
                 self.get_logger().warn('Jogging Frame Selection failed!')
         except Exception as e:
@@ -148,11 +190,22 @@ class PBVS2DNode(Node):
 
 
     def process(self):
-        self.get_act_hook_px_pos()
-        w = self.target_point_in_px
-        act_error = self.target_point_in_px - np.array(self.act_tip_pos)
-        self.act_speed = self.speed_factor * act_error
-        print("Aktuelle Regelgroesse: ", self.act_speed)
+        if self.pbvs_active:
+            self.get_act_hook_px_pos()
+            act_error = (self.target_point_in_px - np.array(self.act_tip_pos)).reshape((2, 1))
+
+            if abs(act_error[0]) > abs(self.tolerance_in_px[0]) and abs(act_error[1]) > abs(self.tolerance_in_px[1]):
+                self.act_speed_cam = self.gain_vector @ act_error       # P-Regler -> Bewegung enthaelt I-Anteil (Geschwindigkeit -> Integral -> Weg)
+                self.act_speed_cam = self.act_speed_cam.reshape((1, 6))[0].tolist()
+            else:
+                self.act_speed_cam = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        else:
+            self.act_speed_cam = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+        self.act_speed_tcp = self.block_diag_matrix @ self.act_speed_cam
+        self.act_speed_tcp = self.act_speed_tcp.reshape((1, 6))[0].tolist()
+        print("Actual Speed in CAM Frame: ", self.act_speed_cam)
+        print("Actual Speed in TCP Frame: ", self.act_speed_tcp)
 
 
     def get_act_hook_px_pos(self):
@@ -172,3 +225,4 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
