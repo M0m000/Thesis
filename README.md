@@ -185,6 +185,13 @@ ros2 run bt_pkg bt_example_tree
 Enthält alle Roboteransteuerungen - kommuniziert mit orange-ros2-Package von Kassow Robots. <br>
 <br>
 
+### **2D IBVS** Node <br>
+```bash
+ros2 run robot_control ibvs_2d --ros-args -p speed_factor:=0.1 -p target_point_in_px:=[640.0, 360.0] -p tolerance_in_px:=[5.0, 5.0] -p track_hooktip_num:=2 -p show_plot:=True
+```
+>Image Based Visual Servoing -> Regelung von x_tcp und y_tcp, bis Punkt Hakenspitze in angegebenem Target Punkt liegt -> Regelung auf Bildebene. <br>
+<br>
+
 ### **Test** Node <br>
 ```bash
 ros2 run robot_control hello_node
@@ -310,7 +317,7 @@ Enthält alle Programme zur Bildverarbeitung - Filterung, NNs... <br>
 <br>
 ### **YoloV8 Inference Node**
 ```bash
-ros2 run vision yolov8_inference --ros-args -p confidence_threshold:=0.4 -p do_preprocessing:=True -p do_postprocessing:=True -p show_cam_img:=True -p show_output_img:=True
+ros2 run vision yolov8_inference --ros-args -p confidence_threshold:=0.4 -p do_preprocessing:=True -p do_postprocessing:=True -p show_cam_img:=False -p show_output_img:=False -p show_point_img:=False
 ```
 >Lädt ein vortrainiertes Instance Segmentation Model YoloV8 (Segmentiert das Bild nach Instanzen auf die Klassen "bar", "hook", "tip" und "lowpoint"). Training des Models kann mit Jupyter-Notebook in Verzeichnis YoloV8_InstanceSeg/yolov8.ipynb gemacht werden. Dieser Knoten subscribed den Kameratopic der VC-Cam und führt in Echtzeit die Inferenz der Bilder durch. Beide Bilder werden in extra Fenstern angezeigt. Mit dem confidence threshold kann festgelegt werden, wie sicher sich das Netz bei der Erkennung der Objekte sein muss -> je höher, umso strenger. <br>
 <br>
