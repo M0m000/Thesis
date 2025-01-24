@@ -6,7 +6,9 @@
 module action_interfaces {
   module msg {
     struct UV {
-      sequence<float> data;
+      float u;
+
+      float v;
     };
   };
 };

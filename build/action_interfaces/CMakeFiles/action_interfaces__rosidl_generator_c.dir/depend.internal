@@ -107,8 +107,6 @@ CMakeFiles/action_interfaces__rosidl_generator_c.dir/rosidl_generator_c/action_i
  /opt/ros/foxy/include/rcutils/types/rcutils_ret.h
  /opt/ros/foxy/include/rcutils/visibility_control.h
  /opt/ros/foxy/include/rcutils/visibility_control_macros.h
- /opt/ros/foxy/include/rosidl_runtime_c/primitives_sequence.h
- /opt/ros/foxy/include/rosidl_runtime_c/primitives_sequence_functions.h
  /opt/ros/foxy/include/rosidl_runtime_c/visibility_control.h
  rosidl_generator_c/action_interfaces/msg/detail/uv__functions.h
  rosidl_generator_c/action_interfaces/msg/detail/uv__struct.h

@@ -1,0 +1,5 @@
+  File "/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/pbvs_2d.py", line 161
+    self.act_tip_pos = self.hooks_dict[key]['uv_tip'] if self.hooks_dict != {}
+                                                                             ^
+SyntaxError: invalid syntax
+

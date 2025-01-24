@@ -163,8 +163,6 @@ action_interfaces/msg/detail/uv__functions.h
 /home/mo/Thesis/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/action_interfaces/msg/detail/uv__functions.h
 action_interfaces/msg/detail/uv__struct.h
 /home/mo/Thesis/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/action_interfaces/msg/detail/uv__struct.h
-rosidl_runtime_c/primitives_sequence_functions.h
-/home/mo/Thesis/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/rosidl_runtime_c/primitives_sequence_functions.h
 
 /opt/ros/foxy/include/builtin_interfaces/msg/detail/time__functions.h
 stdbool.h
@@ -633,8 +631,6 @@ stddef.h
 -
 stdint.h
 -
-rosidl_runtime_c/primitives_sequence.h
-rosidl_generator_c/action_interfaces/msg/detail/rosidl_runtime_c/primitives_sequence.h
 
 rosidl_generator_c/action_interfaces/msg/detail/uv__type_support.h
 rosidl_typesupport_interface/macros.h

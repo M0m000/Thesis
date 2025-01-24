@@ -12,13 +12,13 @@ resource/vision
 test/test_copyright.py
 test/test_flake8.py
 test/test_pep257.py
+vision/OLD_nn_output_processor.py
 vision/__init__.py
 vision/calibration.py
 vision/hook_detector.py
 vision/image_receiver.py
 vision/img_filters.py
 vision/maskrcnn_inference.py
-vision/nn_output_processor.py
 vision/point_finder_2d.py
 vision/point_finder_3d.py
 vision/process_nn_output.py

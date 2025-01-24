@@ -27,11 +27,11 @@ inline const char * name<action_interfaces::msg::UV>()
 
 template<>
 struct has_fixed_size<action_interfaces::msg::UV>
-  : std::integral_constant<bool, false> {};
+  : std::integral_constant<bool, true> {};
 
 template<>
 struct has_bounded_size<action_interfaces::msg::UV>
-  : std::integral_constant<bool, false> {};
+  : std::integral_constant<bool, true> {};
 
 template<>
 struct is_message<action_interfaces::msg::UV>

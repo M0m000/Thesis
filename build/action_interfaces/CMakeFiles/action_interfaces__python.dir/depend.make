@@ -554,8 +554,6 @@ CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/m
 CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_hook_s.c.o: rosidl_generator_c/action_interfaces/msg/rosidl_generator_c__visibility_control.h
 
 CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_uv_s.c.o: rosidl_generator_py/action_interfaces/msg/_uv_s.c
-CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_uv_s.c.o: /opt/ros/foxy/include/rosidl_runtime_c/primitives_sequence.h
-CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_uv_s.c.o: /opt/ros/foxy/include/rosidl_runtime_c/primitives_sequence_functions.h
 CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_uv_s.c.o: /opt/ros/foxy/include/rosidl_runtime_c/visibility_control.h
 CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_uv_s.c.o: /usr/include/python3.8/Python.h
 CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_uv_s.c.o: /usr/include/python3.8/abstract.h

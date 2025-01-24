@@ -111,8 +111,6 @@ string.h
 -
 rcutils/allocator.h
 /home/mo/Thesis/build/action_interfaces/rosidl_generator_c/action_interfaces/msg/detail/rcutils/allocator.h
-rosidl_runtime_c/primitives_sequence_functions.h
-/home/mo/Thesis/build/action_interfaces/rosidl_generator_c/action_interfaces/msg/detail/rosidl_runtime_c/primitives_sequence_functions.h
 
 /opt/ros/foxy/include/builtin_interfaces/msg/detail/time__functions.h
 stdbool.h
@@ -417,8 +415,6 @@ stddef.h
 -
 stdint.h
 -
-rosidl_runtime_c/primitives_sequence.h
-rosidl_generator_c/action_interfaces/msg/detail/rosidl_runtime_c/primitives_sequence.h
 
 rosidl_generator_c/action_interfaces/msg/rosidl_generator_c__visibility_control.h
 

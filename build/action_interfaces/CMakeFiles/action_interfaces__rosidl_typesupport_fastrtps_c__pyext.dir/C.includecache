@@ -835,8 +835,6 @@ stddef.h
 -
 stdint.h
 -
-rosidl_runtime_c/primitives_sequence.h
-rosidl_generator_c/action_interfaces/msg/detail/rosidl_runtime_c/primitives_sequence.h
 
 rosidl_generator_c/action_interfaces/msg/detail/uv__type_support.h
 rosidl_typesupport_interface/macros.h

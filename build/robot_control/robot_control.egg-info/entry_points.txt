@@ -5,6 +5,7 @@ get_robot_pose_node = robot_control.get_robot_pose_node:main
 hello_node = robot_control.hello_node:main
 move_along_baseline_client = robot_control.move_along_baseline_client:main
 move_lin_by_key = robot_control.move_lin_by_key:main
+pbvs_2d = robot_control.pbvs_2d:main
 print_frames = robot_control.print_frames:main
 print_tcp_pose = robot_control.print_tcp_pose:main
 read_transformation_delta = robot_control.read_transformation_delta:main

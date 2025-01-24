@@ -5,9 +5,6 @@
 
 # Import statements for member types
 
-# Member 'data'
-import array  # noqa: E402, I100
-
 import rosidl_parser.definition  # noqa: E402, I100
 
 
@@ -56,22 +53,26 @@ class UV(metaclass=Metaclass_UV):
     """Message class 'UV'."""
 
     __slots__ = [
-        '_data',
+        '_u',
+        '_v',
     ]
 
     _fields_and_field_types = {
-        'data': 'sequence<float>',
+        'u': 'float',
+        'v': 'float',
     }
 
     SLOT_TYPES = (
-        rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.BasicType('float')),  # noqa: E501
+        rosidl_parser.definition.BasicType('float'),  # noqa: E501
+        rosidl_parser.definition.BasicType('float'),  # noqa: E501
     )
 
     def __init__(self, **kwargs):
         assert all('_' + key in self.__slots__ for key in kwargs.keys()), \
             'Invalid arguments passed to constructor: %s' % \
             ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
-        self.data = array.array('f', kwargs.get('data', []))
+        self.u = kwargs.get('u', float())
+        self.v = kwargs.get('v', float())
 
     def __repr__(self):
         typename = self.__class__.__module__.split('.')
@@ -102,7 +103,9 @@ class UV(metaclass=Metaclass_UV):
     def __eq__(self, other):
         if not isinstance(other, self.__class__):
             return False
-        if self.data != other.data:
+        if self.u != other.u:
+            return False
+        if self.v != other.v:
             return False
         return True
 
@@ -112,29 +115,27 @@ class UV(metaclass=Metaclass_UV):
         return copy(cls._fields_and_field_types)
 
     @property
-    def data(self):
-        """Message field 'data'."""
-        return self._data
+    def u(self):
+        """Message field 'u'."""
+        return self._u
 
-    @data.setter
-    def data(self, value):
-        if isinstance(value, array.array):
-            assert value.typecode == 'f', \
-                "The 'data' array.array() must have the type code of 'f'"
-            self._data = value
-            return
+    @u.setter
+    def u(self, value):
         if __debug__:
-            from collections.abc import Sequence
-            from collections.abc import Set
-            from collections import UserList
-            from collections import UserString
             assert \
-                ((isinstance(value, Sequence) or
-                  isinstance(value, Set) or
-                  isinstance(value, UserList)) and
-                 not isinstance(value, str) and
-                 not isinstance(value, UserString) and
-                 all(isinstance(v, float) for v in value) and
-                 True), \
-                "The 'data' field must be a set or sequence and each value of type 'float'"
-        self._data = array.array('f', value)
+                isinstance(value, float), \
+                "The 'u' field must be of type 'float'"
+        self._u = value
+
+    @property
+    def v(self):
+        """Message field 'v'."""
+        return self._v
+
+    @v.setter
+    def v(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, float), \
+                "The 'v' field must be of type 'float'"
+        self._v = value

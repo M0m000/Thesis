@@ -17,14 +17,11 @@ extern "C"
 
 // Constants defined in the message
 
-// Include directives for member types
-// Member 'data'
-#include "rosidl_runtime_c/primitives_sequence.h"
-
 // Struct defined in msg/UV in the package action_interfaces.
 typedef struct action_interfaces__msg__UV
 {
-  rosidl_runtime_c__float__Sequence data;
+  float u;
+  float v;
 } action_interfaces__msg__UV;
 
 // Struct for a sequence of action_interfaces__msg__UV.

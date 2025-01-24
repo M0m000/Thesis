@@ -443,7 +443,7 @@ class YOLOv8InferenceNode(Node):
             if hook_data['hook_mask'] is not None and self.publish_masks:
                 hook.hook_mask = bridge.cv2_to_imgmsg(np.array(hook_data['hook_mask']), encoding="32FC1")
             hook.conf_hook = float(hook_data['conf_hook'])
-            hook.uv_hook = UV(data=[hook_data['uv_hook'][0], hook_data['uv_hook'][1]])
+            hook.uv_hook = UV(u=hook_data['uv_hook'][0], v=hook_data['uv_hook'][1])
 
         # Setze Tip Box und Mask als Image, falls verfügbar
         if hook_data['tip_box'] is not None:
@@ -456,7 +456,7 @@ class YOLOv8InferenceNode(Node):
             if hook_data['tip_mask'] is not None and self.publish_masks:
                 hook.tip_mask = bridge.cv2_to_imgmsg(np.array(hook_data['tip_mask']), encoding="32FC1")
             hook.conf_tip = float(hook_data['conf_tip'])
-            hook.uv_tip = UV(data=[hook_data['uv_tip'][0], hook_data['uv_tip'][1]])
+            hook.uv_tip = UV(u=hook_data['uv_tip'][0], v = hook_data['uv_tip'][1])
 
         # Setze Lowpoint Box und Mask als Image, falls verfügbar
         if hook_data['lowpoint_box'] is not None:
@@ -469,7 +469,7 @@ class YOLOv8InferenceNode(Node):
             if hook_data['lowpoint_mask'] is not None and self.publish_masks:
                 hook.lowpoint_mask = bridge.cv2_to_imgmsg(np.array(hook_data['lowpoint_mask']), encoding="32FC1")
             hook.conf_lowpoint = float(hook_data['conf_lowpoint'])
-            hook.uv_lowpoint = UV(data=[hook_data['uv_lowpoint'][0], hook_data['uv_lowpoint'][1]])
+            hook.uv_lowpoint = UV(u=hook_data['uv_lowpoint'][0], v=hook_data['uv_lowpoint'][1])
         return hook
 
 

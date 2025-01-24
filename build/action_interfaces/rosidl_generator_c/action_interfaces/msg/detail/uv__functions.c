@@ -11,21 +11,14 @@
 #include "rcutils/allocator.h"
 
 
-// Include directives for member types
-// Member `data`
-#include "rosidl_runtime_c/primitives_sequence_functions.h"
-
 bool
 action_interfaces__msg__UV__init(action_interfaces__msg__UV * msg)
 {
   if (!msg) {
     return false;
   }
-  // data
-  if (!rosidl_runtime_c__float__Sequence__init(&msg->data, 0)) {
-    action_interfaces__msg__UV__fini(msg);
-    return false;
-  }
+  // u
+  // v
   return true;
 }
 
@@ -35,8 +28,8 @@ action_interfaces__msg__UV__fini(action_interfaces__msg__UV * msg)
   if (!msg) {
     return;
   }
-  // data
-  rosidl_runtime_c__float__Sequence__fini(&msg->data);
+  // u
+  // v
 }
 
 bool
@@ -45,10 +38,12 @@ action_interfaces__msg__UV__are_equal(const action_interfaces__msg__UV * lhs, co
   if (!lhs || !rhs) {
     return false;
   }
-  // data
-  if (!rosidl_runtime_c__float__Sequence__are_equal(
-      &(lhs->data), &(rhs->data)))
-  {
+  // u
+  if (lhs->u != rhs->u) {
+    return false;
+  }
+  // v
+  if (lhs->v != rhs->v) {
     return false;
   }
   return true;
@@ -62,12 +57,10 @@ action_interfaces__msg__UV__copy(
   if (!input || !output) {
     return false;
   }
-  // data
-  if (!rosidl_runtime_c__float__Sequence__copy(
-      &(input->data), &(output->data)))
-  {
-    return false;
-  }
+  // u
+  output->u = input->u;
+  // v
+  output->v = input->v;
   return true;
 }
 

@@ -34,8 +34,6 @@ extern "C"
 {
 #endif
 
-#include "rosidl_runtime_c/primitives_sequence.h"  // data
-#include "rosidl_runtime_c/primitives_sequence_functions.h"  // data
 
 // forward declare type support functions
 
@@ -51,12 +49,14 @@ static bool _UV__cdr_serialize(
     return false;
   }
   const _UV__ros_msg_type * ros_message = static_cast<const _UV__ros_msg_type *>(untyped_ros_message);
-  // Field name: data
+  // Field name: u
   {
-    size_t size = ros_message->data.size;
-    auto array_ptr = ros_message->data.data;
-    cdr << static_cast<uint32_t>(size);
-    cdr.serializeArray(array_ptr, size);
+    cdr << ros_message->u;
+  }
+
+  // Field name: v
+  {
+    cdr << ros_message->v;
   }
 
   return true;
@@ -71,19 +71,14 @@ static bool _UV__cdr_deserialize(
     return false;
   }
   _UV__ros_msg_type * ros_message = static_cast<_UV__ros_msg_type *>(untyped_ros_message);
-  // Field name: data
+  // Field name: u
   {
-    uint32_t cdrSize;
-    cdr >> cdrSize;
-    size_t size = static_cast<size_t>(cdrSize);
-    if (ros_message->data.data) {
-      rosidl_runtime_c__float__Sequence__fini(&ros_message->data);
-    }
-    if (!rosidl_runtime_c__float__Sequence__init(&ros_message->data, size)) {
-      return "failed to create array for field 'data'";
-    }
-    auto array_ptr = ros_message->data.data;
-    cdr.deserializeArray(array_ptr, size);
+    cdr >> ros_message->u;
+  }
+
+  // Field name: v
+  {
+    cdr >> ros_message->v;
   }
 
   return true;
@@ -103,15 +98,16 @@ size_t get_serialized_size_action_interfaces__msg__UV(
   (void)padding;
   (void)wchar_size;
 
-  // field.name data
+  // field.name u
   {
-    size_t array_size = ros_message->data.size;
-    auto array_ptr = ros_message->data.data;
-    current_alignment += padding +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
-    (void)array_ptr;
-    size_t item_size = sizeof(array_ptr[0]);
-    current_alignment += array_size * item_size +
+    size_t item_size = sizeof(ros_message->u);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+  // field.name v
+  {
+    size_t item_size = sizeof(ros_message->v);
+    current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
 
@@ -138,12 +134,16 @@ size_t max_serialized_size_action_interfaces__msg__UV(
   (void)wchar_size;
   (void)full_bounded;
 
-  // member: data
+  // member: u
   {
-    size_t array_size = 0;
-    full_bounded = false;
-    current_alignment += padding +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
+    size_t array_size = 1;
+
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+  // member: v
+  {
+    size_t array_size = 1;
 
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));

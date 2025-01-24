@@ -12,10 +12,6 @@
 #include "action_interfaces/msg/detail/uv__struct.h"
 
 
-// Include directives for member types
-// Member `data`
-#include "rosidl_runtime_c/primitives_sequence_functions.h"
-
 #ifdef __cplusplus
 extern "C"
 {
@@ -35,16 +31,31 @@ void UV__rosidl_typesupport_introspection_c__UV_fini_function(void * message_mem
   action_interfaces__msg__UV__fini(message_memory);
 }
 
-static rosidl_typesupport_introspection_c__MessageMember UV__rosidl_typesupport_introspection_c__UV_message_member_array[1] = {
+static rosidl_typesupport_introspection_c__MessageMember UV__rosidl_typesupport_introspection_c__UV_message_member_array[2] = {
   {
-    "data",  // name
+    "u",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
-    true,  // is array
+    false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(action_interfaces__msg__UV, data),  // bytes offset in struct
+    offsetof(action_interfaces__msg__UV, u),  // bytes offset in struct
+    NULL,  // default value
+    NULL,  // size() function pointer
+    NULL,  // get_const(index) function pointer
+    NULL,  // get(index) function pointer
+    NULL  // resize(index) function pointer
+  },
+  {
+    "v",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_FLOAT,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(action_interfaces__msg__UV, v),  // bytes offset in struct
     NULL,  // default value
     NULL,  // size() function pointer
     NULL,  // get_const(index) function pointer
@@ -56,7 +67,7 @@ static rosidl_typesupport_introspection_c__MessageMember UV__rosidl_typesupport_
 static const rosidl_typesupport_introspection_c__MessageMembers UV__rosidl_typesupport_introspection_c__UV_message_members = {
   "action_interfaces__msg",  // message namespace
   "UV",  // message name
-  1,  // number of fields
+  2,  // number of fields
   sizeof(action_interfaces__msg__UV),
   UV__rosidl_typesupport_introspection_c__UV_message_member_array,  // message members
   UV__rosidl_typesupport_introspection_c__UV_init_function,  // function to initialize message memory (memory has to be allocated)

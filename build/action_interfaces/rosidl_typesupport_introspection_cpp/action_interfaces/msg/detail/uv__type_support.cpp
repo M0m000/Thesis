@@ -37,55 +37,43 @@ void UV_fini_function(void * message_memory)
   typed_message->~UV();
 }
 
-size_t size_function__UV__data(const void * untyped_member)
-{
-  const auto * member = reinterpret_cast<const std::vector<float> *>(untyped_member);
-  return member->size();
-}
-
-const void * get_const_function__UV__data(const void * untyped_member, size_t index)
-{
-  const auto & member =
-    *reinterpret_cast<const std::vector<float> *>(untyped_member);
-  return &member[index];
-}
-
-void * get_function__UV__data(void * untyped_member, size_t index)
-{
-  auto & member =
-    *reinterpret_cast<std::vector<float> *>(untyped_member);
-  return &member[index];
-}
-
-void resize_function__UV__data(void * untyped_member, size_t size)
-{
-  auto * member =
-    reinterpret_cast<std::vector<float> *>(untyped_member);
-  member->resize(size);
-}
-
-static const ::rosidl_typesupport_introspection_cpp::MessageMember UV_message_member_array[1] = {
+static const ::rosidl_typesupport_introspection_cpp::MessageMember UV_message_member_array[2] = {
   {
-    "data",  // name
+    "u",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
-    true,  // is array
+    false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(action_interfaces::msg::UV, data),  // bytes offset in struct
+    offsetof(action_interfaces::msg::UV, u),  // bytes offset in struct
     nullptr,  // default value
-    size_function__UV__data,  // size() function pointer
-    get_const_function__UV__data,  // get_const(index) function pointer
-    get_function__UV__data,  // get(index) function pointer
-    resize_function__UV__data  // resize(index) function pointer
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr  // resize(index) function pointer
+  },
+  {
+    "v",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(action_interfaces::msg::UV, v),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr  // resize(index) function pointer
   }
 };
 
 static const ::rosidl_typesupport_introspection_cpp::MessageMembers UV_message_members = {
   "action_interfaces::msg",  // message namespace
   "UV",  // message name
-  1,  // number of fields
+  2,  // number of fields
   sizeof(action_interfaces::msg::UV),
   UV_message_member_array,  // message members
   UV_init_function,  // function to initialize message memory (memory has to be allocated)

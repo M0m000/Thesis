@@ -34,25 +34,44 @@ struct UV_
 
   explicit UV_(rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
   {
-    (void)_init;
+    if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
+      rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
+    {
+      this->u = 0.0f;
+      this->v = 0.0f;
+    }
   }
 
   explicit UV_(const ContainerAllocator & _alloc, rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
   {
-    (void)_init;
     (void)_alloc;
+    if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
+      rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
+    {
+      this->u = 0.0f;
+      this->v = 0.0f;
+    }
   }
 
   // field types and members
-  using _data_type =
-    std::vector<float, typename ContainerAllocator::template rebind<float>::other>;
-  _data_type data;
+  using _u_type =
+    float;
+  _u_type u;
+  using _v_type =
+    float;
+  _v_type v;
 
   // setters for named parameter idiom
-  Type & set__data(
-    const std::vector<float, typename ContainerAllocator::template rebind<float>::other> & _arg)
+  Type & set__u(
+    const float & _arg)
   {
-    this->data = _arg;
+    this->u = _arg;
+    return *this;
+  }
+  Type & set__v(
+    const float & _arg)
+  {
+    this->v = _arg;
     return *this;
   }
 
@@ -98,7 +117,10 @@ struct UV_
   // comparison operators
   bool operator==(const UV_ & other) const
   {
-    if (this->data != other.data) {
+    if (this->u != other.u) {
+      return false;
+    }
+    if (this->v != other.v) {
       return false;
     }
     return true;
