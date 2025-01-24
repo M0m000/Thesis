@@ -15,7 +15,7 @@ class IBVS2DNode(Node):
     def __init__(self):
         super().__init__('ibvs_2d')
 
-        self.declare_parameter('speed_factor', 0.1)
+        self.declare_parameter('speed_factor', 0.05)
         self.speed_factor = self.get_parameter('speed_factor').get_parameter_value().double_value
         self.declare_parameter('target_point_in_px', [640.0, 360.0])
         self.target_point_in_px = self.get_parameter('target_point_in_px').get_parameter_value().double_array_value
@@ -26,13 +26,17 @@ class IBVS2DNode(Node):
         self.declare_parameter('show_plot', True)
         self.show_plot = self.get_parameter('show_plot').get_parameter_value().bool_value
 
-        '''
+        
         self.client = self.create_client(SelectJoggingFrame, '/kr/motion/select_jogging_frame')
         while not self.client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('Wait for service SelectJoggingFrame...')
         self.get_logger().info('Service SelectJoggingFrame available!')
-        '''
+        self.srv_select_jogging_frame()     # rufe Service SelectJoggingFrame auf
+        
         self.publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
+        self.jog_msg = JogLinear()
+        self.jog_msg.vel = [0.0, 0.0, 0.0]
+        self.jog_msg.rot = [0.0, 0.0, 0.0]
 
         self.subscription = self.create_subscription(
             Image,
@@ -54,11 +58,6 @@ class IBVS2DNode(Node):
         self.publish_timer = self.create_timer(self.publish_timer_period, self.publish_callback)
         self.process_timer = self.create_timer(self.process_timer_period, self.process)
 
-        self.jog_msg = JogLinear()
-        self.jog_msg.vel = [0.0, 0.0, 0.0]
-
-        # self.srv_select_jogging_frame()     # rufe Service SelectJoggingFrame auf
-
         self.pbvs_active = False
         self.act_speed_cam = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         self.act_speed_tcp = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
@@ -68,7 +67,6 @@ class IBVS2DNode(Node):
                             [0.0, 0.0],
                             [0.0, 0.0],
                             [0.0, 0.0]]
-        self.track_hooktip_num = 1
         
         self.R_cam_in_tcp = self.calc_rotation_matrix(0.0, 0.0, 180.0)
         self.block_diag_matrix = self.calc_block_diag_matrix(self.R_cam_in_tcp)
@@ -190,6 +188,8 @@ class IBVS2DNode(Node):
 
     def publish_callback(self):
         # self.get_logger().info(f"Publishing: {self.jog_msg}")
+        self.jog_msg.vel = self.act_speed_tcp[0:3]
+        self.jog_msg.rot = self.act_speed_tcp[3:6]
         self.publisher.publish(self.jog_msg)
 
 
@@ -229,6 +229,7 @@ class IBVS2DNode(Node):
 
     def get_act_hook_px_pos(self):
         key = 'hook_' + str(self.track_hooktip_num)
+        print(key)
         if key in self.hooks_dict:
             self.act_tip_pos = self.hooks_dict[key]['uv_tip']
             # print("Hook tip position to track", self.act_tip_pos)
