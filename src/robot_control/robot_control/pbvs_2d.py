@@ -6,6 +6,8 @@ from kr_msgs.srv import SelectJoggingFrame
 from action_interfaces.msg import HookData, Hook, BoundingBox
 from cv_bridge import CvBridge
 import numpy as np
+import cv2
+from sensor_msgs.msg import Image
 
 
 
@@ -15,12 +17,14 @@ class PBVS2DNode(Node):
 
         self.declare_parameter('speed_factor', 0.1)
         self.speed_factor = self.get_parameter('speed_factor').get_parameter_value().double_value
-        self.declare_parameter('target_point_in_px', [100.0, 100.0])
+        self.declare_parameter('target_point_in_px', [640.0, 360.0])
         self.target_point_in_px = self.get_parameter('target_point_in_px').get_parameter_value().double_array_value
         self.declare_parameter('tolerance_in_px', [0.5, 0.5])
         self.tolerance_in_px = self.get_parameter('tolerance_in_px').get_parameter_value().double_array_value
-        self.declare_parameter('track_hooktip_num', 1)
+        self.declare_parameter('track_hooktip_num', 2)
         self.track_hooktip_num = self.get_parameter('track_hooktip_num').get_parameter_value().integer_value
+        self.declare_parameter('show_plot', True)
+        self.show_plot = self.get_parameter('show_plot').get_parameter_value().bool_value
 
         '''
         self.client = self.create_client(SelectJoggingFrame, '/kr/motion/select_jogging_frame')
@@ -29,6 +33,16 @@ class PBVS2DNode(Node):
         self.get_logger().info('Service SelectJoggingFrame available!')
         '''
         self.publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
+
+        self.subscription = self.create_subscription(
+            Image,
+            'vcnanoz/image_raw',
+            self.image_callback,
+            1
+        )
+        self.subscription
+        self.received_img = None
+        self.bridge = CvBridge()
 
         self.hooks_dict_subscription = self.create_subscription(HookData, 'yolov8_output/hooks_dict', self.hooks_dict_callback, 10)
         self.hooks_dict_subscription
@@ -207,6 +221,11 @@ class PBVS2DNode(Node):
         print("Actual Speed in CAM Frame: ", self.act_speed_cam)
         print("Actual Speed in TCP Frame: ", self.act_speed_tcp)
 
+        if self.show_plot and self.received_img is not None:
+            img = self.plot_points()
+            cv2.imshow('Control Loop Img', img)
+            cv2.waitKey(1)
+
 
     def get_act_hook_px_pos(self):
         key = 'hook_' + str(self.track_hooktip_num)
@@ -215,6 +234,35 @@ class PBVS2DNode(Node):
             # print("Hook tip position to track", self.act_tip_pos)
         else:
             self.act_tip_pos = self.target_point_in_px
+
+
+    def image_callback(self, msg):
+        try:
+            self.received_img = self.bridge.imgmsg_to_cv2(msg, desired_encoding='passthrough')
+        except Exception as e:
+            self.get_logger().error(f'Error in image acquisition: {e}')
+
+
+    def plot_points(self):
+        img_copy = self.received_img.copy()
+        
+        target_px = (int(self.target_point_in_px[0]), int(self.target_point_in_px[1]))
+        cv2.circle(img_copy, target_px, color=(255, 0, 0), radius = int(abs(self.tolerance_in_px[0])*100), thickness=2)
+
+        for idx, key in enumerate(self.hooks_dict):
+            if self.hooks_dict[key]['hook_box'] is not None:
+                bb_hook = tuple(map(int, self.hooks_dict[key]['hook_box']))
+                cv2.rectangle(img_copy, (bb_hook[0], bb_hook[1]), (bb_hook[2], bb_hook[3]), (150, 150, 150), 2)
+            if self.hooks_dict[key]['uv_hook'] is not None:
+                p_hook = tuple(map(int, self.hooks_dict[key]['uv_hook']))
+                cv2.drawMarker(img_copy, p_hook, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
+            if self.hooks_dict[key]['uv_tip'] is not None:
+                p_tip = tuple(map(int, self.hooks_dict[key]['uv_tip']))
+                cv2.drawMarker(img_copy, p_tip, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
+            if self.hooks_dict[key]['uv_lowpoint'] is not None:
+                p_lowpoint = tuple(map(int, self.hooks_dict[key]['uv_lowpoint']))
+                cv2.drawMarker(img_copy, p_lowpoint, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA) 
+        return img_copy
     
 
 def main(args=None):
