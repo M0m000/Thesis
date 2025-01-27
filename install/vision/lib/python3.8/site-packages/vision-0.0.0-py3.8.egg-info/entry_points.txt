@@ -3,6 +3,7 @@ calibration = vision.calibration:main
 hook_detector = vision.hook_detector:main
 image_filters = vision.img_filters:main
 image_receiver = vision.image_receiver:main
+lucas_kanade_tracking = vision.lucas_kanade_tracking:main
 maskrcnn_inference = vision.maskrcnn_inference:main
 nn_output_processor = vision.nn_output_processor:main
 point_finder_2d = vision.point_finder_2d:main

@@ -18,6 +18,7 @@ vision/calibration.py
 vision/hook_detector.py
 vision/image_receiver.py
 vision/img_filters.py
+vision/lucas_kanade_tracking.py
 vision/maskrcnn_inference.py
 vision/point_finder_2d.py
 vision/point_finder_3d.py
