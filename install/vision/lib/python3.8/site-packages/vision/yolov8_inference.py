@@ -136,6 +136,8 @@ class YOLOv8InferenceNode(Node):
             tip_mask = self.hooks_dict[key].get('tip_mask', [])
             lowpoint_mask = self.hooks_dict[key].get('lowpoint_mask', [])
 
+            starttime = time.perf_counter()
+            
             if hook_mask is not None and hook_mask != []:
                 uv_hook = self.calc_mean_of_mask(hook_mask, title='hook')
             else:
@@ -152,6 +154,9 @@ class YOLOv8InferenceNode(Node):
             self.hooks_dict_processed[key]['uv_hook'] = uv_hook
             self.hooks_dict_processed[key]['uv_tip'] = uv_tip
             self.hooks_dict_processed[key]['uv_lowpoint'] = uv_lowpoint
+
+            endtime = time.perf_counter()
+            self.get_logger().info(f"Time of Point Calculation: {(endtime-starttime):.4f} sec")
 
     
     def calc_mean_of_mask(self, mask, title='none'):

@@ -8,7 +8,7 @@ from cv_bridge import CvBridge
 import numpy as np
 import cv2
 from sensor_msgs.msg import Image
-
+import time
 
 
 class IBVS2DNode(Node):
@@ -58,7 +58,7 @@ class IBVS2DNode(Node):
         self.publish_timer = self.create_timer(self.publish_timer_period, self.publish_callback)
         self.process_timer = self.create_timer(self.process_timer_period, self.process)
 
-        self.pbvs_active = False
+        self.ibvs_active = False
         self.act_speed_cam = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         self.act_speed_tcp = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         self.gain_vector = [[self.speed_factor, 0.0], 
@@ -73,7 +73,6 @@ class IBVS2DNode(Node):
 
         self.listener = keyboard.Listener(on_press=self.on_press)
         self.listener.start()
-    
 
 
     def calc_block_diag_matrix(self, R):
@@ -105,7 +104,7 @@ class IBVS2DNode(Node):
 
 
     def hooks_dict_callback(self, msg: HookData):
-        # starttime = time.perf_counter()
+        starttime = time.perf_counter()
         bridge = CvBridge()
         self.hooks_dict = {}
         
@@ -164,8 +163,8 @@ class IBVS2DNode(Node):
 
             self.hooks_dict[hook_msg.name] = hook_data
         # self.get_logger().info(f'Reconstructed hooks_dict: {self.hooks_dict}')
-        # endtime = time.perf_counter()
-        # self.get_logger().info(f"Execution time: {endtime-starttime}:.4f seconds.")
+        endtime = time.perf_counter()
+        self.get_logger().info(f"Execution time: {endtime-starttime}:.4f seconds.")
 
     
     def srv_select_jogging_frame(self):
@@ -194,17 +193,17 @@ class IBVS2DNode(Node):
 
 
     def on_press(self, key):
-        if key.char == 'p':  # starte PBVS
-            self.pbvs_active = True
-            self.get_logger().info(f"2D PBVS started!")
+        if key.char == 'p':  # starte IBVS
+            self.ibvs_active = True
+            self.get_logger().info(f"2D IBVS started!")
 
-        elif key.char == 'o':  # stoppe PBVS
-            self.pbvs_active = False
-            self.get_logger().info(f"2D PBVS stopped!")
+        elif key.char == 'o':  # stoppe IBVS
+            self.ibvs_active = False
+            self.get_logger().info(f"2D IBVS stopped!")
 
 
     def process(self):
-        if self.pbvs_active:
+        if self.ibvs_active:
             self.get_act_hook_px_pos()
             act_error = (self.target_point_in_px - np.array(self.act_tip_pos)).reshape((2, 1))
 
@@ -274,3 +273,4 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
