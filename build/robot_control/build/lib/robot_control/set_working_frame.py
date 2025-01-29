@@ -7,6 +7,7 @@ from cv_bridge import CvBridge
 import numpy as np
 import cv2
 from sensor_msgs.msg import Image
+from kr_msgs.srv import GetRobotPose
 
 
 class SetWorkingFrame(Node):
@@ -17,7 +18,7 @@ class SetWorkingFrame(Node):
         self.trans_speed_factor = self.get_parameter('trans_speed_factor').get_parameter_value().double_value
         self.declare_parameter('rot_speed_factor', 0.1)
         self.rot_speed_factor = self.get_parameter('rot_speed_factor').get_parameter_value().double_value
-        self.declare_parameter('tolerance', [2.0, 2.0, 2.0, 2.0, 2.0, 2.0])
+        self.declare_parameter('tolerance', [1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
         self.tolerance = self.get_parameter('tolerance').get_parameter_value().double_array_value
         self.declare_parameter('show_plot', True)
         self.show_plot = self.get_parameter('show_plot').get_parameter_value().bool_value
@@ -32,6 +33,11 @@ class SetWorkingFrame(Node):
             self.get_logger().info('Wait for service SelectJoggingFrame...')
         self.get_logger().info('Service SelectJoggingFrame available!')
         self.srv_select_jogging_frame()     # rufe Service SelectJoggingFrame auf
+
+        self.get_robot_pose_client = self.create_client(GetRobotPose, '/kr/robot/get_robot_pose')
+        while not self.get_robot_pose_client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info('Wait for service GetRobotPose...')
+        self.get_logger().info('Service GetRobotPose available!')
         
         self.publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
         self.jog_msg = JogLinear()
@@ -144,15 +150,15 @@ class SetWorkingFrame(Node):
             qrs = self.detector.detect_qr_codes(img=self.received_img)
             act_error = self.process_qrs(qrs)
             
-            if act_error is not None:
-                if not self.movements_done:
-                    self.act_speed_cam = self.gain_vector @ act_error
-                    self.act_speed_cam = self.act_speed_cam.reshape((1, 6))[0].tolist()
-                    self.movements_done = False
+            if act_error is not None and not self.movements_done:
+                self.act_speed_cam = self.gain_vector @ act_error
+                self.act_speed_cam = self.act_speed_cam.reshape((1, 6))[0].tolist()
+                self.movements_done = False
                 if all(abs(act_error[i]) < abs(self.tolerance[i]) for i in range(6)):
                     self.act_speed_cam = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
                     self.movements_done = True
                     self.get_logger().info(f"Movement done: {self.movements_done}")
+                    self.set_working_frame()
             else:
                 self.act_speed_cam = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
             
@@ -208,6 +214,7 @@ class SetWorkingFrame(Node):
     def calc_width_between_qrs(self, c_ref, c_right):
         return np.linalg.norm((c_right - c_ref))
 
+
     def calc_z_angle_between_qrs(self, c_ref, c_right):
         vector = np.array([c_right[0] - c_ref[0], c_right[1] - c_ref[1]])
         x_axis = np.array([1, 0])
@@ -217,6 +224,28 @@ class SetWorkingFrame(Node):
         angle_rad = np.arctan2(cross_product, dot_product)
         angle_deg = np.degrees(angle_rad)
         return angle_deg
+    
+
+    def set_working_frame(self):
+        request = GetRobotPose.Request()
+        future = self.get_robot_pose_client.call_async(request)
+        future.add_done_callback(self.srv_getrobotpose_callback)
+
+    def srv_getrobotpose_callback(self, future):
+        try:
+            response = future.result()
+            if response.success:
+                self.get_logger().info('Got Robot Pose - setting working frame...')
+                pos = response.pos
+                rot = response.rot
+                jsconf = response.jsconf
+                print(pos)
+                print(rot)
+                print(jsconf)
+            else:
+                self.get_logger().warn('Error - Reading of Robot Pose failed!')
+        except Exception as e:
+            self.get_logger().error(f'Error Service-Call: {e}')
 
 
 class QRCode:
@@ -278,7 +307,6 @@ class QRCodeDetector:
         # Sortiere die QR-Codes basierend auf der x-Koordinate
         self.sorted_qr_codes = sorted(self.qr_codes, key=lambda qr: qr.get_center()[0])
 
-    
 
 def main(args=None):
     rclpy.init(args=args)
