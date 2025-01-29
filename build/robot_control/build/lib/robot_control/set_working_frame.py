@@ -13,20 +13,18 @@ class SetWorkingFrame(Node):
     def __init__(self):
         super().__init__('set_working_frame')
 
-        self.declare_parameter('trans_speed_factor', 0.05)
+        self.declare_parameter('trans_speed_factor', 0.1)
         self.trans_speed_factor = self.get_parameter('trans_speed_factor').get_parameter_value().double_value
-        self.declare_parameter('rot_speed_factor', 0.05)
+        self.declare_parameter('rot_speed_factor', 0.1)
         self.rot_speed_factor = self.get_parameter('rot_speed_factor').get_parameter_value().double_value
-        self.declare_parameter('tolerance', [0.1, 0.1, 0.1, 0.1, 0.1, 0.1])
+        self.declare_parameter('tolerance', [2.0, 2.0, 2.0, 2.0, 2.0, 2.0])
         self.tolerance = self.get_parameter('tolerance').get_parameter_value().double_array_value
         self.declare_parameter('show_plot', True)
         self.show_plot = self.get_parameter('show_plot').get_parameter_value().bool_value
-        self.declare_parameter('target_pos_in_px', [400.0, 580.0])
+        self.declare_parameter('target_pos_in_px', [400.0, 180.0])
         self.target_pos_in_px = self.get_parameter('target_pos_in_px').get_parameter_value().double_array_value
-        self.declare_parameter('target_width_in_px', 400.0)
+        self.declare_parameter('target_width_in_px', 380.0)
         self.target_width_in_px = self.get_parameter('target_width_in_px').get_parameter_value().double_value
-        self.declare_parameter('target_angle', [90.0, 90.0, 90.0, 90.0])
-        self.target_angle = self.get_parameter('target_angle').get_parameter_value().double_array_value
 
         
         self.client = self.create_client(SelectJoggingFrame, '/kr/motion/select_jogging_frame')
@@ -131,10 +129,12 @@ class SetWorkingFrame(Node):
     def on_press(self, key):
         if key.char == 'p':  # starte IBVS
             self.ibvs_active = True
+            self.movements_done = False
             self.get_logger().info(f"2D IBVS started!")
 
         elif key.char == 'o':  # stoppe IBVS
             self.ibvs_active = False
+            self.movements_done = True
             self.get_logger().info(f"2D IBVS stopped!")
         
 
@@ -149,13 +149,12 @@ class SetWorkingFrame(Node):
                     self.act_speed_cam = self.gain_vector @ act_error
                     self.act_speed_cam = self.act_speed_cam.reshape((1, 6))[0].tolist()
                     self.movements_done = False
-
                 if all(abs(act_error[i]) < abs(self.tolerance[i]) for i in range(6)):
                     self.act_speed_cam = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
                     self.movements_done = True
-                    # self.get_logger().info(f"Movement done: {self.movements_done}")
+                    self.get_logger().info(f"Movement done: {self.movements_done}")
             else:
-                self.act_speed_cam = [0.0 ,0.0, 0.0, 0.0, 0.0, 0.0]
+                self.act_speed_cam = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
             
             self.act_speed_tcp = self.block_diag_matrix @ self.act_speed_cam
             self.act_speed_tcp = self.act_speed_tcp.reshape((1, 6))[0].tolist()
@@ -192,7 +191,7 @@ class SetWorkingFrame(Node):
             w_diff_ref_upper = qr_ref.get_width() - qr_upper.get_width()
             w_diff_ref_right = qr_ref.get_height() - qr_right.get_height()
 
-            e_rot_x = w_diff_ref_upper
+            e_rot_x = -w_diff_ref_upper
             e_rot_y = w_diff_ref_right
             
             e = [e_trans_x,
