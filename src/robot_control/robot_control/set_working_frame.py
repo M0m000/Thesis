@@ -15,8 +15,8 @@ class SetWorkingFrame(Node):
 
         self.declare_parameter('speed_factor', 0.05)
         self.speed_factor = self.get_parameter('speed_factor').get_parameter_value().double_value
-        self.declare_parameter('tolerance_in_px', [0.1, 0.1])
-        self.tolerance_in_px = self.get_parameter('tolerance_in_px').get_parameter_value().double_array_value
+        self.declare_parameter('tolerance', [0.1, 0.1, 0.1, 0.1, 0.1, 0.1])
+        self.tolerance = self.get_parameter('tolerance').get_parameter_value().double_array_value
         self.declare_parameter('show_plot', True)
         self.show_plot = self.get_parameter('show_plot').get_parameter_value().bool_value
         self.declare_parameter('target_pos_in_px', [400.0, 580.0])
@@ -71,6 +71,7 @@ class SetWorkingFrame(Node):
         self.listener.start()
 
         self.detector = QRCodeDetector()
+        self.movements_done = False
 
 
     def calc_block_diag_matrix(self, R):
@@ -141,11 +142,16 @@ class SetWorkingFrame(Node):
             self.received_img = self.bridge.imgmsg_to_cv2(msg, desired_encoding='passthrough')
             qrs = self.detector.detect_qr_codes(img=self.received_img)
             act_error = self.process_qrs(qrs)
-            if abs(act_error[0]) > abs(self.tolerance_in_px[0]) and abs(act_error[1]) > abs(self.tolerance_in_px[1]):
+            
+            if not self.movements_done:
                 self.act_speed_cam = self.gain_vector @ act_error
                 self.act_speed_cam = self.act_speed_cam.reshape((1, 6))[0].tolist()
-            else:
+                self.movements_done = False
+
+            if all(abs(act_error[i]) < abs(self.tolerance[i]) for i in range(6)):
                 self.act_speed_cam = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+                self.movements_done = True
+                self.get_logger().info(f"Movement done: {self.movements_done}")
             
             self.act_speed_tcp = self.block_diag_matrix @ self.act_speed_cam
             self.act_speed_tcp = self.act_speed_tcp.reshape((1, 6))[0].tolist()
@@ -153,7 +159,7 @@ class SetWorkingFrame(Node):
             self.get_logger.info("Actual Speed in TCP Frame: ", self.act_speed_tcp)
 
             if self.show_plot:
-                self.plot_image_with_qr(self.received_img, qrs)  # Plot-Bild mit QR-Codes
+                self.plot_image_with_qr(self.received_img, qrs)     # Plot-Bild mit QR-Codes
         except Exception as e:
             self.get_logger().error(f'Error in image acquisition: {e}')
 
