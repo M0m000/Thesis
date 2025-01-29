@@ -44,6 +44,9 @@ class YOLOv8InferenceNode(Node):
         self.hooks_dict_publisher_ = self.create_publisher(HookData, 'yolov8_output/hooks_dict', 10)
         self.timer = self.create_timer(0.01, self.publish_hooks_dict)
 
+        self.output_segment_img_publisher = self.create_publisher(Image, 'yolov8_output/output_segment_img', 10)
+        self.output_point_img_publisher = self.create_publisher(Image, 'yolov8_output/output_point_img', 10)
+
         self.bridge = CvBridge()
         self.received_img = None
         self.output_img = None
@@ -96,16 +99,21 @@ class YOLOv8InferenceNode(Node):
             if self.show_cam_img:
                 cv2.imshow('VC Cam Img', self.received_img)
                 cv2.waitKey(1)
-
+            
+            self.output_img = self.plot_hooks_and_bars()
+            output_segment_img = self.bridge.cv2_to_imgmsg(self.output_img, encoding="bgr8")
+            self.output_segment_img_publisher.publish(output_segment_img)
             if self.show_output_img:
-                self.output_img = self.plot_hooks_and_bars()
                 cv2.imshow('YoloV8 Output Img', self.output_img)
                 cv2.waitKey(1)
 
+            self.points_img = self.plot_points()
+            output_point_img = self.bridge.cv2_to_imgmsg(self.points_img, encoding="bgr8")
+            self.output_point_img_publisher.publish(output_point_img)
             if self.show_point_img:
-                self.points_img = self.plot_points()
                 cv2.imshow('Point Output Img', self.points_img)
                 cv2.waitKey(1)
+                
         except Exception as e:
             self.get_logger().error(f'Error in image processing: {e}')
 
@@ -129,6 +137,7 @@ class YOLOv8InferenceNode(Node):
     
 
     def process_output_hooks_dict(self):
+        # starttime = time.perf_counter()
         self.hooks_dict_processed = self.hooks_dict.copy()
 
         for idx, key in enumerate(self.hooks_dict):
@@ -136,7 +145,6 @@ class YOLOv8InferenceNode(Node):
             tip_mask = self.hooks_dict[key].get('tip_mask', [])
             lowpoint_mask = self.hooks_dict[key].get('lowpoint_mask', [])
 
-            starttime = time.perf_counter()
             
             if hook_mask is not None and hook_mask != []:
                 uv_hook = self.calc_mean_of_mask(hook_mask, title='hook')
@@ -155,8 +163,8 @@ class YOLOv8InferenceNode(Node):
             self.hooks_dict_processed[key]['uv_tip'] = uv_tip
             self.hooks_dict_processed[key]['uv_lowpoint'] = uv_lowpoint
 
-            endtime = time.perf_counter()
-            self.get_logger().info(f"Time of Point Calculation: {(endtime-starttime):.4f} sec")
+        # endtime = time.perf_counter()
+        # self.get_logger().info(f"Time of Point Calculation: {(endtime-starttime):.4f} sec")
 
     
     def calc_mean_of_mask(self, mask, title='none'):

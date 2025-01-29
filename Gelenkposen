@@ -4,7 +4,7 @@ ttype: 0
 tvalue: 30.0
 bpoint: 0
 btype: 0
-bvalue: 15.0
+bvalue: 100.0
 sync: 0.0
 chaining: 0"
 
@@ -14,7 +14,7 @@ ttype: 0
 tvalue: 30.0
 bpoint: 0
 btype: 0
-bvalue: 15.0
+bvalue: 100.0
 sync: 0.0
 chaining: 0"
 
