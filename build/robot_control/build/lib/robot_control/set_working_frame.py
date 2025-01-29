@@ -22,9 +22,9 @@ class SetWorkingFrame(Node):
         self.tolerance = self.get_parameter('tolerance').get_parameter_value().double_array_value
         self.declare_parameter('show_plot', True)
         self.show_plot = self.get_parameter('show_plot').get_parameter_value().bool_value
-        self.declare_parameter('target_pos_in_px', [400.0, 180.0])
+        self.declare_parameter('target_pos_in_px', [640.0, 360.0])
         self.target_pos_in_px = self.get_parameter('target_pos_in_px').get_parameter_value().double_array_value
-        self.declare_parameter('target_width_in_px', 380.0)
+        self.declare_parameter('target_width_in_px', 200.0)
         self.target_width_in_px = self.get_parameter('target_width_in_px').get_parameter_value().double_value
 
         
@@ -175,9 +175,16 @@ class SetWorkingFrame(Node):
 
     def plot_image_with_qr(self, img, qr_codes):
         img_copy = img.copy()
+        # cv2.drawMarker(img_copy, (self.target_pos_in_px[0], self.target_pos_in_px[1]), (255, 0, 0), markerType=cv2.MARKER_SQUARE, markerSize=20, thickness=2)
+
         for qr in qr_codes:
             center = qr.get_center()
+            corners = qr.get_corners()
             cv2.circle(img_copy, tuple(center.astype(int)), 10, (0, 0, 255), -1)
+            for corner in corners:
+                x, y = corner.astype(int)
+                cv2.drawMarker(img_copy, (x, y), (0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=20, thickness=2)        
+        
         cv2.imshow("QR Code Detection", img_copy)
         cv2.waitKey(1)
 
