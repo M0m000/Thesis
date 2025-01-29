@@ -10,9 +10,9 @@ from sensor_msgs.msg import Image
 from kr_msgs.srv import GetRobotPose
 
 
-class SetWorkingFrame(Node):
+class SetWorkingFrameQr(Node):
     def __init__(self):
-        super().__init__('set_working_frame')
+        super().__init__('set_working_frame_qr')
 
         self.declare_parameter('trans_speed_factor', 0.1)
         self.trans_speed_factor = self.get_parameter('trans_speed_factor').get_parameter_value().double_value
@@ -317,7 +317,7 @@ class QRCodeDetector:
 
 def main(args=None):
     rclpy.init(args=args)
-    move_lin_by_key = SetWorkingFrame()
+    move_lin_by_key = SetWorkingFrameQr()
     rclpy.spin(move_lin_by_key)
     rclpy.shutdown()
 

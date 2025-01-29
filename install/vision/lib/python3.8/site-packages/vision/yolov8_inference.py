@@ -165,6 +165,7 @@ class YOLOv8InferenceNode(Node):
 
         # endtime = time.perf_counter()
         # self.get_logger().info(f"Time of Point Calculation: {(endtime-starttime):.4f} sec")
+        
 
     
     def calc_mean_of_mask(self, mask, title='none'):
