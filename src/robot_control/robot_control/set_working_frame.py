@@ -50,7 +50,7 @@ class SetWorkingFrame(Node):
 
         self.publish_timer_period = 0.002  # Sekunden
         self.process_timer_period = 0.001  # Sekunden
-        self.publish_timer = self.create_timer(self.publish_timer_period, self.publish_callback)
+        # self.publish_timer = self.create_timer(self.publish_timer_period, self.publish_callback)
         # self.process_timer = self.create_timer(self.process_timer_period, self.process)
 
         self.ibvs_active = False
@@ -140,7 +140,13 @@ class SetWorkingFrame(Node):
         try:
             self.received_img = self.bridge.imgmsg_to_cv2(msg, desired_encoding='passthrough')
             qrs = self.detector.detect_qr_codes(img=self.received_img)
-            self.process_qrs(qrs)
+            act_error = self.process_qrs(qrs)
+            self.act_speed_cam = self.gain_vector @ act_error
+            self.act_speed_cam = self.act_speed_cam.reshape((1, 6))[0].tolist()
+            self.act_speed_tcp = self.block_diag_matrix @ self.act_speed_cam
+            self.act_speed_tcp = self.act_speed_tcp.reshape((1, 6))[0].tolist()
+            print("Actual Speed in CAM Frame: ", self.act_speed_cam)
+            print("Actual Speed in TCP Frame: ", self.act_speed_tcp)
 
             if self.show_plot:
                 self.plot_image_with_qr(self.received_img, qrs)  # Plot-Bild mit QR-Codes
@@ -183,6 +189,7 @@ class SetWorkingFrame(Node):
                  e_rot_z].reshpae((6, 1))
             
             self.get_logger().info(f"Act Error: {e}")
+            return e
 
 
     def calc_width_between_qrs(self, c_ref, c_right):
@@ -257,5 +264,3 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
-
-

@@ -50,7 +50,7 @@ class SetWorkingFrame(Node):
 
         self.publish_timer_period = 0.002  # Sekunden
         self.process_timer_period = 0.001  # Sekunden
-        self.publish_timer = self.create_timer(self.publish_timer_period, self.publish_callback)
+        # self.publish_timer = self.create_timer(self.publish_timer_period, self.publish_callback)
         # self.process_timer = self.create_timer(self.process_timer_period, self.process)
 
         self.ibvs_active = False
@@ -140,7 +140,13 @@ class SetWorkingFrame(Node):
         try:
             self.received_img = self.bridge.imgmsg_to_cv2(msg, desired_encoding='passthrough')
             qrs = self.detector.detect_qr_codes(img=self.received_img)
-            self.process_qrs(qrs)
+            act_error = self.process_qrs(qrs)
+            self.act_speed_cam = self.gain_vector @ act_error
+            self.act_speed_cam = self.act_speed_cam.reshape((1, 6))[0].tolist()
+            self.act_speed_tcp = self.block_diag_matrix @ self.act_speed_cam
+            self.act_speed_tcp = self.act_speed_tcp.reshape((1, 6))[0].tolist()
+            print("Actual Speed in CAM Frame: ", self.act_speed_cam)
+            print("Actual Speed in TCP Frame: ", self.act_speed_tcp)
 
             if self.show_plot:
                 self.plot_image_with_qr(self.received_img, qrs)  # Plot-Bild mit QR-Codes
@@ -168,17 +174,28 @@ class SetWorkingFrame(Node):
             w_ref_ru = self.calc_width_between_qrs(qr_ref.get_center(), qr_right.get_center())
             e_trans_z = self.target_width_in_px - w_ref_ru
             
-            e_rot_z = 0.0 - self.calc_z_angle_of_qr(qr_ref.get_center(), qr_right.get_center())
-            w_diff_ref_upper = self.calc_width_of_qr(qr_upper) - self.calc_width_of_qr(qr_ref)
-            print(w_diff_ref_upper)
-            # print(e_trans_x, e_trans_y, e_trans_z, e_rot_z)
-            ########## HIER GEHTS WEITER!
+            e_rot_z = 0.0 - self.calc_z_angle_between_qrs(qr_ref.get_center(), qr_right.get_center())
+            w_diff_ref_upper = qr_ref.get_width() - qr_upper.get_width()
+            w_diff_ref_right = qr_ref.get_width() - qr_right.get_width()
+
+            e_rot_x = -w_diff_ref_upper
+            e_rot_y = -w_diff_ref_right
+            
+            e = [e_trans_x,
+                 e_trans_y,
+                 e_trans_z,
+                 e_rot_x,
+                 e_rot_y,
+                 e_rot_z].reshpae((6, 1))
+            
+            self.get_logger().info(f"Act Error: {e}")
+            return e
 
 
     def calc_width_between_qrs(self, c_ref, c_right):
         return np.linalg.norm((c_right - c_ref))
 
-    def calc_z_angle_of_qr(self, c_ref, c_right):
+    def calc_z_angle_between_qrs(self, c_ref, c_right):
         vector = np.array([c_right[0] - c_ref[0], c_right[1] - c_ref[1]])
         x_axis = np.array([1, 0])
 
@@ -187,12 +204,6 @@ class SetWorkingFrame(Node):
         angle_rad = np.arctan2(cross_product, dot_product)
         angle_deg = np.degrees(angle_rad)
         return angle_deg
-    
-    def calc_width_of_qr(self, qr):
-        top_left, top_right, bottom_right, bottom_left = qr.get_corners()
-        w_1 = np.linalg.norm((top_right - top_left))
-        w_2 = np.linalg.norm((bottom_right - bottom_left))
-        return (w_1 + w_2) / 2
 
 
 class QRCode:
@@ -202,12 +213,13 @@ class QRCode:
         self.width = width
 
     def get_corners(self):
-        """Gibt die Ecken des QR-Codes zurück"""
         return self.corners
 
     def get_center(self):
-        """Gibt den Mittelpunkt des QR-Codes zurück"""
         return self.center
+    
+    def get_width(self):
+        return self.width
     
 
 class QRCodeDetector:
@@ -237,9 +249,8 @@ class QRCodeDetector:
 
     def _sort_qr_codes(self):
         if len(self.qr_codes) != 3:
-            print(f"Es sollten genau 3 QR-Codes im Bild sein! - aktuell: {len(self.qr_codes)}")
+            self.get_logger().warn(f"Es sollten genau 3 QR-Codes im Bild sein! - aktuell: {len(self.qr_codes)}")
             return []
-
         # Sortiere die QR-Codes basierend auf der x-Koordinate
         self.sorted_qr_codes = sorted(self.qr_codes, key=lambda qr: qr.get_center()[0])
 
