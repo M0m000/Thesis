@@ -15,7 +15,7 @@ class SetWorkingFrame(Node):
 
         self.declare_parameter('speed_factor', 0.05)
         self.speed_factor = self.get_parameter('speed_factor').get_parameter_value().double_value
-        self.declare_parameter('tolerance_in_px', [0.5, 0.5])
+        self.declare_parameter('tolerance_in_px', [0.1, 0.1])
         self.tolerance_in_px = self.get_parameter('tolerance_in_px').get_parameter_value().double_array_value
         self.declare_parameter('show_plot', True)
         self.show_plot = self.get_parameter('show_plot').get_parameter_value().bool_value
@@ -141,12 +141,16 @@ class SetWorkingFrame(Node):
             self.received_img = self.bridge.imgmsg_to_cv2(msg, desired_encoding='passthrough')
             qrs = self.detector.detect_qr_codes(img=self.received_img)
             act_error = self.process_qrs(qrs)
-            self.act_speed_cam = self.gain_vector @ act_error
-            self.act_speed_cam = self.act_speed_cam.reshape((1, 6))[0].tolist()
+            if abs(act_error[0]) > abs(self.tolerance_in_px[0]) and abs(act_error[1]) > abs(self.tolerance_in_px[1]):
+                self.act_speed_cam = self.gain_vector @ act_error
+                self.act_speed_cam = self.act_speed_cam.reshape((1, 6))[0].tolist()
+            else:
+                self.act_speed_cam = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+            
             self.act_speed_tcp = self.block_diag_matrix @ self.act_speed_cam
             self.act_speed_tcp = self.act_speed_tcp.reshape((1, 6))[0].tolist()
-            print("Actual Speed in CAM Frame: ", self.act_speed_cam)
-            print("Actual Speed in TCP Frame: ", self.act_speed_tcp)
+            self.get_logger().info("Actual Speed in CAM Frame: ", self.act_speed_cam)
+            self.get_logger.info("Actual Speed in TCP Frame: ", self.act_speed_tcp)
 
             if self.show_plot:
                 self.plot_image_with_qr(self.received_img, qrs)  # Plot-Bild mit QR-Codes

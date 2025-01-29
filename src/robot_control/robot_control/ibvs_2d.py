@@ -217,8 +217,8 @@ class IBVS2DNode(Node):
 
         self.act_speed_tcp = self.block_diag_matrix @ self.act_speed_cam
         self.act_speed_tcp = self.act_speed_tcp.reshape((1, 6))[0].tolist()
-        print("Actual Speed in CAM Frame: ", self.act_speed_cam)
-        print("Actual Speed in TCP Frame: ", self.act_speed_tcp)
+        self.get_logger().info("Actual Speed in CAM Frame: ", self.act_speed_cam)
+        self.get_logger().info("Actual Speed in TCP Frame: ", self.act_speed_tcp)
 
         if self.show_plot and self.received_img is not None:
             img = self.plot_points()
@@ -228,10 +228,9 @@ class IBVS2DNode(Node):
 
     def get_act_hook_px_pos(self):
         key = 'hook_' + str(self.track_hooktip_num)
-        print(key)
         if key in self.hooks_dict:
             self.act_tip_pos = self.hooks_dict[key]['uv_tip']
-            # print("Hook tip position to track", self.act_tip_pos)
+            # self.get_logger().info("Hook tip position to track", self.act_tip_pos)
         else:
             self.act_tip_pos = self.target_point_in_px
 
