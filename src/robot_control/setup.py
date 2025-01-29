@@ -44,7 +44,7 @@ setup(
             'tf_frames_publisher = robot_control.tf_frames_publisher:main',
             'tcp_frame_listener = robot_control.tcp_frame_listener:main',
             'ibvs_2d = robot_control.ibvs_2d:main',
-            'set_working_frame = robot_control.set_working_frame:main'
+            'set_working_frame_qr = robot_control.set_working_frame_qr:main'
         ],
     },
 )
