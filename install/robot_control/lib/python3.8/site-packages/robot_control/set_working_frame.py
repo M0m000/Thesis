@@ -13,8 +13,10 @@ class SetWorkingFrame(Node):
     def __init__(self):
         super().__init__('set_working_frame')
 
-        self.declare_parameter('speed_factor', 0.05)
-        self.speed_factor = self.get_parameter('speed_factor').get_parameter_value().double_value
+        self.declare_parameter('trans_speed_factor', 0.05)
+        self.trans_speed_factor = self.get_parameter('trans_speed_factor').get_parameter_value().double_value
+        self.declare_parameter('rot_speed_factor', 0.05)
+        self.rot_speed_factor = self.get_parameter('rot_speed_factor').get_parameter_value().double_value
         self.declare_parameter('tolerance', [0.1, 0.1, 0.1, 0.1, 0.1, 0.1])
         self.tolerance = self.get_parameter('tolerance').get_parameter_value().double_array_value
         self.declare_parameter('show_plot', True)
@@ -26,13 +28,13 @@ class SetWorkingFrame(Node):
         self.declare_parameter('target_angle', [90.0, 90.0, 90.0, 90.0])
         self.target_angle = self.get_parameter('target_angle').get_parameter_value().double_array_value
 
-        '''
+        
         self.client = self.create_client(SelectJoggingFrame, '/kr/motion/select_jogging_frame')
         while not self.client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('Wait for service SelectJoggingFrame...')
         self.get_logger().info('Service SelectJoggingFrame available!')
         self.srv_select_jogging_frame()     # rufe Service SelectJoggingFrame auf
-        '''
+        
         self.publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
         self.jog_msg = JogLinear()
         self.jog_msg.vel = [0.0, 0.0, 0.0]
@@ -48,20 +50,18 @@ class SetWorkingFrame(Node):
         self.received_img = None
         self.bridge = CvBridge()
 
-        self.publish_timer_period = 0.002  # Sekunden
-        self.process_timer_period = 0.001  # Sekunden
-        # self.publish_timer = self.create_timer(self.publish_timer_period, self.publish_callback)
-        # self.process_timer = self.create_timer(self.process_timer_period, self.process)
+        self.publish_timer_period = 0.002
+        self.publish_timer = self.create_timer(self.publish_timer_period, self.publish_callback)
 
         self.ibvs_active = False
         self.act_speed_cam = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         self.act_speed_tcp = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-        self.gain_vector = [[self.speed_factor, 0.0], 
-                            [0.0, self.speed_factor],
-                            [0.0, 0.0],
-                            [0.0, 0.0],
-                            [0.0, 0.0],
-                            [0.0, 0.0]]
+        self.gain_vector = [[self.trans_speed_factor, 0.0, 0.0, 0.0, 0.0, 0.0], 
+                            [0.0, self.trans_speed_factor, 0.0, 0.0, 0.0, 0.0],
+                            [0.0, 0.0, self.trans_speed_factor, 0.0, 0.0, 0.0],
+                            [0.0, 0.0, 0.0, self.rot_speed_factor, 0.0, 0.0],
+                            [0.0, 0.0, 0.0, 0.0, self.rot_speed_factor, 0.0],
+                            [0.0, 0.0, 0.0, 0.0, 0.0, self.rot_speed_factor]]
         
         self.R_cam_in_tcp = self.calc_rotation_matrix(0.0, 0.0, 180.0)
         self.block_diag_matrix = self.calc_block_diag_matrix(self.R_cam_in_tcp)
@@ -124,7 +124,8 @@ class SetWorkingFrame(Node):
         # self.get_logger().info(f"Publishing: {self.jog_msg}")
         self.jog_msg.vel = self.act_speed_tcp[0:3]
         self.jog_msg.rot = self.act_speed_tcp[3:6]
-        self.publisher.publish(self.jog_msg)
+        if self.ibvs_active:
+            self.publisher.publish(self.jog_msg)
 
 
     def on_press(self, key):
@@ -143,21 +144,24 @@ class SetWorkingFrame(Node):
             qrs = self.detector.detect_qr_codes(img=self.received_img)
             act_error = self.process_qrs(qrs)
             
-            if not self.movements_done:
-                self.act_speed_cam = self.gain_vector @ act_error
-                self.act_speed_cam = self.act_speed_cam.reshape((1, 6))[0].tolist()
-                self.movements_done = False
+            if act_error is not None:
+                if not self.movements_done:
+                    self.act_speed_cam = self.gain_vector @ act_error
+                    self.act_speed_cam = self.act_speed_cam.reshape((1, 6))[0].tolist()
+                    self.movements_done = False
 
-            if all(abs(act_error[i]) < abs(self.tolerance[i]) for i in range(6)):
-                self.act_speed_cam = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-                self.movements_done = True
-                self.get_logger().info(f"Movement done: {self.movements_done}")
+                if all(abs(act_error[i]) < abs(self.tolerance[i]) for i in range(6)):
+                    self.act_speed_cam = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+                    self.movements_done = True
+                    # self.get_logger().info(f"Movement done: {self.movements_done}")
+            else:
+                self.act_speed_cam = [0.0 ,0.0, 0.0, 0.0, 0.0, 0.0]
             
             self.act_speed_tcp = self.block_diag_matrix @ self.act_speed_cam
             self.act_speed_tcp = self.act_speed_tcp.reshape((1, 6))[0].tolist()
-            self.get_logger().info("Actual Speed in CAM Frame: ", self.act_speed_cam)
-            self.get_logger.info("Actual Speed in TCP Frame: ", self.act_speed_tcp)
-
+            self.get_logger().info(f"\nActual Speed in CAM Frame: {self.act_speed_cam}\n")
+            self.get_logger().info(f"Actual Speed in TCP Frame: {self.act_speed_tcp}\n")
+            
             if self.show_plot:
                 self.plot_image_with_qr(self.received_img, qrs)     # Plot-Bild mit QR-Codes
         except Exception as e:
@@ -184,21 +188,21 @@ class SetWorkingFrame(Node):
             w_ref_ru = self.calc_width_between_qrs(qr_ref.get_center(), qr_right.get_center())
             e_trans_z = self.target_width_in_px - w_ref_ru
             
-            e_rot_z = 0.0 - self.calc_z_angle_between_qrs(qr_ref.get_center(), qr_right.get_center())
+            e_rot_z = 0.0 - ( - self.calc_z_angle_between_qrs(qr_ref.get_center(), qr_right.get_center()))
             w_diff_ref_upper = qr_ref.get_width() - qr_upper.get_width()
-            w_diff_ref_right = qr_ref.get_width() - qr_right.get_width()
+            w_diff_ref_right = qr_ref.get_height() - qr_right.get_height()
 
-            e_rot_x = -w_diff_ref_upper
-            e_rot_y = -w_diff_ref_right
+            e_rot_x = w_diff_ref_upper
+            e_rot_y = w_diff_ref_right
             
             e = [e_trans_x,
                  e_trans_y,
                  e_trans_z,
                  e_rot_x,
                  e_rot_y,
-                 e_rot_z].reshpae((6, 1))
-            
-            self.get_logger().info(f"Act Error: {e}")
+                 e_rot_z]
+            e = np.array(e).reshape((6, 1))
+            # self.get_logger().info(f"Act Error: {e}")
             return e
 
 
@@ -217,10 +221,11 @@ class SetWorkingFrame(Node):
 
 
 class QRCode:
-    def __init__(self, corners, center, width):
+    def __init__(self, corners, center, width, height):
         self.corners = corners
         self.center = center
         self.width = width
+        self.height = height
 
     def get_corners(self):
         return self.corners
@@ -231,6 +236,9 @@ class QRCode:
     def get_width(self):
         return self.width
     
+    def get_height(self):
+        return self.height
+
 
 class QRCodeDetector:
     def __init__(self):
@@ -246,7 +254,8 @@ class QRCodeDetector:
             for qr_corners in corners:
                 center = np.mean(qr_corners, axis=0)
                 width = self.calc_width_of_qr(qr_corners)
-                qr_code = QRCode(qr_corners, center, width)
+                height = self.calc_height_of_qr(qr_corners)
+                qr_code = QRCode(qr_corners, center, width, height)
                 self.qr_codes.append(qr_code)
         self._sort_qr_codes()
         return self.sorted_qr_codes
@@ -256,10 +265,16 @@ class QRCodeDetector:
         w_1 = np.linalg.norm((top_right - top_left))
         w_2 = np.linalg.norm((bottom_right - bottom_left))
         return (w_1 + w_2) / 2
+    
+    def calc_height_of_qr(self, corners):
+        top_left, top_right, bottom_right, bottom_left = corners
+        h_1 = np.linalg.norm((top_left - bottom_left))
+        h_2 = np.linalg.norm((top_right - bottom_right))
+        return (h_1 + h_2) / 2
 
     def _sort_qr_codes(self):
         if len(self.qr_codes) != 3:
-            self.get_logger().warn(f"Es sollten genau 3 QR-Codes im Bild sein! - aktuell: {len(self.qr_codes)}")
+            print(f"Es sollten genau 3 QR-Codes im Bild sein! - aktuell: {len(self.qr_codes)}")
             return []
         # Sortiere die QR-Codes basierend auf der x-Koordinate
         self.sorted_qr_codes = sorted(self.qr_codes, key=lambda qr: qr.get_center()[0])
