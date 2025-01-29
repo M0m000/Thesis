@@ -1,13 +1,100 @@
 import rclpy
 from rclpy.node import Node
+from tf2_ros import Buffer, TransformListener
+import tf2_ros
+from geometry_msgs.msg import TransformStamped
+import numpy as np
+from kr_msgs.srv import GetSystemFrame
+from kr_msgs.srv import SetSystemFrame
+import math
+
 
 class DefineWorkingFrame(Node):
     def __init__(self):
         super().__init__('define_working_frame')
+
+        self.get_kassow_frame_client = self.create_client(GetSystemFrame, '/kr/robot/get_system_frame')
+        while not self.get_kassow_frame_client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info("Waiting for Service GetSystemFrame...")
+        self.get_logger().info("Service GetSystemFrame available!")
+
+        self.set_kassow_frame_client = self.create_client(SetSystemFrame, '/kr/robot/set_system_frame')
+        while not self.set_kassow_frame_client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info("Waiting for Service SetSystemFrame...")
+        self.get_logger().info("Service SetSystemFrame available!")
+
+        self.Rot_needle_tfc = [0.0, 0.0, 0.0]         # in Grad
+        self.Trans_needle_tfc = [0.0, 0.0, 0.0]       # in mm
+        
+        self.set_frame(self.Rot_needle_tfc, self.Trans_needle_tfc, frame="tcp", ref_frame="tfc")        # setze Frame TCP auf die Nadel
+
         self.stations = ['Init', 'REF', 'POS1', 'POS2']
         self.current_station = 0
         self.get_logger().info(f'Start at {self.stations[self.current_station]}')
         self.run_sequence()
+
+
+    def set_frame(self, R, T, frame="tcp", ref_frame="tfc"):
+        request = SetSystemFrame.Request()
+        request.name = frame
+        request.ref = ref_frame
+        request.pos = T
+        request.rot = R
+
+        future = self.set_kassow_frame_client.call_async(request)
+        rclpy.spin_until_future_complete(self, future)
+
+        try:
+            response = future.result()
+            if response.success:
+                self.get_logger().info(f"Frame '{frame}' set successfully!")
+            else:
+                self.get_logger().warn(f"Failed to set frame '{frame}'!")
+        except Exception as e:
+            self.get_logger().error(f"Service call of SetSystemFrame failed: {e}")
+
+
+    def get_frame(self, frame="tcp", ref_frame="world"):
+        request = GetSystemFrame.Request()
+        request.name = frame
+        request.ref = ref_frame
+
+        future = self.get_kassow_frame_client.call_async(request)
+        rclpy.spin_until_future_complete(self, future)
+
+        try:
+            response = future.result()
+            if response.success:
+                self.get_logger().info(f"Read Frame '{frame}' successfully!")
+                return self.create_transform_matrix(translation=response.pos, rotation=response.rot)
+            else:
+                self.get_logger().warn(f"Failed to read Frame '{frame}'!")
+        except Exception as e:
+            self.get_logger().error(f"Service call of GetSystemFrame failed: {e}")
+            return None
+
+
+    def calc_rotation_matrix_from_rpy(self, rpy=[0.0, 0.0, 0.0]):
+        ax, ay, az = np.radians(rpy)
+
+        R_x = np.array([[1.0, 0.0, 0.0],
+                        [0.0, np.cos(ax), -np.sin(ax)],
+                        [0.0, np.sin(ax), np.cos(ax)]])
+        R_y = np.array([[np.cos(ay), 0.0, np.sin(ay)],
+                        [0.0, 1.0, 0.0],
+                        [-np.sin(ay), 0.0, np.cos(ay)]])
+        R_z = np.array([[np.cos(az), -np.sin(az), 0.0],
+                        [np.sin(az), np.cos(az), 0.0],
+                        [0.0, 0.0, 1.0]])
+        return R_z @ R_y @ R_x
+    
+    def create_transform_matrix(self, translation=[0.0, 0.0, 0.0], rotation=[0.0, 0.0, 0.0]):
+        T = np.eye(4)
+        T[:3, :3] = self.calc_rotation_matrix_from_rpy(rotation=rotation)
+        T[:3, 3] = translation
+        return T
+
+
 
     def run_sequence(self):
         while self.current_station < (len(self.stations)-1):
@@ -32,19 +119,38 @@ class DefineWorkingFrame(Node):
         
     def save_REF(self):
         # speichere REF System Punkt in Bezug auf WORLD
+        self.T_ref_world = self.get_frame(frame="tcp", ref_frame="world")
         self.get_logger().info("Move Robot Needle to <POS1>... then type <done>")
         
     def save_POS1(self):
         # speichere POS1 System Punkt in Bezug auf WORLD
+        self.T_pos1_world = self.get_frame(frame="tcp", ref_frame="world")
         self.get_logger().info("Move Robot Needle to <POS2>... then type <done>")
         
     def save_POS2_and_calculate_transform(self):
         # speichere POS2 System Punkt in Bezug auf WORLD
+        self.T_pos2_world = self.get_frame(frame="tcp", ref_frame="world")
         self.get_logger().info("Calculating Transformation between WORLD and REF...")
-        # berechne Vektoren wie in Onenote beschrieben
-        # Erstelle Drehmatrix im Punkt REF
-        # Erstelle Transformationsmatrix von REF in Bezug auf WORLD
-        self.get_logger().info("Transformation between WORLD and REF saved in tf2 as <WORK>")
+        trans_ref_world = self.T_ref_world[:3, 3]
+        trans_ref_pos1 = self.T_pos1_world[:3, 3] - self.T_ref_world[:3, 3]
+        trans_ref_pos2 = self.T_pos2_world[:3, 3] - self.T_ref_world[:3, 3]
+
+        print(trans_ref_world, trans_ref_pos1, trans_ref_pos2)
+
+        # normieren -> x_ref_world und y_ref_world
+        # Kreuzprodukt mit x_ref_world und y_ref_world
+        # Kreuzprodukt normieren -> z_ref_world
+        # in R_ref_world einsortieren -> spaltenweise
+        # Homogene Transformationsmatrix bilden aus R_ref_world und trans_ref_world
+        # homogene Transformationsmatrix als csv abspeichern
+
+        R_ref_world = [[1.0, 0.0, 0.0, 0.0],
+                       [0.0, 1.0, 0.0, 0.0],
+                       [0.0, 0.0, 1.0, 0.0],
+                       [0.0, 0.0, 0.0, 1.0]]
+        
+        np.savetxt('/src/robot_control/robot_control/data/WORK_frame_in_world.csv', R_ref_world, delimiter=",", fmt="%.6f")
+        self.get_logger().info("Transformation between WORLD and REF saved as <WORK_frame_in_world.csv>")
         
         
 
