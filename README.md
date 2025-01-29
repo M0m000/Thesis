@@ -185,6 +185,13 @@ ros2 run bt_pkg bt_example_tree
 Enthält alle Roboteransteuerungen - kommuniziert mit orange-ros2-Package von Kassow Robots. <br>
 <br>
 
+### **Set Working Frame** Node <br>
+```bash
+ros2 run robot_control set_working_frame
+```
+>Node zur Herstellung der Beziehung zwischen Roboter und Gestell. Roboter muss dazu vor QR-Plate platziert werden, sodass alle drei QR-Codes mittig im Bild mit ausreichend Abstand zu den Bildrändern sind. Dann Node starten und P drücken -> Roboter positioniert sich dann selbst rechtwinklig zur Plate und speichert das Frame, welches mittig im QR-Code links oben liegt als Arbeitsframe mit der ID 3. <br>
+<br>
+
 ### **2D IBVS** Node <br>
 ```bash
 ros2 run robot_control ibvs_2d --ros-args -p speed_factor:=0.1 -p target_point_in_px:=[640.0, 360.0] -p tolerance_in_px:=[5.0, 5.0] -p track_hooktip_num:=2 -p show_plot:=True
