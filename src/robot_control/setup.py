@@ -27,25 +27,12 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'hello_node = robot_control.hello_node:main',
             'move_lin_by_key = robot_control.move_lin_by_key:main',
-            'print_tcp_pose = robot_control.print_tcp_pose:main',
-            'print_frames = robot_control.print_frames:main',
-            'set_frame_client = robot_control.set_frame_client:main',
-            'transformation_snapshot = robot_control.transformation_snapshot:main',
-            'read_transformation_snapshot = robot_control.read_transformation_snapshot:main',
-            'transformation_delta = robot_control.transformation_delta:main',
-            'read_transformation_delta = robot_control.read_transformation_delta:main',
-            'fibonacci_action_client = robot_control.fibonacci_action_client:main',
             'MoveTcpAlongAxis_action_client = robot_control.MoveTcpAlongAxis_action_client:main',
-            'robot_TcpPose_node = robot_control.robot_TcpPose_node:main',
-            'move_along_baseline_client = robot_control.move_along_baseline_client:main',
-            'get_robot_pose_node = robot_control.get_robot_pose_node:main',
             'tf_frames_publisher = robot_control.tf_frames_publisher:main',
-            'tcp_frame_listener = robot_control.tcp_frame_listener:main',
             'ibvs_2d = robot_control.ibvs_2d:main',
             'set_working_frame_qr = robot_control.set_working_frame_qr:main',
-            'define_working_frame = robot_control.define_working_frame:main'
+            'define_working_frame_needle = robot_control.define_working_frame_needle:main'
         ],
     },
 )

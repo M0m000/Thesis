@@ -152,13 +152,6 @@ Enthält alle Interfaces (Action-Types) für selbst geschriebene Actions - keine
 Enthält alle Server für selbst geschriebene Actions - müssen gestartet werden, damit Action an deren Stellen für Clients verfügbar. <br>
 <br>
 
-### **Fibonacci Action Server** Node <br>
-```bash
-ros2 run action_servers fibonacci_action_server
-```
->Dieser Knoten öffnet den Server für eine Test Action - hier wird beispielhaft eine Fibonacci-Folge berechnet. <br>
-<br>
-
 ### **MoveTcpAlongAxis Action Server** Node <br>
 ```bash
 ros2 run action_servers MoveTcpAlongAxis_action_server
@@ -168,21 +161,15 @@ ros2 run action_servers MoveTcpAlongAxis_action_server
 
 <br>
 
-## **Behavior Tree Package**
-Enthält alle Behavior Trees (Ablaufsteuerungen) als Nodes geschrieben - Kommunikation mit allen anderen Topics/Nodes/etc. möglich. <br>
-<br>
-
-### **Example Tree** Node <br>
-```bash
-ros2 run bt_pkg bt_example_tree
-```
->Dieser Knoten erstellt einen Test-Behavior-Tree. Dabei gibt es drei Knoten. Der erste wartet auf die Eingabe der Taste 1. Der zweite wartet auf die Eingabe der Taste 2, startet dann einen Timer von 20sec und ist nach Ablauf der Zeit beednet. Der dritte Knoten wartet dann auf die Eingabe der Taste 3 und beendet den Behavior Tree. <br>
-<br>
-
-<br>
-
 ## **Robot Control Package**
 Enthält alle Roboteransteuerungen - kommuniziert mit orange-ros2-Package von Kassow Robots. <br>
+<br>
+
+### **Define Working Frame Needle** Node <br>
+```bash
+ros2 run robot_control define_working_frame_needle
+```
+>Zur Erstellung des Working-Frames - sitzt links oben im Rahmen des Gestells. Muss mit Hilfe der Nadel und der drei Fassungen am Gestell manuell durchgeführt werden. Dieser Knoten berechnet am Ende die Transformation von WORLD zu WORK und speichert diese als CSV. Der "tf frames publisher" Node greift wiederum auf diese CSV zu und publisht die Transform als tf2-Frame zur weiteren Verwendung. WICHTIG: Um dieses Frame zu verwenden, muss der tf frame publisher aktiv sein. <br>
 <br>
 
 ### **Set Working Frame QR** Node <br>
@@ -199,13 +186,6 @@ ros2 run robot_control ibvs_2d --ros-args -p speed_factor:=0.1 -p target_point_i
 >Image Based Visual Servoing -> Regelung von x_tcp und y_tcp, bis Punkt Hakenspitze in angegebenem Target Punkt liegt -> Regelung auf Bildebene. <br>
 <br>
 
-### **Test** Node <br>
-```bash
-ros2 run robot_control hello_node
-```
->Dieser Knoten stellt nur eine Testverbindung zum Roboter her und gibt (wenn Verbindung erfolgreich) ein paar Statusmeldungen in der ROS-Konsole aus. <br>
-<br>
-
 ### **Move Linear By Key** <br>
 ```bash
 ros2 run robot_control move_lin_by_key --ros-args -p speed:=50.0 -p movoement_frame:='tcp'
@@ -218,62 +198,6 @@ ros2 run robot_control move_lin_by_key --ros-args -p speed:=50.0 -p movoement_fr
 >Taste K -> -Z_tcp <br>
 >Taste O -> Y_tcp <br>
 >Taste N -> -Y_tcp <br>
-<br>
-
-### **Print TCP Pose** <br>
-```bash
-ros2 run robot_control print_tcp_pose
-```
->Gibt die aktuelle Pose des TCP (Translation und Rotation) in Referenz WORLD in der Konsole aus. <br>
-<br>
-
-### **Print Frames** <br>
-```bash
-ros2 run robot_control print_tcp_pose --ros-args -p desired_frame:='tcp' -p reference_frame:='world'
-```
->Gibt die Pose eines gewählten Koordinatensystems in gewähltem Referenz-Frame aus <br>
-<br>
-
-### **Set Frame Client** <br>
-```bash
-ros2 run robot_control set_frame_client --ros-args -p ref:=3 -p pos="[0.0, 0.0, 0.0]" -p rot="[0.0, 0.0, 0.0]"
-```
->Dient zur Anlegung von benutzerdefinierten Frames - benannt über REF. Diese Systeme müssen im WORLD-System definiert werden. <br>
-<br>
-
-### **Transformation Snapshot** <br>
-```bash
-ros2 run robot_control transformation_snapshot --ros-args -p desired_frame:='tcp' -p reference_frame:='world'
-```
->Kann später zur Berechnung der Baseline bei Stereo Triangulation verwendet werden. Dient zur Erfassung von Differenzen in Translation und Rotation zwischen zwei Aufnahmepunkten. Mit Taste S kann Snapshot gestartet werden und nach Verfahren des Roboters mit Taste D beendet werden. Differenzen-Vektor wird dann über Topic /robot_control/transformation_snapshot gepublisht. Welches Koordinatensystem erfasst werden soll, kann über desired_frame und reference_frame bei Aufruf des Knotens festgelegt werden. <br>
-<br>
-
-### **Read Transformation Snapshot** <br>
-```bash
-ros2 run robot_control read_transformation_snapshot
-```
->Empfängt den Differenz-Vektor von Transformation Snapshot und gibt diesen in der ROS-Konsole aus - für Testzwecke.<br>
-<br>
-
-### **Transformation Delta** <br>
-```bash
-ros2 run robot_control transformation_delta --ros-args -p desired_frame:='tcp' -p reference_frame:='world'
-```
->Kann später zur Berechnung der Baseline bei Stereo Triangulation verwendet werden. Macht prinzipiell das Gleiche, wie Transformation Snapshot lediglich ohne Endbedingung. Es wird permament die Differenz der Pose zwischen der Startpunkte (zum Zeitpunkt, wenn Taste s gedrückt wird bzw. wenn über Topic /robot_control/transformation_delta_trigger eine Flanke auf TRUE gepublisht wird) berechnet und über den Topic /robot_control/transformation_delta gepublisht. Welches Koordinatensystem erfasst werden soll, kann über desired_frame und reference_frame bei Aufruf des Knotens festgelegt werden. <br>
-<br>
-
-### **Read Transformation Delta** <br>
-```bash
-ros2 run robot_control read_transformation_delta
-```
->vgl. Read Transformation Snapshot - für Testzwecke.<br>
-<br>
-
-### **Fibonacci Action Client** Node <br>
-```bash
-ros2 run robot_control fibonacci_action_client
-```
->Dieser Knoten öffnet einen Client auf die Fibonacci-Action (Beispielprogramm) - ACHTUNG: Server unter Package action_servers (siehe oben) muss aktiviert sein! <br>
 <br>
 
 ### **MoveTcpAlongAxis Action Client** Node <br>
@@ -295,26 +219,6 @@ ros2 run robot_control tf_frames_publisher
 ros2 run robot_control tcp_frame_listener
 ```
 >Test Node für Berechnung von Koordinatentransformationen aus tf2 Frames heraus. <br>
-<br>
-
-<br>
-
-## **Intel RealSense Package**
-Standardpaket von Intel RealSense - aktiviert den Kamerasystem und enthält einstellbare Parameter. <br>
-<br>
-
-### **Realsense Depth Align Camera Stream** <br>
-```bash
-ros2 launch realsense2_camera rs_align_depth_launch.py
-```
->Startet den Kamerastream mit Tiefeninformation. <br>
-<br>
-
-### **Realsense RGB Camera Stream** <br>
-```bash
-ros2 launch realsense2_camera rs_launch.py align_depth.enable:=false
-```
->Startet den Kamerastream ohne Tiefeninformation. <br>
 <br>
 
 <br>
@@ -364,13 +268,6 @@ ros2 run vision point_finder_2d --ros-args -p show_img:=True
 >Finden von schwarzn Punkten (einstellbar über Threshold) in der Bildebene in einem 2D-Bild über OpenCV Canny und Momente. <br>
 <br>
 
-### **Stereo Triangulation** <br>
-```bash
-ros2 run vision stereo_triangulation
-```
->Dient als Knoten für Stereo-Triangulation in einer horizontalen Baseline. Es ist jedoch bisher nur die erste Kamera integriert... <br>
-<br>
-
 ### **Image Filters** <br>
 ```bash
 ros2 run vision image_filters --ros-args -p show_img:=True -p use_sobel:=True
@@ -385,7 +282,27 @@ ros2 run vision hook_detector
 >Startet einen Knoten zur Erkennung der Haken mit Hilfe von klassischer Bildverarbeitung (Gaussfilter, Kantenerkennung, etc.) <br>
 <br>
 
+<br>
 
+## **Intel RealSense Package**
+Standardpaket von Intel RealSense - aktiviert den Kamerasystem und enthält einstellbare Parameter. <br>
+<br>
+
+### **Realsense Depth Align Camera Stream** <br>
+```bash
+ros2 launch realsense2_camera rs_align_depth_launch.py
+```
+>Startet den Kamerastream mit Tiefeninformation. <br>
+<br>
+
+### **Realsense RGB Camera Stream** <br>
+```bash
+ros2 launch realsense2_camera rs_launch.py align_depth.enable:=false
+```
+>Startet den Kamerastream ohne Tiefeninformation. <br>
+<br>
+
+<br>
 
 ***
 ***

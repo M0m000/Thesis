@@ -5,9 +5,9 @@ from kr_msgs.srv import GetSystemFrame
 from kr_msgs.srv import SetSystemFrame
 
 
-class DefineWorkingFrame(Node):
+class DefineWorkingFrameNeedle(Node):
     def __init__(self):
-        super().__init__('define_working_frame')
+        super().__init__('define_working_frame_needle')
 
         self.get_kassow_frame_client = self.create_client(GetSystemFrame, '/kr/robot/get_system_frame')
         while not self.get_kassow_frame_client.wait_for_service(timeout_sec=1.0):
@@ -156,7 +156,7 @@ class DefineWorkingFrame(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = DefineWorkingFrame()
+    node = DefineWorkingFrameNeedle()
     node.destroy_node()
     rclpy.shutdown()
 
