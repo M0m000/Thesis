@@ -19,8 +19,8 @@ class DefineWorkingFrameNeedle(Node):
             self.get_logger().info("Waiting for Service SetSystemFrame...")
         self.get_logger().info("Service SetSystemFrame available!")
 
+        self.Trans_needle_tfc = [0.0, 0.0, 65.0]       # in mm
         self.Rot_needle_tfc = [0.0, 0.0, 0.0]         # in Grad
-        self.Trans_needle_tfc = [0.0, 0.0, 0.0]       # in mm
         
         self.set_frame(self.Rot_needle_tfc, self.Trans_needle_tfc, frame="tcp", ref_frame="tfc")        # setze Frame TCP auf die Nadel
 
@@ -70,8 +70,8 @@ class DefineWorkingFrameNeedle(Node):
             return None
 
 
-    def calc_rotation_matrix_from_rpy(self, rpy=[0.0, 0.0, 0.0]):
-        ax, ay, az = np.radians(rpy)
+    def calc_rotation_matrix_from_rpy(self, rotation=[0.0, 0.0, 0.0]):
+        ax, ay, az = np.radians(rotation)
 
         R_x = np.array([[1.0, 0.0, 0.0],
                         [0.0, np.cos(ax), -np.sin(ax)],
@@ -138,18 +138,18 @@ class DefineWorkingFrameNeedle(Node):
         trans_ref_pos2 /= trans_ref_pos2_norm if trans_ref_pos2_norm != 0 else 1
 
         # z-Achse als Kreuzprodukt
-        z = np.cross(trans_ref_pos1, trans_ref_pos2)
-        z_norm = np.linalg.norm(z)
-        z /= z_norm if z_norm != 0 else 1  
+        y = np.cross(-trans_ref_pos1, trans_ref_pos2)
+        y_norm = np.linalg.norm(y)
+        y /= y_norm if y_norm != 0 else 1  
 
         # in T_work_world einsortieren -> spaltenweise
         T_work_world = np.eye(4)
         T_work_world[:3, 0] = trans_ref_pos1        # neue x-Achse
-        T_work_world[:3, 1] = trans_ref_pos2        # neue y-Achse
-        T_work_world[:3, 2] = z                     # neue z-Achse
+        T_work_world[:3, 1] = y                     # neue y-Achse
+        T_work_world[:3, 2] = trans_ref_pos2        # neue z-Achse
         T_work_world[:3, 3] = trans_ref_world       # Translation von WORLD zu WORK
         
-        np.savetxt('/src/robot_control/robot_control/data/WORK_frame_in_world.csv', T_work_world, delimiter=",", fmt="%.6f")
+        np.savetxt('/home/mo/Thesis/src/robot_control/robot_control/data/WORK_frame_in_world.csv', T_work_world, delimiter=",", fmt="%.6f")
         self.get_logger().info("Transformation between WORLD and REF saved as <WORK_frame_in_world.csv>")
         
         

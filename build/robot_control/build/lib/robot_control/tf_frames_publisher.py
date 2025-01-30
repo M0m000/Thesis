@@ -36,7 +36,7 @@ class TFFramesPublisher(Node):
         return qx, qy, qz, qw
     
 
-    def calculate_quaternions_from_rotation_matrix(rotation_matrix):
+    def calculate_quaternions_from_rotation_matrix(self, rotation_matrix):
         trace = np.trace(rotation_matrix)       # Summe Hauptdiagonale
 
         if trace > 0:       # Normalfall Trace > 0
@@ -70,7 +70,7 @@ class TFFramesPublisher(Node):
         return [qx, qy, qz, qw]
 
 
-    def load_transformation_matrix_from_csv(self, filename="/src/robot_control/robot_control/data/WORK_frame_in_world.csv"):
+    def load_transformation_matrix_from_csv(self, filename="/home/mo/Thesis/src/robot_control/robot_control/data/WORK_frame_in_world.csv"):
         try:
             matrix = np.loadtxt(filename, delimiter=",")
             if matrix.shape != (4, 4):

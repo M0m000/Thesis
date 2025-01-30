@@ -141,7 +141,7 @@ class IBVS2DNode(Node):
 
     def hooks_dict_callback(self, msg):
         # starttime = time.perf_counter()
-        self.hooks_dict = self.dict_receive_processor(msg)
+        self.hooks_dict = self.dict_receive_processor.process_hooks_dict(msg)
         # endtime = time.perf_counter()
         # self.get_logger().info(f"Hooks Dict Processing time: {endtime - starttime:.4f} seconds.")
 
@@ -199,7 +199,7 @@ class IBVS2DNode(Node):
         self.get_logger().info(f"Actual Speed in CAM Frame: {self.act_speed_cam}")
         self.get_logger().info(f"Actual Speed in TCP Frame: {self.act_speed_tcp}")
 
-        if self.show_plot and self.received_img is not None:
+        if self.show_plot and self.nn_output_point_img is not None:
             img = self.plot_points()
             cv2.imshow('Control Loop Img', img)
             cv2.waitKey(1)
