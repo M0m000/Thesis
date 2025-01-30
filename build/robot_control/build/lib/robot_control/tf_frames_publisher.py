@@ -29,12 +29,6 @@ class TFFramesPublisher(Node):
 
 
     def euler_to_quaternion(self, roll, pitch, yaw):
-        """
-        Convert Euler angles to Quaternion.
-        Roll  = Rotation around X-axis
-        Pitch = Rotation around Y-axis
-        Yaw   = Rotation around Z-axis
-        """
         qx = math.sin(roll / 2) * math.cos(pitch / 2) * math.cos(yaw / 2) - math.cos(roll / 2) * math.sin(pitch / 2) * math.sin(yaw / 2)
         qy = math.cos(roll / 2) * math.sin(pitch / 2) * math.cos(yaw / 2) + math.sin(roll / 2) * math.cos(pitch / 2) * math.sin(yaw / 2)
         qz = math.cos(roll / 2) * math.cos(pitch / 2) * math.sin(yaw / 2) - math.sin(roll / 2) * math.sin(pitch / 2) * math.cos(yaw / 2)
@@ -43,18 +37,15 @@ class TFFramesPublisher(Node):
     
 
     def calculate_quaternions_from_rotation_matrix(rotation_matrix):
-        # Berechne den Trace der Rotationsmatrix
-        trace = np.trace(rotation_matrix)
+        trace = np.trace(rotation_matrix)       # Summe Hauptdiagonale
 
-        # Berechne die Quaternionen basierend auf dem Trace
-        if trace > 0:
+        if trace > 0:       # Normalfall Trace > 0
             s = 0.5 / math.sqrt(trace + 1.0)
             qw = 0.25 / s
             qx = (rotation_matrix[2, 1] - rotation_matrix[1, 2]) * s
             qy = (rotation_matrix[0, 2] - rotation_matrix[2, 0]) * s
             qz = (rotation_matrix[1, 0] - rotation_matrix[0, 1]) * s
-        else:
-            # Wenn der Trace nicht positiv ist, dann bestimme das größte Element in der Diagonalen
+        else:               # Sonderfälle
             if rotation_matrix[0, 0] > rotation_matrix[1, 1] and rotation_matrix[0, 0] > rotation_matrix[2, 2]:
                 t = 1.0 + rotation_matrix[0, 0] - rotation_matrix[1, 1] - rotation_matrix[2, 2]
                 s = 2.0 * math.sqrt(t)

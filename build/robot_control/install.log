@@ -13,6 +13,7 @@
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/bt_test.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/transformation_delta.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/get_robot_pose_node.py
+/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/dict_receive_processing.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/transformation_snapshot.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/define_working_frame.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__init__.py
@@ -35,6 +36,7 @@
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/bt_test.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/transformation_delta.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/get_robot_pose_node.cpython-38.pyc
+/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/dict_receive_processing.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/transformation_snapshot.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/define_working_frame.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/__init__.cpython-38.pyc

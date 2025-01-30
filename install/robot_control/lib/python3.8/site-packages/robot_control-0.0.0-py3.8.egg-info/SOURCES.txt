@@ -14,6 +14,7 @@ robot_control/__init__.py
 robot_control/bt_scan_hookstrip.py
 robot_control/bt_test.py
 robot_control/define_working_frame.py
+robot_control/dict_receive_processing.py
 robot_control/fibonacci_action_client.py
 robot_control/get_robot_pose_node.py
 robot_control/hello_node.py

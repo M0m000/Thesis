@@ -13,6 +13,7 @@ test/test_copyright.py
 test/test_flake8.py
 test/test_pep257.py
 vision/OLD_nn_output_processor.py
+vision/OLD_process_nn_output.py
 vision/__init__.py
 vision/calibration.py
 vision/hook_detector.py
@@ -22,7 +23,6 @@ vision/lucas_kanade_tracking.py
 vision/maskrcnn_inference.py
 vision/point_finder_2d.py
 vision/point_finder_3d.py
-vision/process_nn_output.py
 vision/stereo_triangulation_with_robot.py
 vision/test_node.py
 vision/yolov8_inference.py
