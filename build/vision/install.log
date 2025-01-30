@@ -38,7 +38,6 @@
 /home/mo/Thesis/install/vision/lib/vision/hook_detector
 /home/mo/Thesis/install/vision/lib/vision/image_filters
 /home/mo/Thesis/install/vision/lib/vision/image_receiver
-/home/mo/Thesis/install/vision/lib/vision/lucas_kanade_tracking
 /home/mo/Thesis/install/vision/lib/vision/maskrcnn_inference
 /home/mo/Thesis/install/vision/lib/vision/nn_output_processor
 /home/mo/Thesis/install/vision/lib/vision/point_finder_2d

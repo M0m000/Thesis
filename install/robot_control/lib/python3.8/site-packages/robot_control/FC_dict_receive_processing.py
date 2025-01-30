@@ -2,14 +2,13 @@ import numpy as np
 from cv_bridge import CvBridge
 
 class DictReceiveProcessor:
-    def __init__(self, logger=None):
+    def __init__(self, node_class):
         """
         Initialisiert den Dictionary-Prozessor für die Verarbeitung der Hook-Daten.
-        :param logger: Optionaler Logger (z. B. ROS2-Logger)
         """
         self.bridge = CvBridge()
         self.hooks_dict = {}
-        self.logger = logger
+        self.node = node_class
 
     def process_hooks_dict(self, msg):
         """
@@ -36,8 +35,7 @@ class DictReceiveProcessor:
                 try:
                     hook_data['hook_mask'] = self.bridge.imgmsg_to_cv2(hook_msg.hook_mask, desired_encoding='32FC1')
                 except Exception as e:
-                    if self.logger:
-                        self.logger.warn(f"Error converting hook_mask: {e}")
+                    self.node.get_logger().warn(f"Error converting hook_mask: {e}")
             hook_data['conf_hook'] = hook_msg.conf_hook
             hook_data['uv_hook'] = [hook_msg.uv_hook.u, hook_msg.uv_hook.v]
 
@@ -51,8 +49,7 @@ class DictReceiveProcessor:
                 try:
                     hook_data['tip_mask'] = self.bridge.imgmsg_to_cv2(hook_msg.tip_mask, desired_encoding='32FC1')
                 except Exception as e:
-                    if self.logger:
-                        self.logger.warn(f"Error converting tip_mask: {e}")
+                    self.node.get_logger().warn(f"Error converting tip_mask: {e}")
             hook_data['conf_tip'] = hook_msg.conf_tip
             hook_data['uv_tip'] = [hook_msg.uv_tip.u, hook_msg.uv_tip.v] if hook_msg.tip_box else None
 
@@ -66,8 +63,7 @@ class DictReceiveProcessor:
                 try:
                     hook_data['lowpoint_mask'] = self.bridge.imgmsg_to_cv2(hook_msg.lowpoint_mask, desired_encoding='32FC1')
                 except Exception as e:
-                    if self.logger:
-                        self.logger.warn(f"Error converting lowpoint_mask: {e}")
+                    self.node.get_logger().warn(f"Error converting lowpoint_mask: {e}")
             hook_data['conf_lowpoint'] = hook_msg.conf_lowpoint
             hook_data['uv_lowpoint'] = [hook_msg.uv_lowpoint.u, hook_msg.uv_lowpoint.v] if hook_msg.lowpoint_box else None
 

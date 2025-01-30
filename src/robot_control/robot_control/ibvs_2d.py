@@ -27,7 +27,7 @@ class IBVS2DNode(Node):
         self.declare_parameter('show_plot', True)
         self.show_plot = self.get_parameter('show_plot').get_parameter_value().bool_value
 
-        self.dict_receive_processor = DictReceiveProcessor(logger=self.get_logger())
+        self.dict_receive_processor = DictReceiveProcessor(self)
 
         self.client = self.create_client(SelectJoggingFrame, '/kr/motion/select_jogging_frame')
         while not self.client.wait_for_service(timeout_sec=1.0):
