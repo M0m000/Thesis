@@ -4,3 +4,6 @@ source;share/sensopart_visor/hook/pythonpath.sh
 source;share/sensopart_visor/hook/ament_prefix_path.ps1
 source;share/sensopart_visor/hook/ament_prefix_path.dsv
 source;share/sensopart_visor/hook/ament_prefix_path.sh
+source;../../build/sensopart_visor/share/sensopart_visor/hook/pythonpath_develop.ps1
+source;../../build/sensopart_visor/share/sensopart_visor/hook/pythonpath_develop.dsv
+source;../../build/sensopart_visor/share/sensopart_visor/hook/pythonpath_develop.sh

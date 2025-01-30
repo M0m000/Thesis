@@ -1,5 +1,0 @@
-  File "/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/set_working_frame.py", line 170
-    p1, p2, p3 = corners[i], corners[(i+1)%4], corners[(i+2)%4]]
-                                                               ^
-SyntaxError: unmatched ']'
-

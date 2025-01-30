@@ -1,10 +1,10 @@
 import rclpy
 from rclpy.node import Node
 from action_interfaces.msg import HookData
-from geometry_msgs.msg import Vector3, Quaternion
-from FC_tf_helper import TFHelper
-from FC_quaternion_to_euler import quaternion_to_euler
-from FC_dict_receive_processing import DictReceiveProcessor
+from FC.FC_tf_helper import TFHelper
+from FC.FC_quaternion_to_euler import quaternion_to_euler
+from FC.FC_dict_receive_processing import DictReceiveProcessor
+from FC.FC_call_move_joint_service import call_move_joint_service
 
 
 class ScanBar(Node):
@@ -27,12 +27,25 @@ class ScanBar(Node):
         # Startpunkt für Scan in WORLD berechnen
         startpoint_work_trans = [0.0, 200.0, -300.0]           # Translation in WORK
         startpoint_work_rot = [0.0, 0.0, 0.0, 1.0]             # Rotation in WORK (Quaternionen)
-        self.startpoint_world_trans, self.startpoint_world_rot = self.tf_helper.transform_pose_to_world(startpoint_work_trans, 
+        startpoint_world_trans, startpoint_world_rot = self.tf_helper.transform_pose_to_world(startpoint_work_trans, 
                                                                                                         startpoint_work_rot, 
                                                                                                         from_frame="work", 
                                                                                                         to_frame="world")
-        self.startpoint_world_rot = quaternion_to_euler(self.startpoint_world_rot)
+        startpoint_world_rot = quaternion_to_euler(startpoint_world_rot)
 
+        # Bewege Roboter auf die Startposition
+        self.startpoint_movement_done = False
+        self.startpoint_movement_done = call_move_joint_service(node = self,
+                                                                pos = startpoint_world_trans,
+                                                                rot = startpoint_world_rot,
+                                                                ref = 0,
+                                                                ttype = 0,
+                                                                tvalue = 30.0,
+                                                                bpoint = 0,
+                                                                btype = 0,
+                                                                bvalue = 100.0,
+                                                                sync = 0.0,
+                                                                chaining = 0)            
     
 
     def get_transform(self, frame="tcp", ref_frame="world"):
@@ -46,7 +59,7 @@ class ScanBar(Node):
 
     def hooks_dict_callback(self, msg):
         self.yolo_hooks_dict = self.hooks_dict_processor(msg)
-        self.get_logger().info(f"Hooks_Dict: {self.hooks_dict}")
+        self.get_logger().info(f"Hooks_Dict: {self.yolo_hooks_dict}")
 
 
 def main(args=None):
