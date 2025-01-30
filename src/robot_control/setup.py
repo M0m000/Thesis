@@ -32,7 +32,8 @@ setup(
             'tf_frames_publisher = robot_control.tf_frames_publisher:main',
             'ibvs_2d = robot_control.ibvs_2d:main',
             'set_working_frame_qr = robot_control.set_working_frame_qr:main',
-            'define_working_frame_needle = robot_control.define_working_frame_needle:main'
+            'define_working_frame_needle = robot_control.define_working_frame_needle:main',
+            'scan_bar = robot_control.scan_bar:main'
         ],
     },
 )

@@ -34,7 +34,6 @@ setup(
             'yolov8_inference = vision.yolov8_inference:main',
             'maskrcnn_inference = vision.maskrcnn_inference:main',
             'nn_output_processor = vision.nn_output_processor:main',
-            'lucas_kanade_tracking = vision.lucas_kanade_tracking:main'
         ],
     },
 )

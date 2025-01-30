@@ -165,6 +165,13 @@ ros2 run action_servers MoveTcpAlongAxis_action_server
 Enthält alle Roboteransteuerungen - kommuniziert mit orange-ros2-Package von Kassow Robots. <br>
 <br>
 
+### **Scan Bar** Node <br>
+```bash
+ros2 run robot_control scan_bar
+```
+>Enthält den gesammten Scan-Mechanismus. Die Referenzierfahrt für das WORK-Frame muss hierzu beendet sein und der tf frame pulisher Node muss aktiv sein und die Frames inkl. WORLD publishen. Dieser Knoten führt den gesamten Scan-Mechanismus inklusive Triangulation durch und liefert am Ende ein Dict, welches alle Hakeninstanzen mit WORK-Position und CAM-Position in realen Koordinaten XYZ enthält. <br>
+<br>
+
 ### **Define Working Frame Needle** Node <br>
 ```bash
 ros2 run robot_control define_working_frame_needle
