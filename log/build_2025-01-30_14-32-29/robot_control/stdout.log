@@ -1,0 +1,73 @@
+running develop
+Removing /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot-control.egg-link (link to .)
+running egg_info
+writing ../../build/robot_control/robot_control.egg-info/PKG-INFO
+writing dependency_links to ../../build/robot_control/robot_control.egg-info/dependency_links.txt
+writing entry points to ../../build/robot_control/robot_control.egg-info/entry_points.txt
+writing requirements to ../../build/robot_control/robot_control.egg-info/requires.txt
+writing top-level names to ../../build/robot_control/robot_control.egg-info/top_level.txt
+reading manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'
+writing manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/mo/Thesis/build/robot_control/build
+creating /home/mo/Thesis/build/robot_control/build/lib
+creating /home/mo/Thesis/build/robot_control/build/lib/robot_control
+copying robot_control/set_working_frame_qr.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+copying robot_control/define_working_frame_needle.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+copying robot_control/MoveTcpAlongAxis_action_client.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+copying robot_control/ibvs_2d.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+copying robot_control/tf_frames_publisher.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+copying robot_control/move_lin_by_key.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+copying robot_control/scan_bar.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+copying robot_control/__init__.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+creating /home/mo/Thesis/build/robot_control/build/lib/FC
+copying FC/FC_tf_helper.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+copying FC/FC_quaternion_to_euler.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+copying FC/FC_call_move_joint_service.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+copying FC/FC_dict_receive_processing.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+copying FC/__init__.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+running install
+running install_lib
+creating /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/set_working_frame_qr.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/define_working_frame_needle.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/MoveTcpAlongAxis_action_client.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/ibvs_2d.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/tf_frames_publisher.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/move_lin_by_key.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/scan_bar.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/__init__.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+creating /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC
+copying /home/mo/Thesis/build/robot_control/build/lib/FC/FC_tf_helper.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC
+copying /home/mo/Thesis/build/robot_control/build/lib/FC/FC_quaternion_to_euler.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC
+copying /home/mo/Thesis/build/robot_control/build/lib/FC/FC_call_move_joint_service.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC
+copying /home/mo/Thesis/build/robot_control/build/lib/FC/FC_dict_receive_processing.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC
+copying /home/mo/Thesis/build/robot_control/build/lib/FC/__init__.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC
+byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/set_working_frame_qr.py to set_working_frame_qr.cpython-38.pyc
+byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/define_working_frame_needle.py to define_working_frame_needle.cpython-38.pyc
+byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/MoveTcpAlongAxis_action_client.py to MoveTcpAlongAxis_action_client.cpython-38.pyc
+byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/ibvs_2d.py to ibvs_2d.cpython-38.pyc
+byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/tf_frames_publisher.py to tf_frames_publisher.cpython-38.pyc
+byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/move_lin_by_key.py to move_lin_by_key.cpython-38.pyc
+byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/scan_bar.py to scan_bar.cpython-38.pyc
+byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__init__.py to __init__.cpython-38.pyc
+byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC/FC_tf_helper.py to FC_tf_helper.cpython-38.pyc
+byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC/FC_quaternion_to_euler.py to FC_quaternion_to_euler.cpython-38.pyc
+byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC/FC_call_move_joint_service.py to FC_call_move_joint_service.cpython-38.pyc
+byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC/FC_dict_receive_processing.py to FC_dict_receive_processing.cpython-38.pyc
+byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC/__init__.py to __init__.cpython-38.pyc
+running install_data
+copying resource/robot_control -> /home/mo/Thesis/install/robot_control/share/ament_index/resource_index/packages
+copying package.xml -> /home/mo/Thesis/install/robot_control/share/robot_control
+running install_egg_info
+Copying ../../build/robot_control/robot_control.egg-info to /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info
+running install_scripts
+Installing MoveTcpAlongAxis_action_client script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing define_working_frame_needle script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing ibvs_2d script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing move_lin_by_key script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing scan_bar script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing set_working_frame_qr script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing tf_frames_publisher script to /home/mo/Thesis/install/robot_control/lib/robot_control
+writing list of installed files to '/home/mo/Thesis/build/robot_control/install.log'

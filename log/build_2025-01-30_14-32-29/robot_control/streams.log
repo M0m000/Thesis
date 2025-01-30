@@ -1,0 +1,77 @@
+[1.367s] Invoking command in '/home/mo/Thesis/build/robot_control': CMAKE_PREFIX_PATH=/home/mo/Thesis/install/action_interfaces:/home/mo/Thesis/install/kr_example_cpp:/home/mo/Thesis/install/kr_msgs LD_LIBRARY_PATH=/home/mo/Thesis/install/action_interfaces/lib:/home/mo/Thesis/install/kr_msgs/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib PYTHONPATH=/home/mo/Thesis/build/robot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages:/home/mo/Thesis/build/vision:/home/mo/Thesis/build/vcnanoz:/home/mo/Thesis/build/sensopart_visor:/home/mo/Thesis/build/robot_control:/home/mo/Thesis/build/kr_example_python:/home/mo/Thesis/build/action_servers:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:/home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages:/home/mo/Thesis/install/sensopart_visor/lib/python3.8/site-packages:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_msgs/lib/python3.8/site-packages:/home/mo/Thesis/install/bt_pkg/lib/python3.8/site-packages:/home/mo/Thesis/install/action_servers/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/mo/Thesis/build/robot_control/build
+[1.740s] running develop
+[1.950s] Removing /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot-control.egg-link (link to .)
+[1.996s] Invoked command in '/home/mo/Thesis/build/robot_control' returned '0': CMAKE_PREFIX_PATH=/home/mo/Thesis/install/action_interfaces:/home/mo/Thesis/install/kr_example_cpp:/home/mo/Thesis/install/kr_msgs LD_LIBRARY_PATH=/home/mo/Thesis/install/action_interfaces/lib:/home/mo/Thesis/install/kr_msgs/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib PYTHONPATH=/home/mo/Thesis/build/robot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages:/home/mo/Thesis/build/vision:/home/mo/Thesis/build/vcnanoz:/home/mo/Thesis/build/sensopart_visor:/home/mo/Thesis/build/robot_control:/home/mo/Thesis/build/kr_example_python:/home/mo/Thesis/build/action_servers:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:/home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages:/home/mo/Thesis/install/sensopart_visor/lib/python3.8/site-packages:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_msgs/lib/python3.8/site-packages:/home/mo/Thesis/install/bt_pkg/lib/python3.8/site-packages:/home/mo/Thesis/install/action_servers/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/mo/Thesis/build/robot_control/build
+[2.000s] Invoking command in '/home/mo/Thesis/src/robot_control': CMAKE_PREFIX_PATH=/home/mo/Thesis/install/action_interfaces:/home/mo/Thesis/install/kr_example_cpp:/home/mo/Thesis/install/kr_msgs LD_LIBRARY_PATH=/home/mo/Thesis/install/action_interfaces/lib:/home/mo/Thesis/install/kr_msgs/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib PYTHONPATH=/home/mo/Thesis/build/robot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages:/home/mo/Thesis/build/vision:/home/mo/Thesis/build/vcnanoz:/home/mo/Thesis/build/sensopart_visor:/home/mo/Thesis/build/robot_control:/home/mo/Thesis/build/kr_example_python:/home/mo/Thesis/build/action_servers:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:/home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages:/home/mo/Thesis/install/sensopart_visor/lib/python3.8/site-packages:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_msgs/lib/python3.8/site-packages:/home/mo/Thesis/install/bt_pkg/lib/python3.8/site-packages:/home/mo/Thesis/install/action_servers/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/robot_control build --build-base /home/mo/Thesis/build/robot_control/build install --record /home/mo/Thesis/build/robot_control/install.log --install-scripts $base/lib/robot_control --single-version-externally-managed install_data --force
+[2.270s] running egg_info
+[2.270s] writing ../../build/robot_control/robot_control.egg-info/PKG-INFO
+[2.270s] writing dependency_links to ../../build/robot_control/robot_control.egg-info/dependency_links.txt
+[2.271s] writing entry points to ../../build/robot_control/robot_control.egg-info/entry_points.txt
+[2.271s] writing requirements to ../../build/robot_control/robot_control.egg-info/requires.txt
+[2.271s] writing top-level names to ../../build/robot_control/robot_control.egg-info/top_level.txt
+[2.304s] reading manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'
+[2.305s] writing manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'
+[2.305s] running build
+[2.305s] running build_py
+[2.306s] creating /home/mo/Thesis/build/robot_control/build
+[2.306s] creating /home/mo/Thesis/build/robot_control/build/lib
+[2.306s] creating /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[2.306s] copying robot_control/set_working_frame_qr.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[2.306s] copying robot_control/define_working_frame_needle.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[2.306s] copying robot_control/MoveTcpAlongAxis_action_client.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[2.306s] copying robot_control/ibvs_2d.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[2.306s] copying robot_control/tf_frames_publisher.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[2.307s] copying robot_control/move_lin_by_key.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[2.307s] copying robot_control/scan_bar.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[2.307s] copying robot_control/__init__.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+[2.307s] creating /home/mo/Thesis/build/robot_control/build/lib/FC
+[2.307s] copying FC/FC_tf_helper.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+[2.307s] copying FC/FC_quaternion_to_euler.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+[2.307s] copying FC/FC_call_move_joint_service.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+[2.307s] copying FC/FC_dict_receive_processing.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+[2.307s] copying FC/__init__.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+[2.308s] running install
+[2.308s] running install_lib
+[2.309s] creating /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[2.309s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/set_working_frame_qr.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[2.309s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/define_working_frame_needle.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[2.309s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/MoveTcpAlongAxis_action_client.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[2.310s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/ibvs_2d.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[2.310s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/tf_frames_publisher.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[2.310s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/move_lin_by_key.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[2.310s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/scan_bar.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[2.310s] copying /home/mo/Thesis/build/robot_control/build/lib/robot_control/__init__.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control
+[2.310s] creating /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC
+[2.310s] copying /home/mo/Thesis/build/robot_control/build/lib/FC/FC_tf_helper.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC
+[2.310s] copying /home/mo/Thesis/build/robot_control/build/lib/FC/FC_quaternion_to_euler.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC
+[2.310s] copying /home/mo/Thesis/build/robot_control/build/lib/FC/FC_call_move_joint_service.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC
+[2.310s] copying /home/mo/Thesis/build/robot_control/build/lib/FC/FC_dict_receive_processing.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC
+[2.311s] copying /home/mo/Thesis/build/robot_control/build/lib/FC/__init__.py -> /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC
+[2.311s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/set_working_frame_qr.py to set_working_frame_qr.cpython-38.pyc
+[2.314s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/define_working_frame_needle.py to define_working_frame_needle.cpython-38.pyc
+[2.316s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/MoveTcpAlongAxis_action_client.py to MoveTcpAlongAxis_action_client.cpython-38.pyc
+[2.317s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/ibvs_2d.py to ibvs_2d.cpython-38.pyc
+[2.318s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/tf_frames_publisher.py to tf_frames_publisher.cpython-38.pyc
+[2.319s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/move_lin_by_key.py to move_lin_by_key.cpython-38.pyc
+[2.320s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/scan_bar.py to scan_bar.cpython-38.pyc
+[2.320s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__init__.py to __init__.cpython-38.pyc
+[2.320s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC/FC_tf_helper.py to FC_tf_helper.cpython-38.pyc
+[2.321s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC/FC_quaternion_to_euler.py to FC_quaternion_to_euler.cpython-38.pyc
+[2.321s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC/FC_call_move_joint_service.py to FC_call_move_joint_service.cpython-38.pyc
+[2.321s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC/FC_dict_receive_processing.py to FC_dict_receive_processing.cpython-38.pyc
+[2.322s] byte-compiling /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC/__init__.py to __init__.cpython-38.pyc
+[2.322s] running install_data
+[2.322s] copying resource/robot_control -> /home/mo/Thesis/install/robot_control/share/ament_index/resource_index/packages
+[2.322s] copying package.xml -> /home/mo/Thesis/install/robot_control/share/robot_control
+[2.322s] running install_egg_info
+[2.324s] Copying ../../build/robot_control/robot_control.egg-info to /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info
+[2.325s] running install_scripts
+[2.341s] Installing MoveTcpAlongAxis_action_client script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.341s] Installing define_working_frame_needle script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.342s] Installing ibvs_2d script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.342s] Installing move_lin_by_key script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.342s] Installing scan_bar script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.342s] Installing set_working_frame_qr script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.342s] Installing tf_frames_publisher script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[2.342s] writing list of installed files to '/home/mo/Thesis/build/robot_control/install.log'
+[2.372s] Invoked command in '/home/mo/Thesis/src/robot_control' returned '0': CMAKE_PREFIX_PATH=/home/mo/Thesis/install/action_interfaces:/home/mo/Thesis/install/kr_example_cpp:/home/mo/Thesis/install/kr_msgs LD_LIBRARY_PATH=/home/mo/Thesis/install/action_interfaces/lib:/home/mo/Thesis/install/kr_msgs/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib PYTHONPATH=/home/mo/Thesis/build/robot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages:/home/mo/Thesis/build/vision:/home/mo/Thesis/build/vcnanoz:/home/mo/Thesis/build/sensopart_visor:/home/mo/Thesis/build/robot_control:/home/mo/Thesis/build/kr_example_python:/home/mo/Thesis/build/action_servers:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:/home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages:/home/mo/Thesis/install/sensopart_visor/lib/python3.8/site-packages:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_msgs/lib/python3.8/site-packages:/home/mo/Thesis/install/bt_pkg/lib/python3.8/site-packages:/home/mo/Thesis/install/action_servers/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/robot_control build --build-base /home/mo/Thesis/build/robot_control/build install --record /home/mo/Thesis/build/robot_control/install.log --install-scripts $base/lib/robot_control --single-version-externally-managed install_data --force
