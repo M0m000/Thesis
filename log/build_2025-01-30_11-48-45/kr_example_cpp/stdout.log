@@ -1,0 +1,5 @@
+[ 60%] Built target follow_joint
+[ 60%] Built target self_motion
+[ 60%] Built target robot_state
+[ 80%] Built target jog_linear
+[100%] Built target move_joint

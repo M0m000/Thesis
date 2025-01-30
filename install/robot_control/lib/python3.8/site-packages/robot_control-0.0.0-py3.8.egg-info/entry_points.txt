@@ -1,21 +1,8 @@
 [console_scripts]
 MoveTcpAlongAxis_action_client = robot_control.MoveTcpAlongAxis_action_client:main
-define_working_frame = robot_control.define_working_frame:main
-fibonacci_action_client = robot_control.fibonacci_action_client:main
-get_robot_pose_node = robot_control.get_robot_pose_node:main
-hello_node = robot_control.hello_node:main
+define_working_frame_needle = robot_control.define_working_frame_needle:main
 ibvs_2d = robot_control.ibvs_2d:main
-move_along_baseline_client = robot_control.move_along_baseline_client:main
 move_lin_by_key = robot_control.move_lin_by_key:main
-print_frames = robot_control.print_frames:main
-print_tcp_pose = robot_control.print_tcp_pose:main
-read_transformation_delta = robot_control.read_transformation_delta:main
-read_transformation_snapshot = robot_control.read_transformation_snapshot:main
-robot_TcpPose_node = robot_control.robot_TcpPose_node:main
-set_frame_client = robot_control.set_frame_client:main
 set_working_frame_qr = robot_control.set_working_frame_qr:main
-tcp_frame_listener = robot_control.tcp_frame_listener:main
 tf_frames_publisher = robot_control.tf_frames_publisher:main
-transformation_delta = robot_control.transformation_delta:main
-transformation_snapshot = robot_control.transformation_snapshot:main
 

@@ -77,7 +77,7 @@ class TFFramesPublisher(Node):
                 self.get_logger().warn("Loaded Matrix in CSV has wrong shape!")
                 return None
             print(f"Transformation Matrix loaded successfully from '{filename}'!")
-            self.frames_data['ref'] = {
+            self.frames_data['work'] = {
                     'position': matrix[:3, 3],
                     'orientation': self.calculate_quaternions_from_rotation_matrix(matrix[:3, :3])
                 }
