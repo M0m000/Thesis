@@ -1,12 +1,8 @@
 import rclpy
 from rclpy.node import Node
-from tf2_ros import Buffer, TransformListener
-import tf2_ros
-from geometry_msgs.msg import TransformStamped
 import numpy as np
 from kr_msgs.srv import GetSystemFrame
 from kr_msgs.srv import SetSystemFrame
-import math
 
 
 class DefineWorkingFrame(Node):
@@ -134,22 +130,26 @@ class DefineWorkingFrame(Node):
         trans_ref_world = self.T_ref_world[:3, 3]
         trans_ref_pos1 = self.T_pos1_world[:3, 3] - self.T_ref_world[:3, 3]
         trans_ref_pos2 = self.T_pos2_world[:3, 3] - self.T_ref_world[:3, 3]
-
-        print(trans_ref_world, trans_ref_pos1, trans_ref_pos2)
-
-        # normieren -> x_ref_world und y_ref_world
-        # Kreuzprodukt mit x_ref_world und y_ref_world
-        # Kreuzprodukt normieren -> z_ref_world
-        # in R_ref_world einsortieren -> spaltenweise
-        # Homogene Transformationsmatrix bilden aus R_ref_world und trans_ref_world
-        # homogene Transformationsmatrix als csv abspeichern
-
-        R_ref_world = [[1.0, 0.0, 0.0, 0.0],
-                       [0.0, 1.0, 0.0, 0.0],
-                       [0.0, 0.0, 1.0, 0.0],
-                       [0.0, 0.0, 0.0, 1.0]]
         
-        np.savetxt('/src/robot_control/robot_control/data/WORK_frame_in_world.csv', R_ref_world, delimiter=",", fmt="%.6f")
+        # normieren der Achsenvektoren
+        trans_ref_pos1_norm = np.linalg.norm(trans_ref_pos1)
+        trans_ref_pos2_norm = np.linalg.norm(trans_ref_pos2)
+        trans_ref_pos1 /= trans_ref_pos1_norm if trans_ref_pos1_norm != 0 else 1
+        trans_ref_pos2 /= trans_ref_pos2_norm if trans_ref_pos2_norm != 0 else 1
+
+        # z-Achse als Kreuzprodukt
+        z = np.cross(trans_ref_pos1, trans_ref_pos2)
+        z_norm = np.linalg.norm(z)
+        z /= z_norm if z_norm != 0 else 1  
+
+        # in T_work_world einsortieren -> spaltenweise
+        T_work_world = np.eye(4)
+        T_work_world[:3, 0] = trans_ref_pos1        # neue x-Achse
+        T_work_world[:3, 1] = trans_ref_pos2        # neue y-Achse
+        T_work_world[:3, 2] = z                     # neue z-Achse
+        T_work_world[:3, 3] = trans_ref_world       # Translation von WORLD zu WORK
+        
+        np.savetxt('/src/robot_control/robot_control/data/WORK_frame_in_world.csv', T_work_world, delimiter=",", fmt="%.6f")
         self.get_logger().info("Transformation between WORLD and REF saved as <WORK_frame_in_world.csv>")
         
         
