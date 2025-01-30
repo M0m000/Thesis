@@ -25,6 +25,7 @@ class TFFramesPublisher(Node):
 
         self.service_timer = self.create_timer(0.1, self.query_and_calculate_frames)
         self.publish_timer = self.create_timer(0.1, self.publish_transforms)
+        self.read_csv_timer = self.create_timer(0.1, self.load_transformation_matrix_from_csv)
 
 
     def euler_to_quaternion(self, roll, pitch, yaw):
@@ -103,29 +104,23 @@ class TFFramesPublisher(Node):
             request.name = frame
             request.ref = 'world'
 
-            # Asynchroner Service-Aufruf
             future = self.client.call_async(request)
-
-            # Wir speichern den Frame-Namen mit der Future, damit wir ihn später im Callback verwenden können
             future.add_done_callback(lambda future, frame=frame: self.service_callback(future, frame))
 
 
     def service_callback(self, future, frame):
         try:
             response = future.result()
-
             if response is not None and response.success:
                 position = response.pos     # [x, y, z]
                 orientation = response.rot  # [roll, pitch, yaw] in Grad
 
-                # Umwandlung von Grad zu Bogenmaß
                 alpha = math.radians(orientation[0])  # roll
                 beta = math.radians(orientation[1])   # pitch
                 gamma = math.radians(orientation[2])  # yaw
 
                 qx, qy, qz, qw = self.euler_to_quaternion(alpha, beta, gamma)
 
-                # Speichern der berechneten Daten
                 self.frames_data[frame] = {
                     'position': position,
                     'orientation': (qx, qy, qz, qw)
@@ -157,9 +152,7 @@ class TFFramesPublisher(Node):
             transform.transform.rotation.z = orientation[2]
             transform.transform.rotation.w = orientation[3]
 
-            # Senden der Transformation
             self.tf_broadcaster.sendTransform(transform)
-
             self.get_logger().info(f"Published transform for {frame}")
 
 
