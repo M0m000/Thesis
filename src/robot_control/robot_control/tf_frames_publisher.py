@@ -6,6 +6,7 @@ from tf2_ros import TransformBroadcaster
 import math
 import numpy as np
 import os
+import csv
 from scipy.spatial.transform import Rotation as R
 
 
@@ -27,7 +28,7 @@ class TFFramesPublisher(Node):
         self.service_timer = self.create_timer(0.1, self.query_and_calculate_frames)
         self.publish_timer = self.create_timer(0.1, self.publish_transforms)
         self.read_csv_timer = self.create_timer(0.1, self.load_transformation_matrix_from_csv)
-
+        self.save_csv_timer = self.create_timer(1.0, self.save_frames_to_csv)  # Speichern alle 1 Sekunde
 
     def euler_to_quaternion(self, roll, pitch, yaw):
         qx = math.sin(roll / 2) * math.cos(pitch / 2) * math.cos(yaw / 2) - math.cos(roll / 2) * math.sin(pitch / 2) * math.sin(yaw / 2)
@@ -41,14 +42,12 @@ class TFFramesPublisher(Node):
         trace = np.trace(rotation_matrix)       # Summe Hauptdiagonale
 
         if trace > 0:       # Normalfall Trace > 0
-            print("Trace groesser Null")
             s = 0.5 / math.sqrt(trace + 1.0)
             qw = 0.25 / s
             qx = (rotation_matrix[2, 1] - rotation_matrix[1, 2]) * s
             qy = (rotation_matrix[0, 2] - rotation_matrix[2, 0]) * s
             qz = (rotation_matrix[1, 0] - rotation_matrix[0, 1]) * s
         else:               # Sonderfälle
-            print("Trace kleiner gleich Null")
             if rotation_matrix[0, 0] > rotation_matrix[1, 1] and rotation_matrix[0, 0] > rotation_matrix[2, 2]:
                 t = 1.0 + rotation_matrix[0, 0] - rotation_matrix[1, 1] - rotation_matrix[2, 2]
                 s = 2.0 * math.sqrt(t)
@@ -83,7 +82,6 @@ class TFFramesPublisher(Node):
             quaternion = R.from_matrix(matrix[:3, :3]).as_quat()  # In Quaternion umwandeln
             self.frames_data['work'] = {
                     'position': matrix[:3, 3],
-                    # 'orientation': self.calculate_quaternions_from_rotation_matrix(matrix[:3, :3])
                     'orientation' : quaternion
                 }
             return matrix
@@ -132,9 +130,6 @@ class TFFramesPublisher(Node):
             position = data['position']
             orientation = data['orientation']
 
-            # if frame == 'work':
-            #     print(position, orientation)
-
             transform = TransformStamped()
             transform.header.stamp = self.get_clock().now().to_msg()
             transform.header.frame_id = 'world'
@@ -153,6 +148,35 @@ class TFFramesPublisher(Node):
 
             self.tf_broadcaster.sendTransform(transform)
             self.get_logger().info(f"Published transform for {frame}")
+
+    def save_frames_to_csv(self):
+        """ Speichert für jedes Frame eine eigene CSV-Datei mit der 4x4 homogenen Transformationsmatrix """
+        save_path = os.path.expanduser("~/Thesis/src/robot_control/robot_control/data")
+        
+        try:
+            for frame, data in self.frames_data.items():
+                # Erstelle für jedes Frame einen eigenen Dateinamen
+                filename = os.path.join(save_path, f"{frame}_transformation_matrix.csv")
+                
+                position = data['position']
+                orientation = data['orientation']
+                
+                # Erstelle die 4x4 Transformationsmatrix
+                rotation_matrix = R.from_quat(orientation).as_matrix()
+                transformation_matrix = np.eye(4)  # 4x4 Identitätsmatrix
+                transformation_matrix[:3, :3] = rotation_matrix
+                transformation_matrix[:3, 3] = position
+                
+                # Speichern der Matrix als 4x4 CSV
+                with open(filename, mode='w', newline='') as file:
+                    writer = csv.writer(file)
+                    # Speichern der Matrix (4x4 Anordnung)
+                    writer.writerows(transformation_matrix)
+                
+                self.get_logger().info(f"Transformation matrix for {frame} saved to '{filename}'!")
+
+        except Exception as e:
+            self.get_logger().error(f"Error while saving transformation matrices to CSV: {e}")
 
 
 def main(args=None):

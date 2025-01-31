@@ -5,6 +5,7 @@ from FC.FC_tf_helper import TFHelper
 from FC.FC_quaternion_to_euler import quaternion_to_euler
 from FC.FC_dict_receive_processing import DictReceiveProcessor
 from FC.FC_call_move_joint_service import call_move_joint_service
+from FC.FC_transform_action_client import TransformActionClient
 from tf2_ros.buffer import Buffer
 from tf2_ros.transform_listener import TransformListener
 from tf2_ros import TransformException
@@ -24,9 +25,8 @@ class ScanBar(Node):
         self.hooks_dict_processor = DictReceiveProcessor(self)
         self.yolo_hooks_dict = {}
 
-        self.tf_helper = TFHelper(node=self)
-        self.future = self.tf_helper.lookup_transform(ref_frame="world", frame="work", callback=self.handle_transform)
-        rclpy.spin_until_future_complete(self, self.future)
+        self.transform_client = TransformActionClient()
+        self.transform_client.send_goal("world", "work", self.process_transform)
 
         '''
         # Startpunkt für Scan in WORLD berechnen
@@ -55,26 +55,11 @@ class ScanBar(Node):
                                                                     sync = 0.0,
                                                                     chaining = 0)
         '''
-    
-    def handle_transform(self, transform: TransformStamped):
-        """
-        Callback, wenn die Transformation erfolgreich abgerufen wurde.
-        """
-        self.get_logger().info(f"Transformation erhalten: {transform}")
-        self.world_to_work_transform = transform  # Speichere die Transformation
-        self.process_start()
 
-    def process_start(self):
-        """
-        Nächster Schritt im Ablauf.
-        """
-        if self.world_to_work_transform:
-            self.get_logger().info("Die Transformation ist jetzt verfügbar. Fortfahren mit dem nächsten Prozess.")
-        else:
-            self.get_logger().warn("Transformation nicht verfügbar.")
-
-
-
+    def process_transform(self, transform):
+        # Hier kannst du mit der erhaltenen Transformation arbeiten
+        self.get_logger().info(f"Verarbeitete Transformation: {transform}")
+        
 
     def hooks_dict_callback(self, msg):
         self.yolo_hooks_dict = self.hooks_dict_processor(msg)
