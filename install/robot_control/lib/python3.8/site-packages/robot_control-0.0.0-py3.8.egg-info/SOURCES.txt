@@ -21,7 +21,9 @@ robot_control/ibvs_2d.py
 robot_control/move_lin_by_key.py
 robot_control/scan_bar.py
 robot_control/set_working_frame_qr.py
+robot_control/tcp_frame_listener.py
 robot_control/tf_frames_publisher.py
+robot_control/transform_action_client.py
 test/test_copyright.py
 test/test_flake8.py
 test/test_pep257.py

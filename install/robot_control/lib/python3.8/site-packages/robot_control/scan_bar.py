@@ -5,6 +5,10 @@ from FC.FC_tf_helper import TFHelper
 from FC.FC_quaternion_to_euler import quaternion_to_euler
 from FC.FC_dict_receive_processing import DictReceiveProcessor
 from FC.FC_call_move_joint_service import call_move_joint_service
+from tf2_ros.buffer import Buffer
+from tf2_ros.transform_listener import TransformListener
+from tf2_ros import TransformException
+from geometry_msgs.msg import TransformStamped
 
 
 class ScanBar(Node):
@@ -20,20 +24,21 @@ class ScanBar(Node):
         self.hooks_dict_processor = DictReceiveProcessor(self)
         self.yolo_hooks_dict = {}
 
-        # Instanz TFHelper-Klasse
-        self.tf_helper = TFHelper(self)
-        self.world_to_work_transform = self.get_transform(frame="work", ref_frame="world")
+        self.tf_helper = TFHelper(node=self)
+        self.future = self.tf_helper.lookup_transform(ref_frame="world", frame="work", callback=self.handle_transform)
+        rclpy.spin_until_future_complete(self, self.future)
 
+        '''
         # Startpunkt für Scan in WORLD berechnen
-        startpoint_work_trans = [0.0, 200.0, -300.0]           # Translation in WORK
-        startpoint_work_rot = [0.0, 0.0, 0.0, 1.0]             # Rotation in WORK (Quaternionen)
+        startpoint_work_trans = [0.0, -300.0, 0.0]           # Translation in WORK
+        startpoint_work_rot = [0.0, 0.0, 0.0, 1.0]           # Rotation in WORK (Quaternionen)
         startpoint_world_trans, startpoint_world_rot = self.tf_helper.transform_pose_to_world(startpoint_work_trans, 
                                                                                                         startpoint_work_rot, 
-                                                                                                        from_frame="work", 
-                                                                                                        to_frame="world")
+                                                                                                        from_frame='world', 
+                                                                                                        to_frame='work')
         startpoint_world_rot = quaternion_to_euler(startpoint_world_rot)
         print(startpoint_world_rot)
-
+        '''
         '''
         # Bewege Roboter auf die Startposition
         self.startpoint_movement_done = False
@@ -51,15 +56,25 @@ class ScanBar(Node):
                                                                     chaining = 0)
         '''
     
+    def handle_transform(self, transform: TransformStamped):
+        """
+        Callback, wenn die Transformation erfolgreich abgerufen wurde.
+        """
+        self.get_logger().info(f"Transformation erhalten: {transform}")
+        self.world_to_work_transform = transform  # Speichere die Transformation
+        self.process_start()
 
-    def get_transform(self, frame="tcp", ref_frame="world"):
-        transform = self.tf_helper.lookup_transform(frame, ref_frame)
-        if transform:
-            self.get_logger().info(f"Transformation '{frame}' to '{ref_frame}' found!")
-            return transform
+    def process_start(self):
+        """
+        Nächster Schritt im Ablauf.
+        """
+        if self.world_to_work_transform:
+            self.get_logger().info("Die Transformation ist jetzt verfügbar. Fortfahren mit dem nächsten Prozess.")
         else:
-            self.get_logger().error(f"Transformation '{frame}' to '{ref_frame}' not found!")
-            return None
+            self.get_logger().warn("Transformation nicht verfügbar.")
+
+
+
 
     def hooks_dict_callback(self, msg):
         self.yolo_hooks_dict = self.hooks_dict_processor(msg)

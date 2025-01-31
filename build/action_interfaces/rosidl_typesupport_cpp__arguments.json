@@ -5,6 +5,7 @@
   "idl_tuples": [
     "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces:action/Fibonacci.idl",
     "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces:action/MoveTcpAlongAxis.idl",
+    "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces:action/TransformAction.idl",
     "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces:msg/BoundingBox.idl",
     "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces:msg/Hook.idl",
     "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces:msg/HookData.idl",
@@ -115,6 +116,7 @@
     "/opt/ros/foxy/share/rosidl_typesupport_cpp/resource/srv__type_support.cpp.em",
     "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/action/Fibonacci.idl",
     "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/action/MoveTcpAlongAxis.idl",
+    "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/action/TransformAction.idl",
     "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/msg/BoundingBox.idl",
     "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/msg/Hook.idl",
     "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/msg/HookData.idl",

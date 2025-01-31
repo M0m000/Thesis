@@ -27,11 +27,12 @@ find_package(sensor_msgs REQUIRED)
 rosidl_generate_interfaces(${PROJECT_NAME}
   "action/Fibonacci.action"
   "action/MoveTcpAlongAxis.action"
+  "action/TransformAction.action"
   "msg/BoundingBox.msg"
   "msg/Hook.msg"
   "msg/HookData.msg"
   "msg/UV.msg"
-  DEPENDENCIES builtin_interfaces std_msgs sensor_msgs
+  DEPENDENCIES builtin_interfaces std_msgs sensor_msgs geometry_msgs
 )
 
 ament_export_dependencies(rosidl_default_runtime)

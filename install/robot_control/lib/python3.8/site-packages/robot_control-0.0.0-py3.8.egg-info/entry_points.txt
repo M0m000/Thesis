@@ -5,5 +5,7 @@ ibvs_2d = robot_control.ibvs_2d:main
 move_lin_by_key = robot_control.move_lin_by_key:main
 scan_bar = robot_control.scan_bar:main
 set_working_frame_qr = robot_control.set_working_frame_qr:main
+tcp_frame_listener = robot_control.tcp_frame_listener:main
 tf_frames_publisher = robot_control.tf_frames_publisher:main
+transform_action_client = robot_control.transform_action_client:main
 

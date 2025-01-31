@@ -19,7 +19,7 @@ class DefineWorkingFrameNeedle(Node):
             self.get_logger().info("Waiting for Service SetSystemFrame...")
         self.get_logger().info("Service SetSystemFrame available!")
 
-        self.Trans_needle_tfc = [0.0, 0.0, 65.0]        # in mm
+        self.Trans_needle_tfc = [0.0, 0.0, 73.0]        # in mm
         self.Rot_needle_tfc = [0.0, 0.0, 0.0]           # in Grad
         
         self.set_frame(self.Rot_needle_tfc, self.Trans_needle_tfc, frame="tcp", ref_frame="tfc")        # setze Frame TCP auf die Nadel

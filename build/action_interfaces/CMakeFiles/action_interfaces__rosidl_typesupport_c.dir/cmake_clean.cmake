@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/action_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/action_interfaces/action/fibonacci__type_support.cpp.o"
   "CMakeFiles/action_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/action_interfaces/action/move_tcp_along_axis__type_support.cpp.o"
+  "CMakeFiles/action_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/action_interfaces/action/transform_action__type_support.cpp.o"
   "CMakeFiles/action_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/action_interfaces/msg/bounding_box__type_support.cpp.o"
   "CMakeFiles/action_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/action_interfaces/msg/hook__type_support.cpp.o"
   "CMakeFiles/action_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/action_interfaces/msg/hook_data__type_support.cpp.o"
@@ -9,6 +10,7 @@ file(REMOVE_RECURSE
   "libaction_interfaces__rosidl_typesupport_c.so"
   "rosidl_typesupport_c/action_interfaces/action/fibonacci__type_support.cpp"
   "rosidl_typesupport_c/action_interfaces/action/move_tcp_along_axis__type_support.cpp"
+  "rosidl_typesupport_c/action_interfaces/action/transform_action__type_support.cpp"
   "rosidl_typesupport_c/action_interfaces/msg/bounding_box__type_support.cpp"
   "rosidl_typesupport_c/action_interfaces/msg/hook__type_support.cpp"
   "rosidl_typesupport_c/action_interfaces/msg/hook_data__type_support.cpp"

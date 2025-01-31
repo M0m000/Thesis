@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "../rosidl_generator_py/action_interfaces/action/_fibonacci_s.c"
   "../rosidl_generator_py/action_interfaces/action/_move_tcp_along_axis.py"
   "../rosidl_generator_py/action_interfaces/action/_move_tcp_along_axis_s.c"
+  "../rosidl_generator_py/action_interfaces/action/_transform_action.py"
+  "../rosidl_generator_py/action_interfaces/action/_transform_action_s.c"
   "../rosidl_generator_py/action_interfaces/msg/__init__.py"
   "../rosidl_generator_py/action_interfaces/msg/_bounding_box.py"
   "../rosidl_generator_py/action_interfaces/msg/_bounding_box_s.c"

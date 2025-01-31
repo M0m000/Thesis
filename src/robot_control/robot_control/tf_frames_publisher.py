@@ -6,6 +6,7 @@ from tf2_ros import TransformBroadcaster
 import math
 import numpy as np
 import os
+from scipy.spatial.transform import Rotation as R
 
 
 class TFFramesPublisher(Node):
@@ -40,12 +41,14 @@ class TFFramesPublisher(Node):
         trace = np.trace(rotation_matrix)       # Summe Hauptdiagonale
 
         if trace > 0:       # Normalfall Trace > 0
+            print("Trace groesser Null")
             s = 0.5 / math.sqrt(trace + 1.0)
             qw = 0.25 / s
             qx = (rotation_matrix[2, 1] - rotation_matrix[1, 2]) * s
             qy = (rotation_matrix[0, 2] - rotation_matrix[2, 0]) * s
             qz = (rotation_matrix[1, 0] - rotation_matrix[0, 1]) * s
         else:               # Sonderfälle
+            print("Trace kleiner gleich Null")
             if rotation_matrix[0, 0] > rotation_matrix[1, 1] and rotation_matrix[0, 0] > rotation_matrix[2, 2]:
                 t = 1.0 + rotation_matrix[0, 0] - rotation_matrix[1, 1] - rotation_matrix[2, 2]
                 s = 2.0 * math.sqrt(t)
@@ -77,9 +80,11 @@ class TFFramesPublisher(Node):
                 self.get_logger().warn("Loaded Matrix in CSV has wrong shape!")
                 return None
             print(f"Transformation Matrix loaded successfully from '{filename}'!")
+            quaternion = R.from_matrix(matrix[:3, :3]).as_quat()  # In Quaternion umwandeln
             self.frames_data['work'] = {
                     'position': matrix[:3, 3],
-                    'orientation': self.calculate_quaternions_from_rotation_matrix(matrix[:3, :3])
+                    # 'orientation': self.calculate_quaternions_from_rotation_matrix(matrix[:3, :3])
+                    'orientation' : quaternion
                 }
             return matrix
         except Exception as e:
@@ -88,7 +93,7 @@ class TFFramesPublisher(Node):
         
 
     def query_and_calculate_frames(self):
-        frames = ['base', 'elbow', 'tfc', 'tcp', 'target']
+        frames = ['world', 'base', 'elbow', 'tfc', 'tcp']
 
         for frame in frames:
             request = GetSystemFrame.Request()
@@ -126,6 +131,9 @@ class TFFramesPublisher(Node):
         for frame, data in self.frames_data.items():
             position = data['position']
             orientation = data['orientation']
+
+            # if frame == 'work':
+            #     print(position, orientation)
 
             transform = TransformStamped()
             transform.header.stamp = self.get_clock().now().to_msg()

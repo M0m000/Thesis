@@ -1,0 +1,33 @@
+[2.177s] Invoking command in '/home/mo/Thesis/build/robot_control': CMAKE_PREFIX_PATH=/home/mo/Thesis/install/action_interfaces:/home/mo/Thesis/install/kr_example_cpp:/home/mo/Thesis/install/kr_msgs LD_LIBRARY_PATH=/home/mo/Thesis/install/action_interfaces/lib:/home/mo/Thesis/install/kr_msgs/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib PYTHONPATH=/home/mo/Thesis/build/robot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages:/home/mo/Thesis/build/vision:/home/mo/Thesis/build/vcnanoz:/home/mo/Thesis/build/sensopart_visor:/home/mo/Thesis/build/robot_control:/home/mo/Thesis/build/kr_example_python:/home/mo/Thesis/build/action_servers:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:/home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages:/home/mo/Thesis/install/sensopart_visor/lib/python3.8/site-packages:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_msgs/lib/python3.8/site-packages:/home/mo/Thesis/install/action_servers/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/mo/Thesis/build/robot_control/build --no-deps symlink_data
+[2.889s] running develop
+[3.227s] running egg_info
+[3.227s] creating robot_control.egg-info
+[3.228s] writing robot_control.egg-info/PKG-INFO
+[3.229s] writing dependency_links to robot_control.egg-info/dependency_links.txt
+[3.230s] writing entry points to robot_control.egg-info/entry_points.txt
+[3.230s] writing requirements to robot_control.egg-info/requires.txt
+[3.230s] writing top-level names to robot_control.egg-info/top_level.txt
+[3.234s] writing manifest file 'robot_control.egg-info/SOURCES.txt'
+[3.296s] reading manifest file 'robot_control.egg-info/SOURCES.txt'
+[3.297s] writing manifest file 'robot_control.egg-info/SOURCES.txt'
+[3.363s] running build_ext
+[3.363s] Creating /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/site.py
+[3.367s] Creating /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot-control.egg-link (link to .)
+[3.369s] Installing MoveTcpAlongAxis_action_client script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[3.369s] Installing define_working_frame_needle script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[3.370s] Installing ibvs_2d script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[3.371s] Installing move_lin_by_key script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[3.371s] Installing scan_bar script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[3.371s] Installing set_working_frame_qr script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[3.372s] Installing tcp_frame_listener script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[3.372s] Installing tf_frames_publisher script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[3.372s] Installing transform_action_client script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[3.372s] 
+[3.372s] Installed /home/mo/Thesis/build/robot_control
+[3.372s] running symlink_data
+[3.372s] creating /home/mo/Thesis/install/robot_control/share/ament_index
+[3.373s] creating /home/mo/Thesis/install/robot_control/share/ament_index/resource_index
+[3.373s] creating /home/mo/Thesis/install/robot_control/share/ament_index/resource_index/packages
+[3.373s] symbolically linking /home/mo/Thesis/build/robot_control/resource/robot_control -> /home/mo/Thesis/install/robot_control/share/ament_index/resource_index/packages
+[3.373s] symbolically linking /home/mo/Thesis/build/robot_control/package.xml -> /home/mo/Thesis/install/robot_control/share/robot_control
+[3.472s] Invoked command in '/home/mo/Thesis/build/robot_control' returned '0': CMAKE_PREFIX_PATH=/home/mo/Thesis/install/action_interfaces:/home/mo/Thesis/install/kr_example_cpp:/home/mo/Thesis/install/kr_msgs LD_LIBRARY_PATH=/home/mo/Thesis/install/action_interfaces/lib:/home/mo/Thesis/install/kr_msgs/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib PYTHONPATH=/home/mo/Thesis/build/robot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages:/home/mo/Thesis/build/vision:/home/mo/Thesis/build/vcnanoz:/home/mo/Thesis/build/sensopart_visor:/home/mo/Thesis/build/robot_control:/home/mo/Thesis/build/kr_example_python:/home/mo/Thesis/build/action_servers:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:/home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages:/home/mo/Thesis/install/sensopart_visor/lib/python3.8/site-packages:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_msgs/lib/python3.8/site-packages:/home/mo/Thesis/install/action_servers/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/mo/Thesis/build/robot_control/build --no-deps symlink_data

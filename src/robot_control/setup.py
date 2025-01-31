@@ -33,7 +33,9 @@ setup(
             'ibvs_2d = robot_control.ibvs_2d:main',
             'set_working_frame_qr = robot_control.set_working_frame_qr:main',
             'define_working_frame_needle = robot_control.define_working_frame_needle:main',
-            'scan_bar = robot_control.scan_bar:main'
+            'scan_bar = robot_control.scan_bar:main',
+            'tcp_frame_listener = robot_control.tcp_frame_listener:main',
+            'transform_action_client = robot_control.transform_action_client:main'
         ],
     },
 )

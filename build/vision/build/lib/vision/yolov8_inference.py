@@ -339,7 +339,7 @@ class YOLOv8InferenceNode(Node):
 
         sorted_hooks_dict = {}
         for idx, key in enumerate(hooks_dict):
-            sorted_hooks_dict['hook_' + str(idx + 1)] = hooks_dict[key]
+            sorted_hooks_dict['hook_' + str(len(hooks_dict - idx))] = hooks_dict[key]
         return sorted_hooks_dict
 
 
@@ -417,7 +417,7 @@ class YOLOv8InferenceNode(Node):
                 hook_mask_color = np.zeros_like(img_copy)
                 hook_mask_color[hook_mask == 1] = (color[0] * 255, color[1] * 255, color[2] * 255)
                 img_copy = cv2.addWeighted(img_copy, 1, hook_mask_color, 0.5, 0)
-                cv2.putText(img_copy, f"Hook {idx+1} ({conf_hook[0]:.2f})", (int(x1), int(y1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
+                cv2.putText(img_copy, f"Hook {len(hooks_dict) - idx} ({conf_hook[0]:.2f})", (int(x1), int(y1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
 
                 # Bounding Box und Maske für Tip
                 if tip_box is not None:
@@ -427,7 +427,7 @@ class YOLOv8InferenceNode(Node):
                     tip_mask_color = np.zeros_like(img_copy)
                     tip_mask_color[tip_mask == 1] = (0, 0, 255)
                     img_copy = cv2.addWeighted(img_copy, 1, tip_mask_color, 0.5, 0)
-                    cv2.putText(img_copy, f"Tip {idx+1} ({conf_tip[0]:.2f})", (int(xt1), int(yt1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
+                    cv2.putText(img_copy, f"Tip {len(hooks_dict) - idx} ({conf_tip[0]:.2f})", (int(xt1), int(yt1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
 
                 # Bounding Box und Maske für Lowpoint
                 if lowpoint_box is not None:
@@ -437,7 +437,7 @@ class YOLOv8InferenceNode(Node):
                     lowpoint_mask_color = np.zeros_like(img_copy)
                     lowpoint_mask_color[lowpoint_mask == 1] = (255, 0, 0)
                     img_copy = cv2.addWeighted(img_copy, 1, lowpoint_mask_color, 0.5, 0)
-                    cv2.putText(img_copy, f"Lowpoint {idx+1} ({conf_lowpoint[0]:.2f})", (int(xl1), int(yl1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
+                    cv2.putText(img_copy, f"Lowpoint {len(hooks_dict) - idx} ({conf_lowpoint[0]:.2f})", (int(xl1), int(yl1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
         return img_copy
     
 

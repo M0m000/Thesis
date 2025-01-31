@@ -376,6 +376,9 @@ ament_cmake_symlink_install_files("/home/mo/Thesis/src/action_interfaces" FILES 
 # install(FILES "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/action/MoveTcpAlongAxis.idl" "DESTINATION" "share/action_interfaces/action")
 ament_cmake_symlink_install_files("/home/mo/Thesis/src/action_interfaces" FILES "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/action/MoveTcpAlongAxis.idl" "DESTINATION" "share/action_interfaces/action")
 
+# install(FILES "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/action/TransformAction.idl" "DESTINATION" "share/action_interfaces/action")
+ament_cmake_symlink_install_files("/home/mo/Thesis/src/action_interfaces" FILES "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/action/TransformAction.idl" "DESTINATION" "share/action_interfaces/action")
+
 # install(FILES "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/msg/BoundingBox.idl" "DESTINATION" "share/action_interfaces/msg")
 ament_cmake_symlink_install_files("/home/mo/Thesis/src/action_interfaces" FILES "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/msg/BoundingBox.idl" "DESTINATION" "share/action_interfaces/msg")
 
@@ -393,6 +396,9 @@ ament_cmake_symlink_install_files("/home/mo/Thesis/src/action_interfaces" FILES 
 
 # install(FILES "/home/mo/Thesis/src/action_interfaces/action/MoveTcpAlongAxis.action" "DESTINATION" "share/action_interfaces/action")
 ament_cmake_symlink_install_files("/home/mo/Thesis/src/action_interfaces" FILES "/home/mo/Thesis/src/action_interfaces/action/MoveTcpAlongAxis.action" "DESTINATION" "share/action_interfaces/action")
+
+# install(FILES "/home/mo/Thesis/src/action_interfaces/action/TransformAction.action" "DESTINATION" "share/action_interfaces/action")
+ament_cmake_symlink_install_files("/home/mo/Thesis/src/action_interfaces" FILES "/home/mo/Thesis/src/action_interfaces/action/TransformAction.action" "DESTINATION" "share/action_interfaces/action")
 
 # install(FILES "/home/mo/Thesis/src/action_interfaces/msg/BoundingBox.msg" "DESTINATION" "share/action_interfaces/msg")
 ament_cmake_symlink_install_files("/home/mo/Thesis/src/action_interfaces" FILES "/home/mo/Thesis/src/action_interfaces/msg/BoundingBox.msg" "DESTINATION" "share/action_interfaces/msg")

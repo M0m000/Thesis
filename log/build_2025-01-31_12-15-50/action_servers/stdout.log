@@ -1,0 +1,25 @@
+running develop
+running egg_info
+creating action_servers.egg-info
+writing action_servers.egg-info/PKG-INFO
+writing dependency_links to action_servers.egg-info/dependency_links.txt
+writing entry points to action_servers.egg-info/entry_points.txt
+writing requirements to action_servers.egg-info/requires.txt
+writing top-level names to action_servers.egg-info/top_level.txt
+writing manifest file 'action_servers.egg-info/SOURCES.txt'
+reading manifest file 'action_servers.egg-info/SOURCES.txt'
+writing manifest file 'action_servers.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/mo/Thesis/install/action_servers/lib/python3.8/site-packages/site.py
+Creating /home/mo/Thesis/install/action_servers/lib/python3.8/site-packages/action-servers.egg-link (link to .)
+Installing MoveTcpAlongAxis_action_server script to /home/mo/Thesis/install/action_servers/lib/action_servers
+Installing fibonacci_action_server script to /home/mo/Thesis/install/action_servers/lib/action_servers
+Installing transform_action_server script to /home/mo/Thesis/install/action_servers/lib/action_servers
+
+Installed /home/mo/Thesis/build/action_servers
+running symlink_data
+creating /home/mo/Thesis/install/action_servers/share/ament_index
+creating /home/mo/Thesis/install/action_servers/share/ament_index/resource_index
+creating /home/mo/Thesis/install/action_servers/share/ament_index/resource_index/packages
+symbolically linking /home/mo/Thesis/build/action_servers/resource/action_servers -> /home/mo/Thesis/install/action_servers/share/ament_index/resource_index/packages
+symbolically linking /home/mo/Thesis/build/action_servers/package.xml -> /home/mo/Thesis/install/action_servers/share/action_servers

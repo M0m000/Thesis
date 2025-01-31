@@ -58,6 +58,7 @@ action_interfaces__py/CMakeFiles/action_interfaces__py: rosidl_generator_py/acti
 action_interfaces__py/CMakeFiles/action_interfaces__py: rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_c.c
 action_interfaces__py/CMakeFiles/action_interfaces__py: rosidl_generator_py/action_interfaces/action/_fibonacci.py
 action_interfaces__py/CMakeFiles/action_interfaces__py: rosidl_generator_py/action_interfaces/action/_move_tcp_along_axis.py
+action_interfaces__py/CMakeFiles/action_interfaces__py: rosidl_generator_py/action_interfaces/action/_transform_action.py
 action_interfaces__py/CMakeFiles/action_interfaces__py: rosidl_generator_py/action_interfaces/msg/_bounding_box.py
 action_interfaces__py/CMakeFiles/action_interfaces__py: rosidl_generator_py/action_interfaces/msg/_hook.py
 action_interfaces__py/CMakeFiles/action_interfaces__py: rosidl_generator_py/action_interfaces/msg/_hook_data.py
@@ -66,6 +67,7 @@ action_interfaces__py/CMakeFiles/action_interfaces__py: rosidl_generator_py/acti
 action_interfaces__py/CMakeFiles/action_interfaces__py: rosidl_generator_py/action_interfaces/msg/__init__.py
 action_interfaces__py/CMakeFiles/action_interfaces__py: rosidl_generator_py/action_interfaces/action/_fibonacci_s.c
 action_interfaces__py/CMakeFiles/action_interfaces__py: rosidl_generator_py/action_interfaces/action/_move_tcp_along_axis_s.c
+action_interfaces__py/CMakeFiles/action_interfaces__py: rosidl_generator_py/action_interfaces/action/_transform_action_s.c
 action_interfaces__py/CMakeFiles/action_interfaces__py: rosidl_generator_py/action_interfaces/msg/_bounding_box_s.c
 action_interfaces__py/CMakeFiles/action_interfaces__py: rosidl_generator_py/action_interfaces/msg/_hook_s.c
 action_interfaces__py/CMakeFiles/action_interfaces__py: rosidl_generator_py/action_interfaces/msg/_hook_data_s.c
@@ -87,6 +89,7 @@ rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport
 rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/foxy/share/rosidl_generator_py/resource/_srv.py.em
 rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/action_interfaces/action/Fibonacci.idl
 rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/action_interfaces/action/MoveTcpAlongAxis.idl
+rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/action_interfaces/action/TransformAction.idl
 rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/action_interfaces/msg/BoundingBox.idl
 rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/action_interfaces/msg/Hook.idl
 rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/action_interfaces/msg/HookData.idl
@@ -200,6 +203,9 @@ rosidl_generator_py/action_interfaces/action/_fibonacci.py: rosidl_generator_py/
 rosidl_generator_py/action_interfaces/action/_move_tcp_along_axis.py: rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/action_interfaces/action/_move_tcp_along_axis.py
 
+rosidl_generator_py/action_interfaces/action/_transform_action.py: rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/action_interfaces/action/_transform_action.py
+
 rosidl_generator_py/action_interfaces/msg/_bounding_box.py: rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/action_interfaces/msg/_bounding_box.py
 
@@ -224,6 +230,9 @@ rosidl_generator_py/action_interfaces/action/_fibonacci_s.c: rosidl_generator_py
 rosidl_generator_py/action_interfaces/action/_move_tcp_along_axis_s.c: rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/action_interfaces/action/_move_tcp_along_axis_s.c
 
+rosidl_generator_py/action_interfaces/action/_transform_action_s.c: rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/action_interfaces/action/_transform_action_s.c
+
 rosidl_generator_py/action_interfaces/msg/_bounding_box_s.c: rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/action_interfaces/msg/_bounding_box_s.c
 
@@ -242,6 +251,7 @@ action_interfaces__py: rosidl_generator_py/action_interfaces/_action_interfaces_
 action_interfaces__py: rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_c.c
 action_interfaces__py: rosidl_generator_py/action_interfaces/action/_fibonacci.py
 action_interfaces__py: rosidl_generator_py/action_interfaces/action/_move_tcp_along_axis.py
+action_interfaces__py: rosidl_generator_py/action_interfaces/action/_transform_action.py
 action_interfaces__py: rosidl_generator_py/action_interfaces/msg/_bounding_box.py
 action_interfaces__py: rosidl_generator_py/action_interfaces/msg/_hook.py
 action_interfaces__py: rosidl_generator_py/action_interfaces/msg/_hook_data.py
@@ -250,6 +260,7 @@ action_interfaces__py: rosidl_generator_py/action_interfaces/action/__init__.py
 action_interfaces__py: rosidl_generator_py/action_interfaces/msg/__init__.py
 action_interfaces__py: rosidl_generator_py/action_interfaces/action/_fibonacci_s.c
 action_interfaces__py: rosidl_generator_py/action_interfaces/action/_move_tcp_along_axis_s.c
+action_interfaces__py: rosidl_generator_py/action_interfaces/action/_transform_action_s.c
 action_interfaces__py: rosidl_generator_py/action_interfaces/msg/_bounding_box_s.c
 action_interfaces__py: rosidl_generator_py/action_interfaces/msg/_hook_s.c
 action_interfaces__py: rosidl_generator_py/action_interfaces/msg/_hook_data_s.c

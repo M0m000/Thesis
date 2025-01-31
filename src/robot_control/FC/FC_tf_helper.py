@@ -2,8 +2,11 @@ import rclpy
 import tf2_ros
 import tf2_geometry_msgs
 from geometry_msgs.msg import TransformStamped, Quaternion, Vector3
-from tf2_ros import Buffer, TransformListener
+from tf2_ros.buffer import Buffer
+from tf2_ros.transform_listener import TransformListener
+from tf2_ros import TransformException
 from rclpy.node import Node
+from rclpy.task import Future
 
 
 class TFHelper:
@@ -16,24 +19,49 @@ class TFHelper:
         self.node = node
         self.tf_buffer = Buffer()
         self.tf_listener = TransformListener(self.tf_buffer, self.node)
+        self.transform_timer = None
+        self.requested_transform = None
 
-    def lookup_transform(self, from_frame: str, to_frame: str) -> TransformStamped:
+    def lookup_transform(self, ref_frame="world", frame="tcp", callback=None):
         """
-        Holt die Transformation zwischen zwei Frames.
+        Startet den Timer, der periodisch die Transformation anfordert,
+        bis sie erfolgreich abgerufen werden kann.
         
-        :param from_frame: Quell-Frame (z. B. 'camera_link')
-        :param to_frame: Ziel-Frame (z. B. 'base_link')
-        :return: TransformStamped oder None, falls die Transformation nicht existiert.
+        :param ref_frame: Das Referenz-Frame (z.B. 'world').
+        :param frame: Das Ziel-Frame (z.B. 'tcp').
+        :param callback: Eine Callback-Funktion, die die Transformation als Argument erhält,
+                         wenn sie verfügbar ist.
+        """
+        self.node.get_logger().info(f"Start request for transform: {ref_frame} → {frame}")
+        future = Future()
+        self.transform_timer = self.node.create_timer(0.001, lambda: self.do_transform(ref_frame, frame, callback, future))
+        return future
+
+    def do_transform(self, ref_frame, frame, callback, future):
+        """
+        Versucht, die Transformation zu holen.
+        Wenn sie verfügbar ist, wird der Timer gestoppt und das future Ergebnis gesetzt.
         """
         try:
-            transform = self.tf_buffer.lookup_transform(
-                to_frame, from_frame, rclpy.time.Time()
-            )
-            self.node.get_logger().info(f"Transformation gefunden: {from_frame} → {to_frame}")
-            return transform
-        except Exception as e:
-            self.node.get_logger().warn(f"Keine Transformation gefunden: {str(e)}")
-            return None
+            if self.tf_buffer.can_transform(ref_frame, frame, rclpy.time.Time()):
+                transform = self.tf_buffer.lookup_transform(ref_frame, frame, rclpy.time.Time())
+                self.node.get_logger().info(f"Transformation successful: {ref_frame} → {frame}")
+
+                # Wenn die Transformation gefunden wurde, setze das Future-Result
+                future.set_result(transform)
+                self.transform_timer.cancel()  # Timer stoppen, da Transformation gefunden
+                if callback:
+                    callback(transform)  # Callback aufrufen, wenn gesetzt
+
+        except TransformException as e:
+            self.node.get_logger().warn(f"Error while reading transform from tf2: {e}")
+            future.set_exception(e)  # Falls eine Exception auftritt, wird sie im Future gesetzt
+
+    
+    def return_transform(self, transform: TransformStamped):
+        self.node.get_logger().info(f"Reading of transform data successfull: {transform}")
+        self.requested_transform = transform
+
 
     def transform_pose_to_world(self, translation_list, rotation_list, from_frame: str, to_frame: str):
         """
@@ -51,7 +79,7 @@ class TFHelper:
         rotation = self.list_to_quaternion(rotation_list)
 
         # Transformation der Pose
-        transform = self.lookup_transform(from_frame, to_frame)
+        transform = self.lookup_transform(to_frame, from_frame)
 
         if transform is None:
             self.node.get_logger().error(f"Transformation von {from_frame} nach {to_frame} fehlgeschlagen!")

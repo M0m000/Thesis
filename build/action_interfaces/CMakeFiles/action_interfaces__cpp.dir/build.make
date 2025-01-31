@@ -63,6 +63,11 @@ CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action
 CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/move_tcp_along_axis__struct.hpp
 CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/move_tcp_along_axis__traits.hpp
 CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/move_tcp_along_axis__type_support.hpp
+CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/transform_action.hpp
+CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/transform_action__builder.hpp
+CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/transform_action__struct.hpp
+CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/transform_action__traits.hpp
+CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/transform_action__type_support.hpp
 CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/bounding_box.hpp
 CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/detail/bounding_box__builder.hpp
 CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/detail/bounding_box__struct.hpp
@@ -107,6 +112,7 @@ rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: /opt/ros/foxy/share
 rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/srv__type_support.hpp.em
 rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: rosidl_adapter/action_interfaces/action/Fibonacci.idl
 rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: rosidl_adapter/action_interfaces/action/MoveTcpAlongAxis.idl
+rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: rosidl_adapter/action_interfaces/action/TransformAction.idl
 rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: rosidl_adapter/action_interfaces/msg/BoundingBox.idl
 rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: rosidl_adapter/action_interfaces/msg/Hook.idl
 rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: rosidl_adapter/action_interfaces/msg/HookData.idl
@@ -235,6 +241,21 @@ rosidl_generator_cpp/action_interfaces/action/detail/move_tcp_along_axis__traits
 rosidl_generator_cpp/action_interfaces/action/detail/move_tcp_along_axis__type_support.hpp: rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/action_interfaces/action/detail/move_tcp_along_axis__type_support.hpp
 
+rosidl_generator_cpp/action_interfaces/action/transform_action.hpp: rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/action_interfaces/action/transform_action.hpp
+
+rosidl_generator_cpp/action_interfaces/action/detail/transform_action__builder.hpp: rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/action_interfaces/action/detail/transform_action__builder.hpp
+
+rosidl_generator_cpp/action_interfaces/action/detail/transform_action__struct.hpp: rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/action_interfaces/action/detail/transform_action__struct.hpp
+
+rosidl_generator_cpp/action_interfaces/action/detail/transform_action__traits.hpp: rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/action_interfaces/action/detail/transform_action__traits.hpp
+
+rosidl_generator_cpp/action_interfaces/action/detail/transform_action__type_support.hpp: rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/action_interfaces/action/detail/transform_action__type_support.hpp
+
 rosidl_generator_cpp/action_interfaces/msg/bounding_box.hpp: rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/action_interfaces/msg/bounding_box.hpp
 
@@ -306,6 +327,11 @@ action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/mov
 action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/move_tcp_along_axis__struct.hpp
 action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/move_tcp_along_axis__traits.hpp
 action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/move_tcp_along_axis__type_support.hpp
+action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/transform_action.hpp
+action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/transform_action__builder.hpp
+action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/transform_action__struct.hpp
+action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/transform_action__traits.hpp
+action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/transform_action__type_support.hpp
 action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/bounding_box.hpp
 action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/detail/bounding_box__builder.hpp
 action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/detail/bounding_box__struct.hpp
