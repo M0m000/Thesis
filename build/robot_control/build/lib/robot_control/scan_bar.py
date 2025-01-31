@@ -25,34 +25,26 @@ class ScanBar(Node):
         self.frame_handler = FrameHandler(node=self, save_path=frame_csv_path)
         self.world_to_work_transform = self.load_frame(frame='work', ref_frame='world')
 
-
-        '''
-        # Startpunkt für Scan in WORLD berechnen
-        startpoint_work_trans = [0.0, -300.0, 0.0]           # Translation in WORK
-        startpoint_work_rot = [0.0, 0.0, 0.0, 1.0]           # Rotation in WORK (Quaternionen)
-        startpoint_world_trans, startpoint_world_rot = self.tf_helper.transform_pose_to_world(startpoint_work_trans, 
-                                                                                                        startpoint_work_rot, 
-                                                                                                        from_frame='world', 
-                                                                                                        to_frame='work')
-        startpoint_world_rot = quaternion_to_euler(startpoint_world_rot)
-        print(startpoint_world_rot)
-        '''
-        '''
+        startpoint_trans_in_workframe = [600.0, -500.0, 0.0]
+        startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
+        startpoint_trans_worldframe, startpoint_rot_worldframe = self.frame_handler.transform_pose_to_world(trans = startpoint_trans_in_workframe,
+                                                                                                            rot = startpoint_rot_in_workframe,
+                                                                                                            pose_ref_frame = 'work')
         # Bewege Roboter auf die Startposition
         self.startpoint_movement_done = False
-        if startpoint_world_rot is not None:
+        if startpoint_rot_worldframe is not None and startpoint_trans_worldframe is not None:
             self.startpoint_movement_done = call_move_joint_service(node = self,
-                                                                    pos = startpoint_world_trans,
-                                                                    rot = startpoint_world_rot,
+                                                                    pos = startpoint_trans_worldframe,
+                                                                    rot = startpoint_rot_worldframe,
                                                                     ref = 0,
                                                                     ttype = 0,
-                                                                    tvalue = 30.0,
+                                                                    tvalue = 150.0,
                                                                     bpoint = 0,
                                                                     btype = 0,
                                                                     bvalue = 100.0,
                                                                     sync = 0.0,
                                                                     chaining = 0)
-        '''
+
 
 
     def load_frame(self, frame, ref_frame):

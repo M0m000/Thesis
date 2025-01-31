@@ -1,18 +1,18 @@
 import rclpy
 from rclpy.node import Node
-from kr_msgs.srv import MoveJoint
+from kr_msgs.srv import MoveLinear
 from time import time
 
 def call_move_joint_service(node: Node, pos, rot, ref, ttype, tvalue, bpoint, btype, bvalue, sync, chaining):
-    client = node.create_client(MoveJoint, '/kr/motion/move_joint')
+    client = node.create_client(MoveLinear, '/kr/motion/move_linear')
     
     # Warte, bis der Service verfügbar ist
     while not client.wait_for_service(timeout_sec=1.0):
         node.get_logger().info('Service not available, waiting again...')
-    node.get_logger().info('Service MoveJoint availabel, make service call...')
+    node.get_logger().info('Service MoveJoint available, make service call...')
     
     # Erstelle Service Request
-    request = MoveJoint.Request()
+    request = MoveLinear.Request()
     request.pos = pos
     request.rot = rot
     request.ref = ref

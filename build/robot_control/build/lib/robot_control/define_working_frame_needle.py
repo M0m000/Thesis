@@ -151,6 +151,9 @@ class DefineWorkingFrameNeedle(Node):
         
         np.savetxt('/home/mo/Thesis/src/robot_control/robot_control/data/WORK_frame_in_world.csv', T_work_world, delimiter=",", fmt="%.6f")
         self.get_logger().info("Transformation between WORLD and REF saved as <WORK_frame_in_world.csv>")
+
+        self.set_frame([0.0, 0.0, 0.0], [0.0, 0.0, 0.0], frame="tcp", ref_frame="tfc")        # setze Frame TCP auf die Nadel
+        self.get_logger().info(f"Reset TCP Frame to TFC")
         
         
 

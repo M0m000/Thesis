@@ -53,7 +53,7 @@ class FrameHandler:
         Transformiert eine gegebene Position und Orientierung (in einem lokalen Frame)
         in das Welt-Koordinatensystem und gibt die transformierten Position und Orientierung zurück.
         :param trans: Translationswerte (x, y, z) im lokalen Frame
-        :param rot: Rotationswerte (roll, pitch, yaw) im lokalen Frame
+        :param rot: Rotationswerte [roll, pitch, yaw] im lokalen Frame
         :param pose_ref_frame: Der Name des Referenz-Frames, das die Transformation definiert
         :return: transformierte Position und Orientierung im Weltkoordinatensystem
         """
@@ -69,10 +69,9 @@ class FrameHandler:
         t_ref_to_poseframe_position = T_ref_to_poseframe[:3, 3]
 
         trans_world = R_ref_to_poseframe @ trans + t_ref_to_poseframe_position
-        rot_world = R_ref_to_poseframe @ R_local
-
+        rot_world_matrix = R_ref_to_poseframe @ R_local
+        rot_world = self.rotation_matrix_to_euler_angles(rot_world_matrix)
         return trans_world, rot_world
-        
 
 
 
@@ -91,3 +90,21 @@ class FrameHandler:
                         [np.sin(az), np.cos(az), 0],
                         [0, 0, 1]])
         return R_z @ R_y @ R_x
+    
+
+
+    def rotation_matrix_to_euler_angles(self, R):
+        """Umwandlung einer 3x3 Rotationsmatrix in Euler-Winkel (roll, pitch, yaw)."""
+        sy = np.sqrt(R[0, 0] ** 2 + R[1, 0] ** 2)
+
+        singular = sy < 1e-6  # Prüfen auf Singularität
+
+        if not singular:
+            ax = np.arctan2(R[2, 1], R[2, 2])  # roll
+            ay = np.arctan2(-R[2, 0], sy)       # pitch
+            az = np.arctan2(R[1, 0], R[0, 0])   # yaw
+        else:
+            ax = np.arctan2(-R[1, 2], R[1, 1])  # roll
+            ay = np.arctan2(-R[2, 0], sy)       # pitch
+            az = 0                              # yaw (undefiniert)
+        return np.degrees([ax, ay, az])
