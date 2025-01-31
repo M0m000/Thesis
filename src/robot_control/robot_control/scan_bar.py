@@ -1,15 +1,11 @@
 import rclpy
 from rclpy.node import Node
 from action_interfaces.msg import HookData
-from FC.FC_tf_helper import TFHelper
 from FC.FC_quaternion_to_euler import quaternion_to_euler
 from FC.FC_dict_receive_processing import DictReceiveProcessor
 from FC.FC_call_move_joint_service import call_move_joint_service
-from FC.FC_transform_action_client import TransformActionClient
-from tf2_ros.buffer import Buffer
-from tf2_ros.transform_listener import TransformListener
-from tf2_ros import TransformException
-from geometry_msgs.msg import TransformStamped
+from FC.FC_frame_handler import FrameHandler
+import os
 
 
 class ScanBar(Node):
@@ -25,8 +21,11 @@ class ScanBar(Node):
         self.hooks_dict_processor = DictReceiveProcessor(self)
         self.yolo_hooks_dict = {}
 
-        self.transform_client = TransformActionClient()
-        self.transform_client.send_goal("world", "work", self.process_transform)
+        frame_csv_path = os.path.expanduser("~/Thesis/src/robot_control/robot_control/data")
+        self.frame_handler = FrameHandler(node=self, save_path=frame_csv_path)
+        self.world_to_work_transform = self.load_frame(frame='work', ref_frame='world')
+        print(self.world_to_work_transform)
+
 
         '''
         # Startpunkt für Scan in WORLD berechnen
@@ -56,10 +55,19 @@ class ScanBar(Node):
                                                                     chaining = 0)
         '''
 
-    def process_transform(self, transform):
-        # Hier kannst du mit der erhaltenen Transformation arbeiten
-        self.get_logger().info(f"Verarbeitete Transformation: {transform}")
-        
+
+    def load_frame(self, frame, ref_frame):
+        csv_name = str(frame) + '_' + str(ref_frame) + '.csv'
+        """Lädt die Transformationsmatrix für ein bestimmtes Frame."""
+        transformation_matrix = self.frame_handler.query_and_load_frame(csv_name)
+
+        if transformation_matrix is not None:
+            # self.get_logger().info(f"Loaded matrix for frame '{csv_name}' successfully!")
+            return transformation_matrix
+        else:
+            # self.get_logger().warn(f"Error while loading matrix for frame '{csv_name}'!")
+            return None
+
 
     def hooks_dict_callback(self, msg):
         self.yolo_hooks_dict = self.hooks_dict_processor(msg)

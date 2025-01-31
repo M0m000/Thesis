@@ -156,7 +156,7 @@ class TFFramesPublisher(Node):
         try:
             for frame, data in self.frames_data.items():
                 # Erstelle für jedes Frame einen eigenen Dateinamen
-                filename = os.path.join(save_path, f"{frame}_transformation_matrix.csv")
+                filename = os.path.join(save_path, f"{frame}_world.csv")
                 
                 position = data['position']
                 orientation = data['orientation']
