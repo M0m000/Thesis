@@ -24,7 +24,6 @@ class ScanBar(Node):
         frame_csv_path = os.path.expanduser("~/Thesis/src/robot_control/robot_control/data")
         self.frame_handler = FrameHandler(node=self, save_path=frame_csv_path)
         self.world_to_work_transform = self.load_frame(frame='work', ref_frame='world')
-        print(self.world_to_work_transform)
 
 
         '''
