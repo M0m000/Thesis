@@ -99,18 +99,18 @@ class YOLOv8InferenceNode(Node):
             if self.show_cam_img:
                 cv2.imshow('VC Cam Img', self.received_img)
                 cv2.waitKey(1)
-            
-            self.output_img = self.plot_hooks_and_bars()
-            output_segment_img = self.bridge.cv2_to_imgmsg(self.output_img, encoding="bgr8")
-            self.output_segment_img_publisher.publish(output_segment_img)
+
             if self.show_output_img:
+                self.output_img = self.plot_hooks_and_bars()
+                output_segment_img = self.bridge.cv2_to_imgmsg(self.output_img, encoding="bgr8")
+                self.output_segment_img_publisher.publish(output_segment_img)
                 cv2.imshow('YoloV8 Output Img', self.output_img)
                 cv2.waitKey(1)
 
-            self.points_img = self.plot_points()
-            output_point_img = self.bridge.cv2_to_imgmsg(self.points_img, encoding="bgr8")
-            self.output_point_img_publisher.publish(output_point_img)
             if self.show_point_img:
+                self.points_img = self.plot_points()
+                output_point_img = self.bridge.cv2_to_imgmsg(self.points_img, encoding="bgr8")
+                self.output_point_img_publisher.publish(output_point_img)
                 cv2.imshow('Point Output Img', self.points_img)
                 cv2.waitKey(1)
                 
@@ -294,34 +294,34 @@ class YOLOv8InferenceNode(Node):
         if boxes_hooks is not None:     
             for i, box_hook in enumerate(boxes_hooks):
                 hook_midpoint = self.calc_box_midpoint(box_hook)
-                tip_distances = [np.linalg.norm(self.calc_box_midpoint(box_tip) - hook_midpoint) 
-                                 for box_tip in boxes_tips]
-
-                # Wähle die Spitze, die am nächsten zum Haken ist
-                best_tip_idx = np.argmin(tip_distances) if tip_distances else None
-                if best_tip_idx is not None:
-                    box_tip = boxes_tips[best_tip_idx]
+                
+                # Finde die beste Tip, die sich innerhalb des Hook-Box befindet
+                valid_tips = [
+                    (idx, box_tip) for idx, box_tip in enumerate(boxes_tips)
+                    if self.is_point_inside_box(self.calc_box_midpoint(box_tip), box_hook)
+                ]
+                
+                if valid_tips:
+                    best_tip_idx, box_tip = min(valid_tips, key=lambda t: np.linalg.norm(self.calc_box_midpoint(t[1]) - hook_midpoint))
                     mask_tip = masks_tips[best_tip_idx]
                     conf_tip = confs_tips[best_tip_idx]
                 else:
-                    # Kein Tip gefunden
                     box_tip, mask_tip, conf_tip = None, None, None
-
-                # Berechne Abstände zu allen Lowpoints
-                lowpoint_distances = [np.linalg.norm(self.calc_box_midpoint(box_lowpoint) - hook_midpoint) 
-                                      for box_lowpoint in boxes_lowpoints]
-
-                # Wähle den Lowpoint, der am nächsten zum Haken ist
-                best_lowpoint_idx = np.argmin(lowpoint_distances) if lowpoint_distances else None
-                if best_lowpoint_idx is not None:
-                    box_lowpoint = boxes_lowpoints[best_lowpoint_idx]
+                
+                # Finde den besten Lowpoint, der sich innerhalb des Hook-Box befindet
+                valid_lowpoints = [
+                    (idx, box_lowpoint) for idx, box_lowpoint in enumerate(boxes_lowpoints)
+                    if self.is_point_inside_box(self.calc_box_midpoint(box_lowpoint), box_hook)
+                ]
+                
+                if valid_lowpoints:
+                    best_lowpoint_idx, box_lowpoint = min(valid_lowpoints, key=lambda l: np.linalg.norm(self.calc_box_midpoint(l[1]) - hook_midpoint))
                     mask_lowpoint = masks_lowpoints[best_lowpoint_idx]
                     conf_lowpoint = confs_lowpoints[best_lowpoint_idx]
                 else:
-                    # Kein Lowpoint gefunden
                     box_lowpoint, mask_lowpoint, conf_lowpoint = None, None, None
-
-                # Ergebnis für den aktuellen Haken zusammenstellen
+                
+                # Ergebnis für den aktuellen Haken speichern
                 hooks_dict[f"hook_{i + 1}"] = {
                     "hook_box": box_hook,
                     "hook_mask": masks_hooks[i],
@@ -339,8 +339,14 @@ class YOLOv8InferenceNode(Node):
 
         sorted_hooks_dict = {}
         for idx, key in enumerate(hooks_dict):
-            sorted_hooks_dict['hook_' + str(len(hooks_dict - idx))] = hooks_dict[key]
+            sorted_hooks_dict['hook_' + str(len(hooks_dict) - idx)] = hooks_dict[key]
+        
         return sorted_hooks_dict
+    
+
+    def is_point_inside_box(self, point, box):
+        x1, y1, x2, y2 = box
+        return x1 <= point[0] <= x2 and y1 <= point[1] <= y2
 
 
     def create_bar_instance(self, boxes_bar, masks_bar, confs_bar):
