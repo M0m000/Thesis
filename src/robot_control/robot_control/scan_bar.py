@@ -5,6 +5,7 @@ from FC.FC_quaternion_to_euler import quaternion_to_euler
 from FC.FC_dict_receive_processing import DictReceiveProcessor
 from FC.FC_call_move_linear_service import call_move_linear_service
 from FC.FC_frame_handler import FrameHandler
+from FC.FC_stereo_triangulation import StereoTriangulationProcessor
 import os
 
 
@@ -19,12 +20,18 @@ class ScanBar(Node):
 
         # Instanz zum Entacken der Yolo Outputs
         self.hooks_dict_processor = DictReceiveProcessor(self)
-        self.yolo_hooks_dict = {}
+        self.yolo_hooks_dict = {}       # Dict für NN Output
+        self.global_hooks_dict = {}     # Scan Dict (Ergebnis)
 
+        # Instanz für Berechnung der Stereo Triangulation
+        self.triangulation_processor = StereoTriangulationProcessor(extrinsic_data = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+                                                                    calib_path = '/home/mo/Thesis/calibration_data.npz',
+                                                                    measure_time = True)
+        
+        # Instanz FrameHandler
         frame_csv_path = os.path.expanduser("~/Thesis/src/robot_control/robot_control/data")
         self.frame_handler = FrameHandler(node=self, save_path=frame_csv_path)
         self.world_to_work_transform = self.load_frame(frame='work', ref_frame='world')
-        self.global_hooks_dict = {}
 
         startpoint_trans_in_workframe = [600.0, -500.0, 0.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
@@ -60,7 +67,6 @@ class ScanBar(Node):
             self.get_logger().error("Init movement failed!")
         ###########################################################
 
-        
 
 
     def process_main(self):
