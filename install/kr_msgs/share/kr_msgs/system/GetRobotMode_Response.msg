@@ -1,1 +1,3 @@
-/home/mo/Thesis/build/kr_msgs/rosidl_cmake/srv/system/GetRobotMode_Response.msg
+
+RobotMode  mode    
+bool       success

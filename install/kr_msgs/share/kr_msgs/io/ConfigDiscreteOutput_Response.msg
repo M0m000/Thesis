@@ -1,1 +1,2 @@
-/home/mo/Thesis/build/kr_msgs/rosidl_cmake/srv/io/ConfigDiscreteOutput_Response.msg
+
+bool       success

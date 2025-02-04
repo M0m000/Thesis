@@ -1,1 +1,6 @@
-/home/mo/Thesis/src/orange-ros2/kr_msgs/srv/system/SuspendRobot.srv
+######################################################
+#                  SUSPEND ROBOT                     #
+######################################################
+
+---
+bool       success

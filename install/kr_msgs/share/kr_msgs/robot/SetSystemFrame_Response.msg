@@ -1,1 +1,2 @@
-/home/mo/Thesis/build/kr_msgs/rosidl_cmake/srv/robot/SetSystemFrame_Response.msg
+
+bool        success

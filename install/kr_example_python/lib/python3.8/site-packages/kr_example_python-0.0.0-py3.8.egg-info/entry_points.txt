@@ -4,4 +4,3 @@ jog_linear = kr_example_python.jog_linear:main
 move_joint = kr_example_python.move_joint:main
 robot_state = kr_example_python.robot_state:main
 self_motion = kr_example_python.self_motion:main
-

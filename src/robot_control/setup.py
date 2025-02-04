@@ -24,7 +24,6 @@ setup(
     ],
     description='TODO: Package description',
     license='TODO: License declaration',
-    tests_require=['pytest'],
     entry_points={
         'console_scripts': [
             'move_lin_by_key = robot_control.move_lin_by_key:main',

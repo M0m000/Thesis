@@ -1,1 +1,3 @@
-/home/mo/Thesis/build/kr_msgs/rosidl_cmake/srv/system/LogAlarm_Response.msg
+
+SafetyEvent[]    safety_events  
+bool             success

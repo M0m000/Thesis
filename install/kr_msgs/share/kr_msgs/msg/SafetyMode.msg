@@ -1,1 +1,9 @@
-/home/mo/Thesis/src/orange-ros2/kr_msgs/msg/SafetyMode.msg
+######################################################
+#                    SAFETY MODE                     #
+######################################################
+
+int8 SAFE=0     # 0.25 m/s
+int8 REDUCED=1  # 1.00 m/s
+int8 NORMAL=2   # unlimited
+
+int8       val   

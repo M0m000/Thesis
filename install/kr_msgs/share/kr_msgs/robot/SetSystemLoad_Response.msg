@@ -1,1 +1,2 @@
-/home/mo/Thesis/build/kr_msgs/rosidl_cmake/srv/robot/SetSystemLoad_Response.msg
+
+bool        success

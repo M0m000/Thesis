@@ -8,4 +8,3 @@ set_working_frame_qr = robot_control.set_working_frame_qr:main
 tcp_frame_listener = robot_control.tcp_frame_listener:main
 tf_frames_publisher = robot_control.tf_frames_publisher:main
 transform_action_client = robot_control.transform_action_client:main
-

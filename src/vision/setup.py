@@ -19,7 +19,6 @@ setup(
     maintainer_email='mo@todo.todo',
     description='TODO: Package description',
     license='TODO: License declaration',
-    tests_require=['pytest'],
     entry_points={
         'console_scripts': [
             'image_receiver = vision.image_receiver:main',

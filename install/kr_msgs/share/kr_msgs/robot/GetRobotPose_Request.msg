@@ -1,1 +1,4 @@
-/home/mo/Thesis/build/kr_msgs/rosidl_cmake/srv/robot/GetRobotPose_Request.msg
+######################################################
+#                  GET ROBOT POSE                    #
+######################################################
+

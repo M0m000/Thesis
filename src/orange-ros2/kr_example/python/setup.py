@@ -17,7 +17,6 @@ setup(
     maintainer_email='mvy@kassowrobots.com',
     description='Examples of minimal publisher/subscriber using rclpy',
     license='Apache License 2.0',
-    tests_require=['pytest'],
     entry_points={
         'console_scripts': [
             'robot_state = kr_example_python.robot_state:main',

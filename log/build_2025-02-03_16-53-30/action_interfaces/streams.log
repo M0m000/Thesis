@@ -1,0 +1,399 @@
+[0.031s] Invoking command in '/home/mo/Thesis/build/action_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/home/mo/kassow_wii_control/install/kr_example_python:/home/mo/kassow_wii_control/install/controller:/opt/ros/foxy /usr/bin/cmake /home/mo/Thesis/src/action_interfaces -DCMAKE_INSTALL_PREFIX=/home/mo/Thesis/install/action_interfaces
+[0.422s] -- The C compiler identification is GNU 9.4.0
+[0.422s] -- The CXX compiler identification is GNU 9.4.0
+[0.422s] -- Check for working C compiler: /usr/bin/cc
+[0.423s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.423s] -- Detecting C compiler ABI info
+[0.424s] -- Detecting C compiler ABI info - done
+[0.424s] -- Detecting C compile features
+[0.426s] -- Detecting C compile features - done
+[0.426s] -- Check for working CXX compiler: /usr/bin/c++
+[0.426s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.426s] -- Detecting CXX compiler ABI info
+[0.439s] -- Detecting CXX compiler ABI info - done
+[0.450s] -- Detecting CXX compile features
+[0.450s] -- Detecting CXX compile features - done
+[0.452s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.477s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.477s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.697s] -- Found rosidl_default_generators: 1.0.1 (/opt/ros/foxy/share/rosidl_default_generators/cmake)
+[0.706s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.717s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.855s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[0.892s] -- Found FastRTPS: /opt/ros/foxy/include  
+[0.974s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.999s] -- Found sensor_msgs: 2.0.5 (/opt/ros/foxy/share/sensor_msgs/cmake)
+[1.254s] -- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") 
+[1.576s] -- Found ament_cmake_ros: 0.9.2 (/opt/ros/foxy/share/ament_cmake_ros/cmake)
+[1.868s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[2.003s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[2.032s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3.5") 
+[2.034s] -- Found python_cmake_module: 0.8.1 (/opt/ros/foxy/share/python_cmake_module/cmake)
+[2.058s] -- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.8.so (found suitable version "3.8.10", minimum required is "3.5") 
+[2.058s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[2.058s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.8
+[2.058s] -- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.8.so
+[2.081s] -- Found PythonExtra: .so  
+[2.255s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[2.272s] -- Added test 'copyright' to check source files copyright and LICENSE
+[2.274s] -- Added test 'lint_cmake' to check CMake code style
+[2.275s] -- Added test 'xmllint' to check XML markup files
+[2.280s] -- Configuring done
+[2.351s] -- Generating done
+[2.372s] -- Build files have been written to: /home/mo/Thesis/build/action_interfaces
+[2.379s] Invoked command in '/home/mo/Thesis/build/action_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/home/mo/kassow_wii_control/install/kr_example_python:/home/mo/kassow_wii_control/install/controller:/opt/ros/foxy /usr/bin/cmake /home/mo/Thesis/src/action_interfaces -DCMAKE_INSTALL_PREFIX=/home/mo/Thesis/install/action_interfaces
+[2.383s] Invoking command in '/home/mo/Thesis/build/action_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/home/mo/kassow_wii_control/install/kr_example_python:/home/mo/kassow_wii_control/install/controller:/opt/ros/foxy /usr/bin/cmake --build /home/mo/Thesis/build/action_interfaces -- -j16 -l16
+[2.430s] [35m[1mScanning dependencies of target action_interfaces__cpp[0m
+[2.430s] [  1%] [34m[1mGenerating C code for ROS interfaces[0m
+[2.443s] [  2%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[3.238s] [  2%] Built target action_interfaces__cpp
+[3.250s] [  3%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[3.250s] [  5%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[3.250s] [  6%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[3.307s] [35m[1mScanning dependencies of target action_interfaces__rosidl_generator_c[0m
+[3.327s] [  7%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_generator_c.dir/rosidl_generator_c/action_interfaces/action/detail/move_tcp_along_axis__functions.c.o[0m
+[3.328s] [  8%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_generator_c.dir/rosidl_generator_c/action_interfaces/msg/detail/hook_data__functions.c.o[0m
+[3.328s] [ 10%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_generator_c.dir/rosidl_generator_c/action_interfaces/action/detail/fibonacci__functions.c.o[0m
+[3.328s] [ 11%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_generator_c.dir/rosidl_generator_c/action_interfaces/msg/detail/bounding_box__functions.c.o[0m
+[3.328s] [ 12%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_generator_c.dir/rosidl_generator_c/action_interfaces/action/detail/transform_action__functions.c.o[0m
+[3.330s] [ 13%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_generator_c.dir/rosidl_generator_c/action_interfaces/msg/detail/hook__functions.c.o[0m
+[3.332s] [ 15%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_generator_c.dir/rosidl_generator_c/action_interfaces/msg/detail/uv__functions.c.o[0m
+[3.496s] [ 16%] [32m[1mLinking C shared library libaction_interfaces__rosidl_generator_c.so[0m
+[3.541s] [ 16%] Built target action_interfaces__rosidl_generator_c
+[3.554s] [ 17%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[3.554s] [ 18%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[3.846s] [35m[1mScanning dependencies of target action_interfaces__rosidl_typesupport_cpp[0m
+[3.869s] [ 21%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/action_interfaces/action/fibonacci__type_support.cpp.o[0m
+[3.869s] [ 21%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/action_interfaces/action/move_tcp_along_axis__type_support.cpp.o[0m
+[3.869s] [ 22%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/action_interfaces/action/transform_action__type_support.cpp.o[0m
+[3.869s] [ 24%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/action_interfaces/msg/hook_data__type_support.cpp.o[0m
+[3.869s] [ 25%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/action_interfaces/msg/bounding_box__type_support.cpp.o[0m
+[3.869s] [ 26%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/action_interfaces/msg/uv__type_support.cpp.o[0m
+[3.870s] [ 27%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/action_interfaces/msg/hook__type_support.cpp.o[0m
+[3.991s] [35m[1mScanning dependencies of target action_interfaces__rosidl_typesupport_introspection_cpp[0m
+[4.025s] [ 30%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/fibonacci__type_support.cpp.o[0m
+[4.027s] [ 30%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/move_tcp_along_axis__type_support.cpp.o[0m
+[4.027s] [ 31%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/transform_action__type_support.cpp.o[0m
+[4.027s] [ 32%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/hook__type_support.cpp.o[0m
+[4.038s] [ 34%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/bounding_box__type_support.cpp.o[0m
+[4.042s] [ 35%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/hook_data__type_support.cpp.o[0m
+[4.221s] [ 36%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/uv__type_support.cpp.o[0m
+[4.238s] [35m[1mScanning dependencies of target action_interfaces__rosidl_typesupport_c[0m
+[4.294s] [ 37%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/action_interfaces/action/move_tcp_along_axis__type_support.cpp.o[0m
+[4.294s] [ 39%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/action_interfaces/action/fibonacci__type_support.cpp.o[0m
+[4.310s] [ 40%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/action_interfaces/action/transform_action__type_support.cpp.o[0m
+[4.319s] [ 41%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/action_interfaces/msg/bounding_box__type_support.cpp.o[0m
+[4.336s] [ 43%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/action_interfaces/msg/hook__type_support.cpp.o[0m
+[4.352s] [ 44%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/action_interfaces/msg/hook_data__type_support.cpp.o[0m
+[4.360s] [ 45%] [32m[1mLinking CXX shared library libaction_interfaces__rosidl_typesupport_cpp.so[0m
+[4.381s] [ 46%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/action_interfaces/msg/uv__type_support.cpp.o[0m
+[4.430s] [35m[1mScanning dependencies of target action_interfaces__rosidl_typesupport_fastrtps_cpp[0m
+[4.431s] [ 48%] [32m[1mLinking CXX shared library libaction_interfaces__rosidl_typesupport_c.so[0m
+[4.443s] [ 48%] Built target action_interfaces__rosidl_typesupport_cpp
+[4.473s] [ 49%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/action_interfaces/action/detail/dds_fastrtps/fibonacci__type_support.cpp.o[0m
+[4.474s] [ 51%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/action_interfaces/msg/detail/dds_fastrtps/bounding_box__type_support.cpp.o[0m
+[4.474s] [ 51%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/action_interfaces/action/detail/dds_fastrtps/transform_action__type_support.cpp.o[0m
+[4.474s] [ 53%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/action_interfaces/msg/detail/dds_fastrtps/hook_data__type_support.cpp.o[0m
+[4.475s] [ 54%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/action_interfaces/action/detail/dds_fastrtps/move_tcp_along_axis__type_support.cpp.o[0m
+[4.485s] [ 55%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/action_interfaces/msg/detail/dds_fastrtps/hook__type_support.cpp.o[0m
+[4.487s] [ 56%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/action_interfaces/msg/detail/dds_fastrtps/uv__type_support.cpp.o[0m
+[4.505s] [ 56%] Built target action_interfaces__rosidl_typesupport_c
+[4.598s] [35m[1mScanning dependencies of target action_interfaces__rosidl_typesupport_introspection_c[0m
+[4.632s] [ 58%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/bounding_box__type_support.c.o[0m
+[4.632s] [ 59%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__type_support.c.o[0m
+[4.633s] [ 60%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/move_tcp_along_axis__type_support.c.o[0m
+[4.635s] [ 62%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/action/detail/transform_action__type_support.c.o[0m
+[4.636s] [ 63%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/hook__type_support.c.o[0m
+[4.642s] [ 64%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/uv__type_support.c.o[0m
+[4.645s] [ 65%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/hook_data__type_support.c.o[0m
+[4.654s] [ 67%] [32m[1mLinking CXX shared library libaction_interfaces__rosidl_typesupport_introspection_cpp.so[0m
+[4.717s] [ 68%] [32m[1mLinking C shared library libaction_interfaces__rosidl_typesupport_introspection_c.so[0m
+[4.758s] [ 68%] Built target action_interfaces__rosidl_typesupport_introspection_c
+[4.796s] [ 68%] Built target action_interfaces__rosidl_typesupport_introspection_cpp
+[5.065s] [ 69%] [32m[1mLinking CXX shared library libaction_interfaces__rosidl_typesupport_fastrtps_cpp.so[0m
+[5.151s] [ 69%] Built target action_interfaces__rosidl_typesupport_fastrtps_cpp
+[5.163s] [ 70%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[5.838s] [35m[1mScanning dependencies of target action_interfaces__rosidl_typesupport_fastrtps_c[0m
+[5.872s] [ 73%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/action_interfaces/action/detail/fibonacci__type_support_c.cpp.o[0m
+[5.872s] [ 73%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/action_interfaces/msg/detail/bounding_box__type_support_c.cpp.o[0m
+[5.872s] [ 74%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/action_interfaces/msg/detail/hook__type_support_c.cpp.o[0m
+[5.872s] [ 75%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/action_interfaces/action/detail/move_tcp_along_axis__type_support_c.cpp.o[0m
+[5.873s] [ 77%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/action_interfaces/action/detail/transform_action__type_support_c.cpp.o[0m
+[5.874s] [ 78%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/action_interfaces/msg/detail/hook_data__type_support_c.cpp.o[0m
+[5.875s] [ 79%] [32mBuilding CXX object CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/action_interfaces/msg/detail/uv__type_support_c.cpp.o[0m
+[6.345s] [ 81%] [32m[1mLinking CXX shared library libaction_interfaces__rosidl_typesupport_fastrtps_c.so[0m
+[6.426s] [ 81%] Built target action_interfaces__rosidl_typesupport_fastrtps_c
+[6.437s] [35m[1mScanning dependencies of target action_interfaces[0m
+[6.449s] [ 81%] Built target action_interfaces
+[6.459s] [35m[1mScanning dependencies of target action_interfaces__py[0m
+[6.471s] [ 82%] [34m[1mGenerating Python code for ROS interfaces[0m
+[8.577s] [ 82%] Built target action_interfaces__py
+[8.589s] [35m[1mScanning dependencies of target action_interfaces__python[0m
+[8.625s] [ 87%] [32mBuilding C object CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_uv_s.c.o[0m
+[8.625s] [ 87%] [32mBuilding C object CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/action/_transform_action_s.c.o[0m
+[8.625s] [ 87%] [32mBuilding C object CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/action/_move_tcp_along_axis_s.c.o[0m
+[8.625s] [ 87%] [32mBuilding C object CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/action/_fibonacci_s.c.o[0m
+[8.625s] [ 88%] [32mBuilding C object CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_bounding_box_s.c.o[0m
+[8.626s] [ 89%] [32mBuilding C object CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_hook_s.c.o[0m
+[8.627s] [ 91%] [32mBuilding C object CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_hook_data_s.c.o[0m
+[8.798s] [ 92%] [32m[1mLinking C shared library rosidl_generator_py/action_interfaces/libaction_interfaces__python.so[0m
+[8.851s] [ 92%] Built target action_interfaces__python
+[8.861s] [35m[1mScanning dependencies of target action_interfaces__rosidl_typesupport_c__pyext[0m
+[8.862s] [35m[1mScanning dependencies of target action_interfaces__rosidl_typesupport_introspection_c__pyext[0m
+[8.862s] [35m[1mScanning dependencies of target action_interfaces__rosidl_typesupport_fastrtps_c__pyext[0m
+[8.883s] [ 93%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[8.883s] [ 94%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_c.c.o[0m
+[8.887s] [ 96%] [32mBuilding C object CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[9.027s] [ 97%] [32m[1mLinking C shared library rosidl_generator_py/action_interfaces/action_interfaces_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so[0m
+[9.030s] [ 98%] [32m[1mLinking C shared library rosidl_generator_py/action_interfaces/action_interfaces_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so[0m
+[9.033s] [100%] [32m[1mLinking CXX shared library rosidl_generator_py/action_interfaces/action_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so[0m
+[9.073s] [100%] Built target action_interfaces__rosidl_typesupport_introspection_c__pyext
+[9.078s] [100%] Built target action_interfaces__rosidl_typesupport_c__pyext
+[9.107s] [100%] Built target action_interfaces__rosidl_typesupport_fastrtps_c__pyext
+[9.120s] Invoked command in '/home/mo/Thesis/build/action_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/home/mo/kassow_wii_control/install/kr_example_python:/home/mo/kassow_wii_control/install/controller:/opt/ros/foxy /usr/bin/cmake --build /home/mo/Thesis/build/action_interfaces -- -j16 -l16
+[9.134s] Invoking command in '/home/mo/Thesis/build/action_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/home/mo/kassow_wii_control/install/kr_example_python:/home/mo/kassow_wii_control/install/controller:/opt/ros/foxy /usr/bin/cmake --install /home/mo/Thesis/build/action_interfaces
+[9.142s] -- Install configuration: ""
+[9.142s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/ament_index/resource_index/rosidl_interfaces/action_interfaces
+[9.142s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces
+[9.142s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action
+[9.142s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/fibonacci.h
+[9.142s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail
+[9.143s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__type_support.h
+[9.143s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/transform_action__functions.c
+[9.143s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__struct.h
+[9.143s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/transform_action__functions.h
+[9.143s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/transform_action__type_support.h
+[9.143s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__type_support.h
+[9.143s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/transform_action__struct.h
+[9.143s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__functions.h
+[9.144s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__functions.c
+[9.144s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__struct.h
+[9.144s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__functions.h
+[9.144s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__functions.c
+[9.144s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/transform_action.h
+[9.144s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/move_tcp_along_axis.h
+[9.144s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg
+[9.145s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/rosidl_generator_c__visibility_control.h
+[9.145s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/hook_data.h
+[9.145s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/bounding_box.h
+[9.145s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail
+[9.145s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook__functions.h
+[9.145s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/bounding_box__type_support.h
+[9.145s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/bounding_box__struct.h
+[9.145s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/bounding_box__functions.c
+[9.145s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/uv__functions.h
+[9.145s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/bounding_box__functions.h
+[9.146s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook_data__functions.c
+[9.146s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook_data__functions.h
+[9.146s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook__functions.c
+[9.146s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/uv__type_support.h
+[9.146s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook__struct.h
+[9.146s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook_data__struct.h
+[9.146s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook__type_support.h
+[9.146s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/uv__struct.h
+[9.146s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/uv__functions.c
+[9.147s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook_data__type_support.h
+[9.147s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/uv.h
+[9.147s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/hook.h
+[9.147s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/environment/library_path.sh
+[9.147s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/environment/library_path.dsv
+[9.147s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/libaction_interfaces__rosidl_generator_c.so
+[9.148s] -- Set runtime path of "/home/mo/Thesis/install/action_interfaces/lib/libaction_interfaces__rosidl_generator_c.so" to ""
+[9.148s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces
+[9.148s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action
+[9.148s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail
+[9.148s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__rosidl_typesupport_fastrtps_c.h
+[9.148s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/transform_action__rosidl_typesupport_fastrtps_c.h
+[9.148s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__rosidl_typesupport_fastrtps_c.h
+[9.149s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg
+[9.149s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail
+[9.149s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/bounding_box__rosidl_typesupport_fastrtps_c.h
+[9.149s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook__rosidl_typesupport_fastrtps_c.h
+[9.149s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/uv__rosidl_typesupport_fastrtps_c.h
+[9.149s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook_data__rosidl_typesupport_fastrtps_c.h
+[9.149s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[9.149s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_fastrtps_c.so
+[9.150s] -- Set runtime path of "/home/mo/Thesis/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_fastrtps_c.so" to ""
+[9.150s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces
+[9.150s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action
+[9.150s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail
+[9.150s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/transform_action__rosidl_typesupport_fastrtps_cpp.hpp
+[9.150s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__rosidl_typesupport_fastrtps_cpp.hpp
+[9.150s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__rosidl_typesupport_fastrtps_cpp.hpp
+[9.150s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/dds_fastrtps
+[9.150s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg
+[9.150s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[9.151s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail
+[9.151s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/uv__rosidl_typesupport_fastrtps_cpp.hpp
+[9.151s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/bounding_box__rosidl_typesupport_fastrtps_cpp.hpp
+[9.151s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook_data__rosidl_typesupport_fastrtps_cpp.hpp
+[9.151s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook__rosidl_typesupport_fastrtps_cpp.hpp
+[9.151s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/dds_fastrtps
+[9.151s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_fastrtps_cpp.so
+[9.152s] -- Set runtime path of "/home/mo/Thesis/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_fastrtps_cpp.so" to ""
+[9.152s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces
+[9.152s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action
+[9.152s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail
+[9.152s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/transform_action__rosidl_typesupport_introspection_c.h
+[9.152s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__rosidl_typesupport_introspection_c.h
+[9.152s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/transform_action__type_support.c
+[9.152s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h
+[9.153s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__type_support.c
+[9.153s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__type_support.c
+[9.153s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg
+[9.153s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail
+[9.153s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook__type_support.c
+[9.153s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/bounding_box__rosidl_typesupport_introspection_c.h
+[9.153s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook_data__rosidl_typesupport_introspection_c.h
+[9.153s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook__rosidl_typesupport_introspection_c.h
+[9.153s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/bounding_box__type_support.c
+[9.154s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook_data__type_support.c
+[9.154s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/uv__rosidl_typesupport_introspection_c.h
+[9.154s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/uv__type_support.c
+[9.154s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[9.154s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_introspection_c.so
+[9.155s] -- Set runtime path of "/home/mo/Thesis/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_introspection_c.so" to ""
+[9.155s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_c.so
+[9.155s] -- Set runtime path of "/home/mo/Thesis/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_c.so" to ""
+[9.155s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces
+[9.155s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action
+[9.155s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/transform_action.hpp
+[9.155s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/fibonacci.hpp
+[9.155s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/move_tcp_along_axis.hpp
+[9.156s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail
+[9.156s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__builder.hpp
+[9.156s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__traits.hpp
+[9.156s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__type_support.hpp
+[9.156s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__traits.hpp
+[9.156s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__type_support.hpp
+[9.156s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/transform_action__type_support.hpp
+[9.156s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__struct.hpp
+[9.156s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/transform_action__struct.hpp
+[9.157s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__struct.hpp
+[9.157s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/transform_action__builder.hpp
+[9.157s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__builder.hpp
+[9.157s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/transform_action__traits.hpp
+[9.157s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg
+[9.157s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/bounding_box.hpp
+[9.157s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/hook_data.hpp
+[9.157s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp
+[9.158s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/uv.hpp
+[9.158s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/hook.hpp
+[9.158s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail
+[9.158s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/bounding_box__type_support.hpp
+[9.158s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/bounding_box__builder.hpp
+[9.158s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/uv__builder.hpp
+[9.158s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/uv__traits.hpp
+[9.158s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook_data__builder.hpp
+[9.158s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/uv__struct.hpp
+[9.158s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/bounding_box__traits.hpp
+[9.159s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/uv__type_support.hpp
+[9.159s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook__builder.hpp
+[9.159s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook__traits.hpp
+[9.159s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook__type_support.hpp
+[9.159s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook_data__struct.hpp
+[9.159s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/bounding_box__struct.hpp
+[9.159s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook_data__type_support.hpp
+[9.160s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook_data__traits.hpp
+[9.160s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook__struct.hpp
+[9.160s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces
+[9.160s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action
+[9.160s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail
+[9.160s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__type_support.cpp
+[9.160s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/move_tcp_along_axis__rosidl_typesupport_introspection_cpp.hpp
+[9.160s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/transform_action__rosidl_typesupport_introspection_cpp.hpp
+[9.160s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__type_support.cpp
+[9.160s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_cpp.hpp
+[9.160s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/action/detail/transform_action__type_support.cpp
+[9.161s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg
+[9.161s] -- Up-to-date: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail
+[9.161s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook__type_support.cpp
+[9.161s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/uv__rosidl_typesupport_introspection_cpp.hpp
+[9.161s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/bounding_box__type_support.cpp
+[9.161s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/uv__type_support.cpp
+[9.161s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook_data__type_support.cpp
+[9.161s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/bounding_box__rosidl_typesupport_introspection_cpp.hpp
+[9.161s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook_data__rosidl_typesupport_introspection_cpp.hpp
+[9.162s] -- Installing: /home/mo/Thesis/install/action_interfaces/include/action_interfaces/msg/detail/hook__rosidl_typesupport_introspection_cpp.hpp
+[9.162s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_introspection_cpp.so
+[9.162s] -- Set runtime path of "/home/mo/Thesis/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_introspection_cpp.so" to ""
+[9.163s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_cpp.so
+[9.163s] -- Set runtime path of "/home/mo/Thesis/install/action_interfaces/lib/libaction_interfaces__rosidl_typesupport_cpp.so" to ""
+[9.163s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/environment/pythonpath.sh
+[9.163s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/environment/pythonpath.dsv
+[9.163s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/__init__.py
+[9.193s] Compiling '/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/__init__.py'...
+[9.197s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action
+[9.197s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action/_transform_action_s.c
+[9.197s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action/_move_tcp_along_axis.py
+[9.197s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action/_move_tcp_along_axis_s.c
+[9.197s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action/_fibonacci_s.c
+[9.197s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action/_fibonacci.py
+[9.198s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action/_transform_action.py
+[9.198s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action/__init__.py
+[9.198s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/msg
+[9.198s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/msg/_hook_s.c
+[9.198s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/msg/_bounding_box.py
+[9.199s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/msg/_uv.py
+[9.199s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/msg/_bounding_box_s.c
+[9.199s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/msg/_uv_s.c
+[9.199s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/msg/_hook_data.py
+[9.199s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/msg/__init__.py
+[9.200s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/msg/_hook_data_s.c
+[9.200s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/msg/_hook.py
+[9.200s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so
+[9.201s] -- Set runtime path of "/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so" to ""
+[9.201s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action_interfaces_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so
+[9.202s] -- Set runtime path of "/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action_interfaces_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so" to ""
+[9.202s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action_interfaces_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so
+[9.203s] -- Set runtime path of "/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages/action_interfaces/action_interfaces_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so" to ""
+[9.203s] -- Installing: /home/mo/Thesis/install/action_interfaces/lib/libaction_interfaces__python.so
+[9.204s] -- Set runtime path of "/home/mo/Thesis/install/action_interfaces/lib/libaction_interfaces__python.so" to ""
+[9.204s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/action/Fibonacci.idl
+[9.204s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/action/MoveTcpAlongAxis.idl
+[9.204s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/action/TransformAction.idl
+[9.204s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/msg/BoundingBox.idl
+[9.204s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/msg/Hook.idl
+[9.205s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/msg/HookData.idl
+[9.205s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/msg/UV.idl
+[9.205s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/action/Fibonacci.action
+[9.205s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/action/MoveTcpAlongAxis.action
+[9.205s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/action/TransformAction.action
+[9.205s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/msg/BoundingBox.msg
+[9.205s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/msg/Hook.msg
+[9.206s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/msg/HookData.msg
+[9.206s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/msg/UV.msg
+[9.206s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/ament_index/resource_index/package_run_dependencies/action_interfaces
+[9.206s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/ament_index/resource_index/parent_prefix_path/action_interfaces
+[9.206s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/environment/ament_prefix_path.sh
+[9.206s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/environment/ament_prefix_path.dsv
+[9.207s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/environment/path.sh
+[9.207s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/environment/path.dsv
+[9.207s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/local_setup.bash
+[9.207s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/local_setup.sh
+[9.207s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/local_setup.zsh
+[9.207s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/local_setup.dsv
+[9.207s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/package.dsv
+[9.208s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/ament_index/resource_index/packages/action_interfaces
+[9.208s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/cmake/action_interfaces__rosidl_generator_cExport.cmake
+[9.208s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/cmake/action_interfaces__rosidl_generator_cExport-noconfig.cmake
+[9.208s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/cmake/action_interfaces__rosidl_typesupport_introspection_cExport.cmake
+[9.208s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/cmake/action_interfaces__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[9.208s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/cmake/action_interfaces__rosidl_typesupport_cExport.cmake
+[9.209s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/cmake/action_interfaces__rosidl_typesupport_cExport-noconfig.cmake
+[9.209s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/cmake/action_interfaces__rosidl_generator_cppExport.cmake
+[9.209s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/cmake/action_interfaces__rosidl_typesupport_introspection_cppExport.cmake
+[9.209s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/cmake/action_interfaces__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[9.209s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/cmake/action_interfaces__rosidl_typesupport_cppExport.cmake
+[9.210s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/cmake/action_interfaces__rosidl_typesupport_cppExport-noconfig.cmake
+[9.210s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/cmake/rosidl_cmake-extras.cmake
+[9.210s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake
+[9.210s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/cmake/ament_cmake_export_libraries-extras.cmake
+[9.210s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/cmake/ament_cmake_export_targets-extras.cmake
+[9.210s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/cmake/ament_cmake_export_include_directories-extras.cmake
+[9.210s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[9.211s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[9.211s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/cmake/action_interfacesConfig.cmake
+[9.211s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/cmake/action_interfacesConfig-version.cmake
+[9.211s] -- Installing: /home/mo/Thesis/install/action_interfaces/share/action_interfaces/package.xml
+[9.214s] Invoked command in '/home/mo/Thesis/build/action_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/home/mo/kassow_wii_control/install/kr_example_python:/home/mo/kassow_wii_control/install/controller:/opt/ros/foxy /usr/bin/cmake --install /home/mo/Thesis/build/action_interfaces
