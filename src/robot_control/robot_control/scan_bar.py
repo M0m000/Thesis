@@ -5,7 +5,7 @@ from FC.FC_dict_receive_processing import DictReceiveProcessor
 from FC.FC_call_move_linear_service import call_move_linear_service
 from FC.FC_edge_detector import EdgeDetector
 from FC.FC_frame_handler import FrameHandler
-from FC.FC_stereo_triangulation import StereoTriangulationProcessor
+from FC.FC_stereo_triangulation_processor import StereoTriangulationProcessor
 from kr_msgs.msg import JogLinear
 import os
 import time
@@ -99,7 +99,6 @@ class ScanBar(Node):
         '''
         Prozessablauf mit Schrittkette - wird zyklisch alle 1ms aufgerufen
         '''
-        
         # Fahre von Init Position solange, nach rechts, bis 2 Haken zu sehen sind
         if self.process_step == "move_until_2_hooks_visible":
             if len(self.yolo_hooks_dict) < 2:
@@ -158,10 +157,10 @@ class ScanBar(Node):
                                                                                                                     point_1_3_uv = self.hook_ref['uv_lowpoint'], point_2_3_uv = self.hook_horizontal['uv_lowpoint'],
                                                                                                                     baseline = baseline_along_x, baseline_axis = 'x')
             
-            print("Hook XYZ: ", hook_xyz)
-            print("Tip XYZ: ", tip_xyz)
-            print("Lowpoint XYZ: ", lowpoint_xyz)
-            print("Time token für triangulation: ", time_token)
+            self.get_logger().info(f"Hook XYZ [horizontal]: {hook_xyz}")
+            self.get_logger().info(f"Tip XYZ [horizontal]: {tip_xyz}")
+            self.get_logger().info(f"Lowpoint XYZ [horizontal]: {lowpoint_xyz}")
+            self.get_logger().info(f"Time token for triangulation [horizontal]: {time_token}sec")
             
             self.get_logger().info("Done! -> next process step <Finish>")
             self.process_step = "finish"
@@ -194,7 +193,6 @@ class ScanBar(Node):
         '''
         Funktion für das Laden einer Transformation zwischen zwei Frames aus FrameHandler
         '''
-
         csv_name = str(frame) + '_' + str(ref_frame) + '.csv'
         transformation_matrix = self.frame_handler.query_and_load_frame(csv_name)
 
@@ -220,7 +218,6 @@ class ScanBar(Node):
         überprüft kontinuierlich den Netzoutput, ob im rechten Randbereich des Bildausschnitts eine neue Hakeninstanz auftaucht
         falls ja, setzt diese Funktion, die Variable self.new_hook_in_picture für 0.5s auf True
         '''
-
         if self.yolo_hooks_dict is not {} and "hook_1" in self.yolo_hooks_dict:
             if self.yolo_hooks_dict['hook_1']['uv_hook'][0] > (self.img_width * 0.9):
                 self.new_hook_in_picture = True

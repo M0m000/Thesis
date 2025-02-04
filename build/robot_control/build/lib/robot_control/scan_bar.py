@@ -5,7 +5,7 @@ from FC.FC_dict_receive_processing import DictReceiveProcessor
 from FC.FC_call_move_linear_service import call_move_linear_service
 from FC.FC_edge_detector import EdgeDetector
 from FC.FC_frame_handler import FrameHandler
-from FC.FC_stereo_triangulation import StereoTriangulationProcessor
+from FC.FC_stereo_triangulation_processor import StereoTriangulationProcessor
 from kr_msgs.msg import JogLinear
 import os
 import time
@@ -31,10 +31,12 @@ class ScanBar(Node):
         self.new_hook_in_picture = False
         self.img_width = 1280
         self.img_height = 720
-        self.hook_picture_1 = {}
-        self.hook_picture_2 = {}
-        self.robot_position_old = None
-        self.robot_position_new = None
+
+        self.hook_ref = {}
+        self.hook_horizontal = {}
+
+        self.robot_position_ref = None
+        self.robot_position_horizontal = None
 
         # Instanz für Berechnung der Stereo Triangulation
         self.triangulation_processor = StereoTriangulationProcessor(extrinsic_data = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
@@ -93,13 +95,10 @@ class ScanBar(Node):
 
 
 
-
-
     def process_main(self):
         '''
         Prozessablauf mit Schrittkette - wird zyklisch alle 1ms aufgerufen
         '''
-        
         # Fahre von Init Position solange, nach rechts, bis 2 Haken zu sehen sind
         if self.process_step == "move_until_2_hooks_visible":
             if len(self.yolo_hooks_dict) < 2:
@@ -115,12 +114,12 @@ class ScanBar(Node):
         
         # Extrahiere Pixelkoordinaten von Haken 2
         if self.process_step == "extract_hook_2":
-            self.hook_picture_1['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
-            self.hook_picture_1['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
-            self.hook_picture_1['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
+            self.hook_ref['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
+            self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
+            self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
 
-            self.robot_position_old = self.frame_handler.query_and_load_frame('tcp_world.csv')
-            self.robot_position_old = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_old[:3, 3], 'work')
+            self.robot_position_ref = self.frame_handler.query_and_load_frame('tcp_world.csv')
+            self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_ref[:3, 3], 'work')
             self.get_logger().info("Done! -> next process step <Momve Until 3 Hooks Visible>")
             self.process_step = "move_until_3_hooks_visible"
         
@@ -139,34 +138,30 @@ class ScanBar(Node):
 
         # Extrahiere Pixelkoordinaten von Haken 3 (war vorher Haken 2)
         if self.process_step == "extract_hook_3":
-            self.hook_picture_2['uv_hook'] = self.yolo_hooks_dict['hook_3']['uv_hook']
-            self.hook_picture_2['uv_tip'] = self.yolo_hooks_dict['hook_3']['uv_tip']
-            self.hook_picture_2['uv_lowpoint'] = self.yolo_hooks_dict['hook_3']['uv_lowpoint']
+            self.hook_horizontal['uv_hook'] = self.yolo_hooks_dict['hook_3']['uv_hook']
+            self.hook_horizontal['uv_tip'] = self.yolo_hooks_dict['hook_3']['uv_tip']
+            self.hook_horizontal['uv_lowpoint'] = self.yolo_hooks_dict['hook_3']['uv_lowpoint']
 
-            self.robot_position_new = self.frame_handler.query_and_load_frame('tcp_world.csv')
-            self.robot_position_new = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_new[:3, 3], 'work')
+            self.robot_position_horizontal = self.frame_handler.query_and_load_frame('tcp_world.csv')
+            self.robot_position_horizontal = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_horizontal[:3, 3], 'work')
             self.get_logger().info("Done! -> next process step <Horizontal Triangulation>")
             self.process_step = "horizontal_triangulation"
 
         # Horizontale Triangulation
         if self.process_step == "horizontal_triangulation":
-            baseline_vector = np.array(self.robot_position_old) - np.array(self.robot_position_new)
-            
-            '''
-            if baseline_vector.all() == [0.0, 0.0, 0.0]:
-                self.get_logger().error("ERROR in robot movement or frame acquisition -> consider restarting KR810...")
-            '''
-            
+            baseline_vector = np.array(self.robot_position_ref) - np.array(self.robot_position_horizontal)
             baseline_along_x = baseline_vector[0]
-            print(baseline_along_x)
-            [hook_xyz, tip_xyz, lowpoint_xyz], time_token = self.triangulation_processor.triangulate_3_points(point_1_1_uv = self.hook_picture_1['uv_hook'], point_2_1_uv = self.hook_picture_2['uv_hook'],
-                                                                                                                    point_1_2_uv = self.hook_picture_1['uv_tip'], point_2_2_uv = self.hook_picture_2['uv_tip'],
-                                                                                                                    point_1_3_uv = self.hook_picture_1['uv_lowpoint'], point_2_3_uv = self.hook_picture_2['uv_lowpoint'],
+
+            [hook_xyz, tip_xyz, lowpoint_xyz], time_token = self.triangulation_processor.triangulate_3_points(point_1_1_uv = self.hook_ref['uv_hook'], point_2_1_uv = self.hook_horizontal['uv_hook'],
+                                                                                                                    point_1_2_uv = self.hook_ref['uv_tip'], point_2_2_uv = self.hook_horizontal['uv_tip'],
+                                                                                                                    point_1_3_uv = self.hook_ref['uv_lowpoint'], point_2_3_uv = self.hook_horizontal['uv_lowpoint'],
                                                                                                                     baseline = baseline_along_x, baseline_axis = 'x')
+            
             print("Hook XYZ: ", hook_xyz)
             print("Tip XYZ: ", tip_xyz)
             print("Lowpoint XYZ: ", lowpoint_xyz)
-
+            print("Time token für triangulation: ", time_token)
+            
             self.get_logger().info("Done! -> next process step <Finish>")
             self.process_step = "finish"
 
@@ -174,17 +169,15 @@ class ScanBar(Node):
 
 
 
-
+            '''
             self.timer_check_new_instances = self.create_timer(0.001, self.check_for_new_hook_instance)     # starte Timer für Abfrage, ob am Bildrand ein neuer Haken erscheint
             rising_edge, falling_edge = self.edge_detector.detect_edge(var=self.new_hook_in_picture)        # prüfe auf Flanken für Haken am Bildrand
-            '''
+
             if rising_edge:
                 print("Rising")
             if falling_edge:
                 print("Falling")
             '''
-
-
 
 
 
@@ -196,12 +189,10 @@ class ScanBar(Node):
 
 
 
-
     def load_frame(self, frame, ref_frame):
         '''
         Funktion für das Laden einer Transformation zwischen zwei Frames aus FrameHandler
         '''
-
         csv_name = str(frame) + '_' + str(ref_frame) + '.csv'
         transformation_matrix = self.frame_handler.query_and_load_frame(csv_name)
 
@@ -214,13 +205,11 @@ class ScanBar(Node):
 
 
 
-
     def hooks_dict_callback(self, msg):
         '''
         Callback für das Ankommen neuer Nachrichten aus NN Output
         '''
         self.yolo_hooks_dict = self.hooks_dict_processor.process_hooks_dict(msg)
-
 
 
     
@@ -229,14 +218,11 @@ class ScanBar(Node):
         überprüft kontinuierlich den Netzoutput, ob im rechten Randbereich des Bildausschnitts eine neue Hakeninstanz auftaucht
         falls ja, setzt diese Funktion, die Variable self.new_hook_in_picture für 0.5s auf True
         '''
-
         if self.yolo_hooks_dict is not {} and "hook_1" in self.yolo_hooks_dict:
             if self.yolo_hooks_dict['hook_1']['uv_hook'][0] > (self.img_width * 0.9):
                 self.new_hook_in_picture = True
             if self.yolo_hooks_dict['hook_1']['uv_hook'][0] < (self.img_width * 0.9):
                 self.new_hook_in_picture = False
-
-
 
 
 

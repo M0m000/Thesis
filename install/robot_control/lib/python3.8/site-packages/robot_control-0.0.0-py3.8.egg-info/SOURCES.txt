@@ -14,7 +14,7 @@ FC/FC_dict_receive_processing.py
 FC/FC_edge_detector.py
 FC/FC_frame_handler.py
 FC/FC_quaternion_to_euler.py
-FC/FC_stereo_triangulation.py
+FC/FC_stereo_triangulation_processor.py
 FC/FC_tf_helper.py
 FC/__init__.py
 resource/robot_control
@@ -23,6 +23,7 @@ robot_control/__init__.py
 robot_control/define_working_frame_needle.py
 robot_control/ibvs_2d.py
 robot_control/move_lin_by_key.py
+robot_control/scan_bar copy.py
 robot_control/scan_bar.py
 robot_control/set_working_frame_qr.py
 robot_control/tcp_frame_listener.py

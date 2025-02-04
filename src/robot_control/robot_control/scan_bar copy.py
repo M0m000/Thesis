@@ -5,7 +5,7 @@ from FC.FC_dict_receive_processing import DictReceiveProcessor
 from FC.FC_call_move_linear_service import call_move_linear_service
 from FC.FC_edge_detector import EdgeDetector
 from FC.FC_frame_handler import FrameHandler
-from FC.FC_stereo_triangulation import StereoTriangulationProcessor
+from FC.FC_stereo_triangulation_processor import StereoTriangulationProcessor
 from kr_msgs.msg import JogLinear
 import os
 import time
@@ -15,6 +15,9 @@ import numpy as np
 class ScanBar(Node):
     def __init__(self):
         super().__init__('scan_bar')
+
+        self.declare_parameter('triangulation_mode', 'combined')
+        self.triangulation_mode = self.get_parameter('triangulation_mode').get_parameter_value().string_value
 
         # Sub Yolov8 Output
         self.hooks_dict_subscription = self.create_subscription(HookData, 'yolov8_output/hooks_dict', self.hooks_dict_callback, 10)
@@ -41,9 +44,9 @@ class ScanBar(Node):
         self.robot_position_vertical = None
 
         # Instanz für Berechnung der Stereo Triangulation
-        self.triangulation_processor = StereoTriangulationProcessor(extrinsic_data = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
-                                                                    calib_path = '/home/mo/Thesis/calibration_data.npz',
-                                                                    measure_time = True)
+        self.horizontal_triangulation_processor = StereoTriangulationProcessor(extrinsic_data = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+                                                                               calib_path = '/home/mo/Thesis/calibration_data.npz',
+                                                                               measure_time = True)
         
         # Instanz FrameHandler
         frame_csv_path = os.path.expanduser("~/Thesis/src/robot_control/robot_control/data")
@@ -103,7 +106,6 @@ class ScanBar(Node):
         '''
         Prozessablauf mit Schrittkette - wird zyklisch alle 1ms aufgerufen
         '''
-        
         # Fahre von Init Position solange, nach rechts, bis 2 Haken zu sehen sind
         if self.process_step == "move_until_2_hooks_visible":
             if len(self.yolo_hooks_dict) < 2:
@@ -136,7 +138,7 @@ class ScanBar(Node):
                 vel_world = [0.0, 0.0, 0.0]
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
                 time.sleep(3)
-                self.get_logger().info("Done! -> next process step <Extract Vertical Hook 2")
+                self.get_logger().info("Done! -> next process step <Extract Vertical Hook>")
                 self.process_step = "extract_vertical_hook"
 
         # Extrahiere Haken mit vertikaler Baseline
@@ -145,12 +147,26 @@ class ScanBar(Node):
             self.hook_vertical['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
             self.hook_vertical['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
             self.robot_position_vertical = self.frame_handler.query_and_load_frame('tcp_world.csv')
-            self.get_logger().info("Done! -> next process step <Move Vertical>")
+            self.get_logger().info("Done! -> next process step <Move Back To Ref Hook>")
             self.process_step = "move_back_to_ref_hook"
 
         # Fahre zurück zur REF Position
         if self.process_step == "move_back_to_ref_hook":
-            pass
+            self.startpoint_movement_done = False
+            self.startpoint_movement_done = call_move_linear_service(node = self,
+                                                                    pos = self.robot_position_ref.pos,
+                                                                    rot = self.robot_position_ref.rot,
+                                                                    ref = 0,
+                                                                    ttype = 0,
+                                                                    tvalue = 50.0,
+                                                                    bpoint = 0,
+                                                                    btype = 0,
+                                                                    bvalue = 100.0,
+                                                                    sync = 0.0,
+                                                                    chaining = 0)
+            if self.startpoint_movement_done == True:
+                self.get_logger().info("Done! -> next process step <Move Until 3 Hooks Visible>")
+                self.process_step = "move_until_3_hooks_visible"
             
         # Fahre weiter, bis 3 Haken zu sehen sind
         if self.process_step == "move_until_3_hooks_visible":
@@ -173,10 +189,10 @@ class ScanBar(Node):
             self.robot_position_horizontal = self.frame_handler.query_and_load_frame('tcp_world.csv')
             
             self.get_logger().info("Done! -> next process step <Horizontal Triangulation>")
-            self.process_step = "horizontal_triangulation"
+            self.process_step = "triangulation"
 
-        # Horizontale Triangulation
-        if self.process_step == "horizontal_triangulation":
+        # Triangulation
+        if self.process_step == "triangulation":
             self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_ref[:3, 3], 'work')
             self.robot_position_horizontal = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_horizontal[:3, 3], 'work')
             self.robot_position_vertical = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_vertical[:3, 3], 'work')
@@ -187,15 +203,24 @@ class ScanBar(Node):
             baseline_along_x = horizontal_baseline_vector[0]
             baseline_along_y = vertical_baseline_vector[1]
 
-            [hook_xyz, tip_xyz, lowpoint_xyz], time_token = self.triangulation_processor.triangulate_3_points(point_1_1_uv = self.hook_ref['uv_hook'], point_2_1_uv = self.hook_horizontal['uv_hook'],
-                                                                                                                    point_1_2_uv = self.hook_ref['uv_tip'], point_2_2_uv = self.hook_horizontal['uv_tip'],
-                                                                                                                    point_1_3_uv = self.hook_ref['uv_lowpoint'], point_2_3_uv = self.hook_horizontal['uv_lowpoint'],
-                                                                                                                    baseline = baseline_along_x, baseline_axis = 'x')
+            [vert_hook_xyz, vert_tip_xyz, vert_lowpoint_xyz], vert_time_token = self.horizontal_triangulation_processor.triangulate_3_points(point_1_1_uv = self.hook_ref['uv_hook'], point_2_1_uv = self.hook_horizontal['uv_hook'],
+                                                                                point_1_2_uv = self.hook_ref['uv_tip'], point_2_2_uv = self.hook_horizontal['uv_tip'],
+                                                                                point_1_3_uv = self.hook_ref['uv_lowpoint'], point_2_3_uv = self.hook_horizontal['uv_lowpoint'],
+                                                                                baseline = baseline_along_x, baseline_axis = 'x')
+            [hori_hook_xyz, hori_tip_xyz, hori_lowpoint_xyz], hori_time_token = self.horizontal_triangulation_processor.triangulate_3_points(point_1_1_uv = self.hook_ref['uv_hook'], point_2_1_uv = self.hook_vertical['uv_hook'],
+                                                                                point_1_2_uv = self.hook_ref['uv_tip'], point_2_2_uv = self.hook_vertical['uv_tip'],
+                                                                                point_1_3_uv = self.hook_ref['uv_lowpoint'], point_2_3_uv = self.hook_vertical['uv_lowpoint'],
+                                                                                baseline = baseline_along_y, baseline_axis = 'y')
             
-            print("Hook XYZ: ", hook_xyz)
-            print("Tip XYZ: ", tip_xyz)
-            print("Lowpoint XYZ: ", lowpoint_xyz)
-            print("Time for horizontal triangulation: ", time_token)
+            hook_xyz = (vert_hook_xyz + hori_hook_xyz) / 2
+            tip_xyz = (vert_tip_xyz + hori_tip_xyz) / 2
+            lowpoint_xyz = (vert_lowpoint_xyz + hori_lowpoint_xyz) / 2
+            time_token = vert_time_token + hori_time_token
+
+            self.get_logger().info(f"Hook XYZ [combined]: {hook_xyz}")
+            self.get_logger().info(f"Tip XYZ [combined]: {tip_xyz}")
+            self.get_logger().info(f"Lowpoint XYZ [combined]: {lowpoint_xyz}")
+            self.get_logger().info(f"Time for triangulation [combined]: {time_token}sec")
 
             self.get_logger().info("Done! -> next process step <Finish>")
             self.process_step = "finish"
@@ -231,7 +256,6 @@ class ScanBar(Node):
         '''
         Funktion für das Laden einer Transformation zwischen zwei Frames aus FrameHandler
         '''
-
         csv_name = str(frame) + '_' + str(ref_frame) + '.csv'
         transformation_matrix = self.frame_handler.query_and_load_frame(csv_name)
 
@@ -259,7 +283,6 @@ class ScanBar(Node):
         überprüft kontinuierlich den Netzoutput, ob im rechten Randbereich des Bildausschnitts eine neue Hakeninstanz auftaucht
         falls ja, setzt diese Funktion, die Variable self.new_hook_in_picture für 0.5s auf True
         '''
-
         if self.yolo_hooks_dict is not {} and "hook_1" in self.yolo_hooks_dict:
             if self.yolo_hooks_dict['hook_1']['uv_hook'][0] > (self.img_width * 0.9):
                 self.new_hook_in_picture = True
