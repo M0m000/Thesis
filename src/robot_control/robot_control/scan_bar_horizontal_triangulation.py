@@ -12,9 +12,9 @@ import time
 import numpy as np
 
 
-class ScanBar(Node):
+class ScanBarHorizontalTriangulation(Node):
     def __init__(self):
-        super().__init__('scan_bar')
+        super().__init__('scan_bar_horizontal_triangulation')
 
         # Sub Yolov8 Output
         self.hooks_dict_subscription = self.create_subscription(HookData, 'yolov8_output/hooks_dict', self.hooks_dict_callback, 10)
@@ -229,7 +229,7 @@ class ScanBar(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = ScanBar()
+    node = ScanBarHorizontalTriangulation()
 
     try:
         rclpy.spin(node)

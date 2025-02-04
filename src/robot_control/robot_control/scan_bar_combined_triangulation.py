@@ -12,9 +12,9 @@ import time
 import numpy as np
 
 
-class ScanBar(Node):
+class ScanBarCombinedTriangulation(Node):
     def __init__(self):
-        super().__init__('scan_bar')
+        super().__init__('scan_bar_combined_triangulation')
 
         self.declare_parameter('triangulation_mode', 'combined')
         self.triangulation_mode = self.get_parameter('triangulation_mode').get_parameter_value().string_value
@@ -296,7 +296,7 @@ class ScanBar(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = ScanBar()
+    node = ScanBarCombinedTriangulation()
 
     try:
         rclpy.spin(node)
