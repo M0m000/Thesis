@@ -28,7 +28,7 @@ class TFFramesPublisher(Node):
         self.service_timer = self.create_timer(0.1, self.query_and_calculate_frames)
         self.publish_timer = self.create_timer(0.1, self.publish_transforms)
         self.read_csv_timer = self.create_timer(0.1, self.load_transformation_matrix_from_csv)
-        self.save_csv_timer = self.create_timer(1.0, self.save_frames_to_csv)  # Speichern alle 1 Sekunde
+        self.save_csv_timer = self.create_timer(0.1, self.save_frames_to_csv)  # Speichern alle 1 Sekunde
 
     def euler_to_quaternion(self, roll, pitch, yaw):
         qx = math.sin(roll / 2) * math.cos(pitch / 2) * math.cos(yaw / 2) - math.cos(roll / 2) * math.sin(pitch / 2) * math.sin(yaw / 2)
@@ -91,7 +91,7 @@ class TFFramesPublisher(Node):
         
 
     def query_and_calculate_frames(self):
-        frames = ['world', 'base', 'elbow', 'tfc', 'tcp']
+        frames = ['base', 'elbow', 'tfc', 'tcp']
 
         for frame in frames:
             request = GetSystemFrame.Request()

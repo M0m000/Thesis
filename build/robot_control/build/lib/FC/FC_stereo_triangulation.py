@@ -9,13 +9,14 @@ class StereoTriangulationProcessor:
                  calib_path = '/home/mo/Thesis/calibration_data.npz',
                  measure_time = False):
         
-        self.intrinsics = calib_path['mtx']     # Kameramatrix (mit Brennweite Verzerrung etc.)
-        self.dist = calib_path['dist']          # Verzerrungskoeffizienten
-        self.rvecs = calib_path['rvecs']        # Rotationsvektoren - UNBENUTZT
-        self.tvecs = calib_path['tvecs']        # Translationsvektoren - UNBENUTZT
+        self.calib_data = np.load(calib_path)
+        self.intrinsics = self.calib_data['mtx']     # Kameramatrix (mit Brennweite Verzerrung etc.)
+        self.dist = self.calib_data['dist']          # Verzerrungskoeffizienten
+        self.rvecs = self.calib_data['rvecs']        # Rotationsvektoren - UNBENUTZT
+        self.tvecs = self.calib_data['tvecs']        # Translationsvektoren - UNBENUTZT
         
-        self.extrinsic_t = np.array(extrinsic_data[:3])
-        self.extrinsic_rot = np.array(extrinsic_data[-3:])
+        self.extrinsics_t = np.array([extrinsic_data[:3]])
+        self.extrinsics_rot = np.array(extrinsic_data[-3:])
         self.extrinsics = None
         
         self.projection_matrix_point_1 = None
@@ -26,7 +27,7 @@ class StereoTriangulationProcessor:
 
 
     def calculate_extrinsics(self, baseline, baseline_axis):
-        angle_x, angle_y, angle_z = np.radians(self.extrinsic_rot)
+        angle_x, angle_y, angle_z = np.radians(self.extrinsics_rot)
         self.query_baseline(baseline, baseline_axis)
 
         R_x = np.array([[1, 0, 0],
@@ -42,7 +43,7 @@ class StereoTriangulationProcessor:
                         [0, 0, 1]])
 
         R = R_x @ (R_y @ R_z)
-        self.extrinsics = np.hstack((R, self.extrinsic_t.T))
+        self.extrinsics = np.hstack((R, self.extrinsics_t.T))
         return self.extrinsics
     
 
@@ -67,7 +68,7 @@ class StereoTriangulationProcessor:
 
     def prepare_point_for_triangulation(self, point):
         point = np.array(point, dtype=np.float64).T
-        point = cv2.undistortPoints(point, self.intrinsics, self.dist, None, self.intrisics)
+        point = cv2.undistortPoints(point, self.intrinsics, self.dist, None, self.intrinsics)
         return point
     
 

@@ -1,6 +1,7 @@
 import numpy as np
 import os
 from rclpy.node import Node
+import time
 
 
 class FrameHandler:
@@ -11,29 +12,40 @@ class FrameHandler:
 
 
 
-    def load_transformation_matrix_from_csv(self, frame_name):
-        """Lädt die 4x4 Transformationsmatrix aus einer CSV-Datei, wenn der Frame-Name valide ist."""
-        try:
-            # Generiere den Dateinamen für die CSV-Datei
-            filename = os.path.join(self.save_path, f"{frame_name}")
-            
-            if not os.path.exists(filename):
-                self.node.get_logger().info(f"Warning: CSV for frame '{frame_name}' not existing!.")
-                return None
-            
-            # Matrix aus CSV laden
-            matrix = np.loadtxt(filename, delimiter=',')
-            
-            if matrix.shape != (4, 4):
-                self.node.get_logger().info(f"Warning: Loaded matrix for frame '{frame_name}' has wrong shape!")
-                return None
+    def load_transformation_matrix_from_csv(self, frame_name, max_retries=5, delay=0.05):
+        """
+        Lädt die 4x4 Transformationsmatrix aus einer CSV-Datei mit Wiederholungsversuchen bei Fehlern.
 
-            self.node.get_logger().info(f"Loaded matrix for frame '{frame_name}' successfully!")
-            return matrix
+        :param frame_name: Name des Frames (String), der zur Matrix gehört.
+        :param max_retries: Maximale Anzahl an Wiederholungen bei Fehlern (default: 5).
+        :param delay: Wartezeit (Sekunden) zwischen den Versuchen (default: 0.5s).
+        :return: 4x4 numpy-Array der Transformationsmatrix oder None bei Fehler.
+        """
+        filename = os.path.join(self.save_path, f"{frame_name}")
 
-        except Exception as e:
-            self.node.get_logger().info(f"Error while loading matrix for frame '{frame_name}'!")
-            return None
+        for attempt in range(1, max_retries + 1):
+            try:
+                if not os.path.exists(filename):
+                    self.node.get_logger().info(f"Warning: CSV for frame '{frame_name}' not found. Attempt {attempt}/{max_retries}")
+                    time.sleep(delay)
+                    continue  # Erneuter Versuch
+
+                matrix = np.loadtxt(filename, delimiter=',')
+
+                if matrix.shape != (4, 4):
+                    self.node.get_logger().info(f"Warning: Loaded matrix for frame '{frame_name}' has wrong shape! Attempt {attempt}/{max_retries}")
+                    time.sleep(delay)
+                    continue  # Erneuter Versuch
+
+                return matrix  # Erfolgreich geladen
+
+            except Exception as e:
+                self.node.get_logger().info(f"Error loading matrix for frame '{frame_name}', attempt {attempt}/{max_retries}: {str(e)}")
+                time.sleep(delay)
+
+        self.node.get_logger().info(f"Failed to load transformation matrix for frame '{frame_name}' after {max_retries} attempts.")
+        return None
+
 
 
 
@@ -72,6 +84,19 @@ class FrameHandler:
         rot_world_matrix = R_ref_to_poseframe @ R_local
         rot_world = self.rotation_matrix_to_euler_angles(rot_world_matrix)
         return trans_world, rot_world
+    
+
+
+    def tansform_velocity_to_world(self, vel, from_frame):
+        frame_name = str(from_frame) + '_world.csv'
+        T_world_to_velframe = self.query_and_load_frame(frame_name)
+        
+        if T_world_to_velframe is None:
+            return None
+        
+        R_world_to_velframe = T_world_to_velframe[:3, :3]
+        return R_world_to_velframe @ vel
+        
 
 
 
@@ -108,3 +133,25 @@ class FrameHandler:
             ay = np.arctan2(-R[2, 0], sy)       # pitch
             az = 0                              # yaw (undefiniert)
         return np.degrees([ax, ay, az])
+    
+
+
+    def calculate_position_difference_in_same_frame(self, T_1, T_2):
+        t_1 = T_1[:3, 3]
+        t_2 = T_2[:3, 3]
+        return t_2 - t_1
+    
+
+
+    def transform_worldpoint_in_frame(self, point, frame_desired):
+        '''
+        Berechnet einen Punkt gegeben im WORLD Frame in ein anderes Frame 'frame_desired' um
+        -> Voraussetzung, es muss über den tf_frame_publisher eine Transformation von frame_desired zu WORLD existieren, die invertiert werden kann!
+        '''
+        frame_name = str(frame_desired) + '_world.csv'
+        T_world_to_desired = self.query_and_load_frame(frame_name)
+
+        T_desired_to_world = np.linalg.inv(T_world_to_desired)
+        point_world_hom = np.array([point[0], point[1], point[2], 1.0])
+        point_desired_hom = T_desired_to_world @ point_world_hom
+        return point_desired_hom[:3].tolist()
