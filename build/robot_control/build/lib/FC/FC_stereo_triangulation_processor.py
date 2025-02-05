@@ -105,4 +105,3 @@ class StereoTriangulationProcessor:
         end_time = time.perf_counter() if self.measure_time else None
         time_token = end_time - start_time if self.measure_time else None
         return [point_1_xyz, point_2_xyz, point_3_xyz], time_token if self.measure_time else [point_1_xyz, point_2_xyz, point_3_xyz]
-

@@ -2,7 +2,7 @@ import rclpy
 from rclpy.node import Node
 from action_interfaces.msg import HookData
 from FC.FC_dict_receive_processing import DictReceiveProcessor
-from FC.FC_call_move_linear_service import call_move_linear_service
+from FC.FC_call_move_linear_service import MoveLinearServiceClient
 from FC.FC_edge_detector import EdgeDetector
 from FC.FC_frame_handler import FrameHandler
 from FC.FC_stereo_triangulation_processor import StereoTriangulationProcessor
@@ -39,6 +39,8 @@ class ScanBarVerticalTriangulation(Node):
         self.hook_vertical = {}
 
         self.robot_position_ref = None
+        self.robot_position_ref_trans = None
+        self.robot_position_ref_rot = None
         self.robot_position_vertical = None
 
         # Instanz für Berechnung der Stereo Triangulation
@@ -48,8 +50,8 @@ class ScanBarVerticalTriangulation(Node):
         
         # Instanz FrameHandler
         frame_csv_path = os.path.expanduser("~/Thesis/src/robot_control/robot_control/data")
-        self.frame_handler = FrameHandler(node=self, save_path=frame_csv_path)
-        self.world_to_work_transform = self.load_frame(frame='work', ref_frame='world')
+        self.frame_handler = FrameHandler(node_name = 'frame_handle_node_for_scan_bar', save_path=frame_csv_path)
+        self.world_to_work_transform = self.load_work_frame(frame='work', ref_frame='world')
 
         startpoint_trans_in_workframe = [130.0, -420.0, 100.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
@@ -64,14 +66,15 @@ class ScanBarVerticalTriangulation(Node):
         self.speed_in_mm_per_s = 10.0
         self.process_step = None
         self.process_timer = self.create_timer(0.001, self.process_main)
-        
+        self._help_movement_done = False
+        self._help_movement_service_called = False
+        self.move_linear_client = MoveLinearServiceClient()
 
         ########## Bewege Roboter auf die Startposition ##########
         self.startpoint_movement_done = False
         if startpoint_rot_worldframe is not None and startpoint_trans_worldframe is not None:
             self.startpoint_movement_done = False
-            self.startpoint_movement_done = call_move_linear_service(node = self,
-                                                                    pos = startpoint_trans_worldframe,
+            self.startpoint_movement_done = self.move_linear_client.call_move_linear_service(pos = startpoint_trans_worldframe,
                                                                     rot = startpoint_rot_worldframe,
                                                                     ref = 0,
                                                                     ttype = 0,
@@ -81,13 +84,6 @@ class ScanBarVerticalTriangulation(Node):
                                                                     bvalue = 100.0,
                                                                     sync = 0.0,
                                                                     chaining = 0)
-        '''
-        while self.startpoint_movement_done is False:
-            self.get_logger().warn("Waiting for init movement to complete...")
-            print(self.process_step)
-        '''
-        self.startpoint_movement_done = True
-
         if self.startpoint_movement_done == True:
             self.get_logger().info("Init movement done successfully!")
             self.process_step = "move_until_2_hooks_visible"
@@ -122,13 +118,14 @@ class ScanBarVerticalTriangulation(Node):
             self.hook_ref['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
             self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
             self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
-            self.robot_position_ref = self.frame_handler.query_and_load_frame('tcp_world.csv')
+            self.robot_position_ref_trans, self.robot_position_ref_rot, self.robot_position_ref = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
+            self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_ref[:3, 3], 'work')
             self.get_logger().info("Done! -> next process step <Move Vertical>")
             self.process_step = "move_vertical"
 
         # Fahre vertikal nach oben mit fester Baseline
         if self.process_step == "move_vertical":
-            if self.yolo_hooks_dict['hook_2']['uv_lowpoint'][1] < (self.img_height * 0.9):
+            if self.yolo_hooks_dict['hook_2']['uv_lowpoint'][1] < (self.img_height * 0.8):
                 vel_work = [0.0, -self.speed_in_mm_per_s, 0.0]
                 vel_world = self.frame_handler.tansform_velocity_to_world(vel = vel_work, from_frame='work')
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
@@ -144,34 +141,35 @@ class ScanBarVerticalTriangulation(Node):
             self.hook_vertical['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
             self.hook_vertical['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
             self.hook_vertical['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
-            self.robot_position_vertical = self.frame_handler.query_and_load_frame('tcp_world.csv')
+            _, _, self.robot_position_vertical = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
+            self.robot_position_vertical = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_vertical[:3, 3], 'work')
             self.get_logger().info("Done! -> next process step <Move Back To Ref Hook>")
             self.process_step = "move_back_to_ref_hook"
 
         # Fahre zurück zur REF Position
         if self.process_step == "move_back_to_ref_hook":
-            self.startpoint_movement_done = False
-            self.startpoint_movement_done = call_move_linear_service(node = self,
-                                                                    pos = self.robot_position_ref.pos,
-                                                                    rot = self.robot_position_ref.rot,
-                                                                    ref = 0,
-                                                                    ttype = 0,
-                                                                    tvalue = 50.0,
-                                                                    bpoint = 0,
-                                                                    btype = 0,
-                                                                    bvalue = 100.0,
-                                                                    sync = 0.0,
-                                                                    chaining = 0)
-            if self.startpoint_movement_done == True:            
+            if self._help_movement_service_called == False:
+                self._help_movement_done = self.move_linear_client.call_move_linear_service(pos = self.robot_position_ref_trans,
+                                                              rot = self.robot_position_ref_rot,
+                                                              ref = 0,
+                                                              ttype = 0,
+                                                              tvalue = 50.0,
+                                                              bpoint = 0,
+                                                              btype = 0,
+                                                              bvalue = 100.0,
+                                                              sync = 0.0,
+                                                              chaining = 0)
+                self._help_movement_service_called = True
+            
+            if self._help_movement_done == True:
+                self._help_movement_service_called = False
+                self._help_movement_done = False
+
                 self.get_logger().info("Done! -> next process step <Vertical Triangulation>")
                 self.process_step = "vertical_triangulation"
 
         # Triangulation
         if self.process_step == "vertical_triangulation":
-            self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_ref[:3, 3], 'work')
-            self.robot_position_horizontal = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_horizontal[:3, 3], 'work')
-            self.robot_position_vertical = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_vertical[:3, 3], 'work')
-
             vertical_baseline_vector = np.array(self.robot_position_ref) - np.array(self.robot_position_vertical)
             baseline_along_y = vertical_baseline_vector[1]
 
@@ -216,11 +214,11 @@ class ScanBarVerticalTriangulation(Node):
 
 
 
-    def load_frame(self, frame, ref_frame):
+    def load_work_frame(self, frame, ref_frame):
         '''
         Funktion für das Laden einer Transformation zwischen zwei Frames aus FrameHandler
         '''
-        csv_name = str(frame) + '_' + str(ref_frame) + '.csv'
+        csv_name = 'WORK_frame_in_world.csv'
         transformation_matrix = self.frame_handler.query_and_load_frame(csv_name)
 
         if transformation_matrix is not None:
