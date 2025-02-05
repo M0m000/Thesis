@@ -6,6 +6,7 @@ from FC.FC_call_move_linear_service import MoveLinearServiceClient
 from FC.FC_edge_detector import EdgeDetector
 from FC.FC_frame_handler import FrameHandler
 from FC.FC_stereo_triangulation_processor import StereoTriangulationProcessor
+from FC.FC_save_load_global_hook_dict import save_dict_to_csv, load_csv_to_dict
 from kr_msgs.msg import JogLinear
 import os
 import time
@@ -15,6 +16,8 @@ import numpy as np
 class ScanBarHorizontalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_horizontal_triangulation')
+
+        self.num_hooks_existing = 21
 
         # Sub Yolov8 Output
         self.hooks_dict_subscription = self.create_subscription(HookData, 'yolov8_output/hooks_dict', self.hooks_dict_callback, 10)
@@ -37,7 +40,6 @@ class ScanBarHorizontalTriangulation(Node):
 
         self.hook_ref = {}
         self.hook_horizontal = {}
-        self.hook_ref_new = {}
         self.act_hook_num = 0
 
         self.robot_position_ref = None
@@ -63,7 +65,7 @@ class ScanBarHorizontalTriangulation(Node):
         self.vel_lin_publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
 
         # Timer für Prozess
-        self.speed_in_mm_per_s = 10.0
+        self.speed_in_mm_per_s = 20.0
         self.process_step = None
         self.process_timer = self.create_timer(0.001, self.process_main)
         self._help_movement_done = False
@@ -79,7 +81,7 @@ class ScanBarHorizontalTriangulation(Node):
                                                                     rot = startpoint_rot_worldframe,
                                                                     ref = 0,
                                                                     ttype = 0,
-                                                                    tvalue = 50.0,
+                                                                    tvalue = 100.0,
                                                                     bpoint = 0,
                                                                     btype = 0,
                                                                     bvalue = 100.0,
@@ -92,7 +94,7 @@ class ScanBarHorizontalTriangulation(Node):
             self.get_logger().error("Init movement failed!")
         
         self.get_logger().info("Wait 5 sec...")
-        time.sleep(5)
+        time.sleep(2)
         ###########################################################
         
 
@@ -117,20 +119,20 @@ class ScanBarHorizontalTriangulation(Node):
                 self.previous_edge = None
                 vel_world = [0.0, 0.0, 0.0]
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
-                self.get_logger().info("Done! -> next process step <Extract Hook_2>")
-                time.sleep(3)
-                self.process_step = "extract_hook_2"
+                self.get_logger().info("Done! -> next process step <Extract Hook 2 als initial Reference Point>")
+                time.sleep(1)
+                self.process_step = "extract_hook_2_as_init_ref"
         
-        # Extrahiere Pixelkoordinaten von Haken 2
-        if self.process_step == "extract_hook_2":
+        # Extrahiere Pixelkoordinaten von Haken 2 nach Beginn des Scans
+        if self.process_step == "extract_hook_2_as_init_ref":
             self.hook_ref['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
             self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
             self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
 
             _, _, self.robot_position_ref = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
             self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_ref[:3, 3], 'work')
-            self.get_logger().info("Done! -> next process step <Move Until 3 Hooks Visible>")
-            self.process_step = "move_until_3_hooks_visible"
+            self.get_logger().info("Done! -> next process step <Move Until New Hook>")
+            self.process_step = "move_until_new_hook"
         
         # Fahre weiter, bis 3 Haken zu sehen sind
         if self.process_step == "move_until_3_hooks_visible":
@@ -145,19 +147,15 @@ class ScanBarHorizontalTriangulation(Node):
                 self.previous_edge = None
                 vel_world = [0.0, 0.0, 0.0]
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
-                self.get_logger().info("Done! -> next process step <Extract Hook_3 and Hook_2_new>")
-                time.sleep(3)
-                self.process_step = "extract_hook_3_and_hook_2_new"
+                self.get_logger().info("Done! -> next process step <Extract Hook 3 as horizontal Point>")
+                time.sleep(1)
+                self.process_step = "extract_hook_3_as_horizontal_point"
 
         # Extrahiere Pixelkoordinaten von Haken 3 (war vorher Haken 2)
-        if self.process_step == "extract_hook_3_and_hook_2_new":
+        if self.process_step == "extract_hook_3_as_horizontal_point":
             self.hook_horizontal['uv_hook'] = self.yolo_hooks_dict['hook_3']['uv_hook']
             self.hook_horizontal['uv_tip'] = self.yolo_hooks_dict['hook_3']['uv_tip']
             self.hook_horizontal['uv_lowpoint'] = self.yolo_hooks_dict['hook_3']['uv_lowpoint']
-
-            self.hook_ref_new['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
-            self.hook_ref_new['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
-            self.hook_ref_new['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
 
             _, _, self.robot_position_horizontal = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
             self.robot_position_horizontal = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_horizontal[:3, 3], 'work')
@@ -177,10 +175,10 @@ class ScanBarHorizontalTriangulation(Node):
                                                                                                                     point_1_3_uv = self.hook_ref['uv_lowpoint'], point_2_3_uv = self.hook_horizontal['uv_lowpoint'],
                                                                                                                     baseline = baseline_along_x, baseline_axis = 'x')
             
-            self.get_logger().info(f"Hook XYZ [horizontal]: {hook_xyz}")
-            self.get_logger().info(f"Tip XYZ [horizontal]: {tip_xyz}")
-            self.get_logger().info(f"Lowpoint XYZ [horizontal]: {lowpoint_xyz}")
-            self.get_logger().info(f"Time token for triangulation [horizontal]: {time_token}sec")
+            self.get_logger().warn(f"Hook XYZ [horizontal]: {hook_xyz}")
+            self.get_logger().warn(f"Tip XYZ [horizontal]: {tip_xyz}")
+            self.get_logger().warn(f"Lowpoint XYZ [horizontal]: {lowpoint_xyz}")
+            self.get_logger().warn(f"Time token for triangulation [horizontal]: {time_token}sec")
             
             self.get_logger().info("Done! -> next process step <Save Hook>")
             self.process_step = "save_hook"
@@ -193,8 +191,21 @@ class ScanBarHorizontalTriangulation(Node):
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip'] = tip_xyz
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint'] = lowpoint_xyz
 
-            self.hook_ref = self.hook_ref_new       # gebe neue Referenz in Ref-Variable
-            self.hook_ref_new = {}
+            if len(self.global_hooks_dict) == self.num_hooks_existing:
+                self.get_logger().info("Done! -> next process step <Save Global Dict as CSV>")
+                self.process_step = "save_global_dict_as_csv"
+            else:
+                self.get_logger().info("Done! -> next process step <Extract Hook 2 as Reference>")
+                self.process_step = "extract_hook_2_as_ref"
+
+        # Extrahiere Pixelkoordinaten von Haken 2 während Prozess
+        if self.process_step == "extract_hook_2_as_ref":
+            self.hook_ref['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
+            self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
+            self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
+
+            _, _, self.robot_position_ref = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
+            self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_ref[:3, 3], 'work')
             self.get_logger().info("Done! -> next process step <Move Until New Hook>")
             self.process_step = "move_until_new_hook"
 
@@ -212,8 +223,29 @@ class ScanBarHorizontalTriangulation(Node):
                 vel_world = [0.0, 0.0, 0.0]
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
                 self.get_logger().info("Done! -> next process step <Extract Hook>")
-                time.sleep(3)
-                self.process_step = "extract_hook_2"
+                time.sleep(1)
+                self.process_step = "extract_hook_3_as_horizontal_point"
+
+        # Extrahiere Pixelkoordinaten von Haken 2 nach Beginn des Scans
+        if self.process_step == "shift_hook_2":
+            self.hook_ref['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
+            self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
+            self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
+
+            _, _, self.robot_position_ref = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
+            self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_ref[:3, 3], 'work')
+            self.get_logger().info("Done! -> next process step <Move Until 3 Hooks Visible>")
+            self.process_step = "extract_3_"
+
+        # Speichern des Global Dict als CSV, wenn Scanvorgang fertig
+        if self.process_step == "save_global_dict_as_csv":
+            save_dict_to_csv(node = self, data = self.global_hooks_dict, filename = 'src/robot_control/robot_control/data/global_hook_dict.csv')
+            self.get_logger().info("Done! -> next process step <Finish>")
+            self.process_step = "finish"
+
+        # Endzustand
+        if self.process_step == "finish":
+            self.get_logger().info("Scan finished!")
             
 
 
