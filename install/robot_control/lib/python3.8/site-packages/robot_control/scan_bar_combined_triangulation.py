@@ -40,8 +40,14 @@ class ScanBarCombinedTriangulation(Node):
         self.hook_vertical = {}
 
         self.robot_position_ref = None
+        self.robot_position_ref_trans = None
+        self.robot_position_ref_rot = None
         self.robot_position_horizontal = None
+        self.robot_position_horizontal_trans = None
+        self.robot_position_horizontal_rot = None
         self.robot_position_vertical = None
+        self.robot_position_vertical_trans = None
+        self.robot_position_vertical_rot = None
 
         # Instanz für Berechnung der Stereo Triangulation
         self.triangulation_processor = StereoTriangulationProcessor(extrinsic_data = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
@@ -50,8 +56,8 @@ class ScanBarCombinedTriangulation(Node):
         
         # Instanz FrameHandler
         frame_csv_path = os.path.expanduser("~/Thesis/src/robot_control/robot_control/data")
-        self.frame_handler = FrameHandler(node=self, save_path=frame_csv_path)
-        self.world_to_work_transform = self.load_frame(frame='work', ref_frame='world')
+        self.frame_handler = FrameHandler(node_name = 'frame_handler_node_for_scan_bar', save_path=frame_csv_path)
+        self.world_to_work_transform = self.load_work_frame()
 
         startpoint_trans_in_workframe = [130.0, -410.0, 100.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
@@ -120,7 +126,8 @@ class ScanBarCombinedTriangulation(Node):
             self.hook_ref['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
             self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
             self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
-            self.robot_position_ref = self.frame_handler.query_and_load_frame('tcp_world.csv')
+            self.robot_position_ref_trans, self.robot_position_ref_rot, self.robot_position_ref = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
+            self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_ref[:3, 3], 'work')
             self.get_logger().info("Done! -> next process step <Move Vertical>")
             self.process_step = "move_vertical"
 
@@ -133,7 +140,7 @@ class ScanBarCombinedTriangulation(Node):
             else:
                 vel_world = [0.0, 0.0, 0.0]
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
-                time.sleep(1)
+                time.sleep(3)
                 self.get_logger().info("Done! -> next process step <Extract Vertical Hook>")
                 self.process_step = "extract_vertical_hook"
 
@@ -142,18 +149,16 @@ class ScanBarCombinedTriangulation(Node):
             self.hook_vertical['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
             self.hook_vertical['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
             self.hook_vertical['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
-            self.robot_position_vertical = self.frame_handler.query_and_load_frame('tcp_world.csv')
+            self.robot_position_vertical_trans, self.robot_position_vertical_rot, self.robot_position_vertical = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
+            self.robot_position_vertical = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_vertical[:3, 3], 'work')
             self.get_logger().info("Done! -> next process step <Move Back To Ref Hook>")
             self.process_step = "move_back_to_ref_hook"
 
         # Fahre zurück zur REF Position
         if self.process_step == "move_back_to_ref_hook":
-            robot_pos = [self.robot_position_ref[:3, 3][0], self.robot_position_ref[:3, 3][1], self.robot_position_ref[:3, 3][2]]
-            robot_rot = self.frame_handler.rotation_matrix_to_euler_angles(R = self.robot_position_ref[:3, :3])
-
             if self._help_movement_service_called == False:
-                self._help_movement_done = self.move_linear_client.call_move_linear_service(pos = robot_pos,
-                                                              rot = robot_rot,
+                self._help_movement_done = self.move_linear_client.call_move_linear_service(pos = self.robot_position_ref_trans,
+                                                              rot = self.robot_position_ref_rot,
                                                               ref = 0,
                                                               ttype = 0,
                                                               tvalue = 50.0,
@@ -182,7 +187,7 @@ class ScanBarCombinedTriangulation(Node):
                 vel_world = [0.0, 0.0, 0.0]
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
                 self.get_logger().info("Done! -> next process step <Extract Hook 3>")
-                time.sleep(1)
+                time.sleep(3)
                 self.process_step = "extract_hook_3"
 
         # Extrahiere Pixelkoordinaten von Haken 3 (war vorher Haken 2)
@@ -190,17 +195,14 @@ class ScanBarCombinedTriangulation(Node):
             self.hook_horizontal['uv_hook'] = self.yolo_hooks_dict['hook_3']['uv_hook']
             self.hook_horizontal['uv_tip'] = self.yolo_hooks_dict['hook_3']['uv_tip']
             self.hook_horizontal['uv_lowpoint'] = self.yolo_hooks_dict['hook_3']['uv_lowpoint']
-            self.robot_position_horizontal = self.frame_handler.query_and_load_frame('tcp_world.csv')
-            
+
+            self.robot_position_horizontal_trans, self.robot_position_horizontal_rot, self.robot_position_horizontal = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
+            self.robot_position_horizontal = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_horizontal[:3, 3], 'work')
             self.get_logger().info("Done! -> next process step <Combined Triangulation>")
             self.process_step = "combined_triangulation"
 
         # Triangulation
         if self.process_step == "combined_triangulation":
-            self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_ref[:3, 3], 'work')
-            self.robot_position_horizontal = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_horizontal[:3, 3], 'work')
-            self.robot_position_vertical = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_vertical[:3, 3], 'work')
-
             horizontal_baseline_vector = np.array(self.robot_position_ref) - np.array(self.robot_position_horizontal)
             vertical_baseline_vector = np.array(self.robot_position_ref) - np.array(self.robot_position_vertical)
             
@@ -248,8 +250,6 @@ class ScanBarCombinedTriangulation(Node):
 
 
 
-
-
     def publish_linear_velocity(self, vel_in_worldframe):
         jog_msg = JogLinear()
         jog_msg.vel = vel_in_worldframe
@@ -259,11 +259,11 @@ class ScanBarCombinedTriangulation(Node):
 
 
 
-    def load_frame(self, frame, ref_frame):
+    def load_work_frame(self):
         '''
         Funktion für das Laden einer Transformation zwischen zwei Frames aus FrameHandler
         '''
-        csv_name = str(frame) + '_' + str(ref_frame) + '.csv'
+        csv_name = 'WORK_frame_in_world.csv'
         transformation_matrix = self.frame_handler.query_and_load_frame(csv_name)
 
         if transformation_matrix is not None:

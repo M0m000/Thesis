@@ -51,7 +51,7 @@ class ScanBarVerticalTriangulation(Node):
         # Instanz FrameHandler
         frame_csv_path = os.path.expanduser("~/Thesis/src/robot_control/robot_control/data")
         self.frame_handler = FrameHandler(node_name = 'frame_handle_node_for_scan_bar', save_path=frame_csv_path)
-        self.world_to_work_transform = self.load_work_frame(frame='work', ref_frame='world')
+        self.world_to_work_transform = self.load_work_frame()
 
         startpoint_trans_in_workframe = [130.0, -420.0, 100.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
@@ -173,6 +173,9 @@ class ScanBarVerticalTriangulation(Node):
             vertical_baseline_vector = np.array(self.robot_position_ref) - np.array(self.robot_position_vertical)
             baseline_along_y = vertical_baseline_vector[1]
 
+            if baseline_along_y == 0:
+                self.get_logger().error("ERROR either in moving robot or in position acquisition -> consider restarting KR810...")
+
             [hook_xyz, tip_xyz, lowpoint_xyz], time_token = self.triangulation_processor.triangulate_3_points(point_1_1_uv = self.hook_ref['uv_hook'], point_2_1_uv = self.hook_vertical['uv_hook'],
                                                             point_1_2_uv = self.hook_ref['uv_tip'], point_2_2_uv = self.hook_vertical['uv_tip'],
                                                             point_1_3_uv = self.hook_ref['uv_lowpoint'], point_2_3_uv = self.hook_vertical['uv_lowpoint'],
@@ -214,7 +217,7 @@ class ScanBarVerticalTriangulation(Node):
 
 
 
-    def load_work_frame(self, frame, ref_frame):
+    def load_work_frame(self):
         '''
         Funktion für das Laden einer Transformation zwischen zwei Frames aus FrameHandler
         '''

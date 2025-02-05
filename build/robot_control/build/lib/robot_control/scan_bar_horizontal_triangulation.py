@@ -29,11 +29,14 @@ class ScanBarHorizontalTriangulation(Node):
         # Timer für das Prüfen neuer Hakeninstanzen im Bild
         self.edge_detector = EdgeDetector()
         self.new_hook_in_picture = False
+        self.timer_check_new_instances = self.create_timer(0.001, self.check_for_new_hook_instance)     # starte Timer für Abfrage, ob am Bildrand ein neuer Haken erscheint
+        self.edges = []
         self.img_width = 1280
         self.img_height = 720
 
         self.hook_ref = {}
         self.hook_horizontal = {}
+        self.act_hook_num = 0
 
         self.robot_position_ref = None
         self.robot_position_horizontal = None
@@ -85,6 +88,9 @@ class ScanBarHorizontalTriangulation(Node):
             self.process_step = "move_until_2_hooks_visible"
         else:
             self.get_logger().error("Init movement failed!")
+        
+        self.get_logger().info("Wait 5 sec...")
+        time.sleep(5)
         ###########################################################
         
 
@@ -94,6 +100,8 @@ class ScanBarHorizontalTriangulation(Node):
         '''
         Prozessablauf mit Schrittkette - wird zyklisch alle 1ms aufgerufen
         '''
+        rising_edge, falling_edge = self.edge_detector.detect_edge(var=self.new_hook_in_picture)        # prüfe auf Flanken für Haken am Bildrand
+
         # Fahre von Init Position solange, nach rechts, bis 2 Haken zu sehen sind
         if self.process_step == "move_until_2_hooks_visible":
             if len(self.yolo_hooks_dict) < 2:
@@ -147,6 +155,9 @@ class ScanBarHorizontalTriangulation(Node):
             baseline_vector = np.array(self.robot_position_ref) - np.array(self.robot_position_horizontal)
             baseline_along_x = baseline_vector[0]
 
+            if baseline_along_x == 0:
+                self.get_logger().error("ERROR either in moving robot or in position acquisition -> consider restarting KR810...")
+
             [hook_xyz, tip_xyz, lowpoint_xyz], time_token = self.triangulation_processor.triangulate_3_points(point_1_1_uv = self.hook_ref['uv_hook'], point_2_1_uv = self.hook_horizontal['uv_hook'],
                                                                                                                     point_1_2_uv = self.hook_ref['uv_tip'], point_2_2_uv = self.hook_horizontal['uv_tip'],
                                                                                                                     point_1_3_uv = self.hook_ref['uv_lowpoint'], point_2_3_uv = self.hook_horizontal['uv_lowpoint'],
@@ -157,22 +168,28 @@ class ScanBarHorizontalTriangulation(Node):
             self.get_logger().info(f"Lowpoint XYZ [horizontal]: {lowpoint_xyz}")
             self.get_logger().info(f"Time token for triangulation [horizontal]: {time_token}sec")
             
-            self.get_logger().info("Done! -> next process step <Finish>")
-            self.process_step = "finish"
+            self.get_logger().info("Done! -> next process step <Save Hook>")
+            self.process_step = "save_hook"
 
+        # Speicher die Daten des aktuellen Hakens
+        if self.process_step == "save_hook":
+            self.act_hook_num += 1
+            self.global_hooks_dict[str(self.act_hook_num)] = {}
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook'] = hook_xyz
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip'] = tip_xyz
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint'] = lowpoint_xyz
+            self.get_logger().info("Done! -> next process step <Move Until New Hook>")
+            self.process_step = "move_until_new_hook"
 
-
-
-
-            '''
-            self.timer_check_new_instances = self.create_timer(0.001, self.check_for_new_hook_instance)     # starte Timer für Abfrage, ob am Bildrand ein neuer Haken erscheint
-            rising_edge, falling_edge = self.edge_detector.detect_edge(var=self.new_hook_in_picture)        # prüfe auf Flanken für Haken am Bildrand
-
+        # Fahre, bis neuer Haken erscheint
+        if self.process_step == "move_until_new_hook":
             if rising_edge:
-                print("Rising")
+                self.edges.append("Rising")
             if falling_edge:
-                print("Falling")
-            '''
+                self.edges.append("Falling")
+            if len(self.edges) == 3:
+                print("Jetzt")
+            
 
 
 
