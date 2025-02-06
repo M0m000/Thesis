@@ -17,7 +17,7 @@ class ScanBarHorizontalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_horizontal_triangulation')
 
-        self.num_hooks_existing = 21
+        self.num_hooks_existing = 3
 
         # Sub Yolov8 Output
         self.hooks_dict_subscription = self.create_subscription(HookData, 'yolov8_output/hooks_dict', self.hooks_dict_callback, 10)
@@ -52,7 +52,7 @@ class ScanBarHorizontalTriangulation(Node):
         # Instanz FrameHandler
         frame_csv_path = os.path.expanduser("~/Thesis/src/robot_control/robot_control/data")
         self.frame_handler = FrameHandler(node_name = 'frame_handler_node_for_scan_bar', save_path = frame_csv_path)
-        self.world_to_work_transform = self.load_work_frame()
+        self.cam_to_world_transform = None
 
         startpoint_trans_in_workframe = [130.0, -420.0, 100.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
@@ -64,7 +64,7 @@ class ScanBarHorizontalTriangulation(Node):
         self.vel_lin_publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
 
         # Timer für Prozess
-        self.speed_in_mm_per_s = 20.0
+        self.speed_in_mm_per_s = 5.0
         self.process_step = None
         self.process_timer = self.create_timer(0.001, self.process_main)
         self._help_movement_done = False
@@ -194,6 +194,22 @@ class ScanBarHorizontalTriangulation(Node):
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip'] = tip_xyz
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint'] = lowpoint_xyz
 
+
+            self.cam_to_world_transform = self.frame_handler.get_cam_transform_in_world()
+
+            hook_xyz_hom = np.append(hook_xyz, 1)
+            point = self.cam_to_world_transform @ hook_xyz_hom
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_workframe'] = self.frame_handler.transform_worldpoint_in_frame(point = point, frame_desired = 'work')
+            
+            tip_xyz_hom = np.append(tip_xyz, 1)
+            point = self.cam_to_world_transform @ tip_xyz_hom
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_workframe'] = self.frame_handler.transform_worldpoint_in_frame(point = point, frame_desired = 'work')
+            
+            lowpoint_xyz_hom = np.append(lowpoint_xyz, 1)
+            point = self.cam_to_world_transform @ lowpoint_xyz_hom
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_workframe'] = self.frame_handler.transform_worldpoint_in_frame(point = point, frame_desired = 'work')
+            
+
             if len(self.global_hooks_dict) == self.num_hooks_existing:
                 self.get_logger().info("Done! -> next process step <Save Global Dict as CSV>")
                 self.process_step = "save_global_dict_as_csv"
@@ -238,7 +254,7 @@ class ScanBarHorizontalTriangulation(Node):
         Funktion für das Laden einer Transformation zwischen zwei Frames aus FrameHandler
         '''
         csv_name = 'WORK_frame_in_world.csv'
-        transformation_matrix = self.frame_handler.query_and_load_frame(csv_name)
+        transformation_matrix = self.frame_handler.load_transformation_matrix_from_csv(frame_name = csv_name)
 
         if transformation_matrix is not None:
             self.get_logger().info(f"Loaded matrix for frame '{csv_name}' successfully!")

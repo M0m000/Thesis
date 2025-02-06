@@ -10,7 +10,7 @@ class StereoTriangulationProcessor:
                  measure_time = False):
         
         self.calib_data = np.load(calib_path)
-        # self.intrinsics = self.calib_data['mtx']     # Kameramatrix (mit Brennweite Verzerrung etc.)
+        self.intrinsics = self.calib_data['mtx']     # Kameramatrix (mit Brennweite Verzerrung etc.)
 
         self.img_height = 450
         self.img_width = 1280
@@ -20,9 +20,14 @@ class StereoTriangulationProcessor:
         c_x = self.img_width / 2
         c_y = self.img_height / 2
 
+        self.intrinsics[0][2] = c_x
+        self.intrinsics[1][2] = c_y
+
+        '''
         self.intrinsics = np.array([[f_x, 0, c_x], 
                                     [0, f_y, c_y], 
                                     [0, 0, 1]])
+        '''
         
         self.dist = self.calib_data['dist']          # Verzerrungskoeffizienten
         self.rvecs = self.calib_data['rvecs']        # Rotationsvektoren - UNBENUTZT

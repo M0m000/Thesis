@@ -56,7 +56,7 @@ class FrameHandler(Node):
         """Transformiert eine gegebene Position und Orientierung (in einem lokalen Frame) in das Welt-Koordinatensystem."""
         R_local = self.calculate_rot_matrix(rot)
         if pose_ref_frame == "work":
-            T_ref_to_poseframe = self.query_and_load_frame('WORK_frame_in_world.csv')
+            T_ref_to_poseframe = self.load_transformation_matrix_from_csv(frame_name = 'WORK_frame_in_world.csv')
         else:
             _, _, T_ref_to_poseframe = self.get_system_frame(name = pose_ref_frame, ref = 'world')
 
@@ -74,7 +74,7 @@ class FrameHandler(Node):
     def tansform_velocity_to_world(self, vel, from_frame):
         """Transformiert eine Geschwindigkeit in das Welt-Koordinatensystem."""
         if from_frame == 'work':
-            T_world_to_velframe = self.query_and_load_frame('WORK_frame_in_world.csv')
+            T_world_to_velframe = self.load_transformation_matrix_from_csv(frame_name = 'WORK_frame_in_world.csv')
         else:
             _, _, T_world_to_velframe = self.get_system_frame(name = from_frame, ref = 'world')
         
@@ -125,7 +125,7 @@ class FrameHandler(Node):
     def transform_worldpoint_in_frame(self, point, frame_desired):
         """Transformiert einen Weltpunkt in ein anderes Frame."""
         if frame_desired == "work":
-            T_world_to_desired = self.query_and_load_frame('WORK_frame_in_world.csv')
+            T_world_to_desired = self.load_transformation_matrix_from_csv(frame_name = 'WORK_frame_in_world.csv')
         else:
             _, _, T_world_to_desired = self.get_system_frame(name = frame_desired, ref = 'world')
 
@@ -157,6 +157,14 @@ class FrameHandler(Node):
         else:
             self.get_logger().error("Fehler beim Abrufen der Systemrahmendaten.")
             return None, None, None
+        
+    def get_cam_transform_in_world(self):
+        _, _, T_world_tfc = self.get_system_frame(name = 'tfc', ref = 'world')
+        T_tfc_cam = self.load_transformation_matrix_from_csv(frame_name = 'CAM_frame_in_tfc.csv')
+        return T_world_tfc @ T_tfc_cam
+
+
+
 
 
 def main(args=None):
@@ -175,4 +183,3 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
-

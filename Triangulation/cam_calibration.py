@@ -19,7 +19,7 @@ objpoints = []  # 3D-Punkte in der realen Welt
 imgpoints = []  # 2D-Punkte im Bild
 
 # Lade alle Bilder aus einem Verzeichnis
-images = glob.glob("/home/mo/Thesis/vc_imgs/*.png")  # Passe den Pfad an deine Bilder an
+images = glob.glob("/home/mo/Thesis/cam_calibration_imgs/*.png")  # Passe den Pfad an deine Bilder an
 
 for fname in images:
     img = cv2.imread(fname)
