@@ -28,7 +28,7 @@ class VCImageReceiver(Node):
         self.fps = 0.0
 
         # Timer für Einlesen der Bilder
-        self.timer_period = 0.001
+        self.timer_period = 0.0001
         self.timer = self.create_timer(self.timer_period, self.receive_img)
 
         # Parameterübergabe
@@ -62,7 +62,6 @@ class VCImageReceiver(Node):
 
         # ROS2 Publisher für das Bild
         self.image_publisher = self.create_publisher(Image, 'vcnanoz/image_raw', 10)
-
         self.get_logger().info(f'IPv4: {self.ipv4} - Port: {self.port}')
 
         # verbinden

@@ -42,7 +42,7 @@ class YOLOv8InferenceNode(Node):
         self.subscription
 
         self.hooks_dict_publisher_ = self.create_publisher(HookData, 'yolov8_output/hooks_dict', 10)
-        self.timer = self.create_timer(0.01, self.publish_hooks_dict)
+        self.timer = self.create_timer(0.0001, self.publish_hooks_dict)
 
         self.output_segment_img_publisher = self.create_publisher(Image, 'yolov8_output/output_segment_img', 10)
         self.output_point_img_publisher = self.create_publisher(Image, 'yolov8_output/output_point_img', 10)

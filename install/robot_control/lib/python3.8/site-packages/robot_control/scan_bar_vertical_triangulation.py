@@ -6,6 +6,7 @@ from FC.FC_call_move_linear_service import MoveLinearServiceClient
 from FC.FC_edge_detector import EdgeDetector
 from FC.FC_frame_handler import FrameHandler
 from FC.FC_stereo_triangulation_processor import StereoTriangulationProcessor
+from FC.FC_save_load_global_hook_dict import save_dict_to_csv, load_csv_to_dict
 from kr_msgs.msg import JogLinear
 import os
 import time
@@ -15,9 +16,8 @@ import numpy as np
 class ScanBarVerticalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_vertical_triangulation')
-
-        self.declare_parameter('triangulation_mode', 'combined')
-        self.triangulation_mode = self.get_parameter('triangulation_mode').get_parameter_value().string_value
+        
+        self.num_hooks_existing = 21
 
         # Sub Yolov8 Output
         self.hooks_dict_subscription = self.create_subscription(HookData, 'yolov8_output/hooks_dict', self.hooks_dict_callback, 10)
@@ -32,11 +32,14 @@ class ScanBarVerticalTriangulation(Node):
         # Timer für das Prüfen neuer Hakeninstanzen im Bild
         self.edge_detector = EdgeDetector()
         self.new_hook_in_picture = False
+        self.timer_check_new_instances = self.create_timer(0.001, self.check_for_new_hook_instance)     # starte Timer für Abfrage, ob am Bildrand ein neuer Haken erscheint
+        self.previous_edge = None
         self.img_width = 1280
         self.img_height = 720
 
         self.hook_ref = {}
         self.hook_vertical = {}
+        self.act_hook_num = 0
 
         self.robot_position_ref = None
         self.robot_position_ref_trans = None
@@ -63,7 +66,8 @@ class ScanBarVerticalTriangulation(Node):
         self.vel_lin_publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
 
         # Timer für Prozess
-        self.speed_in_mm_per_s = 10.0
+        self.speed_in_mm_per_s = 20.0
+        self.vertical_speed_in_mm_per_s = 10.0
         self.process_step = None
         self.process_timer = self.create_timer(0.001, self.process_main)
         self._help_movement_done = False
@@ -78,7 +82,7 @@ class ScanBarVerticalTriangulation(Node):
                                                                     rot = startpoint_rot_worldframe,
                                                                     ref = 0,
                                                                     ttype = 0,
-                                                                    tvalue = 50.0,
+                                                                    tvalue = 100.0,
                                                                     bpoint = 0,
                                                                     btype = 0,
                                                                     bvalue = 100.0,
@@ -89,6 +93,9 @@ class ScanBarVerticalTriangulation(Node):
             self.process_step = "move_until_2_hooks_visible"
         else:
             self.get_logger().error("Init movement failed!")
+        
+        self.get_logger().info("Wait 5 sec...")
+        time.sleep(2)
         ###########################################################
         
 
@@ -100,39 +107,46 @@ class ScanBarVerticalTriangulation(Node):
         '''
         Prozessablauf mit Schrittkette - wird zyklisch alle 1ms aufgerufen
         '''
-        # Fahre von Init Position solange, nach rechts, bis 2 Haken zu sehen sind
+        rising_edge, falling_edge = self.edge_detector.detect_edge(var=self.new_hook_in_picture)        # prüfe auf Flanken für Haken am Bildrand
+
+        # Fahre von Init Position solange nach rechts, bis 2 Haken zu sehen sind
         if self.process_step == "move_until_2_hooks_visible":
-            if len(self.yolo_hooks_dict) < 2:
-                vel_work = [self.speed_in_mm_per_s, 0.0, 0.0]
-                vel_world = self.frame_handler.tansform_velocity_to_world(vel = vel_work, from_frame='work')
-                self.publish_linear_velocity(vel_in_worldframe = vel_world)
-            else:
+            vel_work = [self.speed_in_mm_per_s, 0.0, 0.0]
+            vel_world = self.frame_handler.tansform_velocity_to_world(vel = vel_work, from_frame='work')
+            self.publish_linear_velocity(vel_in_worldframe = vel_world)
+
+            if falling_edge:
+                self.previous_edge = "falling"
+            
+            if rising_edge and self.previous_edge == "falling":
+                self.previous_edge = None
                 vel_world = [0.0, 0.0, 0.0]
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
-                time.sleep(3)
-                self.get_logger().info("Done! -> next process step <Extract Hook 2>")
-                self.process_step = "extract_hook_2"
+                self.get_logger().info("Done! -> next process step <Extract Hook 2 als initial Reference Point>")
+                time.sleep(2)
+                self.process_step = "extract_hook_2_as_ref"
         
-        # Extrahiere Pixelkoordinaten von Haken 2
-        if self.process_step == "extract_hook_2":
+        # Extrahiere Pixelkoordinaten von Haken 2 nach Beginn des Scans
+        if self.process_step == "extract_hook_2_as_ref":
             self.hook_ref['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
             self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
             self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
+
             self.robot_position_ref_trans, self.robot_position_ref_rot, self.robot_position_ref = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
             self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_ref[:3, 3], 'work')
-            self.get_logger().info("Done! -> next process step <Move Vertical>")
+            self.get_logger().info("Done! -> next process step <Move Until New Hook>")
             self.process_step = "move_vertical"
 
         # Fahre vertikal nach oben mit fester Baseline
         if self.process_step == "move_vertical":
             if self.yolo_hooks_dict['hook_2']['uv_lowpoint'][1] < (self.img_height * 0.8):
-                vel_work = [0.0, -self.speed_in_mm_per_s, 0.0]
+                vel_work = [0.0, -self.vertical_speed_in_mm_per_s, 0.0]
                 vel_world = self.frame_handler.tansform_velocity_to_world(vel = vel_work, from_frame='work')
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
             else:
                 vel_world = [0.0, 0.0, 0.0]
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
-                time.sleep(3)
+                time.sleep(2)
                 self.get_logger().info("Done! -> next process step <Extract Vertical Hook>")
                 self.process_step = "extract_vertical_hook"
 
@@ -141,6 +155,7 @@ class ScanBarVerticalTriangulation(Node):
             self.hook_vertical['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
             self.hook_vertical['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
             self.hook_vertical['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
+
             _, _, self.robot_position_vertical = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
             self.robot_position_vertical = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_vertical[:3, 3], 'work')
             self.get_logger().info("Done! -> next process step <Move Back To Ref Hook>")
@@ -170,41 +185,68 @@ class ScanBarVerticalTriangulation(Node):
 
         # Triangulation
         if self.process_step == "vertical_triangulation":
-            vertical_baseline_vector = np.array(self.robot_position_ref) - np.array(self.robot_position_vertical)
+            vertical_baseline_vector = np.array(self.robot_position_vertical) - np.array(self.robot_position_ref)
             baseline_along_y = vertical_baseline_vector[1]
 
             if baseline_along_y == 0:
                 self.get_logger().error("ERROR either in moving robot or in position acquisition -> consider restarting KR810...")
 
-            [hook_xyz, tip_xyz, lowpoint_xyz], time_token = self.triangulation_processor.triangulate_3_points(point_1_1_uv = self.hook_ref['uv_hook'], point_2_1_uv = self.hook_vertical['uv_hook'],
-                                                            point_1_2_uv = self.hook_ref['uv_tip'], point_2_2_uv = self.hook_vertical['uv_tip'],
-                                                            point_1_3_uv = self.hook_ref['uv_lowpoint'], point_2_3_uv = self.hook_vertical['uv_lowpoint'],
-                                                            baseline = baseline_along_y, baseline_axis = 'y')
+            [hook_xyz, tip_xyz, lowpoint_xyz], time_token = self.triangulation_processor.triangulate_3_points(point_1_1_uv = self.hook_vertical['uv_hook'], point_2_1_uv = self.hook_ref['uv_hook'],
+                                                                                                              point_1_2_uv = self.hook_vertical['uv_tip'], point_2_2_uv = self.hook_ref['uv_tip'],
+                                                                                                              point_1_3_uv = self.hook_vertical['uv_lowpoint'], point_2_3_uv = self.hook_ref['uv_lowpoint'],
+                                                                                                              baseline_vector = vertical_baseline_vector,
+                                                                                                              baseline = baseline_along_y, baseline_axis = 'y')
             
 
-            self.get_logger().info(f"Hook XYZ [vertical]: {hook_xyz}")
-            self.get_logger().info(f"Tip XYZ [vertical]: {tip_xyz}")
-            self.get_logger().info(f"Lowpoint XYZ [vertical]: {lowpoint_xyz}")
-            self.get_logger().info(f"Time for triangulation [vertical]: {time_token}sec")
+            self.get_logger().warn(f"Hook XYZ [vertical]: {hook_xyz}")
+            self.get_logger().warn(f"Tip XYZ [vertical]: {tip_xyz}")
+            self.get_logger().warn(f"Lowpoint XYZ [vertical]: {lowpoint_xyz}")
+            self.get_logger().warn(f"Time for triangulation [vertical]: {time_token}sec")
 
+            self.get_logger().info("Done! -> next process step <Move Until New Hook>")
+            self.process_step = "save_hook"
+
+        # Speicher die Daten des aktuellen Hakens
+        if self.process_step == "save_hook":
+            self.act_hook_num += 1
+            self.global_hooks_dict[str(self.act_hook_num)] = {}
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook'] = hook_xyz
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip'] = tip_xyz
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint'] = lowpoint_xyz
+
+            if len(self.global_hooks_dict) == self.num_hooks_existing:
+                self.get_logger().info("Done! -> next process step <Save Global Dict as CSV>")
+                self.process_step = "save_global_dict_as_csv"
+            else:
+                self.get_logger().info("Done! -> next process step <Extract Hook 2 as Reference>")
+                self.process_step = "move_until_new_hook"
+        
+        # Fahre, bis neuer Haken erscheint
+        if self.process_step == "move_until_new_hook":
+            vel_work = [self.speed_in_mm_per_s, 0.0, 0.0]
+            vel_world = self.frame_handler.tansform_velocity_to_world(vel = vel_work, from_frame='work')
+            self.publish_linear_velocity(vel_in_worldframe = vel_world)
+
+            if falling_edge:
+                self.previous_edge = "falling"
+            
+            if rising_edge and self.previous_edge == "falling":
+                self.previous_edge = None
+                vel_world = [0.0, 0.0, 0.0]
+                self.publish_linear_velocity(vel_in_worldframe = vel_world)
+                self.get_logger().info("Done! -> next process step <Extract Hook>")
+                time.sleep(2)
+                self.process_step = "extract_hook_2_as_ref"
+
+        # Speichern des Global Dict als CSV, wenn Scanvorgang fertig
+        if self.process_step == "save_global_dict_as_csv":
+            save_dict_to_csv(node = self, data = self.global_hooks_dict, filename = 'src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_vertical.csv')
             self.get_logger().info("Done! -> next process step <Finish>")
             self.process_step = "finish"
 
-
-
-
-
-
-            self.timer_check_new_instances = self.create_timer(0.001, self.check_for_new_hook_instance)     # starte Timer für Abfrage, ob am Bildrand ein neuer Haken erscheint
-            rising_edge, falling_edge = self.edge_detector.detect_edge(var=self.new_hook_in_picture)        # prüfe auf Flanken für Haken am Bildrand
-            '''
-            if rising_edge:
-                print("Rising")
-            if falling_edge:
-                print("Falling")
-            '''
-
-
+        # Endzustand
+        if self.process_step == "finish":
+            self.get_logger().info("Scan finished!")
 
 
 

@@ -32,11 +32,10 @@ class ScanBarHorizontalTriangulation(Node):
         # Timer für das Prüfen neuer Hakeninstanzen im Bild
         self.edge_detector = EdgeDetector()
         self.new_hook_in_picture = False
-        self.timer_check_new_instances = self.create_timer(0.001, self.check_for_new_hook_instance)     # starte Timer für Abfrage, ob am Bildrand ein neuer Haken erscheint
-        self.detected_edges = []
+        self.timer_check_new_instances = self.create_timer(0.0001, self.check_for_new_hook_instance)     # starte Timer für Abfrage, ob am Bildrand ein neuer Haken erscheint
         self.previous_edge = None
-        self.img_width = 1280
-        self.img_height = 720
+        self.img_width = 896
+        self.img_height = 450
 
         self.hook_ref = {}
         self.hook_horizontal = {}
@@ -94,7 +93,7 @@ class ScanBarHorizontalTriangulation(Node):
             self.get_logger().error("Init movement failed!")
         
         self.get_logger().info("Wait 5 sec...")
-        time.sleep(5)
+        time.sleep(3)
         ###########################################################
         
 
@@ -105,7 +104,6 @@ class ScanBarHorizontalTriangulation(Node):
         Prozessablauf mit Schrittkette - wird zyklisch alle 1ms aufgerufen
         '''
         rising_edge, falling_edge = self.edge_detector.detect_edge(var=self.new_hook_in_picture)        # prüfe auf Flanken für Haken am Bildrand
-
         # Fahre von Init Position solange nach rechts, bis 2 Haken zu sehen sind
         if self.process_step == "move_until_2_hooks_visible":
             vel_work = [self.speed_in_mm_per_s, 0.0, 0.0]
@@ -120,7 +118,7 @@ class ScanBarHorizontalTriangulation(Node):
                 vel_world = [0.0, 0.0, 0.0]
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 als initial Reference Point>")
-                time.sleep(1)
+                time.sleep(3)
                 self.process_step = "extract_hook_2_as_init_ref"
         
         # Extrahiere Pixelkoordinaten von Haken 2 nach Beginn des Scans
@@ -133,9 +131,9 @@ class ScanBarHorizontalTriangulation(Node):
             self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_ref[:3, 3], 'work')
             self.get_logger().info("Done! -> next process step <Move Until New Hook>")
             self.process_step = "move_until_new_hook"
-        
-        # Fahre weiter, bis 3 Haken zu sehen sind
-        if self.process_step == "move_until_3_hooks_visible":
+
+        # Fahre, bis neuer Haken erscheint
+        if self.process_step == "move_until_new_hook":
             vel_work = [self.speed_in_mm_per_s, 0.0, 0.0]
             vel_world = self.frame_handler.tansform_velocity_to_world(vel = vel_work, from_frame='work')
             self.publish_linear_velocity(vel_in_worldframe = vel_world)
@@ -147,10 +145,10 @@ class ScanBarHorizontalTriangulation(Node):
                 self.previous_edge = None
                 vel_world = [0.0, 0.0, 0.0]
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
-                self.get_logger().info("Done! -> next process step <Extract Hook 3 as horizontal Point>")
-                time.sleep(1)
+                self.get_logger().info("Done! -> next process step <Extract Hook>")
+                time.sleep(3)
                 self.process_step = "extract_hook_3_as_horizontal_point"
-
+        
         # Extrahiere Pixelkoordinaten von Haken 3 (war vorher Haken 2)
         if self.process_step == "extract_hook_3_as_horizontal_point":
             self.hook_horizontal['uv_hook'] = self.yolo_hooks_dict['hook_3']['uv_hook']
@@ -164,17 +162,22 @@ class ScanBarHorizontalTriangulation(Node):
 
         # Horizontale Triangulation
         if self.process_step == "horizontal_triangulation":
-            baseline_vector = np.array(self.robot_position_ref) - np.array(self.robot_position_horizontal)
-            baseline_along_x = baseline_vector[0]
+            horizontal_baseline_vector = np.array(self.robot_position_horizontal) - np.array(self.robot_position_ref)
+            baseline_along_x = horizontal_baseline_vector[0]
+            self.get_logger().info(f"Baseline X-Distanz: {baseline_along_x} mm")
 
             if baseline_along_x == 0:
                 self.get_logger().error("ERROR either in moving robot or in position acquisition -> consider restarting KR810...")
 
-            [hook_xyz, tip_xyz, lowpoint_xyz], time_token = self.triangulation_processor.triangulate_3_points(point_1_1_uv = self.hook_ref['uv_hook'], point_2_1_uv = self.hook_horizontal['uv_hook'],
-                                                                                                                    point_1_2_uv = self.hook_ref['uv_tip'], point_2_2_uv = self.hook_horizontal['uv_tip'],
-                                                                                                                    point_1_3_uv = self.hook_ref['uv_lowpoint'], point_2_3_uv = self.hook_horizontal['uv_lowpoint'],
+            [hook_xyz, tip_xyz, lowpoint_xyz], time_token = self.triangulation_processor.triangulate_3_points(point_1_1_uv = self.hook_horizontal['uv_hook'], point_2_1_uv = self.hook_ref['uv_hook'],
+                                                                                                                    point_1_2_uv = self.hook_horizontal['uv_tip'], point_2_2_uv = self.hook_ref['uv_tip'],
+                                                                                                                    point_1_3_uv = self.hook_horizontal['uv_lowpoint'], point_2_3_uv = self.hook_ref['uv_lowpoint'],
+                                                                                                                    baseline_vector = horizontal_baseline_vector,
                                                                                                                     baseline = baseline_along_x, baseline_axis = 'x')
-            
+            # hook_xyz[1] = -hook_xyz[1]
+            # tip_xyz[1] = -tip_xyz[1]
+            # lowpoint_xyz[1] = -lowpoint_xyz[1]
+
             self.get_logger().warn(f"Hook XYZ [horizontal]: {hook_xyz}")
             self.get_logger().warn(f"Tip XYZ [horizontal]: {tip_xyz}")
             self.get_logger().warn(f"Lowpoint XYZ [horizontal]: {lowpoint_xyz}")
@@ -209,37 +212,9 @@ class ScanBarHorizontalTriangulation(Node):
             self.get_logger().info("Done! -> next process step <Move Until New Hook>")
             self.process_step = "move_until_new_hook"
 
-        # Fahre, bis neuer Haken erscheint
-        if self.process_step == "move_until_new_hook":
-            vel_work = [self.speed_in_mm_per_s, 0.0, 0.0]
-            vel_world = self.frame_handler.tansform_velocity_to_world(vel = vel_work, from_frame='work')
-            self.publish_linear_velocity(vel_in_worldframe = vel_world)
-
-            if falling_edge:
-                self.previous_edge = "falling"
-            
-            if rising_edge and self.previous_edge == "falling":
-                self.previous_edge = None
-                vel_world = [0.0, 0.0, 0.0]
-                self.publish_linear_velocity(vel_in_worldframe = vel_world)
-                self.get_logger().info("Done! -> next process step <Extract Hook>")
-                time.sleep(1)
-                self.process_step = "extract_hook_3_as_horizontal_point"
-
-        # Extrahiere Pixelkoordinaten von Haken 2 nach Beginn des Scans
-        if self.process_step == "shift_hook_2":
-            self.hook_ref['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
-            self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
-            self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
-
-            _, _, self.robot_position_ref = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
-            self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_ref[:3, 3], 'work')
-            self.get_logger().info("Done! -> next process step <Move Until 3 Hooks Visible>")
-            self.process_step = "extract_3_"
-
         # Speichern des Global Dict als CSV, wenn Scanvorgang fertig
         if self.process_step == "save_global_dict_as_csv":
-            save_dict_to_csv(node = self, data = self.global_hooks_dict, filename = 'src/robot_control/robot_control/data/global_hook_dict.csv')
+            save_dict_to_csv(node = self, data = self.global_hooks_dict, filename = 'src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv')
             self.get_logger().info("Done! -> next process step <Finish>")
             self.process_step = "finish"
 
@@ -285,10 +260,10 @@ class ScanBarHorizontalTriangulation(Node):
     def check_for_new_hook_instance(self):
         '''
         überprüft kontinuierlich den Netzoutput, ob im rechten Randbereich des Bildausschnitts eine neue Hakeninstanz auftaucht
-        falls ja, setzt diese Funktion, die Variable self.new_hook_in_picture für 0.5s auf True
+        falls ja, setzt diese Funktion die Variable self.new_hook_in_picture auf True
         '''
         if self.yolo_hooks_dict is not {} and "hook_1" in self.yolo_hooks_dict:
-            if self.yolo_hooks_dict['hook_1']['uv_hook'][0] > (self.img_width * 0.9):
+            if self.yolo_hooks_dict['hook_1']['hook_box'][0] > (self.img_width * 0.9):
                 self.new_hook_in_picture = True
             if self.yolo_hooks_dict['hook_1']['uv_hook'][0] < (self.img_width * 0.9):
                 self.new_hook_in_picture = False
@@ -310,4 +285,3 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
-
