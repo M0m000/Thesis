@@ -11,6 +11,7 @@ import sys
 import matplotlib.pyplot as plt
 from action_interfaces.msg import HookData, Hook, BoundingBox, UV
 from concurrent.futures import ThreadPoolExecutor
+from FC_vision.FC_nn_output_filter import HookFilter
 
 
 class YOLOv8InferenceNode(Node):
@@ -46,6 +47,7 @@ class YOLOv8InferenceNode(Node):
 
         self.output_segment_img_publisher = self.create_publisher(Image, 'yolov8_output/output_segment_img', 10)
         self.output_point_img_publisher = self.create_publisher(Image, 'yolov8_output/output_point_img', 10)
+        self.output_hooks_dict_filter = HookFilter(alpha= 0.2, confirmation_frames = 4, disappearance_frames = 2)
 
         self.bridge = CvBridge()
         self.received_img = None
@@ -95,6 +97,7 @@ class YOLOv8InferenceNode(Node):
             results = self.inference()
             self.bar_dict, self.hooks_dict = self.postprocess(results)
             self.process_output_hooks_dict()
+            self.filtered_hooks_dict = self.output_hooks_dict_filter.update(self.hooks_dict_processed)
 
             if self.show_cam_img:
                 cv2.imshow('VC Cam Img', self.received_img)
@@ -500,7 +503,7 @@ class YOLOv8InferenceNode(Node):
         with ThreadPoolExecutor() as executor:
             results = executor.map(
                 lambda item: self.process_hook(item[0], item[1]),
-                self.hooks_dict_processed.items()
+                self.filtered_hooks_dict.items()
             )
             msg.hooks.extend(results)
         self.hooks_dict_publisher_.publish(msg) 

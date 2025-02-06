@@ -17,21 +17,21 @@ class HookFilter:
         # Vorhandene Haken updaten
         for hook_key, hook_data in hooks_dict.items():
             if hook_key not in self.hook_history:
-                # Neuer Haken entdeckt -> In Historie aufnehmen mit einer Bestätigungszähler
+                # Neuer Haken entdeckt -> in Zwischenspeicher aufnehmen und auf Frames testen
                 self.hook_history[hook_key] = {
                     "frames_seen": 1,
                     "frames_missed": 0,
-                    "uv_hook": deque([hook_data["uv_hook"]], maxlen=2),
+                    "uv_hook": deque([hook_data["uv_hook"]], maxlen=2),         # Liste mit max Länge von 2 -> Koordinaten uv -> werden dann auch gefiltert
                     "uv_tip": deque([hook_data["uv_tip"]], maxlen=2),
                     "uv_lowpoint": deque([hook_data["uv_lowpoint"]], maxlen=2),
                 }
             else:
+                # abgefragter Haken ist schon bekannt -> dann zähle aktive Frames eins hoch
                 self.hook_history[hook_key]["frames_seen"] += 1
                 self.hook_history[hook_key]["frames_missed"] = 0
 
+            # Filterung der bekannten uv Koordinaten (gegen Ruckeln)
             hist = self.hook_history[hook_key]
-
-            # UV-Koordinaten filtern mit EMA
             filtered_uv_hook = self.ema_filter_uv(hook_data["uv_hook"], hist["uv_hook"])
             filtered_uv_tip = self.ema_filter_uv(hook_data["uv_tip"], hist["uv_tip"])
             filtered_uv_lowpoint = self.ema_filter_uv(hook_data["uv_lowpoint"], hist["uv_lowpoint"])
