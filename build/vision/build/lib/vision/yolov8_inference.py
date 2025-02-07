@@ -11,7 +11,9 @@ import sys
 import matplotlib.pyplot as plt
 from action_interfaces.msg import HookData, Hook, BoundingBox, UV
 from concurrent.futures import ThreadPoolExecutor
-from FC_vision.FC_nn_output_filter import HookFilter
+from FC_vision.FC_ema_filter import HookFilter
+from FC_vision.FC_iir_buttoworth_filter import HooksDictLowpassFilter
+from FC_vision.FC_moving_average_filter import MovingAverageFilter
 
 
 class YOLOv8InferenceNode(Node):
@@ -47,7 +49,14 @@ class YOLOv8InferenceNode(Node):
 
         self.output_segment_img_publisher = self.create_publisher(Image, 'yolov8_output/output_segment_img', 10)
         self.output_point_img_publisher = self.create_publisher(Image, 'yolov8_output/output_point_img', 10)
-        self.output_hooks_dict_filter = HookFilter(alpha= 0.2, confirmation_frames = 4, disappearance_frames = 2)
+        self.output_hooks_dict_ema_filter = HookFilter(alpha = 0.5, confirmation_frames = 5, disappearance_frames = 5)
+        '''
+        self.filter_sample_rate = 30
+        self.last_time = None
+        self.output_hooks_dict_filter = HooksDictLowpassFilter(cutoff_freq = 0.01, sample_rate = self.filter_sample_rate, order = 4, min_samples = 16)
+        '''
+        # self.moving_average_filter = MovingAverageFilter(window_size=100)
+        # self.hooks_history = {}
 
         self.bridge = CvBridge()
         self.received_img = None
@@ -66,6 +75,7 @@ class YOLOv8InferenceNode(Node):
         self.bar_dict_processed = {}
         self.hooks_dict = {}
         self.hooks_dict_processed = {}
+        self.filtered_hooks_dict = {}
 
 
     def set_device(self):
@@ -92,49 +102,100 @@ class YOLOv8InferenceNode(Node):
     
     def image_callback(self, msg):
         try:
+            current_time = time.perf_counter()
+            
             cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='passthrough')
             self.preprocess(cv_image)
             results = self.inference()
             self.bar_dict, self.hooks_dict = self.postprocess(results)
             self.process_output_hooks_dict()
-            self.filtered_hooks_dict = self.output_hooks_dict_filter.update(self.hooks_dict_processed)
+
+            self.filtered_hooks_dict = self.output_hooks_dict_ema_filter.update(hooks_dict = self.hooks_dict_processed)
+
+            '''
+            if self.last_time is not None:
+                elapsed_time = current_time - self.last_time
+                self.filter_sample_rate = 1 / elapsed_time
+                print(self.filter_sample_rate)
+                self.output_hooks_dict_filter.sample_rate = self.filter_sample_rate
+                self.filtered_hooks_dict = self.output_hooks_dict_filter.update(self.hooks_dict_processed)
+            self.last_time = current_time
+            '''
+            
+            # self.filtered_hooks_dict = self.apply_moving_average_filter(self.hooks_dict_processed)
 
             if self.show_cam_img:
                 cv2.imshow('VC Cam Img', self.received_img)
                 cv2.waitKey(1)
 
             if self.show_output_img:
-                self.output_img = self.plot_hooks_and_bars()
+                self.output_img = self.plot_hooks_and_bars(hooks_dict = self.hooks_dict_processed)
                 output_segment_img = self.bridge.cv2_to_imgmsg(self.output_img, encoding="bgr8")
                 self.output_segment_img_publisher.publish(output_segment_img)
-                cv2.imshow('YoloV8 Output Img', self.output_img)
+                cv2.imshow('YoloV8 Output Segment Img', self.output_img)
+                cv2.waitKey(1)
+
+                self.output_img = self.plot_hooks_and_bars(hooks_dict = self.filtered_hooks_dict)
+                output_segment_img = self.bridge.cv2_to_imgmsg(self.output_img, encoding="bgr8")
+                self.output_segment_img_publisher.publish(output_segment_img)
+                cv2.imshow('YoloV8 Output Segment Img Filtered', self.output_img)
                 cv2.waitKey(1)
 
             if self.show_point_img:
-                self.points_img = self.plot_points()
+                self.points_img = self.plot_points(hooks_dict = self.hooks_dict_processed)
                 output_point_img = self.bridge.cv2_to_imgmsg(self.points_img, encoding="bgr8")
                 self.output_point_img_publisher.publish(output_point_img)
-                cv2.imshow('Point Output Img', self.points_img)
+                cv2.imshow('YoloV8 Output Point Img', self.points_img)
                 cv2.waitKey(1)
+
+                self.points_img = self.plot_points(hooks_dict = self.filtered_hooks_dict)
+                output_point_img = self.bridge.cv2_to_imgmsg(self.points_img, encoding="bgr8")
+                self.output_point_img_publisher.publish(output_point_img)
+                cv2.imshow('YoloV8 Output Point Img Filtered', self.points_img)
+                cv2.waitKey(1)                
                 
         except Exception as e:
             self.get_logger().error(f'Error in image processing: {e}')
 
 
-    def plot_points(self):
+    def apply_moving_average_filter(self, hooks_dict):
+        window_size = 100
+        filtered_hooks_dict = {}
+
+        for hook_id, hook_data in hooks_dict.items():
+            filtered_hooks_dict[hook_id] = {}
+
+            for key, value in hook_data.items():
+                if isinstance(value, list):  # Wenn es sich um eine Koordinate handelt
+                    if key not in self.hooks_history:
+                        self.hooks_history[key] = []
+                    self.hooks_history[key].append(value)
+
+                    if len(self.hooks_history[key]) > window_size:
+                        self.hooks_history[key].pop(0)
+
+                    filtered_value = np.mean(self.hooks_history[key], axis=0)
+                    filtered_hooks_dict[hook_id][key] = filtered_value
+                else:
+                    filtered_hooks_dict[hook_id][key] = value
+        return filtered_hooks_dict
+
+
+
+    def plot_points(self, hooks_dict):
         img_copy = self.received_img.copy()
-        for idx, key in enumerate(self.hooks_dict_processed):
-            if self.hooks_dict_processed[key]['hook_box'] is not None:
-                bb_hook = tuple(map(int, self.hooks_dict_processed[key]['hook_box']))
+        for idx, key in enumerate(hooks_dict):
+            if hooks_dict[key]['hook_box'] is not None:
+                bb_hook = tuple(map(int, hooks_dict[key]['hook_box']))
                 cv2.rectangle(img_copy, (bb_hook[0], bb_hook[1]), (bb_hook[2], bb_hook[3]), (150, 150, 150), 2)
-            if self.hooks_dict_processed[key]['uv_hook'] is not None:
-                p_hook = tuple(map(int, self.hooks_dict_processed[key]['uv_hook']))
+            if hooks_dict[key]['uv_hook'] is not None:
+                p_hook = tuple(map(int, hooks_dict[key]['uv_hook']))
                 cv2.drawMarker(img_copy, p_hook, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
-            if self.hooks_dict_processed[key]['uv_tip'] is not None:
-                p_tip = tuple(map(int, self.hooks_dict_processed[key]['uv_tip']))
+            if hooks_dict[key]['uv_tip'] is not None:
+                p_tip = tuple(map(int, hooks_dict[key]['uv_tip']))
                 cv2.drawMarker(img_copy, p_tip, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
-            if self.hooks_dict_processed[key]['uv_lowpoint'] is not None:
-                p_lowpoint = tuple(map(int, self.hooks_dict_processed[key]['uv_lowpoint']))
+            if hooks_dict[key]['uv_lowpoint'] is not None:
+                p_lowpoint = tuple(map(int, hooks_dict[key]['uv_lowpoint']))
                 cv2.drawMarker(img_copy, p_lowpoint, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)  
         return img_copy
     
@@ -377,8 +438,7 @@ class YOLOv8InferenceNode(Node):
         return bar_dict
 
 
-    def plot_hooks_and_bars(self):
-        hooks_dict = self.hooks_dict
+    def plot_hooks_and_bars(self, hooks_dict):
         bar_dict = self.bar_dict
         img_copy = self.received_img.copy()
 

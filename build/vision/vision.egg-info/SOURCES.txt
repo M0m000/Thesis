@@ -8,6 +8,10 @@ setup.py
 ../../build/vision/vision.egg-info/requires.txt
 ../../build/vision/vision.egg-info/top_level.txt
 ../../build/vision/vision.egg-info/zip-safe
+FC_vision/FC_ema_filter.py
+FC_vision/FC_iir_buttoworth_filter.py
+FC_vision/FC_moving_average_filter.py
+FC_vision/__init__.py
 resource/vision
 test/test_copyright.py
 test/test_flake8.py

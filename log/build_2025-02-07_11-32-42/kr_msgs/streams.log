@@ -1,0 +1,12 @@
+[0.037s] Invoking command in '/home/mo/Thesis/build/kr_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy /usr/bin/cmake --build /home/mo/Thesis/build/kr_msgs -- -j16 -l16
+[0.466s] [  0%] Built target kr_msgs__cpp
+[0.466s] [ 12%] Built target kr_msgs__rosidl_generator_c
+[0.466s] [ 24%] Built target kr_msgs__rosidl_typesupport_cpp
+[0.466s] [ 37%] Built target kr_msgs__rosidl_typesupport_introspection_cpp
+[0.466s] [ 50%] Built target kr_msgs__rosidl_typesupport_c
+[0.466s] [ 62%] Built target kr_msgs__rosidl_typesupport_fastrtps_cpp
+[0.466s] [ 75%] Built target kr_msgs__rosidl_typesupport_introspection_c
+[0.466s] [ 88%] Built target kr_msgs__rosidl_typesupport_fastrtps_c
+[0.466s] [ 88%] Built target kr_msgs
+[0.466s] make[1]: *** [CMakeFiles/Makefile2:552: kr_msgs__py/CMakeFiles/kr_msgs__py.dir/all] Unterbrechung
+[0.466s] make: *** [Makefile:141: all] Unterbrechung
