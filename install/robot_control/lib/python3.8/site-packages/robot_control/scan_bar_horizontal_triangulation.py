@@ -11,6 +11,7 @@ from kr_msgs.msg import JogLinear
 import os
 import time
 import numpy as np
+import csv
 
 
 class ScanBarHorizontalTriangulation(Node):
@@ -41,6 +42,12 @@ class ScanBarHorizontalTriangulation(Node):
         self.hook_horizontal = {}
         self.act_hook_num = 0
 
+        # Dict für die Aufzeichnung von Schwingungsdaten
+        self.do_vibration_test = True
+        self.vibration_data = {'time': [], 'uv_hook': [], 'uv_tip': [], 'uv_lowpoint': []}  # Schwingungsdaten
+        self.first_measurement_iteration = True
+        self.measurement_start_time = None
+
         self.robot_position_ref = None
         self.robot_position_horizontal = None
 
@@ -64,7 +71,7 @@ class ScanBarHorizontalTriangulation(Node):
         self.vel_lin_publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
 
         # Timer für Prozess
-        self.speed_in_mm_per_s = 20.0
+        self.speed_in_mm_per_s = 50.0
         self.process_step = None
         self.process_timer = self.create_timer(0.001, self.process_main)
         self._help_movement_done = False
@@ -120,6 +127,31 @@ class ScanBarHorizontalTriangulation(Node):
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 als initial Reference Point>")
                 time.sleep(3)
                 self.process_step = "extract_hook_2_as_init_ref"
+
+        # Doku - Messung der Schwingung nach Stillstand
+        if self.process_step == "measure_vibration":
+            self.get_logger().info("Measuring vibration...")
+            if self.first_measurement_iteration == True:
+                self.measurement_start_time = time.perf_counter()
+                self.first_measurement_iteration = False
+
+            vibration_duration = 5
+            current_time = time.perf_counter() - self.measurement_start_time
+
+            if current_time < vibration_duration:
+                uv_hook = self.yolo_hooks_dict['hook_2']['uv_hook']
+                uv_tip = self.yolo_hooks_dict['hook_2']['uv_tip']
+                uv_lowpoint = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
+                
+                self.vibration_data['time'].append(time.time())
+                self.vibration_data['uv_hook'].append(uv_hook)
+                self.vibration_data['uv_tip'].append(uv_tip)
+                self.vibration_data['uv_lowpoint'].append(uv_lowpoint)
+                time.sleep(0.001)
+            else:
+                self.save_vibration_data_to_csv()
+                self.get_logger().info("Done! -> next process step <Extract Hook 2 als initial Reference Point>")
+                self.process_step = "extract_hook_2_as_init_ref"
         
         # Extrahiere Pixelkoordinaten von Haken 2 nach Beginn des Scans
         if self.process_step == "extract_hook_2_as_init_ref":
@@ -145,9 +177,15 @@ class ScanBarHorizontalTriangulation(Node):
                 self.previous_edge = None
                 vel_world = [0.0, 0.0, 0.0]
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
-                self.get_logger().info("Done! -> next process step <Extract Hook>")
-                time.sleep(3)
-                self.process_step = "extract_hook_3_as_horizontal_point"
+                if self.do_vibration_test:
+                    self.get_logger().info("Done! -> next process step <Measure Vibration>")
+                    self.first_measurement_iteration = True
+                    self.vibration_data = {'time': [], 'uv_hook': [], 'uv_tip': [], 'uv_lowpoint': []}
+                    self.process_step = "measure_vibration"
+                else:
+                    self.get_logger().info("Done! -> next process step <Extract Hook>")
+                    time.sleep(3)
+                    self.process_step = "extract_hook_3_as_horizontal_point"
         
         # Extrahiere Pixelkoordinaten von Haken 3 (war vorher Haken 2)
         if self.process_step == "extract_hook_3_as_horizontal_point":
@@ -237,6 +275,31 @@ class ScanBarHorizontalTriangulation(Node):
         # Endzustand
         if self.process_step == "finish":
             self.get_logger().info("Scan finished!")
+
+    
+
+
+    def save_vibration_data_to_csv(self):
+        """
+        Speichert die Schwingungsdaten in einer CSV-Datei.
+        """
+        filename = '/home/mo/Thesis/src/robot_control/robot_control/vibration_measurement.csv'
+
+        # Öffnen der Datei im Schreibmodus
+        with open(filename, mode='w', newline='') as file:
+            writer = csv.writer(file)
+
+            # Schreibe die Kopfzeile
+            writer.writerow(['Time (s)', 'UV Hook', 'UV Tip', 'UV Lowpoint'])
+
+            # Schreibe die gesammelten Schwingungsdaten
+            for i in range(len(self.vibration_data['time'])):
+                writer.writerow([self.vibration_data['time'][i],
+                                 self.vibration_data['uv_hook'][i],
+                                 self.vibration_data['uv_tip'][i],
+                                 self.vibration_data['uv_lowpoint'][i]])
+
+        self.get_logger().info(f"Vibration data saved to {filename}")
             
 
 

@@ -49,14 +49,8 @@ class YOLOv8InferenceNode(Node):
 
         self.output_segment_img_publisher = self.create_publisher(Image, 'yolov8_output/output_segment_img', 10)
         self.output_point_img_publisher = self.create_publisher(Image, 'yolov8_output/output_point_img', 10)
-        self.output_hooks_dict_ema_filter = HookFilter(alpha = 0.5, confirmation_frames = 5, disappearance_frames = 5)
-        '''
-        self.filter_sample_rate = 30
-        self.last_time = None
-        self.output_hooks_dict_filter = HooksDictLowpassFilter(cutoff_freq = 0.01, sample_rate = self.filter_sample_rate, order = 4, min_samples = 16)
-        '''
-        # self.moving_average_filter = MovingAverageFilter(window_size=100)
-        # self.hooks_history = {}
+        self.ema_filter = HookFilter(alpha = 1.0, confirmation_frames = 1, disappearance_frames = 1)
+        # self.moving_average_filter = MovingAverageFilter(window_size=3, confirmation_frames=5, disappearance_frames=3)
 
         self.bridge = CvBridge()
         self.received_img = None
@@ -102,27 +96,14 @@ class YOLOv8InferenceNode(Node):
     
     def image_callback(self, msg):
         try:
-            current_time = time.perf_counter()
-            
             cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='passthrough')
             self.preprocess(cv_image)
             results = self.inference()
             self.bar_dict, self.hooks_dict = self.postprocess(results)
             self.process_output_hooks_dict()
 
-            self.filtered_hooks_dict = self.output_hooks_dict_ema_filter.update(hooks_dict = self.hooks_dict_processed)
-
-            '''
-            if self.last_time is not None:
-                elapsed_time = current_time - self.last_time
-                self.filter_sample_rate = 1 / elapsed_time
-                print(self.filter_sample_rate)
-                self.output_hooks_dict_filter.sample_rate = self.filter_sample_rate
-                self.filtered_hooks_dict = self.output_hooks_dict_filter.update(self.hooks_dict_processed)
-            self.last_time = current_time
-            '''
-            
-            # self.filtered_hooks_dict = self.apply_moving_average_filter(self.hooks_dict_processed)
+            self.filtered_hooks_dict = self.ema_filter.update(hooks_dict = self.hooks_dict_processed)
+            # self.filtered_hooks_dict = self.moving_average_filter.update(self.hooks_dict_processed)
 
             if self.show_cam_img:
                 cv2.imshow('VC Cam Img', self.received_img)
@@ -152,14 +133,13 @@ class YOLOv8InferenceNode(Node):
                 output_point_img = self.bridge.cv2_to_imgmsg(self.points_img, encoding="bgr8")
                 self.output_point_img_publisher.publish(output_point_img)
                 cv2.imshow('YoloV8 Output Point Img Filtered', self.points_img)
-                cv2.waitKey(1)                
+                cv2.waitKey(1)
                 
         except Exception as e:
             self.get_logger().error(f'Error in image processing: {e}')
 
 
-    def apply_moving_average_filter(self, hooks_dict):
-        window_size = 100
+    def apply_moving_average_filter(self, hooks_dict, window_size = 100):
         filtered_hooks_dict = {}
 
         for hook_id, hook_data in hooks_dict.items():
@@ -179,7 +159,6 @@ class YOLOv8InferenceNode(Node):
                 else:
                     filtered_hooks_dict[hook_id][key] = value
         return filtered_hooks_dict
-
 
 
     def plot_points(self, hooks_dict):
