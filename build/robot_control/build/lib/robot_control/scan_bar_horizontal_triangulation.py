@@ -20,6 +20,11 @@ class ScanBarHorizontalTriangulation(Node):
 
         self.num_hooks_existing = 21
 
+        self.declare_parameter('do_vibration_test', False)
+        self.do_vibration_test = self.get_parameter('do_vibration_test').get_parameter_value().bool_value
+        self.declare_parameter('speed_in_mm_per_s', 10.0)
+        self.speed_in_mm_per_s = self.get_parameter('speed_in_mm_per_s').get_parameter_value().double_value
+
         # Sub Yolov8 Output
         self.hooks_dict_subscription = self.create_subscription(HookData, 'yolov8_output/hooks_dict', self.hooks_dict_callback, 10)
         self.hooks_dict_subscription
@@ -43,7 +48,6 @@ class ScanBarHorizontalTriangulation(Node):
         self.act_hook_num = 0
 
         # Dict für die Aufzeichnung von Schwingungsdaten
-        self.do_vibration_test = True
         self.vibration_data = {'time': [], 'uv_hook': [], 'uv_tip': [], 'uv_lowpoint': []}  # Schwingungsdaten
         self.first_measurement_iteration = True
         self.measurement_start_time = None
@@ -72,7 +76,6 @@ class ScanBarHorizontalTriangulation(Node):
         self.vel_lin_publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
 
         # Timer für Prozess
-        self.speed_in_mm_per_s = 75.0
         self.process_step = None
         self.process_timer = self.create_timer(0.001, self.process_main)
         self._help_movement_done = False
@@ -355,9 +358,9 @@ class ScanBarHorizontalTriangulation(Node):
         falls ja, setzt diese Funktion die Variable self.new_hook_in_picture auf True
         '''
         if self.yolo_hooks_dict is not {} and "hook_1" in self.yolo_hooks_dict:
-            if self.yolo_hooks_dict['hook_1']['hook_box'][0] > (self.img_width * 0.9):
+            if self.yolo_hooks_dict['hook_1']['hook_box'][0] > (self.img_width * 0.75):
                 self.new_hook_in_picture = True
-            if self.yolo_hooks_dict['hook_1']['uv_hook'][0] < (self.img_width * 0.9):
+            if self.yolo_hooks_dict['hook_1']['uv_hook'][0] < (self.img_width * 0.75):
                 self.new_hook_in_picture = False
 
 

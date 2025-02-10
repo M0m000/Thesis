@@ -34,6 +34,8 @@ class YOLOv8InferenceNode(Node):
         self.show_point_img = self.get_parameter('show_point_img').get_parameter_value().bool_value
         self.declare_parameter('publish_masks', True)
         self.publish_masks = self.get_parameter('publish_masks').get_parameter_value().bool_value
+        self.declare_parameter('filter_alpha', 1.0)
+        self.filter_alpha = self.get_parameter('filter_alpha').get_parameter_value().double_value
 
         # Subscriber auf VC Cam
         self.subscription = self.create_subscription(
@@ -49,7 +51,7 @@ class YOLOv8InferenceNode(Node):
 
         self.output_segment_img_publisher = self.create_publisher(Image, 'yolov8_output/output_segment_img', 10)
         self.output_point_img_publisher = self.create_publisher(Image, 'yolov8_output/output_point_img', 10)
-        self.ema_filter = HookFilter(alpha = 1.0, confirmation_frames = 1, disappearance_frames = 1)
+        self.ema_filter = HookFilter(alpha = 0.5, confirmation_frames = 1, disappearance_frames = 1)
         # self.moving_average_filter = MovingAverageFilter(window_size=3, confirmation_frames=5, disappearance_frames=3)
 
         self.bridge = CvBridge()
