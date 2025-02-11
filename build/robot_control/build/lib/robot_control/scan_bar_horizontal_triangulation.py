@@ -358,9 +358,9 @@ class ScanBarHorizontalTriangulation(Node):
         falls ja, setzt diese Funktion die Variable self.new_hook_in_picture auf True
         '''
         if self.yolo_hooks_dict is not {} and "hook_1" in self.yolo_hooks_dict:
-            if self.yolo_hooks_dict['hook_1']['hook_box'][0] > (self.img_width * 0.75):
+            if self.yolo_hooks_dict['hook_1']['hook_box'][0] > (self.img_width * 0.8):
                 self.new_hook_in_picture = True
-            if self.yolo_hooks_dict['hook_1']['uv_hook'][0] < (self.img_width * 0.75):
+            if self.yolo_hooks_dict['hook_1']['uv_hook'][0] < (self.img_width * 0.9):
                 self.new_hook_in_picture = False
 
 

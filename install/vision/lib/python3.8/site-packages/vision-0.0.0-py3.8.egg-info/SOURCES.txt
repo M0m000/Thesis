@@ -11,7 +11,7 @@ setup.py
 FC_vision/FC_ema_filter.py
 FC_vision/FC_iir_buttoworth_filter.py
 FC_vision/FC_lowpass_filter.py
-FC_vision/FC_moving_average_filter.py
+FC_vision/FC_moving_avg_filter.py
 FC_vision/__init__.py
 resource/vision
 test/test_copyright.py

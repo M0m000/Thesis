@@ -1,7 +1,7 @@
 from collections import deque
 import numpy as np
 
-class LowpassFilter:
+class LowpassFilterLowpass:
     def __init__(self, f_g, T_s):
         self.f_g = f_g  # Grenzfrequenz des Filters (in Hz)
         self.T_s = T_s  # Abtastzeit (Samplingrate)

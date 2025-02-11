@@ -11,7 +11,8 @@ import sys
 import matplotlib.pyplot as plt
 from action_interfaces.msg import HookData, Hook, BoundingBox, UV
 from concurrent.futures import ThreadPoolExecutor
-from FC_vision.FC_ema_filter import HookFilter
+from FC_vision.FC_ema_filter import HookFilterEMA
+from FC_vision.FC_moving_avg_filter import HookFilterMovingAvg
 from FC_vision.FC_iir_buttoworth_filter import HooksDictLowpassFilter
 from FC_vision.FC_moving_average_filter import MovingAverageFilter
 
@@ -36,6 +37,8 @@ class YOLOv8InferenceNode(Node):
         self.publish_masks = self.get_parameter('publish_masks').get_parameter_value().bool_value
         self.declare_parameter('filter_alpha', 1.0)
         self.filter_alpha = self.get_parameter('filter_alpha').get_parameter_value().double_value
+        self.declare_parameter('filter_windowsize', 300)
+        self.filter_windowsize = self.get_parameter('filter_windowsize').get_parameter_value().integer_value
 
         # Subscriber auf VC Cam
         self.subscription = self.create_subscription(
@@ -51,7 +54,8 @@ class YOLOv8InferenceNode(Node):
 
         self.output_segment_img_publisher = self.create_publisher(Image, 'yolov8_output/output_segment_img', 10)
         self.output_point_img_publisher = self.create_publisher(Image, 'yolov8_output/output_point_img', 10)
-        self.ema_filter = HookFilter(alpha = 0.5, confirmation_frames = 1, disappearance_frames = 1)
+        self.ema_filter = HookFilterEMA(alpha = 0.5, confirmation_frames = 1, disappearance_frames = 1)
+        self.movingavg_filter = MovingAverageFilter(window_size = self.filter_windowsize, confirmation_frames = 1, disappearance_frames = 1)
         # self.moving_average_filter = MovingAverageFilter(window_size=3, confirmation_frames=5, disappearance_frames=3)
 
         self.bridge = CvBridge()
@@ -104,7 +108,8 @@ class YOLOv8InferenceNode(Node):
             self.bar_dict, self.hooks_dict = self.postprocess(results)
             self.process_output_hooks_dict()
 
-            self.filtered_hooks_dict = self.ema_filter.update(hooks_dict = self.hooks_dict_processed)
+            # self.filtered_hooks_dict = self.ema_filter.update(hooks_dict = self.hooks_dict_processed)
+            self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)
             # self.filtered_hooks_dict = self.moving_average_filter.update(self.hooks_dict_processed)
 
             if self.show_cam_img:

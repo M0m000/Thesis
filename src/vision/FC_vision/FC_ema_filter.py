@@ -1,6 +1,6 @@
 from collections import deque
 
-class HookFilter:
+class HookFilterEMA:
     def __init__(self, alpha=0.2, confirmation_frames=5, disappearance_frames=1):
         self.alpha = alpha  # EMA-Glättungsfaktor (z. B. 0.01 für einen trägen Filter)
         self.confirmation_frames = confirmation_frames
