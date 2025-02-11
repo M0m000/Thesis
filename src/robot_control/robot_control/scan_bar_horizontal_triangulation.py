@@ -91,7 +91,7 @@ class ScanBarHorizontalTriangulation(Node):
                                                                     rot = startpoint_rot_worldframe,
                                                                     ref = 0,
                                                                     ttype = 0,
-                                                                    tvalue = 100.0,
+                                                                    tvalue = 80.0,
                                                                     bpoint = 0,
                                                                     btype = 0,
                                                                     bvalue = 100.0,
