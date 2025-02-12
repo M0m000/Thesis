@@ -11,7 +11,7 @@ class FrameHandler(Node):
         """Initialisiert den FrameHandler als ROS2 Node mit dem Pfad zu den CSV-Dateien."""
         super().__init__(node_name)
         self.save_path = save_path
-        self.get_logger().info('FrameHandler Node gestartet.')
+        self.get_logger().info('FrameHandler Node started.')
 
         self.get_system_frame_client = self.create_client(GetSystemFrame, '/kr/robot/get_system_frame')
         while not self.get_system_frame_client.wait_for_service(timeout_sec=1.0):
@@ -49,7 +49,7 @@ class FrameHandler(Node):
         if matrix is not None:
             return matrix
         else:
-            self.get_logger().info(f"Fehler beim Laden der Matrix für das Frame: {frame_name}")
+            self.get_logger().info(f"Error at loading matrix for frame: {frame_name}")
             return None
 
     def transform_pose_to_world(self, trans, rot, pose_ref_frame):
@@ -155,7 +155,7 @@ class FrameHandler(Node):
 
             return pos, rot, T
         else:
-            self.get_logger().error("Fehler beim Abrufen der Systemrahmendaten.")
+            self.get_logger().error("Error at service call GetSystemFrame.")
             return None, None, None
         
     def get_cam_transform_in_world(self):

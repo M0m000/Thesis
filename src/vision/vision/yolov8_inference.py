@@ -37,7 +37,7 @@ class YOLOv8InferenceNode(Node):
         self.publish_masks = self.get_parameter('publish_masks').get_parameter_value().bool_value
         self.declare_parameter('filter_alpha', 1.0)
         self.filter_alpha = self.get_parameter('filter_alpha').get_parameter_value().double_value
-        self.declare_parameter('filter_windowsize', 300)
+        self.declare_parameter('filter_windowsize', 1)
         self.filter_windowsize = self.get_parameter('filter_windowsize').get_parameter_value().integer_value
 
         # Subscriber auf VC Cam
@@ -109,8 +109,9 @@ class YOLOv8InferenceNode(Node):
             self.process_output_hooks_dict()
 
             # self.filtered_hooks_dict = self.ema_filter.update(hooks_dict = self.hooks_dict_processed)
-            self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)
+            # self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)
             # self.filtered_hooks_dict = self.moving_average_filter.update(self.hooks_dict_processed)
+            self.filtered_hooks_dict = self.hooks_dict_processed
 
             if self.show_cam_img:
                 cv2.imshow('VC Cam Img', self.received_img)
