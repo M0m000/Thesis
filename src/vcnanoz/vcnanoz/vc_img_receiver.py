@@ -67,10 +67,10 @@ class VCImageReceiver(Node):
         self.image_width_publisher = self.create_publisher(Int32, 'vcnanoz/image_raw/width', 10)
         self.image_height_publisher = self.create_publisher(Int32, 'vcnanoz/image_raw/height', 10)
         
-        
-
         # verbinden
         self.connect()
+
+
 
     def publish_image(self):
         if self.img_tensor is not None:
@@ -79,12 +79,17 @@ class VCImageReceiver(Node):
             ros_image.header = Header()
             ros_image.header.stamp = self.get_clock().now().to_msg()
             ros_image.header.frame_id = 'vc_nano_z'
-
             self.image_publisher.publish(ros_image)
-            print(type(self.dx))
-            print(type(self.dy))
-            # self.image_width_publisher.publish(self.dx)
-            # self.image_height_publisher.publish(self.dy)
+
+            width = Int32()
+            width.data = int(self.dx)
+            self.image_width_publisher.publish(width)
+
+            height = Int32()
+            height.data = int(self.dy)
+            self.image_height_publisher.publish(height)
+
+
 
     def receive_img(self):
         if None == self.sock:
@@ -138,6 +143,8 @@ class VCImageReceiver(Node):
         if self.show_img or self.take_pictures:
             self.visualize()
 
+
+
     def visualize(self):
         if self.img_tensor is not None and self.show_img == True:
             cv2.imshow("Cam Img", self.img_tensor)
@@ -149,12 +156,16 @@ class VCImageReceiver(Node):
             elif key == ord('z') and self.take_pictures:
                 self.save_image()
 
+
+
     def save_image(self):
         if self.img_tensor is not None:
             timestamp = int(time.time())
             filename = f"{self.save_path}/image_{timestamp}.png"
             cv2.imwrite(filename, self.img_tensor)
             self.get_logger().info(f"Image saved: {filename}")
+
+
 
     def create_img_tensor(self):
         if self.img is None:
@@ -180,6 +191,8 @@ class VCImageReceiver(Node):
         if img_array is not None:
             self.img_tensor = img_array
 
+
+
     def connect(self):
         if((None != self.sock) and (self.ipv4 == self.sock_to[0]) and (self.port == self.sock_to[1])):
             return True
@@ -203,12 +216,15 @@ class VCImageReceiver(Node):
         self.img_nr = 0
         return True
 
+
+
     def disconnect(self):
         if(None != self.sock):
             print('disconnecting from %s port %s' % self.sock_to)
             self.sock.close()
         self.sock = None
         self.sock_to = None
+
 
 
 def main(args=None):
@@ -220,3 +236,4 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
