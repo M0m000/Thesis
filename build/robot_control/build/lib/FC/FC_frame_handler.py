@@ -7,16 +7,21 @@ from kr_msgs.srv import GetSystemFrame
 
 
 class FrameHandler(Node):
-    def __init__(self, node_name='frame_handler_node', save_path=''):
+    def __init__(self, node_name='frame_handler_node', save_path=None):
         """Initialisiert den FrameHandler als ROS2 Node mit dem Pfad zu den CSV-Dateien."""
         super().__init__(node_name)
-        self.save_path = save_path
+        if save_path is None:
+            self.save_path = os.path.expanduser("~/Thesis/src/robot_control/robot_control/data")
+        else:
+            self.save_path = save_path
         self.get_logger().info('FrameHandler Node started.')
 
         self.get_system_frame_client = self.create_client(GetSystemFrame, '/kr/robot/get_system_frame')
         while not self.get_system_frame_client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info("Wait for service GetSystemFrame...")
         self.get_logger().info("Service GetSystemFrame available!")
+
+
 
     def load_transformation_matrix_from_csv(self, frame_name, max_retries=5, delay=0.05):
         """Lädt die 4x4 Transformationsmatrix aus einer CSV-Datei mit Wiederholungsversuchen bei Fehlern."""
@@ -43,6 +48,8 @@ class FrameHandler(Node):
         self.get_logger().info(f"Failed to load transformation matrix for frame '{frame_name}' after {max_retries} attempts.")
         return None
 
+
+
     def query_and_load_frame(self, frame_name):
         """Abfrage des Frames, Laden der Transformation und Rückgabe der Matrix."""
         matrix = self.load_transformation_matrix_from_csv(frame_name)
@@ -51,6 +58,8 @@ class FrameHandler(Node):
         else:
             self.get_logger().info(f"Error at loading matrix for frame: {frame_name}")
             return None
+
+
 
     def transform_pose_to_world(self, trans, rot, pose_ref_frame):
         """Transformiert eine gegebene Position und Orientierung (in einem lokalen Frame) in das Welt-Koordinatensystem."""
@@ -71,6 +80,8 @@ class FrameHandler(Node):
         rot_world = self.rotation_matrix_to_euler_angles(rot_world_matrix)
         return trans_world, rot_world
 
+
+
     def tansform_velocity_to_world(self, vel, from_frame):
         """Transformiert eine Geschwindigkeit in das Welt-Koordinatensystem."""
         if from_frame == 'work':
@@ -82,6 +93,8 @@ class FrameHandler(Node):
             return None
         R_world_to_velframe = T_world_to_velframe[:3, :3]
         return R_world_to_velframe @ vel
+
+
 
     def calculate_rot_matrix(self, rot):
         """Berechnet die Rotationsmatrix aus den Euler-Winkeln."""
@@ -100,6 +113,8 @@ class FrameHandler(Node):
                         [0, 0, 1]])
         return R_z @ R_y @ R_x
 
+
+
     def rotation_matrix_to_euler_angles(self, R):
         """Umwandlung einer 3x3 Rotationsmatrix in Euler-Winkel (roll, pitch, yaw)."""
         sy = np.sqrt(R[0, 0] ** 2 + R[1, 0] ** 2)
@@ -116,11 +131,15 @@ class FrameHandler(Node):
             az = 0                              # yaw (undefiniert)
         return np.degrees([ax, ay, az])
 
+
+
     def calculate_position_difference_in_same_frame(self, T_1, T_2):
         """Berechnet den Positionsunterschied zwischen zwei Transformationen im selben Koordinatensystem."""
         t_1 = T_1[:3, 3]
         t_2 = T_2[:3, 3]
         return t_2 - t_1
+
+
 
     def transform_worldpoint_in_frame(self, point, frame_desired):
         """Transformiert einen Weltpunkt in ein anderes Frame."""
@@ -134,6 +153,20 @@ class FrameHandler(Node):
         point_desired_hom = T_desired_to_world @ point_world_hom
         return point_desired_hom[:3].tolist()
     
+
+
+    def transform_worldpose_to_desired_frame(self, T_in_worldframe, frame_desired):
+        """Transformiert eine homogene Transformationsmatrix in ein anderes Frame frame_desired."""
+        if frame_desired == "work":
+            T_world_to_desired = self.load_transformation_matrix_from_csv(frame_name = 'WORK_frame_in_world.csv')
+        else:
+            _, _, T_world_to_desired = self.get_system_frame(name = frame_desired, ref = 'world')
+
+        T_desired_to_world = np.linalg.inv(T_world_to_desired)
+        return T_desired_to_world @ T_in_worldframe
+    
+
+
     def get_system_frame(self, name: str, ref: str):
         """Ruft den Service /kr/robot/get_system_frame auf und gibt die Position und Orientierung zurück."""
         request = GetSystemFrame.Request()
@@ -153,11 +186,13 @@ class FrameHandler(Node):
             T[:3, :3] = R
             T[:3, 3] = np.array(pos)
 
-            return pos, rot, T
+            return np.array(pos), np.array(rot), T
         else:
             self.get_logger().error("Error at service call GetSystemFrame.")
             return None, None, None
         
+
+
     def get_cam_transform_in_world(self):
         _, _, T_world_tfc = self.get_system_frame(name = 'tfc', ref = 'world')
         T_tfc_cam = self.load_transformation_matrix_from_csv(frame_name = 'CAM_frame_in_tfc.csv')
@@ -170,14 +205,11 @@ class FrameHandler(Node):
 def main(args=None):
     rclpy.init(args=args)
 
-    # Der FrameHandler Node wird hier direkt instanziiert
-    save_path = '/path/to/your/csv/files'
+    save_path = os.path.expanduser("~/Thesis/src/robot_control/robot_control/data")
     frame_handler_node = FrameHandler(node_name='frame_handler_node', save_path=save_path)
 
-    # Der Node läuft und wartet auf Ereignisse
     rclpy.spin(frame_handler_node)
 
-    # Beim Beenden des Nodes
     frame_handler_node.destroy_node()
     rclpy.shutdown()
 

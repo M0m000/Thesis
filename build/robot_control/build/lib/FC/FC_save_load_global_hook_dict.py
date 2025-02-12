@@ -6,7 +6,7 @@ def save_dict_to_csv(node, data, filename="output.csv"):
     Speichert ein geschachteltes Dictionary mit NumPy-Arrays und Listen als CSV-Datei.
 
     Parameters:
-        data (dict): Dictionary mit Struktur {'index': {'xyz_hook': np.array, 'xyz_tip': np.array, 'xyz_lowpoint': np.array, ...}}
+        data (dict): Dictionary mit Struktur {'index': {'xyz_hook': np.array, ..., 'tfc_workframe': list, 'tfc_worldframe': np.array}}
         filename (str): Name der zu speichernden CSV-Datei (optional)
     """
     with open(filename, mode="w", newline="", encoding="utf-8") as file:
@@ -19,7 +19,9 @@ def save_dict_to_csv(node, data, filename="output.csv"):
                   "Lowpoint_X", "Lowpoint_Y", "Lowpoint_Z",
                   "Hook_WF_X", "Hook_WF_Y", "Hook_WF_Z",
                   "Tip_WF_X", "Tip_WF_Y", "Tip_WF_Z",
-                  "Lowpoint_WF_X", "Lowpoint_WF_Y", "Lowpoint_WF_Z"]
+                  "Lowpoint_WF_X", "Lowpoint_WF_Y", "Lowpoint_WF_Z",
+                  "TFC_WF_X", "TFC_WF_Y", "TFC_WF_Z",
+                  "TFC_World_X", "TFC_World_Y", "TFC_World_Z"]
         writer.writerow(header)
 
         # Daten schreiben
@@ -30,6 +32,9 @@ def save_dict_to_csv(node, data, filename="output.csv"):
             
             for point in ["xyz_hook_workframe", "xyz_tip_workframe", "xyz_lowpoint_workframe"]:
                 row.extend(values[point])  # x, y, z Werte hinzufügen
+            
+            row.extend(values["tfc_workframe"])  # Liste mit drei Werten
+            row.extend(values["tfc_worldframe"])  # NumPy-Array mit drei Werten
             
             writer.writerow(row)
 
@@ -63,25 +68,10 @@ def load_csv_to_dict(node, filename="output.csv"):
                 "xyz_lowpoint": np.array([[values[6]], [values[7]], [values[8]]]),
                 "xyz_hook_workframe": values[9:12],
                 "xyz_tip_workframe": values[12:15],
-                "xyz_lowpoint_workframe": values[15:18]
+                "xyz_lowpoint_workframe": values[15:18],
+                "tfc_workframe": values[18:21],
+                "tfc_worldframe": np.array(values[21:24])
             }
-
-    node.get_logger().info(f"CSV erfolgreich aus {filename} geladen!")
+    
+    node.get_logger().info(f"CSV loaded successfully from {filename}!")
     return data
-
-
-# Beispiel-Daten
-data = {
-    '1': {'xyz_hook': np.array([[-43.23], [-1.95], [166.69]]), 
-          'xyz_tip': np.array([[-32.07], [1.72], [157.09]]), 
-          'xyz_lowpoint': np.array([[-38.79], [9.33], [161.48]]),
-          'xyz_hook_workframe': [958.75, -421.93, 266.87],
-          'xyz_tip_workframe': [970.18, -418.26, 257.26],
-          'xyz_lowpoint_workframe': [963.34, -410.64, 261.66]},
-    '2': {'xyz_hook': np.array([[-42.60], [-1.55], [166.25]]), 
-          'xyz_tip': np.array([[-30.89], [3.87], [158.68]]), 
-          'xyz_lowpoint': np.array([[-38.49], [10.33], [163.43]]),
-          'xyz_hook_workframe': [959.40, -421.53, 266.42],
-          'xyz_tip_workframe': [971.32, -416.10, 258.85],
-          'xyz_lowpoint_workframe': [963.58, -409.64, 263.60]}
-}

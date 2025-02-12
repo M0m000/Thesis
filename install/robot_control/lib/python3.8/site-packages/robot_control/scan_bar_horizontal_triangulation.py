@@ -18,8 +18,8 @@ class ScanBarHorizontalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_horizontal_triangulation')
 
-        self.num_hooks_existing = 25
-
+        self.declare_parameter('num_hooks_existing', 1)
+        self.num_hooks_existing = self.get_parameter('num_hooks_existing').get_parameter_value().integer_value
         self.declare_parameter('do_vibration_test', False)
         self.do_vibration_test = self.get_parameter('do_vibration_test').get_parameter_value().bool_value
         self.declare_parameter('speed_in_mm_per_s', 10.0)
@@ -276,6 +276,10 @@ class ScanBarHorizontalTriangulation(Node):
             point = self.cam_to_world_transform @ lowpoint_xyz_hom
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_workframe'] = self.frame_handler.transform_worldpoint_in_frame(point = point, frame_desired = 'work')
             
+            self.global_hooks_dict[str(self.act_hook_num)]['tfc_workframe'] = self.robot_position_horizontal
+            self.global_hooks_dict[str(self.act_hook_num)]['tfc_worldframe'], _, _ = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
+
+            print(self.global_hooks_dict)
 
             if len(self.global_hooks_dict) == self.num_hooks_existing:
                 self.get_logger().info("Done! -> next process step <Save Global Dict as CSV>")

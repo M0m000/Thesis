@@ -13,6 +13,7 @@ FC/FC_call_move_spline_service.py
 FC/FC_dict_receive_processing.py
 FC/FC_edge_detector.py
 FC/FC_frame_handler.py
+FC/FC_geometrics_handler.py
 FC/FC_quaternion_to_euler.py
 FC/FC_save_load_global_hook_dict.py
 FC/FC_stereo_triangulation_processor.py
@@ -21,6 +22,7 @@ FC/__init__.py
 resource/robot_control
 robot_control/MoveTcpAlongAxis_action_client.py
 robot_control/__init__.py
+robot_control/_dummy_node.py
 robot_control/define_working_frame_needle.py
 robot_control/ibvs_2d.py
 robot_control/move_lin_by_key.py

@@ -1,6 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image
+from std_msgs.msg import Int32
 from std_msgs.msg import Header
 import socket
 import struct
@@ -63,6 +64,10 @@ class VCImageReceiver(Node):
         # ROS2 Publisher für das Bild
         self.image_publisher = self.create_publisher(Image, 'vcnanoz/image_raw', 10)
         self.get_logger().info(f'IPv4: {self.ipv4} - Port: {self.port}')
+        self.image_width_publisher = self.create_publisher(Int32, 'vcnanoz/image_raw/width', 10)
+        self.image_height_publisher = self.create_publisher(Int32, 'vcnanoz/image_raw/height', 10)
+        
+        
 
         # verbinden
         self.connect()
@@ -76,6 +81,10 @@ class VCImageReceiver(Node):
             ros_image.header.frame_id = 'vc_nano_z'
 
             self.image_publisher.publish(ros_image)
+            print(type(self.dx))
+            print(type(self.dy))
+            # self.image_width_publisher.publish(self.dx)
+            # self.image_height_publisher.publish(self.dy)
 
     def receive_img(self):
         if None == self.sock:

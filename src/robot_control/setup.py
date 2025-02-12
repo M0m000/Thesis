@@ -36,7 +36,8 @@ setup(
             'transform_action_client = robot_control.transform_action_client:main',
             'scan_bar_horizontal_triangulation = robot_control.scan_bar_horizontal_triangulation:main',
             'scan_bar_combined_triangulation = robot_control.scan_bar_combined_triangulation:main',
-            'scan_bar_vertical_triangulation = robot_control.scan_bar_vertical_triangulation:main'
+            'scan_bar_vertical_triangulation = robot_control.scan_bar_vertical_triangulation:main',
+            '_dummy_node = robot_control._dummy_node:main'
         ],
     },
 )
