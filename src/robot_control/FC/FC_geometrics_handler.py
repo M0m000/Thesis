@@ -17,9 +17,11 @@ class GeometricsHandler(Node):
         else:
             self.get_logger().error("Error at loading Global Scan Dict from CSV!")
 
+
         # Instanziieren eines Frame Handlers
         self.frame_handler = FrameHandler(node_name = "frame_handler_for_geometrics_handler")
         self.get_logger().info("Frame Handler for Geomtrics Handler instantiated successfully!")
+
 
         # speichern der aktuellen Hakeninstanz
         self.hook_entry = None
@@ -37,6 +39,10 @@ class GeometricsHandler(Node):
         
         self.hook_tfc_pos_in_workframe = None
         self.hook_tfc_pos_in_worldframe = None
+
+
+        # Dict für die Gerade (Stützpunkt und Richtungsvektor)
+        self.hook_line = {}
 
 
 
@@ -98,11 +104,18 @@ class GeometricsHandler(Node):
     def calculate_hook_line(self):
         if self.hook_pos_in_tfcframe is not None and self.tip_pos_in_tfcframe is not None and self.lowpoint_pos_in_tfcframe is not None:
             p_0 = self.lowpoint_pos_in_tfcframe
-            print(p_0)
-            p_vec = self.tip_pos_in_tfcframe - p_0
-            print(p_vec)
-            p_vec /= np.linalg.norm(p_vec)
-            print(p_vec)
+            p_dir = self.tip_pos_in_tfcframe - p_0
+            p_dir /= np.linalg.norm(p_dir)
+
+            self.hook_line['p_0'] = p_0
+            self.hook_line['p_dir'] = p_dir
+            return self.hook_line
+        
+
+
+
+    def calculate_plane(self):
+        pass
         
 
 
