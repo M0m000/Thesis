@@ -18,7 +18,7 @@ class GripperHandler(Node):
         self.gripper_initialized = False
         self.gripper_closed = None
 
-        self.tcp_pos_in_tfc_frame = [0.0, 0.0, 220.0]
+        self.tcp_pos_in_tfc_frame = [0.0, 0.0, 230.0]
         self.tcp_rot_in_tfc_frame = [0.0, 0.0, 29.0]
         self.set_frame(trans=self.tcp_pos_in_tfc_frame,
                        rot=self.tcp_rot_in_tfc_frame,
@@ -79,12 +79,12 @@ class GripperHandler(Node):
         request = SetDiscreteOutput.Request()
         request.index = dout_index
         request.value = 1
-    
+
         self.get_logger().info(f"Sending request to set digital output {dout_index}...")
-    
+
         future = self.set_output_client.call_async(request)
         rclpy.spin_until_future_complete(self, future)
-    
+
         if future.result() is not None and future.result().success:
             self.get_logger().info(f"Digital output {dout_index} set successfully.")
             return True

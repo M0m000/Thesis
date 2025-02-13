@@ -1,7 +1,7 @@
 vc_startup_node:
   ros__parameters:
     shutter_time: 20000
-    gain: 10
+    gain: 50
 
 vc_img_receiver_node:
   ros__parameters:
