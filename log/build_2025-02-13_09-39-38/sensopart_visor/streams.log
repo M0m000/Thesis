@@ -1,0 +1,18 @@
+[1.602s] Invoking command in '/home/mo/Thesis/build/sensopart_visor': PYTHONPATH=/home/mo/Thesis/build/sensopart_visor/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/sensopart_visor/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/mo/Thesis/build/sensopart_visor/build --no-deps symlink_data
+[1.992s] running develop
+[2.237s] running egg_info
+[2.255s] writing sensopart_visor.egg-info/PKG-INFO
+[2.255s] writing dependency_links to sensopart_visor.egg-info/dependency_links.txt
+[2.255s] writing entry points to sensopart_visor.egg-info/entry_points.txt
+[2.255s] writing requirements to sensopart_visor.egg-info/requires.txt
+[2.255s] writing top-level names to sensopart_visor.egg-info/top_level.txt
+[2.292s] reading manifest file 'sensopart_visor.egg-info/SOURCES.txt'
+[2.293s] writing manifest file 'sensopart_visor.egg-info/SOURCES.txt'
+[2.357s] running build_ext
+[2.357s] Creating /home/mo/Thesis/install/sensopart_visor/lib/python3.8/site-packages/sensopart-visor.egg-link (link to .)
+[2.358s] Installing visor_shutdown script to /home/mo/Thesis/install/sensopart_visor/lib/sensopart_visor
+[2.358s] Installing visor_startup script to /home/mo/Thesis/install/sensopart_visor/lib/sensopart_visor
+[2.359s] 
+[2.359s] Installed /home/mo/Thesis/build/sensopart_visor
+[2.359s] running symlink_data
+[2.401s] Invoked command in '/home/mo/Thesis/build/sensopart_visor' returned '0': PYTHONPATH=/home/mo/Thesis/build/sensopart_visor/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/sensopart_visor/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/mo/Thesis/build/sensopart_visor/build --no-deps symlink_data

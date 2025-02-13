@@ -101,6 +101,7 @@ class GeometricsHandler(Node):
 
 
     
+    
     def calculate_hook_line(self):
         if self.hook_pos_in_tfcframe is not None and self.tip_pos_in_tfcframe is not None and self.lowpoint_pos_in_tfcframe is not None:
             p_0 = self.lowpoint_pos_in_tfcframe

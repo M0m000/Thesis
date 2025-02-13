@@ -1,2 +1,1 @@
-float32 u
-float32 v
+/home/mo/Thesis/src/action_interfaces/msg/UV.msg

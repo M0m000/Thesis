@@ -1,0 +1,21 @@
+[1.593s] Invoking command in '/home/mo/Thesis/build/vcnanoz': PYTHONPATH=/home/mo/Thesis/build/vcnanoz/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/mo/Thesis/build/vcnanoz/build --no-deps symlink_data
+[1.953s] running develop
+[2.194s] running egg_info
+[2.212s] writing vcnanoz.egg-info/PKG-INFO
+[2.212s] writing dependency_links to vcnanoz.egg-info/dependency_links.txt
+[2.212s] writing entry points to vcnanoz.egg-info/entry_points.txt
+[2.213s] writing requirements to vcnanoz.egg-info/requires.txt
+[2.213s] writing top-level names to vcnanoz.egg-info/top_level.txt
+[2.251s] reading manifest file 'vcnanoz.egg-info/SOURCES.txt'
+[2.253s] writing manifest file 'vcnanoz.egg-info/SOURCES.txt'
+[2.311s] running build_ext
+[2.311s] Creating /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz.egg-link (link to .)
+[2.312s] Installing srvClient_vc_startup script to /home/mo/Thesis/install/vcnanoz/lib/vcnanoz
+[2.312s] Installing srvServer_vc_startup script to /home/mo/Thesis/install/vcnanoz/lib/vcnanoz
+[2.312s] Installing vc_img_receiver script to /home/mo/Thesis/install/vcnanoz/lib/vcnanoz
+[2.313s] Installing vc_shutdown script to /home/mo/Thesis/install/vcnanoz/lib/vcnanoz
+[2.313s] Installing vc_startup script to /home/mo/Thesis/install/vcnanoz/lib/vcnanoz
+[2.313s] 
+[2.313s] Installed /home/mo/Thesis/build/vcnanoz
+[2.313s] running symlink_data
+[2.353s] Invoked command in '/home/mo/Thesis/build/vcnanoz' returned '0': PYTHONPATH=/home/mo/Thesis/build/vcnanoz/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/mo/Thesis/build/vcnanoz/build --no-deps symlink_data

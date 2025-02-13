@@ -1,12 +1,1 @@
-// generated from rosidl_generator_cpp/resource/idl.hpp.em
-// generated code does not contain a copyright notice
-
-#ifndef KR_MSGS__MSG__SAFETY_EVENT_HPP_
-#define KR_MSGS__MSG__SAFETY_EVENT_HPP_
-
-#include "kr_msgs/msg/detail/safety_event__struct.hpp"
-#include "kr_msgs/msg/detail/safety_event__builder.hpp"
-#include "kr_msgs/msg/detail/safety_event__traits.hpp"
-#include "kr_msgs/msg/detail/safety_event__type_support.hpp"
-
-#endif  // KR_MSGS__MSG__SAFETY_EVENT_HPP_
+/home/mo/Thesis/build/kr_msgs/rosidl_generator_cpp/kr_msgs/msg/safety_event.hpp

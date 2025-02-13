@@ -67,10 +67,8 @@ class VCImageReceiver(Node):
         self.image_width_publisher = self.create_publisher(Int32, 'vcnanoz/image_raw/width', 10)
         self.image_height_publisher = self.create_publisher(Int32, 'vcnanoz/image_raw/height', 10)
         
-        # verbinden
+        # Versuche kontinuierlich zu verbinden
         self.connect()
-
-
 
     def publish_image(self):
         if self.img_tensor is not None:
@@ -89,10 +87,8 @@ class VCImageReceiver(Node):
             height.data = int(self.dy)
             self.image_height_publisher.publish(height)
 
-
-
     def receive_img(self):
-        if None == self.sock:
+        if self.sock is None:
             return False
 
         # FPS
@@ -143,10 +139,8 @@ class VCImageReceiver(Node):
         if self.show_img or self.take_pictures:
             self.visualize()
 
-
-
     def visualize(self):
-        if self.img_tensor is not None and self.show_img == True:
+        if self.img_tensor is not None and self.show_img:
             cv2.imshow("Cam Img", self.img_tensor)
 
             key = cv2.waitKey(1) & 0xFF
@@ -156,16 +150,12 @@ class VCImageReceiver(Node):
             elif key == ord('z') and self.take_pictures:
                 self.save_image()
 
-
-
     def save_image(self):
         if self.img_tensor is not None:
             timestamp = int(time.time())
             filename = f"{self.save_path}/image_{timestamp}.png"
             cv2.imwrite(filename, self.img_tensor)
             self.get_logger().info(f"Image saved: {filename}")
-
-
 
     def create_img_tensor(self):
         if self.img is None:
@@ -191,40 +181,38 @@ class VCImageReceiver(Node):
         if img_array is not None:
             self.img_tensor = img_array
 
-
-
     def connect(self):
-        if((None != self.sock) and (self.ipv4 == self.sock_to[0]) and (self.port == self.sock_to[1])):
-            return True
+        while True:
+            if self.sock is not None and self.ipv4 == self.sock_to[0] and self.port == self.sock_to[1]:
+                return True
 
-        if(None != self.sock):
-            self.disconnect()
+            if self.sock is not None:
+                self.disconnect()
 
-        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.sock_to = (self.ipv4, self.port)
+            self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.sock_to = (self.ipv4, self.port)
 
-        print('connecting to %s port %s' % self.sock_to)
+            print(f'Connecting to {self.sock_to[0]} port {self.sock_to[1]}')
 
-        try:
-            self.sock.settimeout(0.75)
-            self.sock.connect(self.sock_to)
-            self.sock.settimeout(None)
-        except Exception:
-            self.sock.settimeout(None)
-            raise
+            try:
+                self.sock.settimeout(10.0)
+                self.sock.connect(self.sock_to)
+                self.sock.settimeout(None)
+                break  # Exit the loop once the connection is successful
+            except Exception as e:
+                self.get_logger().info(f"Connection failed: {e}")
+                self.get_logger().info("Retrying...")
+                time.sleep(2)  # Retry every 2 seconds
 
         self.img_nr = 0
         return True
 
-
-
     def disconnect(self):
-        if(None != self.sock):
-            print('disconnecting from %s port %s' % self.sock_to)
+        if self.sock is not None:
+            print(f'Disconnecting from {self.sock_to[0]} port {self.sock_to[1]}')
             self.sock.close()
         self.sock = None
         self.sock_to = None
-
 
 
 def main(args=None):
@@ -236,4 +224,3 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
-

@@ -10,6 +10,13 @@ find_package(rosidl_default_generators REQUIRED)
 find_package(action_interfaces REQUIRED)
 
 ament_target_dependencies(target_name action_interfaces)
+install(DIRECTORY launch/
+    DESTINATION share/${PROJECT_NAME}/launch
+)
+
+install(DIRECTORY config/
+    DESTINATION share/${PROJECT_NAME}/config
+)
 
 # Installiere Python-Quellcode-Dateien
 install(PROGRAMS

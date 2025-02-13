@@ -9,6 +9,11 @@
 
   <depend>rclpy</depend>
   <depend>action_interfaces</depend>
+
+  <depend>launch</depend>
+  <depend>launch_ros</depend>
+  <exec_depend>python3-launch</exec_depend>
+  <exec_depend>python3-launch-ros</exec_depend>
   
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>

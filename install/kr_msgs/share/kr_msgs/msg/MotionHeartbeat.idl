@@ -1,16 +1,1 @@
-// generated from rosidl_adapter/resource/msg.idl.em
-// with input from kr_msgs/msg/MotionHeartbeat.msg
-// generated code does not contain a copyright notice
-
-
-module kr_msgs {
-  module msg {
-    @verbatim (language="comment", text=
-      "#####################################################" "\n"
-      "                 MOTION HEARTBEAT                   #" "\n"
-      "#####################################################")
-    struct MotionHeartbeat {
-      uint8 structure_needs_at_least_one_member;
-    };
-  };
-};
+/home/mo/Thesis/build/kr_msgs/rosidl_adapter/kr_msgs/msg/MotionHeartbeat.idl

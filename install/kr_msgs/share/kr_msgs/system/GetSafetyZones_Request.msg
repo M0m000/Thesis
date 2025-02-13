@@ -1,4 +1,1 @@
-######################################################
-#                  GET SAFETY ZONES                  #
-######################################################
-
+/home/mo/Thesis/build/kr_msgs/rosidl_cmake/srv/system/GetSafetyZones_Request.msg

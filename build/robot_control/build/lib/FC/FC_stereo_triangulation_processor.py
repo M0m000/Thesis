@@ -7,13 +7,15 @@ class StereoTriangulationProcessor:
     def __init__(self,
                  extrinsic_data = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
                  calib_path = '/home/mo/Thesis/calibration_data.npz',
-                 measure_time = False):
+                 measure_time = False,
+                 img_width = 1280,
+                 img_height = 720):
         
         self.calib_data = np.load(calib_path)
         self.intrinsics = self.calib_data['mtx']     # Kameramatrix (mit Brennweite Verzerrung etc.)
 
-        self.img_height = 450
-        self.img_width = 1280
+        self.img_height = img_height
+        self.img_width = img_width
 
         f_x = 0.006/3.45e-6
         f_y = 0.006/3.45e-6

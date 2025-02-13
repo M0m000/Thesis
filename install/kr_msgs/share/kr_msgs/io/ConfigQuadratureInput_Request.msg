@@ -1,7 +1,1 @@
-######################################################
-#            CONFIG QUADRATURE INPUT SRV             #
-######################################################
-
-int8       index            # input index (1 or 2)
-int32      pulse_per_rev    # pulses per revolution (0 - 32767 LPR)
-bool       idx_availability # index availability 
+/home/mo/Thesis/build/kr_msgs/rosidl_cmake/srv/io/ConfigQuadratureInput_Request.msg

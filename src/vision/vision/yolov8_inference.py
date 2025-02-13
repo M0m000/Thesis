@@ -14,7 +14,7 @@ from concurrent.futures import ThreadPoolExecutor
 from FC_vision.FC_ema_filter import HookFilterEMA
 from FC_vision.FC_moving_avg_filter import HookFilterMovingAvg
 from FC_vision.FC_iir_buttoworth_filter import HooksDictLowpassFilter
-from FC_vision.FC_moving_average_filter import MovingAverageFilter
+from FC_vision.FC_moving_avg_filter import HookFilterMovingAvg
 
 
 class YOLOv8InferenceNode(Node):
@@ -55,7 +55,7 @@ class YOLOv8InferenceNode(Node):
         self.output_segment_img_publisher = self.create_publisher(Image, 'yolov8_output/output_segment_img', 10)
         self.output_point_img_publisher = self.create_publisher(Image, 'yolov8_output/output_point_img', 10)
         self.ema_filter = HookFilterEMA(alpha = 0.5, confirmation_frames = 1, disappearance_frames = 1)
-        self.movingavg_filter = MovingAverageFilter(window_size = self.filter_windowsize, confirmation_frames = 1, disappearance_frames = 1)
+        self.movingavg_filter = HookFilterMovingAvg(window_size = self.filter_windowsize, confirmation_frames = 1, disappearance_frames = 1)
         # self.moving_average_filter = MovingAverageFilter(window_size=3, confirmation_frames=5, disappearance_frames=3)
 
         self.bridge = CvBridge()

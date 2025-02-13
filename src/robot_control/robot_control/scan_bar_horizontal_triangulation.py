@@ -72,7 +72,7 @@ class ScanBarHorizontalTriangulation(Node):
         self.triangulation_processor = StereoTriangulationProcessor(extrinsic_data = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
                                                                     calib_path = '/home/mo/Thesis/calibration_data.npz',
                                                                     measure_time = True,
-                                                                    img_wdith = self.img_width,
+                                                                    img_width = self.img_width,
                                                                     img_height = self.img_height)
         
         # Instanz FrameHandler
@@ -297,7 +297,7 @@ class ScanBarHorizontalTriangulation(Node):
             self.global_hooks_dict[str(self.act_hook_num)]['tfc_workframe'] = self.robot_position_horizontal
             self.global_hooks_dict[str(self.act_hook_num)]['tfc_worldframe'], _, _ = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
 
-            print(self.global_hooks_dict)
+            self.get_logger().info(f"already scanned: {len(self.global_hooks_dict)} Hooks")
 
             if len(self.global_hooks_dict) == self.num_hooks_existing:
                 self.get_logger().info("Done! -> next process step <Save Global Dict as CSV>")
@@ -364,6 +364,10 @@ class ScanBarHorizontalTriangulation(Node):
         # Endzustand
         if self.process_step == "finish":
             self.get_logger().info("Scan finished!")
+    
+            # Node herunterfahren
+            self.get_logger().info("Shutting down node...")
+            self.destroy_node()
 
     
 

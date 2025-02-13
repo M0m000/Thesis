@@ -1,8 +1,1 @@
-######################################################
-#              GET QUADRATURE INPUT SRV              #
-######################################################
-
-int8       index            # input index
----
-Quadrature quad
-bool       success 
+/home/mo/Thesis/src/orange-ros2/kr_msgs/srv/io/GetQuadratureInput.srv

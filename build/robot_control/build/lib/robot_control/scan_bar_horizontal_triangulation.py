@@ -8,6 +8,7 @@ from FC.FC_frame_handler import FrameHandler
 from FC.FC_stereo_triangulation_processor import StereoTriangulationProcessor
 from FC.FC_save_load_global_hook_dict import save_dict_to_csv, load_csv_to_dict
 from kr_msgs.msg import JogLinear
+from std_msgs.msg import Int32
 import os
 import time
 import numpy as np
@@ -45,6 +46,12 @@ class ScanBarHorizontalTriangulation(Node):
         self.previous_edge_lside = None
         self.handling_last_two_hooks = False
         self.handling_last_hook = False
+
+        # Subscriber auf Bildgroesse
+        self.img_width_sub = self.create_subscription(Int32, 'vcnanoz/image_raw/width', self.received_img_width, 10)
+        self.img_width_sub
+        self.img_height_sub = self.create_subscription(Int32, 'vcnanoz/image_raw/height', self.received_img_height, 10)
+        self.img_height_sub
         self.img_width = 896
         self.img_height = 450
 
@@ -64,7 +71,9 @@ class ScanBarHorizontalTriangulation(Node):
         # Instanz für Berechnung der Stereo Triangulation
         self.triangulation_processor = StereoTriangulationProcessor(extrinsic_data = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
                                                                     calib_path = '/home/mo/Thesis/calibration_data.npz',
-                                                                    measure_time = True)
+                                                                    measure_time = True,
+                                                                    img_width = self.img_width,
+                                                                    img_height = self.img_height)
         
         # Instanz FrameHandler
         frame_csv_path = os.path.expanduser("~/Thesis/src/robot_control/robot_control/data")
@@ -115,12 +124,21 @@ class ScanBarHorizontalTriangulation(Node):
 
 
 
+    def received_img_width(self, msg):
+        self.img_width = msg.data
+
+    def received_img_height(self, msg):
+        self.img_height = msg.data
+    
+    
+    
+
     def process_main(self):
         '''
         Prozessablauf mit Schrittkette - wird zyklisch alle 1ms aufgerufen
         '''
         rside_rising_edge, rside_falling_edge = self.edge_detector_rside.detect_edge(var=self.new_hook_in_picture)        # prüfe auf Flanken für Haken am Bildrand
-        lside_rising_edge, lside_falling_edge = self.edge_detector_lside.detect_edge(var=self.hook_in_left_area)        # prüfe auf Flanken für Haken am Bildrand
+        lside_rising_edge, lside_falling_edge = self.edge_detector_lside.detect_edge(var=self.hook_in_left_area)
         # Fahre von Init Position solange nach rechts, bis 2 Haken zu sehen sind
         if self.process_step == "move_until_2_hooks_visible":
             vel_work = [self.speed_in_mm_per_s, 0.0, 0.0]
@@ -279,8 +297,8 @@ class ScanBarHorizontalTriangulation(Node):
             self.global_hooks_dict[str(self.act_hook_num)]['tfc_workframe'] = self.robot_position_horizontal
             self.global_hooks_dict[str(self.act_hook_num)]['tfc_worldframe'], _, _ = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
 
-            print(self.global_hooks_dict)
-
+            self.get_logger().info(f"already scanned: {len(self.global_hooks_dict)} Hooks")
+            
             if len(self.global_hooks_dict) == self.num_hooks_existing:
                 self.get_logger().info("Done! -> next process step <Save Global Dict as CSV>")
                 self.process_step = "save_global_dict_as_csv"
