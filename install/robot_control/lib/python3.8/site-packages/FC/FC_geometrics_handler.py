@@ -106,7 +106,10 @@ class GeometricsHandler(Node):
         if self.hook_pos_in_tfcframe is not None and self.tip_pos_in_tfcframe is not None and self.lowpoint_pos_in_tfcframe is not None:
             p_0 = self.lowpoint_pos_in_tfcframe
             p_dir = self.tip_pos_in_tfcframe - p_0
-            p_dir /= np.linalg.norm(p_dir)
+
+            abs_p_dir = np.linalg.norm(p_dir)
+            if abs_p_dir != 0:
+                p_dir /= abs_p_dir
 
             self.hook_line['p_0'] = p_0
             self.hook_line['p_dir'] = p_dir
