@@ -1,21 +1,61 @@
 import rclpy
 from rclpy.node import Node
 from kr_msgs.srv import SetDiscreteOutput
+from kr_msgs.srv import SetSystemFrame
 
 class GripperHandler(Node):
     def __init__(self):
         super().__init__('gripper_handler')
 
         self.set_output_client = self.create_client(SetDiscreteOutput, '/kr/iob/set_digital_output')
-
-        # Warte, bis der Service verfügbar ist
         while not self.set_output_client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info("Waiting for service SetDiscreteOutput...")
-        self.get_logger().info("Service SetDiscreteOutput available!")
+
+        self.set_kassow_frame_client = self.create_client(SetSystemFrame, '/kr/robot/set_system_frame')
+        while not self.set_kassow_frame_client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info("Waiting for Service SetSystemFrame...")
 
         self.gripper_initialized = False
-        self.gripper_startup()
         self.gripper_closed = None
+
+        self.tcp_pos_in_tfc_frame = [0.0, 0.0, 220.0]
+        self.tcp_rot_in_tfc_frame = [0.0, 0.0, 29.0]
+        self.set_frame(trans=self.tcp_pos_in_tfc_frame,
+                       rot=self.tcp_rot_in_tfc_frame,
+                       frame='tcp',
+                       ref_frame='tfc')
+
+
+
+    def gripper_startup(self):
+        """Manuelle Initialisierung des Greifers"""
+        if self.set_output(6):
+            self.gripper_initialized = True
+            self.get_logger().info("Gripper initialized...")
+        else:
+            self.gripper_initialized = False
+            self.get_logger().error("Error initializing gripper!")
+
+
+
+    def set_frame(self, trans, rot, frame="tcp", ref_frame="tfc"):
+        request = SetSystemFrame.Request()
+        request.name = frame
+        request.ref = ref_frame
+        request.pos = trans
+        request.rot = rot
+
+        future = self.set_kassow_frame_client.call_async(request)
+        rclpy.spin_until_future_complete(self, future)
+
+        try:
+            response = future.result()
+            if response.success:
+                self.get_logger().info(f"Frame '{frame}' set successfully!")
+            else:
+                self.get_logger().warn(f"Failed to set frame '{frame}'!")
+        except Exception as e:
+            self.get_logger().error(f"Service call of SetSystemFrame failed: {e}")
 
 
 
@@ -34,22 +74,24 @@ class GripperHandler(Node):
         return self.gripper_closed
 
 
-
     def set_output(self, dout_index):
         """ Setzt einen digitalen Ausgang asynchron """
         request = SetDiscreteOutput.Request()
         request.index = dout_index
         request.value = 1
-
+    
+        self.get_logger().info(f"Sending request to set digital output {dout_index}...")
+    
         future = self.set_output_client.call_async(request)
         rclpy.spin_until_future_complete(self, future)
-
+    
         if future.result() is not None and future.result().success:
-            # self.get_logger().info(f"Digital output {dout_index} set successfully.")
+            self.get_logger().info(f"Digital output {dout_index} set successfully.")
             return True
         else:
-            self.get_logger().error(f"Error setting digital output {dout_index}!")
+            self.get_logger().error(f"Error setting digital output {dout_index}! Response: {future.result()}")
             return False
+
 
 
 
@@ -77,7 +119,7 @@ class GripperHandler(Node):
             self.gripper_closed = True
             self.get_logger().info("Gripper closed.")
         else:
-            self.gripper_closed = None
+            self.gripper_closed = False  # Setze explizit auf False, wenn es fehlschlägt
             self.get_logger().error("Error closing gripper!")
 
 
@@ -88,8 +130,9 @@ class GripperHandler(Node):
             self.gripper_closed = False
             self.get_logger().info("Gripper opened.")
         else:
-            self.gripper_closed = None
+            self.gripper_closed = True  # Falls der Befehl fehlschlägt, bleibt der Greifer geschlossen
             self.get_logger().error("Error opening gripper!")
+
 
 
 
@@ -109,3 +152,5 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
+

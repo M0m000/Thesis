@@ -1,0 +1,28 @@
+[1.426s] Invoking command in '/home/mo/Thesis/src/action_servers': CMAKE_PREFIX_PATH=/home/mo/Thesis/install/action_interfaces:/home/mo/Thesis/install/kr_example_cpp:/home/mo/Thesis/install/kr_msgs LD_LIBRARY_PATH=/home/mo/Thesis/install/action_interfaces/lib:/home/mo/Thesis/install/kr_msgs/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib PYTHONPATH=/home/mo/Thesis/build/action_servers/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/action_servers/lib/python3.8/site-packages:/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages:/home/mo/Thesis/build/vision:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:/home/mo/Thesis/build/vcnanoz:/home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages:/home/mo/Thesis/build/sensopart_visor:/home/mo/Thesis/install/sensopart_visor/lib/python3.8/site-packages:/home/mo/Thesis/build/robot_control:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/build/kr_example_python:/home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_msgs/lib/python3.8/site-packages:/home/mo/Thesis/build/action_servers:/home/mo/Thesis/install/action_servers/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/action_servers build --build-base /home/mo/Thesis/build/action_servers/build install --record /home/mo/Thesis/build/action_servers/install.log --single-version-externally-managed install_data
+[1.747s] running egg_info
+[1.765s] writing ../../build/action_servers/action_servers.egg-info/PKG-INFO
+[1.766s] writing dependency_links to ../../build/action_servers/action_servers.egg-info/dependency_links.txt
+[1.766s] writing entry points to ../../build/action_servers/action_servers.egg-info/entry_points.txt
+[1.766s] writing requirements to ../../build/action_servers/action_servers.egg-info/requires.txt
+[1.766s] writing top-level names to ../../build/action_servers/action_servers.egg-info/top_level.txt
+[1.909s] reading manifest file '../../build/action_servers/action_servers.egg-info/SOURCES.txt'
+[1.911s] writing manifest file '../../build/action_servers/action_servers.egg-info/SOURCES.txt'
+[1.911s] running build
+[1.911s] running build_py
+[1.911s] copying action_servers/transform_action_server.py -> /home/mo/Thesis/build/action_servers/build/lib/action_servers
+[1.912s] copying action_servers/MoveTcpAlongAxis_action_server.py -> /home/mo/Thesis/build/action_servers/build/lib/action_servers
+[1.912s] copying action_servers/__init__.py -> /home/mo/Thesis/build/action_servers/build/lib/action_servers
+[1.912s] running install
+[1.916s] running install_lib
+[1.935s] running install_data
+[1.935s] copying resource/action_servers -> /home/mo/Thesis/install/action_servers/share/ament_index/resource_index/packages
+[1.935s] copying package.xml -> /home/mo/Thesis/install/action_servers/share/action_servers
+[1.935s] running install_egg_info
+[1.955s] removing '/home/mo/Thesis/install/action_servers/lib/python3.8/site-packages/action_servers-0.0.0-py3.8.egg-info' (and everything under it)
+[1.955s] Copying ../../build/action_servers/action_servers.egg-info to /home/mo/Thesis/install/action_servers/lib/python3.8/site-packages/action_servers-0.0.0-py3.8.egg-info
+[1.956s] running install_scripts
+[1.999s] Installing MoveTcpAlongAxis_action_server script to /home/mo/Thesis/install/action_servers/lib/action_servers
+[2.000s] Installing fibonacci_action_server script to /home/mo/Thesis/install/action_servers/lib/action_servers
+[2.000s] Installing transform_action_server script to /home/mo/Thesis/install/action_servers/lib/action_servers
+[2.000s] writing list of installed files to '/home/mo/Thesis/build/action_servers/install.log'
+[2.024s] Invoked command in '/home/mo/Thesis/src/action_servers' returned '0': CMAKE_PREFIX_PATH=/home/mo/Thesis/install/action_interfaces:/home/mo/Thesis/install/kr_example_cpp:/home/mo/Thesis/install/kr_msgs LD_LIBRARY_PATH=/home/mo/Thesis/install/action_interfaces/lib:/home/mo/Thesis/install/kr_msgs/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib PYTHONPATH=/home/mo/Thesis/build/action_servers/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/action_servers/lib/python3.8/site-packages:/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages:/home/mo/Thesis/build/vision:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:/home/mo/Thesis/build/vcnanoz:/home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages:/home/mo/Thesis/build/sensopart_visor:/home/mo/Thesis/install/sensopart_visor/lib/python3.8/site-packages:/home/mo/Thesis/build/robot_control:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/build/kr_example_python:/home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_msgs/lib/python3.8/site-packages:/home/mo/Thesis/build/action_servers:/home/mo/Thesis/install/action_servers/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/action_servers build --build-base /home/mo/Thesis/build/action_servers/build install --record /home/mo/Thesis/build/action_servers/install.log --single-version-externally-managed install_data
