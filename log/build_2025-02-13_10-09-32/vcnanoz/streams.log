@@ -1,0 +1,23 @@
+[1.392s] Invoking command in '/home/mo/Thesis/build/vcnanoz': PYTHONPATH=/home/mo/Thesis/build/vcnanoz/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/mo/Thesis/build/vcnanoz/build --no-deps symlink_data --force
+[1.727s] running develop
+[1.954s] running egg_info
+[1.978s] writing vcnanoz.egg-info/PKG-INFO
+[1.978s] writing dependency_links to vcnanoz.egg-info/dependency_links.txt
+[1.978s] writing entry points to vcnanoz.egg-info/entry_points.txt
+[1.979s] writing requirements to vcnanoz.egg-info/requires.txt
+[1.979s] writing top-level names to vcnanoz.egg-info/top_level.txt
+[2.025s] reading manifest file 'vcnanoz.egg-info/SOURCES.txt'
+[2.026s] writing manifest file 'vcnanoz.egg-info/SOURCES.txt'
+[2.075s] running build_ext
+[2.075s] Creating /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz.egg-link (link to .)
+[2.076s] Installing srvClient_vc_startup script to /home/mo/Thesis/install/vcnanoz/lib/vcnanoz
+[2.076s] Installing srvServer_vc_startup script to /home/mo/Thesis/install/vcnanoz/lib/vcnanoz
+[2.076s] Installing vc_img_receiver script to /home/mo/Thesis/install/vcnanoz/lib/vcnanoz
+[2.077s] Installing vc_shutdown script to /home/mo/Thesis/install/vcnanoz/lib/vcnanoz
+[2.077s] Installing vc_startup script to /home/mo/Thesis/install/vcnanoz/lib/vcnanoz
+[2.077s] 
+[2.077s] Installed /home/mo/Thesis/build/vcnanoz
+[2.077s] running symlink_data
+[2.078s] symbolically linking /home/mo/Thesis/build/vcnanoz/resource/vcnanoz -> /home/mo/Thesis/install/vcnanoz/share/ament_index/resource_index/packages
+[2.078s] symbolically linking /home/mo/Thesis/build/vcnanoz/package.xml -> /home/mo/Thesis/install/vcnanoz/share/vcnanoz
+[2.478s] Invoked command in '/home/mo/Thesis/build/vcnanoz' returned '0': PYTHONPATH=/home/mo/Thesis/build/vcnanoz/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/mo/Thesis/build/vcnanoz/build --no-deps symlink_data --force

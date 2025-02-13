@@ -1,1 +1,32 @@
-/home/mo/Thesis/build/robot_control/config/vc_params.yaml
+vc_startup_node:
+  ros__parameters:
+    shutter_time: 20000
+    gain: 10
+
+vc_img_receiver_node:
+  ros__parameters:
+    ipv4: "192.168.3.15"
+    port: 2002
+    img_width: 896
+    img_height: 450
+    rgb_stream: False
+    show_img: False
+    take_pictures: False
+
+yolov8_inference_node:
+  ros__parameters:
+    yolov8_inference_node: "/home/mo/Thesis/YoloV8_InstanceSeg/runs/train/medium/full_set/20250118_1640/weights/best.pt"
+    confidence_threshold: 0.2
+    do_preprocessing: True
+    show_cam_img: False
+    show_output_img: True
+    show_point_img: True
+    publish_masks: True
+    filter_alpha: 0.6
+    filter_windowsize: 1
+    
+scan_bar_horizontal_triangulation_node:
+  ros__parameters:
+    do_vibration_test: False
+    speed_in_mm_per_s: 15.0
+    num_hooks_existing: 25

@@ -19,6 +19,8 @@ class ScanBarHorizontalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_horizontal_triangulation')
 
+        self.node_shutdown_flag = False
+
         self.declare_parameter('num_hooks_existing', 1)
         self.num_hooks_existing = self.get_parameter('num_hooks_existing').get_parameter_value().integer_value
         self.declare_parameter('do_vibration_test', False)
@@ -298,7 +300,7 @@ class ScanBarHorizontalTriangulation(Node):
             self.global_hooks_dict[str(self.act_hook_num)]['tfc_worldframe'], _, _ = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
 
             self.get_logger().info(f"already scanned: {len(self.global_hooks_dict)} Hooks")
-            
+
             if len(self.global_hooks_dict) == self.num_hooks_existing:
                 self.get_logger().info("Done! -> next process step <Save Global Dict as CSV>")
                 self.process_step = "save_global_dict_as_csv"
@@ -348,13 +350,6 @@ class ScanBarHorizontalTriangulation(Node):
                 time.sleep(3)
                 self.process_step = "extract_hook_3_as_horizontal_point"
 
-        # Extrahier Hook 2 als Horizontal Point
-        if self.process_step == "extract_hook_2_as_horizontal_point_final":
-            
-            print("Jetzt")
-
-
-
         # Speichern des Global Dict als CSV, wenn Scanvorgang fertig
         if self.process_step == "save_global_dict_as_csv":
             save_dict_to_csv(node = self, data = self.global_hooks_dict, filename = 'src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv')
@@ -364,9 +359,9 @@ class ScanBarHorizontalTriangulation(Node):
         # Endzustand
         if self.process_step == "finish":
             self.get_logger().info("Scan finished!")
+            self.node_shutdown_flag = True
 
     
-
 
     def save_vibration_data_to_csv(self):
         """
@@ -446,7 +441,13 @@ class ScanBarHorizontalTriangulation(Node):
             
 
         
-
+    def shutdown_node(self):
+        # Timer stoppen und Node zerstören
+        self.process_timer.cancel()
+        self.timer_check_new_instances.cancel()
+        self.get_logger().info("Shutting down node...")
+        self.destroy_node()
+        rclpy.shutdown()
 
 
 
@@ -455,12 +456,13 @@ def main(args=None):
     node = ScanBarHorizontalTriangulation()
 
     try:
-        rclpy.spin(node)
+        while rclpy.ok():
+            rclpy.spin_once(node, timeout_sec=0.001)
+            if node.node_shutdown_flag:
+                node.shutdown_node()
+                break
     except KeyboardInterrupt:
-        pass
-    finally:
-        node.destroy_node()
-        rclpy.shutdown()
+        node.shutdown_node()
 
 if __name__ == '__main__':
     main()

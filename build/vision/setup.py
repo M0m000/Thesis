@@ -1,1 +1,0 @@
-/home/mo/Thesis/src/vision/setup.py

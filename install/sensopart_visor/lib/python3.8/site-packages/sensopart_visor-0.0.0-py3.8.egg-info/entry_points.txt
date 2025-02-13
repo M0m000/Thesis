@@ -1,0 +1,3 @@
+[console_scripts]
+visor_shutdown = sensopart_visor.visor_shutdown:main
+visor_startup = sensopart_visor.visor_startup:main

@@ -92,10 +92,6 @@ class VCStartupNode(Node):
             stdin, stdout, stderr = ssh.exec_command(command2)
 
             self.get_logger().info('Reading command output...')
-            ssh.close()
-            self.get_logger().info('SSH-Connection closed.')
-            self.shutdown_node()
-            '''
             while True:
                 output_line = stdout.readline()
                 if output_line:
@@ -108,12 +104,16 @@ class VCStartupNode(Node):
                     break
                 if not output_line and not error_line:
                     break
-            '''
             
 
         except Exception as e:
             self.get_logger().error(f'SSH-ERROR: {e}')
-            
+        '''
+        finally:
+            ssh.close()
+            self.get_logger().info('SSH-Connection closed.')
+            self.shutdown_node()
+        '''
 
     def shutdown_node(self):
         self.get_logger().info('Shutting down node...')
