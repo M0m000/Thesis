@@ -3,6 +3,7 @@ from rclpy.node import Node
 from FC.FC_save_load_global_hook_dict import load_csv_to_dict
 from FC.FC_frame_handler import FrameHandler
 import numpy as np
+from scipy.spatial.transform import Rotation as R
 
 
 class GeometricsHandler(Node):
@@ -20,7 +21,7 @@ class GeometricsHandler(Node):
 
         # Instanziieren eines Frame Handlers
         self.frame_handler = FrameHandler(node_name = "frame_handler_for_geometrics_handler")
-        self.get_logger().info("Frame Handler for Geomtrics Handler instantiated successfully!")
+        self.get_logger().info("Frame Handler for Geometrics Handler instantiated successfully!")
 
 
         # speichern der aktuellen Hakeninstanz
@@ -40,9 +41,10 @@ class GeometricsHandler(Node):
         self.hook_tfc_pos_in_workframe = None
         self.hook_tfc_pos_in_worldframe = None
 
-
-        # Dict für die Gerade (Stützpunkt und Richtungsvektor)
         self.hook_line = {}
+        self.plane = None
+        self.plane_midpoint = None
+        self.delta_angles = None
 
 
 
@@ -63,6 +65,7 @@ class GeometricsHandler(Node):
             self.lowpoint_pos_in_camframe = self.global_scan_dict[str(hook_num)]['xyz_lowpoint']
             self.lowpoint_pos_in_workframe = self.global_scan_dict[str(hook_num)]['xyz_lowpoint_workframe']
             return self.hook_entry
+        
         
 
 
@@ -104,25 +107,118 @@ class GeometricsHandler(Node):
     
     def calculate_hook_line(self):
         if self.hook_pos_in_tfcframe is not None and self.tip_pos_in_tfcframe is not None and self.lowpoint_pos_in_tfcframe is not None:
-            p_0 = self.lowpoint_pos_in_tfcframe
-            p_dir = self.tip_pos_in_tfcframe - p_0
+            p_0 = self.lowpoint_pos_in_tfcframe     # p_0 ist Lowpoint
+            p_1 = self.tip_pos_in_tfcframe          # p_1 ist Spitze
+            p_dir = p_1 - p_0
 
             abs_p_dir = np.linalg.norm(p_dir)
             if abs_p_dir != 0:
                 p_dir /= abs_p_dir
 
             self.hook_line['p_0'] = p_0
+            self.hook_line['p_1'] = p_1
             self.hook_line['p_dir'] = p_dir
             return self.hook_line
         
 
 
 
-    def calculate_plane(self):
-        pass
+    def calculate_plane(self, trans, rot):
+        """
+        Berechnet die Ebene basierend auf festen translatorischen und rotatorischen Werte in Bezug auf TCP
+        """
+        x, y, z = trans
+        roll, pitch, yaw = rot
         
+        # Berechne Rotationsmatrix
+        R = self.frame_handler.calculate_rot_matrix(rot = rot)
+
+        # Berechne Normalenvektor in Pinhole-Frame und in TCP-Frame
+        normal_in_pinhole_frame = np.array([1.0, 0.0, 0.0])     # Normalenvektor im Pinhole ist die x-Achse
+        normal_in_tcp_frame = R @ normal_in_pinhole_frame
+        abs_normal_in_tcp_frame = np.linalg.norm(normal_in_tcp_frame)
+        if abs_normal_in_tcp_frame != 0.0:
+            normal_in_tcp_frame /= abs_normal_in_tcp_frame
+
+        # Berechne Ebenengleichung des Pinhole in TCP-Frame
+        n_x, n_y, n_z = normal_in_tcp_frame
+        d = -(n_x * x + n_y * y + n_z * z)
+        self.plane = (n_x, n_y, n_z, d)
+        self.plane_midpoint = np.array(trans)
+        return n_x, n_y, n_z, d
+    
 
 
+
+    def calculate_adjustment_angles(self, plane = None, line_dir = None):
+        """
+        Berechnet die notwendigen Roll-Pitch-Yaw-Winkel, um die Ebene so zu drehen,
+        dass ihr Normalenvektor mit dem Richtungsvektor der Geraden übereinstimmt.
+
+        plane: Tuple (n_x, n_y, n_z, d) - Normalenvektor der Ebene
+        line_dir: Liste [d_x, d_y, d_z] - Richtungsvektor der Geraden
+        return: Liste [delta_roll, delta_pitch, delta_yaw] in Radiant
+        """
+        if plane is None:
+            plane = self.plane
+
+        if line_dir is None:
+            line_dir = self.hook_line['p_dir']
+
+        n = np.array(plane[:3])  # Normalenvektor der Ebene
+        d = np.array(line_dir)   # Richtungsvektor der Geraden
+
+        # Berechnung der Rotationsachse
+        rot_axis = np.cross(n, d)
+        if np.linalg.norm(rot_axis) < 1e-6:
+            return [0.0, 0.0, 0.0]  # Bereits korrekt ausgerichtet -> Kreuzprodukt ist Null -> Vektoren parallel
+        else:
+            rot_axis /= np.linalg.norm(rot_axis)  # Normieren der Rotationsachse
+
+        # Berechnung des Winkels
+        angle = np.arccos(np.clip(np.dot(n, d) / (np.linalg.norm(n) * np.linalg.norm(d)), -1.0, 1.0))
+
+        # Rotationsmatrix um die Achse erstellen
+        rotation_matrix = R.from_rotvec(angle * rot_axis).as_matrix()
+
+        # Euler-Winkel aus der Rotationsmatrix extrahieren
+        self.delta_angles = R.from_matrix(rotation_matrix).as_euler('xyz')
+        # self.delta_angles = self.delta_angles.tolist()
+        self.delta_angles = np.array(self.delta_angles) * (180 / np.pi)  # Umrechnung in Grad
+        return self.delta_angles
+    
+
+
+
+    def calculate_translation_difference(self, target_position = None, plane = None, plane_midpoint = None):
+        """
+        Berechnet die Reglerdifferenz für die translatorische Verschiebung
+        zwischen dem Mittelpunkt der Ebene und einem Zielpunkt.
+
+        plane: Tuple (n_x, n_y, n_z, d) - Normalenvektor der Ebene und der Abstand d
+        target_position: Liste [x_t, y_t, z_t] - Zielposition, an die der Mittelpunkt verschoben werden soll
+
+        return: Liste [delta_x, delta_y, delta_z] - Differenz in den drei Richtungen
+        """
+        if plane is None:
+            plane = self.plane
+            plane_midpoint = self.plane_midpoint
+        
+        if target_position is None:
+            target_position = self.hook_line['p_1']
+
+        # Der Mittelpunkt der Ebene
+        P_center = self.plane_midpoint
+        P_target = np.array(target_position)
+
+        # Berechne die Differenz (Verschiebung)
+        translation_diff = P_target - P_center
+        return translation_diff
+
+
+
+
+        
 
 def main(args=None):
     rclpy.init(args=args)

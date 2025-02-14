@@ -104,15 +104,15 @@ class ScanBarHorizontalTriangulation(Node):
         if startpoint_rot_worldframe is not None and startpoint_trans_worldframe is not None:
             self.startpoint_movement_done = False
             self.startpoint_movement_done = self.move_linear_client.call_move_linear_service(pos = startpoint_trans_worldframe,
-                                                                    rot = startpoint_rot_worldframe,
-                                                                    ref = 0,
-                                                                    ttype = 0,
-                                                                    tvalue = 80.0,
-                                                                    bpoint = 0,
-                                                                    btype = 0,
-                                                                    bvalue = 100.0,
-                                                                    sync = 0.0,
-                                                                    chaining = 0)
+                                                                                             rot = startpoint_rot_worldframe,
+                                                                                             ref = 0,
+                                                                                             ttype = 0,
+                                                                                             tvalue = 80.0,
+                                                                                             bpoint = 0,
+                                                                                             btype = 0,
+                                                                                             bvalue = 100.0,
+                                                                                             sync = 0.0,
+                                                                                             chaining = 0)
         if self.startpoint_movement_done == True:
             self.get_logger().info("Init movement done successfully!")
             self.process_step = "move_until_2_hooks_visible"

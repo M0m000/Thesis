@@ -5,12 +5,32 @@ from FC.FC_gripper_handler import GripperHandler
 from FC.FC_geometrics_handler import GeometricsHandler
 from FC.FC_frame_handler import FrameHandler
 from FC.FC_call_move_linear_service import MoveLinearServiceClient
+from kr_msgs.msg import JogLinear
+from kr_msgs.srv import SelectJoggingFrame
 import time
 
 
 class DummyNode(Node):
     def __init__(self):
         super().__init__('_dummy_node')
+        
+        # Publisher für Linear Servoing
+        self.jog_publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
+        self.jog_publisher_timer = self.create_timer(0.01, self.publish_velocity)
+        self.velocity_trans = [0.0, 0.0, 0.0]
+        self.velocity_rot = [0.0, 0.0, 0.0]
+
+        # Client für Auswahl von Servoing Frame
+        self.select_jog_frame_client = self.create_client(SelectJoggingFrame, '/kr/motion/select_jogging_frame')
+        while not self.select_jog_frame_client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info("Waiting for service SelectJoggingFrame...")
+        self.get_logger().info("Service SelectJoggingFrame available!")
+
+        req = SelectJoggingFrame.Request()
+        req.ref = 0
+        future = self.select_jog_frame_client.call_async(req)
+        future.add_done_callback(self.select_jogging_frame_callback)
+
 
         # Instanz Geometrics Handler
         self.geometrics_handler = GeometricsHandler()
@@ -49,7 +69,7 @@ class DummyNode(Node):
         self.grip_post_pos_in_worldframe, self.grip_post_rot_in_worldframe = self.frame_handler.transform_pose_to_world(trans = self.grip_post_pos_in_workframe,
                                                                                                                         rot = self.grip_post_rot_in_workframe,
                                                                                                                         pose_ref_frame = "work")
-
+        '''
         self.grip_pre_pos_movement_done = False
         self.grip_pre_pos_movement_done = self.move_lin_client.call_move_linear_service(pos = self.grip_pre_pos_in_worldframe,
                                                                                         rot = self.grip_pre_rot_in_worldframe,
@@ -91,47 +111,62 @@ class DummyNode(Node):
                                                                                          bvalue = 100.0,
                                                                                          sync = 0.0,
                                                                                          chaining = 0)
-            
+        '''
+        
+        self.geometrics_handler.update_hook_data(hook_num = 10)
+        self.geometrics_handler.calculate_hook_line()
+        plane = self.geometrics_handler.calculate_plane(trans = [0, 0, 0], rot = [0, 0, 0])
+        adjustment_angles = self.geometrics_handler.calculate_adjustment_angles()
+        translation_diff = self.geometrics_handler.calculate_translation_difference()
+        translation_diff[2] -= 100.0
+
+        print(f"Ebenengleichung: ({plane[0]:.3f}) * X + ({plane[1]:.3f}) * Y + ({plane[2]:.3f}) * Z + ({plane[3]:.3f}) = 0")
+        print(f"Rotation difference: Roll={adjustment_angles[0]:.3f}, Pitch={adjustment_angles[1]:.3f}, Yaw={adjustment_angles[2]:.3f}")
+        print(f"Translation difference: x={translation_diff[0]:.3f}, y={translation_diff[1]:.3f}, z={translation_diff[2]:.3f}")
+
+        self.control_timer = self.create_timer(0.001, self.control)
 
 
-        # Tastatur-Listener starten
-        # self.listener = keyboard.Listener(on_release=self.on_key_press)
-        # self.listener.start()
 
 
 
-
-    def on_key_press(self, key):
-        """ Wird aufgerufen, wenn eine Taste gedrückt wird """
+    def select_jogging_frame_callback(self, future):
         try:
-            if key.char == 'c':  # Greifer schließen
-                self.get_logger().info("Schließe den Greifer...")
-                self.create_task(self.gripper_handler.close_gripper)
-
-            elif key.char == 'v':  # Greifer öffnen
-                self.get_logger().info("Öffne den Greifer...")
-                self.create_task(self.gripper_handler.open_gripper)
-
-            elif key.char == 'q':  # Programm beenden
-                self.get_logger().info("Beende das Programm...")
-                self.listener.stop()
-                rclpy.shutdown()
-
-        except AttributeError:
-            pass  # Sondertasten ignorieren
-
-    def create_task(self, function):
-        """ Führt eine ROS-Funktion sicher im ROS-Executor aus """
-        future = self.executor.create_task(function)
-        future.add_done_callback(self.task_callback)
-
-    def task_callback(self, future):
-        """ Callback-Funktion für abgeschlossene Tasks """
-        try:
-            result = future.result()
-            self.get_logger().info(f"Task abgeschlossen: {result}")
+            response = future.result()
+            if response.success:
+                self.get_logger().info('Service call SelectJoggingFrame successful!')
+            else:
+                self.get_logger().info('Service call SelectJoggingFrame failed!')
         except Exception as e:
-            self.get_logger().error(f"Task-Fehler: {e}")
+            self.get_logger().error(f'Error calling service SelectJoggingFrame: {e}')
+
+
+
+    def control(self):
+        self.geometrics_handler.update_hook_data(hook_num = 17)
+        self.geometrics_handler.calculate_hook_line()
+        adjustment_angles = self.geometrics_handler.calculate_adjustment_angles()
+        translation_diff = self.geometrics_handler.calculate_translation_difference()
+        translation_diff[2] -= 100.0
+
+        rotation_diff_worldframe = self.frame_handler.tansform_velocity_to_world(vel = adjustment_angles, from_frame = 'tfc')
+        translation_diff_worldframe = self.frame_handler.tansform_velocity_to_world(vel = translation_diff, from_frame = 'tfc')
+
+        print(translation_diff_worldframe, rotation_diff_worldframe)
+        
+        self.velocity_trans = translation_diff_worldframe * 0.1
+        self.velocity_rot = rotation_diff_worldframe * 0.1
+
+
+
+    def publish_velocity(self):
+        msg = JogLinear()
+        msg.vel = self.velocity_trans
+        msg.rot = self.velocity_rot
+
+        self.jog_publisher.publish(msg = msg)
+
+
 
 
 
