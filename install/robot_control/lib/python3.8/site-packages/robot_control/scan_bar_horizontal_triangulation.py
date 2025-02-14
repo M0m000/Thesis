@@ -82,9 +82,9 @@ class ScanBarHorizontalTriangulation(Node):
         self.frame_handler = FrameHandler(node_name = 'frame_handler_node_for_scan_bar', save_path = frame_csv_path)
         self.cam_to_world_transform = None
 
-        startpoint_trans_in_workframe = [130.0, -420.0, 100.0]
+        startpoint_trans_in_workframe = [130.0, -430.0, 100.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
-        startpoint_trans_worldframe, startpoint_rot_worldframe = self.frame_handler.transform_pose_to_world(trans = startpoint_trans_in_workframe,
+        self.startpoint_trans_worldframe, self.startpoint_rot_worldframe = self.frame_handler.transform_pose_to_world(trans = startpoint_trans_in_workframe,
                                                                                                             rot = startpoint_rot_in_workframe,
                                                                                                             pose_ref_frame = 'work')
         
@@ -101,19 +101,20 @@ class ScanBarHorizontalTriangulation(Node):
 
         ########## Bewege Roboter auf die Startposition ##########
         self.startpoint_movement_done = False
-        if startpoint_rot_worldframe is not None and startpoint_trans_worldframe is not None:
+        if self.startpoint_rot_worldframe is not None and self.startpoint_trans_worldframe is not None:
             self.startpoint_movement_done = False
-            self.startpoint_movement_done = self.move_linear_client.call_move_linear_service(pos = startpoint_trans_worldframe,
-                                                                    rot = startpoint_rot_worldframe,
-                                                                    ref = 0,
-                                                                    ttype = 0,
-                                                                    tvalue = 80.0,
-                                                                    bpoint = 0,
-                                                                    btype = 0,
-                                                                    bvalue = 100.0,
-                                                                    sync = 0.0,
-                                                                    chaining = 0)
+            self.startpoint_movement_done = self.move_linear_client.call_move_linear_service(pos = self.startpoint_trans_worldframe,
+                                                                                             rot = self.startpoint_rot_worldframe,
+                                                                                             ref = 0,
+                                                                                             ttype = 0,
+                                                                                             tvalue = 80.0,
+                                                                                             bpoint = 0,
+                                                                                             btype = 0,
+                                                                                             bvalue = 100.0,
+                                                                                             sync = 0.0,
+                                                                                             chaining = 0)
         if self.startpoint_movement_done == True:
+            self.startpoint_movement_done = False
             self.get_logger().info("Init movement done successfully!")
             self.process_step = "move_until_2_hooks_visible"
         else:
@@ -199,7 +200,7 @@ class ScanBarHorizontalTriangulation(Node):
             self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
             self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
 
-            _, _, self.robot_position_ref = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
+            _, _, self.robot_position_ref = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
             self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_ref[:3, 3], 'work')
             self.get_logger().info("Done! -> next process step <Move Until New Hook>")
             self.process_step = "move_until_new_hook"
@@ -242,7 +243,7 @@ class ScanBarHorizontalTriangulation(Node):
                 self.hook_horizontal['uv_tip'] = self.yolo_hooks_dict['hook_3']['uv_tip']
                 self.hook_horizontal['uv_lowpoint'] = self.yolo_hooks_dict['hook_3']['uv_lowpoint']
 
-            _, _, self.robot_position_horizontal = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
+            _, _, self.robot_position_horizontal = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
             self.robot_position_horizontal = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_horizontal[:3, 3], 'work')
             self.get_logger().info("Done! -> next process step <Horizontal Triangulation>")
             self.process_step = "horizontal_triangulation"
@@ -354,8 +355,24 @@ class ScanBarHorizontalTriangulation(Node):
         if self.process_step == "save_global_dict_as_csv":
             save_dict_to_csv(node = self, data = self.global_hooks_dict, filename = 'src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv')
             self.get_logger().info("Done! -> next process step <Finish>")
-            self.process_step = "finish"
+            self.process_step = "move_back_to_init"
 
+        # Endzustand
+        if self.process_step == "move_back_to_init":
+            self.startpoint_movement_done = self.move_linear_client.call_move_linear_service(pos = self.startpoint_trans_worldframe,
+                                                                                             rot = self.startpoint_rot_worldframe,
+                                                                                             ref = 0,
+                                                                                             ttype = 0,
+                                                                                             tvalue = 60.0,
+                                                                                             bpoint = 0,
+                                                                                             btype = 0,
+                                                                                             bvalue = 100.0,
+                                                                                             sync = 0.0,
+                                                                                             chaining = 0)
+            if self.startpoint_movement_done:
+                self.get_logger().info("Done! -> next process step <Finish>")
+                self.process_step = "finish"
+        
         # Endzustand
         if self.process_step == "finish":
             self.get_logger().info("Scan finished!")

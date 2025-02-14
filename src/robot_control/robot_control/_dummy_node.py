@@ -12,8 +12,11 @@ import time
 
 class DummyNode(Node):
     def __init__(self):
-        super().__init__('_dummy_node')
+        super().__init__('control')
         
+        self.declare_parameter('hook_num', 10)
+        self.hook_num = self.get_parameter('hook_num').get_parameter_value().integer_value
+
         # Publisher für Linear Servoing
         self.jog_publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
         self.jog_publisher_timer = self.create_timer(0.01, self.publish_velocity)
@@ -113,7 +116,7 @@ class DummyNode(Node):
                                                                                          chaining = 0)
         '''
         
-        self.geometrics_handler.update_hook_data(hook_num = 10)
+        self.geometrics_handler.update_hook_data(hook_num = self.hook_num)
         self.geometrics_handler.calculate_hook_line()
         plane = self.geometrics_handler.calculate_plane(trans = [0, 0, 0], rot = [0, 0, 0])
         adjustment_angles = self.geometrics_handler.calculate_adjustment_angles()
@@ -143,19 +146,19 @@ class DummyNode(Node):
 
 
     def control(self):
-        self.geometrics_handler.update_hook_data(hook_num = 17)
+        self.geometrics_handler.update_hook_data(hook_num = self.hook_num)
         self.geometrics_handler.calculate_hook_line()
         adjustment_angles = self.geometrics_handler.calculate_adjustment_angles()
         translation_diff = self.geometrics_handler.calculate_translation_difference()
-        translation_diff[2] -= 100.0
+        translation_diff[2] -= 112.0
 
         rotation_diff_worldframe = self.frame_handler.tansform_velocity_to_world(vel = adjustment_angles, from_frame = 'tfc')
         translation_diff_worldframe = self.frame_handler.tansform_velocity_to_world(vel = translation_diff, from_frame = 'tfc')
 
         print(translation_diff_worldframe, rotation_diff_worldframe)
         
-        self.velocity_trans = translation_diff_worldframe * 0.1
-        self.velocity_rot = rotation_diff_worldframe * 0.1
+        self.velocity_trans = translation_diff_worldframe * 0.5
+        self.velocity_rot = rotation_diff_worldframe * 0.3
 
 
 
