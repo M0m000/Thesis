@@ -18,57 +18,8 @@ bvalue: 100.0
 sync: 0.0
 chaining: 0"
 
-# links anfang
-ros2 service call /kr/motion/move_linear kr_msgs/srv/MoveLinear "pos: [-500.0, 200.0, 400.0]
-rot: [0.0, 0.0, 0.0]
-ref: 2
-ttype: 0
-tvalue: 250.0
-bpoint: 0
-btype: 0
-bvalue: 100.0
-sync: 0.0
-chaining: 0"
 
 
-ros2 service call /kr/motion/move_linear kr_msgs/srv/MoveLinear "pos: [800.0, 0.0, 0.0]
-rot: [0.0, 0.0, 0.0]
-ref: 2
-ttype: 0
-tvalue: 250.0
-bpoint: 0
-btype: 0
-bvalue: 100.0
-sync: 0.0
-chaining: 0"
-
-
-
-
-
-ros2 service call /kr/motion/move_joint kr_msgs/srv/MoveJoint "jsconf: [90.0, 20.0, 0.0, 110.0, 180.0, -50.0, 90.0]
-ttype: 0
-tvalue: 30.0
-bpoint: 0
-btype: 0
-bvalue: 100.0
-sync: 0.0
-chaining: 0"
-
-
-
-
-Pose Gripper
-ros2 service call /kr/robot/get_robot_pose kr_msgs/srv/GetRobotPose
-/opt/ros/foxy/bin/ros2:6: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
-  from pkg_resources import load_entry_point
-waiting for service to become available...
-requester: making request: kr_msgs.srv.GetRobotPose_Request()
-
-response:
-kr_msgs.srv.GetRobotPose_Response(pos=array([-310.44280038,  493.82055554,  631.28255419]), rot=array([-88.38905033,   0.11879382,  -0.27245606]), jsconf=array([-11.39179013, -46.22030191,  96.12186415,  77.94032951,
-       184.41028861,  -3.07541897, 131.92051617]), success=True)
-       
-       
-Pre Pose Gripper
+ros2 service call /kr/robot/get_system_frame kr_msgs/srv/GetSystemFrame "name: 'tfc'
+ref: 'world'"
 

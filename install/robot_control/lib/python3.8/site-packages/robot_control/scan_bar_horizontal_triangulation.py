@@ -8,6 +8,8 @@ from FC.FC_frame_handler import FrameHandler
 from FC.FC_stereo_triangulation_processor import StereoTriangulationProcessor
 from FC.FC_save_load_global_hook_dict import save_dict_to_csv, load_csv_to_dict
 from kr_msgs.msg import JogLinear
+from kr_msgs.srv import SelectJoggingFrame
+from kr_msgs.srv import SetSystemFrame
 from std_msgs.msg import Int32
 import os
 import time
@@ -68,6 +70,7 @@ class ScanBarHorizontalTriangulation(Node):
         self.measure_hook_2 = True
 
         self.robot_position_ref = None
+        self.T_robot_position_ref = None
         self.robot_position_horizontal = None
 
         # Instanz für Berechnung der Stereo Triangulation
@@ -85,11 +88,33 @@ class ScanBarHorizontalTriangulation(Node):
         startpoint_trans_in_workframe = [130.0, -430.0, 100.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
         self.startpoint_trans_worldframe, self.startpoint_rot_worldframe = self.frame_handler.transform_pose_to_world(trans = startpoint_trans_in_workframe,
-                                                                                                            rot = startpoint_rot_in_workframe,
-                                                                                                            pose_ref_frame = 'work')
+                                                                                                                      rot = startpoint_rot_in_workframe,
+                                                                                                                      pose_ref_frame = 'work')
         
         # Publisher für Linear Servoing
         self.vel_lin_publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
+
+        # Service Client SelectJogging Frame
+        self.select_jogging_frame_client = self.create_client(SelectJoggingFrame, '/kr/motion/select_jogging_frame')
+        while not self.select_jogging_frame_client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info("Waiting for service SelectJoggingFrame...")
+        self.get_logger().info("Service SelectJoggingFrame available!")
+
+        req = SelectJoggingFrame.Request()
+        req.ref = 0
+        future = self.select_jogging_frame_client.call_async(req)
+        rclpy.spin_until_future_complete(self, future)
+        if future.result() is not None:
+            self.get_logger().info("SelectJoggingFrame service call successful!")
+        else:
+            self.get_logger().error("Failed to call SelectJoggingFrame service")
+
+        # Service Client SetSystemFrame
+        self.set_kassow_frame_client = self.create_client(SetSystemFrame, '/kr/robot/set_system_frame')
+        while not self.set_kassow_frame_client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info("Waiting for Service SetSystemFrame...")
+        self.get_logger().info("Service SetSystemFrame available!")
+        self.set_frame([0.0, 0.0, 0.0], [0.0, 0.0, 0.0], frame="tcp", ref_frame="tfc")
 
         # Timer für Prozess
         self.process_step = None
@@ -101,6 +126,7 @@ class ScanBarHorizontalTriangulation(Node):
 
         ########## Bewege Roboter auf die Startposition ##########
         self.startpoint_movement_done = False
+        print(self.startpoint_rot_worldframe)
         if self.startpoint_rot_worldframe is not None and self.startpoint_trans_worldframe is not None:
             self.startpoint_movement_done = False
             self.startpoint_movement_done = self.move_linear_client.call_move_linear_service(pos = self.startpoint_trans_worldframe,
@@ -123,7 +149,27 @@ class ScanBarHorizontalTriangulation(Node):
         self.get_logger().info("Wait 5 sec...")
         time.sleep(3)
         ###########################################################
-        
+    
+
+
+    def set_frame(self, R, T, frame="tcp", ref_frame="tfc"):
+        request = SetSystemFrame.Request()
+        request.name = frame
+        request.ref = ref_frame
+        request.pos = T
+        request.rot = R
+
+        future = self.set_kassow_frame_client.call_async(request)
+        rclpy.spin_until_future_complete(self, future)
+
+        try:
+            response = future.result()
+            if response.success:
+                self.get_logger().info(f"Frame '{frame}' set successfully!")
+            else:
+                self.get_logger().warn(f"Failed to set frame '{frame}'!")
+        except Exception as e:
+            self.get_logger().error(f"Service call of SetSystemFrame failed: {e}")
 
 
 
@@ -132,7 +178,6 @@ class ScanBarHorizontalTriangulation(Node):
 
     def received_img_height(self, msg):
         self.img_height = msg.data
-    
     
     
 
@@ -200,8 +245,8 @@ class ScanBarHorizontalTriangulation(Node):
             self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
             self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
 
-            _, _, self.robot_position_ref = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
-            self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_ref[:3, 3], 'work')
+            _, _, self.T_robot_position_ref = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
+            self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.T_robot_position_ref[:3, 3], 'work')
             self.get_logger().info("Done! -> next process step <Move Until New Hook>")
             self.process_step = "move_until_new_hook"
 
@@ -281,9 +326,11 @@ class ScanBarHorizontalTriangulation(Node):
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook'] = hook_xyz
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip'] = tip_xyz
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint'] = lowpoint_xyz
-
-
-            self.cam_to_world_transform = self.frame_handler.get_cam_transform_in_world()
+            
+            robot_position_in_tfcframe = self.T_robot_position_ref
+            transform_cam_in_tfcframe = self.frame_handler.load_transformation_matrix_from_csv(frame_name = 'CAM_frame_in_tfc.csv')
+            # self.cam_to_world_transform = self.frame_handler.get_cam_transform_in_world()
+            self.cam_to_world_transform = robot_position_in_tfcframe @ transform_cam_in_tfcframe
 
             hook_xyz_hom = np.append(hook_xyz, 1)
             point = self.cam_to_world_transform @ hook_xyz_hom
@@ -299,6 +346,11 @@ class ScanBarHorizontalTriangulation(Node):
             
             self.global_hooks_dict[str(self.act_hook_num)]['tfc_workframe'] = self.robot_position_horizontal
             self.global_hooks_dict[str(self.act_hook_num)]['tfc_worldframe'], _, _ = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
+
+            self.get_logger().warn(f"Hook XYZ [horizontal]: {hook_xyz_hom}")
+            self.get_logger().warn(f"Tip XYZ [horizontal]: {tip_xyz_hom}")
+            self.get_logger().warn(f"Lowpoint XYZ [horizontal]: {lowpoint_xyz_hom}")
+            self.get_logger().warn(f"Time token for triangulation [horizontal]: {time_token}sec")
 
             self.get_logger().info(f"already scanned: {len(self.global_hooks_dict)} Hooks")
 
@@ -320,8 +372,8 @@ class ScanBarHorizontalTriangulation(Node):
                 self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
                 self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
 
-            _, _, self.robot_position_ref = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
-            self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_ref[:3, 3], 'work')
+            _, _, self.T_robot_position_ref = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
+            self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.T_robot_position_ref[:3, 3], 'work')
             
             if len(self.global_hooks_dict) == (self.num_hooks_existing - 2):
                 self.handling_last_two_hooks = True

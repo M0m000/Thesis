@@ -4,6 +4,7 @@ import numpy as np
 import os
 import time
 from kr_msgs.srv import GetSystemFrame
+from scipy.spatial.transform import Rotation as R
 
 
 class FrameHandler(Node):
@@ -115,6 +116,13 @@ class FrameHandler(Node):
 
 
 
+    def rotation_matrix_to_euler_angles(self, rotation_matrix):
+        r = R.from_matrix(rotation_matrix)  # Erstelle ein Rotation-Objekt aus der Matrix
+        euler_angles = r.as_euler('xyz', degrees=True)  # Berechne Euler-Winkel, hier 'xyz' als Beispiel, kannst auch andere Achsenbestellungen verwenden
+        return euler_angles
+
+
+    '''
     def rotation_matrix_to_euler_angles(self, R):
         """Umwandlung einer 3x3 Rotationsmatrix in Euler-Winkel (roll, pitch, yaw)."""
         sy = np.sqrt(R[0, 0] ** 2 + R[1, 0] ** 2)
@@ -130,7 +138,7 @@ class FrameHandler(Node):
             ay = np.arctan2(-R[2, 0], sy)       # pitch
             az = 0                              # yaw (undefiniert)
         return np.degrees([ax, ay, az])
-
+    '''
 
 
     def calculate_position_difference_in_same_frame(self, T_1, T_2):

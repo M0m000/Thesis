@@ -74,6 +74,7 @@ class GripperHandler(Node):
         return self.gripper_closed
 
 
+
     def set_output(self, dout_index):
         """ Setzt einen digitalen Ausgang asynchron """
         request = SetDiscreteOutput.Request()
@@ -91,7 +92,6 @@ class GripperHandler(Node):
         else:
             self.get_logger().error(f"Error setting digital output {dout_index}! Response: {future.result()}")
             return False
-
 
 
 
@@ -152,5 +152,3 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
-
-

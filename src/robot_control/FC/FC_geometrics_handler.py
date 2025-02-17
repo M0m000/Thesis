@@ -125,10 +125,9 @@ class GeometricsHandler(Node):
 
     def calculate_plane(self, trans, rot):
         """
-        Berechnet die Ebene basierend auf festen translatorischen und rotatorischen Werte in Bezug auf TCP
+        Berechnet die Ebene basierend auf festen translatorischen und rotatorischen Werten in Bezug auf TCP
         """
         x, y, z = trans
-        roll, pitch, yaw = rot
         
         # Berechne Rotationsmatrix
         R = self.frame_handler.calculate_rot_matrix(rot = rot)
@@ -208,7 +207,7 @@ class GeometricsHandler(Node):
             target_position = self.hook_line['p_1']
 
         # Der Mittelpunkt der Ebene
-        P_center = self.plane_midpoint
+        P_center = plane_midpoint
         P_target = np.array(target_position)
 
         # Berechne die Differenz (Verschiebung)
