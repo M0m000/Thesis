@@ -1,6 +1,6 @@
 import rclpy
 from rclpy.node import Node
-from kr_msgs.srv import SetDiscreteOutput, SetAnalogOutput
+from kr_msgs.srv import SetDiscreteOutput
 import paramiko
 import time
 
@@ -8,7 +8,6 @@ class VCStartupNode(Node):
     def __init__(self):
         super().__init__('vc_startup')
         self.discrete_output_client = self.create_client(SetDiscreteOutput, '/kr/iob/set_digital_output')
-        self.analog_output_client = self.create_client(SetAnalogOutput, '/kr/iob/set_voltage_output')
 
         self.declare_parameter('shutter_time', 20000)
         self.shutter_time = self.get_parameter('shutter_time').get_parameter_value().integer_value
@@ -27,18 +26,9 @@ class VCStartupNode(Node):
                 self.get_logger().error('Service SetDigitalOutput not available! - continuing...')
                 break
             self.get_logger().info('Waiting for Service SetDigitalOutput...')
-        
-        # Warten, bis Service für AnalogOut verfügbar
-        start_time = time.time()
-        while not self.analog_output_client.wait_for_service(timeout_sec=1.0):
-            if time.time() - start_time > max_wait_time:
-                self.get_logger().error('Service SetAnalogOutput not available! - continuing...')
-                break
-            self.get_logger().info('Waiting for Service SetAnalogOutput...')
 
         # Kamera und Beleuchtung starten
         self.powerup_vc()
-        self.powerup_light()
         
     def powerup_vc(self):
         self.get_logger().info("Power Up VC nano Z...")
@@ -47,18 +37,6 @@ class VCStartupNode(Node):
         request.value = 1
         future = self.discrete_output_client.call_async(request)
         future.add_done_callback(self.cam_powerup_done_callback)
-
-    def powerup_light(self):
-        self.get_logger().info("Power Up camera light...")
-        request_vcc = SetDiscreteOutput.Request()
-        request_vcc.index = 3
-        request_vcc.value = 1
-        self.discrete_output_client.call_async(request_vcc)
-
-        request_brightness = SetAnalogOutput.Request()
-        request_brightness.index = 1
-        request_brightness.value = 9.0
-        self.analog_output_client.call_async(request_brightness)
 
     def cam_powerup_done_callback(self, future):
         try:

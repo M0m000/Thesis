@@ -1,6 +1,7 @@
 from collections import deque
 import numpy as np
 
+
 class HookFilterMovingAvg:
     def __init__(self, window_size=5, confirmation_frames=5, disappearance_frames=1):
         self.window_size = window_size  # Fenstergröße für den Moving Average Filter
@@ -79,11 +80,11 @@ class HookFilterMovingAvg:
         if new_uv is None:
             return None
 
-        history.append(new_uv)  # Neuen Wert zum Puffer hinzufügen
+        history.append(new_uv)
 
-        # Mittelwert über gespeicherte Werte berechnen
         avg_uv = tuple(np.mean(history, axis=0))
         return avg_uv
+
 
     def ma_filter_box(self, new_box, history):
         """
@@ -99,3 +100,6 @@ class HookFilterMovingAvg:
         # Mittelwert über gespeicherte Werte berechnen
         avg_box = tuple(np.mean(history, axis=0))
         return avg_box
+    
+    def reset(self):
+        self.hook_history.clear()

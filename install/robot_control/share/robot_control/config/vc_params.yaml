@@ -1,7 +1,7 @@
 vc_startup_node:
   ros__parameters:
-    shutter_time: 20000
-    gain: 20
+    shutter_time: 10000
+    gain: 30
 
 vc_img_receiver_node:
   ros__parameters:
@@ -22,8 +22,8 @@ yolov8_inference_node:
     show_output_img: True
     show_point_img: True
     publish_masks: True
-    filter_alpha: 0.6
-    filter_windowsize: 1
+    filter_alpha: 0.2
+    filter_windowsize: 5
     
 scan_bar_horizontal_triangulation_node:
   ros__parameters:

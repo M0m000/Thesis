@@ -24,8 +24,10 @@ vision/calibration.py
 vision/hook_detector.py
 vision/image_receiver.py
 vision/img_filters.py
+vision/light_controller.py
 vision/maskrcnn_inference.py
 vision/point_finder_2d.py
 vision/point_finder_3d.py
 vision/test_node.py
+vision/vc_startup.py
 vision/yolov8_inference.py

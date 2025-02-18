@@ -85,7 +85,7 @@ class ScanBarHorizontalTriangulation(Node):
         self.frame_handler = FrameHandler(node_name = 'frame_handler_node_for_scan_bar', save_path = frame_csv_path)
         self.cam_to_world_transform = None
 
-        startpoint_trans_in_workframe = [130.0, -430.0, 100.0]
+        startpoint_trans_in_workframe = [160.0, -430.0, 80.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
         self.startpoint_trans_worldframe, self.startpoint_rot_worldframe = self.frame_handler.transform_pose_to_world(trans = startpoint_trans_in_workframe,
                                                                                                                       rot = startpoint_rot_in_workframe,
@@ -126,7 +126,6 @@ class ScanBarHorizontalTriangulation(Node):
 
         ########## Bewege Roboter auf die Startposition ##########
         self.startpoint_movement_done = False
-        print(self.startpoint_rot_worldframe)
         if self.startpoint_rot_worldframe is not None and self.startpoint_trans_worldframe is not None:
             self.startpoint_movement_done = False
             self.startpoint_movement_done = self.move_linear_client.call_move_linear_service(pos = self.startpoint_trans_worldframe,
@@ -147,7 +146,7 @@ class ScanBarHorizontalTriangulation(Node):
             self.get_logger().error("Init movement failed!")
         
         self.get_logger().info("Wait 5 sec...")
-        time.sleep(3)
+        time.sleep(5)
         ###########################################################
     
 
@@ -200,7 +199,7 @@ class ScanBarHorizontalTriangulation(Node):
                 self.previous_edge_rside = None
                 vel_world = [0.0, 0.0, 0.0]
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
-                self.get_logger().info("Done! -> next process step <Extract Hook 2 als initial Reference Point>")
+                self.get_logger().info("Done! -> next process step <Extract Hook 2 as initial Reference Point>")
                 time.sleep(3)
                 self.process_step = "extract_hook_2_as_init_ref"
 
@@ -288,8 +287,8 @@ class ScanBarHorizontalTriangulation(Node):
                 self.hook_horizontal['uv_tip'] = self.yolo_hooks_dict['hook_3']['uv_tip']
                 self.hook_horizontal['uv_lowpoint'] = self.yolo_hooks_dict['hook_3']['uv_lowpoint']
 
-            _, _, self.robot_position_horizontal = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
-            self.robot_position_horizontal = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_horizontal[:3, 3], 'work')
+            _, _, self.T_robot_position_horizontal = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
+            self.robot_position_horizontal = self.frame_handler.transform_worldpoint_in_frame(self.T_robot_position_horizontal[:3, 3], 'work')
             self.get_logger().info("Done! -> next process step <Horizontal Triangulation>")
             self.process_step = "horizontal_triangulation"
 
@@ -310,11 +309,6 @@ class ScanBarHorizontalTriangulation(Node):
             # hook_xyz[1] = -hook_xyz[1]
             # tip_xyz[1] = -tip_xyz[1]
             # lowpoint_xyz[1] = -lowpoint_xyz[1]
-
-            self.get_logger().warn(f"Hook XYZ [horizontal]: {hook_xyz}")
-            self.get_logger().warn(f"Tip XYZ [horizontal]: {tip_xyz}")
-            self.get_logger().warn(f"Lowpoint XYZ [horizontal]: {lowpoint_xyz}")
-            self.get_logger().warn(f"Time token for triangulation [horizontal]: {time_token}sec")
             
             self.get_logger().info("Done! -> next process step <Save Hook>")
             self.process_step = "save_hook"
@@ -327,7 +321,7 @@ class ScanBarHorizontalTriangulation(Node):
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip'] = tip_xyz
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint'] = lowpoint_xyz
             
-            robot_position_in_tfcframe = self.T_robot_position_ref
+            robot_position_in_tfcframe = self.T_robot_position_horizontal
             transform_cam_in_tfcframe = self.frame_handler.load_transformation_matrix_from_csv(frame_name = 'CAM_frame_in_tfc.csv')
             # self.cam_to_world_transform = self.frame_handler.get_cam_transform_in_world()
             self.cam_to_world_transform = robot_position_in_tfcframe @ transform_cam_in_tfcframe
@@ -347,9 +341,9 @@ class ScanBarHorizontalTriangulation(Node):
             self.global_hooks_dict[str(self.act_hook_num)]['tfc_workframe'] = self.robot_position_horizontal
             self.global_hooks_dict[str(self.act_hook_num)]['tfc_worldframe'], _, _ = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
 
-            self.get_logger().warn(f"Hook XYZ [horizontal]: {hook_xyz_hom}")
-            self.get_logger().warn(f"Tip XYZ [horizontal]: {tip_xyz_hom}")
-            self.get_logger().warn(f"Lowpoint XYZ [horizontal]: {lowpoint_xyz_hom}")
+            self.get_logger().warn(f"Hook XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_workframe']}")
+            self.get_logger().warn(f"Tip XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_workframe']}")
+            self.get_logger().warn(f"Lowpoint XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_workframe']}")
             self.get_logger().warn(f"Time token for triangulation [horizontal]: {time_token}sec")
 
             self.get_logger().info(f"already scanned: {len(self.global_hooks_dict)} Hooks")

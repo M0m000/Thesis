@@ -14,7 +14,6 @@ from concurrent.futures import ThreadPoolExecutor
 from FC_vision.FC_ema_filter import HookFilterEMA
 from FC_vision.FC_moving_avg_filter import HookFilterMovingAvg
 from FC_vision.FC_iir_buttoworth_filter import HooksDictLowpassFilter
-from FC_vision.FC_moving_avg_filter import HookFilterMovingAvg
 
 
 class YOLOv8InferenceNode(Node):
@@ -37,7 +36,7 @@ class YOLOv8InferenceNode(Node):
         self.publish_masks = self.get_parameter('publish_masks').get_parameter_value().bool_value
         self.declare_parameter('filter_alpha', 1.0)
         self.filter_alpha = self.get_parameter('filter_alpha').get_parameter_value().double_value
-        self.declare_parameter('filter_windowsize', 1)
+        self.declare_parameter('filter_windowsize', 10)
         self.filter_windowsize = self.get_parameter('filter_windowsize').get_parameter_value().integer_value
 
         # Subscriber auf VC Cam
@@ -54,9 +53,8 @@ class YOLOv8InferenceNode(Node):
 
         self.output_segment_img_publisher = self.create_publisher(Image, 'yolov8_output/output_segment_img', 10)
         self.output_point_img_publisher = self.create_publisher(Image, 'yolov8_output/output_point_img', 10)
-        self.ema_filter = HookFilterEMA(alpha = 0.5, confirmation_frames = 1, disappearance_frames = 1)
-        self.movingavg_filter = HookFilterMovingAvg(window_size = self.filter_windowsize, confirmation_frames = 1, disappearance_frames = 1)
-        # self.moving_average_filter = MovingAverageFilter(window_size=3, confirmation_frames=5, disappearance_frames=3)
+        self.ema_filter = HookFilterEMA(alpha = self.filter_alpha, confirmation_frames = 10, disappearance_frames = 5)
+        self.movingavg_filter = HookFilterMovingAvg(window_size = self.filter_windowsize, confirmation_frames = 10, disappearance_frames = 5)
 
         self.bridge = CvBridge()
         self.received_img = None
@@ -109,8 +107,9 @@ class YOLOv8InferenceNode(Node):
             self.process_output_hooks_dict()
 
             # self.filtered_hooks_dict = self.ema_filter.update(hooks_dict = self.hooks_dict_processed)
+            # self.get_logger().warn(f"Hook Tip 2 vor Filterung: {self.hooks_dict_processed['hook_2']['uv_tip']}")
             # self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)
-            # self.filtered_hooks_dict = self.moving_average_filter.update(self.hooks_dict_processed)
+            # self.get_logger().warn(f"Hook Tip 2 nach Filterung: {self.filtered_hooks_dict['hook_2']['uv_tip']}")
             self.filtered_hooks_dict = self.hooks_dict_processed
 
             if self.show_cam_img:
@@ -145,28 +144,6 @@ class YOLOv8InferenceNode(Node):
                 
         except Exception as e:
             self.get_logger().error(f'Error in image processing: {e}')
-
-
-    def apply_moving_average_filter(self, hooks_dict, window_size = 100):
-        filtered_hooks_dict = {}
-
-        for hook_id, hook_data in hooks_dict.items():
-            filtered_hooks_dict[hook_id] = {}
-
-            for key, value in hook_data.items():
-                if isinstance(value, list):  # Wenn es sich um eine Koordinate handelt
-                    if key not in self.hooks_history:
-                        self.hooks_history[key] = []
-                    self.hooks_history[key].append(value)
-
-                    if len(self.hooks_history[key]) > window_size:
-                        self.hooks_history[key].pop(0)
-
-                    filtered_value = np.mean(self.hooks_history[key], axis=0)
-                    filtered_hooks_dict[hook_id][key] = filtered_value
-                else:
-                    filtered_hooks_dict[hook_id][key] = value
-        return filtered_hooks_dict
 
 
     def plot_points(self, hooks_dict):
@@ -545,7 +522,6 @@ class YOLOv8InferenceNode(Node):
 
     def publish_hooks_dict(self):
         # starttime = time.perf_counter()
-
         msg = HookData()
         with ThreadPoolExecutor() as executor:
             results = executor.map(

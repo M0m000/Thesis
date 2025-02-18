@@ -1,6 +1,8 @@
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/point_finder_3d.py
+/home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/light_controller.py
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/image_receiver.py
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/OLD_process_nn_output.py
+/home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/vc_startup.py
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/img_filters.py
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/point_finder_2d.py
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/maskrcnn_inference.py
@@ -16,8 +18,10 @@
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/FC_vision/__init__.py
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/FC_vision/FC_iir_buttoworth_filter.py
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/__pycache__/point_finder_3d.cpython-38.pyc
+/home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/__pycache__/light_controller.cpython-38.pyc
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/__pycache__/image_receiver.cpython-38.pyc
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/__pycache__/OLD_process_nn_output.cpython-38.pyc
+/home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/__pycache__/vc_startup.cpython-38.pyc
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/__pycache__/img_filters.cpython-38.pyc
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/__pycache__/point_finder_2d.cpython-38.pyc
 /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/__pycache__/maskrcnn_inference.cpython-38.pyc
@@ -46,6 +50,7 @@
 /home/mo/Thesis/install/vision/lib/vision/hook_detector
 /home/mo/Thesis/install/vision/lib/vision/image_filters
 /home/mo/Thesis/install/vision/lib/vision/image_receiver
+/home/mo/Thesis/install/vision/lib/vision/light_controller
 /home/mo/Thesis/install/vision/lib/vision/maskrcnn_inference
 /home/mo/Thesis/install/vision/lib/vision/nn_output_processor
 /home/mo/Thesis/install/vision/lib/vision/point_finder_2d

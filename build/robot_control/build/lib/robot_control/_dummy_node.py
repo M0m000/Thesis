@@ -150,7 +150,7 @@ class DummyNode(Node):
         self.geometrics_handler.calculate_hook_line()
         adjustment_angles = self.geometrics_handler.calculate_adjustment_angles()
         translation_diff = self.geometrics_handler.calculate_translation_difference()
-        translation_diff[2] -= 50.0
+        translation_diff[2] -= 112.0
 
         rotation_diff_worldframe = self.frame_handler.tansform_velocity_to_world(vel = adjustment_angles, from_frame = 'tfc')
         translation_diff_worldframe = self.frame_handler.tansform_velocity_to_world(vel = translation_diff, from_frame = 'tfc')

@@ -23,3 +23,18 @@ chaining: 0"
 ros2 service call /kr/robot/get_system_frame kr_msgs/srv/GetSystemFrame "name: 'tfc'
 ref: 'world'"
 
+
+
+ros2 service call /kr/motion/move_linear kr_msgs/srv/MoveLinear "pos: [112.0, 93.0, 895.0]
+rot: [-90.0, 0.0, 0.0]
+ref: 0
+ttype: 0
+tvalue: 250.0
+bpoint: 0
+btype: 0
+bvalue: 100.0
+sync: 0.0
+chaining: 0"
+
+
+
