@@ -36,3 +36,27 @@
 [1.702s] copying FC/FC_edge_detector.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
 [1.703s] running install
 [1.706s] running install_lib
+[1.726s] running install_data
+[1.727s] copying resource/robot_control -> /home/mo/Thesis/install/robot_control/share/ament_index/resource_index/packages
+[1.727s] copying package.xml -> /home/mo/Thesis/install/robot_control/share/robot_control
+[1.727s] copying launch/vc_vision_launch.py -> /home/mo/Thesis/install/robot_control/share/robot_control/launch
+[1.727s] copying launch/scan_bar_launch.py -> /home/mo/Thesis/install/robot_control/share/robot_control/launch
+[1.728s] copying config/vc_params.yaml -> /home/mo/Thesis/install/robot_control/share/robot_control/config
+[1.728s] running install_egg_info
+[1.745s] removing '/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info' (and everything under it)
+[1.745s] Copying ../../build/robot_control/robot_control.egg-info to /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info
+[1.746s] running install_scripts
+[1.793s] Installing MoveTcpAlongAxis_action_client script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.793s] Installing _dummy_node script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.793s] Installing define_working_frame_needle script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.793s] Installing ibvs_2d script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.793s] Installing move_lin_by_key script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.794s] Installing scan_bar_combined_triangulation script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.794s] Installing scan_bar_horizontal_triangulation script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.794s] Installing scan_bar_vertical_triangulation script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.794s] Installing set_working_frame_qr script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.794s] Installing tcp_frame_listener script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.794s] Installing tf_frames_publisher script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.794s] Installing transform_action_client script to /home/mo/Thesis/install/robot_control/lib/robot_control
+[1.795s] writing list of installed files to '/home/mo/Thesis/build/robot_control/install.log'
+[1.827s] Invoked command in '/home/mo/Thesis/src/robot_control' returned '0': CMAKE_PREFIX_PATH=/home/mo/Thesis/install/action_interfaces:/home/mo/Thesis/install/kr_example_cpp:/home/mo/Thesis/install/kr_msgs LD_LIBRARY_PATH=/home/mo/Thesis/install/action_interfaces/lib:/home/mo/Thesis/install/kr_msgs/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib PYTHONPATH=/home/mo/Thesis/build/robot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/action_interfaces/lib/python3.8/site-packages:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:/home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages:/home/mo/Thesis/install/sensopart_visor/lib/python3.8/site-packages:/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages:/home/mo/Thesis/install/kr_msgs/lib/python3.8/site-packages:/home/mo/Thesis/install/action_servers/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/robot_control build --build-base /home/mo/Thesis/build/robot_control/build install --record /home/mo/Thesis/build/robot_control/install.log --single-version-externally-managed install_data

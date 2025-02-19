@@ -1462,3 +1462,78 @@
 [2.646692] (robot_control) StdoutLine: {'line': b'copying FC/FC_edge_detector.py -> /home/mo/Thesis/build/robot_control/build/lib/FC\n'}
 [2.647224] (robot_control) StdoutLine: {'line': b'running install\n'}
 [2.650798] (robot_control) StdoutLine: {'line': b'running install_lib\n'}
+[2.659969] (action_servers) StdoutLine: {'line': b'running install_data\n'}
+[2.660372] (action_servers) StdoutLine: {'line': b'copying resource/action_servers -> /home/mo/Thesis/install/action_servers/share/ament_index/resource_index/packages\n'}
+[2.660611] (action_servers) StdoutLine: {'line': b'copying package.xml -> /home/mo/Thesis/install/action_servers/share/action_servers\n'}
+[2.660749] (action_servers) StdoutLine: {'line': b'running install_egg_info\n'}
+[2.670942] (robot_control) StdoutLine: {'line': b'running install_data\n'}
+[2.671230] (robot_control) StdoutLine: {'line': b'copying resource/robot_control -> /home/mo/Thesis/install/robot_control/share/ament_index/resource_index/packages\n'}
+[2.671506] (robot_control) StdoutLine: {'line': b'copying package.xml -> /home/mo/Thesis/install/robot_control/share/robot_control\n'}
+[2.671794] (robot_control) StdoutLine: {'line': b'copying launch/vc_vision_launch.py -> /home/mo/Thesis/install/robot_control/share/robot_control/launch\n'}
+[2.672029] (robot_control) StdoutLine: {'line': b'copying launch/scan_bar_launch.py -> /home/mo/Thesis/install/robot_control/share/robot_control/launch\n'}
+[2.672318] (robot_control) StdoutLine: {'line': b'copying config/vc_params.yaml -> /home/mo/Thesis/install/robot_control/share/robot_control/config\n'}
+[2.672429] (kr_example_python) StdoutLine: {'line': b'running egg_info\n'}
+[2.672685] (robot_control) StdoutLine: {'line': b'running install_egg_info\n'}
+[2.678871] (action_servers) StdoutLine: {'line': b"removing '/home/mo/Thesis/install/action_servers/lib/python3.8/site-packages/action_servers-0.0.0-py3.8.egg-info' (and everything under it)\n"}
+[2.679143] (action_servers) StdoutLine: {'line': b'Copying ../../build/action_servers/action_servers.egg-info to /home/mo/Thesis/install/action_servers/lib/python3.8/site-packages/action_servers-0.0.0-py3.8.egg-info\n'}
+[2.680281] (action_servers) StdoutLine: {'line': b'running install_scripts\n'}
+[2.688512] (kr_example_python) StdoutLine: {'line': b'writing ../../../../build/kr_example_python/kr_example_python.egg-info/PKG-INFO\n'}
+[2.688893] (kr_example_python) StdoutLine: {'line': b'writing dependency_links to ../../../../build/kr_example_python/kr_example_python.egg-info/dependency_links.txt\n'}
+[2.689110] (kr_example_python) StdoutLine: {'line': b'writing entry points to ../../../../build/kr_example_python/kr_example_python.egg-info/entry_points.txt\n'}
+[2.689282] (kr_example_python) StdoutLine: {'line': b'writing requirements to ../../../../build/kr_example_python/kr_example_python.egg-info/requires.txt\n'}
+[2.689403] (kr_example_python) StdoutLine: {'line': b'writing top-level names to ../../../../build/kr_example_python/kr_example_python.egg-info/top_level.txt\n'}
+[2.689636] (robot_control) StdoutLine: {'line': b"removing '/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info' (and everything under it)\n"}
+[2.689909] (robot_control) StdoutLine: {'line': b'Copying ../../build/robot_control/robot_control.egg-info to /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info\n'}
+[2.690861] (robot_control) StdoutLine: {'line': b'running install_scripts\n'}
+[2.704832] (-) TimerEvent: {}
+[2.730515] (action_servers) StdoutLine: {'line': b'Installing MoveTcpAlongAxis_action_server script to /home/mo/Thesis/install/action_servers/lib/action_servers\n'}
+[2.730724] (action_servers) StdoutLine: {'line': b'Installing fibonacci_action_server script to /home/mo/Thesis/install/action_servers/lib/action_servers\n'}
+[2.730805] (action_servers) StdoutLine: {'line': b'Installing transform_action_server script to /home/mo/Thesis/install/action_servers/lib/action_servers\n'}
+[2.731115] (action_servers) StdoutLine: {'line': b"writing list of installed files to '/home/mo/Thesis/build/action_servers/install.log'\n"}
+[2.737528] (robot_control) StdoutLine: {'line': b'Installing MoveTcpAlongAxis_action_client script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[2.737745] (robot_control) StdoutLine: {'line': b'Installing _dummy_node script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[2.737847] (robot_control) StdoutLine: {'line': b'Installing define_working_frame_needle script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[2.737958] (robot_control) StdoutLine: {'line': b'Installing ibvs_2d script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[2.738077] (robot_control) StdoutLine: {'line': b'Installing move_lin_by_key script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[2.738199] (robot_control) StdoutLine: {'line': b'Installing scan_bar_combined_triangulation script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[2.738323] (robot_control) StdoutLine: {'line': b'Installing scan_bar_horizontal_triangulation script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[2.738444] (robot_control) StdoutLine: {'line': b'Installing scan_bar_vertical_triangulation script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[2.738566] (robot_control) StdoutLine: {'line': b'Installing set_working_frame_qr script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[2.738687] (robot_control) StdoutLine: {'line': b'Installing tcp_frame_listener script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[2.738809] (robot_control) StdoutLine: {'line': b'Installing tf_frames_publisher script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[2.738921] (robot_control) StdoutLine: {'line': b'Installing transform_action_client script to /home/mo/Thesis/install/robot_control/lib/robot_control\n'}
+[2.739570] (robot_control) StdoutLine: {'line': b"writing list of installed files to '/home/mo/Thesis/build/robot_control/install.log'\n"}
+[2.765581] (action_servers) CommandEnded: {'returncode': 0}
+[2.770124] (action_servers) JobEnded: {'identifier': 'action_servers', 'rc': 0}
+[2.771162] (robot_control) CommandEnded: {'returncode': 0}
+[2.775809] (robot_control) JobEnded: {'identifier': 'robot_control', 'rc': 0}
+[2.804925] (-) TimerEvent: {}
+[2.833088] (kr_example_python) StdoutLine: {'line': b"reading manifest file '../../../../build/kr_example_python/kr_example_python.egg-info/SOURCES.txt'\n"}
+[2.834321] (kr_example_python) StdoutLine: {'line': b"writing manifest file '../../../../build/kr_example_python/kr_example_python.egg-info/SOURCES.txt'\n"}
+[2.834490] (kr_example_python) StdoutLine: {'line': b'running build\n'}
+[2.834592] (kr_example_python) StdoutLine: {'line': b'running build_py\n'}
+[2.834789] (kr_example_python) StdoutLine: {'line': b'copying kr_example_python/jog_linear.py -> /home/mo/Thesis/build/kr_example_python/build/lib/kr_example_python\n'}
+[2.834987] (kr_example_python) StdoutLine: {'line': b'copying kr_example_python/follow_joint.py -> /home/mo/Thesis/build/kr_example_python/build/lib/kr_example_python\n'}
+[2.835163] (kr_example_python) StdoutLine: {'line': b'copying kr_example_python/robot_state.py -> /home/mo/Thesis/build/kr_example_python/build/lib/kr_example_python\n'}
+[2.835336] (kr_example_python) StdoutLine: {'line': b'copying kr_example_python/move_joint.py -> /home/mo/Thesis/build/kr_example_python/build/lib/kr_example_python\n'}
+[2.835508] (kr_example_python) StdoutLine: {'line': b'copying kr_example_python/self_motion.py -> /home/mo/Thesis/build/kr_example_python/build/lib/kr_example_python\n'}
+[2.835665] (kr_example_python) StdoutLine: {'line': b'copying kr_example_python/__init__.py -> /home/mo/Thesis/build/kr_example_python/build/lib/kr_example_python\n'}
+[2.835962] (kr_example_python) StdoutLine: {'line': b'running install\n'}
+[2.839732] (kr_example_python) StdoutLine: {'line': b'running install_lib\n'}
+[2.856762] (kr_example_python) StdoutLine: {'line': b'running install_data\n'}
+[2.856972] (kr_example_python) StdoutLine: {'line': b'copying resource/kr_example_python -> /home/mo/Thesis/install/kr_example_python/share/ament_index/resource_index/packages\n'}
+[2.857209] (kr_example_python) StdoutLine: {'line': b'copying package.xml -> /home/mo/Thesis/install/kr_example_python/share/kr_example_python\n'}
+[2.857336] (kr_example_python) StdoutLine: {'line': b'running install_egg_info\n'}
+[2.875970] (kr_example_python) StdoutLine: {'line': b"removing '/home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages/kr_example_python-0.0.0-py3.8.egg-info' (and everything under it)\n"}
+[2.876229] (kr_example_python) StdoutLine: {'line': b'Copying ../../../../build/kr_example_python/kr_example_python.egg-info to /home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages/kr_example_python-0.0.0-py3.8.egg-info\n'}
+[2.877270] (kr_example_python) StdoutLine: {'line': b'running install_scripts\n'}
+[2.905009] (-) TimerEvent: {}
+[2.918735] (kr_example_python) StdoutLine: {'line': b'Installing follow_joint script to /home/mo/Thesis/install/kr_example_python/lib/kr_example_python\n'}
+[2.918970] (kr_example_python) StdoutLine: {'line': b'Installing jog_linear script to /home/mo/Thesis/install/kr_example_python/lib/kr_example_python\n'}
+[2.919094] (kr_example_python) StdoutLine: {'line': b'Installing move_joint script to /home/mo/Thesis/install/kr_example_python/lib/kr_example_python\n'}
+[2.919196] (kr_example_python) StdoutLine: {'line': b'Installing robot_state script to /home/mo/Thesis/install/kr_example_python/lib/kr_example_python\n'}
+[2.919291] (kr_example_python) StdoutLine: {'line': b'Installing self_motion script to /home/mo/Thesis/install/kr_example_python/lib/kr_example_python\n'}
+[2.919610] (kr_example_python) StdoutLine: {'line': b"writing list of installed files to '/home/mo/Thesis/build/kr_example_python/install.log'\n"}
+[2.949720] (kr_example_python) CommandEnded: {'returncode': 0}
+[2.957078] (kr_example_python) JobEnded: {'identifier': 'kr_example_python', 'rc': 0}
+[2.958187] (-) EventReactorShutdown: {}

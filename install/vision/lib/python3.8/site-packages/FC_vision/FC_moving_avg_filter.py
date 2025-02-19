@@ -103,3 +103,4 @@ class HookFilterMovingAvg:
     
     def reset(self):
         self.hook_history.clear()
+

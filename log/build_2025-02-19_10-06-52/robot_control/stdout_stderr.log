@@ -35,3 +35,26 @@ copying FC/__init__.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
 copying FC/FC_edge_detector.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
 running install
 running install_lib
+running install_data
+copying resource/robot_control -> /home/mo/Thesis/install/robot_control/share/ament_index/resource_index/packages
+copying package.xml -> /home/mo/Thesis/install/robot_control/share/robot_control
+copying launch/vc_vision_launch.py -> /home/mo/Thesis/install/robot_control/share/robot_control/launch
+copying launch/scan_bar_launch.py -> /home/mo/Thesis/install/robot_control/share/robot_control/launch
+copying config/vc_params.yaml -> /home/mo/Thesis/install/robot_control/share/robot_control/config
+running install_egg_info
+removing '/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info' (and everything under it)
+Copying ../../build/robot_control/robot_control.egg-info to /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info
+running install_scripts
+Installing MoveTcpAlongAxis_action_client script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing _dummy_node script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing define_working_frame_needle script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing ibvs_2d script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing move_lin_by_key script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing scan_bar_combined_triangulation script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing scan_bar_horizontal_triangulation script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing scan_bar_vertical_triangulation script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing set_working_frame_qr script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing tcp_frame_listener script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing tf_frames_publisher script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing transform_action_client script to /home/mo/Thesis/install/robot_control/lib/robot_control
+writing list of installed files to '/home/mo/Thesis/build/robot_control/install.log'

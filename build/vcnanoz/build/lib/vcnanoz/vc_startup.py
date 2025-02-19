@@ -69,7 +69,6 @@ class VCStartupNode(Node):
             self.get_logger().info(f'Send command: {command2}')
             stdin, stdout, stderr = ssh.exec_command(command2)
 
-            self.get_logger().info('Reading command output...')
             while True:
                 output_line = stdout.readline()
                 if output_line:
