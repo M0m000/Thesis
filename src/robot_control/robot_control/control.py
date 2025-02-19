@@ -1,6 +1,5 @@
 import rclpy
 from rclpy.node import Node
-from pynput import keyboard  # Modul für Tastatureingaben
 from FC.FC_gripper_handler import GripperHandler
 from FC.FC_geometrics_handler import GeometricsHandler
 from FC.FC_frame_handler import FrameHandler
@@ -8,8 +7,6 @@ from FC.FC_call_move_linear_service import MoveLinearServiceClient
 from kr_msgs.msg import JogLinear
 from kr_msgs.srv import SelectJoggingFrame
 from kr_msgs.srv import SetSystemFrame
-from std_msgs.msg import Int32
-import time
 
 
 class Control(Node):
@@ -132,8 +129,8 @@ class Control(Node):
         self.geometrics_handler.calculate_hook_line()
         self.plane = self.geometrics_handler.calculate_plane(trans_in_tfcframe = [0, 0, 112.0], rot_in_tfcframe = [0, 0, 0])
 
+        # Lineares Anfahren der Position - erste grobe Positionierung
         endpos_trans_in_worldframe, endpos_rot_in_worldframe = self.geometrics_handler.calculate_targetpose_in_worldframe()
-        self.grip_post_movement_done = False
         self.grip_post_movement_done = self.move_lin_client.call_move_linear_service(pos = endpos_trans_in_worldframe,
                                                                                      rot = endpos_rot_in_worldframe,
                                                                                      ref = 0,
@@ -146,6 +143,7 @@ class Control(Node):
                                                                                      chaining = 0)
         print(endpos_trans_in_worldframe, endpos_rot_in_worldframe)
 
+        # Timer für Regelungsalgorithmus
         self.control_timer = self.create_timer(0.001, self.control)
 
 
