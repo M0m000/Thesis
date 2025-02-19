@@ -71,7 +71,7 @@ class GeometricsHandler(Node):
 
     def update_hook_data(self, hook_num):
         if self.global_scan_dict is not None:
-            # hole die aktuelle TFC Position und rechne sie ins WORK-Frame um
+            # hole die aktuelle TFC Position im WORLD-Frame und rechne sie ins WORK-Frame um
             _, _, T_tfc_in_worldframe = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
             T_tfc_in_workframe = self.frame_handler.transform_worldpose_to_desired_frame(T_in_worldframe = T_tfc_in_worldframe,
                                                                                          frame_desired = "work")
@@ -93,6 +93,7 @@ class GeometricsHandler(Node):
                                                         self.lowpoint_pos_in_workframe[2], 
                                                         1.0])
             
+            # rechne die Hakenkoordinaten vom WORK-Frame ins TFC-Frame um
             self.hook_pos_in_tfcframe = T_work_in_tfcframe @ hook_point_in_workframe_hom
             self.hook_pos_in_tfcframe = self.hook_pos_in_tfcframe[:3]
 
@@ -106,6 +107,8 @@ class GeometricsHandler(Node):
     
     
     def calculate_hook_line(self):
+        """
+        Berechnet eine Gerade entlang des Haken von p_0 (Senke) nach p_1 (Spitze)"""
         if self.hook_pos_in_tfcframe is not None and self.tip_pos_in_tfcframe is not None and self.lowpoint_pos_in_tfcframe is not None:
             p_0 = self.lowpoint_pos_in_tfcframe     # p_0 ist Lowpoint
             p_1 = self.tip_pos_in_tfcframe          # p_1 ist Spitze
@@ -115,6 +118,7 @@ class GeometricsHandler(Node):
             if abs_p_dir != 0:
                 p_dir /= abs_p_dir
 
+            # wird gespeichert in TFC-Frame
             self.hook_line['p_0'] = p_0
             self.hook_line['p_1'] = p_1
             self.hook_line['p_dir'] = p_dir
@@ -123,14 +127,14 @@ class GeometricsHandler(Node):
 
 
 
-    def calculate_plane(self, trans, rot):
+    def calculate_plane(self, trans_in_tfcframe, rot_in_tfcframe):
         """
-        Berechnet die Ebene basierend auf festen translatorischen und rotatorischen Werten in Bezug auf TCP
+        Berechnet die Ebene des Aufhängelochs basierend auf festen translatorischen und rotatorischen Werten in Bezug auf TFC
         """
-        x, y, z = trans
+        x, y, z = trans_in_tfcframe
         
         # Berechne Rotationsmatrix
-        R = self.frame_handler.calculate_rot_matrix(rot = rot)
+        R = self.frame_handler.calculate_rot_matrix(rot = rot_in_tfcframe)
 
         # Berechne Normalenvektor in Pinhole-Frame und in TCP-Frame
         normal_in_pinhole_frame = np.array([1.0, 0.0, 0.0])     # Normalenvektor im Pinhole ist die x-Achse
@@ -143,7 +147,7 @@ class GeometricsHandler(Node):
         n_x, n_y, n_z = normal_in_tcp_frame
         d = -(n_x * x + n_y * y + n_z * z)
         self.plane = (n_x, n_y, n_z, d)
-        self.plane_midpoint = np.array(trans)
+        self.plane_midpoint = np.array(trans_in_tfcframe)
         return n_x, n_y, n_z, d
     
 
@@ -162,7 +166,7 @@ class GeometricsHandler(Node):
             plane = self.plane
 
         if line_dir is None:
-            line_dir = self.hook_line['p_dir']
+            line_dir = self.hook_line['p_dir']      # in TFC-Frame
 
         n = np.array(plane[:3])  # Normalenvektor der Ebene
         d = np.array(line_dir)   # Richtungsvektor der Geraden
@@ -213,8 +217,23 @@ class GeometricsHandler(Node):
         # Berechne die Differenz (Verschiebung)
         translation_diff = P_target - P_center
         return translation_diff
+    
 
 
+
+    def calculate_targetpose_in_worldframe(self, target_position = None, line_dir = None, plane = None, plane_midpoint = None):
+        """
+        Berechnet die Endpose des TFC im WORLD-Frame -> kann dann direkt für MoveLinear servcie call genutzt werden...
+        """
+        trans_diff_in_tfcframe = self.calculate_translation_difference(target_position = target_position, 
+                                                                        plane = plane, 
+                                                                        plane_midpoint = plane_midpoint)
+        rot_diff_in_tfcframe = self.calculate_adjustment_angles(plane = plane, line_dir = line_dir)
+
+        trans_diff_in_worldframe, rot_diff_in_worldframe = self.frame_handler.transform_pose_to_world(trans = trans_diff_in_tfcframe, 
+                                                                                                      rot = rot_diff_in_tfcframe,
+                                                                                                      pose_ref_frame = 'tfc')
+        return trans_diff_in_worldframe, rot_diff_in_worldframe
 
 
         

@@ -121,6 +121,8 @@ class ScanBarHorizontalTriangulation(Node):
         self.process_timer = self.create_timer(0.001, self.process_main)
         self._help_movement_done = False
         self._help_movement_service_called = False
+        self.upcoming_process_step = None
+        self.wait_timer = None
         self.move_linear_client = MoveLinearServiceClient()
         
 
@@ -200,8 +202,9 @@ class ScanBarHorizontalTriangulation(Node):
                 vel_world = [0.0, 0.0, 0.0]
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 as initial Reference Point>")
-                time.sleep(3)
-                self.process_step = "extract_hook_2_as_init_ref"
+                self.upcoming_process_step = "extract_hook_2_as_init_ref"
+                self.start_timer_for_step(3.0)    # Timer starten
+                self.process_step = "waiting_for_timer"
 
         # Doku - Messung der Schwingung nach Stillstand
         if self.process_step == "measure_vibration":
@@ -269,8 +272,9 @@ class ScanBarHorizontalTriangulation(Node):
                     self.process_step = "measure_vibration"
                 else:
                     self.get_logger().info("Done! -> next process step <Extract Hook 3 as Horizontal Point>")
-                    time.sleep(3)
-                    self.process_step = "extract_hook_3_as_horizontal_point"
+                    self.upcoming_process_step = "extract_hook_3_as_horizontal_point"
+                    self.start_timer_for_step(3.0)    # Timer starten
+                    self.process_step = "waiting_for_timer"
         
         # Extrahiere Pixelkoordinaten von Haken 3 (war vorher Haken 2)
         if self.process_step == "extract_hook_3_as_horizontal_point":
@@ -353,7 +357,9 @@ class ScanBarHorizontalTriangulation(Node):
                 self.process_step = "save_global_dict_as_csv"
             else:
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 as Reference>")
-                self.process_step = "extract_hook_2_as_ref"
+                self.upcoming_process_step = "extract_hook_2_as_ref"
+                self.start_timer_for_step(3.0)    # Timer starten
+                self.process_step = "waiting_for_timer"
 
         # Extrahiere Pixelkoordinaten von Haken 2 während Prozess
         if self.process_step == "extract_hook_2_as_ref":
@@ -394,8 +400,9 @@ class ScanBarHorizontalTriangulation(Node):
                 vel_world = [0.0, 0.0, 0.0]
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 as Horizontal Point>")
-                time.sleep(3)
-                self.process_step = "extract_hook_3_as_horizontal_point"
+                self.upcoming_process_step = "extract_hook_3_as_horizontal_point"
+                self.start_timer_for_step(3.0)    # Timer starten
+                self.process_step = "waiting_for_timer"
 
         # Speichern des Global Dict als CSV, wenn Scanvorgang fertig
         if self.process_step == "save_global_dict_as_csv":
@@ -423,6 +430,26 @@ class ScanBarHorizontalTriangulation(Node):
         if self.process_step == "finish":
             self.get_logger().info("Scan finished!")
             self.node_shutdown_flag = True
+
+
+    
+    def start_timer_for_step(self, delay_sec):
+        '''
+        Starte einen Timer, der nach einer bestimmten Zeit den nächsten Schritt ausführt
+        '''
+        next_step = self.upcoming_process_step
+        self.get_logger().info(f"Starting timer for {next_step} with {delay_sec} seconds delay")
+        self.wait_timer = self.create_timer(delay_sec, self.timer_callback)
+
+    def timer_callback(self):
+        '''
+        Callback, der nach Ablauf des Timers ausgeführt wird
+        '''
+        next_step = self.upcoming_process_step
+        self.get_logger().info(f"Timer expired, switching to {next_step}")
+        self.process_step = next_step
+        self.wait_timer.cancel()
+        self.wait_timer = None
 
     
 

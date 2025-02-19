@@ -108,9 +108,9 @@ class YOLOv8InferenceNode(Node):
 
             # self.filtered_hooks_dict = self.ema_filter.update(hooks_dict = self.hooks_dict_processed)
             # self.get_logger().warn(f"Hook Tip 2 vor Filterung: {self.hooks_dict_processed['hook_2']['uv_tip']}")
-            # self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)
+            self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)
             # self.get_logger().warn(f"Hook Tip 2 nach Filterung: {self.filtered_hooks_dict['hook_2']['uv_tip']}")
-            self.filtered_hooks_dict = self.hooks_dict_processed
+            # self.filtered_hooks_dict = self.hooks_dict_processed
 
             if self.show_cam_img:
                 cv2.imshow('VC Cam Img', self.received_img)
@@ -152,6 +152,8 @@ class YOLOv8InferenceNode(Node):
             if hooks_dict[key]['hook_box'] is not None:
                 bb_hook = tuple(map(int, hooks_dict[key]['hook_box']))
                 cv2.rectangle(img_copy, (bb_hook[0], bb_hook[1]), (bb_hook[2], bb_hook[3]), (150, 150, 150), 2)
+                text_position = (bb_hook[0], bb_hook[1] - 10)
+                cv2.putText(img_copy, f"{key}", text_position, cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
             if hooks_dict[key]['uv_hook'] is not None:
                 p_hook = tuple(map(int, hooks_dict[key]['uv_hook']))
                 cv2.drawMarker(img_copy, p_hook, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
@@ -450,7 +452,7 @@ class YOLOv8InferenceNode(Node):
                 hook_mask_color = np.zeros_like(img_copy)
                 hook_mask_color[hook_mask == 1] = (color[0] * 255, color[1] * 255, color[2] * 255)
                 img_copy = cv2.addWeighted(img_copy, 1, hook_mask_color, 0.5, 0)
-                cv2.putText(img_copy, f"Hook {len(hooks_dict) - idx} ({conf_hook[0]:.2f})", (int(x1), int(y1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
+                cv2.putText(img_copy, f"Hook {hook_name} ({conf_hook[0]:.2f})", (int(x1), int(y1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
 
                 # Bounding Box und Maske für Tip
                 if tip_box is not None:
@@ -460,7 +462,7 @@ class YOLOv8InferenceNode(Node):
                     tip_mask_color = np.zeros_like(img_copy)
                     tip_mask_color[tip_mask == 1] = (0, 0, 255)
                     img_copy = cv2.addWeighted(img_copy, 1, tip_mask_color, 0.5, 0)
-                    cv2.putText(img_copy, f"Tip {len(hooks_dict) - idx} ({conf_tip[0]:.2f})", (int(xt1), int(yt1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
+                    cv2.putText(img_copy, f"Tip {hook_name} ({conf_tip[0]:.2f})", (int(xt1), int(yt1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
 
                 # Bounding Box und Maske für Lowpoint
                 if lowpoint_box is not None:
@@ -470,7 +472,7 @@ class YOLOv8InferenceNode(Node):
                     lowpoint_mask_color = np.zeros_like(img_copy)
                     lowpoint_mask_color[lowpoint_mask == 1] = (255, 0, 0)
                     img_copy = cv2.addWeighted(img_copy, 1, lowpoint_mask_color, 0.5, 0)
-                    cv2.putText(img_copy, f"Lowpoint {len(hooks_dict) - idx} ({conf_lowpoint[0]:.2f})", (int(xl1), int(yl1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
+                    cv2.putText(img_copy, f"Lowpoint {hook_name} ({conf_lowpoint[0]:.2f})", (int(xl1), int(yl1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
         return img_copy
     
 
