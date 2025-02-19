@@ -1,0 +1,15 @@
+running egg_info
+writing ../../build/action_servers/action_servers.egg-info/PKG-INFO
+writing dependency_links to ../../build/action_servers/action_servers.egg-info/dependency_links.txt
+writing entry points to ../../build/action_servers/action_servers.egg-info/entry_points.txt
+writing requirements to ../../build/action_servers/action_servers.egg-info/requires.txt
+writing top-level names to ../../build/action_servers/action_servers.egg-info/top_level.txt
+reading manifest file '../../build/action_servers/action_servers.egg-info/SOURCES.txt'
+writing manifest file '../../build/action_servers/action_servers.egg-info/SOURCES.txt'
+running build
+running build_py
+copying action_servers/transform_action_server.py -> /home/mo/Thesis/build/action_servers/build/lib/action_servers
+copying action_servers/MoveTcpAlongAxis_action_server.py -> /home/mo/Thesis/build/action_servers/build/lib/action_servers
+copying action_servers/__init__.py -> /home/mo/Thesis/build/action_servers/build/lib/action_servers
+running install
+running install_lib
