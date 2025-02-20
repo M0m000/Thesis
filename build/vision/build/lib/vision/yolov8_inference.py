@@ -141,6 +141,7 @@ class YOLOv8InferenceNode(Node):
             # Finden der Hakenform auf Pixelebene für Einfädeln
             self.filtered_hooks_dict = self.yolo_postprocessor.find_hooks_shape(hooks_dict = self.filtered_hooks_dict)
             
+            
 
 
             # Plots

@@ -3,6 +3,8 @@ from rclpy.node import Node
 import numpy as np
 import cv2
 from skimage.morphology import skeletonize
+from collections import deque
+
 
 
 class YoloPostprocessor(Node):
@@ -224,6 +226,9 @@ class YoloPostprocessor(Node):
             return [cx, cy]
     
     def find_hooks_shape(self, hooks_dict):
+        """
+        Funktion, um die Form des Hakens als Pfad von Spitze zu Senke zu berechnen
+        """
         for idx, key in enumerate(hooks_dict):
             mask = hooks_dict[key]['hook_mask']
             bbox = hooks_dict[key]['hook_box']
@@ -237,6 +242,96 @@ class YoloPostprocessor(Node):
             # Skelettierung des Hakens
             skeleton_mask = skeletonize(mask).astype(np.uint8) * 255
 
-            hooks_dict[key]['skeleton_mask'] = {}
+            # Hinzufügen von Spitze und Senke zu Skelett
+            uv_tip = hooks_dict[key]['uv_tip']
+            uv_lowpoint = hooks_dict[key]['uv_lowpoint']
+
+            if uv_tip is not None and uv_lowpoint is not None:
+                # Wandeln von uv_tip und uv_lowpoint in integer Koordinaten
+                uv_tip_int = (int(round(uv_tip[1])), int(round(uv_tip[0])))  # (x, y) -> (Spalte, Zeile)
+                uv_lowpoint_int = (int(round(uv_lowpoint[1])), int(round(uv_lowpoint[0])))  # (x, y) -> (Spalte, Zeile)
+                skeleton_mask[uv_tip_int[0], uv_tip_int[1]] = 255
+                skeleton_mask[uv_lowpoint_int[0], uv_lowpoint_int[1]] = 255
+
+                # Zuschneiden von Maske auf Bereich von Spitze bis Senke
+                cropped_skeleton = self.crop_skeleton_to_path(skeleton_mask, uv_tip_int, uv_lowpoint_int)
+                print("Cropped Skeleton Shape:", cropped_skeleton.shape)
+
+
+            # Speichern der Skelett-Maske in Hooks Dict
             hooks_dict[key]['skeleton_mask'] = skeleton_mask
+
+            # Finde den kürzesten Pfad
+            shortest_path = self.find_shortest_path_bfs(skeleton_mask, uv_tip_int, uv_lowpoint_int)
+            print(f"Kürzester Pfad: {shortest_path}")
+            hooks_dict[key]['shortest_path'] = shortest_path  # Speichern des Pfads
         return hooks_dict
+    
+
+    def crop_skeleton_to_path(self, skeleton_mask, uv_tip, uv_lowpoint):
+        # Extrahiere die Y- und X-Koordinaten der beiden Punkte (uv_tip und uv_lowpoint)
+        y_tip, x_tip = uv_tip
+        y_lowpoint, x_lowpoint = uv_lowpoint
+
+        # Bestimme die minimale und maximale Y-Koordinate, um den Bereich zu beschränken
+        min_y = min(y_tip, y_lowpoint)
+        max_y = max(y_tip, y_lowpoint)
+
+        # Zuschneiden der Skelettmaske entlang des Bereichs
+        cropped_skeleton = skeleton_mask[min_y:max_y+1, :]  # Behalte nur den Y-Bereich zwischen den Punkten
+        return cropped_skeleton
+
+
+
+    def find_shortest_path_bfs(self, skeleton_mask, uv_start, uv_end):
+        """
+        Findet den kürzesten Pfad zwischen den Start- und Endpunkten auf dem Skelett.
+        Dieser Algorithmus verwendet BFS, um die kürzeste Anzahl von Schritten zu finden.
+        :param skeleton_mask: Die Binärmaske des Skeletts.
+        :param uv_start: Der Startpunkt als (y, x) -> (Zeile, Spalte).
+        :param uv_end: Der Endpunkt als (y, x) -> (Zeile, Spalte).
+        :return: Der kürzeste Pfad als Liste von Pixelkoordinaten.
+        """
+        rows, cols = skeleton_mask.shape
+        # Überprüfe, ob Start und Ziel innerhalb der Grenzen des Bildes liegen
+        if not (0 <= uv_start[0] < rows and 0 <= uv_start[1] < cols):
+            print(f"Startpunkt {uv_start} außerhalb der Bildgrenzen!")
+            return None
+        if not (0 <= uv_end[0] < rows and 0 <= uv_end[1] < cols):
+            print(f"Endpunkt {uv_end} außerhalb der Bildgrenzen!")
+            return None
+
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1),  # 4 Richtungen: oben, unten, links, rechts
+                      (-1, -1), (-1, 1), (1, -1), (1, 1)]  # 4 diagonale Richtungen
+
+        # Überprüfe, ob Start und Endpunkt auf dem Skelett liegen
+        if skeleton_mask[uv_start[0], uv_start[1]] != 255:
+            print(f"Startpunkt {uv_start} liegt nicht auf dem Skelett!")
+            return None
+        if skeleton_mask[uv_end[0], uv_end[1]] != 255:
+            print(f"Endpunkt {uv_end} liegt nicht auf dem Skelett!")
+            return None
+
+        # Queue für BFS
+        queue = deque([(uv_start, [uv_start])])  # (current_position, path_so_far)
+        visited = set()  # Set der besuchten Pixel
+        visited.add(uv_start)
+
+        while queue:
+            current_pos, path = queue.popleft()
+
+            # Wenn der Endpunkt erreicht ist, gebe den Pfad zurück
+            if current_pos == uv_end:
+                return path
+
+            # Überprüfe alle benachbarten Pixel
+            for direction in directions:
+                neighbor = (current_pos[0] + direction[0], current_pos[1] + direction[1])
+
+                # Überprüfen, ob der Nachbar innerhalb der Grenzen liegt und auf dem Skelett
+                if 0 <= neighbor[0] < rows and 0 <= neighbor[1] < cols and skeleton_mask[neighbor[0], neighbor[1]] == 255:
+                    if neighbor not in visited:
+                        visited.add(neighbor)
+                        queue.append((neighbor, path + [neighbor]))
+
+        return None  # Kein Pfad gefunden

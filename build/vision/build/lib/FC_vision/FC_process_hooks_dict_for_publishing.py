@@ -21,6 +21,10 @@ def process_hook_for_publisher(hook_name, hook_data, publish_masks = True):
             )
             if hook_data['hook_mask'] is not None and publish_masks:
                 hook.hook_mask = bridge.cv2_to_imgmsg(np.array(hook_data['hook_mask']), encoding="32FC1")
+            if 'skeleton_mask' in hook_data:
+                if hook_data['skeleton_mask'] is not None and publish_masks:
+                    skeleton_mask = np.array(hook_data['skeleton_mask'], dtype=np.float32)  # Umwandlung in float32
+                    hook.hook_mask = bridge.cv2_to_imgmsg(skeleton_mask, encoding="32FC1")
             hook.conf_hook = float(hook_data['conf_hook'])
             hook.uv_hook = UV(u=hook_data['uv_hook'][0], v=hook_data['uv_hook'][1])
 
