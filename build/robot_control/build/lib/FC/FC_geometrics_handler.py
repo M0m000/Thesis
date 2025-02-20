@@ -234,6 +234,12 @@ class GeometricsHandler(Node):
                                                                                                       rot = rot_diff_in_tfcframe,
                                                                                                       pose_ref_frame = 'tfc')
         return trans_diff_in_worldframe, rot_diff_in_worldframe
+    
+
+
+
+    def interpolate_depth(self):
+        pass
 
 
         
