@@ -8,7 +8,6 @@ import cv2
 from ultralytics import YOLO
 import time
 import sys
-import matplotlib.pyplot as plt
 from action_interfaces.msg import HookData, Hook, BoundingBox, UV
 from concurrent.futures import ThreadPoolExecutor
 from FC_vision.FC_ema_filter import HookFilterEMA
@@ -114,11 +113,20 @@ class YOLOv8InferenceNode(Node):
         Callback für Img Topic -> enthält Preprocessing, Inferenz, Postprocessing, Plots, etc.
         """
         try:
-            cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='passthrough')       # Bild nach Topic-Empfang konvertieren zu OpenCV Img
-            self.preprocess(cv_image)               # Preprocessing  - Teilbarkeit der Auflösung durch 32
-            results = self.inference()              # Inferenz
-            self.bar_dict, self.hooks_dict = self.yolo_postprocessor.postprocess(results)          # Postprocessing
-            self.hooks_dict_processed = self.yolo_postprocessor.process_output_hooks_dict(hooks_dict = self.hooks_dict)        # Berechnung der Spitzen- und Senken-Punkte auf Pixelebene
+            # Bild nach Topic-Empfang konvertieren zu OpenCV Img
+            cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='passthrough')
+
+            # Preprocessing  - Teilbarkeit der Auflösung durch 32
+            self.preprocess(cv_image)
+
+            # Inferenz
+            results = self.inference()
+
+            # Postprocessing
+            self.bar_dict, self.hooks_dict = self.yolo_postprocessor.postprocess(results)
+
+            # Berechnung der Spitzen- und Senken-Punkte auf Pixelebene
+            self.hooks_dict_processed = self.yolo_postprocessor.process_output_hooks_dict(hooks_dict = self.hooks_dict)
 
             # Filtern des Output Dicts
             self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)
@@ -247,4 +255,5 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
 
