@@ -96,3 +96,27 @@ def plot_points(received_img, hooks_dict):
             p_lowpoint = tuple(map(int, hooks_dict[key]['uv_lowpoint']))
             cv2.drawMarker(img_copy, p_lowpoint, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)  
     return img_copy
+
+
+def plot_combined_skeletons(hooks_dict):
+    """
+    Diese Funktion geht durch das hooks_dict, extrahiert die 'skeleton_mask' für jeden Hook,
+    kombiniert sie zu einer einzigen Maske und zeigt diese mit OpenCV an.
+    """
+    combined_mask = None
+    
+    for key in hooks_dict:
+        skeleton_mask = hooks_dict[key].get('skeleton_mask', None)
+
+        if skeleton_mask is not None:
+            # Falls die Maske Werte 0 und 1 hat, skaliere sie auf 0 bis 255
+            if skeleton_mask.max() == 1:
+                skeleton_mask = skeleton_mask * 255
+            
+            # Initialisiere combined_mask mit der ersten Maske
+            if combined_mask is None:
+                combined_mask = skeleton_mask.astype(np.uint8)
+            else:
+                # Füge die aktuelle Maske zu combined_mask hinzu
+                combined_mask = cv2.bitwise_or(combined_mask, skeleton_mask.astype(np.uint8))
+    return combined_mask

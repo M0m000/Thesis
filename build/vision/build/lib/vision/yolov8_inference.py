@@ -14,7 +14,7 @@ from FC_vision.FC_ema_filter import HookFilterEMA
 from FC_vision.FC_moving_avg_filter import HookFilterMovingAvg
 from FC_vision.FC_iir_buttoworth_filter import HooksDictLowpassFilter
 from FC_vision.FC_yolo_output_processor import YoloPostprocessor
-from FC_vision.FC_plot_yolo_imgs import plot_hooks_and_bars, plot_points
+from FC_vision.FC_plot_yolo_imgs import plot_hooks_and_bars, plot_points, plot_combined_skeletons
 from FC_vision.FC_process_hooks_dict_for_publishing import process_hook_for_publisher
 
 
@@ -34,6 +34,8 @@ class YOLOv8InferenceNode(Node):
         self.show_output_img = self.get_parameter('show_output_img').get_parameter_value().bool_value
         self.declare_parameter('show_point_img', True)
         self.show_point_img = self.get_parameter('show_point_img').get_parameter_value().bool_value
+        self.declare_parameter('show_skeleton_img', True)
+        self.show_skeleton_img = self.get_parameter('show_skeleton_img').get_parameter_value().bool_value
         self.declare_parameter('publish_masks', True)
         self.publish_masks = self.get_parameter('publish_masks').get_parameter_value().bool_value
         self.declare_parameter('filter_alpha', 1.0)
@@ -61,6 +63,7 @@ class YOLOv8InferenceNode(Node):
         self.received_img = None
         self.output_img = None
         self.points_img = None
+        self.skeleton_img = None
         self.get_logger().info('YOLOv8 Inference Node started...')
 
         # Laden des Modells
@@ -129,15 +132,13 @@ class YOLOv8InferenceNode(Node):
             self.hooks_dict_processed = self.yolo_postprocessor.process_output_hooks_dict(hooks_dict = self.hooks_dict)
 
             # Filtern des Output Dicts
-            self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)
+            # self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)
             # self.filtered_hooks_dict = self.ema_filter.update(hooks_dict = self.hooks_dict_processed)
             # self.get_logger().warn(f"Hook Tip 2 vor Filterung: {self.hooks_dict_processed['hook_2']['uv_tip']}")
             # self.get_logger().warn(f"Hooak Tip 2 nach Filterung: {self.filtered_hooks_dict['hook_2']['uv_tip']}")
             # self.filtered_hooks_dict = self.hooks_dict_processed
-            mask = self.yolo_postprocessor.find_hooks_shape(hooks_dict = self.filtered_hooks_dict)
-            mask_img = cv2.cvtColor((mask * 255).astype(np.uint8), cv2.COLOR_GRAY2BGR)
-            cv2.imshow('Mask', mask_img)
-            cv2.waitKey(1)
+            hooks_dict_with_skeleton_masks = self.yolo_postprocessor.find_hooks_shape(hooks_dict = self.hooks_dict_processed)
+            self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = hooks_dict_with_skeleton_masks)
 
 
             # Plots
@@ -170,6 +171,12 @@ class YOLOv8InferenceNode(Node):
                 self.output_point_img_publisher.publish(output_point_img)
                 cv2.imshow('YoloV8 Output Point Img Filtered', self.points_img)
                 cv2.waitKey(1)
+
+            if self.show_skeleton_img:
+                self.skeleton_img = plot_combined_skeletons(hooks_dict = self.filtered_hooks_dict)
+                if self.skeleton_img is not None:
+                    cv2.imshow("Combined Skeleton Masks", self.skeleton_img)
+                    cv2.waitKey(1)
                 
         except Exception as e:
             self.get_logger().error(f'Error in image processing: {e}')

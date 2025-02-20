@@ -1,0 +1,59 @@
+[1.597s] Invoking command in '/home/mo/Thesis/src/vision': PYTHONPATH=/home/mo/Thesis/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/mo/Thesis/build/vision/build install --record /home/mo/Thesis/build/vision/install.log --single-version-externally-managed install_data
+[1.866s] running egg_info
+[1.892s] writing ../../build/vision/vision.egg-info/PKG-INFO
+[1.894s] writing dependency_links to ../../build/vision/vision.egg-info/dependency_links.txt
+[1.895s] writing entry points to ../../build/vision/vision.egg-info/entry_points.txt
+[1.896s] writing requirements to ../../build/vision/vision.egg-info/requires.txt
+[1.897s] writing top-level names to ../../build/vision/vision.egg-info/top_level.txt
+[2.105s] reading manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[2.107s] writing manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[2.108s] running build
+[2.108s] running build_py
+[2.108s] copying vision/point_finder_3d.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[2.108s] copying vision/light_controller.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[2.109s] copying vision/image_receiver.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[2.109s] copying vision/OLD_process_nn_output.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[2.109s] copying vision/vc_startup.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[2.110s] copying vision/img_filters.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[2.110s] copying vision/point_finder_2d.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[2.110s] copying vision/maskrcnn_inference.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[2.110s] copying vision/calibration.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[2.111s] copying vision/yolov8_inference.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[2.111s] copying vision/OLD_nn_output_processor.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[2.111s] copying vision/hook_detector.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[2.112s] copying vision/__init__.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[2.112s] copying vision/test_node.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[2.112s] copying FC_vision/FC_process_hooks_dict_for_publishing.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+[2.113s] copying FC_vision/FC_lowpass_filter.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+[2.113s] copying FC_vision/FC_plot_yolo_imgs.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+[2.113s] copying FC_vision/FC_ema_filter.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+[2.113s] copying FC_vision/FC_yolo_output_processor.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+[2.114s] copying FC_vision/FC_moving_avg_filter.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+[2.114s] copying FC_vision/__init__.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+[2.114s] copying FC_vision/FC_iir_buttoworth_filter.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+[2.115s] running install
+[2.123s] running install_lib
+[2.151s] copying /home/mo/Thesis/build/vision/build/lib/FC_vision/FC_yolo_output_processor.py -> /home/mo/Thesis/install/vision/lib/python3.8/site-packages/FC_vision
+[2.152s] byte-compiling /home/mo/Thesis/install/vision/lib/python3.8/site-packages/FC_vision/FC_yolo_output_processor.py to FC_yolo_output_processor.cpython-38.pyc
+[2.154s] running install_data
+[2.155s] copying resource/vision -> /home/mo/Thesis/install/vision/share/ament_index/resource_index/packages
+[2.155s] copying package.xml -> /home/mo/Thesis/install/vision/share/vision
+[2.156s] running install_egg_info
+[2.176s] removing '/home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision-0.0.0-py3.8.egg-info' (and everything under it)
+[2.177s] Copying ../../build/vision/vision.egg-info to /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision-0.0.0-py3.8.egg-info
+[2.178s] running install_scripts
+[2.222s] Installing calibration script to /home/mo/Thesis/install/vision/lib/vision
+[2.222s] Installing hook_detector script to /home/mo/Thesis/install/vision/lib/vision
+[2.222s] Installing image_filters script to /home/mo/Thesis/install/vision/lib/vision
+[2.222s] Installing image_receiver script to /home/mo/Thesis/install/vision/lib/vision
+[2.223s] Installing light_controller script to /home/mo/Thesis/install/vision/lib/vision
+[2.223s] Installing maskrcnn_inference script to /home/mo/Thesis/install/vision/lib/vision
+[2.223s] Installing nn_output_processor script to /home/mo/Thesis/install/vision/lib/vision
+[2.223s] Installing point_finder_2d script to /home/mo/Thesis/install/vision/lib/vision
+[2.223s] Installing point_finder_3d script to /home/mo/Thesis/install/vision/lib/vision
+[2.223s] Installing stereo_triangulation script to /home/mo/Thesis/install/vision/lib/vision
+[2.223s] Installing stereo_triangulation_with_robot script to /home/mo/Thesis/install/vision/lib/vision
+[2.223s] Installing test_node script to /home/mo/Thesis/install/vision/lib/vision
+[2.223s] Installing yolov8_inference script to /home/mo/Thesis/install/vision/lib/vision
+[2.224s] writing list of installed files to '/home/mo/Thesis/build/vision/install.log'
+[2.256s] Invoked command in '/home/mo/Thesis/src/vision' returned '0': PYTHONPATH=/home/mo/Thesis/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/mo/Thesis/build/vision/build install --record /home/mo/Thesis/build/vision/install.log --single-version-externally-managed install_data

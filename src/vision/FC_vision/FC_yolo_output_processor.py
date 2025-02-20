@@ -2,6 +2,7 @@ import rclpy
 from rclpy.node import Node
 import numpy as np
 import cv2
+from skimage.morphology import skeletonize
 
 
 class YoloPostprocessor(Node):
@@ -224,18 +225,20 @@ class YoloPostprocessor(Node):
     
     def find_hooks_shape(self, hooks_dict):
         for idx, key in enumerate(hooks_dict):
-            if key == 'hook_2':          # macht nur für Haken 2 und Haken 3 Sinn, da diese volltändig im Bild sind
-                mask = hooks_dict[key]['hook_mask']
-                bbox = hooks_dict[key]['hook_box']
+            mask = hooks_dict[key]['hook_mask']
+            bbox = hooks_dict[key]['hook_box']
 
-                # Setze alles außerhalb des BBox-Bereichs auf 0
-                mask[:int(bbox[1]), :] = 0  # Oben
-                mask[int(bbox[3]):, :] = 0  # Unten
-                mask[:, :int(bbox[0])] = 0  # Links
-                mask[:, int(bbox[2]):] = 0  # Rechts
-                
-                # Skelettierung des Hakens
-                skeleton = np.zeros_like(mask)
-                cv2.ximgproc.thinning(mask, skeleton, cv2.ximgproc.THINNING_ZHANGSUEN)  # OpenCV Thinning
-                
-        return mask
+            # Setze alles außerhalb des BBox-Bereichs auf 0
+            mask[:int(bbox[1]), :] = 0  # Oben
+            mask[int(bbox[3]):, :] = 0  # Unten
+            mask[:, :int(bbox[0])] = 0  # Links
+            mask[:, int(bbox[2]):] = 0  # Rechts
+
+            # Skelettierung des Hakens
+            skeleton_mask = skeletonize(mask).astype(np.uint8) * 255
+
+            hooks_dict[key]['skeleton_mask'] = {}
+            hooks_dict[key]['skeleton_mask'] = skeleton_mask
+            
+        return hooks_dict
+
