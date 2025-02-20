@@ -72,6 +72,7 @@ class Hook(metaclass=Metaclass_Hook):
         '_hook_mask',
         '_tip_mask',
         '_lowpoint_mask',
+        '_skeleton_mask',
         '_conf_hook',
         '_conf_tip',
         '_conf_lowpoint',
@@ -88,6 +89,7 @@ class Hook(metaclass=Metaclass_Hook):
         'hook_mask': 'sensor_msgs/Image',
         'tip_mask': 'sensor_msgs/Image',
         'lowpoint_mask': 'sensor_msgs/Image',
+        'skeleton_mask': 'sensor_msgs/Image',
         'conf_hook': 'float',
         'conf_tip': 'float',
         'conf_lowpoint': 'float',
@@ -101,6 +103,7 @@ class Hook(metaclass=Metaclass_Hook):
         rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'BoundingBox'),  # noqa: E501
         rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'BoundingBox'),  # noqa: E501
         rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'BoundingBox'),  # noqa: E501
+        rosidl_parser.definition.NamespacedType(['sensor_msgs', 'msg'], 'Image'),  # noqa: E501
         rosidl_parser.definition.NamespacedType(['sensor_msgs', 'msg'], 'Image'),  # noqa: E501
         rosidl_parser.definition.NamespacedType(['sensor_msgs', 'msg'], 'Image'),  # noqa: E501
         rosidl_parser.definition.NamespacedType(['sensor_msgs', 'msg'], 'Image'),  # noqa: E501
@@ -129,6 +132,8 @@ class Hook(metaclass=Metaclass_Hook):
         self.tip_mask = kwargs.get('tip_mask', Image())
         from sensor_msgs.msg import Image
         self.lowpoint_mask = kwargs.get('lowpoint_mask', Image())
+        from sensor_msgs.msg import Image
+        self.skeleton_mask = kwargs.get('skeleton_mask', Image())
         self.conf_hook = kwargs.get('conf_hook', float())
         self.conf_tip = kwargs.get('conf_tip', float())
         self.conf_lowpoint = kwargs.get('conf_lowpoint', float())
@@ -181,6 +186,8 @@ class Hook(metaclass=Metaclass_Hook):
         if self.tip_mask != other.tip_mask:
             return False
         if self.lowpoint_mask != other.lowpoint_mask:
+            return False
+        if self.skeleton_mask != other.skeleton_mask:
             return False
         if self.conf_hook != other.conf_hook:
             return False
@@ -297,6 +304,20 @@ class Hook(metaclass=Metaclass_Hook):
                 isinstance(value, Image), \
                 "The 'lowpoint_mask' field must be a sub message of type 'Image'"
         self._lowpoint_mask = value
+
+    @property
+    def skeleton_mask(self):
+        """Message field 'skeleton_mask'."""
+        return self._skeleton_mask
+
+    @skeleton_mask.setter
+    def skeleton_mask(self, value):
+        if __debug__:
+            from sensor_msgs.msg import Image
+            assert \
+                isinstance(value, Image), \
+                "The 'skeleton_mask' field must be a sub message of type 'Image'"
+        self._skeleton_mask = value
 
     @property
     def conf_hook(self):

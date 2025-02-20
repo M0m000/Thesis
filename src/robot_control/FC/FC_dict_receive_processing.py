@@ -23,7 +23,8 @@ class DictReceiveProcessor:
                 'hook_box': None, 'hook_mask': None, 'conf_hook': None,
                 'tip_box': None, 'tip_mask': None, 'conf_tip': None,
                 'lowpoint_box': None, 'lowpoint_mask': None, 'conf_lowpoint': None,
-                'uv_hook': None, 'uv_tip': None, 'uv_lowpoint': None
+                'uv_hook': None, 'uv_tip': None, 'uv_lowpoint': None,
+                'skeleton_mask': None
             }
 
             # Hook-Daten (immer vorhanden)
@@ -32,6 +33,11 @@ class DictReceiveProcessor:
                     hook_msg.hook_box.x_min, hook_msg.hook_box.y_min,
                     hook_msg.hook_box.x_max, hook_msg.hook_box.y_max
                 ]
+            if hook_msg.skeleton_mask and hook_msg.skeleton_mask.data:
+                try:
+                    hook_data['skeleton_mask'] = self.bridge.imgmsg_to_cv2(hook_msg.skeleton_mask, desired_encoding = "32FC1")
+                except Exception as e:
+                    self.node.get_logger().warn(f"Error converting skeleton_mask: {e}")
             if hook_msg.hook_mask and hook_msg.hook_mask.data:
                 try:
                     hook_data['hook_mask'] = self.bridge.imgmsg_to_cv2(hook_msg.hook_mask, desired_encoding='32FC1')

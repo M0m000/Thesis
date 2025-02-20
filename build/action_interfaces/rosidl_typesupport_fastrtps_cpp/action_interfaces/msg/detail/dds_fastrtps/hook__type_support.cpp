@@ -154,6 +154,29 @@ max_serialized_size_Image(
 }  // namespace msg
 }  // namespace sensor_msgs
 
+namespace sensor_msgs
+{
+namespace msg
+{
+namespace typesupport_fastrtps_cpp
+{
+bool cdr_serialize(
+  const sensor_msgs::msg::Image &,
+  eprosima::fastcdr::Cdr &);
+bool cdr_deserialize(
+  eprosima::fastcdr::Cdr &,
+  sensor_msgs::msg::Image &);
+size_t get_serialized_size(
+  const sensor_msgs::msg::Image &,
+  size_t current_alignment);
+size_t
+max_serialized_size_Image(
+  bool & full_bounded,
+  size_t current_alignment);
+}  // namespace typesupport_fastrtps_cpp
+}  // namespace msg
+}  // namespace sensor_msgs
+
 namespace action_interfaces
 {
 namespace msg
@@ -265,6 +288,10 @@ cdr_serialize(
   sensor_msgs::msg::typesupport_fastrtps_cpp::cdr_serialize(
     ros_message.lowpoint_mask,
     cdr);
+  // Member: skeleton_mask
+  sensor_msgs::msg::typesupport_fastrtps_cpp::cdr_serialize(
+    ros_message.skeleton_mask,
+    cdr);
   // Member: conf_hook
   cdr << ros_message.conf_hook;
   // Member: conf_tip
@@ -318,6 +345,10 @@ cdr_deserialize(
   // Member: lowpoint_mask
   sensor_msgs::msg::typesupport_fastrtps_cpp::cdr_deserialize(
     cdr, ros_message.lowpoint_mask);
+
+  // Member: skeleton_mask
+  sensor_msgs::msg::typesupport_fastrtps_cpp::cdr_deserialize(
+    cdr, ros_message.skeleton_mask);
 
   // Member: conf_hook
   cdr >> ros_message.conf_hook;
@@ -390,6 +421,11 @@ get_serialized_size(
   current_alignment +=
     sensor_msgs::msg::typesupport_fastrtps_cpp::get_serialized_size(
     ros_message.lowpoint_mask, current_alignment);
+  // Member: skeleton_mask
+
+  current_alignment +=
+    sensor_msgs::msg::typesupport_fastrtps_cpp::get_serialized_size(
+    ros_message.skeleton_mask, current_alignment);
   // Member: conf_hook
   {
     size_t item_size = sizeof(ros_message.conf_hook);
@@ -515,6 +551,18 @@ max_serialized_size_Hook(
   }
 
   // Member: lowpoint_mask
+  {
+    size_t array_size = 1;
+
+
+    for (size_t index = 0; index < array_size; ++index) {
+      current_alignment +=
+        sensor_msgs::msg::typesupport_fastrtps_cpp::max_serialized_size_Image(
+        full_bounded, current_alignment);
+    }
+  }
+
+  // Member: skeleton_mask
   {
     size_t array_size = 1;
 

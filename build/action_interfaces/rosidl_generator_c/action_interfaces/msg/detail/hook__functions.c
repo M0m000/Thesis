@@ -21,6 +21,7 @@
 // Member `hook_mask`
 // Member `tip_mask`
 // Member `lowpoint_mask`
+// Member `skeleton_mask`
 #include "sensor_msgs/msg/detail/image__functions.h"
 // Member `uv_hook`
 // Member `uv_tip`
@@ -68,6 +69,11 @@ action_interfaces__msg__Hook__init(action_interfaces__msg__Hook * msg)
     action_interfaces__msg__Hook__fini(msg);
     return false;
   }
+  // skeleton_mask
+  if (!sensor_msgs__msg__Image__init(&msg->skeleton_mask)) {
+    action_interfaces__msg__Hook__fini(msg);
+    return false;
+  }
   // conf_hook
   // conf_tip
   // conf_lowpoint
@@ -109,6 +115,8 @@ action_interfaces__msg__Hook__fini(action_interfaces__msg__Hook * msg)
   sensor_msgs__msg__Image__fini(&msg->tip_mask);
   // lowpoint_mask
   sensor_msgs__msg__Image__fini(&msg->lowpoint_mask);
+  // skeleton_mask
+  sensor_msgs__msg__Image__fini(&msg->skeleton_mask);
   // conf_hook
   // conf_tip
   // conf_lowpoint
@@ -165,6 +173,12 @@ action_interfaces__msg__Hook__are_equal(const action_interfaces__msg__Hook * lhs
   // lowpoint_mask
   if (!sensor_msgs__msg__Image__are_equal(
       &(lhs->lowpoint_mask), &(rhs->lowpoint_mask)))
+  {
+    return false;
+  }
+  // skeleton_mask
+  if (!sensor_msgs__msg__Image__are_equal(
+      &(lhs->skeleton_mask), &(rhs->skeleton_mask)))
   {
     return false;
   }
@@ -248,6 +262,12 @@ action_interfaces__msg__Hook__copy(
   // lowpoint_mask
   if (!sensor_msgs__msg__Image__copy(
       &(input->lowpoint_mask), &(output->lowpoint_mask)))
+  {
+    return false;
+  }
+  // skeleton_mask
+  if (!sensor_msgs__msg__Image__copy(
+      &(input->skeleton_mask), &(output->skeleton_mask)))
   {
     return false;
   }

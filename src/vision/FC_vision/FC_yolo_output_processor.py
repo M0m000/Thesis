@@ -239,6 +239,4 @@ class YoloPostprocessor(Node):
 
             hooks_dict[key]['skeleton_mask'] = {}
             hooks_dict[key]['skeleton_mask'] = skeleton_mask
-            
         return hooks_dict
-

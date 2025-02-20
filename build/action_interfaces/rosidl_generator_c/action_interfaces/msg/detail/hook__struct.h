@@ -27,6 +27,7 @@ extern "C"
 // Member 'hook_mask'
 // Member 'tip_mask'
 // Member 'lowpoint_mask'
+// Member 'skeleton_mask'
 #include "sensor_msgs/msg/detail/image__struct.h"
 // Member 'uv_hook'
 // Member 'uv_tip'
@@ -43,6 +44,7 @@ typedef struct action_interfaces__msg__Hook
   sensor_msgs__msg__Image hook_mask;
   sensor_msgs__msg__Image tip_mask;
   sensor_msgs__msg__Image lowpoint_mask;
+  sensor_msgs__msg__Image skeleton_mask;
   float conf_hook;
   float conf_tip;
   float conf_lowpoint;

@@ -34,6 +34,10 @@ module action_interfaces {
       sensor_msgs::msg::Image lowpoint_mask;
 
       @verbatim (language="comment", text=
+        " Masken für das Skelett als Image")
+      sensor_msgs::msg::Image skeleton_mask;
+
+      @verbatim (language="comment", text=
         " Konfidenz für Hook")
       float conf_hook;
 

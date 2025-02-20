@@ -18,6 +18,7 @@
 // Member 'hook_mask'
 // Member 'tip_mask'
 // Member 'lowpoint_mask'
+// Member 'skeleton_mask'
 #include "sensor_msgs/msg/detail/image__traits.hpp"
 // Member 'uv_hook'
 // Member 'uv_tip'

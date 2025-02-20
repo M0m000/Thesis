@@ -7,6 +7,7 @@ BoundingBox lowpoint_box
 sensor_msgs/Image hook_mask  # Masken für den Hook als Image
 sensor_msgs/Image tip_mask   # Masken für den Tip als Image
 sensor_msgs/Image lowpoint_mask  # Masken für den Lowpoint als Image
+sensor_msgs/Image skeleton_mask  # Masken für das Skelett als Image
 
 float32 conf_hook  # Konfidenz für Hook
 float32 conf_tip   # Konfidenz für Tip

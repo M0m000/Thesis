@@ -116,16 +116,32 @@ private:
   ::action_interfaces::msg::Hook msg_;
 };
 
+class Init_Hook_skeleton_mask
+{
+public:
+  explicit Init_Hook_skeleton_mask(::action_interfaces::msg::Hook & msg)
+  : msg_(msg)
+  {}
+  Init_Hook_conf_hook skeleton_mask(::action_interfaces::msg::Hook::_skeleton_mask_type arg)
+  {
+    msg_.skeleton_mask = std::move(arg);
+    return Init_Hook_conf_hook(msg_);
+  }
+
+private:
+  ::action_interfaces::msg::Hook msg_;
+};
+
 class Init_Hook_lowpoint_mask
 {
 public:
   explicit Init_Hook_lowpoint_mask(::action_interfaces::msg::Hook & msg)
   : msg_(msg)
   {}
-  Init_Hook_conf_hook lowpoint_mask(::action_interfaces::msg::Hook::_lowpoint_mask_type arg)
+  Init_Hook_skeleton_mask lowpoint_mask(::action_interfaces::msg::Hook::_lowpoint_mask_type arg)
   {
     msg_.lowpoint_mask = std::move(arg);
-    return Init_Hook_conf_hook(msg_);
+    return Init_Hook_skeleton_mask(msg_);
   }
 
 private:

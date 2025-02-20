@@ -38,7 +38,7 @@ extern "C"
 #include "action_interfaces/msg/detail/uv__functions.h"  // uv_hook, uv_lowpoint, uv_tip
 #include "rosidl_runtime_c/string.h"  // name
 #include "rosidl_runtime_c/string_functions.h"  // name
-#include "sensor_msgs/msg/detail/image__functions.h"  // hook_mask, lowpoint_mask, tip_mask
+#include "sensor_msgs/msg/detail/image__functions.h"  // hook_mask, lowpoint_mask, skeleton_mask, tip_mask
 
 // forward declare type support functions
 size_t get_serialized_size_action_interfaces__msg__BoundingBox(
@@ -180,6 +180,20 @@ static bool _Hook__cdr_serialize(
       )()->data);
     if (!callbacks->cdr_serialize(
         &ros_message->lowpoint_mask, cdr))
+    {
+      return false;
+    }
+  }
+
+  // Field name: skeleton_mask
+  {
+    const message_type_support_callbacks_t * callbacks =
+      static_cast<const message_type_support_callbacks_t *>(
+      ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(
+        rosidl_typesupport_fastrtps_c, sensor_msgs, msg, Image
+      )()->data);
+    if (!callbacks->cdr_serialize(
+        &ros_message->skeleton_mask, cdr))
     {
       return false;
     }
@@ -354,6 +368,20 @@ static bool _Hook__cdr_deserialize(
     }
   }
 
+  // Field name: skeleton_mask
+  {
+    const message_type_support_callbacks_t * callbacks =
+      static_cast<const message_type_support_callbacks_t *>(
+      ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(
+        rosidl_typesupport_fastrtps_c, sensor_msgs, msg, Image
+      )()->data);
+    if (!callbacks->cdr_deserialize(
+        cdr, &ros_message->skeleton_mask))
+    {
+      return false;
+    }
+  }
+
   // Field name: conf_hook
   {
     cdr >> ros_message->conf_hook;
@@ -456,6 +484,10 @@ size_t get_serialized_size_action_interfaces__msg__Hook(
 
   current_alignment += get_serialized_size_sensor_msgs__msg__Image(
     &(ros_message->lowpoint_mask), current_alignment);
+  // field.name skeleton_mask
+
+  current_alignment += get_serialized_size_sensor_msgs__msg__Image(
+    &(ros_message->skeleton_mask), current_alignment);
   // field.name conf_hook
   {
     size_t item_size = sizeof(ros_message->conf_hook);
@@ -577,6 +609,17 @@ size_t max_serialized_size_action_interfaces__msg__Hook(
     }
   }
   // member: lowpoint_mask
+  {
+    size_t array_size = 1;
+
+
+    for (size_t index = 0; index < array_size; ++index) {
+      current_alignment +=
+        max_serialized_size_sensor_msgs__msg__Image(
+        full_bounded, current_alignment);
+    }
+  }
+  // member: skeleton_mask
   {
     size_t array_size = 1;
 

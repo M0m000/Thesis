@@ -37,6 +37,10 @@ ROSIDL_GENERATOR_C_IMPORT
 bool sensor_msgs__msg__image__convert_from_py(PyObject * _pymsg, void * _ros_message);
 ROSIDL_GENERATOR_C_IMPORT
 PyObject * sensor_msgs__msg__image__convert_to_py(void * raw_ros_message);
+ROSIDL_GENERATOR_C_IMPORT
+bool sensor_msgs__msg__image__convert_from_py(PyObject * _pymsg, void * _ros_message);
+ROSIDL_GENERATOR_C_IMPORT
+PyObject * sensor_msgs__msg__image__convert_to_py(void * raw_ros_message);
 bool action_interfaces__msg__uv__convert_from_py(PyObject * _pymsg, void * _ros_message);
 PyObject * action_interfaces__msg__uv__convert_to_py(void * raw_ros_message);
 bool action_interfaces__msg__uv__convert_from_py(PyObject * _pymsg, void * _ros_message);
@@ -153,6 +157,17 @@ bool action_interfaces__msg__hook__convert_from_py(PyObject * _pymsg, void * _ro
       return false;
     }
     if (!sensor_msgs__msg__image__convert_from_py(field, &ros_message->lowpoint_mask)) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_DECREF(field);
+  }
+  {  // skeleton_mask
+    PyObject * field = PyObject_GetAttrString(_pymsg, "skeleton_mask");
+    if (!field) {
+      return false;
+    }
+    if (!sensor_msgs__msg__image__convert_from_py(field, &ros_message->skeleton_mask)) {
       Py_DECREF(field);
       return false;
     }
@@ -335,6 +350,20 @@ PyObject * action_interfaces__msg__hook__convert_to_py(void * raw_ros_message)
     }
     {
       int rc = PyObject_SetAttrString(_pymessage, "lowpoint_mask", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // skeleton_mask
+    PyObject * field = NULL;
+    field = sensor_msgs__msg__image__convert_to_py(&ros_message->skeleton_mask);
+    if (!field) {
+      return NULL;
+    }
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "skeleton_mask", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;

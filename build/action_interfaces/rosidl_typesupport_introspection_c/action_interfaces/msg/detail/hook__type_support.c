@@ -26,10 +26,12 @@
 // Member `hook_mask`
 // Member `tip_mask`
 // Member `lowpoint_mask`
+// Member `skeleton_mask`
 #include "sensor_msgs/msg/image.h"
 // Member `hook_mask`
 // Member `tip_mask`
 // Member `lowpoint_mask`
+// Member `skeleton_mask`
 #include "sensor_msgs/msg/detail/image__rosidl_typesupport_introspection_c.h"
 // Member `uv_hook`
 // Member `uv_tip`
@@ -59,7 +61,7 @@ void Hook__rosidl_typesupport_introspection_c__Hook_fini_function(void * message
   action_interfaces__msg__Hook__fini(message_memory);
 }
 
-static rosidl_typesupport_introspection_c__MessageMember Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[13] = {
+static rosidl_typesupport_introspection_c__MessageMember Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[14] = {
   {
     "name",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_STRING,  // type
@@ -166,6 +168,21 @@ static rosidl_typesupport_introspection_c__MessageMember Hook__rosidl_typesuppor
     NULL  // resize(index) function pointer
   },
   {
+    "skeleton_mask",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_MESSAGE,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message (initialized later)
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(action_interfaces__msg__Hook, skeleton_mask),  // bytes offset in struct
+    NULL,  // default value
+    NULL,  // size() function pointer
+    NULL,  // get_const(index) function pointer
+    NULL,  // get(index) function pointer
+    NULL  // resize(index) function pointer
+  },
+  {
     "conf_hook",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
@@ -260,7 +277,7 @@ static rosidl_typesupport_introspection_c__MessageMember Hook__rosidl_typesuppor
 static const rosidl_typesupport_introspection_c__MessageMembers Hook__rosidl_typesupport_introspection_c__Hook_message_members = {
   "action_interfaces__msg",  // message namespace
   "Hook",  // message name
-  13,  // number of fields
+  14,  // number of fields
   sizeof(action_interfaces__msg__Hook),
   Hook__rosidl_typesupport_introspection_c__Hook_message_member_array,  // message members
   Hook__rosidl_typesupport_introspection_c__Hook_init_function,  // function to initialize message memory (memory has to be allocated)
@@ -290,11 +307,13 @@ ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspecti
     ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, sensor_msgs, msg, Image)();
   Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[6].members_ =
     ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, sensor_msgs, msg, Image)();
-  Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[10].members_ =
-    ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, action_interfaces, msg, UV)();
+  Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[7].members_ =
+    ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, sensor_msgs, msg, Image)();
   Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[11].members_ =
     ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, action_interfaces, msg, UV)();
   Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[12].members_ =
+    ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, action_interfaces, msg, UV)();
+  Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[13].members_ =
     ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, action_interfaces, msg, UV)();
   if (!Hook__rosidl_typesupport_introspection_c__Hook_message_type_support_handle.typesupport_identifier) {
     Hook__rosidl_typesupport_introspection_c__Hook_message_type_support_handle.typesupport_identifier =

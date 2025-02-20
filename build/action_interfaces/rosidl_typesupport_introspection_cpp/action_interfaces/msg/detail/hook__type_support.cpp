@@ -37,7 +37,7 @@ void Hook_fini_function(void * message_memory)
   typed_message->~Hook();
 }
 
-static const ::rosidl_typesupport_introspection_cpp::MessageMember Hook_message_member_array[13] = {
+static const ::rosidl_typesupport_introspection_cpp::MessageMember Hook_message_member_array[14] = {
   {
     "name",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_STRING,  // type
@@ -144,6 +144,21 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember Hook_message_
     nullptr  // resize(index) function pointer
   },
   {
+    "skeleton_mask",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE,  // type
+    0,  // upper bound of string
+    ::rosidl_typesupport_introspection_cpp::get_message_type_support_handle<sensor_msgs::msg::Image>(),  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(action_interfaces::msg::Hook, skeleton_mask),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr  // resize(index) function pointer
+  },
+  {
     "conf_hook",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
@@ -238,7 +253,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember Hook_message_
 static const ::rosidl_typesupport_introspection_cpp::MessageMembers Hook_message_members = {
   "action_interfaces::msg",  // message namespace
   "Hook",  // message name
-  13,  // number of fields
+  14,  // number of fields
   sizeof(action_interfaces::msg::Hook),
   Hook_message_member_array,  // message members
   Hook_init_function,  // function to initialize message memory (memory has to be allocated)

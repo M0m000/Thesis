@@ -22,6 +22,7 @@
 // Member 'hook_mask'
 // Member 'tip_mask'
 // Member 'lowpoint_mask'
+// Member 'skeleton_mask'
 #include "sensor_msgs/msg/detail/image__struct.hpp"
 // Member 'uv_hook'
 // Member 'uv_tip'
@@ -53,6 +54,7 @@ struct Hook_
     hook_mask(_init),
     tip_mask(_init),
     lowpoint_mask(_init),
+    skeleton_mask(_init),
     uv_hook(_init),
     uv_tip(_init),
     uv_lowpoint(_init)
@@ -75,6 +77,7 @@ struct Hook_
     hook_mask(_alloc, _init),
     tip_mask(_alloc, _init),
     lowpoint_mask(_alloc, _init),
+    skeleton_mask(_alloc, _init),
     uv_hook(_alloc, _init),
     uv_tip(_alloc, _init),
     uv_lowpoint(_alloc, _init)
@@ -111,6 +114,9 @@ struct Hook_
   using _lowpoint_mask_type =
     sensor_msgs::msg::Image_<ContainerAllocator>;
   _lowpoint_mask_type lowpoint_mask;
+  using _skeleton_mask_type =
+    sensor_msgs::msg::Image_<ContainerAllocator>;
+  _skeleton_mask_type skeleton_mask;
   using _conf_hook_type =
     float;
   _conf_hook_type conf_hook;
@@ -171,6 +177,12 @@ struct Hook_
     const sensor_msgs::msg::Image_<ContainerAllocator> & _arg)
   {
     this->lowpoint_mask = _arg;
+    return *this;
+  }
+  Type & set__skeleton_mask(
+    const sensor_msgs::msg::Image_<ContainerAllocator> & _arg)
+  {
+    this->skeleton_mask = _arg;
     return *this;
   }
   Type & set__conf_hook(
@@ -271,6 +283,9 @@ struct Hook_
       return false;
     }
     if (this->lowpoint_mask != other.lowpoint_mask) {
+      return false;
+    }
+    if (this->skeleton_mask != other.skeleton_mask) {
       return false;
     }
     if (this->conf_hook != other.conf_hook) {
