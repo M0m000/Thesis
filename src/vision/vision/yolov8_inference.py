@@ -8,14 +8,14 @@ import cv2
 from ultralytics import YOLO
 import time
 import sys
-from action_interfaces.msg import HookData, Hook, BoundingBox, UV
+from action_interfaces.msg import HookData
 from concurrent.futures import ThreadPoolExecutor
 from FC_vision.FC_ema_filter import HookFilterEMA
 from FC_vision.FC_moving_avg_filter import HookFilterMovingAvg
-from FC_vision.FC_iir_buttoworth_filter import HooksDictLowpassFilter
 from FC_vision.FC_yolo_output_processor import YoloPostprocessor
 from FC_vision.FC_plot_yolo_imgs import plot_hooks_and_bars, plot_points, plot_combined_skeletons
 from FC_vision.FC_process_hooks_dict_for_publishing import process_hook_for_publisher
+
 
 
 class YOLOv8InferenceNode(Node):
@@ -140,7 +140,6 @@ class YOLOv8InferenceNode(Node):
             self.hooks_dict_processed = self.yolo_postprocessor.find_hooks_shape(hooks_dict = self.hooks_dict_processed, num_interpolation_points = 10)
             self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)
             '''
-            
 
             # Plots
             if self.show_cam_img:
@@ -182,7 +181,6 @@ class YOLOv8InferenceNode(Node):
         except Exception as e:
             self.get_logger().error(f'Error in image processing: {e}')
 
-    
 
     def preprocess(self, cv_image):
         """
@@ -268,4 +266,3 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
-

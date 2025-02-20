@@ -9,7 +9,7 @@ setup.py
 ../../build/vision/vision.egg-info/top_level.txt
 ../../build/vision/vision.egg-info/zip-safe
 FC_vision/FC_ema_filter.py
-FC_vision/FC_iir_buttoworth_filter.py
+FC_vision/FC_iir_butterworth_filter.py
 FC_vision/FC_lowpass_filter.py
 FC_vision/FC_moving_avg_filter.py
 FC_vision/FC_plot_yolo_imgs.py
