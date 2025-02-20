@@ -221,3 +221,15 @@ class YoloPostprocessor(Node):
             cy = np.mean(ys)
             return [cx, cy]
     
+    def find_hooks_shape(self, hooks_dict):
+        for idx, key in enumerate(hooks_dict):
+            if key == 'hook_2':          # macht nur für Haken 2 und Haken 3 Sinn, da diese volltändig im Bild sind
+                mask = hooks_dict[key]['hook_mask']
+                bbox = hooks_dict[key]['hook_box']
+
+                # Setze alles außerhalb des BBox-Bereichs auf 0
+                mask[:int(bbox[1]), :] = 0  # Oben
+                mask[int(bbox[3]):, :] = 0  # Unten
+                mask[:, :int(bbox[0])] = 0  # Links
+                mask[:, int(bbox[2]):] = 0  # Rechts
+        return mask

@@ -8,7 +8,6 @@ import cv2
 from ultralytics import YOLO
 import time
 import sys
-import matplotlib.pyplot as plt
 from action_interfaces.msg import HookData, Hook, BoundingBox, UV
 from concurrent.futures import ThreadPoolExecutor
 from FC_vision.FC_ema_filter import HookFilterEMA
@@ -114,11 +113,20 @@ class YOLOv8InferenceNode(Node):
         Callback für Img Topic -> enthält Preprocessing, Inferenz, Postprocessing, Plots, etc.
         """
         try:
-            cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='passthrough')       # Bild nach Topic-Empfang konvertieren zu OpenCV Img
-            self.preprocess(cv_image)               # Preprocessing  - Teilbarkeit der Auflösung durch 32
-            results = self.inference()              # Inferenz
-            self.bar_dict, self.hooks_dict = self.yolo_postprocessor.postprocess(results)          # Postprocessing
-            self.hooks_dict_processed = self.yolo_postprocessor.process_output_hooks_dict(hooks_dict = self.hooks_dict)        # Berechnung der Spitzen- und Senken-Punkte auf Pixelebene
+            # Bild nach Topic-Empfang konvertieren zu OpenCV Img
+            cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='passthrough')
+
+            # Preprocessing  - Teilbarkeit der Auflösung durch 32
+            self.preprocess(cv_image)
+
+            # Inferenz
+            results = self.inference()
+
+            # Postprocessing
+            self.bar_dict, self.hooks_dict = self.yolo_postprocessor.postprocess(results)
+
+            # Berechnung der Spitzen- und Senken-Punkte auf Pixelebene
+            self.hooks_dict_processed = self.yolo_postprocessor.process_output_hooks_dict(hooks_dict = self.hooks_dict)
 
             # Filtern des Output Dicts
             self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)
@@ -126,6 +134,11 @@ class YOLOv8InferenceNode(Node):
             # self.get_logger().warn(f"Hook Tip 2 vor Filterung: {self.hooks_dict_processed['hook_2']['uv_tip']}")
             # self.get_logger().warn(f"Hooak Tip 2 nach Filterung: {self.filtered_hooks_dict['hook_2']['uv_tip']}")
             # self.filtered_hooks_dict = self.hooks_dict_processed
+            mask = self.yolo_postprocessor.find_hooks_shape(hooks_dict = self.filtered_hooks_dict)
+            mask_img = cv2.cvtColor((mask * 255).astype(np.uint8), cv2.COLOR_GRAY2BGR)
+            cv2.imshow('Mask', mask_img)
+            cv2.waitKey(1)
+
 
             # Plots
             if self.show_cam_img:
@@ -213,57 +226,6 @@ class YOLOv8InferenceNode(Node):
         # self.get_logger().info(f"\rInference FPS: {(1/(end_time - start_time)):.4f} FPS")
         return results
 
-    
-    
-
-    def process_hook(self, hook_name, hook_data):
-        """
-        Verarbeitung für Hooks Dict als Vorbereitung für Publish
-        """
-        hook = Hook()
-        hook.name = hook_name
-        bridge = CvBridge()
-
-        # Setze Hook Bounding Box
-        if hook_data['hook_box'] is not None:
-            hook.hook_box = BoundingBox(
-                x_min=float(hook_data['hook_box'][0]),
-                y_min=float(hook_data['hook_box'][1]),
-                x_max=float(hook_data['hook_box'][2]),
-                y_max=float(hook_data['hook_box'][3])
-            )
-            if hook_data['hook_mask'] is not None and self.publish_masks:
-                hook.hook_mask = bridge.cv2_to_imgmsg(np.array(hook_data['hook_mask']), encoding="32FC1")
-            hook.conf_hook = float(hook_data['conf_hook'])
-            hook.uv_hook = UV(u=hook_data['uv_hook'][0], v=hook_data['uv_hook'][1])
-
-        # Setze Tip Box und Mask als Image, falls verfügbar
-        if hook_data['tip_box'] is not None:
-            hook.tip_box = BoundingBox(
-                x_min=float(hook_data['tip_box'][0]),
-                y_min=float(hook_data['tip_box'][1]),
-                x_max=float(hook_data['tip_box'][2]),
-                y_max=float(hook_data['tip_box'][3])
-            )
-            if hook_data['tip_mask'] is not None and self.publish_masks:
-                hook.tip_mask = bridge.cv2_to_imgmsg(np.array(hook_data['tip_mask']), encoding="32FC1")
-            hook.conf_tip = float(hook_data['conf_tip'])
-            hook.uv_tip = UV(u=hook_data['uv_tip'][0], v = hook_data['uv_tip'][1])
-
-        # Setze Lowpoint Box und Mask als Image, falls verfügbar
-        if hook_data['lowpoint_box'] is not None:
-            hook.lowpoint_box = BoundingBox(
-                x_min=float(hook_data['lowpoint_box'][0]),
-                y_min=float(hook_data['lowpoint_box'][1]),
-                x_max=float(hook_data['lowpoint_box'][2]),
-                y_max=float(hook_data['lowpoint_box'][3])
-            )
-            if hook_data['lowpoint_mask'] is not None and self.publish_masks:
-                hook.lowpoint_mask = bridge.cv2_to_imgmsg(np.array(hook_data['lowpoint_mask']), encoding="32FC1")
-            hook.conf_lowpoint = float(hook_data['conf_lowpoint'])
-            hook.uv_lowpoint = UV(u=hook_data['uv_lowpoint'][0], v=hook_data['uv_lowpoint'][1])
-        return hook
-
 
     def publish_hooks_dict(self):
         """
@@ -298,4 +260,5 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
 

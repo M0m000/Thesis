@@ -134,6 +134,11 @@ class YOLOv8InferenceNode(Node):
             # self.get_logger().warn(f"Hook Tip 2 vor Filterung: {self.hooks_dict_processed['hook_2']['uv_tip']}")
             # self.get_logger().warn(f"Hooak Tip 2 nach Filterung: {self.filtered_hooks_dict['hook_2']['uv_tip']}")
             # self.filtered_hooks_dict = self.hooks_dict_processed
+            mask = self.yolo_postprocessor.find_hooks_shape(hooks_dict = self.filtered_hooks_dict)
+            mask_img = cv2.cvtColor((mask * 255).astype(np.uint8), cv2.COLOR_GRAY2BGR)
+            cv2.imshow('Mask', mask_img)
+            cv2.waitKey(1)
+
 
             # Plots
             if self.show_cam_img:
