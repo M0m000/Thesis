@@ -54,6 +54,10 @@ module action_interfaces {
       action_interfaces::msg::UV uv_tip;
 
       action_interfaces::msg::UV uv_lowpoint;
+
+      sequence<action_interfaces::msg::UV> shortest_path;
+
+      sequence<action_interfaces::msg::UV> path_points;
     };
   };
 };

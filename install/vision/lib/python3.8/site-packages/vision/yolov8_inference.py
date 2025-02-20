@@ -131,17 +131,16 @@ class YOLOv8InferenceNode(Node):
             # Berechnung der Spitzen- und Senken-Punkte auf Pixelebene
             self.hooks_dict_processed = self.yolo_postprocessor.process_output_hooks_dict(hooks_dict = self.hooks_dict)
 
-            # Filtern des Output Dicts
+            ### Zuerst filtern und dann Pfad berechnen
             self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)
-            # self.filtered_hooks_dict = self.ema_filter.update(hooks_dict = self.hooks_dict_processed)
-            # self.get_logger().warn(f"Hook Tip 2 vor Filterung: {self.hooks_dict_processed['hook_2']['uv_tip']}")
-            # self.get_logger().warn(f"Hooak Tip 2 nach Filterung: {self.filtered_hooks_dict['hook_2']['uv_tip']}")
-            # self.filtered_hooks_dict = self.hooks_dict_processed
-
-            # Finden der Hakenform auf Pixelebene für Einfädeln
             self.filtered_hooks_dict = self.yolo_postprocessor.find_hooks_shape(hooks_dict = self.filtered_hooks_dict, num_interpolation_points = 10)
-            
 
+            '''
+            ### Zuerst Pfad berechnen und dann filtern (Pfad wird aber nicht mitgefiltert)
+            self.hooks_dict_processed = self.yolo_postprocessor.find_hooks_shape(hooks_dict = self.hooks_dict_processed, num_interpolation_points = 10)
+            self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)
+            '''
+            
 
             # Plots
             if self.show_cam_img:

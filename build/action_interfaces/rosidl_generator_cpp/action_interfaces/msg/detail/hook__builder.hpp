@@ -20,16 +20,48 @@ namespace msg
 namespace builder
 {
 
+class Init_Hook_path_points
+{
+public:
+  explicit Init_Hook_path_points(::action_interfaces::msg::Hook & msg)
+  : msg_(msg)
+  {}
+  ::action_interfaces::msg::Hook path_points(::action_interfaces::msg::Hook::_path_points_type arg)
+  {
+    msg_.path_points = std::move(arg);
+    return std::move(msg_);
+  }
+
+private:
+  ::action_interfaces::msg::Hook msg_;
+};
+
+class Init_Hook_shortest_path
+{
+public:
+  explicit Init_Hook_shortest_path(::action_interfaces::msg::Hook & msg)
+  : msg_(msg)
+  {}
+  Init_Hook_path_points shortest_path(::action_interfaces::msg::Hook::_shortest_path_type arg)
+  {
+    msg_.shortest_path = std::move(arg);
+    return Init_Hook_path_points(msg_);
+  }
+
+private:
+  ::action_interfaces::msg::Hook msg_;
+};
+
 class Init_Hook_uv_lowpoint
 {
 public:
   explicit Init_Hook_uv_lowpoint(::action_interfaces::msg::Hook & msg)
   : msg_(msg)
   {}
-  ::action_interfaces::msg::Hook uv_lowpoint(::action_interfaces::msg::Hook::_uv_lowpoint_type arg)
+  Init_Hook_shortest_path uv_lowpoint(::action_interfaces::msg::Hook::_uv_lowpoint_type arg)
   {
     msg_.uv_lowpoint = std::move(arg);
-    return std::move(msg_);
+    return Init_Hook_shortest_path(msg_);
   }
 
 private:

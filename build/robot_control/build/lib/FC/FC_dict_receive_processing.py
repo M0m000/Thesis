@@ -1,6 +1,7 @@
-import numpy as np
 from cv_bridge import CvBridge
 from rclpy.node import Node
+
+
 
 class DictReceiveProcessor:
     def __init__(self, node_class: Node):
@@ -24,7 +25,7 @@ class DictReceiveProcessor:
                 'tip_box': None, 'tip_mask': None, 'conf_tip': None,
                 'lowpoint_box': None, 'lowpoint_mask': None, 'conf_lowpoint': None,
                 'uv_hook': None, 'uv_tip': None, 'uv_lowpoint': None,
-                'skeleton_mask': None
+                'skeleton_mask': None, 'shortest_path': None, 'path_points': None
             }
 
             # Hook-Daten (immer vorhanden)
@@ -35,7 +36,7 @@ class DictReceiveProcessor:
                 ]
             if hook_msg.skeleton_mask and hook_msg.skeleton_mask.data:
                 try:
-                    hook_data['skeleton_mask'] = self.bridge.imgmsg_to_cv2(hook_msg.skeleton_mask, desired_encoding = "32FC1")
+                    hook_data['skeleton_mask'] = self.bridge.imgmsg_to_cv2(hook_msg.skeleton_mask, desired_encoding="32FC1")
                 except Exception as e:
                     self.node.get_logger().warn(f"Error converting skeleton_mask: {e}")
             if hook_msg.hook_mask and hook_msg.hook_mask.data:
@@ -74,6 +75,13 @@ class DictReceiveProcessor:
             hook_data['conf_lowpoint'] = hook_msg.conf_lowpoint
             hook_data['uv_lowpoint'] = [hook_msg.uv_lowpoint.u, hook_msg.uv_lowpoint.v] if hook_msg.lowpoint_box else None
 
+            # Optional: Verarbeite shortest_path und path_points
+            if hook_msg.shortest_path:
+                hook_data['shortest_path'] = [(pt.u, pt.v) for pt in hook_msg.shortest_path]
+            if hook_msg.path_points:
+                hook_data['path_points'] = [(pt.u, pt.v) for pt in hook_msg.path_points]
+
             # Speichere alles im Dictionary mit der Instanz-ID
             self.hooks_dict[hook_msg.name] = hook_data
+
         return self.hooks_dict

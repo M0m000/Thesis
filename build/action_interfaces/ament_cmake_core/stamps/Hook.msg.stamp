@@ -16,3 +16,6 @@ float32 conf_lowpoint  # Konfidenz für Lowpoint
 UV uv_hook
 UV uv_tip
 UV uv_lowpoint
+
+UV[] shortest_path
+UV[] path_points

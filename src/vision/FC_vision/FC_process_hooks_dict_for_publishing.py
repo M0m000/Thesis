@@ -19,12 +19,27 @@ def process_hook_for_publisher(hook_name, hook_data, publish_masks = True):
                 x_max=float(hook_data['hook_box'][2]),
                 y_max=float(hook_data['hook_box'][3])
             )
+            
+            # verarbeite Maske des Hakens
             if hook_data['hook_mask'] is not None and publish_masks:
                 hook.hook_mask = bridge.cv2_to_imgmsg(np.array(hook_data['hook_mask']), encoding="32FC1")
+            
+            # verarbeite Maske des Skeletts
             if 'skeleton_mask' in hook_data:
                 if hook_data['skeleton_mask'] is not None and publish_masks:
                     skeleton_mask = np.array(hook_data['skeleton_mask'], dtype=np.float32)  # Umwandlung in float32
                     hook.hook_mask = bridge.cv2_to_imgmsg(skeleton_mask, encoding="32FC1")
+            
+            # verarbeite Shortest Path (Spitze zu Senke)
+            if 'shortest_path' in hook_data:
+                if hook_data['shortest_path'] is not None:
+                    hook.shortest_path = [UV(u = float(x), v = float(y)) for x, y in hook_data['shortest_path']]
+
+            # verarbeite Path Points (für Interpolation zwischen Spitze und Senke)
+            if 'path_points' in hook_data:
+                if hook_data['path_points'] is not None:
+                    hook.path_points = [UV(u = float(x), v = float(y)) for x, y in hook_data['path_points']]
+                    # Hier rein, so wie bei allen anderen Dingen !!!!!!
             hook.conf_hook = float(hook_data['conf_hook'])
             hook.uv_hook = UV(u=hook_data['uv_hook'][0], v=hook_data['uv_hook'][1])
 

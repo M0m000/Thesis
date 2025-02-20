@@ -36,10 +36,14 @@
 // Member `uv_hook`
 // Member `uv_tip`
 // Member `uv_lowpoint`
+// Member `shortest_path`
+// Member `path_points`
 #include "action_interfaces/msg/uv.h"
 // Member `uv_hook`
 // Member `uv_tip`
 // Member `uv_lowpoint`
+// Member `shortest_path`
+// Member `path_points`
 #include "action_interfaces/msg/detail/uv__rosidl_typesupport_introspection_c.h"
 
 #ifdef __cplusplus
@@ -61,7 +65,73 @@ void Hook__rosidl_typesupport_introspection_c__Hook_fini_function(void * message
   action_interfaces__msg__Hook__fini(message_memory);
 }
 
-static rosidl_typesupport_introspection_c__MessageMember Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[14] = {
+size_t Hook__rosidl_typesupport_introspection_c__size_function__UV__shortest_path(
+  const void * untyped_member)
+{
+  const action_interfaces__msg__UV__Sequence * member =
+    (const action_interfaces__msg__UV__Sequence *)(untyped_member);
+  return member->size;
+}
+
+const void * Hook__rosidl_typesupport_introspection_c__get_const_function__UV__shortest_path(
+  const void * untyped_member, size_t index)
+{
+  const action_interfaces__msg__UV__Sequence * member =
+    (const action_interfaces__msg__UV__Sequence *)(untyped_member);
+  return &member->data[index];
+}
+
+void * Hook__rosidl_typesupport_introspection_c__get_function__UV__shortest_path(
+  void * untyped_member, size_t index)
+{
+  action_interfaces__msg__UV__Sequence * member =
+    (action_interfaces__msg__UV__Sequence *)(untyped_member);
+  return &member->data[index];
+}
+
+bool Hook__rosidl_typesupport_introspection_c__resize_function__UV__shortest_path(
+  void * untyped_member, size_t size)
+{
+  action_interfaces__msg__UV__Sequence * member =
+    (action_interfaces__msg__UV__Sequence *)(untyped_member);
+  action_interfaces__msg__UV__Sequence__fini(member);
+  return action_interfaces__msg__UV__Sequence__init(member, size);
+}
+
+size_t Hook__rosidl_typesupport_introspection_c__size_function__UV__path_points(
+  const void * untyped_member)
+{
+  const action_interfaces__msg__UV__Sequence * member =
+    (const action_interfaces__msg__UV__Sequence *)(untyped_member);
+  return member->size;
+}
+
+const void * Hook__rosidl_typesupport_introspection_c__get_const_function__UV__path_points(
+  const void * untyped_member, size_t index)
+{
+  const action_interfaces__msg__UV__Sequence * member =
+    (const action_interfaces__msg__UV__Sequence *)(untyped_member);
+  return &member->data[index];
+}
+
+void * Hook__rosidl_typesupport_introspection_c__get_function__UV__path_points(
+  void * untyped_member, size_t index)
+{
+  action_interfaces__msg__UV__Sequence * member =
+    (action_interfaces__msg__UV__Sequence *)(untyped_member);
+  return &member->data[index];
+}
+
+bool Hook__rosidl_typesupport_introspection_c__resize_function__UV__path_points(
+  void * untyped_member, size_t size)
+{
+  action_interfaces__msg__UV__Sequence * member =
+    (action_interfaces__msg__UV__Sequence *)(untyped_member);
+  action_interfaces__msg__UV__Sequence__fini(member);
+  return action_interfaces__msg__UV__Sequence__init(member, size);
+}
+
+static rosidl_typesupport_introspection_c__MessageMember Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[16] = {
   {
     "name",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_STRING,  // type
@@ -271,13 +341,43 @@ static rosidl_typesupport_introspection_c__MessageMember Hook__rosidl_typesuppor
     NULL,  // get_const(index) function pointer
     NULL,  // get(index) function pointer
     NULL  // resize(index) function pointer
+  },
+  {
+    "shortest_path",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_MESSAGE,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message (initialized later)
+    true,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(action_interfaces__msg__Hook, shortest_path),  // bytes offset in struct
+    NULL,  // default value
+    Hook__rosidl_typesupport_introspection_c__size_function__UV__shortest_path,  // size() function pointer
+    Hook__rosidl_typesupport_introspection_c__get_const_function__UV__shortest_path,  // get_const(index) function pointer
+    Hook__rosidl_typesupport_introspection_c__get_function__UV__shortest_path,  // get(index) function pointer
+    Hook__rosidl_typesupport_introspection_c__resize_function__UV__shortest_path  // resize(index) function pointer
+  },
+  {
+    "path_points",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_MESSAGE,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message (initialized later)
+    true,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(action_interfaces__msg__Hook, path_points),  // bytes offset in struct
+    NULL,  // default value
+    Hook__rosidl_typesupport_introspection_c__size_function__UV__path_points,  // size() function pointer
+    Hook__rosidl_typesupport_introspection_c__get_const_function__UV__path_points,  // get_const(index) function pointer
+    Hook__rosidl_typesupport_introspection_c__get_function__UV__path_points,  // get(index) function pointer
+    Hook__rosidl_typesupport_introspection_c__resize_function__UV__path_points  // resize(index) function pointer
   }
 };
 
 static const rosidl_typesupport_introspection_c__MessageMembers Hook__rosidl_typesupport_introspection_c__Hook_message_members = {
   "action_interfaces__msg",  // message namespace
   "Hook",  // message name
-  14,  // number of fields
+  16,  // number of fields
   sizeof(action_interfaces__msg__Hook),
   Hook__rosidl_typesupport_introspection_c__Hook_message_member_array,  // message members
   Hook__rosidl_typesupport_introspection_c__Hook_init_function,  // function to initialize message memory (memory has to be allocated)
@@ -314,6 +414,10 @@ ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspecti
   Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[12].members_ =
     ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, action_interfaces, msg, UV)();
   Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[13].members_ =
+    ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, action_interfaces, msg, UV)();
+  Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[14].members_ =
+    ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, action_interfaces, msg, UV)();
+  Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[15].members_ =
     ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, action_interfaces, msg, UV)();
   if (!Hook__rosidl_typesupport_introspection_c__Hook_message_type_support_handle.typesupport_identifier) {
     Hook__rosidl_typesupport_introspection_c__Hook_message_type_support_handle.typesupport_identifier =

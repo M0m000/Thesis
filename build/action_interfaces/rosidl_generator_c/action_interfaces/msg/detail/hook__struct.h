@@ -32,6 +32,8 @@ extern "C"
 // Member 'uv_hook'
 // Member 'uv_tip'
 // Member 'uv_lowpoint'
+// Member 'shortest_path'
+// Member 'path_points'
 #include "action_interfaces/msg/detail/uv__struct.h"
 
 // Struct defined in msg/Hook in the package action_interfaces.
@@ -51,6 +53,8 @@ typedef struct action_interfaces__msg__Hook
   action_interfaces__msg__UV uv_hook;
   action_interfaces__msg__UV uv_tip;
   action_interfaces__msg__UV uv_lowpoint;
+  action_interfaces__msg__UV__Sequence shortest_path;
+  action_interfaces__msg__UV__Sequence path_points;
 } action_interfaces__msg__Hook;
 
 // Struct for a sequence of action_interfaces__msg__Hook.

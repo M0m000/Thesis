@@ -40,7 +40,8 @@ setup(
             'scan_bar_horizontal_triangulation = robot_control.scan_bar_horizontal_triangulation:main',
             'scan_bar_combined_triangulation = robot_control.scan_bar_combined_triangulation:main',
             'scan_bar_vertical_triangulation = robot_control.scan_bar_vertical_triangulation:main',
-            'control = robot_control.control:main'
+            'control = robot_control.control:main',
+            'hook_data_listener = robot_control.hook_data_listener:main'
         ],
     },
 )

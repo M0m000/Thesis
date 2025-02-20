@@ -19,6 +19,12 @@
 #include "rosidl_runtime_c/string.h"
 #include "rosidl_runtime_c/string_functions.h"
 
+#include "rosidl_runtime_c/primitives_sequence.h"
+#include "rosidl_runtime_c/primitives_sequence_functions.h"
+
+// Nested array functions includes
+#include "action_interfaces/msg/detail/uv__functions.h"
+// end nested array functions include
 bool action_interfaces__msg__bounding_box__convert_from_py(PyObject * _pymsg, void * _ros_message);
 PyObject * action_interfaces__msg__bounding_box__convert_to_py(void * raw_ros_message);
 bool action_interfaces__msg__bounding_box__convert_from_py(PyObject * _pymsg, void * _ros_message);
@@ -41,6 +47,10 @@ ROSIDL_GENERATOR_C_IMPORT
 bool sensor_msgs__msg__image__convert_from_py(PyObject * _pymsg, void * _ros_message);
 ROSIDL_GENERATOR_C_IMPORT
 PyObject * sensor_msgs__msg__image__convert_to_py(void * raw_ros_message);
+bool action_interfaces__msg__uv__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__uv__convert_to_py(void * raw_ros_message);
+bool action_interfaces__msg__uv__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__uv__convert_to_py(void * raw_ros_message);
 bool action_interfaces__msg__uv__convert_from_py(PyObject * _pymsg, void * _ros_message);
 PyObject * action_interfaces__msg__uv__convert_to_py(void * raw_ros_message);
 bool action_interfaces__msg__uv__convert_from_py(PyObject * _pymsg, void * _ros_message);
@@ -231,6 +241,72 @@ bool action_interfaces__msg__hook__convert_from_py(PyObject * _pymsg, void * _ro
       Py_DECREF(field);
       return false;
     }
+    Py_DECREF(field);
+  }
+  {  // shortest_path
+    PyObject * field = PyObject_GetAttrString(_pymsg, "shortest_path");
+    if (!field) {
+      return false;
+    }
+    PyObject * seq_field = PySequence_Fast(field, "expected a sequence in 'shortest_path'");
+    if (!seq_field) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_ssize_t size = PySequence_Size(field);
+    if (-1 == size) {
+      Py_DECREF(seq_field);
+      Py_DECREF(field);
+      return false;
+    }
+    if (!action_interfaces__msg__UV__Sequence__init(&(ros_message->shortest_path), size)) {
+      PyErr_SetString(PyExc_RuntimeError, "unable to create action_interfaces__msg__UV__Sequence ros_message");
+      Py_DECREF(seq_field);
+      Py_DECREF(field);
+      return false;
+    }
+    action_interfaces__msg__UV * dest = ros_message->shortest_path.data;
+    for (Py_ssize_t i = 0; i < size; ++i) {
+      if (!action_interfaces__msg__uv__convert_from_py(PySequence_Fast_GET_ITEM(seq_field, i), &dest[i])) {
+        Py_DECREF(seq_field);
+        Py_DECREF(field);
+        return false;
+      }
+    }
+    Py_DECREF(seq_field);
+    Py_DECREF(field);
+  }
+  {  // path_points
+    PyObject * field = PyObject_GetAttrString(_pymsg, "path_points");
+    if (!field) {
+      return false;
+    }
+    PyObject * seq_field = PySequence_Fast(field, "expected a sequence in 'path_points'");
+    if (!seq_field) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_ssize_t size = PySequence_Size(field);
+    if (-1 == size) {
+      Py_DECREF(seq_field);
+      Py_DECREF(field);
+      return false;
+    }
+    if (!action_interfaces__msg__UV__Sequence__init(&(ros_message->path_points), size)) {
+      PyErr_SetString(PyExc_RuntimeError, "unable to create action_interfaces__msg__UV__Sequence ros_message");
+      Py_DECREF(seq_field);
+      Py_DECREF(field);
+      return false;
+    }
+    action_interfaces__msg__UV * dest = ros_message->path_points.data;
+    for (Py_ssize_t i = 0; i < size; ++i) {
+      if (!action_interfaces__msg__uv__convert_from_py(PySequence_Fast_GET_ITEM(seq_field, i), &dest[i])) {
+        Py_DECREF(seq_field);
+        Py_DECREF(field);
+        return false;
+      }
+    }
+    Py_DECREF(seq_field);
     Py_DECREF(field);
   }
 
@@ -439,6 +515,62 @@ PyObject * action_interfaces__msg__hook__convert_to_py(void * raw_ros_message)
     }
     {
       int rc = PyObject_SetAttrString(_pymessage, "uv_lowpoint", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // shortest_path
+    PyObject * field = NULL;
+    size_t size = ros_message->shortest_path.size;
+    field = PyList_New(size);
+    if (!field) {
+      return NULL;
+    }
+    action_interfaces__msg__UV * item;
+    for (size_t i = 0; i < size; ++i) {
+      item = &(ros_message->shortest_path.data[i]);
+      PyObject * pyitem = action_interfaces__msg__uv__convert_to_py(item);
+      if (!pyitem) {
+        Py_DECREF(field);
+        return NULL;
+      }
+      int rc = PyList_SetItem(field, i, pyitem);
+      (void)rc;
+      assert(rc == 0);
+    }
+    assert(PySequence_Check(field));
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "shortest_path", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // path_points
+    PyObject * field = NULL;
+    size_t size = ros_message->path_points.size;
+    field = PyList_New(size);
+    if (!field) {
+      return NULL;
+    }
+    action_interfaces__msg__UV * item;
+    for (size_t i = 0; i < size; ++i) {
+      item = &(ros_message->path_points.data[i]);
+      PyObject * pyitem = action_interfaces__msg__uv__convert_to_py(item);
+      if (!pyitem) {
+        Py_DECREF(field);
+        return NULL;
+      }
+      int rc = PyList_SetItem(field, i, pyitem);
+      (void)rc;
+      assert(rc == 0);
+    }
+    assert(PySequence_Check(field));
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "path_points", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;

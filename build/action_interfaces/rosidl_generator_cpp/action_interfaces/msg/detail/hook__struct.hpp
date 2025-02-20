@@ -27,6 +27,8 @@
 // Member 'uv_hook'
 // Member 'uv_tip'
 // Member 'uv_lowpoint'
+// Member 'shortest_path'
+// Member 'path_points'
 #include "action_interfaces/msg/detail/uv__struct.hpp"
 
 #ifndef _WIN32
@@ -135,6 +137,12 @@ struct Hook_
   using _uv_lowpoint_type =
     action_interfaces::msg::UV_<ContainerAllocator>;
   _uv_lowpoint_type uv_lowpoint;
+  using _shortest_path_type =
+    std::vector<action_interfaces::msg::UV_<ContainerAllocator>, typename ContainerAllocator::template rebind<action_interfaces::msg::UV_<ContainerAllocator>>::other>;
+  _shortest_path_type shortest_path;
+  using _path_points_type =
+    std::vector<action_interfaces::msg::UV_<ContainerAllocator>, typename ContainerAllocator::template rebind<action_interfaces::msg::UV_<ContainerAllocator>>::other>;
+  _path_points_type path_points;
 
   // setters for named parameter idiom
   Type & set__name(
@@ -221,6 +229,18 @@ struct Hook_
     this->uv_lowpoint = _arg;
     return *this;
   }
+  Type & set__shortest_path(
+    const std::vector<action_interfaces::msg::UV_<ContainerAllocator>, typename ContainerAllocator::template rebind<action_interfaces::msg::UV_<ContainerAllocator>>::other> & _arg)
+  {
+    this->shortest_path = _arg;
+    return *this;
+  }
+  Type & set__path_points(
+    const std::vector<action_interfaces::msg::UV_<ContainerAllocator>, typename ContainerAllocator::template rebind<action_interfaces::msg::UV_<ContainerAllocator>>::other> & _arg)
+  {
+    this->path_points = _arg;
+    return *this;
+  }
 
   // constant declarations
 
@@ -304,6 +324,12 @@ struct Hook_
       return false;
     }
     if (this->uv_lowpoint != other.uv_lowpoint) {
+      return false;
+    }
+    if (this->shortest_path != other.shortest_path) {
+      return false;
+    }
+    if (this->path_points != other.path_points) {
       return false;
     }
     return true;

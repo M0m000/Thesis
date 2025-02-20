@@ -558,6 +558,7 @@ CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/m
 CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_hook_s.c.o: rosidl_generator_py/action_interfaces/msg/_hook_s.c
 CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_hook_s.c.o: /opt/ros/foxy/include/builtin_interfaces/msg/detail/time__struct.h
 CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_hook_s.c.o: /opt/ros/foxy/include/rosidl_runtime_c/primitives_sequence.h
+CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_hook_s.c.o: /opt/ros/foxy/include/rosidl_runtime_c/primitives_sequence_functions.h
 CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_hook_s.c.o: /opt/ros/foxy/include/rosidl_runtime_c/string.h
 CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_hook_s.c.o: /opt/ros/foxy/include/rosidl_runtime_c/string_functions.h
 CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_hook_s.c.o: /opt/ros/foxy/include/rosidl_runtime_c/visibility_control.h
@@ -665,6 +666,7 @@ CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/m
 CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_hook_s.c.o: rosidl_generator_c/action_interfaces/msg/detail/bounding_box__struct.h
 CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_hook_s.c.o: rosidl_generator_c/action_interfaces/msg/detail/hook__functions.h
 CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_hook_s.c.o: rosidl_generator_c/action_interfaces/msg/detail/hook__struct.h
+CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_hook_s.c.o: rosidl_generator_c/action_interfaces/msg/detail/uv__functions.h
 CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_hook_s.c.o: rosidl_generator_c/action_interfaces/msg/detail/uv__struct.h
 CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_hook_s.c.o: rosidl_generator_c/action_interfaces/msg/rosidl_generator_c__visibility_control.h
 

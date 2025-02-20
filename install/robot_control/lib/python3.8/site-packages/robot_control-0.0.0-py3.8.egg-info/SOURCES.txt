@@ -28,6 +28,7 @@ robot_control/MoveTcpAlongAxis_action_client.py
 robot_control/__init__.py
 robot_control/control.py
 robot_control/define_working_frame_needle.py
+robot_control/hook_data_listener.py
 robot_control/ibvs_2d.py
 robot_control/move_lin_by_key.py
 robot_control/scan_bar_combined_triangulation.py

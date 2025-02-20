@@ -79,6 +79,8 @@ class Hook(metaclass=Metaclass_Hook):
         '_uv_hook',
         '_uv_tip',
         '_uv_lowpoint',
+        '_shortest_path',
+        '_path_points',
     ]
 
     _fields_and_field_types = {
@@ -96,6 +98,8 @@ class Hook(metaclass=Metaclass_Hook):
         'uv_hook': 'action_interfaces/UV',
         'uv_tip': 'action_interfaces/UV',
         'uv_lowpoint': 'action_interfaces/UV',
+        'shortest_path': 'sequence<action_interfaces/UV>',
+        'path_points': 'sequence<action_interfaces/UV>',
     }
 
     SLOT_TYPES = (
@@ -113,6 +117,8 @@ class Hook(metaclass=Metaclass_Hook):
         rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'UV'),  # noqa: E501
         rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'UV'),  # noqa: E501
         rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'UV'),  # noqa: E501
+        rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'UV')),  # noqa: E501
+        rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'UV')),  # noqa: E501
     )
 
     def __init__(self, **kwargs):
@@ -143,6 +149,8 @@ class Hook(metaclass=Metaclass_Hook):
         self.uv_tip = kwargs.get('uv_tip', UV())
         from action_interfaces.msg import UV
         self.uv_lowpoint = kwargs.get('uv_lowpoint', UV())
+        self.shortest_path = kwargs.get('shortest_path', [])
+        self.path_points = kwargs.get('path_points', [])
 
     def __repr__(self):
         typename = self.__class__.__module__.split('.')
@@ -200,6 +208,10 @@ class Hook(metaclass=Metaclass_Hook):
         if self.uv_tip != other.uv_tip:
             return False
         if self.uv_lowpoint != other.uv_lowpoint:
+            return False
+        if self.shortest_path != other.shortest_path:
+            return False
+        if self.path_points != other.path_points:
             return False
         return True
 
@@ -399,3 +411,51 @@ class Hook(metaclass=Metaclass_Hook):
                 isinstance(value, UV), \
                 "The 'uv_lowpoint' field must be a sub message of type 'UV'"
         self._uv_lowpoint = value
+
+    @property
+    def shortest_path(self):
+        """Message field 'shortest_path'."""
+        return self._shortest_path
+
+    @shortest_path.setter
+    def shortest_path(self, value):
+        if __debug__:
+            from action_interfaces.msg import UV
+            from collections.abc import Sequence
+            from collections.abc import Set
+            from collections import UserList
+            from collections import UserString
+            assert \
+                ((isinstance(value, Sequence) or
+                  isinstance(value, Set) or
+                  isinstance(value, UserList)) and
+                 not isinstance(value, str) and
+                 not isinstance(value, UserString) and
+                 all(isinstance(v, UV) for v in value) and
+                 True), \
+                "The 'shortest_path' field must be a set or sequence and each value of type 'UV'"
+        self._shortest_path = value
+
+    @property
+    def path_points(self):
+        """Message field 'path_points'."""
+        return self._path_points
+
+    @path_points.setter
+    def path_points(self, value):
+        if __debug__:
+            from action_interfaces.msg import UV
+            from collections.abc import Sequence
+            from collections.abc import Set
+            from collections import UserList
+            from collections import UserString
+            assert \
+                ((isinstance(value, Sequence) or
+                  isinstance(value, Set) or
+                  isinstance(value, UserList)) and
+                 not isinstance(value, str) and
+                 not isinstance(value, UserString) and
+                 all(isinstance(v, UV) for v in value) and
+                 True), \
+                "The 'path_points' field must be a set or sequence and each value of type 'UV'"
+        self._path_points = value

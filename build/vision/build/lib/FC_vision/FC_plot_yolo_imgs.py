@@ -100,23 +100,72 @@ def plot_points(received_img, hooks_dict):
 
 def plot_combined_skeletons(hooks_dict):
     """
-    Diese Funktion geht durch das hooks_dict, extrahiert die 'skeleton_mask' für jeden Hook,
-    kombiniert sie zu einer einzigen Maske und zeigt diese mit OpenCV an.
+    Diese Funktion kombiniert die 'skeleton_mask' für alle Haken zu einer einzigen Maske 
+    und zeigt diese mit OpenCV an. Zusätzlich werden die Pfadpunkte für alle Haken gleichzeitig eingezeichnet.
     """
-    combined_mask = None
+    if not hooks_dict:
+        return None
     
+    combined_mask = None
+    skeleton_img_color = None
+    
+    # Bestimme die maximale Bildgröße für alle Masken
+    max_height = 0
+    max_width = 0
+    
+    # Berechne die maximalen Dimensionen für die Skelettmasken
+    for key in hooks_dict:
+        skeleton_mask = hooks_dict[key].get('skeleton_mask', None)
+        if skeleton_mask is not None:
+            max_height = max(max_height, skeleton_mask.shape[0])
+            max_width = max(max_width, skeleton_mask.shape[1])
+
+    # Falls keine Masken vorhanden sind, breche ab
+    if max_height == 0 or max_width == 0:
+        return None
+
+    # Initialisiere das kombinierte Bild mit einer schwarzen Maske
+    combined_mask = np.zeros((max_height, max_width), dtype=np.uint8)
+
+    # Iteriere über alle Haken im hooks_dict und kombiniere ihre Masken
     for key in hooks_dict:
         skeleton_mask = hooks_dict[key].get('skeleton_mask', None)
 
         if skeleton_mask is not None:
-            # Falls die Maske Werte 0 und 1 hat, skaliere sie auf 0 bis 255
-            if skeleton_mask.max() == 1:
-                skeleton_mask = skeleton_mask * 255
-            
-            # Initialisiere combined_mask mit der ersten Maske
-            if combined_mask is None:
-                combined_mask = skeleton_mask.astype(np.uint8)
+            # Prüfe, ob die Maske überhaupt Pixel enthält
+            if np.any(skeleton_mask):
+                # Skalieren der Maske auf die maximalen Dimensionen
+                resized_mask = cv2.resize(skeleton_mask, (max_width, max_height), interpolation=cv2.INTER_NEAREST)
+
+                # Kombiniere die Masken (überlagerung bitwise_or)
+                combined_mask = cv2.bitwise_or(combined_mask, resized_mask)
+
+    skeleton_img_color = cv2.cvtColor(combined_mask, cv2.COLOR_GRAY2BGR)
+
+    # Jetzt alle Punkte für alle Haken einzeichnen
+    for key in hooks_dict:
+        path_points = hooks_dict[key].get('path_points', None)
+        
+        if path_points is None or len(path_points) == 0:
+            continue
+
+        for idx, point in enumerate(path_points):
+            if not isinstance(point, (list, tuple)) or len(point) != 2:
+                print(f"Fehler: Ungültiges Punktformat für {key}: {point}")
+                continue
+
+            y, x = point
+            if 0 <= x < max_width and 0 <= y < max_height:
+                if idx == 0:
+                    # Erster Punkt grün
+                    cv2.circle(skeleton_img_color, (x, y), radius=3, color=(0, 255, 0), thickness=-1)
+                elif idx == len(path_points) - 1:
+                    # Letzter Punkt blau
+                    cv2.circle(skeleton_img_color, (x, y), radius=3, color=(255, 0, 0), thickness=-1)
+                else:
+                    # Alle anderen Punkte rot
+                    cv2.circle(skeleton_img_color, (x, y), radius=3, color=(0, 0, 255), thickness=-1)
             else:
-                # Füge die aktuelle Maske zu combined_mask hinzu
-                combined_mask = cv2.bitwise_or(combined_mask, skeleton_mask.astype(np.uint8))
-    return combined_mask
+                print(f"Warnung: Punkt außerhalb der Bildgrenzen ({x}, {y}) für {key}.")
+
+    return skeleton_img_color

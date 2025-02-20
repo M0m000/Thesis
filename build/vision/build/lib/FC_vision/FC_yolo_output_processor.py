@@ -128,6 +128,9 @@ class YoloPostprocessor(Node):
                     "lowpoint_box": box_lowpoint,
                     "lowpoint_mask": mask_lowpoint,
                     "conf_lowpoint": conf_lowpoint,
+                    "skeleton_mask": None,
+                    "shortest_path": None,
+                    "path_points": None
                 }
 
         # Sortiere das Dictionary nach der x1, y1 Koordinate der Bounding Box
@@ -254,35 +257,28 @@ class YoloPostprocessor(Node):
                 skeleton_mask[uv_lowpoint_int[0], uv_lowpoint_int[1]] = 255
                 
                 # Schließen von Lücken im Skelett
-                skeleton_mask = closing(skeleton_mask, square(5))      # Kernelgroesse 10
-                '''
-                # Zuschneiden von Maske auf Bereich von Spitze bis Senke
-                cropped_skeleton = self.crop_skeleton_to_path(skeleton_mask, uv_tip_int, uv_lowpoint_int)
-                print("Cropped Skeleton Shape:", cropped_skeleton.shape)
+                kernel_size = 15
+                kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (kernel_size, kernel_size))
+                skeleton_mask = cv2.morphologyEx(skeleton_mask, cv2.MORPH_CLOSE, kernel)
 
-                # Test - Plotte die zugeschnitte Skeleton Mask von Hook 2
-                if key == "hook_2":
-                    cv2.imshow('Cropped Skeleton Img', cropped_skeleton)
-                    cv2.waitKey(1)
-                '''
+                # Sicherstellen, dass Spitze und Senke nach dem Closing noch vorhanden sind
+                skeleton_mask[uv_tip_int[0], uv_tip_int[1]] = 255
+                skeleton_mask[uv_lowpoint_int[0], uv_lowpoint_int[1]] = 255
 
                 # Speichern der Skelett-Maske in Hooks Dict
                 hooks_dict[key]['skeleton_mask'] = skeleton_mask
 
                 # Den Pfad mit BFS finden
                 shortest_path = self.bfs_shortest_path(skeleton_mask, uv_tip_int, uv_lowpoint_int)
+
                 if shortest_path:
                     # print(f"Kürzester Pfad: {shortest_path}")
                     hooks_dict[key]['shortest_path'] = shortest_path  # Speichern des Pfads
 
                     # N Pfadpunkte in festem Abstand anlegen
                     path_points = self.get_evenly_spaced_points_on_path(path = shortest_path, num_points = num_interpolation_points)
-                    print("gefundene Pfadpunkte: ", path_points)
-
-                    # Test - Plotte die Skelettmaske und den gefundenen Pfad
-                    self.plot_skeleton_and_points(skeleton_mask = skeleton_mask, path_points = path_points)
-                else:
-                    print("Kein Pfad gefunden!")
+                    # print(f"Path Points: {path_points}")
+                    hooks_dict[key]['path_points'] = path_points
         return hooks_dict
     
 
@@ -314,7 +310,7 @@ class YoloPostprocessor(Node):
 
         # Überprüfen, ob die Start- und Endpunkte im Skelett liegen
         if skeleton_mask[start[0], start[1]] != 255 or skeleton_mask[end[0], end[1]] != 255:
-            print(f"Start oder Endpunkt liegt nicht im Skelett!")
+            print(f"Tip or lowpoint not appearing in skeleton!")
             return None
 
         # Nachbar-Richtungen: 8 Richtungen (horizontal, vertikal und diagonal)
@@ -384,29 +380,9 @@ class YoloPostprocessor(Node):
                 new_point = (int(round(y1 + ratio * (y2 - y1))),
                              int(round(x1 + ratio * (x2 - x1))))
                 spaced_points.append(new_point)
+
                 # Update die verbleibende Länge und setze den aktuellen Abstand zurück
                 segment_length -= remaining_length
                 current_length = 0
             current_length += segment_length
         return spaced_points
-    
-
-    def plot_skeleton_and_points(self, skeleton_mask, path_points):
-        """
-        Zeichnet die Skelettmaske und die gefundenen Punkte auf das Bild.
-        """
-        skeleton_img = skeleton_mask.copy()
-        skeleton_img_color = cv2.cvtColor(skeleton_img, cv2.COLOR_GRAY2BGR)
-
-        # Zeichne die Punkte in Rot, den ersten grün und den letzten blau
-        for idx, point in enumerate(path_points):
-            y, x = point
-            if idx == 0:
-                cv2.circle(skeleton_img_color, (x, y), radius=3, color=(0, 255, 0), thickness=-1)  # Grün (0, 255, 0)
-            elif idx == len(path_points) - 1:
-                cv2.circle(skeleton_img_color, (x, y), radius=3, color=(255, 0, 0), thickness=-1)  # Blau (255, 0, 0)
-            else:
-                cv2.circle(skeleton_img_color, (x, y), radius=3, color=(0, 0, 255), thickness=-1)  # Rot (0, 0, 255)
-
-        cv2.imshow('Skelettmaske mit Pfadpunkten', skeleton_img_color)
-        cv2.waitKey(1)

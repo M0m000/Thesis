@@ -26,6 +26,8 @@
 // Member `uv_hook`
 // Member `uv_tip`
 // Member `uv_lowpoint`
+// Member `shortest_path`
+// Member `path_points`
 #include "action_interfaces/msg/detail/uv__functions.h"
 
 bool
@@ -92,6 +94,16 @@ action_interfaces__msg__Hook__init(action_interfaces__msg__Hook * msg)
     action_interfaces__msg__Hook__fini(msg);
     return false;
   }
+  // shortest_path
+  if (!action_interfaces__msg__UV__Sequence__init(&msg->shortest_path, 0)) {
+    action_interfaces__msg__Hook__fini(msg);
+    return false;
+  }
+  // path_points
+  if (!action_interfaces__msg__UV__Sequence__init(&msg->path_points, 0)) {
+    action_interfaces__msg__Hook__fini(msg);
+    return false;
+  }
   return true;
 }
 
@@ -126,6 +138,10 @@ action_interfaces__msg__Hook__fini(action_interfaces__msg__Hook * msg)
   action_interfaces__msg__UV__fini(&msg->uv_tip);
   // uv_lowpoint
   action_interfaces__msg__UV__fini(&msg->uv_lowpoint);
+  // shortest_path
+  action_interfaces__msg__UV__Sequence__fini(&msg->shortest_path);
+  // path_points
+  action_interfaces__msg__UV__Sequence__fini(&msg->path_points);
 }
 
 bool
@@ -212,6 +228,18 @@ action_interfaces__msg__Hook__are_equal(const action_interfaces__msg__Hook * lhs
   {
     return false;
   }
+  // shortest_path
+  if (!action_interfaces__msg__UV__Sequence__are_equal(
+      &(lhs->shortest_path), &(rhs->shortest_path)))
+  {
+    return false;
+  }
+  // path_points
+  if (!action_interfaces__msg__UV__Sequence__are_equal(
+      &(lhs->path_points), &(rhs->path_points)))
+  {
+    return false;
+  }
   return true;
 }
 
@@ -292,6 +320,18 @@ action_interfaces__msg__Hook__copy(
   // uv_lowpoint
   if (!action_interfaces__msg__UV__copy(
       &(input->uv_lowpoint), &(output->uv_lowpoint)))
+  {
+    return false;
+  }
+  // shortest_path
+  if (!action_interfaces__msg__UV__Sequence__copy(
+      &(input->shortest_path), &(output->shortest_path)))
+  {
+    return false;
+  }
+  // path_points
+  if (!action_interfaces__msg__UV__Sequence__copy(
+      &(input->path_points), &(output->path_points)))
   {
     return false;
   }
