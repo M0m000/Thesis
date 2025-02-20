@@ -14,6 +14,9 @@ from concurrent.futures import ThreadPoolExecutor
 from FC_vision.FC_ema_filter import HookFilterEMA
 from FC_vision.FC_moving_avg_filter import HookFilterMovingAvg
 from FC_vision.FC_iir_buttoworth_filter import HooksDictLowpassFilter
+from FC_vision.FC_yolo_output_processor import YoloPostprocessor
+from FC_vision.FC_plot_yolo_imgs import plot_hooks_and_bars, plot_points
+from FC_vision.FC_process_hooks_dict_for_publishing import process_hook_for_publisher
 
 
 class YOLOv8InferenceNode(Node):
@@ -40,43 +43,51 @@ class YOLOv8InferenceNode(Node):
         self.filter_windowsize = self.get_parameter('filter_windowsize').get_parameter_value().integer_value
 
         # Subscriber auf VC Cam
-        self.subscription = self.create_subscription(
-            Image,
-            'vcnanoz/image_raw',
-            self.image_callback,
-            1
-        )
-        self.subscription
+        self.subscription = self.create_subscription(Image, 'vcnanoz/image_raw', self.image_callback, 1)
 
+        # Publisher für Netz Output
         self.hooks_dict_publisher_ = self.create_publisher(HookData, 'yolov8_output/hooks_dict', 10)
         self.timer = self.create_timer(0.0001, self.publish_hooks_dict)
 
+        # Publisher für Segmentation Img und Point Img (Output)
         self.output_segment_img_publisher = self.create_publisher(Image, 'yolov8_output/output_segment_img', 10)
         self.output_point_img_publisher = self.create_publisher(Image, 'yolov8_output/output_point_img', 10)
+
+        # Filterinstanzen zur Filterung des Outputs
         self.ema_filter = HookFilterEMA(alpha = self.filter_alpha, confirmation_frames = 10, disappearance_frames = 5)
         self.movingavg_filter = HookFilterMovingAvg(window_size = self.filter_windowsize, confirmation_frames = 10, disappearance_frames = 5)
 
+        # Variablen
         self.bridge = CvBridge()
         self.received_img = None
         self.output_img = None
         self.points_img = None
         self.get_logger().info('YOLOv8 Inference Node started...')
 
+        # Laden des Modells
         self.get_logger().info("Loading YoloV8 model...")
         self.yolo_model = YOLO(self.yolo_model_path)
         self.get_logger().info("YoloV8 model loaded!")
 
+        # Inferenzdevice auswählen - wenn möglich GPU
         self.inference_device = "cpu"
         self.set_device()
 
+        # Dicts für Output Verarbeitung
         self.bar_dict = {}
         self.bar_dict_processed = {}
         self.hooks_dict = {}
         self.hooks_dict_processed = {}
         self.filtered_hooks_dict = {}
 
+        # Instanz YoloPostprocessor
+        self.yolo_postprocessor = YoloPostprocessor()
+
 
     def set_device(self):
+        """
+        Wählt das Gerät (GPU oder CPU) für die Inferenz aus
+        """
         self.get_logger().info("Setting device for neural network inferences...")
 
         if torch.cuda.is_available():
@@ -99,44 +110,49 @@ class YOLOv8InferenceNode(Node):
 
     
     def image_callback(self, msg):
+        """
+        Callback für Img Topic -> enthält Preprocessing, Inferenz, Postprocessing, Plots, etc.
+        """
         try:
-            cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='passthrough')
-            self.preprocess(cv_image)
-            results = self.inference()
-            self.bar_dict, self.hooks_dict = self.postprocess(results)
-            self.process_output_hooks_dict()
+            cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='passthrough')       # Bild nach Topic-Empfang konvertieren zu OpenCV Img
+            self.preprocess(cv_image)               # Preprocessing  - Teilbarkeit der Auflösung durch 32
+            results = self.inference()              # Inferenz
+            self.bar_dict, self.hooks_dict = self.yolo_postprocessor.postprocess(results)          # Postprocessing
+            self.hooks_dict_processed = self.yolo_postprocessor.process_output_hooks_dict(hooks_dict = self.hooks_dict)        # Berechnung der Spitzen- und Senken-Punkte auf Pixelebene
 
+            # Filtern des Output Dicts
+            self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)
             # self.filtered_hooks_dict = self.ema_filter.update(hooks_dict = self.hooks_dict_processed)
             # self.get_logger().warn(f"Hook Tip 2 vor Filterung: {self.hooks_dict_processed['hook_2']['uv_tip']}")
-            self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)
-            # self.get_logger().warn(f"Hook Tip 2 nach Filterung: {self.filtered_hooks_dict['hook_2']['uv_tip']}")
+            # self.get_logger().warn(f"Hooak Tip 2 nach Filterung: {self.filtered_hooks_dict['hook_2']['uv_tip']}")
             # self.filtered_hooks_dict = self.hooks_dict_processed
 
+            # Plots
             if self.show_cam_img:
                 cv2.imshow('VC Cam Img', self.received_img)
                 cv2.waitKey(1)
 
             if self.show_output_img:
-                self.output_img = self.plot_hooks_and_bars(hooks_dict = self.hooks_dict_processed)
+                self.output_img = plot_hooks_and_bars(received_img = self.received_img, hooks_dict = self.hooks_dict_processed, bar_dict = self.bar_dict)
                 output_segment_img = self.bridge.cv2_to_imgmsg(self.output_img, encoding="bgr8")
                 self.output_segment_img_publisher.publish(output_segment_img)
                 cv2.imshow('YoloV8 Output Segment Img', self.output_img)
                 cv2.waitKey(1)
 
-                self.output_img = self.plot_hooks_and_bars(hooks_dict = self.filtered_hooks_dict)
+                self.output_img = plot_hooks_and_bars(received_img = self.received_img, hooks_dict = self.filtered_hooks_dict, bar_dict = self.bar_dict)
                 output_segment_img = self.bridge.cv2_to_imgmsg(self.output_img, encoding="bgr8")
                 self.output_segment_img_publisher.publish(output_segment_img)
                 cv2.imshow('YoloV8 Output Segment Img Filtered', self.output_img)
                 cv2.waitKey(1)
 
             if self.show_point_img:
-                self.points_img = self.plot_points(hooks_dict = self.hooks_dict_processed)
+                self.points_img = plot_points(received_img = self.received_img, hooks_dict = self.hooks_dict_processed)
                 output_point_img = self.bridge.cv2_to_imgmsg(self.points_img, encoding="bgr8")
                 self.output_point_img_publisher.publish(output_point_img)
                 cv2.imshow('YoloV8 Output Point Img', self.points_img)
                 cv2.waitKey(1)
 
-                self.points_img = self.plot_points(hooks_dict = self.filtered_hooks_dict)
+                self.points_img = plot_points(received_img = self.received_img, hooks_dict = self.filtered_hooks_dict)
                 output_point_img = self.bridge.cv2_to_imgmsg(self.points_img, encoding="bgr8")
                 self.output_point_img_publisher.publish(output_point_img)
                 cv2.imshow('YoloV8 Output Point Img Filtered', self.points_img)
@@ -145,68 +161,13 @@ class YOLOv8InferenceNode(Node):
         except Exception as e:
             self.get_logger().error(f'Error in image processing: {e}')
 
-
-    def plot_points(self, hooks_dict):
-        img_copy = self.received_img.copy()
-        for idx, key in enumerate(hooks_dict):
-            if hooks_dict[key]['hook_box'] is not None:
-                bb_hook = tuple(map(int, hooks_dict[key]['hook_box']))
-                cv2.rectangle(img_copy, (bb_hook[0], bb_hook[1]), (bb_hook[2], bb_hook[3]), (150, 150, 150), 2)
-                text_position = (bb_hook[0], bb_hook[1] - 10)
-                cv2.putText(img_copy, f"{key}", text_position, cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
-            if hooks_dict[key]['uv_hook'] is not None:
-                p_hook = tuple(map(int, hooks_dict[key]['uv_hook']))
-                cv2.drawMarker(img_copy, p_hook, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
-            if hooks_dict[key]['uv_tip'] is not None:
-                p_tip = tuple(map(int, hooks_dict[key]['uv_tip']))
-                cv2.drawMarker(img_copy, p_tip, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
-            if hooks_dict[key]['uv_lowpoint'] is not None:
-                p_lowpoint = tuple(map(int, hooks_dict[key]['uv_lowpoint']))
-                cv2.drawMarker(img_copy, p_lowpoint, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)  
-        return img_copy
-    
-
-    def process_output_hooks_dict(self):
-        # starttime = time.perf_counter()
-        self.hooks_dict_processed = self.hooks_dict.copy()
-
-        for idx, key in enumerate(self.hooks_dict):
-            hook_mask = self.hooks_dict[key].get('hook_mask', [])
-            tip_mask = self.hooks_dict[key].get('tip_mask', [])
-            lowpoint_mask = self.hooks_dict[key].get('lowpoint_mask', [])
-
-            
-            if hook_mask is not None and hook_mask != []:
-                uv_hook = self.calc_mean_of_mask(hook_mask, title='hook')
-            else:
-                uv_hook = None
-            if tip_mask is not None and tip_mask != []:
-                uv_tip = self.calc_mean_of_mask(tip_mask, title='tip')
-            else:
-                uv_tip = None
-            if lowpoint_mask is not None and lowpoint_mask != []:
-                uv_lowpoint = self.calc_mean_of_mask(lowpoint_mask, title='lowpoint')
-            else:
-                uv_lowpoint = None
-
-            self.hooks_dict_processed[key]['uv_hook'] = uv_hook
-            self.hooks_dict_processed[key]['uv_tip'] = uv_tip
-            self.hooks_dict_processed[key]['uv_lowpoint'] = uv_lowpoint
-
-        # endtime = time.perf_counter()
-        # self.get_logger().info(f"Time of Point Calculation: {(endtime-starttime):.4f} sec")
-        
-
-    
-    def calc_mean_of_mask(self, mask, title='none'):
-        if mask is not None and mask != []:
-            ys, xs = np.where(mask == 1)
-            cx = np.mean(xs)
-            cy = np.mean(ys)
-            return [cx, cy]
     
 
     def preprocess(self, cv_image):
+        """
+        Funktion für Preprocessing des Img zur Inferenz
+        --- sorgt für eine Bildauflösung die durch 32 ohne Rest teilbar ist -> funktioniert stabiler mit Yolo
+        """
         # cv_image[0:20, 0:300, :] = 255
         self.received_img = cv_image
         if self.do_preprocessing:
@@ -217,6 +178,10 @@ class YOLOv8InferenceNode(Node):
 
 
     def inference(self):
+        """ 
+        Funktion für die Inferenz des Yolo-Netzes -> Nimmt das aktuelle Bild und liefert den Output zurück
+        --- wahlweise mit Zeitmessung und Berechnung der Inferenz-FPS
+        """
         start_time = time.perf_counter()
 
         results = self.yolo_model.predict(source = self.received_img,
@@ -249,285 +214,15 @@ class YOLOv8InferenceNode(Node):
         return results
 
 
-    def postprocess(self, results):
-        boxes, masks, confs, classes = self.extract_output(results)
-        boxes_bar, masks_bar, confs_bar, boxes_hooks, masks_hooks, boxes_tips, masks_tips, boxes_lowpoints, masks_lowpoints, confs_hooks, confs_tips, confs_lowpoints = self.split_outputs_by_class(boxes, masks, confs, classes)
-        hooks_dict = self.create_hook_instances(boxes_hooks, masks_hooks, boxes_tips, masks_tips, boxes_lowpoints, masks_lowpoints, confs_hooks, confs_tips, confs_lowpoints)
-        bar_dict = self.create_bar_instance(boxes_bar, masks_bar, confs_bar)
-        return bar_dict, hooks_dict
-
-
-    def extract_output(self, results):
-        res = results[0]
-        if len(res.boxes.data.cpu().numpy()) != 0:
-            boxes = res.boxes.data.cpu().numpy()
-            confs = [0, 0, 0, 0, 1, 0] * boxes
-            confs = confs[:, 4:5]
-            classes = [0, 0, 0, 0, 0, 1] * boxes
-            classes = classes[:, 5:6]
-            boxes = boxes[:, 0:4]
-        else:
-            boxes = None
-            confs = None
-            classes = None
-
-        if res.masks:
-            masks = res.masks.data.cpu().numpy()
-        else:
-            masks = None
-        return boxes, masks, confs, classes
-
-
-    def calc_box_midpoint(self, box):
-        return np.array([(box[0] + box[2]) / 2, (box[1] + box[3]) / 2])
-
-
-    def box_distance(self, box1, box2):
-        m1 = self.calc_box_midpoint(box1)
-        m2 = self.calc_box_midpoint(box2)
-        return abs(np.linalg.norm(m1, m2))
-
-
-    def split_outputs_by_class(self, boxes, masks, confs, classes):
-        if boxes is not None and masks is not None and confs is not None and classes is not None:
-            idx_bar = np.where(classes == 0)[0]
-            idx_hooks = np.where(classes == 1)[0]
-            idx_tips = np.where(classes == 2)[0]
-            idx_lowpoints = np.where(classes == 3)[0]
-
-            boxes_bar = boxes[idx_bar]
-            boxes_hooks = boxes[idx_hooks]
-            boxes_tips = boxes[idx_tips]
-            boxes_lowpoints = boxes[idx_lowpoints]
-
-            masks_bar = masks[idx_bar]
-            masks_hooks = masks[idx_hooks]
-            masks_tips = masks[idx_tips]
-            masks_lowpoints = masks[idx_lowpoints]
-
-            confs_bar = confs[idx_bar]
-            confs_hooks = confs[idx_hooks]
-            confs_tips = confs[idx_tips]
-            confs_lowpoints = confs[idx_lowpoints]
-
-            return boxes_bar, masks_bar, confs_bar, boxes_hooks, masks_hooks, boxes_tips, masks_tips, boxes_lowpoints, masks_lowpoints, confs_hooks, confs_tips, confs_lowpoints
-        else:
-            return None, None, None, None, None, None, None, None, None, None, None, None
-
-
-    def create_hook_instances(self, boxes_hooks, masks_hooks, 
-                              boxes_tips, masks_tips, 
-                              boxes_lowpoints, masks_lowpoints, 
-                              confs_hooks, confs_tips, confs_lowpoints):
-        hooks_dict = {}
-
-        if boxes_hooks is not None:     
-            for i, box_hook in enumerate(boxes_hooks):
-                hook_midpoint = self.calc_box_midpoint(box_hook)
-                
-                # Finde die beste Tip, die sich innerhalb des Hook-Box befindet
-                valid_tips = [
-                    (idx, box_tip) for idx, box_tip in enumerate(boxes_tips)
-                    if self.is_point_inside_box(self.calc_box_midpoint(box_tip), box_hook)
-                ]
-                
-                if valid_tips:
-                    best_tip_idx, box_tip = min(valid_tips, key=lambda t: np.linalg.norm(self.calc_box_midpoint(t[1]) - hook_midpoint))
-                    mask_tip = masks_tips[best_tip_idx]
-                    conf_tip = confs_tips[best_tip_idx]
-                else:
-                    box_tip, mask_tip, conf_tip = None, None, None
-                
-                # Finde den besten Lowpoint, der sich innerhalb des Hook-Box befindet
-                valid_lowpoints = [
-                    (idx, box_lowpoint) for idx, box_lowpoint in enumerate(boxes_lowpoints)
-                    if self.is_point_inside_box(self.calc_box_midpoint(box_lowpoint), box_hook)
-                ]
-                
-                if valid_lowpoints:
-                    best_lowpoint_idx, box_lowpoint = min(valid_lowpoints, key=lambda l: np.linalg.norm(self.calc_box_midpoint(l[1]) - hook_midpoint))
-                    mask_lowpoint = masks_lowpoints[best_lowpoint_idx]
-                    conf_lowpoint = confs_lowpoints[best_lowpoint_idx]
-                else:
-                    box_lowpoint, mask_lowpoint, conf_lowpoint = None, None, None
-                
-                # Ergebnis für den aktuellen Haken speichern
-                hooks_dict[f"hook_{i + 1}"] = {
-                    "hook_box": box_hook,
-                    "hook_mask": masks_hooks[i],
-                    "conf_hook": confs_hooks[i],
-                    "tip_box": box_tip,
-                    "tip_mask": mask_tip,
-                    "conf_tip": conf_tip,
-                    "lowpoint_box": box_lowpoint,
-                    "lowpoint_mask": mask_lowpoint,
-                    "conf_lowpoint": conf_lowpoint,
-                }
-
-        # Sortiere das Dictionary nach der x1, y1 Koordinate der Bounding Box
-        hooks_dict = dict(sorted(hooks_dict.items(), key=lambda item: (item[1]['hook_box'][0], item[1]['hook_box'][1])))
-
-        sorted_hooks_dict = {}
-        for idx, key in enumerate(hooks_dict):
-            sorted_hooks_dict['hook_' + str(len(hooks_dict) - idx)] = hooks_dict[key]
-        
-        return sorted_hooks_dict
-    
-
-    def is_point_inside_box(self, point, box):
-        x1, y1, x2, y2 = box
-        return x1 <= point[0] <= x2 and y1 <= point[1] <= y2
-
-
-    def create_bar_instance(self, boxes_bar, masks_bar, confs_bar):
-        bar_dict = {}
-
-        if boxes_bar is not None:
-            if len(boxes_bar) != 0:
-                bar_dict["bar"] = {
-                    "bar_box": boxes_bar[np.argmax(confs_bar)] if boxes_bar is not None else None,
-                    "bar_mask": masks_bar[np.argmax(confs_bar)] if masks_bar is not None else None,
-                    "conf_bar": confs_bar[np.argmax(confs_bar)] if confs_bar is not None else None
-                }
-            else:
-                bar_dict["bar"] = {
-                    "bar_box": None,
-                    "bar_mask": None,
-                    "conf_bar": None
-                }
-        else:
-            bar_dict["bar"] = {
-                "bar_box": None,
-                "bar_mask": None,
-                "conf_bar": None
-                }
-        return bar_dict
-
-
-    def plot_hooks_and_bars(self, hooks_dict):
-        bar_dict = self.bar_dict
-        img_copy = self.received_img.copy()
-
-        # Bar (nur eine Instanz)
-        if bar_dict['bar']['bar_box'] is not None:
-            bar = bar_dict["bar"]
-            bar_box = bar["bar_box"]
-            bar_mask = bar["bar_mask"]
-            conf_bar = bar["conf_bar"][0]
-
-            # Bounding Box
-            x1, y1, x2, y2 = bar_box
-            cv2.rectangle(img_copy, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)  # Rote Box für Bar
-
-            # Maske
-            bar_mask_color = np.zeros_like(img_copy)
-            bar_mask_color[bar_mask == 1] = (0, 255, 0)  # Maske in Blau
-            img_copy = cv2.addWeighted(img_copy, 1, bar_mask_color, 0.5, 0)
-
-            # Konfidenz
-            cv2.putText(img_copy, f"Bar ({conf_bar:.2f})", (int(x1), int(y1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
-
-        # Hooks (farblich segmentiert)
-        if hooks_dict != {}:
-            colors = plt.cm.get_cmap("tab20", len(hooks_dict))  # Farbpalette
-            for idx, hook_name in enumerate(hooks_dict):
-                hook = hooks_dict[hook_name]
-                hook_box = hook["hook_box"]
-                hook_mask = hook["hook_mask"]
-                conf_hook = hook["conf_hook"]
-                tip_box = hook["tip_box"]
-                tip_mask = hook["tip_mask"]
-                conf_tip = hook["conf_tip"]
-                lowpoint_box = hook["lowpoint_box"]
-                lowpoint_mask = hook["lowpoint_mask"]
-                conf_lowpoint = hook["conf_lowpoint"]
-
-                # Normalisiere den Index für die Farbpalette
-                color = colors(idx / len(hooks_dict))  # Skaliere den Index auf [0, 1]
-
-                # Bounding Box und Maske für Hook
-                x1, y1, x2, y2 = hook_box
-                cv2.rectangle(img_copy, (int(x1), int(y1)), (int(x2), int(y2)), (color[0] * 255, color[1] * 255, color[2] * 255), 2)
-
-                hook_mask_color = np.zeros_like(img_copy)
-                hook_mask_color[hook_mask == 1] = (color[0] * 255, color[1] * 255, color[2] * 255)
-                img_copy = cv2.addWeighted(img_copy, 1, hook_mask_color, 0.5, 0)
-                cv2.putText(img_copy, f"Hook {hook_name} ({conf_hook[0]:.2f})", (int(x1), int(y1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
-
-                # Bounding Box und Maske für Tip
-                if tip_box is not None:
-                    xt1, yt1, xt2, yt2 = tip_box
-                    cv2.rectangle(img_copy, (int(xt1), int(yt1)), (int(xt2), int(yt2)), (color[0] * 255, color[1] * 255, color[2] * 255), 2)
-
-                    tip_mask_color = np.zeros_like(img_copy)
-                    tip_mask_color[tip_mask == 1] = (0, 0, 255)
-                    img_copy = cv2.addWeighted(img_copy, 1, tip_mask_color, 0.5, 0)
-                    cv2.putText(img_copy, f"Tip {hook_name} ({conf_tip[0]:.2f})", (int(xt1), int(yt1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
-
-                # Bounding Box und Maske für Lowpoint
-                if lowpoint_box is not None:
-                    xl1, yl1, xl2, yl2 = lowpoint_box
-                    cv2.rectangle(img_copy, (int(xl1), int(yl1)), (int(xl2), int(yl2)), (color[0] * 255, color[1] * 255, color[2] * 255), 2)
-
-                    lowpoint_mask_color = np.zeros_like(img_copy)
-                    lowpoint_mask_color[lowpoint_mask == 1] = (255, 0, 0)
-                    img_copy = cv2.addWeighted(img_copy, 1, lowpoint_mask_color, 0.5, 0)
-                    cv2.putText(img_copy, f"Lowpoint {hook_name} ({conf_lowpoint[0]:.2f})", (int(xl1), int(yl1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
-        return img_copy
-    
-
-    def process_hook(self, hook_name, hook_data):
-        hook = Hook()
-        hook.name = hook_name
-        bridge = CvBridge()
-
-        # Setze Hook Bounding Box
-        if hook_data['hook_box'] is not None:
-            hook.hook_box = BoundingBox(
-                x_min=float(hook_data['hook_box'][0]),
-                y_min=float(hook_data['hook_box'][1]),
-                x_max=float(hook_data['hook_box'][2]),
-                y_max=float(hook_data['hook_box'][3])
-            )
-            if hook_data['hook_mask'] is not None and self.publish_masks:
-                hook.hook_mask = bridge.cv2_to_imgmsg(np.array(hook_data['hook_mask']), encoding="32FC1")
-            hook.conf_hook = float(hook_data['conf_hook'])
-            hook.uv_hook = UV(u=hook_data['uv_hook'][0], v=hook_data['uv_hook'][1])
-
-        # Setze Tip Box und Mask als Image, falls verfügbar
-        if hook_data['tip_box'] is not None:
-            hook.tip_box = BoundingBox(
-                x_min=float(hook_data['tip_box'][0]),
-                y_min=float(hook_data['tip_box'][1]),
-                x_max=float(hook_data['tip_box'][2]),
-                y_max=float(hook_data['tip_box'][3])
-            )
-            if hook_data['tip_mask'] is not None and self.publish_masks:
-                hook.tip_mask = bridge.cv2_to_imgmsg(np.array(hook_data['tip_mask']), encoding="32FC1")
-            hook.conf_tip = float(hook_data['conf_tip'])
-            hook.uv_tip = UV(u=hook_data['uv_tip'][0], v = hook_data['uv_tip'][1])
-
-        # Setze Lowpoint Box und Mask als Image, falls verfügbar
-        if hook_data['lowpoint_box'] is not None:
-            hook.lowpoint_box = BoundingBox(
-                x_min=float(hook_data['lowpoint_box'][0]),
-                y_min=float(hook_data['lowpoint_box'][1]),
-                x_max=float(hook_data['lowpoint_box'][2]),
-                y_max=float(hook_data['lowpoint_box'][3])
-            )
-            if hook_data['lowpoint_mask'] is not None and self.publish_masks:
-                hook.lowpoint_mask = bridge.cv2_to_imgmsg(np.array(hook_data['lowpoint_mask']), encoding="32FC1")
-            hook.conf_lowpoint = float(hook_data['conf_lowpoint'])
-            hook.uv_lowpoint = UV(u=hook_data['uv_lowpoint'][0], v=hook_data['uv_lowpoint'][1])
-        return hook
-
-
     def publish_hooks_dict(self):
+        """
+        Publisher des gefilterten Output Dicts mit Masken, BBoxes und uv-Punkten für Spitze, Senke und Haken
+        """
         # starttime = time.perf_counter()
         msg = HookData()
         with ThreadPoolExecutor() as executor:
             results = executor.map(
-                lambda item: self.process_hook(item[0], item[1]),
+                lambda item: process_hook_for_publisher(item[0], item[1], publish_masks = self.publish_masks),
                 self.filtered_hooks_dict.items()
             )
             msg.hooks.extend(results)

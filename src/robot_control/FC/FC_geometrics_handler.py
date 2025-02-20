@@ -49,7 +49,6 @@ class GeometricsHandler(Node):
 
 
 
-
     def get_hook_of_global_scan_dict(self, hook_num):
         if hook_num != 0 and hook_num <= len(self.global_scan_dict) and self.global_scan_dict is not None:
             self.hook_tfc_pos_in_workframe = self.global_scan_dict[str(hook_num)]['tfc_workframe']

@@ -1,0 +1,5 @@
+  File "/home/mo/Thesis/install/vision/lib/python3.8/site-packages/FC_vision/FC_plot_yolo_imgs.py", line 5
+    def plot_hooks_and_bars(received_img, hooks_dict, bar dict):
+                                                          ^
+SyntaxError: invalid syntax
+
