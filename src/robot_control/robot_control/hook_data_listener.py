@@ -25,7 +25,8 @@ class HookDataListener(Node):
         Sie verarbeitet die Nachricht und speichert sie im Dictionary.
         """
         hooks_dict = self.dict_processor.process_hooks_dict(msg)
-        self.get_logger().info(f"Verarbeitetes Dictionary: {hooks_dict}")
+        if 'hook_1' in hooks_dict:
+            self.get_logger().info(f"Verarbeitetes Dictionary: {hooks_dict['hook_1']['path_points']}")
 
 
 
