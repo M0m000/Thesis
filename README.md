@@ -165,9 +165,16 @@ ros2 run action_servers MoveTcpAlongAxis_action_server
 Enthält alle Roboteransteuerungen - kommuniziert mit orange-ros2-Package von Kassow Robots. <br>
 <br>
 
+### **Control** Node <br>
+```bash
+ros2 run robot_control control --ros-args -p hook_num:=10
+```
+>Enthält das Anfahren und genaue Positionieren (durch eine Regelung) an der Hakenspitze. Die Orientierung wird so ausgeregelt, dass die Lochebene des Bauteils senkrecht von der verlängerten Hakengerade durchstoßen wird. Somit kann ein ortogonales Einfädeln erfolgen. <br>
+<br>
+
 ### **Scan Bar** Node <br>
 ```bash
-ros2 run robot_control scan_bar_horizontal_triangulation --ros-args -p do_vibration_test:=False -p speed_in_mm_per_s:=10.0
+ros2 run robot_control scan_bar_horizontal_triangulation --ros-args -p do_vibration_test:=False -p speed_in_mm_per_s:=10.0 -p num_hooks_existing:=20
 ```
 >Enthält den gesammten Scan-Mechanismus. Die Referenzierfahrt für das WORK-Frame muss hierzu beendet sein und der tf frame pulisher Node muss aktiv sein und die Frames inkl. WORLD publishen. Dieser Knoten führt den gesamten Scan-Mechanismus inklusive Triangulation durch und liefert am Ende ein Dict, welches alle Hakeninstanzen mit WORK-Position und CAM-Position in realen Koordinaten XYZ enthält. <br>
 <br>
@@ -235,9 +242,10 @@ Enthält alle Programme zur Bildverarbeitung - Filterung, NNs... <br>
 <br>
 ### **YoloV8 Inference Node**
 ```bash
-ros2 run vision yolov8_inference --ros-args -p confidence_threshold:=0.4 -p do_preprocessing:=True -p do_postprocessing:=True -p show_cam_img:=False -p show_output_img:=False -p show_point_img:=False
+ros2 run vision yolov8_inference --ros-args -p confidence_threshold:=0.4 -p do_preprocessing:=True -p do_postprocessing:=True -p show_cam_img:=False -p show_output_img:=True -p show_point_img:=True -p show_skeleton_img:=True
 ```
->Lädt ein vortrainiertes Instance Segmentation Model YoloV8 (Segmentiert das Bild nach Instanzen auf die Klassen "bar", "hook", "tip" und "lowpoint"). Training des Models kann mit Jupyter-Notebook in Verzeichnis YoloV8_InstanceSeg/yolov8.ipynb gemacht werden. Dieser Knoten subscribed den Kameratopic der VC-Cam und führt in Echtzeit die Inferenz der Bilder durch. Beide Bilder werden in extra Fenstern angezeigt. Mit dem confidence threshold kann festgelegt werden, wie sicher sich das Netz bei der Erkennung der Objekte sein muss -> je höher, umso strenger. <br>
+>Lädt ein vortrainiertes Instance Segmentation Model YoloV8 (Segmentiert das Bild nach Instanzen auf die Klassen "bar", "hook", "tip" und "lowpoint"). Training des Models kann mit Jupyter-Notebook in Verzeichnis YoloV8_InstanceSeg/yolov8.ipynb gemacht werden. Dieser Knoten subscribed den Kameratopic der VC-Cam und führt in Echtzeit die Inferenz der Bilder durch. Beide Bilder werden in extra Fenstern angezeigt. Mit dem confidence threshold kann festgelegt werden, wie sicher sich das Netz bei der Erkennung der Objekte sein muss -> je höher, umso strenger. Des Weiteren wird der Output direkt in Dictionaries verarbeiten. Jeder erkannte Haken erhält seinen eigenen Eintrag -> von rechts nach links durchnummeriert. Pro Haken gibt es die Maske des Hakens, der Spitze, der Senke und die Mittelpunkt dieser drei Masken. Des weiteren wird mit Hilfe von Skelettierung und anschleießendem A*-Planer der kürzeste Pfad zwischen Spitze und Senke mit 10 Punkten modelliert. Dieser Pfad liegt exakt in der Mitte des Hakens (berechnet mit Skelettierung aus Maske). Im Dict sind hieraus noch für jeden Haken die Einträge skeleton mask, shortest path und path points vorhanden. Path points sind dabei die 10 Punkte, die die Form von Spitze zu Senke modellieren und nachfolgend zur Tiefenrekonstruktion interpoliert werden können. <br>
+
 <br>
 
 ### **MaskRCNN Inference Node**
