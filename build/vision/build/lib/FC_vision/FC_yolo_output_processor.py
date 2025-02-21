@@ -5,6 +5,9 @@ import cv2
 from skimage.morphology import skeletonize
 from collections import deque
 from skimage.morphology import closing, square
+import heapq
+import time
+
 
 
 class YoloPostprocessor(Node):
@@ -269,7 +272,8 @@ class YoloPostprocessor(Node):
                 hooks_dict[key]['skeleton_mask'] = skeleton_mask
 
                 # Den Pfad mit BFS finden
-                shortest_path = self.bfs_shortest_path(skeleton_mask, uv_tip_int, uv_lowpoint_int)
+                # shortest_path = self.bfs_shortest_path(skeleton_mask = skeleton_mask, start = uv_tip_int, end = uv_lowpoint_int)
+                shortest_path = self.astar_shortest_path(skeleton_mask = skeleton_mask, start = uv_tip_int, end = uv_lowpoint_int)
 
                 if shortest_path:
                     # print(f"Kürzester Pfad: {shortest_path}")
@@ -306,6 +310,8 @@ class YoloPostprocessor(Node):
         :param end: Tuple (y, x) des Endpunkts auf der Maske
         :return: Liste von Punkten [(y1, x1), (y2, x2), ..., (yn, xn)] oder None, wenn kein Pfad gefunden wurde
         """
+
+        time_start = time.perf_counter()
         rows, cols = skeleton_mask.shape
 
         # Überprüfen, ob die Start- und Endpunkte im Skelett liegen
@@ -339,7 +345,76 @@ class YoloPostprocessor(Node):
                     visited.add((nr, nc))
                     parent[(nr, nc)] = current
                     queue.append((nr, nc))
+
+        time_end = time.perf_counter()
+        time_token = time_end - time_start
+        print(f"Time for BFS: {time_token:.6f} sec")
         return None  # Kein Pfad gefunden
+    
+
+    def astar_shortest_path(self, skeleton_mask, start, end):
+        """
+        Findet den kürzesten Pfad auf der Skelettmaske mit A*.
+
+        :param skeleton_mask: 2D NumPy Array der Skelettmaske (1px breite Linie)
+        :param start: Tuple (y, x) des Startpunkts
+        :param end: Tuple (y, x) des Endpunkts
+        :return: Liste von Punkten [(y1, x1), (y2, x2), ..., (yn, xn)] oder None, wenn kein Pfad gefunden wurde
+        """
+
+        time_start = time.perf_counter()
+        rows, cols = skeleton_mask.shape
+
+        # Überprüfen, ob Start- und Endpunkt auf dem Skelett liegen
+        if skeleton_mask[start] != 255 or skeleton_mask[end] != 255:
+            print("Start oder Ende nicht auf Skelett!")
+            return None
+
+        # Bewegungsmöglichkeiten (8 Richtungen)
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, -1), (-1, 1), (1, -1), (1, 1)]
+
+        # Priority Queue für A*
+        open_set = []
+        heapq.heappush(open_set, (0, start))  # (f-Wert, Knoten)
+
+        # Vorgänger speichern für die Pfadrekonstruktion
+        parent = {start: None}
+
+        # Kosten vom Start bis zu einem bestimmten Punkt
+        g_score = {start: 0}
+
+        while open_set:
+            _, current = heapq.heappop(open_set)  # Knoten mit dem niedrigsten f-Wert holen
+
+            # Ziel erreicht → Pfad zurückverfolgen
+            if current == end:
+                path = []
+                while current is not None:
+                    path.append(current)
+                    current = parent[current]
+                return path[::-1]  # Umkehren, da Rückverfolgung von Ende zu Start erfolgt
+
+            # Nachbarn untersuchen
+            for dr, dc in directions:
+                nr, nc = current[0] + dr, current[1] + dc
+                neighbor = (nr, nc)
+
+                if 0 <= nr < rows and 0 <= nc < cols and skeleton_mask[nr, nc] == 255:
+                    # g-Wert: tatsächliche Kosten vom Start bis zu diesem Pixel
+                    new_g = g_score[current] + 1  # +1 für jeden Pixel-Schritt
+
+                    if neighbor not in g_score or new_g < g_score[neighbor]:
+                        g_score[neighbor] = new_g
+                        parent[neighbor] = current
+                        # f-Wert = g-Wert + Heuristik (Manhattan-Distanz)
+                        f_score = new_g + abs(nr - end[0]) + abs(nc - end[1])
+                        heapq.heappush(open_set, (f_score, neighbor))
+
+        time_end = time.perf_counter()
+        time_token = time_end - time_start
+        print(f"Time for BFS: {time_token:.6f} sec")
+        return None  # Kein Pfad gefunden
+
 
 
     def get_evenly_spaced_points_on_path(self, path, num_points):
