@@ -7,6 +7,7 @@ from FC.FC_edge_detector import EdgeDetector
 from FC.FC_frame_handler import FrameHandler
 from FC.FC_stereo_triangulation_processor import StereoTriangulationProcessor
 from FC.FC_save_load_global_hook_dict import save_dict_to_csv
+from FC.FC_parameterized_cubic_spline import ParameterizedCubicSplineCalculator
 from kr_msgs.msg import JogLinear
 from kr_msgs.srv import SelectJoggingFrame
 from kr_msgs.srv import SetSystemFrame
@@ -59,9 +60,13 @@ class ScanBarHorizontalTriangulation(Node):
         self.img_width = 896
         self.img_height = 450
 
+        # Variablen für Prozess
         self.hook_ref = {}
         self.hook_horizontal = {}
         self.act_hook_num = 0
+        
+        # Instanz des Spline-Calculator
+        self.spline_calculator = ParameterizedCubicSplineCalculator()
 
         # Dict für die Aufzeichnung von Schwingungsdaten
         self.vibration_data = {'time': [], 'uv_hook': [], 'uv_tip': [], 'uv_lowpoint': []}  # Schwingungsdaten
@@ -363,17 +368,56 @@ class ScanBarHorizontalTriangulation(Node):
             # tip_xyz[1] = -tip_xyz[1]
             # lowpoint_xyz[1] = -lowpoint_xyz[1]
             
-            self.get_logger().info("Done! -> next process step <Save Hook>")
-            self.process_step = "interpolate_depth"
+            self.get_logger().info("Done! -> next process step <Interpolate Depth Shape>")
+            self.process_step = "interpolate_depth_shape"
 
 
 
         # Tiefeninterpolation für Spitze -> Senke
-        if self.process_step == "interpolate_depth":
+        if self.process_step == "interpolate_depth_shape":
             """
             Interpolieren der Tiefe für alle Wegpunkte zwischen Spitze und Senke
             """
-            xyz_path_points = self.hook_ref['path_points']
+
+            # Hole uv_tip und uv_lowpoint aus Dict
+            uv_tip_ref = self.hook_ref['uv_tip']
+            uv_lowpoint_ref = self.hook_ref['uv_lowpoint']
+            uv_tip_horizontal = self.hook_horizontal['uv_tip']
+            uv_lowpoint_horizontal = self.hook_horizontal['uv_lowpoint']
+
+            # Berechnung der Pixelstrecke von Tip bis Lowpoint für u und v
+            u_diff_ref = abs(uv_tip_ref[0] - uv_lowpoint_ref[0])
+            v_diff_ref = abs(uv_tip_ref[1] - uv_lowpoint_ref[1])
+            u_diff_horizontal = abs(uv_tip_horizontal[0] - uv_lowpoint_horizontal[0])
+            v_diff_horizontal = abs(uv_tip_horizontal[1] - uv_lowpoint_horizontal[1])
+            u_diff = int((u_diff_ref + u_diff_horizontal) / 2)      # Differenz von u_tip bis u_lowpoint in px
+            v_diff = int((v_diff_ref + v_diff_horizontal) / 2)      # Differenz von v_tip bis v_lowpoint in px
+
+            # Berechnung von mm_per_px in x- und y-Richtung
+            x_tip, y_tip, z_tip = tip_xyz
+            x_lowpoint, y_lowpoint, z_lowpoint = lowpoint_xyz
+            x_diff = abs(x_tip - x_lowpoint)
+            y_diff = abs(y_tip - y_lowpoint)
+            mm_per_px_x = x_diff / v_diff           # Übersetzung mm pro Pixel in x-Richtung
+            mm_per_px_y = y_diff / u_diff           # Übersetzung mm pro Pixel in y-Richtung
+
+            # Berechnung von realen XY-Kordinaten der Path points
+            uv_path_points = self.hook_ref['path_points']
+            xy_path_points = []
+            u_center = self.img_height / 2
+            v_center = self.img_width / 2
+            for p in uv_path_points:
+                ppoint_u = p[0]
+                ppoint_v = p[1]
+                ppoint_x = (ppoint_v - v_center) * mm_per_px_x
+                ppoint_y = (ppoint_u - u_center) * mm_per_px_y
+                xy_path_points.append((ppoint_x, ppoint_y))
+
+            # Berechnung von interpolierten Tiefenwerten für path_points
+            path_points_xyz = self.spline_calculator.interpolate(xy_points = xy_path_points, 
+                                                                        start_point_with_depth = tip_xyz, 
+                                                                        end_point_with_depth = lowpoint_xyz)
+
             self.get_logger().info("Done! -> next process step <Save Hook>")
             self.process_step = "save_hook"
 
@@ -386,12 +430,14 @@ class ScanBarHorizontalTriangulation(Node):
             - XYZ Koordinaten von Haken, Spitze, Senke
             --- im CAM-Frame, WORK-Frame
             - TFC-Roboterposition bei Aufnahme des Hakens
-            --- TFC-Pose im WORK- und WORLD-Frame"""
+            --- TFC-Pose im WORK- und WORLD-Frame
+            """
             self.act_hook_num += 1
             self.global_hooks_dict[str(self.act_hook_num)] = {}
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook'] = hook_xyz
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip'] = tip_xyz
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint'] = lowpoint_xyz
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_path_points'] = path_points_xyz
             
             robot_position_in_tfcframe = self.T_robot_position_horizontal
             transform_cam_in_tfcframe = self.frame_handler.load_transformation_matrix_from_csv(frame_name = 'CAM_frame_in_tfc.csv')

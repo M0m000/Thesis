@@ -14,13 +14,10 @@ class StereoTriangulationProcessor:
         self.calib_data = np.load(calib_path)
         self.intrinsics = self.calib_data['mtx']     # Kameramatrix (mit Brennweite Verzerrung etc.)
 
-        self.img_height = img_height
-        self.img_width = img_width
-
         f_x = 0.006/3.45e-6
         f_y = 0.006/3.45e-6
-        c_x = self.img_width / 2
-        c_y = self.img_height / 2
+        c_x = img_width / 2
+        c_y = img_height / 2
 
         self.intrinsics[0][2] = c_x
         self.intrinsics[1][2] = c_y
@@ -42,7 +39,6 @@ class StereoTriangulationProcessor:
         
         self.projection_matrix_point_1 = None
         self.projection_matrix_point_2 = None
-
         self.measure_time = measure_time
 
 
@@ -129,3 +125,4 @@ class StereoTriangulationProcessor:
         end_time = time.perf_counter() if self.measure_time else None
         time_token = end_time - start_time if self.measure_time else None
         return [point_1_xyz, point_2_xyz, point_3_xyz], time_token if self.measure_time else [point_1_xyz, point_2_xyz, point_3_xyz]
+
