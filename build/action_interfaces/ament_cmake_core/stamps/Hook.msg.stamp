@@ -17,5 +17,9 @@ UV uv_hook
 UV uv_tip
 UV uv_lowpoint
 
+UV uv_hook_img2         # für 2-Cam-Betrieb
+UV uv_tip_img2
+UV uv_lowpoint_img2
+
 UV[] shortest_path
 UV[] path_points

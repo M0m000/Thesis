@@ -23,6 +23,9 @@
 // Member 'uv_hook'
 // Member 'uv_tip'
 // Member 'uv_lowpoint'
+// Member 'uv_hook_img2'
+// Member 'uv_tip_img2'
+// Member 'uv_lowpoint_img2'
 #include "action_interfaces/msg/detail/uv__traits.hpp"
 
 namespace rosidl_generator_traits

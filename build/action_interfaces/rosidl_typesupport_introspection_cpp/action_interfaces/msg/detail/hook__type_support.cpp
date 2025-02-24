@@ -91,7 +91,7 @@ void resize_function__Hook__path_points(void * untyped_member, size_t size)
   member->resize(size);
 }
 
-static const ::rosidl_typesupport_introspection_cpp::MessageMember Hook_message_member_array[16] = {
+static const ::rosidl_typesupport_introspection_cpp::MessageMember Hook_message_member_array[19] = {
   {
     "name",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_STRING,  // type
@@ -303,6 +303,51 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember Hook_message_
     nullptr  // resize(index) function pointer
   },
   {
+    "uv_hook_img2",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE,  // type
+    0,  // upper bound of string
+    ::rosidl_typesupport_introspection_cpp::get_message_type_support_handle<action_interfaces::msg::UV>(),  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(action_interfaces::msg::Hook, uv_hook_img2),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr  // resize(index) function pointer
+  },
+  {
+    "uv_tip_img2",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE,  // type
+    0,  // upper bound of string
+    ::rosidl_typesupport_introspection_cpp::get_message_type_support_handle<action_interfaces::msg::UV>(),  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(action_interfaces::msg::Hook, uv_tip_img2),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr  // resize(index) function pointer
+  },
+  {
+    "uv_lowpoint_img2",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE,  // type
+    0,  // upper bound of string
+    ::rosidl_typesupport_introspection_cpp::get_message_type_support_handle<action_interfaces::msg::UV>(),  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(action_interfaces::msg::Hook, uv_lowpoint_img2),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr  // resize(index) function pointer
+  },
+  {
     "shortest_path",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE,  // type
     0,  // upper bound of string
@@ -337,7 +382,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember Hook_message_
 static const ::rosidl_typesupport_introspection_cpp::MessageMembers Hook_message_members = {
   "action_interfaces::msg",  // message namespace
   "Hook",  // message name
-  16,  // number of fields
+  19,  // number of fields
   sizeof(action_interfaces::msg::Hook),
   Hook_message_member_array,  // message members
   Hook_init_function,  // function to initialize message memory (memory has to be allocated)

@@ -26,6 +26,9 @@
 // Member `uv_hook`
 // Member `uv_tip`
 // Member `uv_lowpoint`
+// Member `uv_hook_img2`
+// Member `uv_tip_img2`
+// Member `uv_lowpoint_img2`
 // Member `shortest_path`
 // Member `path_points`
 #include "action_interfaces/msg/detail/uv__functions.h"
@@ -94,6 +97,21 @@ action_interfaces__msg__Hook__init(action_interfaces__msg__Hook * msg)
     action_interfaces__msg__Hook__fini(msg);
     return false;
   }
+  // uv_hook_img2
+  if (!action_interfaces__msg__UV__init(&msg->uv_hook_img2)) {
+    action_interfaces__msg__Hook__fini(msg);
+    return false;
+  }
+  // uv_tip_img2
+  if (!action_interfaces__msg__UV__init(&msg->uv_tip_img2)) {
+    action_interfaces__msg__Hook__fini(msg);
+    return false;
+  }
+  // uv_lowpoint_img2
+  if (!action_interfaces__msg__UV__init(&msg->uv_lowpoint_img2)) {
+    action_interfaces__msg__Hook__fini(msg);
+    return false;
+  }
   // shortest_path
   if (!action_interfaces__msg__UV__Sequence__init(&msg->shortest_path, 0)) {
     action_interfaces__msg__Hook__fini(msg);
@@ -138,6 +156,12 @@ action_interfaces__msg__Hook__fini(action_interfaces__msg__Hook * msg)
   action_interfaces__msg__UV__fini(&msg->uv_tip);
   // uv_lowpoint
   action_interfaces__msg__UV__fini(&msg->uv_lowpoint);
+  // uv_hook_img2
+  action_interfaces__msg__UV__fini(&msg->uv_hook_img2);
+  // uv_tip_img2
+  action_interfaces__msg__UV__fini(&msg->uv_tip_img2);
+  // uv_lowpoint_img2
+  action_interfaces__msg__UV__fini(&msg->uv_lowpoint_img2);
   // shortest_path
   action_interfaces__msg__UV__Sequence__fini(&msg->shortest_path);
   // path_points
@@ -225,6 +249,24 @@ action_interfaces__msg__Hook__are_equal(const action_interfaces__msg__Hook * lhs
   // uv_lowpoint
   if (!action_interfaces__msg__UV__are_equal(
       &(lhs->uv_lowpoint), &(rhs->uv_lowpoint)))
+  {
+    return false;
+  }
+  // uv_hook_img2
+  if (!action_interfaces__msg__UV__are_equal(
+      &(lhs->uv_hook_img2), &(rhs->uv_hook_img2)))
+  {
+    return false;
+  }
+  // uv_tip_img2
+  if (!action_interfaces__msg__UV__are_equal(
+      &(lhs->uv_tip_img2), &(rhs->uv_tip_img2)))
+  {
+    return false;
+  }
+  // uv_lowpoint_img2
+  if (!action_interfaces__msg__UV__are_equal(
+      &(lhs->uv_lowpoint_img2), &(rhs->uv_lowpoint_img2)))
   {
     return false;
   }
@@ -320,6 +362,24 @@ action_interfaces__msg__Hook__copy(
   // uv_lowpoint
   if (!action_interfaces__msg__UV__copy(
       &(input->uv_lowpoint), &(output->uv_lowpoint)))
+  {
+    return false;
+  }
+  // uv_hook_img2
+  if (!action_interfaces__msg__UV__copy(
+      &(input->uv_hook_img2), &(output->uv_hook_img2)))
+  {
+    return false;
+  }
+  // uv_tip_img2
+  if (!action_interfaces__msg__UV__copy(
+      &(input->uv_tip_img2), &(output->uv_tip_img2)))
+  {
+    return false;
+  }
+  // uv_lowpoint_img2
+  if (!action_interfaces__msg__UV__copy(
+      &(input->uv_lowpoint_img2), &(output->uv_lowpoint_img2)))
   {
     return false;
   }

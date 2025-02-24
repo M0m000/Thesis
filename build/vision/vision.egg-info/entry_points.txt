@@ -11,4 +11,5 @@ point_finder_3d = vision.point_finder_3d:main
 stereo_triangulation = vision.stereo_triangulation:main
 stereo_triangulation_with_robot = vision.stereo_triangulation_with_robot:main
 test_node = vision.test_node:main
+yolov8_dualcam_inference = vision.yolov8_dualcam_inference:main
 yolov8_inference = vision.yolov8_inference:main

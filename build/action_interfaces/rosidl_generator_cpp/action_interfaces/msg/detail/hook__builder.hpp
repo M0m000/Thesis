@@ -52,16 +52,64 @@ private:
   ::action_interfaces::msg::Hook msg_;
 };
 
+class Init_Hook_uv_lowpoint_img2
+{
+public:
+  explicit Init_Hook_uv_lowpoint_img2(::action_interfaces::msg::Hook & msg)
+  : msg_(msg)
+  {}
+  Init_Hook_shortest_path uv_lowpoint_img2(::action_interfaces::msg::Hook::_uv_lowpoint_img2_type arg)
+  {
+    msg_.uv_lowpoint_img2 = std::move(arg);
+    return Init_Hook_shortest_path(msg_);
+  }
+
+private:
+  ::action_interfaces::msg::Hook msg_;
+};
+
+class Init_Hook_uv_tip_img2
+{
+public:
+  explicit Init_Hook_uv_tip_img2(::action_interfaces::msg::Hook & msg)
+  : msg_(msg)
+  {}
+  Init_Hook_uv_lowpoint_img2 uv_tip_img2(::action_interfaces::msg::Hook::_uv_tip_img2_type arg)
+  {
+    msg_.uv_tip_img2 = std::move(arg);
+    return Init_Hook_uv_lowpoint_img2(msg_);
+  }
+
+private:
+  ::action_interfaces::msg::Hook msg_;
+};
+
+class Init_Hook_uv_hook_img2
+{
+public:
+  explicit Init_Hook_uv_hook_img2(::action_interfaces::msg::Hook & msg)
+  : msg_(msg)
+  {}
+  Init_Hook_uv_tip_img2 uv_hook_img2(::action_interfaces::msg::Hook::_uv_hook_img2_type arg)
+  {
+    msg_.uv_hook_img2 = std::move(arg);
+    return Init_Hook_uv_tip_img2(msg_);
+  }
+
+private:
+  ::action_interfaces::msg::Hook msg_;
+};
+
 class Init_Hook_uv_lowpoint
 {
 public:
   explicit Init_Hook_uv_lowpoint(::action_interfaces::msg::Hook & msg)
   : msg_(msg)
   {}
-  Init_Hook_shortest_path uv_lowpoint(::action_interfaces::msg::Hook::_uv_lowpoint_type arg)
+  Init_Hook_uv_hook_img2 uv_lowpoint(::action_interfaces::msg::Hook::_uv_lowpoint_type arg)
   {
     msg_.uv_lowpoint = std::move(arg);
-    return Init_Hook_shortest_path(msg_);
+    return Init_Hook_uv_hook_img2(msg_);
   }
 
 private:

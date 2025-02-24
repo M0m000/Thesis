@@ -35,7 +35,7 @@ extern "C"
 #endif
 
 #include "action_interfaces/msg/detail/bounding_box__functions.h"  // hook_box, lowpoint_box, tip_box
-#include "action_interfaces/msg/detail/uv__functions.h"  // path_points, shortest_path, uv_hook, uv_lowpoint, uv_tip
+#include "action_interfaces/msg/detail/uv__functions.h"  // path_points, shortest_path, uv_hook, uv_hook_img2, uv_lowpoint, uv_lowpoint_img2, uv_tip, uv_tip_img2
 #include "rosidl_runtime_c/string.h"  // name
 #include "rosidl_runtime_c/string_functions.h"  // name
 #include "sensor_msgs/msg/detail/image__functions.h"  // hook_mask, lowpoint_mask, skeleton_mask, tip_mask
@@ -251,6 +251,48 @@ static bool _Hook__cdr_serialize(
       )()->data);
     if (!callbacks->cdr_serialize(
         &ros_message->uv_lowpoint, cdr))
+    {
+      return false;
+    }
+  }
+
+  // Field name: uv_hook_img2
+  {
+    const message_type_support_callbacks_t * callbacks =
+      static_cast<const message_type_support_callbacks_t *>(
+      ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(
+        rosidl_typesupport_fastrtps_c, action_interfaces, msg, UV
+      )()->data);
+    if (!callbacks->cdr_serialize(
+        &ros_message->uv_hook_img2, cdr))
+    {
+      return false;
+    }
+  }
+
+  // Field name: uv_tip_img2
+  {
+    const message_type_support_callbacks_t * callbacks =
+      static_cast<const message_type_support_callbacks_t *>(
+      ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(
+        rosidl_typesupport_fastrtps_c, action_interfaces, msg, UV
+      )()->data);
+    if (!callbacks->cdr_serialize(
+        &ros_message->uv_tip_img2, cdr))
+    {
+      return false;
+    }
+  }
+
+  // Field name: uv_lowpoint_img2
+  {
+    const message_type_support_callbacks_t * callbacks =
+      static_cast<const message_type_support_callbacks_t *>(
+      ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(
+        rosidl_typesupport_fastrtps_c, action_interfaces, msg, UV
+      )()->data);
+    if (!callbacks->cdr_serialize(
+        &ros_message->uv_lowpoint_img2, cdr))
     {
       return false;
     }
@@ -477,6 +519,48 @@ static bool _Hook__cdr_deserialize(
     }
   }
 
+  // Field name: uv_hook_img2
+  {
+    const message_type_support_callbacks_t * callbacks =
+      static_cast<const message_type_support_callbacks_t *>(
+      ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(
+        rosidl_typesupport_fastrtps_c, action_interfaces, msg, UV
+      )()->data);
+    if (!callbacks->cdr_deserialize(
+        cdr, &ros_message->uv_hook_img2))
+    {
+      return false;
+    }
+  }
+
+  // Field name: uv_tip_img2
+  {
+    const message_type_support_callbacks_t * callbacks =
+      static_cast<const message_type_support_callbacks_t *>(
+      ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(
+        rosidl_typesupport_fastrtps_c, action_interfaces, msg, UV
+      )()->data);
+    if (!callbacks->cdr_deserialize(
+        cdr, &ros_message->uv_tip_img2))
+    {
+      return false;
+    }
+  }
+
+  // Field name: uv_lowpoint_img2
+  {
+    const message_type_support_callbacks_t * callbacks =
+      static_cast<const message_type_support_callbacks_t *>(
+      ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(
+        rosidl_typesupport_fastrtps_c, action_interfaces, msg, UV
+      )()->data);
+    if (!callbacks->cdr_deserialize(
+        cdr, &ros_message->uv_lowpoint_img2))
+    {
+      return false;
+    }
+  }
+
   // Field name: shortest_path
   {
     const message_type_support_callbacks_t * callbacks =
@@ -608,6 +692,18 @@ size_t get_serialized_size_action_interfaces__msg__Hook(
 
   current_alignment += get_serialized_size_action_interfaces__msg__UV(
     &(ros_message->uv_lowpoint), current_alignment);
+  // field.name uv_hook_img2
+
+  current_alignment += get_serialized_size_action_interfaces__msg__UV(
+    &(ros_message->uv_hook_img2), current_alignment);
+  // field.name uv_tip_img2
+
+  current_alignment += get_serialized_size_action_interfaces__msg__UV(
+    &(ros_message->uv_tip_img2), current_alignment);
+  // field.name uv_lowpoint_img2
+
+  current_alignment += get_serialized_size_action_interfaces__msg__UV(
+    &(ros_message->uv_lowpoint_img2), current_alignment);
   // field.name shortest_path
   {
     size_t array_size = ros_message->shortest_path.size;
@@ -788,6 +884,39 @@ size_t max_serialized_size_action_interfaces__msg__Hook(
     }
   }
   // member: uv_lowpoint
+  {
+    size_t array_size = 1;
+
+
+    for (size_t index = 0; index < array_size; ++index) {
+      current_alignment +=
+        max_serialized_size_action_interfaces__msg__UV(
+        full_bounded, current_alignment);
+    }
+  }
+  // member: uv_hook_img2
+  {
+    size_t array_size = 1;
+
+
+    for (size_t index = 0; index < array_size; ++index) {
+      current_alignment +=
+        max_serialized_size_action_interfaces__msg__UV(
+        full_bounded, current_alignment);
+    }
+  }
+  // member: uv_tip_img2
+  {
+    size_t array_size = 1;
+
+
+    for (size_t index = 0; index < array_size; ++index) {
+      current_alignment +=
+        max_serialized_size_action_interfaces__msg__UV(
+        full_bounded, current_alignment);
+    }
+  }
+  // member: uv_lowpoint_img2
   {
     size_t array_size = 1;
 

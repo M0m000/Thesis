@@ -33,4 +33,5 @@ vision/point_finder_2d.py
 vision/point_finder_3d.py
 vision/test_node.py
 vision/vc_startup.py
+vision/yolov8_dualcam_inference.py
 vision/yolov8_inference.py

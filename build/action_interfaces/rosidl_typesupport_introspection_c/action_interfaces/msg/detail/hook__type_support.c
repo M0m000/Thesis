@@ -36,12 +36,18 @@
 // Member `uv_hook`
 // Member `uv_tip`
 // Member `uv_lowpoint`
+// Member `uv_hook_img2`
+// Member `uv_tip_img2`
+// Member `uv_lowpoint_img2`
 // Member `shortest_path`
 // Member `path_points`
 #include "action_interfaces/msg/uv.h"
 // Member `uv_hook`
 // Member `uv_tip`
 // Member `uv_lowpoint`
+// Member `uv_hook_img2`
+// Member `uv_tip_img2`
+// Member `uv_lowpoint_img2`
 // Member `shortest_path`
 // Member `path_points`
 #include "action_interfaces/msg/detail/uv__rosidl_typesupport_introspection_c.h"
@@ -131,7 +137,7 @@ bool Hook__rosidl_typesupport_introspection_c__resize_function__UV__path_points(
   return action_interfaces__msg__UV__Sequence__init(member, size);
 }
 
-static rosidl_typesupport_introspection_c__MessageMember Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[16] = {
+static rosidl_typesupport_introspection_c__MessageMember Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[19] = {
   {
     "name",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_STRING,  // type
@@ -343,6 +349,51 @@ static rosidl_typesupport_introspection_c__MessageMember Hook__rosidl_typesuppor
     NULL  // resize(index) function pointer
   },
   {
+    "uv_hook_img2",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_MESSAGE,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message (initialized later)
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(action_interfaces__msg__Hook, uv_hook_img2),  // bytes offset in struct
+    NULL,  // default value
+    NULL,  // size() function pointer
+    NULL,  // get_const(index) function pointer
+    NULL,  // get(index) function pointer
+    NULL  // resize(index) function pointer
+  },
+  {
+    "uv_tip_img2",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_MESSAGE,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message (initialized later)
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(action_interfaces__msg__Hook, uv_tip_img2),  // bytes offset in struct
+    NULL,  // default value
+    NULL,  // size() function pointer
+    NULL,  // get_const(index) function pointer
+    NULL,  // get(index) function pointer
+    NULL  // resize(index) function pointer
+  },
+  {
+    "uv_lowpoint_img2",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_MESSAGE,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message (initialized later)
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(action_interfaces__msg__Hook, uv_lowpoint_img2),  // bytes offset in struct
+    NULL,  // default value
+    NULL,  // size() function pointer
+    NULL,  // get_const(index) function pointer
+    NULL,  // get(index) function pointer
+    NULL  // resize(index) function pointer
+  },
+  {
     "shortest_path",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_MESSAGE,  // type
     0,  // upper bound of string
@@ -377,7 +428,7 @@ static rosidl_typesupport_introspection_c__MessageMember Hook__rosidl_typesuppor
 static const rosidl_typesupport_introspection_c__MessageMembers Hook__rosidl_typesupport_introspection_c__Hook_message_members = {
   "action_interfaces__msg",  // message namespace
   "Hook",  // message name
-  16,  // number of fields
+  19,  // number of fields
   sizeof(action_interfaces__msg__Hook),
   Hook__rosidl_typesupport_introspection_c__Hook_message_member_array,  // message members
   Hook__rosidl_typesupport_introspection_c__Hook_init_function,  // function to initialize message memory (memory has to be allocated)
@@ -418,6 +469,12 @@ ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspecti
   Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[14].members_ =
     ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, action_interfaces, msg, UV)();
   Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[15].members_ =
+    ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, action_interfaces, msg, UV)();
+  Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[16].members_ =
+    ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, action_interfaces, msg, UV)();
+  Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[17].members_ =
+    ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, action_interfaces, msg, UV)();
+  Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[18].members_ =
     ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, action_interfaces, msg, UV)();
   if (!Hook__rosidl_typesupport_introspection_c__Hook_message_type_support_handle.typesupport_identifier) {
     Hook__rosidl_typesupport_introspection_c__Hook_message_type_support_handle.typesupport_identifier =

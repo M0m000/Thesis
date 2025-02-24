@@ -55,6 +55,14 @@ module action_interfaces {
 
       action_interfaces::msg::UV uv_lowpoint;
 
+      @verbatim (language="comment", text=
+        " für 2-Cam-Betrieb")
+      action_interfaces::msg::UV uv_hook_img2;
+
+      action_interfaces::msg::UV uv_tip_img2;
+
+      action_interfaces::msg::UV uv_lowpoint_img2;
+
       sequence<action_interfaces::msg::UV> shortest_path;
 
       sequence<action_interfaces::msg::UV> path_points;

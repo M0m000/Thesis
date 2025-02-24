@@ -241,7 +241,7 @@ class YOLOv8InferenceNode(Node):
         msg = HookData()
         with ThreadPoolExecutor() as executor:
             results = executor.map(
-                lambda item: process_hook_for_publisher(item[0], item[1], publish_masks = self.publish_masks),
+                lambda item: process_hook_for_publisher(item[0], item[1], dual_camera_setup = False, publish_masks = self.publish_masks),
                 self.filtered_hooks_dict.items()
             )
             msg.hooks.extend(results)

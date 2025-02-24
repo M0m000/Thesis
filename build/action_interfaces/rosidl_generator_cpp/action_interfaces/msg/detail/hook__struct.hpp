@@ -27,6 +27,9 @@
 // Member 'uv_hook'
 // Member 'uv_tip'
 // Member 'uv_lowpoint'
+// Member 'uv_hook_img2'
+// Member 'uv_tip_img2'
+// Member 'uv_lowpoint_img2'
 // Member 'shortest_path'
 // Member 'path_points'
 #include "action_interfaces/msg/detail/uv__struct.hpp"
@@ -59,7 +62,10 @@ struct Hook_
     skeleton_mask(_init),
     uv_hook(_init),
     uv_tip(_init),
-    uv_lowpoint(_init)
+    uv_lowpoint(_init),
+    uv_hook_img2(_init),
+    uv_tip_img2(_init),
+    uv_lowpoint_img2(_init)
   {
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
@@ -82,7 +88,10 @@ struct Hook_
     skeleton_mask(_alloc, _init),
     uv_hook(_alloc, _init),
     uv_tip(_alloc, _init),
-    uv_lowpoint(_alloc, _init)
+    uv_lowpoint(_alloc, _init),
+    uv_hook_img2(_alloc, _init),
+    uv_tip_img2(_alloc, _init),
+    uv_lowpoint_img2(_alloc, _init)
   {
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
@@ -137,6 +146,15 @@ struct Hook_
   using _uv_lowpoint_type =
     action_interfaces::msg::UV_<ContainerAllocator>;
   _uv_lowpoint_type uv_lowpoint;
+  using _uv_hook_img2_type =
+    action_interfaces::msg::UV_<ContainerAllocator>;
+  _uv_hook_img2_type uv_hook_img2;
+  using _uv_tip_img2_type =
+    action_interfaces::msg::UV_<ContainerAllocator>;
+  _uv_tip_img2_type uv_tip_img2;
+  using _uv_lowpoint_img2_type =
+    action_interfaces::msg::UV_<ContainerAllocator>;
+  _uv_lowpoint_img2_type uv_lowpoint_img2;
   using _shortest_path_type =
     std::vector<action_interfaces::msg::UV_<ContainerAllocator>, typename ContainerAllocator::template rebind<action_interfaces::msg::UV_<ContainerAllocator>>::other>;
   _shortest_path_type shortest_path;
@@ -227,6 +245,24 @@ struct Hook_
     const action_interfaces::msg::UV_<ContainerAllocator> & _arg)
   {
     this->uv_lowpoint = _arg;
+    return *this;
+  }
+  Type & set__uv_hook_img2(
+    const action_interfaces::msg::UV_<ContainerAllocator> & _arg)
+  {
+    this->uv_hook_img2 = _arg;
+    return *this;
+  }
+  Type & set__uv_tip_img2(
+    const action_interfaces::msg::UV_<ContainerAllocator> & _arg)
+  {
+    this->uv_tip_img2 = _arg;
+    return *this;
+  }
+  Type & set__uv_lowpoint_img2(
+    const action_interfaces::msg::UV_<ContainerAllocator> & _arg)
+  {
+    this->uv_lowpoint_img2 = _arg;
     return *this;
   }
   Type & set__shortest_path(
@@ -324,6 +360,15 @@ struct Hook_
       return false;
     }
     if (this->uv_lowpoint != other.uv_lowpoint) {
+      return false;
+    }
+    if (this->uv_hook_img2 != other.uv_hook_img2) {
+      return false;
+    }
+    if (this->uv_tip_img2 != other.uv_tip_img2) {
+      return false;
+    }
+    if (this->uv_lowpoint_img2 != other.uv_lowpoint_img2) {
       return false;
     }
     if (this->shortest_path != other.shortest_path) {

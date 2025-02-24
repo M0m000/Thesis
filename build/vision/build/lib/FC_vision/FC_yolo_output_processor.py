@@ -9,12 +9,9 @@ import heapq
 import time
 
 
-
 class YoloPostprocessor(Node):
     def __init__(self):
         self.inference_results = None
-
-
 
     def postprocess(self, results):
         """

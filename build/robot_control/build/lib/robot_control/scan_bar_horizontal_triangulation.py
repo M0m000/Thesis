@@ -37,7 +37,7 @@ class ScanBarHorizontalTriangulation(Node):
         self.hooks_dict = {}
 
         # Instanz zum Entacken der Yolo Outputs
-        self.hooks_dict_processor = DictReceiveProcessor(self)
+        self.hooks_dict_processor = DictReceiveProcessor(dual_cam_setup = False)
         self.yolo_hooks_dict = {}       # Dict für NN Output
         self.global_hooks_dict = {}     # Scan Dict (Ergebnis)
 
@@ -422,7 +422,7 @@ class ScanBarHorizontalTriangulation(Node):
             self.process_step = "save_hook"
 
 
-
+        
         # Speicher die Daten des aktuellen Hakens
         if self.process_step == "save_hook":
             """

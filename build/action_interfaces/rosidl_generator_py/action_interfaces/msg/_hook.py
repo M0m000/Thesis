@@ -79,6 +79,9 @@ class Hook(metaclass=Metaclass_Hook):
         '_uv_hook',
         '_uv_tip',
         '_uv_lowpoint',
+        '_uv_hook_img2',
+        '_uv_tip_img2',
+        '_uv_lowpoint_img2',
         '_shortest_path',
         '_path_points',
     ]
@@ -98,6 +101,9 @@ class Hook(metaclass=Metaclass_Hook):
         'uv_hook': 'action_interfaces/UV',
         'uv_tip': 'action_interfaces/UV',
         'uv_lowpoint': 'action_interfaces/UV',
+        'uv_hook_img2': 'action_interfaces/UV',
+        'uv_tip_img2': 'action_interfaces/UV',
+        'uv_lowpoint_img2': 'action_interfaces/UV',
         'shortest_path': 'sequence<action_interfaces/UV>',
         'path_points': 'sequence<action_interfaces/UV>',
     }
@@ -114,6 +120,9 @@ class Hook(metaclass=Metaclass_Hook):
         rosidl_parser.definition.BasicType('float'),  # noqa: E501
         rosidl_parser.definition.BasicType('float'),  # noqa: E501
         rosidl_parser.definition.BasicType('float'),  # noqa: E501
+        rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'UV'),  # noqa: E501
+        rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'UV'),  # noqa: E501
+        rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'UV'),  # noqa: E501
         rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'UV'),  # noqa: E501
         rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'UV'),  # noqa: E501
         rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'UV'),  # noqa: E501
@@ -149,6 +158,12 @@ class Hook(metaclass=Metaclass_Hook):
         self.uv_tip = kwargs.get('uv_tip', UV())
         from action_interfaces.msg import UV
         self.uv_lowpoint = kwargs.get('uv_lowpoint', UV())
+        from action_interfaces.msg import UV
+        self.uv_hook_img2 = kwargs.get('uv_hook_img2', UV())
+        from action_interfaces.msg import UV
+        self.uv_tip_img2 = kwargs.get('uv_tip_img2', UV())
+        from action_interfaces.msg import UV
+        self.uv_lowpoint_img2 = kwargs.get('uv_lowpoint_img2', UV())
         self.shortest_path = kwargs.get('shortest_path', [])
         self.path_points = kwargs.get('path_points', [])
 
@@ -208,6 +223,12 @@ class Hook(metaclass=Metaclass_Hook):
         if self.uv_tip != other.uv_tip:
             return False
         if self.uv_lowpoint != other.uv_lowpoint:
+            return False
+        if self.uv_hook_img2 != other.uv_hook_img2:
+            return False
+        if self.uv_tip_img2 != other.uv_tip_img2:
+            return False
+        if self.uv_lowpoint_img2 != other.uv_lowpoint_img2:
             return False
         if self.shortest_path != other.shortest_path:
             return False
@@ -411,6 +432,48 @@ class Hook(metaclass=Metaclass_Hook):
                 isinstance(value, UV), \
                 "The 'uv_lowpoint' field must be a sub message of type 'UV'"
         self._uv_lowpoint = value
+
+    @property
+    def uv_hook_img2(self):
+        """Message field 'uv_hook_img2'."""
+        return self._uv_hook_img2
+
+    @uv_hook_img2.setter
+    def uv_hook_img2(self, value):
+        if __debug__:
+            from action_interfaces.msg import UV
+            assert \
+                isinstance(value, UV), \
+                "The 'uv_hook_img2' field must be a sub message of type 'UV'"
+        self._uv_hook_img2 = value
+
+    @property
+    def uv_tip_img2(self):
+        """Message field 'uv_tip_img2'."""
+        return self._uv_tip_img2
+
+    @uv_tip_img2.setter
+    def uv_tip_img2(self, value):
+        if __debug__:
+            from action_interfaces.msg import UV
+            assert \
+                isinstance(value, UV), \
+                "The 'uv_tip_img2' field must be a sub message of type 'UV'"
+        self._uv_tip_img2 = value
+
+    @property
+    def uv_lowpoint_img2(self):
+        """Message field 'uv_lowpoint_img2'."""
+        return self._uv_lowpoint_img2
+
+    @uv_lowpoint_img2.setter
+    def uv_lowpoint_img2(self, value):
+        if __debug__:
+            from action_interfaces.msg import UV
+            assert \
+                isinstance(value, UV), \
+                "The 'uv_lowpoint_img2' field must be a sub message of type 'UV'"
+        self._uv_lowpoint_img2 = value
 
     @property
     def shortest_path(self):

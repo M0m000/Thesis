@@ -292,6 +292,75 @@ max_serialized_size_UV(
 }  // namespace msg
 }  // namespace action_interfaces
 
+namespace action_interfaces
+{
+namespace msg
+{
+namespace typesupport_fastrtps_cpp
+{
+bool cdr_serialize(
+  const action_interfaces::msg::UV &,
+  eprosima::fastcdr::Cdr &);
+bool cdr_deserialize(
+  eprosima::fastcdr::Cdr &,
+  action_interfaces::msg::UV &);
+size_t get_serialized_size(
+  const action_interfaces::msg::UV &,
+  size_t current_alignment);
+size_t
+max_serialized_size_UV(
+  bool & full_bounded,
+  size_t current_alignment);
+}  // namespace typesupport_fastrtps_cpp
+}  // namespace msg
+}  // namespace action_interfaces
+
+namespace action_interfaces
+{
+namespace msg
+{
+namespace typesupport_fastrtps_cpp
+{
+bool cdr_serialize(
+  const action_interfaces::msg::UV &,
+  eprosima::fastcdr::Cdr &);
+bool cdr_deserialize(
+  eprosima::fastcdr::Cdr &,
+  action_interfaces::msg::UV &);
+size_t get_serialized_size(
+  const action_interfaces::msg::UV &,
+  size_t current_alignment);
+size_t
+max_serialized_size_UV(
+  bool & full_bounded,
+  size_t current_alignment);
+}  // namespace typesupport_fastrtps_cpp
+}  // namespace msg
+}  // namespace action_interfaces
+
+namespace action_interfaces
+{
+namespace msg
+{
+namespace typesupport_fastrtps_cpp
+{
+bool cdr_serialize(
+  const action_interfaces::msg::UV &,
+  eprosima::fastcdr::Cdr &);
+bool cdr_deserialize(
+  eprosima::fastcdr::Cdr &,
+  action_interfaces::msg::UV &);
+size_t get_serialized_size(
+  const action_interfaces::msg::UV &,
+  size_t current_alignment);
+size_t
+max_serialized_size_UV(
+  bool & full_bounded,
+  size_t current_alignment);
+}  // namespace typesupport_fastrtps_cpp
+}  // namespace msg
+}  // namespace action_interfaces
+
 
 namespace action_interfaces
 {
@@ -355,6 +424,18 @@ cdr_serialize(
   // Member: uv_lowpoint
   action_interfaces::msg::typesupport_fastrtps_cpp::cdr_serialize(
     ros_message.uv_lowpoint,
+    cdr);
+  // Member: uv_hook_img2
+  action_interfaces::msg::typesupport_fastrtps_cpp::cdr_serialize(
+    ros_message.uv_hook_img2,
+    cdr);
+  // Member: uv_tip_img2
+  action_interfaces::msg::typesupport_fastrtps_cpp::cdr_serialize(
+    ros_message.uv_tip_img2,
+    cdr);
+  // Member: uv_lowpoint_img2
+  action_interfaces::msg::typesupport_fastrtps_cpp::cdr_serialize(
+    ros_message.uv_lowpoint_img2,
     cdr);
   // Member: shortest_path
   {
@@ -436,6 +517,18 @@ cdr_deserialize(
   // Member: uv_lowpoint
   action_interfaces::msg::typesupport_fastrtps_cpp::cdr_deserialize(
     cdr, ros_message.uv_lowpoint);
+
+  // Member: uv_hook_img2
+  action_interfaces::msg::typesupport_fastrtps_cpp::cdr_deserialize(
+    cdr, ros_message.uv_hook_img2);
+
+  // Member: uv_tip_img2
+  action_interfaces::msg::typesupport_fastrtps_cpp::cdr_deserialize(
+    cdr, ros_message.uv_tip_img2);
+
+  // Member: uv_lowpoint_img2
+  action_interfaces::msg::typesupport_fastrtps_cpp::cdr_deserialize(
+    cdr, ros_message.uv_lowpoint_img2);
 
   // Member: shortest_path
   {
@@ -549,6 +642,21 @@ get_serialized_size(
   current_alignment +=
     action_interfaces::msg::typesupport_fastrtps_cpp::get_serialized_size(
     ros_message.uv_lowpoint, current_alignment);
+  // Member: uv_hook_img2
+
+  current_alignment +=
+    action_interfaces::msg::typesupport_fastrtps_cpp::get_serialized_size(
+    ros_message.uv_hook_img2, current_alignment);
+  // Member: uv_tip_img2
+
+  current_alignment +=
+    action_interfaces::msg::typesupport_fastrtps_cpp::get_serialized_size(
+    ros_message.uv_tip_img2, current_alignment);
+  // Member: uv_lowpoint_img2
+
+  current_alignment +=
+    action_interfaces::msg::typesupport_fastrtps_cpp::get_serialized_size(
+    ros_message.uv_lowpoint_img2, current_alignment);
   // Member: shortest_path
   {
     size_t array_size = ros_message.shortest_path.size();
@@ -739,6 +847,42 @@ max_serialized_size_Hook(
   }
 
   // Member: uv_lowpoint
+  {
+    size_t array_size = 1;
+
+
+    for (size_t index = 0; index < array_size; ++index) {
+      current_alignment +=
+        action_interfaces::msg::typesupport_fastrtps_cpp::max_serialized_size_UV(
+        full_bounded, current_alignment);
+    }
+  }
+
+  // Member: uv_hook_img2
+  {
+    size_t array_size = 1;
+
+
+    for (size_t index = 0; index < array_size; ++index) {
+      current_alignment +=
+        action_interfaces::msg::typesupport_fastrtps_cpp::max_serialized_size_UV(
+        full_bounded, current_alignment);
+    }
+  }
+
+  // Member: uv_tip_img2
+  {
+    size_t array_size = 1;
+
+
+    for (size_t index = 0; index < array_size; ++index) {
+      current_alignment +=
+        action_interfaces::msg::typesupport_fastrtps_cpp::max_serialized_size_UV(
+        full_bounded, current_alignment);
+    }
+  }
+
+  // Member: uv_lowpoint_img2
   {
     size_t array_size = 1;
 

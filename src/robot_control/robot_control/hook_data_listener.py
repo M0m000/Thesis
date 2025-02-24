@@ -13,7 +13,7 @@ class HookDataListener(Node):
         super().__init__('hook_data_listener')
         
         # Initialisiere den DictReceiveProcessor, der das Entpacken und Speichern übernimmt
-        self.dict_processor = DictReceiveProcessor(self)
+        self.dict_processor = DictReceiveProcessor(dual_cam_setup = False)
         
         # Erstelle einen Subscriber, der auf das 'hook_data' Topic hört
         self.subscription = self.create_subscription(HookData, 'yolov8_output/hooks_dict', self.listener_callback, 10)
@@ -28,7 +28,7 @@ class HookDataListener(Node):
         """
         hooks_dict = self.dict_processor.process_hooks_dict(msg)
         if 'hook_1' in hooks_dict:
-            self.get_logger().info(f"Verarbeitetes Dictionary: {hooks_dict['hook_1']['uv_tip']}")
+            self.get_logger().info(f"Dict Keys: {hooks_dict.keys()}")
 
 
 

@@ -57,6 +57,12 @@ bool action_interfaces__msg__uv__convert_from_py(PyObject * _pymsg, void * _ros_
 PyObject * action_interfaces__msg__uv__convert_to_py(void * raw_ros_message);
 bool action_interfaces__msg__uv__convert_from_py(PyObject * _pymsg, void * _ros_message);
 PyObject * action_interfaces__msg__uv__convert_to_py(void * raw_ros_message);
+bool action_interfaces__msg__uv__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__uv__convert_to_py(void * raw_ros_message);
+bool action_interfaces__msg__uv__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__uv__convert_to_py(void * raw_ros_message);
+bool action_interfaces__msg__uv__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__uv__convert_to_py(void * raw_ros_message);
 
 ROSIDL_GENERATOR_C_EXPORT
 bool action_interfaces__msg__hook__convert_from_py(PyObject * _pymsg, void * _ros_message)
@@ -238,6 +244,39 @@ bool action_interfaces__msg__hook__convert_from_py(PyObject * _pymsg, void * _ro
       return false;
     }
     if (!action_interfaces__msg__uv__convert_from_py(field, &ros_message->uv_lowpoint)) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_DECREF(field);
+  }
+  {  // uv_hook_img2
+    PyObject * field = PyObject_GetAttrString(_pymsg, "uv_hook_img2");
+    if (!field) {
+      return false;
+    }
+    if (!action_interfaces__msg__uv__convert_from_py(field, &ros_message->uv_hook_img2)) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_DECREF(field);
+  }
+  {  // uv_tip_img2
+    PyObject * field = PyObject_GetAttrString(_pymsg, "uv_tip_img2");
+    if (!field) {
+      return false;
+    }
+    if (!action_interfaces__msg__uv__convert_from_py(field, &ros_message->uv_tip_img2)) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_DECREF(field);
+  }
+  {  // uv_lowpoint_img2
+    PyObject * field = PyObject_GetAttrString(_pymsg, "uv_lowpoint_img2");
+    if (!field) {
+      return false;
+    }
+    if (!action_interfaces__msg__uv__convert_from_py(field, &ros_message->uv_lowpoint_img2)) {
       Py_DECREF(field);
       return false;
     }
@@ -515,6 +554,48 @@ PyObject * action_interfaces__msg__hook__convert_to_py(void * raw_ros_message)
     }
     {
       int rc = PyObject_SetAttrString(_pymessage, "uv_lowpoint", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // uv_hook_img2
+    PyObject * field = NULL;
+    field = action_interfaces__msg__uv__convert_to_py(&ros_message->uv_hook_img2);
+    if (!field) {
+      return NULL;
+    }
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "uv_hook_img2", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // uv_tip_img2
+    PyObject * field = NULL;
+    field = action_interfaces__msg__uv__convert_to_py(&ros_message->uv_tip_img2);
+    if (!field) {
+      return NULL;
+    }
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "uv_tip_img2", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // uv_lowpoint_img2
+    PyObject * field = NULL;
+    field = action_interfaces__msg__uv__convert_to_py(&ros_message->uv_lowpoint_img2);
+    if (!field) {
+      return NULL;
+    }
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "uv_lowpoint_img2", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;
