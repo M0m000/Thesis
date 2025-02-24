@@ -38,10 +38,10 @@ setup(
             'tcp_frame_listener = robot_control.tcp_frame_listener:main',
             'transform_action_client = robot_control.transform_action_client:main',
             'scan_bar_horizontal_triangulation = robot_control.scan_bar_horizontal_triangulation:main',
-            'scan_bar_combined_triangulation = robot_control.scan_bar_combined_triangulation:main',
             'scan_bar_vertical_triangulation = robot_control.scan_bar_vertical_triangulation:main',
             'control = robot_control.control:main',
-            'hook_data_listener = robot_control.hook_data_listener:main'
+            'hook_data_listener = robot_control.hook_data_listener:main',
+            'scan_bar_combined_triangulation = robot_control.scan_bar_combined_triangulation:main'
         ],
     },
 )

@@ -19,9 +19,9 @@ import csv
 
 
 
-class ScanBarVerticalTriangulation(Node):
+class ScanBarHorizontalTriangulation(Node):
     def __init__(self):
-        super().__init__('scan_bar_vertical_triangulation')
+        super().__init__('scan_bar_combined_triangulation')
 
         self.node_shutdown_flag = False
 
@@ -54,12 +54,12 @@ class ScanBarVerticalTriangulation(Node):
         self.handling_last_hook = False
 
         # Subscriber auf Bildgroesse
+        self.img_width = 896
+        self.img_height = 450
         self.img_width_sub = self.create_subscription(Int32, 'vcnanoz/image_raw/width', self.received_img_width, 10)
         self.img_width_sub
         self.img_height_sub = self.create_subscription(Int32, 'vcnanoz/image_raw/height', self.received_img_height, 10)
         self.img_height_sub
-        self.img_width = 896
-        self.img_height = 450
 
         # Variablen für Prozess
         self.hook_ref = {}
@@ -442,7 +442,8 @@ class ScanBarVerticalTriangulation(Node):
             hook_xyz = (horizontal_hook_xyz + vertical_hook_xyz) / 2
             tip_xyz = (horizontal_tip_xyz + vertical_tip_xyz) / 2
             lowpoint_xyz = (horizontal_lowpoint_xyz + vertical_lowpoint_xyz) / 2
-            
+            time_token = horizontal_time_token + vertical_time_token
+
             self.get_logger().info("Done! -> next process step <Interpolate Depth Shape>")
             self.process_step = "interpolate_depth_shape"
 
@@ -537,7 +538,7 @@ class ScanBarVerticalTriangulation(Node):
             self.get_logger().warn(f"Hook XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_workframe']}")
             self.get_logger().warn(f"Tip XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_workframe']}")
             self.get_logger().warn(f"Lowpoint XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_workframe']}")
-            self.get_logger().warn(f"Time token for triangulation [horizontal]: {time_token}sec")
+            self.get_logger().warn(f"Time token for triangulation [horizontal]: {time_token} sec")
 
             self.get_logger().info(f"already scanned: {len(self.global_hooks_dict)} Hooks")
 
@@ -552,7 +553,7 @@ class ScanBarVerticalTriangulation(Node):
 
 
 
-        # Extrahiere Pixelkoordinaten von Haken 2 während Prozess
+        # Extrahiere Pixelkoordinaten von Haken 2 während Prozess:
         if self.process_step == "extract_hook_2_as_ref":
             """
             Extrahieren von Haken 2 (rechts im Bild) als Referenzpunkt für die Triangulation
@@ -768,7 +769,7 @@ class ScanBarVerticalTriangulation(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = ScanBarVerticalTriangulation()
+    node = ScanBarHorizontalTriangulation()
 
     try:
         while rclpy.ok():
@@ -778,6 +779,7 @@ def main(args=None):
                 break
     except KeyboardInterrupt:
         node.shutdown_node()
+
 
 if __name__ == '__main__':
     main()

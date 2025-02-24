@@ -410,26 +410,38 @@ class ScanBarVerticalTriangulation(Node):
 
 
 
-        # Horizontale Triangulation
+        # Kombinierte Triangulation
         if self.process_step == "horizontal_triangulation":
             """
-            Horizontale Triangulation (Berechnung der realen Koordinaten der Hakenpunkte)
+            Kombinierte Triangulation (Berechnung der realen Koordinaten der Hakenpunkte)
             """
             horizontal_baseline_vector = np.array(self.robot_position_horizontal) - np.array(self.robot_position_ref)
-            baseline_along_x = horizontal_baseline_vector[0]
-            self.get_logger().info(f"Baseline X-Distanz: {baseline_along_x} mm")
+            vertical_baseline_vector = np.array(self.robot_position_vertical) - np.array(self.robot_position_ref)
 
-            if baseline_along_x == 0:
+            baseline_along_x = horizontal_baseline_vector[0]
+            baseline_along_y = vertical_baseline_vector[1]
+            
+            self.get_logger().info(f"Baseline along X axis: {baseline_along_x} mm")
+            self.get_logger().info(f"Baseline along Y axis: {baseline_along_y} mm")
+
+            if baseline_along_x == 0 or baseline_along_y == 0:
                 self.get_logger().error("ERROR either in moving robot or in position acquisition -> consider restarting KR810...")
 
-            [hook_xyz, tip_xyz, lowpoint_xyz], time_token = self.triangulation_processor.triangulate_3_points(point_1_1_uv = self.hook_horizontal['uv_hook'], point_2_1_uv = self.hook_ref['uv_hook'],
-                                                                                                                    point_1_2_uv = self.hook_horizontal['uv_tip'], point_2_2_uv = self.hook_ref['uv_tip'],
-                                                                                                                    point_1_3_uv = self.hook_horizontal['uv_lowpoint'], point_2_3_uv = self.hook_ref['uv_lowpoint'],
-                                                                                                                    baseline_vector = horizontal_baseline_vector,
-                                                                                                                    baseline = baseline_along_x, baseline_axis = 'x')
-            # hook_xyz[1] = -hook_xyz[1]
-            # tip_xyz[1] = -tip_xyz[1]
-            # lowpoint_xyz[1] = -lowpoint_xyz[1]
+            [horizontal_hook_xyz, horizontal_tip_xyz, horizontal_lowpoint_xyz], horizontal_time_token = self.triangulation_processor.triangulate_3_points(point_1_1_uv = self.hook_horizontal['uv_hook'], point_2_1_uv = self.hook_ref['uv_hook'],
+                                                                                                                                                          point_1_2_uv = self.hook_horizontal['uv_tip'], point_2_2_uv = self.hook_ref['uv_tip'],
+                                                                                                                                                          point_1_3_uv = self.hook_horizontal['uv_lowpoint'], point_2_3_uv = self.hook_ref['uv_lowpoint'],
+                                                                                                                                                          baseline_vector = horizontal_baseline_vector,
+                                                                                                                                                          baseline = baseline_along_x, baseline_axis = 'x')
+            
+            [vertical_hook_xyz, vertical_tip_xyz, vertical_lowpoint_xyz], vertical_time_token = self.triangulation_processor.triangulate_3_points(point_1_1_uv = self.hook_vertical['uv_hook'], point_2_1_uv = self.hook_ref['uv_hook'],
+                                                                                                                                                  point_1_2_uv = self.hook_vertical['uv_tip'], point_2_2_uv = self.hook_ref['uv_tip'],
+                                                                                                                                                  point_1_3_uv = self.hook_vertical['uv_lowpoint'], point_2_3_uv = self.hook_ref['uv_lowpoint'],
+                                                                                                                                                  baseline_vector = vertical_baseline_vector,
+                                                                                                                                                  baseline = baseline_along_y, baseline_axis = 'y')
+            
+            hook_xyz = (horizontal_hook_xyz + vertical_hook_xyz) / 2
+            tip_xyz = (horizontal_tip_xyz + vertical_tip_xyz) / 2
+            lowpoint_xyz = (horizontal_lowpoint_xyz + vertical_lowpoint_xyz) / 2
             
             self.get_logger().info("Done! -> next process step <Interpolate Depth Shape>")
             self.process_step = "interpolate_depth_shape"

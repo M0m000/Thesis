@@ -1,6 +1,5 @@
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/set_working_frame_qr.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/define_working_frame_needle.py
-/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/scan_bar_vertical_triangulation.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/MoveTcpAlongAxis_action_client.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/ibvs_2d.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/tf_frames_publisher.py
@@ -28,7 +27,6 @@
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC/FC_edge_detector.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/set_working_frame_qr.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/define_working_frame_needle.cpython-38.pyc
-/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/scan_bar_vertical_triangulation.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/MoveTcpAlongAxis_action_client.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/ibvs_2d.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/tf_frames_publisher.cpython-38.pyc
