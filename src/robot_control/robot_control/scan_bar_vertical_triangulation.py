@@ -558,7 +558,7 @@ class ScanBarHorizontalTriangulation(Node):
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 as Horizontal Point>")
                 self.upcoming_process_step = "vertical_triangulation"
-                self.start_timer_for_step(3.0)    # Timer starten
+                self.start_timer_for_step(3.0)      # Timer starten
                 self.process_step = "waiting_for_timer"
 
 
