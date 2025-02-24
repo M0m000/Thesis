@@ -252,7 +252,6 @@ class ScanBarHorizontalTriangulation(Node):
                 self.vibration_data['uv_hook'].append(uv_hook)
                 self.vibration_data['uv_tip'].append(uv_tip)
                 self.vibration_data['uv_lowpoint'].append(uv_lowpoint)
-                # time.sleep(0.0001)
             else:
                 if self.measure_hook_2:
                     self.measure_hook_2 = False
@@ -335,7 +334,7 @@ class ScanBarHorizontalTriangulation(Node):
             if self._help_movement_done == True:
                 self._help_movement_service_called = False
                 self._help_movement_done = False
-                self.get_logger().info("Done! -> next process step <Move Until 3 Hooks Visible>")
+                self.get_logger().info("Done! -> next process step <Move until new hook visible>")
                 self.process_step = "move_until_new_hook"
 
 
@@ -362,89 +361,35 @@ class ScanBarHorizontalTriangulation(Node):
                     self.vibration_data = {'time': [], 'uv_hook': [], 'uv_tip': [], 'uv_lowpoint': []}
                     self.process_step = "measure_vibration"
                 else:
-                    self.get_logger().info("Done! -> next process step <Extract Hook 3 as Horizontal Point>")
-                    self.upcoming_process_step = "extract_hook_3_as_horizontal_point"
+                    self.get_logger().info("Done! -> next process step <Vertical triangulation>")
+                    self.upcoming_process_step = "vertical_triangulation"
                     self.start_timer_for_step(3.0)    # Timer starten
                     self.process_step = "waiting_for_timer"
-        
-
-
-        # Extrahiere Pixelkoordinaten von Haken 3 (war vorher Haken 2)
-        if self.process_step == "extract_hook_3_as_horizontal_point":
-            """
-            Extrahieren von Haken 3 (links im Bild) als zweiter Punkt für Triangulation
-            """
-            if self.handling_last_two_hooks:
-                if self.yolo_hooks_dict['hook_2']['path_points'] != []:         # wenn path_points im Dict vefügbar
-                    self.hook_horizontal['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
-                    self.hook_horizontal['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
-                    self.hook_horizontal['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
-                    self.hook_horizontal['path_points'] = self.yolo_hooks_dict['hook_2']['path_points']
-                    extract_hook_3_as_horizontal_point___hook_extraction_done = True
-                else:
-                    extract_hook_3_as_horizontal_point___hook_extraction_done = False
-            elif self.handling_last_hook:
-                if self.yolo_hooks_dict['hook_1']['path_points'] != []:         # wenn path_points im Dict vefügbar
-                    self.hook_horizontal['uv_hook'] = self.yolo_hooks_dict['hook_1']['uv_hook']
-                    self.hook_horizontal['uv_tip'] = self.yolo_hooks_dict['hook_1']['uv_tip']
-                    self.hook_horizontal['uv_lowpoint'] = self.yolo_hooks_dict['hook_1']['uv_lowpoint']
-                    self.hook_horizontal['path_points'] = self.yolo_hooks_dict['hook_1']['path_points']
-                    extract_hook_3_as_horizontal_point___hook_extraction_done = True
-                else:
-                    extract_hook_3_as_horizontal_point___hook_extraction_done = False
-            else:
-                if self.yolo_hooks_dict['hook_3']['path_points'] != []:         # wenn path_points im Dict vefügbar
-                    self.hook_horizontal['uv_hook'] = self.yolo_hooks_dict['hook_3']['uv_hook']
-                    self.hook_horizontal['uv_tip'] = self.yolo_hooks_dict['hook_3']['uv_tip']
-                    self.hook_horizontal['uv_lowpoint'] = self.yolo_hooks_dict['hook_3']['uv_lowpoint']
-                    self.hook_horizontal['path_points'] = self.yolo_hooks_dict['hook_3']['path_points']
-                    extract_hook_3_as_horizontal_point___hook_extraction_done = True
-                else:
-                    extract_hook_3_as_horizontal_point___hook_extraction_done = False
-
-            if extract_hook_3_as_horizontal_point___hook_extraction_done:
-                _, _, self.T_robot_position_horizontal = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
-                self.robot_position_horizontal = self.frame_handler.transform_worldpoint_in_frame(self.T_robot_position_horizontal[:3, 3], 'work')
-                self.get_logger().info("Done! -> next process step <Horizontal Triangulation>")
-                self.process_step = "horizontal_triangulation"
 
 
 
-        # Kombinierte Triangulation
-        if self.process_step == "horizontal_triangulation":
+        # Vertikale Triangulation
+        if self.process_step == "vertical_triangulation":
             """
             Kombinierte Triangulation (Berechnung der realen Koordinaten der Hakenpunkte)
             """
-            horizontal_baseline_vector = np.array(self.robot_position_horizontal) - np.array(self.robot_position_ref)
             vertical_baseline_vector = np.array(self.robot_position_vertical) - np.array(self.robot_position_ref)
-
-            baseline_along_x = horizontal_baseline_vector[0]
             baseline_along_y = vertical_baseline_vector[1]
             
-            self.get_logger().info(f"Baseline along X axis: {baseline_along_x} mm")
             self.get_logger().info(f"Baseline along Y axis: {baseline_along_y} mm")
 
-            if baseline_along_x == 0 or baseline_along_y == 0:
+            if baseline_along_y == 0:
                 self.get_logger().error("ERROR either in moving robot or in position acquisition -> consider restarting KR810...")
 
-            [horizontal_hook_xyz, horizontal_tip_xyz, horizontal_lowpoint_xyz], horizontal_time_token = self.triangulation_processor.triangulate_3_points(point_1_1_uv = self.hook_horizontal['uv_hook'], point_2_1_uv = self.hook_ref['uv_hook'],
-                                                                                                                                                          point_1_2_uv = self.hook_horizontal['uv_tip'], point_2_2_uv = self.hook_ref['uv_tip'],
-                                                                                                                                                          point_1_3_uv = self.hook_horizontal['uv_lowpoint'], point_2_3_uv = self.hook_ref['uv_lowpoint'],
-                                                                                                                                                          baseline_vector = horizontal_baseline_vector,
-                                                                                                                                                          baseline = baseline_along_x, baseline_axis = 'x')
+            [hook_xyz, tip_xyz, lowpoint_xyz], time_token = self.triangulation_processor.triangulate_3_points(point_1_1_uv = self.hook_vertical['uv_hook'], point_2_1_uv = self.hook_ref['uv_hook'],
+                                                                                                              point_1_2_uv = self.hook_vertical['uv_tip'], point_2_2_uv = self.hook_ref['uv_tip'],
+                                                                                                              point_1_3_uv = self.hook_vertical['uv_lowpoint'], point_2_3_uv = self.hook_ref['uv_lowpoint'],
+                                                                                                              baseline_vector = vertical_baseline_vector,
+                                                                                                              baseline = baseline_along_y, baseline_axis = 'y')
             
-            [vertical_hook_xyz, vertical_tip_xyz, vertical_lowpoint_xyz], vertical_time_token = self.triangulation_processor.triangulate_3_points(point_1_1_uv = self.hook_vertical['uv_hook'], point_2_1_uv = self.hook_ref['uv_hook'],
-                                                                                                                                                  point_1_2_uv = self.hook_vertical['uv_tip'], point_2_2_uv = self.hook_ref['uv_tip'],
-                                                                                                                                                  point_1_3_uv = self.hook_vertical['uv_lowpoint'], point_2_3_uv = self.hook_ref['uv_lowpoint'],
-                                                                                                                                                  baseline_vector = vertical_baseline_vector,
-                                                                                                                                                  baseline = baseline_along_y, baseline_axis = 'y')
-            
-            hook_xyz = (horizontal_hook_xyz + vertical_hook_xyz) / 2
-            tip_xyz = (horizontal_tip_xyz + vertical_tip_xyz) / 2
-            lowpoint_xyz = (horizontal_lowpoint_xyz + vertical_lowpoint_xyz) / 2
-            time_token = horizontal_time_token + vertical_time_token
 
-            self.get_logger().info("Done! -> next process step <Interpolate Depth Shape>")
+
+            self.get_logger().info("Done! -> next process step <Interpolate depth shape>")
             self.process_step = "interpolate_depth_shape"
 
 
@@ -494,7 +439,7 @@ class ScanBarHorizontalTriangulation(Node):
                                                                         start_point_with_depth = tip_xyz, 
                                                                         end_point_with_depth = lowpoint_xyz)
 
-            self.get_logger().info("Done! -> next process step <Save Hook>")
+            self.get_logger().info("Done! -> next process step <Save hook data>")
             self.process_step = "save_hook"
 
 
@@ -546,7 +491,7 @@ class ScanBarHorizontalTriangulation(Node):
                 self.get_logger().info("Done! -> next process step <Save Global Dict as CSV>")
                 self.process_step = "save_global_dict_as_csv"
             else:
-                self.get_logger().info("Done! -> next process step <Extract Hook 2 as Reference>")
+                self.get_logger().info("Done! -> next process step <Extract hook 2 as reference>")
                 self.upcoming_process_step = "extract_hook_2_as_ref"
                 self.start_timer_for_step(3.0)    # Timer starten
                 self.process_step = "waiting_for_timer"
@@ -612,7 +557,7 @@ class ScanBarHorizontalTriangulation(Node):
                 vel_world = [0.0, 0.0, 0.0]
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 as Horizontal Point>")
-                self.upcoming_process_step = "extract_hook_3_as_horizontal_point"
+                self.upcoming_process_step = "vertical_triangulation"
                 self.start_timer_for_step(3.0)    # Timer starten
                 self.process_step = "waiting_for_timer"
 
@@ -703,7 +648,6 @@ class ScanBarHorizontalTriangulation(Node):
                                  self.vibration_data['uv_lowpoint'][i]])
         self.get_logger().info(f"Vibration data saved as CSV.")
             
-
 
 
     def publish_linear_velocity(self, vel_in_worldframe):
