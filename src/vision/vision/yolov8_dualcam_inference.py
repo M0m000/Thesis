@@ -1,6 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image
+from std_msgs.msg import Int32
 from cv_bridge import CvBridge
 import numpy as np
 import torch
@@ -15,6 +16,7 @@ from FC_vision.FC_moving_avg_filter import HookFilterMovingAvg
 from FC_vision.FC_yolo_output_processor import YoloPostprocessor
 from FC_vision.FC_plot_yolo_imgs import plot_hooks_and_bars, plot_points, plot_combined_skeletons
 from FC_vision.FC_process_hooks_dict_for_publishing import process_hook_for_publisher
+from FC_vision.FC_two_cam_stereo_triangulation_processor import TwoCamStereoTriangulationProcessor
 
 
 
@@ -48,6 +50,12 @@ class YOLOv8TwoImgInferenceNode(Node):
 
         # Subscriber auf VC Cam 2
         self.img_2_subscription = self.create_subscription(Image, 'vcnanoz/image_raw_2', self.image_2_callback, 1)
+
+        # Subscriber für Bildaufloesung
+        self.img_width = 896
+        self.img_height = 450
+        self.img_width_sub = self.create_subscription(Int32, 'vcnanoz/image_raw/width', callback = self.img_width_receive_callback)
+        self.img_height_sub = self.create_subscription(Int32, 'vcnanoz/image_raw/height', callback = self.img_height_receive_callback)
 
         # Publisher für Netz Output
         self.hooks_dict_publisher_ = self.create_publisher(HookData, 'yolov8_output/hooks_dict', 10)
@@ -94,6 +102,20 @@ class YOLOv8TwoImgInferenceNode(Node):
 
         # Instanz YoloPostprocessor
         self.yolo_postprocessor = YoloPostprocessor()
+
+        # Instanz Triangulation Processor
+        self.triangulation_processor = TwoCamStereoTriangulationProcessor(extrinsic_data = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+                                                                          measure_time = True,
+                                                                          img_width = self.img_width,
+                                                                          img_height = self.img_height)
+        
+        
+
+    def img_width_receive_callback(self, msg):
+        self.img_width = msg.data
+    
+    def img_height_receive_callback(self, msg):
+        self.img_height = msg.data
 
 
     def set_device(self):
@@ -191,6 +213,9 @@ class YOLOv8TwoImgInferenceNode(Node):
             self.filtered_hooks_dict = self.merge_output_hook_dicts(hooks_dict_1 = self.img1_filtered_hooks_dict,
                                                                     hooks_dict_2 = self.img2_filtered_hooks_dict)
             
+            # Berechnung der Triangulation mit fertigem Dict und anhängen der XYZ-Daten an Dict
+            self.filtered_hooks_dict = self.do_triangulation(hooks_dict = self.filtered_hooks_dict)
+                    
             # Plots
             if self.show_cam_img:
                 cv2.imshow('VC Cam 1 Img', self.input_img_1)
@@ -243,16 +268,6 @@ class YOLOv8TwoImgInferenceNode(Node):
         except Exception as e:
             self.get_logger().error(f'Error in inference process: {e}')
 
-
-    def merge_output_hook_dicts(self, hooks_dict_1, hooks_dict_2):
-        for idx, key in enumerate(hooks_dict_1):
-            hooks_dict_1[key]['uv_hook_img2'] = {}
-            hooks_dict_1[key]['uv_hook_img2'] = hooks_dict_2[key]['uv_hook']
-            hooks_dict_1[key]['uv_tip_img2'] = {}
-            hooks_dict_1[key]['uv_tip_img2'] = hooks_dict_2[key]['uv_tip']
-            hooks_dict_1[key]['uv_lowpoint_img2'] = {}
-            hooks_dict_1[key]['uv_lowpoint_img2'] = hooks_dict_2[key]['uv_lowpoint']
-        return hooks_dict_1
             
 
     def preprocess(self, cv_image):
@@ -305,6 +320,36 @@ class YOLOv8TwoImgInferenceNode(Node):
         # self.get_logger().info(f"\rInference time: {(end_time - start_time):.4f} sec")
         # self.get_logger().info(f"\rInference FPS: {(1/(end_time - start_time)):.4f} FPS")
         return results
+    
+
+    def merge_output_hook_dicts(self, hooks_dict_1, hooks_dict_2):
+        for idx, key in enumerate(hooks_dict_1):
+            hooks_dict_1[key]['uv_hook_img2'] = {}
+            hooks_dict_1[key]['uv_hook_img2'] = hooks_dict_2[key]['uv_hook']
+            hooks_dict_1[key]['uv_tip_img2'] = {}
+            hooks_dict_1[key]['uv_tip_img2'] = hooks_dict_2[key]['uv_tip']
+            hooks_dict_1[key]['uv_lowpoint_img2'] = {}
+            hooks_dict_1[key]['uv_lowpoint_img2'] = hooks_dict_2[key]['uv_lowpoint']
+        return hooks_dict_1
+    
+
+    def do_triangulation(self, hooks_dict):
+        """
+        Berechnet permanent nach jeder Inferenz die XYZ-Koordinaten im CAM-Frame für Hook, Tip und Lowpoint
+        """
+        for idx, key in enumerate(hooks_dict):
+            hook = hooks_dict[key]
+            [hook_xyz, tip_xyz, lowpoint_xyz], time_token = self.triangulation_processor.triangulate_3_points(point_1_1_uv = hook['uv_hook'], point_2_1_uv = hook['uv_hook_img2'],
+                                                                                                              point_1_2_uv = hook['uv_tip'], point_2_2_uv = hook['uv_tip_img2'],
+                                                                                                              point_1_3_uv = hook['uv_lowpoint'], point_2_3_uv = hook['uv_lowpoint_img2'])
+            hooks_dict[key]['xyz_hook'] = {}
+            hooks_dict[key]['xyz_hook'] = hook_xyz
+            hooks_dict[key]['xyz_tip'] = {}
+            hooks_dict[key]['xyz_tip'] = tip_xyz
+            hooks_dict[key]['xyz_lowpoint'] = {}
+            hooks_dict[key]['xyz_lowpoint'] = lowpoint_xyz
+        return hooks_dict
+
 
 
     def publish_hooks_dict(self):
