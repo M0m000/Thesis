@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/hook__type_support.c.o"
   "CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/hook_data__type_support.c.o"
   "CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/uv__type_support.c.o"
+  "CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/xyz__type_support.c.o"
   "libaction_interfaces__rosidl_typesupport_introspection_c.pdb"
   "libaction_interfaces__rosidl_typesupport_introspection_c.so"
   "rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h"
@@ -22,6 +23,8 @@ file(REMOVE_RECURSE
   "rosidl_typesupport_introspection_c/action_interfaces/msg/detail/hook_data__type_support.c"
   "rosidl_typesupport_introspection_c/action_interfaces/msg/detail/uv__rosidl_typesupport_introspection_c.h"
   "rosidl_typesupport_introspection_c/action_interfaces/msg/detail/uv__type_support.c"
+  "rosidl_typesupport_introspection_c/action_interfaces/msg/detail/xyz__rosidl_typesupport_introspection_c.h"
+  "rosidl_typesupport_introspection_c/action_interfaces/msg/detail/xyz__type_support.c"
 )
 
 # Per-language clean rules from dependency scanning.

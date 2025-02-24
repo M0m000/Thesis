@@ -9,7 +9,8 @@
     "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces:msg/BoundingBox.idl",
     "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces:msg/Hook.idl",
     "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces:msg/HookData.idl",
-    "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces:msg/UV.idl"
+    "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces:msg/UV.idl",
+    "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces:msg/XYZ.idl"
   ],
   "ros_interface_dependencies": [
     "builtin_interfaces:/opt/ros/foxy/share/builtin_interfaces/msg/Duration.idl",
@@ -121,6 +122,7 @@
     "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/msg/Hook.idl",
     "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/msg/HookData.idl",
     "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/msg/UV.idl",
+    "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/msg/XYZ.idl",
     "/opt/ros/foxy/share/builtin_interfaces/msg/Duration.idl",
     "/opt/ros/foxy/share/builtin_interfaces/msg/Time.idl",
     "/opt/ros/foxy/share/std_msgs/msg/Bool.idl",

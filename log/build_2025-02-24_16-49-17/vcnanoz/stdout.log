@@ -1,0 +1,48 @@
+running develop
+Removing /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz.egg-link (link to .)
+running egg_info
+writing ../../build/vcnanoz/vcnanoz.egg-info/PKG-INFO
+writing dependency_links to ../../build/vcnanoz/vcnanoz.egg-info/dependency_links.txt
+writing entry points to ../../build/vcnanoz/vcnanoz.egg-info/entry_points.txt
+writing requirements to ../../build/vcnanoz/vcnanoz.egg-info/requires.txt
+writing top-level names to ../../build/vcnanoz/vcnanoz.egg-info/top_level.txt
+reading manifest file '../../build/vcnanoz/vcnanoz.egg-info/SOURCES.txt'
+writing manifest file '../../build/vcnanoz/vcnanoz.egg-info/SOURCES.txt'
+running build
+running build_py
+copying vcnanoz/vc_startup.py -> /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz
+copying vcnanoz/srvClient_vc_startup.py -> /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz
+copying vcnanoz/vc_shutdown.py -> /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz
+copying vcnanoz/srvServer_vc_startup.py -> /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz
+copying vcnanoz/vc_img2_receiver.py -> /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz
+copying vcnanoz/__init__.py -> /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz
+copying vcnanoz/vc_img_receiver.py -> /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz
+running install
+running install_lib
+creating /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz
+copying /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz/vc_startup.py -> /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz
+copying /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz/srvClient_vc_startup.py -> /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz
+copying /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz/vc_shutdown.py -> /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz
+copying /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz/srvServer_vc_startup.py -> /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz
+copying /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz/vc_img2_receiver.py -> /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz
+copying /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz/__init__.py -> /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz
+copying /home/mo/Thesis/build/vcnanoz/build/lib/vcnanoz/vc_img_receiver.py -> /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz
+byte-compiling /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz/vc_startup.py to vc_startup.cpython-38.pyc
+byte-compiling /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz/srvClient_vc_startup.py to srvClient_vc_startup.cpython-38.pyc
+byte-compiling /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz/vc_shutdown.py to vc_shutdown.cpython-38.pyc
+byte-compiling /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz/srvServer_vc_startup.py to srvServer_vc_startup.cpython-38.pyc
+byte-compiling /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz/vc_img2_receiver.py to vc_img2_receiver.cpython-38.pyc
+byte-compiling /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz/__init__.py to __init__.cpython-38.pyc
+byte-compiling /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz/vc_img_receiver.py to vc_img_receiver.cpython-38.pyc
+running install_data
+copying resource/vcnanoz -> /home/mo/Thesis/install/vcnanoz/share/ament_index/resource_index/packages
+copying package.xml -> /home/mo/Thesis/install/vcnanoz/share/vcnanoz
+running install_egg_info
+Copying ../../build/vcnanoz/vcnanoz.egg-info to /home/mo/Thesis/install/vcnanoz/lib/python3.8/site-packages/vcnanoz-0.0.0-py3.8.egg-info
+running install_scripts
+Installing srvClient_vc_startup script to /home/mo/Thesis/install/vcnanoz/lib/vcnanoz
+Installing srvServer_vc_startup script to /home/mo/Thesis/install/vcnanoz/lib/vcnanoz
+Installing vc_img_receiver script to /home/mo/Thesis/install/vcnanoz/lib/vcnanoz
+Installing vc_shutdown script to /home/mo/Thesis/install/vcnanoz/lib/vcnanoz
+Installing vc_startup script to /home/mo/Thesis/install/vcnanoz/lib/vcnanoz
+writing list of installed files to '/home/mo/Thesis/build/vcnanoz/install.log'

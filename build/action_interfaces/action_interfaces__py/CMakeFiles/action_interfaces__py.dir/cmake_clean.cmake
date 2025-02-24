@@ -18,6 +18,8 @@ file(REMOVE_RECURSE
   "../rosidl_generator_py/action_interfaces/msg/_hook_s.c"
   "../rosidl_generator_py/action_interfaces/msg/_uv.py"
   "../rosidl_generator_py/action_interfaces/msg/_uv_s.c"
+  "../rosidl_generator_py/action_interfaces/msg/_xyz.py"
+  "../rosidl_generator_py/action_interfaces/msg/_xyz_s.c"
   "CMakeFiles/action_interfaces__py"
 )
 

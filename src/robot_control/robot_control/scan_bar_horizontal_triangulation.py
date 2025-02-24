@@ -365,9 +365,6 @@ class ScanBarHorizontalTriangulation(Node):
                                                                                                                     point_1_3_uv = self.hook_horizontal['uv_lowpoint'], point_2_3_uv = self.hook_ref['uv_lowpoint'],
                                                                                                                     baseline_vector = horizontal_baseline_vector,
                                                                                                                     baseline = baseline_along_x, baseline_axis = 'x')
-            # hook_xyz[1] = -hook_xyz[1]
-            # tip_xyz[1] = -tip_xyz[1]
-            # lowpoint_xyz[1] = -lowpoint_xyz[1]
             
             self.get_logger().info("Done! -> next process step <Interpolate Depth Shape>")
             self.process_step = "interpolate_depth_shape"
@@ -707,3 +704,4 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+

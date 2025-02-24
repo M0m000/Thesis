@@ -23,3 +23,7 @@ UV uv_lowpoint_img2
 
 UV[] shortest_path
 UV[] path_points
+
+XYZ[] xyz_hook_in_camframe
+XYZ[] xyz_tip_in_camframe
+XYZ[] xyz_lowpoint_in_camframe

@@ -36,9 +36,14 @@ set(CMAKE_MULTIPLE_OUTPUT_PAIRS
   "/home/mo/Thesis/build/action_interfaces/rosidl_generator_cpp/action_interfaces/msg/detail/uv__struct.hpp" "/home/mo/Thesis/build/action_interfaces/rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp"
   "/home/mo/Thesis/build/action_interfaces/rosidl_generator_cpp/action_interfaces/msg/detail/uv__traits.hpp" "/home/mo/Thesis/build/action_interfaces/rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp"
   "/home/mo/Thesis/build/action_interfaces/rosidl_generator_cpp/action_interfaces/msg/detail/uv__type_support.hpp" "/home/mo/Thesis/build/action_interfaces/rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp"
+  "/home/mo/Thesis/build/action_interfaces/rosidl_generator_cpp/action_interfaces/msg/detail/xyz__builder.hpp" "/home/mo/Thesis/build/action_interfaces/rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp"
+  "/home/mo/Thesis/build/action_interfaces/rosidl_generator_cpp/action_interfaces/msg/detail/xyz__struct.hpp" "/home/mo/Thesis/build/action_interfaces/rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp"
+  "/home/mo/Thesis/build/action_interfaces/rosidl_generator_cpp/action_interfaces/msg/detail/xyz__traits.hpp" "/home/mo/Thesis/build/action_interfaces/rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp"
+  "/home/mo/Thesis/build/action_interfaces/rosidl_generator_cpp/action_interfaces/msg/detail/xyz__type_support.hpp" "/home/mo/Thesis/build/action_interfaces/rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp"
   "/home/mo/Thesis/build/action_interfaces/rosidl_generator_cpp/action_interfaces/msg/hook.hpp" "/home/mo/Thesis/build/action_interfaces/rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp"
   "/home/mo/Thesis/build/action_interfaces/rosidl_generator_cpp/action_interfaces/msg/hook_data.hpp" "/home/mo/Thesis/build/action_interfaces/rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp"
   "/home/mo/Thesis/build/action_interfaces/rosidl_generator_cpp/action_interfaces/msg/uv.hpp" "/home/mo/Thesis/build/action_interfaces/rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp"
+  "/home/mo/Thesis/build/action_interfaces/rosidl_generator_cpp/action_interfaces/msg/xyz.hpp" "/home/mo/Thesis/build/action_interfaces/rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp"
   )
 
 

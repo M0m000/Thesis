@@ -115,3 +115,4 @@ class TwoCamStereoTriangulationProcessor:
         time_token = end_time - start_time if self.measure_time else None
         return [point_1_xyz, point_2_xyz, point_3_xyz], time_token if self.measure_time else [point_1_xyz, point_2_xyz, point_3_xyz]
     
+    

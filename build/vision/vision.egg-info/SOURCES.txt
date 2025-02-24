@@ -14,6 +14,7 @@ FC_vision/FC_lowpass_filter.py
 FC_vision/FC_moving_avg_filter.py
 FC_vision/FC_plot_yolo_imgs.py
 FC_vision/FC_process_hooks_dict_for_publishing.py
+FC_vision/FC_two_cam_stereo_triangulation_processor.py
 FC_vision/FC_yolo_output_processor.py
 FC_vision/__init__.py
 resource/vision

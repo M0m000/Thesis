@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/action_interfaces/msg/detail/dds_fastrtps/hook__type_support.cpp.o"
   "CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/action_interfaces/msg/detail/dds_fastrtps/hook_data__type_support.cpp.o"
   "CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/action_interfaces/msg/detail/dds_fastrtps/uv__type_support.cpp.o"
+  "CMakeFiles/action_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/action_interfaces/msg/detail/dds_fastrtps/xyz__type_support.cpp.o"
   "libaction_interfaces__rosidl_typesupport_fastrtps_cpp.pdb"
   "libaction_interfaces__rosidl_typesupport_fastrtps_cpp.so"
   "rosidl_typesupport_fastrtps_cpp/action_interfaces/action/detail/dds_fastrtps/fibonacci__type_support.cpp"
@@ -19,9 +20,11 @@ file(REMOVE_RECURSE
   "rosidl_typesupport_fastrtps_cpp/action_interfaces/msg/detail/dds_fastrtps/hook__type_support.cpp"
   "rosidl_typesupport_fastrtps_cpp/action_interfaces/msg/detail/dds_fastrtps/hook_data__type_support.cpp"
   "rosidl_typesupport_fastrtps_cpp/action_interfaces/msg/detail/dds_fastrtps/uv__type_support.cpp"
+  "rosidl_typesupport_fastrtps_cpp/action_interfaces/msg/detail/dds_fastrtps/xyz__type_support.cpp"
   "rosidl_typesupport_fastrtps_cpp/action_interfaces/msg/detail/hook__rosidl_typesupport_fastrtps_cpp.hpp"
   "rosidl_typesupport_fastrtps_cpp/action_interfaces/msg/detail/hook_data__rosidl_typesupport_fastrtps_cpp.hpp"
   "rosidl_typesupport_fastrtps_cpp/action_interfaces/msg/detail/uv__rosidl_typesupport_fastrtps_cpp.hpp"
+  "rosidl_typesupport_fastrtps_cpp/action_interfaces/msg/detail/xyz__rosidl_typesupport_fastrtps_cpp.hpp"
 )
 
 # Per-language clean rules from dependency scanning.

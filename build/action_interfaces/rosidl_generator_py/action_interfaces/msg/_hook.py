@@ -48,6 +48,10 @@ class Metaclass_Hook(type):
             if UV.__class__._TYPE_SUPPORT is None:
                 UV.__class__.__import_type_support__()
 
+            from action_interfaces.msg import XYZ
+            if XYZ.__class__._TYPE_SUPPORT is None:
+                XYZ.__class__.__import_type_support__()
+
             from sensor_msgs.msg import Image
             if Image.__class__._TYPE_SUPPORT is None:
                 Image.__class__.__import_type_support__()
@@ -84,6 +88,9 @@ class Hook(metaclass=Metaclass_Hook):
         '_uv_lowpoint_img2',
         '_shortest_path',
         '_path_points',
+        '_xyz_hook_in_camframe',
+        '_xyz_tip_in_camframe',
+        '_xyz_lowpoint_in_camframe',
     ]
 
     _fields_and_field_types = {
@@ -106,6 +113,9 @@ class Hook(metaclass=Metaclass_Hook):
         'uv_lowpoint_img2': 'action_interfaces/UV',
         'shortest_path': 'sequence<action_interfaces/UV>',
         'path_points': 'sequence<action_interfaces/UV>',
+        'xyz_hook_in_camframe': 'sequence<action_interfaces/XYZ>',
+        'xyz_tip_in_camframe': 'sequence<action_interfaces/XYZ>',
+        'xyz_lowpoint_in_camframe': 'sequence<action_interfaces/XYZ>',
     }
 
     SLOT_TYPES = (
@@ -128,6 +138,9 @@ class Hook(metaclass=Metaclass_Hook):
         rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'UV'),  # noqa: E501
         rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'UV')),  # noqa: E501
         rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'UV')),  # noqa: E501
+        rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'XYZ')),  # noqa: E501
+        rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'XYZ')),  # noqa: E501
+        rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'XYZ')),  # noqa: E501
     )
 
     def __init__(self, **kwargs):
@@ -166,6 +179,9 @@ class Hook(metaclass=Metaclass_Hook):
         self.uv_lowpoint_img2 = kwargs.get('uv_lowpoint_img2', UV())
         self.shortest_path = kwargs.get('shortest_path', [])
         self.path_points = kwargs.get('path_points', [])
+        self.xyz_hook_in_camframe = kwargs.get('xyz_hook_in_camframe', [])
+        self.xyz_tip_in_camframe = kwargs.get('xyz_tip_in_camframe', [])
+        self.xyz_lowpoint_in_camframe = kwargs.get('xyz_lowpoint_in_camframe', [])
 
     def __repr__(self):
         typename = self.__class__.__module__.split('.')
@@ -233,6 +249,12 @@ class Hook(metaclass=Metaclass_Hook):
         if self.shortest_path != other.shortest_path:
             return False
         if self.path_points != other.path_points:
+            return False
+        if self.xyz_hook_in_camframe != other.xyz_hook_in_camframe:
+            return False
+        if self.xyz_tip_in_camframe != other.xyz_tip_in_camframe:
+            return False
+        if self.xyz_lowpoint_in_camframe != other.xyz_lowpoint_in_camframe:
             return False
         return True
 
@@ -522,3 +544,75 @@ class Hook(metaclass=Metaclass_Hook):
                  True), \
                 "The 'path_points' field must be a set or sequence and each value of type 'UV'"
         self._path_points = value
+
+    @property
+    def xyz_hook_in_camframe(self):
+        """Message field 'xyz_hook_in_camframe'."""
+        return self._xyz_hook_in_camframe
+
+    @xyz_hook_in_camframe.setter
+    def xyz_hook_in_camframe(self, value):
+        if __debug__:
+            from action_interfaces.msg import XYZ
+            from collections.abc import Sequence
+            from collections.abc import Set
+            from collections import UserList
+            from collections import UserString
+            assert \
+                ((isinstance(value, Sequence) or
+                  isinstance(value, Set) or
+                  isinstance(value, UserList)) and
+                 not isinstance(value, str) and
+                 not isinstance(value, UserString) and
+                 all(isinstance(v, XYZ) for v in value) and
+                 True), \
+                "The 'xyz_hook_in_camframe' field must be a set or sequence and each value of type 'XYZ'"
+        self._xyz_hook_in_camframe = value
+
+    @property
+    def xyz_tip_in_camframe(self):
+        """Message field 'xyz_tip_in_camframe'."""
+        return self._xyz_tip_in_camframe
+
+    @xyz_tip_in_camframe.setter
+    def xyz_tip_in_camframe(self, value):
+        if __debug__:
+            from action_interfaces.msg import XYZ
+            from collections.abc import Sequence
+            from collections.abc import Set
+            from collections import UserList
+            from collections import UserString
+            assert \
+                ((isinstance(value, Sequence) or
+                  isinstance(value, Set) or
+                  isinstance(value, UserList)) and
+                 not isinstance(value, str) and
+                 not isinstance(value, UserString) and
+                 all(isinstance(v, XYZ) for v in value) and
+                 True), \
+                "The 'xyz_tip_in_camframe' field must be a set or sequence and each value of type 'XYZ'"
+        self._xyz_tip_in_camframe = value
+
+    @property
+    def xyz_lowpoint_in_camframe(self):
+        """Message field 'xyz_lowpoint_in_camframe'."""
+        return self._xyz_lowpoint_in_camframe
+
+    @xyz_lowpoint_in_camframe.setter
+    def xyz_lowpoint_in_camframe(self, value):
+        if __debug__:
+            from action_interfaces.msg import XYZ
+            from collections.abc import Sequence
+            from collections.abc import Set
+            from collections import UserList
+            from collections import UserString
+            assert \
+                ((isinstance(value, Sequence) or
+                  isinstance(value, Set) or
+                  isinstance(value, UserList)) and
+                 not isinstance(value, str) and
+                 not isinstance(value, UserString) and
+                 all(isinstance(v, XYZ) for v in value) and
+                 True), \
+                "The 'xyz_lowpoint_in_camframe' field must be a set or sequence and each value of type 'XYZ'"
+        self._xyz_lowpoint_in_camframe = value

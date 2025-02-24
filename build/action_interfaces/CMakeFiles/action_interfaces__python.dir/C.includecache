@@ -117,6 +117,8 @@ rosidl_runtime_c/primitives_sequence_functions.h
 /home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/msg/rosidl_runtime_c/primitives_sequence_functions.h
 action_interfaces/msg/detail/uv__functions.h
 /home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/msg/action_interfaces/msg/detail/uv__functions.h
+action_interfaces/msg/detail/xyz__functions.h
+/home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/msg/action_interfaces/msg/detail/xyz__functions.h
 
 /home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/msg/_uv_s.c
 Python.h
@@ -131,6 +133,20 @@ action_interfaces/msg/detail/uv__struct.h
 /home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/msg/action_interfaces/msg/detail/uv__struct.h
 action_interfaces/msg/detail/uv__functions.h
 /home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/msg/action_interfaces/msg/detail/uv__functions.h
+
+/home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/msg/_xyz_s.c
+Python.h
+-
+stdbool.h
+-
+numpy/ndarrayobject.h
+/home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/msg/numpy/ndarrayobject.h
+rosidl_runtime_c/visibility_control.h
+/home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/msg/rosidl_runtime_c/visibility_control.h
+action_interfaces/msg/detail/xyz__struct.h
+/home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/msg/action_interfaces/msg/detail/xyz__struct.h
+action_interfaces/msg/detail/xyz__functions.h
+/home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/msg/action_interfaces/msg/detail/xyz__functions.h
 
 /opt/ros/foxy/include/builtin_interfaces/msg/detail/time__struct.h
 stdbool.h
@@ -955,6 +971,8 @@ sensor_msgs/msg/detail/image__struct.h
 rosidl_generator_c/action_interfaces/msg/detail/sensor_msgs/msg/detail/image__struct.h
 action_interfaces/msg/detail/uv__struct.h
 rosidl_generator_c/action_interfaces/msg/detail/action_interfaces/msg/detail/uv__struct.h
+action_interfaces/msg/detail/xyz__struct.h
+rosidl_generator_c/action_interfaces/msg/detail/action_interfaces/msg/detail/xyz__struct.h
 
 rosidl_generator_c/action_interfaces/msg/detail/hook_data__functions.h
 stdbool.h
@@ -991,6 +1009,26 @@ action_interfaces/msg/detail/uv__struct.h
 rosidl_generator_c/action_interfaces/msg/detail/action_interfaces/msg/detail/uv__struct.h
 
 rosidl_generator_c/action_interfaces/msg/detail/uv__struct.h
+stdbool.h
+-
+stddef.h
+-
+stdint.h
+-
+
+rosidl_generator_c/action_interfaces/msg/detail/xyz__functions.h
+stdbool.h
+-
+stdlib.h
+-
+rosidl_runtime_c/visibility_control.h
+rosidl_generator_c/action_interfaces/msg/detail/rosidl_runtime_c/visibility_control.h
+action_interfaces/msg/rosidl_generator_c__visibility_control.h
+rosidl_generator_c/action_interfaces/msg/detail/action_interfaces/msg/rosidl_generator_c__visibility_control.h
+action_interfaces/msg/detail/xyz__struct.h
+rosidl_generator_c/action_interfaces/msg/detail/action_interfaces/msg/detail/xyz__struct.h
+
+rosidl_generator_c/action_interfaces/msg/detail/xyz__struct.h
 stdbool.h
 -
 stddef.h

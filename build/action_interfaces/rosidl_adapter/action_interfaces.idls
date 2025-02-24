@@ -5,3 +5,4 @@
 /home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces:msg/Hook.idl
 /home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces:msg/HookData.idl
 /home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces:msg/UV.idl
+/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces:msg/XYZ.idl

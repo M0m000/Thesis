@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/action_interfaces__rosidl_generator_c.dir/rosidl_generator_c/action_interfaces/msg/detail/hook__functions.c.o"
   "CMakeFiles/action_interfaces__rosidl_generator_c.dir/rosidl_generator_c/action_interfaces/msg/detail/hook_data__functions.c.o"
   "CMakeFiles/action_interfaces__rosidl_generator_c.dir/rosidl_generator_c/action_interfaces/msg/detail/uv__functions.c.o"
+  "CMakeFiles/action_interfaces__rosidl_generator_c.dir/rosidl_generator_c/action_interfaces/msg/detail/xyz__functions.c.o"
   "libaction_interfaces__rosidl_generator_c.pdb"
   "libaction_interfaces__rosidl_generator_c.so"
   "rosidl_generator_c/action_interfaces/action/detail/fibonacci__functions.c"
@@ -40,9 +41,14 @@ file(REMOVE_RECURSE
   "rosidl_generator_c/action_interfaces/msg/detail/uv__functions.h"
   "rosidl_generator_c/action_interfaces/msg/detail/uv__struct.h"
   "rosidl_generator_c/action_interfaces/msg/detail/uv__type_support.h"
+  "rosidl_generator_c/action_interfaces/msg/detail/xyz__functions.c"
+  "rosidl_generator_c/action_interfaces/msg/detail/xyz__functions.h"
+  "rosidl_generator_c/action_interfaces/msg/detail/xyz__struct.h"
+  "rosidl_generator_c/action_interfaces/msg/detail/xyz__type_support.h"
   "rosidl_generator_c/action_interfaces/msg/hook.h"
   "rosidl_generator_c/action_interfaces/msg/hook_data.h"
   "rosidl_generator_c/action_interfaces/msg/uv.h"
+  "rosidl_generator_c/action_interfaces/msg/xyz.h"
 )
 
 # Per-language clean rules from dependency scanning.

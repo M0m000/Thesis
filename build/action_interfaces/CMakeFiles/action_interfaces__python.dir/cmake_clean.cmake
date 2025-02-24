@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_hook_data_s.c.o"
   "CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_hook_s.c.o"
   "CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_uv_s.c.o"
+  "CMakeFiles/action_interfaces__python.dir/rosidl_generator_py/action_interfaces/msg/_xyz_s.c.o"
   "rosidl_generator_py/action_interfaces/libaction_interfaces__python.pdb"
   "rosidl_generator_py/action_interfaces/libaction_interfaces__python.so"
 )

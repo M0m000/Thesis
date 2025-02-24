@@ -126,4 +126,7 @@ CMakeFiles/action_interfaces__rosidl_typesupport_introspection_c__pyext.dir/rosi
  rosidl_generator_c/action_interfaces/msg/detail/uv__functions.h
  rosidl_generator_c/action_interfaces/msg/detail/uv__struct.h
  rosidl_generator_c/action_interfaces/msg/detail/uv__type_support.h
+ rosidl_generator_c/action_interfaces/msg/detail/xyz__functions.h
+ rosidl_generator_c/action_interfaces/msg/detail/xyz__struct.h
+ rosidl_generator_c/action_interfaces/msg/detail/xyz__type_support.h
  rosidl_generator_c/action_interfaces/msg/rosidl_generator_c__visibility_control.h

@@ -88,6 +88,11 @@ CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/de
 CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/detail/uv__struct.hpp
 CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/detail/uv__traits.hpp
 CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/detail/uv__type_support.hpp
+CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/xyz.hpp
+CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/detail/xyz__builder.hpp
+CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/detail/xyz__struct.hpp
+CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/detail/xyz__traits.hpp
+CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/detail/xyz__type_support.hpp
 CMakeFiles/action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp
 
 
@@ -117,6 +122,7 @@ rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: rosidl_adapter/acti
 rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: rosidl_adapter/action_interfaces/msg/Hook.idl
 rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: rosidl_adapter/action_interfaces/msg/HookData.idl
 rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: rosidl_adapter/action_interfaces/msg/UV.idl
+rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: rosidl_adapter/action_interfaces/msg/XYZ.idl
 rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: /opt/ros/foxy/share/builtin_interfaces/msg/Duration.idl
 rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: /opt/ros/foxy/share/builtin_interfaces/msg/Time.idl
 rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp: /opt/ros/foxy/share/std_msgs/msg/Bool.idl
@@ -316,6 +322,21 @@ rosidl_generator_cpp/action_interfaces/msg/detail/uv__traits.hpp: rosidl_generat
 rosidl_generator_cpp/action_interfaces/msg/detail/uv__type_support.hpp: rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/action_interfaces/msg/detail/uv__type_support.hpp
 
+rosidl_generator_cpp/action_interfaces/msg/xyz.hpp: rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/action_interfaces/msg/xyz.hpp
+
+rosidl_generator_cpp/action_interfaces/msg/detail/xyz__builder.hpp: rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/action_interfaces/msg/detail/xyz__builder.hpp
+
+rosidl_generator_cpp/action_interfaces/msg/detail/xyz__struct.hpp: rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/action_interfaces/msg/detail/xyz__struct.hpp
+
+rosidl_generator_cpp/action_interfaces/msg/detail/xyz__traits.hpp: rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/action_interfaces/msg/detail/xyz__traits.hpp
+
+rosidl_generator_cpp/action_interfaces/msg/detail/xyz__type_support.hpp: rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/action_interfaces/msg/detail/xyz__type_support.hpp
+
 action_interfaces__cpp: CMakeFiles/action_interfaces__cpp
 action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/fibonacci.hpp
 action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/action/detail/fibonacci__builder.hpp
@@ -352,6 +373,11 @@ action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/detail/uv__bu
 action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/detail/uv__struct.hpp
 action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/detail/uv__traits.hpp
 action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/detail/uv__type_support.hpp
+action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/xyz.hpp
+action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/detail/xyz__builder.hpp
+action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/detail/xyz__struct.hpp
+action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/detail/xyz__traits.hpp
+action_interfaces__cpp: rosidl_generator_cpp/action_interfaces/msg/detail/xyz__type_support.hpp
 action_interfaces__cpp: CMakeFiles/action_interfaces__cpp.dir/build.make
 
 .PHONY : action_interfaces__cpp

@@ -391,6 +391,9 @@ ament_cmake_symlink_install_files("/home/mo/Thesis/src/action_interfaces" FILES 
 # install(FILES "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/msg/UV.idl" "DESTINATION" "share/action_interfaces/msg")
 ament_cmake_symlink_install_files("/home/mo/Thesis/src/action_interfaces" FILES "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/msg/UV.idl" "DESTINATION" "share/action_interfaces/msg")
 
+# install(FILES "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/msg/XYZ.idl" "DESTINATION" "share/action_interfaces/msg")
+ament_cmake_symlink_install_files("/home/mo/Thesis/src/action_interfaces" FILES "/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/msg/XYZ.idl" "DESTINATION" "share/action_interfaces/msg")
+
 # install(FILES "/home/mo/Thesis/src/action_interfaces/action/Fibonacci.action" "DESTINATION" "share/action_interfaces/action")
 ament_cmake_symlink_install_files("/home/mo/Thesis/src/action_interfaces" FILES "/home/mo/Thesis/src/action_interfaces/action/Fibonacci.action" "DESTINATION" "share/action_interfaces/action")
 
@@ -411,6 +414,9 @@ ament_cmake_symlink_install_files("/home/mo/Thesis/src/action_interfaces" FILES 
 
 # install(FILES "/home/mo/Thesis/src/action_interfaces/msg/UV.msg" "DESTINATION" "share/action_interfaces/msg")
 ament_cmake_symlink_install_files("/home/mo/Thesis/src/action_interfaces" FILES "/home/mo/Thesis/src/action_interfaces/msg/UV.msg" "DESTINATION" "share/action_interfaces/msg")
+
+# install(FILES "/home/mo/Thesis/src/action_interfaces/msg/XYZ.msg" "DESTINATION" "share/action_interfaces/msg")
+ament_cmake_symlink_install_files("/home/mo/Thesis/src/action_interfaces" FILES "/home/mo/Thesis/src/action_interfaces/msg/XYZ.msg" "DESTINATION" "share/action_interfaces/msg")
 
 # install(FILES "/home/mo/Thesis/build/action_interfaces/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/action_interfaces" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
 ament_cmake_symlink_install_files("/home/mo/Thesis/src/action_interfaces" FILES "/home/mo/Thesis/build/action_interfaces/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/action_interfaces" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")

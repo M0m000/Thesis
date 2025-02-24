@@ -60,6 +60,7 @@ CMakeFiles/action_interfaces: /home/mo/Thesis/src/action_interfaces/msg/Bounding
 CMakeFiles/action_interfaces: /home/mo/Thesis/src/action_interfaces/msg/Hook.msg
 CMakeFiles/action_interfaces: /home/mo/Thesis/src/action_interfaces/msg/HookData.msg
 CMakeFiles/action_interfaces: /home/mo/Thesis/src/action_interfaces/msg/UV.msg
+CMakeFiles/action_interfaces: /home/mo/Thesis/src/action_interfaces/msg/XYZ.msg
 CMakeFiles/action_interfaces: /opt/ros/foxy/share/builtin_interfaces/msg/Duration.idl
 CMakeFiles/action_interfaces: /opt/ros/foxy/share/builtin_interfaces/msg/Time.idl
 CMakeFiles/action_interfaces: /opt/ros/foxy/share/std_msgs/msg/Bool.idl

@@ -275,13 +275,11 @@ class YOLOv8TwoImgInferenceNode(Node):
         Funktion für Preprocessing des Img zur Inferenz
         --- sorgt für eine Bildauflösung die durch 32 ohne Rest teilbar ist -> funktioniert stabiler mit Yolo
         """
-        # cv_image[0:20, 0:300, :] = 255
-        self.received_img = cv_image
+        # cv_image[0:20, 0:300, :] = 255        # Ausblenden der VC-Cam-Schrift links oben im Eck -> nur bei Nutzung der vollen Kamerauflösung notwendig
         if self.do_preprocessing:
-            w_units = self.received_img.shape[1] // 32
-            h_units = self.received_img.shape[0] // 32
-            input_img = self.received_img[0:(h_units * 32), 0:(w_units * 32), :]
-            # self.received_img = input_img
+            w_units = cv_image.shape[1] // 32
+            h_units = cv_image.shape[0] // 32
+            input_img = cv_image[0:(h_units * 32), 0:(w_units * 32), :]
             return input_img
 
 
@@ -323,6 +321,9 @@ class YOLOv8TwoImgInferenceNode(Node):
     
 
     def merge_output_hook_dicts(self, hooks_dict_1, hooks_dict_2):
+        """
+        Überträgt die Koordinaten für Hook, Tip und Lowpoint aus Bild 2 in das Dict von Bild 1
+        """
         for idx, key in enumerate(hooks_dict_1):
             hooks_dict_1[key]['uv_hook_img2'] = {}
             hooks_dict_1[key]['uv_hook_img2'] = hooks_dict_2[key]['uv_hook']
@@ -342,12 +343,12 @@ class YOLOv8TwoImgInferenceNode(Node):
             [hook_xyz, tip_xyz, lowpoint_xyz], time_token = self.triangulation_processor.triangulate_3_points(point_1_1_uv = hook['uv_hook'], point_2_1_uv = hook['uv_hook_img2'],
                                                                                                               point_1_2_uv = hook['uv_tip'], point_2_2_uv = hook['uv_tip_img2'],
                                                                                                               point_1_3_uv = hook['uv_lowpoint'], point_2_3_uv = hook['uv_lowpoint_img2'])
-            hooks_dict[key]['xyz_hook'] = {}
-            hooks_dict[key]['xyz_hook'] = hook_xyz
-            hooks_dict[key]['xyz_tip'] = {}
-            hooks_dict[key]['xyz_tip'] = tip_xyz
-            hooks_dict[key]['xyz_lowpoint'] = {}
-            hooks_dict[key]['xyz_lowpoint'] = lowpoint_xyz
+            hooks_dict[key]['xyz_hook_in_camframe'] = {}
+            hooks_dict[key]['xyz_hook_in_camframe'] = hook_xyz
+            hooks_dict[key]['xyz_tip_in_camframe'] = {}
+            hooks_dict[key]['xyz_tip_in_camframe'] = tip_xyz
+            hooks_dict[key]['xyz_lowpoint_in_camframe'] = {}
+            hooks_dict[key]['xyz_lowpoint_in_camframe'] = lowpoint_xyz
         return hooks_dict
 
 
@@ -357,6 +358,7 @@ class YOLOv8TwoImgInferenceNode(Node):
         Publisher des gefilterten Output Dicts mit Masken, BBoxes und uv-Punkten für Spitze, Senke und Haken
         """
         # starttime = time.perf_counter()
+
         msg = HookData()
         with ThreadPoolExecutor() as executor:
             results = executor.map(
@@ -385,3 +387,4 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+

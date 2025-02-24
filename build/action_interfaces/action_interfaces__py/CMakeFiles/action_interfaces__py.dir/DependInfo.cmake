@@ -23,6 +23,8 @@ set(CMAKE_MULTIPLE_OUTPUT_PAIRS
   "/home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/msg/_hook_s.c" "/home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c"
   "/home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/msg/_uv.py" "/home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c"
   "/home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/msg/_uv_s.c" "/home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c"
+  "/home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/msg/_xyz.py" "/home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c"
+  "/home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/msg/_xyz_s.c" "/home/mo/Thesis/build/action_interfaces/rosidl_generator_py/action_interfaces/_action_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c"
   )
 
 

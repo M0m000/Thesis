@@ -12,3 +12,5 @@ msg/HookData.idl
 msg/HookData.msg
 msg/UV.idl
 msg/UV.msg
+msg/XYZ.idl
+msg/XYZ.msg

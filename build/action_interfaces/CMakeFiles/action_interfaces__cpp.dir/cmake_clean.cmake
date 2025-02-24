@@ -32,9 +32,14 @@ file(REMOVE_RECURSE
   "rosidl_generator_cpp/action_interfaces/msg/detail/uv__struct.hpp"
   "rosidl_generator_cpp/action_interfaces/msg/detail/uv__traits.hpp"
   "rosidl_generator_cpp/action_interfaces/msg/detail/uv__type_support.hpp"
+  "rosidl_generator_cpp/action_interfaces/msg/detail/xyz__builder.hpp"
+  "rosidl_generator_cpp/action_interfaces/msg/detail/xyz__struct.hpp"
+  "rosidl_generator_cpp/action_interfaces/msg/detail/xyz__traits.hpp"
+  "rosidl_generator_cpp/action_interfaces/msg/detail/xyz__type_support.hpp"
   "rosidl_generator_cpp/action_interfaces/msg/hook.hpp"
   "rosidl_generator_cpp/action_interfaces/msg/hook_data.hpp"
   "rosidl_generator_cpp/action_interfaces/msg/uv.hpp"
+  "rosidl_generator_cpp/action_interfaces/msg/xyz.hpp"
 )
 
 # Per-language clean rules from dependency scanning.

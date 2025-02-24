@@ -4,6 +4,7 @@
 
 #include "action_interfaces/msg/BoundingBox.idl"
 #include "action_interfaces/msg/UV.idl"
+#include "action_interfaces/msg/XYZ.idl"
 #include "sensor_msgs/msg/Image.idl"
 
 module action_interfaces {
@@ -66,6 +67,12 @@ module action_interfaces {
       sequence<action_interfaces::msg::UV> shortest_path;
 
       sequence<action_interfaces::msg::UV> path_points;
+
+      sequence<action_interfaces::msg::XYZ> xyz_hook_in_camframe;
+
+      sequence<action_interfaces::msg::XYZ> xyz_tip_in_camframe;
+
+      sequence<action_interfaces::msg::XYZ> xyz_lowpoint_in_camframe;
     };
   };
 };

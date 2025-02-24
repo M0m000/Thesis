@@ -24,6 +24,7 @@
 
 // Nested array functions includes
 #include "action_interfaces/msg/detail/uv__functions.h"
+#include "action_interfaces/msg/detail/xyz__functions.h"
 // end nested array functions include
 bool action_interfaces__msg__bounding_box__convert_from_py(PyObject * _pymsg, void * _ros_message);
 PyObject * action_interfaces__msg__bounding_box__convert_to_py(void * raw_ros_message);
@@ -63,6 +64,12 @@ bool action_interfaces__msg__uv__convert_from_py(PyObject * _pymsg, void * _ros_
 PyObject * action_interfaces__msg__uv__convert_to_py(void * raw_ros_message);
 bool action_interfaces__msg__uv__convert_from_py(PyObject * _pymsg, void * _ros_message);
 PyObject * action_interfaces__msg__uv__convert_to_py(void * raw_ros_message);
+bool action_interfaces__msg__xyz__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__xyz__convert_to_py(void * raw_ros_message);
+bool action_interfaces__msg__xyz__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__xyz__convert_to_py(void * raw_ros_message);
+bool action_interfaces__msg__xyz__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__xyz__convert_to_py(void * raw_ros_message);
 
 ROSIDL_GENERATOR_C_EXPORT
 bool action_interfaces__msg__hook__convert_from_py(PyObject * _pymsg, void * _ros_message)
@@ -340,6 +347,105 @@ bool action_interfaces__msg__hook__convert_from_py(PyObject * _pymsg, void * _ro
     action_interfaces__msg__UV * dest = ros_message->path_points.data;
     for (Py_ssize_t i = 0; i < size; ++i) {
       if (!action_interfaces__msg__uv__convert_from_py(PySequence_Fast_GET_ITEM(seq_field, i), &dest[i])) {
+        Py_DECREF(seq_field);
+        Py_DECREF(field);
+        return false;
+      }
+    }
+    Py_DECREF(seq_field);
+    Py_DECREF(field);
+  }
+  {  // xyz_hook_in_camframe
+    PyObject * field = PyObject_GetAttrString(_pymsg, "xyz_hook_in_camframe");
+    if (!field) {
+      return false;
+    }
+    PyObject * seq_field = PySequence_Fast(field, "expected a sequence in 'xyz_hook_in_camframe'");
+    if (!seq_field) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_ssize_t size = PySequence_Size(field);
+    if (-1 == size) {
+      Py_DECREF(seq_field);
+      Py_DECREF(field);
+      return false;
+    }
+    if (!action_interfaces__msg__XYZ__Sequence__init(&(ros_message->xyz_hook_in_camframe), size)) {
+      PyErr_SetString(PyExc_RuntimeError, "unable to create action_interfaces__msg__XYZ__Sequence ros_message");
+      Py_DECREF(seq_field);
+      Py_DECREF(field);
+      return false;
+    }
+    action_interfaces__msg__XYZ * dest = ros_message->xyz_hook_in_camframe.data;
+    for (Py_ssize_t i = 0; i < size; ++i) {
+      if (!action_interfaces__msg__xyz__convert_from_py(PySequence_Fast_GET_ITEM(seq_field, i), &dest[i])) {
+        Py_DECREF(seq_field);
+        Py_DECREF(field);
+        return false;
+      }
+    }
+    Py_DECREF(seq_field);
+    Py_DECREF(field);
+  }
+  {  // xyz_tip_in_camframe
+    PyObject * field = PyObject_GetAttrString(_pymsg, "xyz_tip_in_camframe");
+    if (!field) {
+      return false;
+    }
+    PyObject * seq_field = PySequence_Fast(field, "expected a sequence in 'xyz_tip_in_camframe'");
+    if (!seq_field) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_ssize_t size = PySequence_Size(field);
+    if (-1 == size) {
+      Py_DECREF(seq_field);
+      Py_DECREF(field);
+      return false;
+    }
+    if (!action_interfaces__msg__XYZ__Sequence__init(&(ros_message->xyz_tip_in_camframe), size)) {
+      PyErr_SetString(PyExc_RuntimeError, "unable to create action_interfaces__msg__XYZ__Sequence ros_message");
+      Py_DECREF(seq_field);
+      Py_DECREF(field);
+      return false;
+    }
+    action_interfaces__msg__XYZ * dest = ros_message->xyz_tip_in_camframe.data;
+    for (Py_ssize_t i = 0; i < size; ++i) {
+      if (!action_interfaces__msg__xyz__convert_from_py(PySequence_Fast_GET_ITEM(seq_field, i), &dest[i])) {
+        Py_DECREF(seq_field);
+        Py_DECREF(field);
+        return false;
+      }
+    }
+    Py_DECREF(seq_field);
+    Py_DECREF(field);
+  }
+  {  // xyz_lowpoint_in_camframe
+    PyObject * field = PyObject_GetAttrString(_pymsg, "xyz_lowpoint_in_camframe");
+    if (!field) {
+      return false;
+    }
+    PyObject * seq_field = PySequence_Fast(field, "expected a sequence in 'xyz_lowpoint_in_camframe'");
+    if (!seq_field) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_ssize_t size = PySequence_Size(field);
+    if (-1 == size) {
+      Py_DECREF(seq_field);
+      Py_DECREF(field);
+      return false;
+    }
+    if (!action_interfaces__msg__XYZ__Sequence__init(&(ros_message->xyz_lowpoint_in_camframe), size)) {
+      PyErr_SetString(PyExc_RuntimeError, "unable to create action_interfaces__msg__XYZ__Sequence ros_message");
+      Py_DECREF(seq_field);
+      Py_DECREF(field);
+      return false;
+    }
+    action_interfaces__msg__XYZ * dest = ros_message->xyz_lowpoint_in_camframe.data;
+    for (Py_ssize_t i = 0; i < size; ++i) {
+      if (!action_interfaces__msg__xyz__convert_from_py(PySequence_Fast_GET_ITEM(seq_field, i), &dest[i])) {
         Py_DECREF(seq_field);
         Py_DECREF(field);
         return false;
@@ -652,6 +758,90 @@ PyObject * action_interfaces__msg__hook__convert_to_py(void * raw_ros_message)
     assert(PySequence_Check(field));
     {
       int rc = PyObject_SetAttrString(_pymessage, "path_points", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // xyz_hook_in_camframe
+    PyObject * field = NULL;
+    size_t size = ros_message->xyz_hook_in_camframe.size;
+    field = PyList_New(size);
+    if (!field) {
+      return NULL;
+    }
+    action_interfaces__msg__XYZ * item;
+    for (size_t i = 0; i < size; ++i) {
+      item = &(ros_message->xyz_hook_in_camframe.data[i]);
+      PyObject * pyitem = action_interfaces__msg__xyz__convert_to_py(item);
+      if (!pyitem) {
+        Py_DECREF(field);
+        return NULL;
+      }
+      int rc = PyList_SetItem(field, i, pyitem);
+      (void)rc;
+      assert(rc == 0);
+    }
+    assert(PySequence_Check(field));
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "xyz_hook_in_camframe", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // xyz_tip_in_camframe
+    PyObject * field = NULL;
+    size_t size = ros_message->xyz_tip_in_camframe.size;
+    field = PyList_New(size);
+    if (!field) {
+      return NULL;
+    }
+    action_interfaces__msg__XYZ * item;
+    for (size_t i = 0; i < size; ++i) {
+      item = &(ros_message->xyz_tip_in_camframe.data[i]);
+      PyObject * pyitem = action_interfaces__msg__xyz__convert_to_py(item);
+      if (!pyitem) {
+        Py_DECREF(field);
+        return NULL;
+      }
+      int rc = PyList_SetItem(field, i, pyitem);
+      (void)rc;
+      assert(rc == 0);
+    }
+    assert(PySequence_Check(field));
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "xyz_tip_in_camframe", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // xyz_lowpoint_in_camframe
+    PyObject * field = NULL;
+    size_t size = ros_message->xyz_lowpoint_in_camframe.size;
+    field = PyList_New(size);
+    if (!field) {
+      return NULL;
+    }
+    action_interfaces__msg__XYZ * item;
+    for (size_t i = 0; i < size; ++i) {
+      item = &(ros_message->xyz_lowpoint_in_camframe.data[i]);
+      PyObject * pyitem = action_interfaces__msg__xyz__convert_to_py(item);
+      if (!pyitem) {
+        Py_DECREF(field);
+        return NULL;
+      }
+      int rc = PyList_SetItem(field, i, pyitem);
+      (void)rc;
+      assert(rc == 0);
+    }
+    assert(PySequence_Check(field));
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "xyz_lowpoint_in_camframe", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;

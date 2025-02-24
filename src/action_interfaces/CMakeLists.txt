@@ -32,6 +32,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Hook.msg"
   "msg/HookData.msg"
   "msg/UV.msg"
+  "msg/XYZ.msg"
   DEPENDENCIES builtin_interfaces std_msgs sensor_msgs geometry_msgs
 )
 

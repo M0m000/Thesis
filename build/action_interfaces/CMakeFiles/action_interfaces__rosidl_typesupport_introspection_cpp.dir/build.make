@@ -72,6 +72,7 @@ rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/fibonacci__
 rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_cpp.hpp: rosidl_adapter/action_interfaces/msg/Hook.idl
 rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_cpp.hpp: rosidl_adapter/action_interfaces/msg/HookData.idl
 rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_cpp.hpp: rosidl_adapter/action_interfaces/msg/UV.idl
+rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_cpp.hpp: rosidl_adapter/action_interfaces/msg/XYZ.idl
 rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_cpp.hpp: /opt/ros/foxy/share/builtin_interfaces/msg/Duration.idl
 rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_cpp.hpp: /opt/ros/foxy/share/builtin_interfaces/msg/Time.idl
 rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_cpp.hpp: /opt/ros/foxy/share/std_msgs/msg/Bool.idl
@@ -187,6 +188,9 @@ rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/hook_data__ros
 rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/uv__rosidl_typesupport_introspection_cpp.hpp: rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_cpp.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/uv__rosidl_typesupport_introspection_cpp.hpp
 
+rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/xyz__rosidl_typesupport_introspection_cpp.hpp: rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_cpp.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/xyz__rosidl_typesupport_introspection_cpp.hpp
+
 rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/fibonacci__type_support.cpp: rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_cpp.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/fibonacci__type_support.cpp
 
@@ -207,6 +211,9 @@ rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/hook_data__typ
 
 rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/uv__type_support.cpp: rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_cpp.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/uv__type_support.cpp
+
+rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/xyz__type_support.cpp: rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_cpp.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/xyz__type_support.cpp
 
 CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/fibonacci__type_support.cpp.o: CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/flags.make
 CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/fibonacci__type_support.cpp.o: rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/fibonacci__type_support.cpp
@@ -299,6 +306,19 @@ CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_ty
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/uv__type_support.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mo/Thesis/build/action_interfaces/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/uv__type_support.cpp -o CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/uv__type_support.cpp.s
 
+CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/xyz__type_support.cpp.o: CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/flags.make
+CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/xyz__type_support.cpp.o: rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/xyz__type_support.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mo/Thesis/build/action_interfaces/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/xyz__type_support.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/xyz__type_support.cpp.o -c /home/mo/Thesis/build/action_interfaces/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/xyz__type_support.cpp
+
+CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/xyz__type_support.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/xyz__type_support.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mo/Thesis/build/action_interfaces/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/xyz__type_support.cpp > CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/xyz__type_support.cpp.i
+
+CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/xyz__type_support.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/xyz__type_support.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mo/Thesis/build/action_interfaces/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/xyz__type_support.cpp -o CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/xyz__type_support.cpp.s
+
 # Object files for target action_interfaces__rosidl_typesupport_introspection_cpp
 action_interfaces__rosidl_typesupport_introspection_cpp_OBJECTS = \
 "CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/fibonacci__type_support.cpp.o" \
@@ -307,7 +327,8 @@ action_interfaces__rosidl_typesupport_introspection_cpp_OBJECTS = \
 "CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/bounding_box__type_support.cpp.o" \
 "CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/hook__type_support.cpp.o" \
 "CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/hook_data__type_support.cpp.o" \
-"CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/uv__type_support.cpp.o"
+"CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/uv__type_support.cpp.o" \
+"CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/xyz__type_support.cpp.o"
 
 # External object files for target action_interfaces__rosidl_typesupport_introspection_cpp
 action_interfaces__rosidl_typesupport_introspection_cpp_EXTERNAL_OBJECTS =
@@ -319,6 +340,7 @@ libaction_interfaces__rosidl_typesupport_introspection_cpp.so: CMakeFiles/action
 libaction_interfaces__rosidl_typesupport_introspection_cpp.so: CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/hook__type_support.cpp.o
 libaction_interfaces__rosidl_typesupport_introspection_cpp.so: CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/hook_data__type_support.cpp.o
 libaction_interfaces__rosidl_typesupport_introspection_cpp.so: CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/uv__type_support.cpp.o
+libaction_interfaces__rosidl_typesupport_introspection_cpp.so: CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/xyz__type_support.cpp.o
 libaction_interfaces__rosidl_typesupport_introspection_cpp.so: CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/build.make
 libaction_interfaces__rosidl_typesupport_introspection_cpp.so: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_introspection_c.so
 libaction_interfaces__rosidl_typesupport_introspection_cpp.so: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_c.so
@@ -358,7 +380,7 @@ libaction_interfaces__rosidl_typesupport_introspection_cpp.so: /opt/ros/foxy/lib
 libaction_interfaces__rosidl_typesupport_introspection_cpp.so: /opt/ros/foxy/lib/librcpputils.so
 libaction_interfaces__rosidl_typesupport_introspection_cpp.so: /opt/ros/foxy/lib/librcutils.so
 libaction_interfaces__rosidl_typesupport_introspection_cpp.so: CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mo/Thesis/build/action_interfaces/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX shared library libaction_interfaces__rosidl_typesupport_introspection_cpp.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mo/Thesis/build/action_interfaces/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX shared library libaction_interfaces__rosidl_typesupport_introspection_cpp.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -377,6 +399,7 @@ CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/depend: r
 CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/depend: rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/hook__rosidl_typesupport_introspection_cpp.hpp
 CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/depend: rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/hook_data__rosidl_typesupport_introspection_cpp.hpp
 CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/depend: rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/uv__rosidl_typesupport_introspection_cpp.hpp
+CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/depend: rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/xyz__rosidl_typesupport_introspection_cpp.hpp
 CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/depend: rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/fibonacci__type_support.cpp
 CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/depend: rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/move_tcp_along_axis__type_support.cpp
 CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/depend: rosidl_typesupport_introspection_cpp/action_interfaces/action/detail/transform_action__type_support.cpp
@@ -384,6 +407,7 @@ CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/depend: r
 CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/depend: rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/hook__type_support.cpp
 CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/depend: rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/hook_data__type_support.cpp
 CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/depend: rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/uv__type_support.cpp
+CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/depend: rosidl_typesupport_introspection_cpp/action_interfaces/msg/detail/xyz__type_support.cpp
 	cd /home/mo/Thesis/build/action_interfaces && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/mo/Thesis/src/action_interfaces /home/mo/Thesis/src/action_interfaces /home/mo/Thesis/build/action_interfaces /home/mo/Thesis/build/action_interfaces /home/mo/Thesis/build/action_interfaces/CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/action_interfaces__rosidl_typesupport_introspection_cpp.dir/depend
 

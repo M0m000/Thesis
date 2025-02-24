@@ -161,6 +161,10 @@ action_interfaces/msg/uv.h
 /home/mo/Thesis/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/action_interfaces/msg/uv.h
 action_interfaces/msg/detail/uv__rosidl_typesupport_introspection_c.h
 /home/mo/Thesis/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/action_interfaces/msg/detail/uv__rosidl_typesupport_introspection_c.h
+action_interfaces/msg/xyz.h
+/home/mo/Thesis/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/action_interfaces/msg/xyz.h
+action_interfaces/msg/detail/xyz__rosidl_typesupport_introspection_c.h
+/home/mo/Thesis/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/action_interfaces/msg/detail/xyz__rosidl_typesupport_introspection_c.h
 
 /home/mo/Thesis/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/hook_data__type_support.c
 stddef.h
@@ -201,6 +205,24 @@ action_interfaces/msg/detail/uv__functions.h
 /home/mo/Thesis/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/action_interfaces/msg/detail/uv__functions.h
 action_interfaces/msg/detail/uv__struct.h
 /home/mo/Thesis/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/action_interfaces/msg/detail/uv__struct.h
+
+/home/mo/Thesis/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/xyz__type_support.c
+stddef.h
+-
+action_interfaces/msg/detail/xyz__rosidl_typesupport_introspection_c.h
+/home/mo/Thesis/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/action_interfaces/msg/detail/xyz__rosidl_typesupport_introspection_c.h
+action_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h
+/home/mo/Thesis/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/action_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h
+rosidl_typesupport_introspection_c/field_types.h
+/home/mo/Thesis/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/rosidl_typesupport_introspection_c/field_types.h
+rosidl_typesupport_introspection_c/identifier.h
+/home/mo/Thesis/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/rosidl_typesupport_introspection_c/identifier.h
+rosidl_typesupport_introspection_c/message_introspection.h
+/home/mo/Thesis/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/rosidl_typesupport_introspection_c/message_introspection.h
+action_interfaces/msg/detail/xyz__functions.h
+/home/mo/Thesis/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/action_interfaces/msg/detail/xyz__functions.h
+action_interfaces/msg/detail/xyz__struct.h
+/home/mo/Thesis/build/action_interfaces/rosidl_typesupport_introspection_c/action_interfaces/msg/detail/action_interfaces/msg/detail/xyz__struct.h
 
 /opt/ros/foxy/include/builtin_interfaces/msg/detail/time__functions.h
 stdbool.h
@@ -751,6 +773,8 @@ sensor_msgs/msg/detail/image__struct.h
 rosidl_generator_c/action_interfaces/msg/detail/sensor_msgs/msg/detail/image__struct.h
 action_interfaces/msg/detail/uv__struct.h
 rosidl_generator_c/action_interfaces/msg/detail/action_interfaces/msg/detail/uv__struct.h
+action_interfaces/msg/detail/xyz__struct.h
+rosidl_generator_c/action_interfaces/msg/detail/action_interfaces/msg/detail/xyz__struct.h
 
 rosidl_generator_c/action_interfaces/msg/detail/hook__type_support.h
 rosidl_typesupport_interface/macros.h
@@ -810,6 +834,34 @@ rosidl_generator_c/action_interfaces/msg/detail/action_interfaces/msg/rosidl_gen
 rosidl_runtime_c/message_type_support_struct.h
 rosidl_generator_c/action_interfaces/msg/detail/rosidl_runtime_c/message_type_support_struct.h
 
+rosidl_generator_c/action_interfaces/msg/detail/xyz__functions.h
+stdbool.h
+-
+stdlib.h
+-
+rosidl_runtime_c/visibility_control.h
+rosidl_generator_c/action_interfaces/msg/detail/rosidl_runtime_c/visibility_control.h
+action_interfaces/msg/rosidl_generator_c__visibility_control.h
+rosidl_generator_c/action_interfaces/msg/detail/action_interfaces/msg/rosidl_generator_c__visibility_control.h
+action_interfaces/msg/detail/xyz__struct.h
+rosidl_generator_c/action_interfaces/msg/detail/action_interfaces/msg/detail/xyz__struct.h
+
+rosidl_generator_c/action_interfaces/msg/detail/xyz__struct.h
+stdbool.h
+-
+stddef.h
+-
+stdint.h
+-
+
+rosidl_generator_c/action_interfaces/msg/detail/xyz__type_support.h
+rosidl_typesupport_interface/macros.h
+rosidl_generator_c/action_interfaces/msg/detail/rosidl_typesupport_interface/macros.h
+action_interfaces/msg/rosidl_generator_c__visibility_control.h
+rosidl_generator_c/action_interfaces/msg/detail/action_interfaces/msg/rosidl_generator_c__visibility_control.h
+rosidl_runtime_c/message_type_support_struct.h
+rosidl_generator_c/action_interfaces/msg/detail/rosidl_runtime_c/message_type_support_struct.h
+
 rosidl_generator_c/action_interfaces/msg/hook.h
 action_interfaces/msg/detail/hook__struct.h
 rosidl_generator_c/action_interfaces/msg/action_interfaces/msg/detail/hook__struct.h
@@ -827,6 +879,14 @@ action_interfaces/msg/detail/uv__functions.h
 rosidl_generator_c/action_interfaces/msg/action_interfaces/msg/detail/uv__functions.h
 action_interfaces/msg/detail/uv__type_support.h
 rosidl_generator_c/action_interfaces/msg/action_interfaces/msg/detail/uv__type_support.h
+
+rosidl_generator_c/action_interfaces/msg/xyz.h
+action_interfaces/msg/detail/xyz__struct.h
+rosidl_generator_c/action_interfaces/msg/action_interfaces/msg/detail/xyz__struct.h
+action_interfaces/msg/detail/xyz__functions.h
+rosidl_generator_c/action_interfaces/msg/action_interfaces/msg/detail/xyz__functions.h
+action_interfaces/msg/detail/xyz__type_support.h
+rosidl_generator_c/action_interfaces/msg/action_interfaces/msg/detail/xyz__type_support.h
 
 rosidl_typesupport_introspection_c/action_interfaces/action/detail/fibonacci__rosidl_typesupport_introspection_c.h
 rosidl_runtime_c/message_type_support_struct.h
@@ -883,6 +943,14 @@ action_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h
 rosidl_typesupport_introspection_c/action_interfaces/msg/detail/action_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h
 
 rosidl_typesupport_introspection_c/action_interfaces/msg/detail/uv__rosidl_typesupport_introspection_c.h
+rosidl_runtime_c/message_type_support_struct.h
+rosidl_typesupport_introspection_c/action_interfaces/msg/detail/rosidl_runtime_c/message_type_support_struct.h
+rosidl_typesupport_interface/macros.h
+rosidl_typesupport_introspection_c/action_interfaces/msg/detail/rosidl_typesupport_interface/macros.h
+action_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h
+rosidl_typesupport_introspection_c/action_interfaces/msg/detail/action_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h
+
+rosidl_typesupport_introspection_c/action_interfaces/msg/detail/xyz__rosidl_typesupport_introspection_c.h
 rosidl_runtime_c/message_type_support_struct.h
 rosidl_typesupport_introspection_c/action_interfaces/msg/detail/rosidl_runtime_c/message_type_support_struct.h
 rosidl_typesupport_interface/macros.h

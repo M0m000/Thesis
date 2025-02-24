@@ -7,6 +7,7 @@
     "/home/mo/Thesis/src/action_interfaces:msg/BoundingBox.msg",
     "/home/mo/Thesis/src/action_interfaces:msg/Hook.msg",
     "/home/mo/Thesis/src/action_interfaces:msg/HookData.msg",
-    "/home/mo/Thesis/src/action_interfaces:msg/UV.msg"
+    "/home/mo/Thesis/src/action_interfaces:msg/UV.msg",
+    "/home/mo/Thesis/src/action_interfaces:msg/XYZ.msg"
   ]
 }
