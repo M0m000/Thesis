@@ -35,6 +35,7 @@ robot_control/ibvs_2d.py
 robot_control/move_lin_by_key.py
 robot_control/scan_bar_combined_triangulation.py
 robot_control/scan_bar_horizontal_triangulation.py
+robot_control/scan_bar_vertical_triangulation.py
 robot_control/set_working_frame_qr.py
 robot_control/tcp_frame_listener.py
 robot_control/tf_frames_publisher.py
