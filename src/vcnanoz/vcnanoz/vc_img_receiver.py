@@ -27,6 +27,7 @@ class VCImageReceiver(Node):
         # FPS
         self.last_frame_time = None
         self.fps = 0.0
+        self.node_is_running = True
 
         # Timer für Einlesen der Bilder
         self.timer_period = 0.0001
@@ -215,12 +216,26 @@ class VCImageReceiver(Node):
         self.sock_to = None
 
 
+    def shutdown(self):
+        self.get_logger().info("shutting down image receiver node...")
+        self.node_is_running = False
+        self.disconnect()
+        self.get_logger().info("Disconnected.")
+        self.destroy_node()
+
+
 def main(args=None):
     rclpy.init(args=args)
     node = VCImageReceiver()
-    rclpy.spin(node)
-    node.destroy_node()
-    rclpy.shutdown()
+
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        node.get_logger().info("Keyboard interrupt detected...")
+    finally:
+        node.shutdown()
+        rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
+
