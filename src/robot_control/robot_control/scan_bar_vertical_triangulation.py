@@ -32,7 +32,7 @@ class ScanBarVerticalTriangulation(Node):
         # Timer für das Prüfen neuer Hakeninstanzen im Bild
         self.edge_detector = EdgeDetector()
         self.new_hook_in_picture = False
-        self.timer_check_new_instances = self.create_timer(0.001, self.check_for_new_hook_instance)     # starte Timer für Abfrage, ob am Bildrand ein neuer Haken erscheint
+        self.timer_check_new_instances = self.create_timer(0.0001, self.check_for_new_hook_instance)     # starte Timer für Abfrage, ob am Bildrand ein neuer Haken erscheint
         self.previous_edge = None
         self.img_width = 1280
         self.img_height = 720

@@ -101,9 +101,6 @@ class ScanBarCombinedTriangulation(Node):
         
 
 
-
-
-
     def process_main(self):
         '''
         Prozessablauf mit Schrittkette - wird zyklisch alle 1ms aufgerufen
@@ -295,8 +292,6 @@ class ScanBarCombinedTriangulation(Node):
                 self.new_hook_in_picture = True
             if self.yolo_hooks_dict['hook_1']['uv_hook'][0] < (self.img_width * 0.9):
                 self.new_hook_in_picture = False
-
-
 
 
 

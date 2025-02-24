@@ -20,6 +20,7 @@ FC/FC_quaternion_to_euler.py
 FC/FC_save_load_global_hook_dict.py
 FC/FC_stereo_triangulation_processor.py
 FC/FC_tf_helper.py
+FC/FC_two_cam_stereo_triangulation_processor.py
 FC/__init__.py
 config/vc_params.yaml
 launch/scan_bar_launch.py
