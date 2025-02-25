@@ -52,12 +52,12 @@ class ScanBar(Node):
         self.handling_last_hook = False
 
         # Subscriber auf Bildgroesse
+        self.img_width = 896
+        self.img_height = 450
         self.img_width_sub = self.create_subscription(Int32, 'vcnanoz/image_raw/width', self.received_img_width, 10)
         self.img_width_sub
         self.img_height_sub = self.create_subscription(Int32, 'vcnanoz/image_raw/height', self.received_img_height, 10)
         self.img_height_sub
-        self.img_width = 896
-        self.img_height = 450
 
         # Variablen für Prozess
         self.act_hook_num = 0
@@ -204,6 +204,7 @@ class ScanBar(Node):
             """
             Extrahieren von Haken_2
             """
+            # Extrahieren der XYZ-Koordinaten im CAM-Frame
             xyz_hook_in_camframe = np.array(self.yolo_hooks_dict['hook_2']['xyz_hook_in_camframe'])
             xyz_tip_in_camframe = np.array(self.yolo_hooks_dict['hook_2']['xyz_tip_in_camframe'])
             xyz_lowpoint_in_camframe = np.array(self.yolo_hooks_dict['hook_2']['xyz_lowpoint_in_camframe'])
@@ -222,7 +223,72 @@ class ScanBar(Node):
             xyz_lowpoint_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = xyz_lowpoint_in_worldframe[:3])
 
             self.get_logger().info("Done! -> next process step <Move Until New Hook>")
+            self.process_step = "interpolate_depth_shape"
+
+
+
+        # Tiefeninterpolation für Spitze -> Senke
+        if self.process_step == "interpolate_depth_shape":
+            """
+            Interpolieren der Tiefe für alle Wegpunkte zwischen Spitze und Senke
+            """
+            # Hole uv_tip und uv_lowpoint aus Dict
+            uv_tip_ref = self.hook_ref['uv_tip']
+            uv_lowpoint_ref = self.hook_ref['uv_lowpoint']
+            uv_tip_horizontal = self.hook_horizontal['uv_tip']
+            uv_lowpoint_horizontal = self.hook_horizontal['uv_lowpoint']
+
+            # Berechnung der Pixelstrecke von Tip bis Lowpoint für u und v
+            u_diff_ref = abs(uv_tip_ref[0] - uv_lowpoint_ref[0])
+            v_diff_ref = abs(uv_tip_ref[1] - uv_lowpoint_ref[1])
+            u_diff_horizontal = abs(uv_tip_horizontal[0] - uv_lowpoint_horizontal[0])
+            v_diff_horizontal = abs(uv_tip_horizontal[1] - uv_lowpoint_horizontal[1])
+            u_diff = int((u_diff_ref + u_diff_horizontal) / 2)      # Differenz von u_tip bis u_lowpoint in px
+            v_diff = int((v_diff_ref + v_diff_horizontal) / 2)      # Differenz von v_tip bis v_lowpoint in px
+
+            # Berechnung von mm_per_px in x- und y-Richtung
+            x_tip, y_tip, z_tip = xyz_tip_in_camframe
+            x_lowpoint, y_lowpoint, z_lowpoint = xyz_lowpoint_in_camframe
+            x_diff = abs(x_tip - x_lowpoint)
+            y_diff = abs(y_tip - y_lowpoint)
+            mm_per_px_x = x_diff / v_diff           # Übersetzung mm pro Pixel in x-Richtung
+            mm_per_px_y = y_diff / u_diff           # Übersetzung mm pro Pixel in y-Richtung
+
+            # Berechnung von realen XY-Koordinaten der Path points
+            uv_path_points = self.hook_ref['path_points']
+            xy_path_points = []
+            u_center = self.img_height / 2
+            v_center = self.img_width / 2
+            for p in uv_path_points:
+                ppoint_u = p[0]
+                ppoint_v = p[1]
+                ppoint_x = (ppoint_v - v_center) * mm_per_px_x
+                ppoint_y = (ppoint_u - u_center) * mm_per_px_y
+                xy_path_points.append((ppoint_x, ppoint_y))
+
+            # Berechnung von interpolierten Tiefenwerten für path_points
+            path_points_xyz_in_camframe = self.spline_calculator.interpolate(xy_points = xy_path_points, 
+                                                                             start_point_with_depth = xyz_tip_in_workframe, 
+                                                                             end_point_with_depth = xyz_lowpoint_in_workframe)
+            
+            # Durchgehen aller interpolierten Werte und Transformation in WORK-Frame
+            path_points_xyz_in_workframe = []
+            for p in path_points_xyz_in_camframe:
+                ppoint_x = p[0]
+                ppoint_y = p[1]
+                ppoint_z = p[2]
+
+                # Transformation des Path Points aus CAM-Frame ins WORK-Frame
+                T_cam_in_worldframe = self.frame_handler.get_cam_transform_in_world()
+                ppoint_in_worldframe = T_cam_in_worldframe @ np.array([ppoint_x, ppoint_y, ppoint_z, 1.0])
+                ppoint_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = ppoint_in_worldframe[:3], frame_desired = 'work')
+
+                # Path Points im WORK-Frame
+                path_points_xyz_in_workframe.append(ppoint_in_workframe)
+            
+            self.get_logger().info("Done! -> next process step <Save Hook>")
             self.process_step = "save_hook"
+
 
 
         # Speicher die Daten des aktuellen Hakens
@@ -247,6 +313,8 @@ class ScanBar(Node):
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_workframe'] = xyz_hook_in_workframe
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_workframe'] = xyz_tip_in_workframe
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_workframe'] = xyz_lowpoint_in_workframe
+
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_path_points_in_workframe'] = path_points_xyz_in_workframe
             
             self.get_logger().warn(f"Hook XYZ [WORK]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_workframe']}")
             self.get_logger().warn(f"Tip XYZ [WORK]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_workframe']}")

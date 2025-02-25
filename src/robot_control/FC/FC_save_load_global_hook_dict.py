@@ -7,7 +7,7 @@ def save_dict_to_csv(node, data, filename="output.csv"):
     Speichert ein geschachteltes Dictionary mit NumPy-Arrays und Listen als CSV-Datei.
 
     Parameters:
-        data (dict): Dictionary mit Struktur {'index': {'xyz_hook': np.array, ..., 'tfc_workframe': list, 'tfc_worldframe': np.array, 'path_points_xyz': [(x, y, z), ...]}}
+        data (dict): Dictionary mit Struktur {'index': {'xyz_hook': np.array, ..., 'tfc_workframe': list, 'tfc_worldframe': np.array, 'xyz_path_points_in_workframe': [(x, y, z), ...]}}
         filename (str): Name der zu speichernden CSV-Datei (optional)
     """
     with open(filename, mode="w", newline="", encoding="utf-8") as file:
@@ -43,7 +43,7 @@ def save_dict_to_csv(node, data, filename="output.csv"):
             row.extend(values["tfc_worldframe"])  # NumPy-Array mit drei Werten
 
             # Anzahl der Path-Punkte
-            path_points = values.get("path_points_xyz", [])
+            path_points = values.get("xyz_path_points_in_workframe", [])
             row.append(len(path_points))  # Füge die Anzahl der Path-Punkte als Zahl hinzu
 
             # Schreibe die Path-Punkte (x, y, z) in eine Zeile
@@ -122,13 +122,13 @@ def load_csv_to_dict(node, filename="output.csv"):
 
             # Extrahiere die Path-Punkte-Daten
             path_points_count = int(row[26])  # Anzahl der Path-Punkte ist in der 27. Spalte
-            path_points_xyz = []
+            xyz_path_points_in_workframe = []
 
             # Die Path-Punkte beginnen nach den festen Spalten
             # Jede Path-Punkt besteht aus 3 Werten (x, y, z)
             for i in range(path_points_count):
                 offset = 27 + i * 3  # Start-Index für die Path-Punkte (nach den festen Spalten)
-                path_points_xyz.append((values[offset], values[offset + 1], values[offset + 2]))
+                xyz_path_points_in_workframe.append((values[offset], values[offset + 1], values[offset + 2]))
 
             # Dictionary mit NumPy-Arrays und Listen erstellen
             data[key] = {
@@ -140,7 +140,7 @@ def load_csv_to_dict(node, filename="output.csv"):
                 "xyz_lowpoint_workframe": values[15:18],
                 "tfc_workframe": values[18:21],
                 "tfc_worldframe": np.array(values[21:24]),
-                "path_points_xyz": path_points_xyz  # Path-Punkte als Liste von Tupeln (x, y, z)
+                "xyz_path_points_in_workframe": xyz_path_points_in_workframe  # Path-Punkte als Liste von Tupeln (x, y, z)
             }
 
     node.get_logger().info(f"CSV loaded successfully from {filename}!")

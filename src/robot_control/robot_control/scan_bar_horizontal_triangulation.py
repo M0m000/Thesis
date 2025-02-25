@@ -472,7 +472,7 @@ class ScanBarHorizontalTriangulation(Node):
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook'] = hook_xyz
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip'] = tip_xyz
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint'] = lowpoint_xyz
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_path_points'] = path_points_xyz_in_workframe
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_path_points_in_workframe'] = path_points_xyz_in_workframe
             
             self.global_hooks_dict[str(self.act_hook_num)]['tfc_workframe'] = self.robot_position_horizontal
             self.global_hooks_dict[str(self.act_hook_num)]['tfc_worldframe'], _, _ = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
