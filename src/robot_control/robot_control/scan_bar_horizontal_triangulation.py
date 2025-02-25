@@ -65,6 +65,9 @@ class ScanBarHorizontalTriangulation(Node):
         self.hook_ref = {}
         self.hook_horizontal = {}
         self.act_hook_num = 0
+        self.xyz_hook_in_workframe = None
+        self.xyz_tip_in_workframe = None
+        self.xyz_lowpoint_in_workframe = None
         
         # Instanz des Spline-Calculator
         self.spline_calculator = ParameterizedCubicSplineCalculator()
@@ -376,6 +379,26 @@ class ScanBarHorizontalTriangulation(Node):
             """
             Interpolieren der Tiefe für alle Wegpunkte zwischen Spitze und Senke
             """
+            # Umrechnung der Punkte XYZ von Hook, Tip und Lowpoint in das aktuelle WORK-Frame
+            transform_cam_in_tfcframe = self.frame_handler.load_transformation_matrix_from_csv(frame_name = 'CAM_frame_in_tfc.csv')
+            # self.cam_to_world_transform = self.frame_handler.get_cam_transform_in_world()
+            self.cam_to_world_transform = robot_position_in_tfcframe @ transform_cam_in_tfcframe
+
+            hook_xyz_hom = np.append(hook_xyz, 1)
+            xyz_hook_in_worldframe = self.cam_to_world_transform @ hook_xyz_hom
+            self.xyz_hook_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = xyz_hook_in_worldframe, frame_desired = 'work')
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_workframe'] = self.xyz_hook_in_workframe
+            
+            tip_xyz_hom = np.append(tip_xyz, 1)
+            xyz_tip_in_worldframe = self.cam_to_world_transform @ tip_xyz_hom
+            self.xyz_tip_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = xyz_tip_in_worldframe, frame_desired = 'work')
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_workframe'] = self.xyz_tip_in_workframe
+            
+            lowpoint_xyz_hom = np.append(lowpoint_xyz, 1)
+            xyz_lowpoint_in_worldframe = self.cam_to_world_transform @ lowpoint_xyz_hom
+            self.xyz_lowpoint_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = xyz_lowpoint_in_worldframe, frame_desired = 'work')
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_workframe'] = self.xyz_lowpoint_in_workframe
+
 
             # Hole uv_tip und uv_lowpoint aus Dict
             uv_tip_ref = self.hook_ref['uv_tip']
@@ -399,7 +422,7 @@ class ScanBarHorizontalTriangulation(Node):
             mm_per_px_x = x_diff / v_diff           # Übersetzung mm pro Pixel in x-Richtung
             mm_per_px_y = y_diff / u_diff           # Übersetzung mm pro Pixel in y-Richtung
 
-            # Berechnung von realen XY-Kordinaten der Path points
+            # Berechnung von realen XY-Koordinaten der Path points
             uv_path_points = self.hook_ref['path_points']
             xy_path_points = []
             u_center = self.img_height / 2
@@ -412,10 +435,25 @@ class ScanBarHorizontalTriangulation(Node):
                 xy_path_points.append((ppoint_x, ppoint_y))
 
             # Berechnung von interpolierten Tiefenwerten für path_points
-            path_points_xyz = self.spline_calculator.interpolate(xy_points = xy_path_points, 
-                                                                 start_point_with_depth = tip_xyz, 
-                                                                 end_point_with_depth = lowpoint_xyz)
+            path_points_xyz_in_camframe = self.spline_calculator.interpolate(xy_points = xy_path_points, 
+                                                                             start_point_with_depth = tip_xyz, 
+                                                                             end_point_with_depth = lowpoint_xyz)
+            
+            # Durchgehen aller interpolierten Werte und Transformation in WORK-Frame
+            path_points_xyz_in_workframe = []
+            for p in path_points_xyz_in_camframe:
+                ppoint_x = p[0]
+                ppoint_y = p[1]
+                ppoint_z = p[2]
 
+                # Transformation des Path Points aus CAM-Frame ins WORK-Frame
+                T_cam_in_worldframe = self.frame_handler.get_cam_transform_in_world()
+                ppoint_in_worldframe = T_cam_in_worldframe @ np.array([ppoint_x, ppoint_y, ppoint_z, 1.0])
+                ppoint_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = ppoint_in_worldframe[:3], frame_desired = 'work')
+
+                # Path Points im WORK-Frame
+                path_points_xyz_in_workframe.append(ppoint_in_workframe)
+            
             self.get_logger().info("Done! -> next process step <Save Hook>")
             self.process_step = "save_hook"
 
@@ -435,7 +473,7 @@ class ScanBarHorizontalTriangulation(Node):
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook'] = hook_xyz
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip'] = tip_xyz
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint'] = lowpoint_xyz
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_path_points'] = path_points_xyz
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_path_points'] = path_points_xyz_in_workframe
             
             robot_position_in_tfcframe = self.T_robot_position_horizontal
             transform_cam_in_tfcframe = self.frame_handler.load_transformation_matrix_from_csv(frame_name = 'CAM_frame_in_tfc.csv')
@@ -443,16 +481,19 @@ class ScanBarHorizontalTriangulation(Node):
             self.cam_to_world_transform = robot_position_in_tfcframe @ transform_cam_in_tfcframe
 
             hook_xyz_hom = np.append(hook_xyz, 1)
-            point = self.cam_to_world_transform @ hook_xyz_hom
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_workframe'] = self.frame_handler.transform_worldpoint_in_frame(point = point, frame_desired = 'work')
+            xyz_hook_in_worldframe = self.cam_to_world_transform @ hook_xyz_hom
+            self.xyz_hook_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = xyz_hook_in_worldframe, frame_desired = 'work')
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_workframe'] = self.xyz_hook_in_workframe
             
             tip_xyz_hom = np.append(tip_xyz, 1)
-            point = self.cam_to_world_transform @ tip_xyz_hom
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_workframe'] = self.frame_handler.transform_worldpoint_in_frame(point = point, frame_desired = 'work')
+            xyz_tip_in_worldframe = self.cam_to_world_transform @ tip_xyz_hom
+            self.xyz_tip_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = xyz_tip_in_worldframe, frame_desired = 'work')
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_workframe'] = self.xyz_tip_in_workframe
             
             lowpoint_xyz_hom = np.append(lowpoint_xyz, 1)
-            point = self.cam_to_world_transform @ lowpoint_xyz_hom
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_workframe'] = self.frame_handler.transform_worldpoint_in_frame(point = point, frame_desired = 'work')
+            xyz_lowpoint_in_worldframe = self.cam_to_world_transform @ lowpoint_xyz_hom
+            self.xyz_lowpoint_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = xyz_lowpoint_in_worldframe, frame_desired = 'work')
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_workframe'] = self.xyz_lowpoint_in_workframe
             
             self.global_hooks_dict[str(self.act_hook_num)]['tfc_workframe'] = self.robot_position_horizontal
             self.global_hooks_dict[str(self.act_hook_num)]['tfc_worldframe'], _, _ = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
