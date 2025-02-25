@@ -53,7 +53,7 @@ def plot_hooks_and_bars(received_img, hooks_dict, bar_dict):
             hook_mask_color = np.zeros_like(img_copy)
             hook_mask_color[hook_mask == 1] = (color[0] * 255, color[1] * 255, color[2] * 255)
             img_copy = cv2.addWeighted(img_copy, 1, hook_mask_color, 0.5, 0)
-            cv2.putText(img_copy, f"Hook {hook_name} ({conf_hook[0]:.2f})", (int(x1), int(y1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
+            cv2.putText(img_copy, f"Hook {str(len(hooks_dict)-idx)} ({conf_hook[0]:.2f})", (int(x1), int(y1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
             
             # Bounding Box und Maske für Tip
             if tip_box is not None:
@@ -62,7 +62,7 @@ def plot_hooks_and_bars(received_img, hooks_dict, bar_dict):
                 tip_mask_color = np.zeros_like(img_copy)
                 tip_mask_color[tip_mask == 1] = (0, 0, 255)
                 img_copy = cv2.addWeighted(img_copy, 1, tip_mask_color, 0.5, 0)
-                cv2.putText(img_copy, f"Tip {hook_name} ({conf_tip[0]:.2f})", (int(xt1), int(yt1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
+                cv2.putText(img_copy, f"Tip {str(len(hooks_dict)-idx)} ({conf_tip[0]:.2f})", (int(xt1), int(yt1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
             
             # Bounding Box und Maske für Lowpoint
             if lowpoint_box is not None:
@@ -71,7 +71,7 @@ def plot_hooks_and_bars(received_img, hooks_dict, bar_dict):
                 lowpoint_mask_color = np.zeros_like(img_copy)
                 lowpoint_mask_color[lowpoint_mask == 1] = (255, 0, 0)
                 img_copy = cv2.addWeighted(img_copy, 1, lowpoint_mask_color, 0.5, 0)
-                cv2.putText(img_copy, f"Lowpoint {hook_name} ({conf_lowpoint[0]:.2f})", (int(xl1), int(yl1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
+                cv2.putText(img_copy, f"Lowpoint {str(len(hooks_dict)-idx)} ({conf_lowpoint[0]:.2f})", (int(xl1), int(yl1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
     return img_copy
 
 

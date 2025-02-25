@@ -14,7 +14,7 @@ from cv_bridge import CvBridge
 
 class VCImage2Receiver(Node):
     def __init__(self):
-        super().__init__('vc_img_receiver')
+        super().__init__('vc_img2_receiver')
         self.get_logger().info('Starting ROS2 Connection to VCnanoZ 2')
 
         self.img = None
@@ -228,7 +228,7 @@ class VCImage2Receiver(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = VCImageReceiver()
+    node = VCImage2Receiver()
     rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()
