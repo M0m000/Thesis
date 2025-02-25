@@ -413,8 +413,8 @@ class ScanBarHorizontalTriangulation(Node):
 
             # Berechnung von interpolierten Tiefenwerten für path_points
             path_points_xyz = self.spline_calculator.interpolate(xy_points = xy_path_points, 
-                                                                        start_point_with_depth = tip_xyz, 
-                                                                        end_point_with_depth = lowpoint_xyz)
+                                                                 start_point_with_depth = tip_xyz, 
+                                                                 end_point_with_depth = lowpoint_xyz)
 
             self.get_logger().info("Done! -> next process step <Save Hook>")
             self.process_step = "save_hook"
