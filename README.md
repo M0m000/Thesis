@@ -135,6 +135,13 @@ ros2 run vcnanoz vc_img_receiver --ros-args -p ipv4:="192.168.3.15" -p port:=200
 >Dieser Knoten stellt eine Verbindung zum Socket her und streamt das Graubild der Kamera (Auflösung einstellbar) auf dem Topic "/vcnanoz/stream/image_raw". Wenn das Argument "take_pitcures" auf True gesetzt ist. Kann mit der Taste z ein Bild aufgenommen und gespeichert werden, sobald der Stream läuft. Das Bildfenster von OpenCV muss dazu aktiv sein -> dort z druecken. Der Speicherpfad kann ebenfalls mit dem Argument "save_path" übergeben werden - standardmäßig auf '/home/vboxuser/Thesis/vc_imgs'. <br>
 <br>
 
+### **VC Two Image Receiver** Node <br>
+```bash
+ros2 run vcnanoz vc_img2_receiver --ros-args -p ipv4:="192.168.3.15" -p port:=2002 -p rgb_stream:=False -p show_img:=False -p take_pitcures:=False
+```
+>Dieser Knoten stellt eine Verbindung zu einer zweiten VC nano Kamera her. Die Bildauflösung wird automatisch an den ersten Knoten angepasst. Die Bilder werden über den Topic "/vcnanoz/stream/image_raw2" veröffentlicht. <br>
+<br>
+
 ### **VC Shutdown** Node <br>
 ```bash
 ros2 run vcnanoz vc_shutdown
@@ -177,6 +184,13 @@ ros2 run robot_control control --ros-args -p hook_num:=10
 ros2 run robot_control scan_bar_horizontal_triangulation --ros-args -p do_vibration_test:=False -p speed_in_mm_per_s:=10.0 -p num_hooks_existing:=20
 ```
 >Enthält den gesammten Scan-Mechanismus. Die Referenzierfahrt für das WORK-Frame muss hierzu beendet sein und der tf frame pulisher Node muss aktiv sein und die Frames inkl. WORLD publishen. Dieser Knoten führt den gesamten Scan-Mechanismus inklusive Triangulation durch und liefert am Ende ein Dict, welches alle Hakeninstanzen mit WORK-Position und CAM-Position in realen Koordinaten XYZ enthält. <br>
+<br>
+
+### **Hook Data Listener** Node <br>
+```bash
+ros2 run robot_control hook_data_listener
+```
+>Node für Tests von Hooks-Dict Publishing (Yolo Output Dict).  <br>
 <br>
 
 ### **Define Working Frame Needle** Node <br>
@@ -240,12 +254,19 @@ ros2 run robot_control tcp_frame_listener
 ## **Vision Package**
 Enthält alle Programme zur Bildverarbeitung - Filterung, NNs... <br>
 <br>
+
 ### **YoloV8 Inference Node**
 ```bash
 ros2 run vision yolov8_inference --ros-args -p confidence_threshold:=0.4 -p do_preprocessing:=True -p do_postprocessing:=True -p show_cam_img:=False -p show_output_img:=True -p show_point_img:=True -p show_skeleton_img:=True
 ```
 >Lädt ein vortrainiertes Instance Segmentation Model YoloV8 (Segmentiert das Bild nach Instanzen auf die Klassen "bar", "hook", "tip" und "lowpoint"). Training des Models kann mit Jupyter-Notebook in Verzeichnis YoloV8_InstanceSeg/yolov8.ipynb gemacht werden. Dieser Knoten subscribed den Kameratopic der VC-Cam und führt in Echtzeit die Inferenz der Bilder durch. Beide Bilder werden in extra Fenstern angezeigt. Mit dem confidence threshold kann festgelegt werden, wie sicher sich das Netz bei der Erkennung der Objekte sein muss -> je höher, umso strenger. Des Weiteren wird der Output direkt in Dictionaries verarbeiten. Jeder erkannte Haken erhält seinen eigenen Eintrag -> von rechts nach links durchnummeriert. Pro Haken gibt es die Maske des Hakens, der Spitze, der Senke und die Mittelpunkt dieser drei Masken. Des weiteren wird mit Hilfe von Skelettierung und anschleießendem A*-Planer der kürzeste Pfad zwischen Spitze und Senke mit 10 Punkten modelliert. Dieser Pfad liegt exakt in der Mitte des Hakens (berechnet mit Skelettierung aus Maske). Im Dict sind hieraus noch für jeden Haken die Einträge skeleton mask, shortest path und path points vorhanden. Path points sind dabei die 10 Punkte, die die Form von Spitze zu Senke modellieren und nachfolgend zur Tiefenrekonstruktion interpoliert werden können. <br>
+<br>
 
+### **YoloV8 Dual Cam Inference Node**
+```bash
+ros2 run vision yolov8_dualcam_inference --ros-args -p confidence_threshold:=0.4 -p do_preprocessing:=True -p do_postprocessing:=True -p show_cam_img:=False -p show_output_img:=True -p show_point_img:=True -p show_skeleton_img:=True
+```
+>Inferenz-Node mit Yolo-Architektur. Verarbeitet automatisch beide Bilder der beiden VC-Cams. Der Output ist ebenfalls ein Dict mit zusätzlichen Keys (uv_hook_img2, uv_tip_img2, uv_lowpoint_img2). Zudem werden hier direkt die realen 3D-Koordinaten durch Triangulation berechnet und unter den Keys (xyz_hook_in_camframe, xyz_tip_in_camframe, xyz_lowpoint_in_camframe) im Dict gespeichert. Das fertige Dict wird veröffentlicht. <br>
 <br>
 
 ### **MaskRCNN Inference Node**
