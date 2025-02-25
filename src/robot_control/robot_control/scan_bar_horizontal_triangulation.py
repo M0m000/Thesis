@@ -200,8 +200,6 @@ class ScanBarHorizontalTriangulation(Node):
         rside_rising_edge, rside_falling_edge = self.edge_detector_rside.detect_edge(var=self.new_hook_in_picture)
         lside_rising_edge, lside_falling_edge = self.edge_detector_lside.detect_edge(var=self.hook_in_left_area)
 
-
-
         # Fahre von Init Position solange nach rechts, bis 2 Haken zu sehen sind
         if self.process_step == "move_until_2_hooks_visible":
             """
@@ -380,6 +378,7 @@ class ScanBarHorizontalTriangulation(Node):
             Interpolieren der Tiefe für alle Wegpunkte zwischen Spitze und Senke
             """
             # Umrechnung der Punkte XYZ von Hook, Tip und Lowpoint in das aktuelle WORK-Frame
+            robot_position_in_tfcframe = self.T_robot_position_horizontal
             transform_cam_in_tfcframe = self.frame_handler.load_transformation_matrix_from_csv(frame_name = 'CAM_frame_in_tfc.csv')
             # self.cam_to_world_transform = self.frame_handler.get_cam_transform_in_world()
             self.cam_to_world_transform = robot_position_in_tfcframe @ transform_cam_in_tfcframe
@@ -474,26 +473,6 @@ class ScanBarHorizontalTriangulation(Node):
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip'] = tip_xyz
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint'] = lowpoint_xyz
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_path_points'] = path_points_xyz_in_workframe
-            
-            robot_position_in_tfcframe = self.T_robot_position_horizontal
-            transform_cam_in_tfcframe = self.frame_handler.load_transformation_matrix_from_csv(frame_name = 'CAM_frame_in_tfc.csv')
-            # self.cam_to_world_transform = self.frame_handler.get_cam_transform_in_world()
-            self.cam_to_world_transform = robot_position_in_tfcframe @ transform_cam_in_tfcframe
-
-            hook_xyz_hom = np.append(hook_xyz, 1)
-            xyz_hook_in_worldframe = self.cam_to_world_transform @ hook_xyz_hom
-            self.xyz_hook_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = xyz_hook_in_worldframe, frame_desired = 'work')
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_workframe'] = self.xyz_hook_in_workframe
-            
-            tip_xyz_hom = np.append(tip_xyz, 1)
-            xyz_tip_in_worldframe = self.cam_to_world_transform @ tip_xyz_hom
-            self.xyz_tip_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = xyz_tip_in_worldframe, frame_desired = 'work')
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_workframe'] = self.xyz_tip_in_workframe
-            
-            lowpoint_xyz_hom = np.append(lowpoint_xyz, 1)
-            xyz_lowpoint_in_worldframe = self.cam_to_world_transform @ lowpoint_xyz_hom
-            self.xyz_lowpoint_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = xyz_lowpoint_in_worldframe, frame_desired = 'work')
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_workframe'] = self.xyz_lowpoint_in_workframe
             
             self.global_hooks_dict[str(self.act_hook_num)]['tfc_workframe'] = self.robot_position_horizontal
             self.global_hooks_dict[str(self.act_hook_num)]['tfc_worldframe'], _, _ = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
@@ -745,4 +724,3 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
-
