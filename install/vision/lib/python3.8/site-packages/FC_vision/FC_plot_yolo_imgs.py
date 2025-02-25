@@ -43,6 +43,7 @@ def plot_hooks_and_bars(received_img, hooks_dict, bar_dict):
             lowpoint_box = hook["lowpoint_box"]
             lowpoint_mask = hook["lowpoint_mask"]
             conf_lowpoint = hook["conf_lowpoint"]
+            skeleton_mask = hook["skeleton_mask"]
 
             # Normalisiere den Index für die Farbpalette
             color = colors(idx / len(hooks_dict))  # Skaliere den Index auf [0, 1]
@@ -72,6 +73,12 @@ def plot_hooks_and_bars(received_img, hooks_dict, bar_dict):
                 lowpoint_mask_color[lowpoint_mask == 1] = (255, 0, 0)
                 img_copy = cv2.addWeighted(img_copy, 1, lowpoint_mask_color, 0.5, 0)
                 cv2.putText(img_copy, f"Lowpoint {str(len(hooks_dict)-idx)} ({conf_lowpoint[0]:.2f})", (int(xl1), int(yl1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
+
+            # Skelett-Maske
+            if skeleton_mask is not None:
+                skeleton_mask_color = np.zeros_like(img_copy)
+                skeleton_mask_color[skeleton_mask == 1] = (0, 255, 0)
+                img_copy = cv2.addWeighted(img_copy, 1, skeleton_mask_color, 0.5, 0)
     return img_copy
 
 
@@ -94,7 +101,7 @@ def plot_points(received_img, hooks_dict):
             cv2.drawMarker(img_copy, p_tip, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
         if hooks_dict[key]['uv_lowpoint'] is not None:
             p_lowpoint = tuple(map(int, hooks_dict[key]['uv_lowpoint']))
-            cv2.drawMarker(img_copy, p_lowpoint, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)  
+            cv2.drawMarker(img_copy, p_lowpoint, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
     return img_copy
 
 
