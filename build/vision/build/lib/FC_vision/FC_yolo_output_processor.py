@@ -131,7 +131,10 @@ class YoloPostprocessor(Node):
                     "conf_lowpoint": conf_lowpoint,
                     "skeleton_mask": None,
                     "shortest_path": None,
-                    "path_points": None
+                    "path_points": None,
+                    "xyz_hook_in_camframe": None,
+                    "xyz_tip_in_camframe": None,
+                    "xyz_lowpoint_in_camframe": None,
                 }
 
         # Sortiere das Dictionary nach der x1, y1 Koordinate der Bounding Box

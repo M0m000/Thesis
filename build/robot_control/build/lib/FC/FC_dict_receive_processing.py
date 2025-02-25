@@ -128,7 +128,8 @@ class DictReceiveProcessor(Node):
             if hook_msg.path_points:
                 hook_data['path_points'] = [(pt.u, pt.v) for pt in hook_msg.path_points]
 
+
+
             # Speichere alles im Dictionary mit der Instanz-ID
             self.hooks_dict[hook_msg.name] = hook_data
-
         return self.hooks_dict
