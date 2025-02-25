@@ -131,15 +131,16 @@ class YOLOv8InferenceNode(Node):
             # Berechnung der Spitzen- und Senken-Punkte auf Pixelebene
             self.hooks_dict_processed = self.yolo_postprocessor.process_output_hooks_dict(hooks_dict = self.hooks_dict)
 
+            '''
             ### Zuerst filtern und dann Pfad berechnen
             self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)
             self.filtered_hooks_dict = self.yolo_postprocessor.find_hooks_shape(hooks_dict = self.filtered_hooks_dict, num_interpolation_points = 10)
-
             '''
+
             ### Zuerst Pfad berechnen und dann filtern (Pfad wird aber nicht mitgefiltert)
             self.hooks_dict_processed = self.yolo_postprocessor.find_hooks_shape(hooks_dict = self.hooks_dict_processed, num_interpolation_points = 10)
             self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)
-            '''
+            
 
             # Plots
             if self.show_cam_img:
@@ -159,6 +160,7 @@ class YOLOv8InferenceNode(Node):
                 cv2.imshow('YoloV8 Output Segment Img Filtered', self.output_img)
                 cv2.waitKey(1)
 
+            '''
             if self.show_point_img:
                 self.points_img = plot_points(received_img = self.received_img, hooks_dict = self.hooks_dict_processed)
                 output_point_img = self.bridge.cv2_to_imgmsg(self.points_img, encoding="bgr8")
@@ -171,6 +173,7 @@ class YOLOv8InferenceNode(Node):
                 self.output_point_img_publisher.publish(output_point_img)
                 cv2.imshow('YoloV8 Output Point Img Filtered', self.points_img)
                 cv2.waitKey(1)
+            '''
 
             if self.show_skeleton_img:
                 self.skeleton_img = plot_combined_skeletons(hooks_dict = self.filtered_hooks_dict)

@@ -51,34 +51,58 @@ def plot_hooks_and_bars(received_img, hooks_dict, bar_dict):
             # Bounding Box und Maske für Hook
             x1, y1, x2, y2 = hook_box
             cv2.rectangle(img_copy, (int(x1), int(y1)), (int(x2), int(y2)), (color[0] * 255, color[1] * 255, color[2] * 255), 2)
+
+            # Maske
             hook_mask_color = np.zeros_like(img_copy)
             hook_mask_color[hook_mask == 1] = (color[0] * 255, color[1] * 255, color[2] * 255)
             img_copy = cv2.addWeighted(img_copy, 1, hook_mask_color, 0.5, 0)
+
+            # Marker für UV-Koordinate
+            p_hook = tuple(map(int, hooks_dict[hook_name]['uv_hook']))
+            cv2.drawMarker(img_copy, p_hook, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
+            
+            # Beschriftung
             cv2.putText(img_copy, f"Hook {str(len(hooks_dict)-idx)} ({conf_hook[0]:.2f})", (int(x1), int(y1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
             
             # Bounding Box und Maske für Tip
             if tip_box is not None:
                 xt1, yt1, xt2, yt2 = tip_box
                 cv2.rectangle(img_copy, (int(xt1), int(yt1)), (int(xt2), int(yt2)), (color[0] * 255, color[1] * 255, color[2] * 255), 2)
+
+                # Maske
                 tip_mask_color = np.zeros_like(img_copy)
                 tip_mask_color[tip_mask == 1] = (0, 0, 255)
                 img_copy = cv2.addWeighted(img_copy, 1, tip_mask_color, 0.5, 0)
+                
+                # Marker für UV-Koordinate
+                p_tip = tuple(map(int, hooks_dict[hook_name]['uv_tip']))
+                cv2.drawMarker(img_copy, p_tip, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
+                
+                # Beschriftung
                 cv2.putText(img_copy, f"Tip {str(len(hooks_dict)-idx)} ({conf_tip[0]:.2f})", (int(xt1), int(yt1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
             
             # Bounding Box und Maske für Lowpoint
             if lowpoint_box is not None:
                 xl1, yl1, xl2, yl2 = lowpoint_box
                 cv2.rectangle(img_copy, (int(xl1), int(yl1)), (int(xl2), int(yl2)), (color[0] * 255, color[1] * 255, color[2] * 255), 2)
+
+                # Maske
                 lowpoint_mask_color = np.zeros_like(img_copy)
                 lowpoint_mask_color[lowpoint_mask == 1] = (255, 0, 0)
                 img_copy = cv2.addWeighted(img_copy, 1, lowpoint_mask_color, 0.5, 0)
+
+                # Marker für UV-Koordinate
+                p_lowpoint = tuple(map(int, hooks_dict[hook_name]['uv_lowpoint']))
+                cv2.drawMarker(img_copy, p_lowpoint, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
+
+                # Beschriftung
                 cv2.putText(img_copy, f"Lowpoint {str(len(hooks_dict)-idx)} ({conf_lowpoint[0]:.2f})", (int(xl1), int(yl1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
 
             # Skelett-Maske
             if skeleton_mask is not None:
                 skeleton_mask_color = np.zeros_like(img_copy)
-                skeleton_mask_color[skeleton_mask == 1] = (0, 255, 0)
-                img_copy = cv2.addWeighted(img_copy, 1, skeleton_mask_color, 0.5, 0)
+                skeleton_mask_color[skeleton_mask == 255] = (255, 0, 255)
+                img_copy = cv2.addWeighted(img_copy, 1, skeleton_mask_color, 1.0, 0)
     return img_copy
 
 

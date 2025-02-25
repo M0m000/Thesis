@@ -195,19 +195,20 @@ class YOLOv8TwoImgInferenceNode(Node):
             self.img1_hooks_dict_processed = self.yolo_postprocessor.process_output_hooks_dict(hooks_dict = self.img1_hooks_dict)
             self.img2_hooks_dict_processed = self.yolo_postprocessor.process_output_hooks_dict(hooks_dict = self.img2_hooks_dict)
 
+            '''
             ### Zuerst filtern und dann Pfad berechnen
             self.img1_filtered_hooks_dict = self.img1_movingavg_filter.update(hooks_dict = self.img1_hooks_dict_processed)
             self.img2_filtered_hooks_dict = self.img2_movingavg_filter.update(hooks_dict = self.img2_hooks_dict_processed)
             self.img1_filtered_hooks_dict = self.yolo_postprocessor.find_hooks_shape(hooks_dict = self.img1_filtered_hooks_dict, num_interpolation_points = 10)
             self.img2_filtered_hooks_dict = self.yolo_postprocessor.find_hooks_shape(hooks_dict = self.img2_filtered_hooks_dict, num_interpolation_points = 10)
-
             '''
+            
             ### Zuerst Pfad berechnen und dann filtern (Pfad wird aber nicht mitgefiltert)
             self.img1_hooks_dict_processed = self.yolo_postprocessor.find_hooks_shape(hooks_dict = self.img1_hooks_dict_processed, num_interpolation_points = 10)
             self.img2_hooks_dict_processed = self.yolo_postprocessor.find_hooks_shape(hooks_dict = self.img2_hooks_dict_processed, num_interpolation_points = 10)
             self.img1_filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.img1_hooks_dict_processed)
             self.img2_filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.img2_hooks_dict_processed)
-            '''
+            
 
             # Zusammenführen der Dicts zu einem Output Dict (von Cam 1 aus gesehen) -> wird dann auch gepublisht
             self.filtered_hooks_dict = self.merge_output_hook_dicts(hooks_dict_1 = self.img1_filtered_hooks_dict,
@@ -241,14 +242,13 @@ class YOLOv8TwoImgInferenceNode(Node):
                 cv2.imshow('YoloV8 Output Segment Img 2 Filtered', self.output_img2)
                 cv2.waitKey(1)
 
+            '''
             if self.show_point_img:
-                '''
                 self.points_img = plot_points(received_img = self.received_img, hooks_dict = self.hooks_dict_processed)
                 output_point_img = self.bridge.cv2_to_imgmsg(self.points_img, encoding="bgr8")
                 self.output_point_img_publisher.publish(output_point_img)
                 cv2.imshow('YoloV8 Output Point Img', self.points_img)
                 cv2.waitKey(1)
-                '''
 
                 self.points_img1 = plot_points(received_img = self.input_img_1, hooks_dict = self.img1_filtered_hooks_dict)
                 self.points_img2 = plot_points(received_img = self.input_img_2, hooks_dict = self.img2_filtered_hooks_dict)
@@ -258,6 +258,7 @@ class YOLOv8TwoImgInferenceNode(Node):
                 cv2.waitKey(1)
                 cv2.imshow('YoloV8 Output Point Img 2 Filtered', self.points_img2)
                 cv2.waitKey(1)
+            '''
 
             if self.show_skeleton_img:
                 self.skeleton_img1 = plot_combined_skeletons(hooks_dict = self.img1_filtered_hooks_dict)
