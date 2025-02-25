@@ -140,7 +140,6 @@ class YOLOv8InferenceNode(Node):
             ### Zuerst Pfad berechnen und dann filtern (Pfad wird aber nicht mitgefiltert)
             self.hooks_dict_processed = self.yolo_postprocessor.find_hooks_shape(hooks_dict = self.hooks_dict_processed, num_interpolation_points = 10)
             self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)
-            
 
             # Plots
             if self.show_cam_img:
