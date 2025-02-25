@@ -138,7 +138,7 @@ class ScanBar(Node):
     
 
 
-    def set_frame(self, R, T, frame="tcp", ref_frame="tfc"):
+    def set_frame(self, R, T, frame = "tcp", ref_frame = "tfc"):
         request = SetSystemFrame.Request()
         request.name = frame
         request.ref = ref_frame
@@ -173,8 +173,8 @@ class ScanBar(Node):
         '''
 
         # prüfe auf Flanken für Haken am Bildrand
-        rside_rising_edge, rside_falling_edge = self.edge_detector_rside.detect_edge(var=self.new_hook_in_picture)
-        lside_rising_edge, lside_falling_edge = self.edge_detector_lside.detect_edge(var=self.hook_in_left_area)
+        rside_rising_edge, rside_falling_edge = self.edge_detector_rside.detect_edge(var = self.new_hook_in_picture)
+        lside_rising_edge, lside_falling_edge = self.edge_detector_lside.detect_edge(var = self.hook_in_left_area)
 
 
 
@@ -184,7 +184,7 @@ class ScanBar(Node):
             Fahre weiter, bis 2 Haken im Bild zu sehen sind (zu Beginn des Scan-Prozesses benötigt)
             """
             vel_work = [self.speed_in_mm_per_s, 0.0, 0.0]
-            vel_world = self.frame_handler.tansform_velocity_to_world(vel = vel_work, from_frame='work')
+            vel_world = self.frame_handler.tansform_velocity_to_world(vel = vel_work, from_frame = 'work')
             self.publish_linear_velocity(vel_in_worldframe = vel_world)
 
             if rside_falling_edge:
