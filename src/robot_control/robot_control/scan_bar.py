@@ -177,6 +177,7 @@ class ScanBar(Node):
         lside_rising_edge, lside_falling_edge = self.edge_detector_lside.detect_edge(var = self.hook_in_left_area)
 
 
+
         # Fahre von Init Position solange nach rechts, bis 2 Haken zu sehen sind
         if self.process_step == "move_until_2_hooks_visible":
             """
@@ -199,15 +200,21 @@ class ScanBar(Node):
                 self.process_step = "waiting_for_timer"
 
 
+
         # Extrahiere Pixelkoordinaten von Haken 2 nach Beginn des Scans
         if self.process_step == "extract_hook_2":
             """
             Extrahieren von Haken_2
             """
-            # Extrahieren der XYZ-Koordinaten im CAM-Frame
-            xyz_hook_in_camframe = np.array(self.yolo_hooks_dict['hook_2']['xyz_hook_in_camframe'])
-            xyz_tip_in_camframe = np.array(self.yolo_hooks_dict['hook_2']['xyz_tip_in_camframe'])
-            xyz_lowpoint_in_camframe = np.array(self.yolo_hooks_dict['hook_2']['xyz_lowpoint_in_camframe'])
+            if self.handling_last_hook == True:
+                xyz_hook_in_camframe = np.array(self.yolo_hooks_dict['hook_1']['xyz_hook_in_camframe'])
+                xyz_tip_in_camframe = np.array(self.yolo_hooks_dict['hook_1']['xyz_tip_in_camframe'])
+                xyz_lowpoint_in_camframe = np.array(self.yolo_hooks_dict['hook_1']['xyz_lowpoint_in_camframe'])
+            else:
+                # Extrahieren der XYZ-Koordinaten im CAM-Frame
+                xyz_hook_in_camframe = np.array(self.yolo_hooks_dict['hook_2']['xyz_hook_in_camframe'])
+                xyz_tip_in_camframe = np.array(self.yolo_hooks_dict['hook_2']['xyz_tip_in_camframe'])
+                xyz_lowpoint_in_camframe = np.array(self.yolo_hooks_dict['hook_2']['xyz_lowpoint_in_camframe'])
 
             # Aktuelle Kameraposition im WORLD-Frame auslesen
             T_cam_in_worldframe = self.frame_handler.get_cam_transform_in_world()
@@ -316,20 +323,30 @@ class ScanBar(Node):
 
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_path_points_in_workframe'] = path_points_xyz_in_workframe
             
+            # Ausgabe der berechneten Koordinaten im WORK-Frame und Anzhal bereits verarbeiteter Haken
             self.get_logger().warn(f"Hook XYZ [WORK]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_workframe']}")
             self.get_logger().warn(f"Tip XYZ [WORK]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_workframe']}")
             self.get_logger().warn(f"Lowpoint XYZ [WORK]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_workframe']}")
-
             self.get_logger().info(f"already scanned: {len(self.global_hooks_dict)} Hooks")
 
+            # Abfrage, ob (1) alle Haken fertig, (2) letzter Haken oder (3) während Prozess
             if len(self.global_hooks_dict) == self.num_hooks_existing:
+                self.handling_last_hook = False
                 self.get_logger().info("Done! -> next process step <Save Global Dict as CSV>")
                 self.process_step = "save_global_dict_as_csv"
+            elif (self.num_hooks_existing - len(self.global_hooks_dict)) == 1:
+                self.handling_last_hook = True
+                self.get_logger().info("Done! -> next process step <Move until hook disappears>")
+                self.upcoming_process_step = "move_until_hook_disappears"
+                self.start_timer_for_step(3.0)    # Timer starten
+                self.process_step = "waiting_for_timer"
             else:
+                self.handling_last_hook = False
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 as Reference>")
                 self.upcoming_process_step = "move_until_new_hook"
                 self.start_timer_for_step(3.0)    # Timer starten
                 self.process_step = "waiting_for_timer"
+
 
 
         # Fahre, bis neuer Haken erscheint
@@ -348,65 +365,11 @@ class ScanBar(Node):
                 self.previous_edge_rside = None
                 vel_world = [0.0, 0.0, 0.0]
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
-                if self.do_vibration_test:
-                    self.get_logger().info("Done! -> next process step <Measure Vibration>")
-                    self.first_measurement_iteration = True
-                    self.vibration_data = {'time': [], 'uv_hook': [], 'uv_tip': [], 'uv_lowpoint': []}
-                    self.process_step = "measure_vibration"
-                else:
-                    self.get_logger().info("Done! -> next process step <Extract Hook 3 as Horizontal Point>")
-                    self.upcoming_process_step = "extract_hook_2"
-                    self.start_timer_for_step(3.0)    # Timer starten
-                    self.process_step = "waiting_for_timer"
+                self.get_logger().info("Done! -> next process step <Extract Hook 3 as Horizontal Point>")
+                self.upcoming_process_step = "extract_hook_2"
+                self.start_timer_for_step(3.0)    # Timer starten
+                self.process_step = "waiting_for_timer"
 
-
-        # Tiefeninterpolation für Spitze -> Senke
-        if self.process_step == "interpolate_depth_shape":
-            """
-            Interpolieren der Tiefe für alle Wegpunkte zwischen Spitze und Senke
-            """
-
-            # Hole uv_tip und uv_lowpoint aus Dict
-            uv_tip_ref = self.hook_ref['uv_tip']
-            uv_lowpoint_ref = self.hook_ref['uv_lowpoint']
-            uv_tip_horizontal = self.hook_horizontal['uv_tip']
-            uv_lowpoint_horizontal = self.hook_horizontal['uv_lowpoint']
-
-            # Berechnung der Pixelstrecke von Tip bis Lowpoint für u und v
-            u_diff_ref = abs(uv_tip_ref[0] - uv_lowpoint_ref[0])
-            v_diff_ref = abs(uv_tip_ref[1] - uv_lowpoint_ref[1])
-            u_diff_horizontal = abs(uv_tip_horizontal[0] - uv_lowpoint_horizontal[0])
-            v_diff_horizontal = abs(uv_tip_horizontal[1] - uv_lowpoint_horizontal[1])
-            u_diff = int((u_diff_ref + u_diff_horizontal) / 2)      # Differenz von u_tip bis u_lowpoint in px
-            v_diff = int((v_diff_ref + v_diff_horizontal) / 2)      # Differenz von v_tip bis v_lowpoint in px
-
-            # Berechnung von mm_per_px in x- und y-Richtung
-            x_tip, y_tip, z_tip = xyz_tip_in_workframe
-            x_lowpoint, y_lowpoint, z_lowpoint = xyz_lowpoint_in_workframe
-            x_diff = abs(x_tip - x_lowpoint)
-            y_diff = abs(y_tip - y_lowpoint)
-            mm_per_px_x = x_diff / v_diff           # Übersetzung mm pro Pixel in x-Richtung
-            mm_per_px_y = y_diff / u_diff           # Übersetzung mm pro Pixel in y-Richtung
-
-            # Berechnung von realen XY-Kordinaten der Path points
-            uv_path_points = self.hook_ref['path_points']
-            xy_path_points = []
-            u_center = self.img_height / 2
-            v_center = self.img_width / 2
-            for p in uv_path_points:
-                ppoint_u = p[0]
-                ppoint_v = p[1]
-                ppoint_x = (ppoint_v - v_center) * mm_per_px_x
-                ppoint_y = (ppoint_u - u_center) * mm_per_px_y
-                xy_path_points.append((ppoint_x, ppoint_y))
-
-            # Berechnung von interpolierten Tiefenwerten für path_points
-            path_points_xyz = self.spline_calculator.interpolate(xy_points = xy_path_points, 
-                                                                 start_point_with_depth = xyz_tip_in_workframe, 
-                                                                 end_point_with_depth = xyz_lowpoint_in_workframe)
-
-            self.get_logger().info("Done! -> next process step <Save Hook>")
-            self.process_step = "save_hook"
 
 
         # Fahre, bis Haken aus linkem Randbereich draußen
@@ -422,10 +385,11 @@ class ScanBar(Node):
                 self.previous_edge_lside = None
                 vel_world = [0.0, 0.0, 0.0]
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
-                self.get_logger().info("Done! -> next process step <Extract Hook 2 as Horizontal Point>")
-                self.upcoming_process_step = "extract_hook_3_as_horizontal_point"
+                self.get_logger().info("Done! -> next process step <Extract Hook 2>")
+                self.upcoming_process_step = "extract_hook_2"
                 self.start_timer_for_step(3.0)    # Timer starten
                 self.process_step = "waiting_for_timer"
+
 
 
         # Speichern des Global Dict als CSV, wenn Scanvorgang fertig
@@ -436,6 +400,7 @@ class ScanBar(Node):
             save_dict_to_csv(node = self, data = self.global_hooks_dict, filename = 'src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv')
             self.get_logger().info("Done! -> next process step <Finish>")
             self.process_step = "move_back_to_init"
+
 
 
         # Zurückfahren auf Startposition
@@ -458,9 +423,11 @@ class ScanBar(Node):
                 self.process_step = "finish"
 
 
+
         # Endzustand
         if self.process_step == "finish":
-            """ Ednzustand -> Finish
+            """ 
+            Endzustand -> Finish
             """
             self.get_logger().info("Scan finished!")
             self.node_shutdown_flag = True
