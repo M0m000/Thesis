@@ -6,6 +6,7 @@ import numpy as np
 from scipy.spatial.transform import Rotation as R
 
 
+
 class GeometricsHandler(Node):
     def __init__(self):
         super().__init__("geometrics_handler")
@@ -24,30 +25,41 @@ class GeometricsHandler(Node):
         self.get_logger().info("Frame Handler for Geometrics Handler instantiated successfully!")
 
 
-        # speichern der aktuellen Hakeninstanz
+        ########## speichern der aktuellen Hakeninstanz
         self.hook_entry = None
+
+        # Variablen für Hook-Pos in WORK und TFC
         self.hook_pos_in_camframe = None
         self.hook_pos_in_workframe = None
-
         self.hook_pos_in_tfcframe = None
+
+        # Variablen für Tip-Pos in WORK und TFC
         self.tip_pos_in_camframe = None
         self.tip_pos_in_workframe = None
-        
         self.tip_pos_in_tfcframe = None
+
+        # Variablen für Lowpoints-Pos in WORK und TFC
         self.lowpoint_pos_in_camframe = None
         self.lowpoint_pos_in_workframe = None
         self.lowpoint_pos_in_tfcframe = None
-        
+
+        # Variablen für Path-Points in WORK und TFC
+        self.path_points_in_workframe = None
+        self.path_points_in_tfcframe = None
+
+        # Variablen für TFC-Pose in WORK und WORLD
         self.hook_tfc_pos_in_workframe = None
         self.hook_tfc_pos_in_worldframe = None
 
-        self.path_points = None
-
+        # Dict für Speicherung der aktuellen Hakengerade
         self.hook_line = {}
+        ##########
+
+        # Variablen für die Regelung
         self.plane = None
         self.plane_midpoint = None
         self.delta_angles = None
-
+        self.control_state = None
 
 
 
@@ -71,14 +83,17 @@ class GeometricsHandler(Node):
         
         
 
-
     def update_hook_data(self, hook_num):
+        """
+        Aktualisiert alle Daten des Hakes (verändert sich in Bezug auf das TFC-Frame permanent während Bewegung)
+        """
         if self.global_scan_dict is not None:
             # hole die aktuelle TFC Position im WORLD-Frame und rechne sie ins WORK-Frame um
             _, _, T_tfc_in_worldframe = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
             T_tfc_in_workframe = self.frame_handler.transform_worldpose_to_desired_frame(T_in_worldframe = T_tfc_in_worldframe,
                                                                                          frame_desired = "work")
             
+
             # hole die Haken Koordinaten im WORK Frame aus Global Scan Dict
             _ = self.get_hook_of_global_scan_dict(hook_num)
             T_work_in_tfcframe = np.linalg.inv(T_tfc_in_workframe)
@@ -96,6 +111,7 @@ class GeometricsHandler(Node):
                                                         self.lowpoint_pos_in_workframe[2], 
                                                         1.0])
             
+
             # rechne die Hakenkoordinaten vom WORK-Frame ins TFC-Frame um
             self.hook_pos_in_tfcframe = T_work_in_tfcframe @ hook_point_in_workframe_hom
             self.hook_pos_in_tfcframe = self.hook_pos_in_tfcframe[:3]
@@ -107,16 +123,36 @@ class GeometricsHandler(Node):
             self.lowpoint_pos_in_tfcframe = self.lowpoint_pos_in_tfcframe[:3]
 
 
-    
-    
-    def calculate_hook_line(self):
-        """
-        Berechnet eine Gerade entlang des Haken von p_0 (Senke) nach p_1 (Spitze)"""
-        if self.hook_pos_in_tfcframe is not None and self.tip_pos_in_tfcframe is not None and self.lowpoint_pos_in_tfcframe is not None:
-            p_0 = self.lowpoint_pos_in_tfcframe     # p_0 ist Lowpoint
-            p_1 = self.tip_pos_in_tfcframe          # p_1 ist Spitze
-            p_dir = p_1 - p_0
+            # rechne die Path Points ins TFC Frame um
+            self.path_points_in_tfcframe = []       # leeren der bisherigen Liste
+            for ppoint in self.path_points_in_workframe:
+                x = ppoint[0]
+                y = ppoint[1]
+                z = ppoint[2]
+                ppoint_hom = np.array([x, y, z, 1.0])
+                ppoint_in_tfcframe = T_work_in_tfcframe @ ppoint_hom
+                ppoint_in_tfcframe = ppoint_in_tfcframe[:3]
+                self.path_points_in_tfcframe.append(ppoint_in_tfcframe)         # speichern in Liste
 
+
+
+    def calculate_hook_line(self, p_0 = None, p_1 = None):
+        """
+        Berechnet eine Gerade entlang des Haken von p_0 (Senke) nach p_1 (Spitze)
+        --> kann auch für stückweise tangentiale Geraden verwendet werden, dann p_0 bzw. p_1 eintragen
+        """
+        if self.hook_pos_in_tfcframe is not None and self.tip_pos_in_tfcframe is not None and self.lowpoint_pos_in_tfcframe is not None:
+            if p_0 is None:
+                p_0 = self.lowpoint_pos_in_tfcframe     # p_0 ist Lowpoint
+            else:
+                p_0 = p_0
+            if p_1 is None:
+                p_1 = self.tip_pos_in_tfcframe          # p_1 ist Spitze
+            else:
+                p_1 = p_1
+            
+            # Richtungsvektor (normiert)
+            p_dir = p_1 - p_0
             abs_p_dir = np.linalg.norm(p_dir)
             if abs_p_dir != 0:
                 p_dir /= abs_p_dir
@@ -127,7 +163,6 @@ class GeometricsHandler(Node):
             self.hook_line['p_dir'] = p_dir
             return self.hook_line
         
-
 
 
     def calculate_plane(self, trans_in_tfcframe, rot_in_tfcframe):
@@ -153,7 +188,6 @@ class GeometricsHandler(Node):
         self.plane_midpoint = np.array(trans_in_tfcframe)
         return n_x, n_y, n_z, d
     
-
 
 
     def calculate_adjustment_angles(self, plane = None, line_dir = None):
@@ -195,7 +229,6 @@ class GeometricsHandler(Node):
     
 
 
-
     def calculate_translation_difference(self, target_position = None, plane = None, plane_midpoint = None):
         """
         Berechnet die Reglerdifferenz für die translatorische Verschiebung
@@ -223,7 +256,6 @@ class GeometricsHandler(Node):
     
 
 
-
     def calculate_targetpose_in_worldframe(self, target_position = None, line_dir = None, plane = None, plane_midpoint = None):
         """
         Berechnet die Endpose des TFC im WORLD-Frame -> kann dann direkt für MoveLinear servcie call genutzt werden...
@@ -237,8 +269,77 @@ class GeometricsHandler(Node):
                                                                                                       rot = rot_diff_in_tfcframe,
                                                                                                       pose_ref_frame = 'tfc')
         return trans_diff_in_worldframe, rot_diff_in_worldframe
+    
 
 
+    def control_feedback_algorithm(self, act_path_point = None, seq_path_point = None, hook_num = 1, plane = None):
+        """
+        Berechnet die aktuelle Regelabweichung
+        """
+        if act_path_point is not None:
+            # Hook-Daten mit gewuenschtem Index aktualisieren
+            self.update_hook_data(hook_num = hook_num)
+
+            x = act_path_point[0]
+            y = act_path_point[1]
+            z = act_path_point[2]
+            
+            # Differenz zwischen aktuellem Path Point und Mittelpunkt der Lochebene
+            trans_diff_in_tfcframe = self.calculate_translation_difference(target_position = [x, y, z])
+
+            # Aktualisierung der Geraden (zwische jetzigem PPoint und nachfolgendem PPoint)
+            if seq_path_point is not None:
+                self.calculate_hook_line(p_1 = act_path_point, p_0 = seq_path_point)
+
+            # Berechnung der rotatorischen Stellgröße
+            rot_diff_in_tfcframe = self.calculate_adjustment_angles(plane = plane, line_dir = self.hook_line['p_dir'])
+            return trans_diff_in_tfcframe, rot_diff_in_tfcframe
+        
+
+    
+    def visual_servoing_control(self, hook_num = 1, plane = None):
+        """
+        Enthält den Regelungs-Ablauf für das Einfädeln
+        """
+        self.
+        for idx in range(len(self.path_points_in_tfcframe)):
+            # Aktueller Status des Einfädelvorgangs
+            if idx == 0:
+                self.control_state = "tip"                          # Spitze
+            elif idx == (len(self.path_points_in_tfcframe) - 1):
+                self.control_state == "lowpoint"                    # Senke
+            else:
+                self.control_state == "pp_" + str(idx)              # Zwischenpunkt n
+
+            # Extraktion des Zielpunkts und des nachfolgenden Zielpunkts
+            act_path_point = self.path_points_in_tfcframe[idx]
+
+            if self.control_state != "lowpoint":
+                seq_path_point = self.path_points_in_tfcframe[idx + 1]
+            
+            # Erlaubte Toleranzen für Translation und Rotation
+            translation_tolerance = [0.5, 0.5, 0.5]
+            rotation_tolerance = [2.0, 2.0, 2.0]
+
+            while True:
+                # Regelfehler berechnen
+                trans_diff_in_tfcframe, rot_diff_in_tfcframe = self.control_feedback_algorithm(
+                    act_path_point=act_path_point,
+                    seq_path_point=seq_path_point,
+                    hook_num=hook_num,
+                    plane=plane)
+
+                # Absolutwerte der Fehler berechnen
+                abs__trans_diff_in_tfcframe = np.abs(trans_diff_in_tfcframe)
+                abs__rot_diff_in_tfcframe = np.abs(rot_diff_in_tfcframe)
+
+                # Toleranzprüfung
+                if np.all(abs__trans_diff_in_tfcframe <= translation_tolerance) and np.all(abs__rot_diff_in_tfcframe <= rotation_tolerance):
+                    break  # Fehler innerhalb der Toleranz, zum nächsten Path Point übergehen
+
+            
+
+        
         
 
 def main(args=None):

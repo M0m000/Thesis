@@ -134,8 +134,6 @@ class CamGeometricsHandler(Node):
 
 
 
-        
-
 
 
 def main(args=None):
