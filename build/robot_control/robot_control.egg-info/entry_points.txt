@@ -1,6 +1,5 @@
 [console_scripts]
 MoveTcpAlongAxis_action_client = robot_control.MoveTcpAlongAxis_action_client:main
-control = robot_control.control:main
 define_working_frame_needle = robot_control.define_working_frame_needle:main
 hook_data_listener = robot_control.hook_data_listener:main
 ibvs_2d = robot_control.ibvs_2d:main
@@ -11,4 +10,5 @@ scan_bar_vertical_triangulation = robot_control.scan_bar_vertical_triangulation:
 set_working_frame_qr = robot_control.set_working_frame_qr:main
 tcp_frame_listener = robot_control.tcp_frame_listener:main
 tf_frames_publisher = robot_control.tf_frames_publisher:main
+trajectory_control = robot_control.trajectory_control:main
 transform_action_client = robot_control.transform_action_client:main

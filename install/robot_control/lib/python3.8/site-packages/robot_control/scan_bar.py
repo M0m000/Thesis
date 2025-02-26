@@ -61,6 +61,9 @@ class ScanBar(Node):
 
         # Variablen für Prozess
         self.act_hook_num = 0
+        self.xyz_hook_in_workframe = None
+        self.xyz_tip_in_workframe = None
+        self.xyz_lowpoint_in_workframe = None
         
         # Instanz FrameHandler
         frame_csv_path = os.path.expanduser("~/Thesis/src/robot_control/robot_control/data")
@@ -225,9 +228,9 @@ class ScanBar(Node):
             xyz_lowpoint_in_worldframe = T_cam_in_worldframe @ xyz_lowpoint_in_camframe
             
             # Umrechnung von Hakenkoordinaten in WORK-Frame
-            xyz_hook_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = xyz_hook_in_worldframe[:3])
-            xyz_tip_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = xyz_tip_in_worldframe[:3])
-            xyz_lowpoint_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = xyz_lowpoint_in_worldframe[:3])
+            self.xyz_hook_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = xyz_hook_in_worldframe[:3])
+            self.xyz_tip_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = xyz_tip_in_worldframe[:3])
+            self.xyz_lowpoint_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = xyz_lowpoint_in_worldframe[:3])
 
             self.get_logger().info("Done! -> next process step <Move Until New Hook>")
             self.process_step = "interpolate_depth_shape"
@@ -309,20 +312,24 @@ class ScanBar(Node):
             """
             self.act_hook_num += 1
             self.global_hooks_dict[str(self.act_hook_num)] = {}
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook'] = xyz_hook_in_camframe
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip'] = xyz_tip_in_camframe
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint'] = xyz_lowpoint_in_camframe
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_camframe'] = xyz_hook_in_camframe
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_camframe'] = xyz_tip_in_camframe
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_camframe'] = xyz_lowpoint_in_camframe
 
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_worldframe'] = xyz_hook_in_worldframe
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_worldframe'] = xyz_tip_in_worldframe
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_worldframe'] = xyz_lowpoint_in_worldframe
+            # self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_worldframe'] = xyz_hook_in_worldframe
+            # self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_worldframe'] = xyz_tip_in_worldframe
+            # self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_worldframe'] = xyz_lowpoint_in_worldframe
 
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_workframe'] = xyz_hook_in_workframe
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_workframe'] = xyz_tip_in_workframe
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_workframe'] = xyz_lowpoint_in_workframe
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_workframe'] = self.xyz_hook_in_workframe
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_workframe'] = self.xyz_tip_in_workframe
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_workframe'] = self.xyz_lowpoint_in_workframe
 
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_path_points_in_workframe'] = path_points_xyz_in_workframe
+
+            self.global_hooks_dict[str(self.act_hook_num)]['tfc_in_workframe'] = self.robot_position_horizontal
+            self.global_hooks_dict[str(self.act_hook_num)]['tfc_in_worldframe'], _, _ = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
             
+
             # Ausgabe der berechneten Koordinaten im WORK-Frame und Anzhal bereits verarbeiteter Haken
             self.get_logger().warn(f"Hook XYZ [WORK]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_workframe']}")
             self.get_logger().warn(f"Tip XYZ [WORK]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_workframe']}")
