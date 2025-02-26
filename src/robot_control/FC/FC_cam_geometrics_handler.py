@@ -122,7 +122,7 @@ class CamGeometricsHandler(Node):
     
 
 
-    def get_local_hook_id(self, cam_index = 1, distance_in_mm = 0, global_id = 1):
+    def get_local_hook_id_to_follow(self, cam_index = 1, distance_in_mm = 0, global_id = 1):
         """
         Findet für eine globale Hook-ID anhand des FoV und der aktuellen Kameraposition die lokale ID eines Hakens im Bild
         """
