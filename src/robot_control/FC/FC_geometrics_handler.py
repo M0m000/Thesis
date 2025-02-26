@@ -19,11 +19,9 @@ class GeometricsHandler(Node):
         else:
             self.get_logger().error("Error at loading Global Scan Dict from CSV!")
 
-
         # Instanziieren eines Frame Handlers
         self.frame_handler = FrameHandler(node_name = "frame_handler_for_geometrics_handler")
         self.get_logger().info("Frame Handler for Geometrics Handler instantiated successfully!")
-
 
         ########## speichern der aktuellen Hakeninstanz
         self.hook_entry = None
@@ -60,6 +58,8 @@ class GeometricsHandler(Node):
         self.plane_midpoint = None
         self.delta_angles = None
         self.control_state = None
+        self.trans_diff_in_tfcframe = None
+        self.rot_diff_in_tfcframe = None
 
 
 
@@ -272,7 +272,6 @@ class GeometricsHandler(Node):
             trans = trans_diff_in_tfcframe, 
             rot = rot_diff_in_tfcframe,
             pose_ref_frame = 'tfc')
-        
         return trans_diff_in_worldframe, rot_diff_in_worldframe
     
 
@@ -327,20 +326,19 @@ class GeometricsHandler(Node):
 
             while True:
                 # Regelfehler berechnen
-                trans_diff_in_tfcframe, rot_diff_in_tfcframe = self.control_feedback_algorithm(
+                self.trans_diff_in_tfcframe, self.rot_diff_in_tfcframe = self.control_feedback_algorithm(
                     act_path_point=act_path_point,
                     seq_path_point=seq_path_point,
                     hook_num=hook_num,
                     plane=plane)
 
                 # Absolutwerte der Fehler berechnen
-                abs__trans_diff_in_tfcframe = np.abs(trans_diff_in_tfcframe)
-                abs__rot_diff_in_tfcframe = np.abs(rot_diff_in_tfcframe)
+                abs__trans_diff_in_tfcframe = np.abs(self.trans_diff_in_tfcframe)
+                abs__rot_diff_in_tfcframe = np.abs(self.rot_diff_in_tfcframe)
 
                 # Toleranzprüfung
                 if np.all(abs__trans_diff_in_tfcframe <= translation_tolerance) and np.all(abs__rot_diff_in_tfcframe <= rotation_tolerance):
                     break  # Fehler innerhalb der Toleranz, zum nächsten Path Point übergehen
-
 
 
 
