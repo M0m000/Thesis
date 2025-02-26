@@ -56,7 +56,7 @@ def plot_hooks_and_bars(received_img, hooks_dict, bar_dict):
             hook_mask_color = np.zeros_like(img_copy)
             hook_mask_color[hook_mask == 1] = (color[0] * 255, color[1] * 255, color[2] * 255)
             img_copy = cv2.addWeighted(img_copy, 1, hook_mask_color, 0.5, 0)
-
+            
             # Marker für UV-Koordinate
             p_hook = tuple(map(int, hooks_dict[hook_name]['uv_hook']))
             cv2.drawMarker(img_copy, p_hook, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
@@ -94,10 +94,11 @@ def plot_hooks_and_bars(received_img, hooks_dict, bar_dict):
                 # Marker für UV-Koordinate
                 p_lowpoint = tuple(map(int, hooks_dict[hook_name]['uv_lowpoint']))
                 cv2.drawMarker(img_copy, p_lowpoint, color=(0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=30, thickness=2, line_type=cv2.LINE_AA)
-
+                
                 # Beschriftung
                 cv2.putText(img_copy, f"Lowpoint {str(len(hooks_dict)-idx)} ({conf_lowpoint[0]:.2f})", (int(xl1), int(yl1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (color[0] * 255, color[1] * 255, color[2] * 255), 2)
 
+            
             # Skelett-Maske
             if skeleton_mask is not None:
                 skeleton_mask_color = np.zeros_like(img_copy)

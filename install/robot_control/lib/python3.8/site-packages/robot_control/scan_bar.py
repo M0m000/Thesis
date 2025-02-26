@@ -423,7 +423,6 @@ class ScanBar(Node):
                 self.process_step = "finish"
 
 
-
         # Endzustand
         if self.process_step == "finish":
             """ 
