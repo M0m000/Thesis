@@ -201,15 +201,11 @@ class TrajectoryControl(Node):
             self.get_logger().error(f"Service call of SetSystemFrame failed: {e}")
 
 
-
-    def destroy(self):
+    def shutdown(self):
         """Gibt alle Ressourcen frei, bevor der Node beendet wird."""
-        self.get_logger().info("Beende Control Node...")
         self.jog_publisher_timer.cancel()
         self.control_timer.cancel()
         self.destroy_node()
-        self.get_logger().info("Control Node erfolgreich gestoppt.")
-
 
 
 
@@ -222,7 +218,7 @@ def main(args=None):
     except KeyboardInterrupt:
         node.get_logger().info("Shutting down...")
     finally:
-        node.destroy()
+        node.shutdown()
         rclpy.shutdown()
 
 if __name__ == '__main__':
