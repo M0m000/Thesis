@@ -60,3 +60,4 @@ def generate_launch_description():
             actions=[scan_bar_horizontal_triangulation_node]
         )
     ])
+

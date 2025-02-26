@@ -172,6 +172,20 @@ ros2 run action_servers MoveTcpAlongAxis_action_server
 Enthält alle Roboteransteuerungen - kommuniziert mit orange-ros2-Package von Kassow Robots. <br>
 <br>
 
+### **VC Vision Launch File** <br>
+```bash
+ros2 launch robot_control vc_vision_launch.py
+```
+>Launchfile für Hochfahren von VC Cam, Regelung Ringlicht, Starten von Img-Receiver und Yolo-Inferenz-Node. <br>
+<br>
+
+### **Scan Bar Launch File** <br>
+```bash
+ros2 launch robot_control scan_bar_launch.py
+```
+>Launchfile für Hochfahren von VC Cam, Regelung Ringlicht, Starten von Img-Receiver und Yolo-Inferenz-Node. Anschließend wird Scan-Prozess gestartet. <br>
+<br>
+
 ### **Trajectory Controller** Node <br>
 ```bash
 ros2 run robot_control trajectory_control --ros-args -p hook_num:=10
