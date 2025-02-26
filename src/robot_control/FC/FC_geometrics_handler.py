@@ -53,18 +53,18 @@ class GeometricsHandler(Node):
 
     def get_hook_of_global_scan_dict(self, hook_num):
         if hook_num != 0 and hook_num <= len(self.global_scan_dict) and self.global_scan_dict is not None:
-            self.hook_tfc_pos_in_workframe = self.global_scan_dict[str(hook_num)]['tfc_workframe']
-            self.hook_tfc_pos_in_worldframe = self.global_scan_dict[str(hook_num)]['tfc_worldframe']
+            self.hook_tfc_pos_in_workframe = self.global_scan_dict[str(hook_num)]['tfc_in_workframe']
+            self.hook_tfc_pos_in_worldframe = self.global_scan_dict[str(hook_num)]['tfc_in_worldframe']
 
             self.hook_entry = self.global_scan_dict[str(hook_num)]
-            self.hook_pos_in_camframe = self.global_scan_dict[str(hook_num)]['xyz_hook']
-            self.hook_pos_in_workframe = self.global_scan_dict[str(hook_num)]['xyz_hook_workframe']
+            self.hook_pos_in_camframe = self.global_scan_dict[str(hook_num)]['xyz_hook_in_camframe']
+            self.hook_pos_in_workframe = self.global_scan_dict[str(hook_num)]['xyz_hook_in_workframe']
             
-            self.tip_pos_in_camframe = self.global_scan_dict[str(hook_num)]['xyz_tip']
-            self.tip_pos_in_workframe = self.global_scan_dict[str(hook_num)]['xyz_tip_workframe']
+            self.tip_pos_in_camframe = self.global_scan_dict[str(hook_num)]['xyz_tip_in_camframe']
+            self.tip_pos_in_workframe = self.global_scan_dict[str(hook_num)]['xyz_tip_in_workframe']
 
-            self.lowpoint_pos_in_camframe = self.global_scan_dict[str(hook_num)]['xyz_lowpoint']
-            self.lowpoint_pos_in_workframe = self.global_scan_dict[str(hook_num)]['xyz_lowpoint_workframe']
+            self.lowpoint_pos_in_camframe = self.global_scan_dict[str(hook_num)]['xyz_lowpoint_in_camframe']
+            self.lowpoint_pos_in_workframe = self.global_scan_dict[str(hook_num)]['xyz_lowpoint_in_workframe']
 
             self.path_points_in_workframe = self.global_scan_dict[str(hook_num)]['xyz_path_points_in_workframe']
             return self.hook_entry
