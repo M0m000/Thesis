@@ -90,8 +90,9 @@ class GeometricsHandler(Node):
         if self.global_scan_dict is not None:
             # hole die aktuelle TFC Position im WORLD-Frame und rechne sie ins WORK-Frame um
             _, _, T_tfc_in_worldframe = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
-            T_tfc_in_workframe = self.frame_handler.transform_worldpose_to_desired_frame(T_in_worldframe = T_tfc_in_worldframe,
-                                                                                         frame_desired = "work")
+            T_tfc_in_workframe = self.frame_handler.transform_worldpose_to_desired_frame(
+                T_in_worldframe = T_tfc_in_worldframe,
+                frame_desired = "work")
             
 
             # hole die Haken Koordinaten im WORK Frame aus Global Scan Dict
@@ -260,14 +261,18 @@ class GeometricsHandler(Node):
         """
         Berechnet die Endpose des TFC im WORLD-Frame -> kann dann direkt für MoveLinear servcie call genutzt werden...
         """
-        trans_diff_in_tfcframe = self.calculate_translation_difference(target_position = target_position, 
-                                                                        plane = plane, 
-                                                                        plane_midpoint = plane_midpoint)
+        trans_diff_in_tfcframe = self.calculate_translation_difference(
+            target_position = target_position, 
+            plane = plane, 
+            plane_midpoint = plane_midpoint)
+        
         rot_diff_in_tfcframe = self.calculate_adjustment_angles(plane = plane, line_dir = line_dir)
 
-        trans_diff_in_worldframe, rot_diff_in_worldframe = self.frame_handler.transform_pose_to_world(trans = trans_diff_in_tfcframe, 
-                                                                                                      rot = rot_diff_in_tfcframe,
-                                                                                                      pose_ref_frame = 'tfc')
+        trans_diff_in_worldframe, rot_diff_in_worldframe = self.frame_handler.transform_pose_to_world(
+            trans = trans_diff_in_tfcframe, 
+            rot = rot_diff_in_tfcframe,
+            pose_ref_frame = 'tfc')
+        
         return trans_diff_in_worldframe, rot_diff_in_worldframe
     
 

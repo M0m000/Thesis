@@ -90,8 +90,14 @@ class CamGeometricsHandler(Node):
         """
         Transformiert die FoV-Bounding Boxes in gewünschtes Frame (hier WORK)
         """
-        bbox_upper_left_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = bbox_upper_left, frame_desired = frame_desired)
-        bbox_lower_right_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = bbox_lower_right, frame_desired = frame_desired)
+        bbox_upper_left_in_workframe = self.frame_handler.transform_worldpoint_in_frame(
+            point = bbox_upper_left, 
+            frame_desired = frame_desired)
+        
+        bbox_lower_right_in_workframe = self.frame_handler.transform_worldpoint_in_frame(
+            point = bbox_lower_right, 
+            frame_desired = frame_desired)
+        
         return bbox_upper_left_in_workframe, bbox_lower_right_in_workframe
     
 
@@ -101,12 +107,20 @@ class CamGeometricsHandler(Node):
         Findet die Indizes der momentan sichtbaren Haken aus Global Hook Dict
         """
         aperture_angle_width, aperture_angle_height = self._calculate_aperture_angle(cam_index = cam_index)
-        fov_width, fov_height = self._calculate_field_of_view(aperture_angle_width = aperture_angle_width, 
-                                                              aperture_angle_height = aperture_angle_height)
-        upper_left, lower_right = self._calculate_fov_borders_in_camframe(fov_width = fov_width, fov_height = fov_height, distance_in_mm = distance_in_mm)
-        bbox_upper_left_in_workframe, bbox_lower_right_in_workframe = self._transform_fov_bbox_to_desired_frame(bbox_upper_left = upper_left, 
-                                                                                                                bbox_lower_right = lower_right, 
-                                                                                                                desired_frame = 'work')
+
+        fov_width, fov_height = self._calculate_field_of_view(
+            aperture_angle_width = aperture_angle_width, 
+            aperture_angle_height = aperture_angle_height)
+        
+        upper_left, lower_right = self._calculate_fov_borders_in_camframe(
+            fov_width = fov_width, 
+            fov_height = fov_height, 
+            distance_in_mm = distance_in_mm)
+        
+        bbox_upper_left_in_workframe, bbox_lower_right_in_workframe = self._transform_fov_bbox_to_desired_frame(
+            bbox_upper_left = upper_left, 
+            bbox_lower_right = lower_right, 
+            desired_frame = 'work')
 
         # Überprüfen aller Haken im Global Scan Dict, ob sie innerhalb des sichtbaren Bereichs liegen
         visible_hook_ids = []
@@ -130,7 +144,7 @@ class CamGeometricsHandler(Node):
         for idx in range(len(visible_hook_ids)):
             if visible_hook_ids[idx] == global_id:
                 return idx      # Index in der Liste visible_hook_ids ist direkt der Instanz-Index des Hakens im Bild -> NOCH ZU CHECKEN, ob rückwärts
-        return None             # falls der Index nicht gefunden wurde -> Kamera steht falsch und kann den gewünschten Haken gar nicht sehen -> return None
+        return None             # falls der Index nicht gefunden wurde -> Kamera steht falsch und kann den gewünschten Haken nicht sehen -> return None
 
 
 

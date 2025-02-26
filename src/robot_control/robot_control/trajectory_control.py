@@ -63,65 +63,71 @@ class TrajectoryControl(Node):
         # Position Grip in WORK Frame
         self.grip_pre_pos_in_workframe = [1018.0, -100.0, -50.0]
         self.grip_pre_rot_in_workframe = [-45.0, 0.0, 0.0]
-        self.grip_pre_pos_in_worldframe, self.grip_pre_rot_in_worldframe = self.frame_handler.transform_pose_to_world(trans = self.grip_pre_pos_in_workframe,
-                                                                                                                      rot = self.grip_pre_rot_in_workframe,
-                                                                                                                      pose_ref_frame = "work")
+        self.grip_pre_pos_in_worldframe, self.grip_pre_rot_in_worldframe = self.frame_handler.transform_pose_to_world(
+            trans = self.grip_pre_pos_in_workframe,
+            rot = self.grip_pre_rot_in_workframe,
+            pose_ref_frame = "work")
         
         # Preposition Grip in WORK Frame
         self.grip_pos_in_workframe = [1018.0, -100.0, 20.0]
         self.grip_rot_in_workframe = [-45.0, 0.0, 0.0]
-        self.grip_pos_in_worldframe, self.grip_rot_in_worldframe = self.frame_handler.transform_pose_to_world(trans = self.grip_pos_in_workframe,
-                                                                                                              rot = self.grip_rot_in_workframe,
-                                                                                                              pose_ref_frame = "work")
+        self.grip_pos_in_worldframe, self.grip_rot_in_worldframe = self.frame_handler.transform_pose_to_world(
+            trans = self.grip_pos_in_workframe,
+            rot = self.grip_rot_in_workframe,
+            pose_ref_frame = "work")
         
         # Position zum rausnehmen des Bauteils
         self.grip_post_pos_in_workframe = [1018.0, -200.0, 20.0]
         self.grip_post_rot_in_workframe = [-45.0, 0.0, 0.0]
-        self.grip_post_pos_in_worldframe, self.grip_post_rot_in_worldframe = self.frame_handler.transform_pose_to_world(trans = self.grip_post_pos_in_workframe,
-                                                                                                                        rot = self.grip_post_rot_in_workframe,
-                                                                                                                        pose_ref_frame = "work")
+        self.grip_post_pos_in_worldframe, self.grip_post_rot_in_worldframe = self.frame_handler.transform_pose_to_world(
+            trans = self.grip_post_pos_in_workframe,
+            rot = self.grip_post_rot_in_workframe,
+            pose_ref_frame = "work")
         '''
         self.grip_pre_pos_movement_done = False
-        self.grip_pre_pos_movement_done = self.move_lin_client.call_move_linear_service(pos = self.grip_pre_pos_in_worldframe,
-                                                                                        rot = self.grip_pre_rot_in_worldframe,
-                                                                                        ref = 0,
-                                                                                        ttype = 0,
-                                                                                        tvalue = 20.0,
-                                                                                        bpoint = 0,
-                                                                                        btype = 0,
-                                                                                        bvalue = 100.0,
-                                                                                        sync = 0.0,
-                                                                                        chaining = 0)
+        self.grip_pre_pos_movement_done = self.move_lin_client.call_move_linear_service(
+            pos = self.grip_pre_pos_in_worldframe,
+            rot = self.grip_pre_rot_in_worldframe,
+            ref = 0,
+            ttype = 0,
+            tvalue = 20.0,
+            bpoint = 0,
+            btype = 0,
+            bvalue = 100.0,
+            sync = 0.0,
+            chaining = 0)
         if self.grip_pre_pos_movement_done:
             time.sleep(1)
         
         self.grip_pos_movement_done = False
-        self.grip_pos_movement_done = self.move_lin_client.call_move_linear_service(pos = self.grip_pos_in_worldframe,
-                                                                                    rot = self.grip_rot_in_worldframe,
-                                                                                    ref = 0,
-                                                                                    ttype = 0,
-                                                                                    tvalue = 20.0,
-                                                                                    bpoint = 0,
-                                                                                    btype = 0,
-                                                                                    bvalue = 100.0,
-                                                                                    sync = 0.0,
-                                                                                    chaining = 0)
+        self.grip_pos_movement_done = self.move_lin_client.call_move_linear_service(
+            pos = self.grip_pos_in_worldframe,
+            rot = self.grip_rot_in_worldframe,
+            ref = 0,
+            ttype = 0,
+            tvalue = 20.0,
+            bpoint = 0,
+            btype = 0,
+            bvalue = 100.0,
+            sync = 0.0,
+            chaining = 0)
         if self.grip_pos_movement_done:
             time.sleep(2)
         self.gripper_handler.close_gripper()
         
         if self.gripper_handler.gripper_closed:
             self.grip_post_movement_done = False
-            self.grip_post_movement_done = self.move_lin_client.call_move_linear_service(pos = self.grip_post_pos_in_worldframe,
-                                                                                         rot = self.grip_post_rot_in_worldframe,
-                                                                                         ref = 0,
-                                                                                         ttype = 0,
-                                                                                         tvalue = 20.0,
-                                                                                         bpoint = 0,
-                                                                                         btype = 0,
-                                                                                         bvalue = 100.0,
-                                                                                         sync = 0.0,
-                                                                                         chaining = 0)
+            self.grip_post_movement_done = self.move_lin_client.call_move_linear_service(
+            pos = self.grip_post_pos_in_worldframe,
+            rot = self.grip_post_rot_in_worldframe,
+            ref = 0,
+            ttype = 0,
+            tvalue = 20.0,
+            bpoint = 0,
+            btype = 0,
+            bvalue = 100.0,
+            sync = 0.0,
+            chaining = 0)
         '''
         self.plane = None
         self.geometrics_handler.update_hook_data(hook_num = self.hook_num)
@@ -130,16 +136,17 @@ class TrajectoryControl(Node):
 
         # Lineares Anfahren der Position - erste grobe Positionierung
         endpos_trans_in_worldframe, endpos_rot_in_worldframe = self.geometrics_handler.calculate_targetpose_in_worldframe()
-        self.grip_post_movement_done = self.move_lin_client.call_move_linear_service(pos = endpos_trans_in_worldframe,
-                                                                                     rot = endpos_rot_in_worldframe,
-                                                                                     ref = 0,
-                                                                                     ttype = 0,
-                                                                                     tvalue = 30.0,
-                                                                                     bpoint = 0,
-                                                                                     btype = 0,
-                                                                                     bvalue = 100.0,
-                                                                                     sync = 0.0,
-                                                                                     chaining = 0)
+        self.grip_post_movement_done = self.move_lin_client.call_move_linear_service(
+            pos = endpos_trans_in_worldframe,
+            rot = endpos_rot_in_worldframe,
+            ref = 0,
+            ttype = 0,
+            tvalue = 30.0,
+            bpoint = 0,
+            btype = 0,
+            bvalue = 100.0,
+            sync = 0.0,
+            chaining = 0)
         print(endpos_trans_in_worldframe, endpos_rot_in_worldframe)
 
         # Timer für Regelungsalgorithmus
