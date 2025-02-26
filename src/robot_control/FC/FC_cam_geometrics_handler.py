@@ -6,47 +6,100 @@ import numpy as np
 from scipy.spatial.transform import Rotation as R
 
 
-class GeometricsHandler(Node):
-    def __init__(self):
-        super().__init__("geometrics_handler")
+class CamGeometricsHandler(Node):
+    def __init__(self,
+                 calib_path_cam1 = '/home/mo/Thesis/calibration_data.npz',
+                 calib_path_cam2 = '/home/mo/Thesis/calibration_data.npz',
+                 img_width = 1280,
+                 img_height = 720):
+        
+        self.calib_data_cam1 = np.load(calib_path_cam1)
+        self.calib_data_cam2 = np.load(calib_path_cam2)
+        self.intrinsics_cam1 = self.calib_data_cam1['mtx']     # Kameramatrix (mit Brennweite Verzerrung etc.)
+        self.intrinsics_cam2 = self.calib_data_cam2['mtx']
 
-        # Laden des Global Scan Dict
-        self.global_scan_dict = None
-        self.global_scan_dict = load_csv_to_dict(node = self, filename = '/home/mo/Thesis/src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv')
-        if self.global_scan_dict is not None:
-            self.get_logger().info("Global Scan Dict loaded successfully from CSV for Geometrics Handler!")
+        # f = 0.006/3.45e-6
+        c_x = img_width / 2
+        c_y = img_height / 2
+
+        self.calib_data_cam1[0][2] = c_x
+        self.calib_data_cam1[1][2] = c_y
+        self.calib_data_cam2[0][2] = c_x
+        self.calib_data_cam2[1][2] = c_y
+
+        self.dist_cam1 = self.calib_data_cam1['dist']          # Verzerrungskoeffizienten
+        self.dist_cam2 = self.calib_data_cam2['dist']
+
+        self.sensor_width_cam_1 = 3.45e-6
+        self.sensor_height_cam_1 = 3.45e-6
+        self.sensor_width_cam_2 = 3.45e-6
+        self.sensor_height_cam_2 = 3.45e-6
+
+        self.objective_1_f_in_mm = 0.006            # Brennweite der Objektive [mm]
+        self.objective_2_f_in_mm = 0.008
+
+        self.f_cam_1 = self.objective_1_f_in_mm/self.sensor_width_cam_1         # Brennweite [px]
+        self.f_cam_2 = self.objective_2_f_in_mm/self.sensor_width_cam_2
+
+        self.frame_handler = FrameHandler(node_name = "frame_handler_for_cam_geometrics_handler")
+
+    
+    def calculate_aperture_angle(self, cam_index = 1):
+        """
+        berechnet die Öffnungswinkel des Objektivs - vgl. Breite des Sichtkegels
+        """
+        if cam_index == 1:
+            sensor_width, sensor_height = self.sensor_width_cam_1, self.sensor_height_cam_1
+            f_in_px = self.f_cam_1
+            f_in_mm = self.objective_1_f_in_mm
         else:
-            self.get_logger().error("Error at loading Global Scan Dict from CSV!")
-
-
-        # Instanziieren eines Frame Handlers
-        self.frame_handler = FrameHandler(node_name = "frame_handler_for_geometrics_handler")
-        self.get_logger().info("Frame Handler for Geometrics Handler instantiated successfully!")
-
-
-        # speichern der aktuellen Hakeninstanz
-        self.hook_entry = None
-        self.hook_pos_in_camframe = None
-        self.hook_pos_in_workframe = None
-
-        self.hook_pos_in_tfcframe = None
-        self.tip_pos_in_camframe = None
-        self.tip_pos_in_workframe = None
+            sensor_widht, sensor_height = self.sensor_width_cam_2, self.sensor_height_cam_2
+            f_in_px = self.f_cam_2
+            f_in_mm = self.objective_2_f_in_mm
         
-        self.tip_pos_in_tfcframe = None
-        self.lowpoint_pos_in_camframe = None
-        self.lowpoint_pos_in_workframe = None
-        self.lowpoint_pos_in_tfcframe = None
+        aperture_angle_width = 2 * np.arctan(sensor_width / 2 * f_in_mm)
+        aperture_angle_height = 2 * np.arctan(sensor_height / 2 * f_in_mm)
+        return aperture_angle_width, aperture_angle_height
+    
+
+
+    def calculate_field_of_view(self, aperture_angle_width, aperture_angle_height, distance_in_mm):
+        """
+        berechnet FoV -> die Breite und Höhe des Sichtfeld in einem bestimmten Abstand d
+        """
+        fov_width = 2 * distance_in_mm * np.tan(aperture_angle_width / 2)
+        fov_height = 2 * distance_in_mm * np.tan(aperture_angle_height / 2)
+        return fov_width, fov_height
+    
+
+
+    def calculate_fov_borders_in_camframe(self, fov_width, fov_height, distance_in_mm):
+        """
+        Berechnet aus den FoV-Werten die Grenzen als Bounding Box in CAM-Frame
+        --> x-Achse zeigt im Bild nach rechts, y-Achse nach unten
+        """
+        upper_left = np.array([-fov_width/2, -fov_height/2, distance_in_mm])
+        lower_right = np.array([fov_width/2, fov_height/2, distance_in_mm])
+        return upper_left, lower_right
+    
+
+
+    def transform_fov_bbox_to_desired_frame(self, bbox_upper_left, bbox_lower_right, desired_frame = 'work'):
+        """
+        Transformiert die FoV-Bounding Boxes in gewünschtes Frame (hier WORK)
+        """
+        bbox_upper_left_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = bbox_upper_left, frame_desired = 'work')
+        bbox_lower_right_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = bbox_lower_right, frame_desired = 'work')
+        return bbox_upper_left_in_workframe, bbox_lower_right_in_workframe
+    
+
+
+    def get_visible_hook_idx(self, bbox_upper_left_in_workframe, bbox_lower_right_in_workframe):
+        """
+        sucht die Indizes der momentan sichtbaren Haken aus Global Hook Dict
+        """
         
-        self.hook_tfc_pos_in_workframe = None
-        self.hook_tfc_pos_in_worldframe = None
 
-        self.path_points = None
-
-        self.hook_line = {}
-        self.plane = None
-        self.plane_midpoint = None
-        self.delta_angles = None
 
 
 
@@ -65,8 +118,6 @@ class GeometricsHandler(Node):
 
             self.lowpoint_pos_in_camframe = self.global_scan_dict[str(hook_num)]['xyz_lowpoint']
             self.lowpoint_pos_in_workframe = self.global_scan_dict[str(hook_num)]['xyz_lowpoint_workframe']
-
-            self.path_points_in_workframe = self.global_scan_dict[str(hook_num)]['xyz_path_points_in_workframe']
             return self.hook_entry
         
         
@@ -243,7 +294,7 @@ class GeometricsHandler(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = GeometricsHandler()
+    node = CamGeometricsHandler()
     rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()

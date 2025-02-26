@@ -9,9 +9,9 @@ from kr_msgs.srv import SelectJoggingFrame
 from kr_msgs.srv import SetSystemFrame
 
 
-class TrajectoryControl(Node):
+class VisualServoingControl(Node):
     def __init__(self):
-        super().__init__('trajectory_control')
+        super().__init__('visual_servoing_control')
         
         self.declare_parameter('hook_num', 10)
         self.hook_num = self.get_parameter('hook_num').get_parameter_value().integer_value
@@ -46,8 +46,6 @@ class TrajectoryControl(Node):
         # Instanz Geometrics Handler
         self.geometrics_handler = GeometricsHandler()
         self.hook = self.geometrics_handler.get_hook_of_global_scan_dict(hook_num=self.hook_num)
-        self.geometrics_handler.update_hook_data(hook_num=self.hook_num)
-        self.geometrics_handler.calculate_hook_line()
 
         # Instanz Gripper Handler
         # self.gripper_handler = GripperHandler()
@@ -215,7 +213,7 @@ class TrajectoryControl(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = TrajectoryControl()
+    node = VisualServoingControl()
 
     try:
         rclpy.spin(node)
@@ -227,3 +225,4 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+    
