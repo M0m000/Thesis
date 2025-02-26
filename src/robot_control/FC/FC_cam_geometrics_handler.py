@@ -46,7 +46,7 @@ class CamGeometricsHandler(Node):
 
     
 
-    def calculate_aperture_angle(self, cam_index = 1):
+    def _calculate_aperture_angle(self, cam_index = 1):
         """
         Berechnet die Öffnungswinkel des Objektivs - vgl. Breite des Sichtkegels
         """
@@ -65,7 +65,7 @@ class CamGeometricsHandler(Node):
     
 
 
-    def calculate_field_of_view(self, aperture_angle_width, aperture_angle_height, distance_in_mm):
+    def _calculate_field_of_view(self, aperture_angle_width, aperture_angle_height, distance_in_mm):
         """
         Berechnet FoV -> die Breite und Höhe des Sichtfeld in einem bestimmten Abstand d
         """
@@ -75,7 +75,7 @@ class CamGeometricsHandler(Node):
     
 
 
-    def calculate_fov_borders_in_camframe(self, fov_width, fov_height, distance_in_mm):
+    def _calculate_fov_borders_in_camframe(self, fov_width, fov_height, distance_in_mm):
         """
         Berechnet aus den FoV-Werten die Grenzen als Bounding Box in CAM-Frame
         --> x-Achse zeigt im Bild nach rechts, y-Achse nach unten
@@ -86,23 +86,31 @@ class CamGeometricsHandler(Node):
     
 
 
-    def transform_fov_bbox_to_desired_frame(self, bbox_upper_left, bbox_lower_right, desired_frame = 'work'):
+    def _transform_fov_bbox_to_desired_frame(self, bbox_upper_left, bbox_lower_right, frame_desired = 'work'):
         """
         Transformiert die FoV-Bounding Boxes in gewünschtes Frame (hier WORK)
         """
-        bbox_upper_left_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = bbox_upper_left, frame_desired = 'work')
-        bbox_lower_right_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = bbox_lower_right, frame_desired = 'work')
+        bbox_upper_left_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = bbox_upper_left, frame_desired = frame_desired)
+        bbox_lower_right_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = bbox_lower_right, frame_desired = frame_desired)
         return bbox_upper_left_in_workframe, bbox_lower_right_in_workframe
     
 
 
-    def get_visible_hook_ids(self, bbox_upper_left_in_workframe, bbox_lower_right_in_workframe):
+    def get_visible_global_hook_ids(self, cam_index = 1, distance_in_mm = 0):
         """
         Findet die Indizes der momentan sichtbaren Haken aus Global Hook Dict
         """
-        visible_hook_ids = []
+        aperture_angle_width, aperture_angle_height = self._calculate_aperture_angle(cam_index = cam_index)
+        fov_width, fov_height = self._calculate_field_of_view(aperture_angle_width = aperture_angle_width, 
+                                                              aperture_angle_height = aperture_angle_height)
+        upper_left, lower_right = self._calculate_fov_borders_in_camframe(fov_width = fov_width, fov_height = fov_height, distance_in_mm = distance_in_mm)
+        bbox_upper_left_in_workframe, bbox_lower_right_in_workframe = self._transform_fov_bbox_to_desired_frame(bbox_upper_left = upper_left, 
+                                                                                                                bbox_lower_right = lower_right, 
+                                                                                                                desired_frame = 'work')
 
         # Überprüfen aller Haken im Global Scan Dict, ob sie innerhalb des sichtbaren Bereichs liegen
+        visible_hook_ids = []
+
         for idx, key in enumerate(self.hook_geometrics_handler.global_scan_dict):
             xyz_hook_in_workframe = self.hook_geometrics_handler.global_scan_dict[key]['xyz_hook_in_workframe']     # sobald Haken detektiert, gibt es diese Koordinate
 
@@ -111,6 +119,20 @@ class CamGeometricsHandler(Node):
                 xyz_hook_in_workframe[0] <= bbox_lower_right_in_workframe[0] and xyz_hook_in_workframe[1] <= bbox_lower_right_in_workframe[1]):
                 visible_hook_ids.append(idx)
         return visible_hook_ids
+    
+
+
+    def get_local_hook_id(self, cam_index = 1, distance_in_mm = 0, global_id = 1):
+        """
+        Findet für eine globale Hook-ID anhand des FoV und der aktuellen Kameraposition die lokale ID eines Hakens im Bild
+        """
+        visible_hook_ids = self.get_visible_global_hook_ids(cam_index = cam_index, distance_in_mm = distance_in_mm)
+        for idx in range(len(visible_hook_ids)):
+            if visible_hook_ids[idx] == global_id:
+                return idx      # Index in der Liste visible_hook_ids ist direkt der Instanz-Index des Hakens im Bild -> NOCH ZU CHECKEN, ob rückwärts
+        return None             # falls der Index nicht gefunden wurde -> Kamera steht falsch und kann den gewünschten Haken gar nicht sehen -> return None
+
+
 
         
 
