@@ -44,6 +44,7 @@ def plot_hooks_and_bars(received_img, hooks_dict, bar_dict):
             lowpoint_mask = hook["lowpoint_mask"]
             conf_lowpoint = hook["conf_lowpoint"]
             skeleton_mask = hook["skeleton_mask"]
+            path_points = hook["path_points"]
 
             # Normalisiere den Index für die Farbpalette
             color = colors(idx / len(hooks_dict))  # Skaliere den Index auf [0, 1]
@@ -104,6 +105,18 @@ def plot_hooks_and_bars(received_img, hooks_dict, bar_dict):
                 skeleton_mask_color = np.zeros_like(img_copy)
                 skeleton_mask_color[skeleton_mask == 255] = (255, 0, 255)
                 img_copy = cv2.addWeighted(img_copy, 1, skeleton_mask_color, 1.0, 0)
+
+            # Path Points
+            if path_points is not None:
+                for idx, point in enumerate(path_points):
+                    y, x = point
+
+                    if idx == 0:
+                        cv2.circle(img_copy, (x, y), radius = 3, color = (0, 255, 0), thickness = -1)
+                    elif idx == (len(path_points) - 1):
+                        cv2.circle(img_copy, (x, y), radius = 3, color = (0, 255, 0), thickness = -1)
+                    else:
+                        cv2.circle(img_copy, (x, y), radius = 3, color = (0, 0, 255), thickness = -1)
     return img_copy
 
 
