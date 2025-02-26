@@ -172,9 +172,9 @@ ros2 run action_servers MoveTcpAlongAxis_action_server
 Enthält alle Roboteransteuerungen - kommuniziert mit orange-ros2-Package von Kassow Robots. <br>
 <br>
 
-### **Control** Node <br>
+### **Trajectory Controller** Node <br>
 ```bash
-ros2 run robot_control control --ros-args -p hook_num:=10
+ros2 run robot_control trajectory_control --ros-args -p hook_num:=10
 ```
 >Enthält das Anfahren und genaue Positionieren (durch eine Regelung) an der Hakenspitze. Die Orientierung wird so ausgeregelt, dass die Lochebene des Bauteils senkrecht von der verlängerten Hakengerade durchstoßen wird. Somit kann ein ortogonales Einfädeln erfolgen. <br>
 <br>
