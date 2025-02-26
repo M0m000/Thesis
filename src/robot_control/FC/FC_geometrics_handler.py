@@ -301,7 +301,6 @@ class GeometricsHandler(Node):
         """
         Enthält den Regelungs-Ablauf für das Einfädeln
         """
-        self.
         for idx in range(len(self.path_points_in_tfcframe)):
             # Aktueller Status des Einfädelvorgangs
             if idx == 0:
@@ -337,10 +336,9 @@ class GeometricsHandler(Node):
                 if np.all(abs__trans_diff_in_tfcframe <= translation_tolerance) and np.all(abs__rot_diff_in_tfcframe <= rotation_tolerance):
                     break  # Fehler innerhalb der Toleranz, zum nächsten Path Point übergehen
 
-            
 
-        
-        
+
+
 
 def main(args=None):
     rclpy.init(args=args)
@@ -351,3 +349,4 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
