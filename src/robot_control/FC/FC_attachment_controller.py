@@ -1,6 +1,5 @@
 import rclpy
 from rclpy.node import Node
-from FC.FC_save_load_global_hook_dict import load_csv_to_dict
 from FC.FC_hook_geometrics_handler import HookGeometricsHandler
 from FC.FC_cam_geometrics_handler import CamGeometricsHandler
 from FC.FC_frame_handler import FrameHandler
@@ -34,6 +33,11 @@ class TrajectoryController(Node):
         self.plane = None
         self.plane_trans_in_tfcframe = None
         self.plane_rot_in_tfcframe = None
+        self.hook_line_p_0 = None
+        self.hook_line_p_1 = None
+        self.act_path_point_idx = None
+        self.translation_diff_worldframe = None
+        self.rotation_diff_worldframe = None
 
         # Zykluszeit für die Regelung
         self.controller_cycle_time = 0.001
@@ -104,9 +108,31 @@ class TrajectoryController(Node):
         self.plane_trans_in_tfcframe = trans_in_tfcframe
         self.plane_rot_in_tfcframe = rot_in_tfcframe
 
+    
+    def update_path_point_idx(self, idx = 0):
+        """
+        Funktion zur Aktualisierung des Path Point Index -> für Vorgabe vor Beginn der Regelung sinnvoll
+        """
+        self.act_path_point_idx = idx
+
+    
+    def shift_path_points(self):
+        """
+        Funktion zum Überprüfen, ob Vorgabepunkt (Path Point) erreicht wurde -> wenn ja, nächster Path Point
+        """
+        # Überprüfe aktuelle Punkte für Geradenberechnung (Path Points) -> wenn aktuelle Stellgroesse nahe Null, dann nächster Punkt
+        if self.act_path_point_idx is None:
+            self.update_path_point_idx(idx = 0)     # falls nicht anders festgelegt, beginne bei erstem Path-Point
+        
+        if abs(self.translation_diff_worldframe) <= self.translation_tolerance and abs(self.rotation_diff_worldframe) <= self.rotation_tolerance:
+            self.act_path_point_idx += 1
+        
+        self.hook_line_p_1 = self.hook_geometrics_handler.path_points_in_tfcframe[self.act_path_point_idx]
+        self.hook_line_p_0 = self.hook_geometrics_handler.path_points_in_tfcframe[self.act_path_point_idx + 1]
 
 
-    def trajectory_controller(self, path_point_act, path_point_seq):
+
+    def trajectory_controller(self):
         """
         Funktion für Trajectory Controller -> Regelung basierend auf Path Points aus Global CSV Dict (nach einmaligem Scan-Vorgang)
         """
@@ -116,31 +142,30 @@ class TrajectoryController(Node):
             
         # Falls Lochebene noch nicht berechnet wurde, berechne Lochebene
         if self.plane is None and self.plane_trans_in_tfcframe is not None and self.plane_rot_in_tfcframe is not None:
-            self.plane = self.hook_geometrics_handler.calculate_plane(
-                trans_in_tfcframe = self.plane_trans_in_tfcframe, 
-                rot_in_tfcframe = self.plane_rot_in_tfcframe)
+            self.plane = self.hook_geometrics_handler.calculate_plane(trans_in_tfcframe = self.plane_trans_in_tfcframe, rot_in_tfcframe = self.plane_rot_in_tfcframe)
 
+        # Path Points überprüfen und ggf eins weiter shiften
+        self.shift_path_points()
 
         # Update Haken Koordinaten und Berechnung Haken-Gerade im TFC-Frame -> muss zyklisch wiederholt werden
         self.hook_geometrics_handler.update_hook_data(hook_num = self.global_hook_num)
-        self.hook_geometrics_handler.calculate_hook_line(p_0 = path_point_seq, p_1 = path_point_act)
+        self.hook_geometrics_handler.calculate_hook_line(p_0 = self.hook_line_p_0, p_1 = self.hook_line_p_1)
 
         # Berechne aktuellen Regelfehler
         adjustment_angles = self.hook_geometrics_handler.calculate_adjustment_angles()
         translation_diff = self.hook_geometrics_handler.calculate_translation_difference()
 
         # Rechne Regelfeher von TFC-Frame ins WORLD-Frame um
-        translation_diff_worldframe = self.frame_handler.tansform_velocity_to_world(vel = translation_diff, from_frame = 'tfc')
-        rotation_diff_worldframe = self.frame_handler.tansform_velocity_to_world(vel = adjustment_angles, from_frame = 'tfc')
+        self.translation_diff_worldframe = self.frame_handler.tansform_velocity_to_world(vel = translation_diff, from_frame = 'tfc')
+        self.rotation_diff_worldframe = self.frame_handler.tansform_velocity_to_world(vel = adjustment_angles, from_frame = 'tfc')
 
         # Logge, falls gewünscht
         if self.logging_active:
-            self.get_logger().info(f"Controller Output: {translation_diff_worldframe}, {rotation_diff_worldframe}")
+            self.get_logger().info(f"Controller Output: {self.translation_diff_worldframe}, {self.rotation_diff_worldframe}")
 
         # P-Regler
-        self.velocity_trans = translation_diff_worldframe * self.p_gain_translation
-        self.velocity_rot = rotation_diff_worldframe * self.p_gain_rotation
-
+        self.velocity_trans = self.translation_diff_worldframe * self.p_gain_translation
+        self.velocity_rot = self.rotation_diff_worldframe * self.p_gain_rotation
 
 
 
