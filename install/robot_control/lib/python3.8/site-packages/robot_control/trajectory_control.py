@@ -1,7 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from FC.FC_gripper_handler import GripperHandler
-from FC.FC_geometrics_handler import GeometricsHandler
+from FC.FC_hook_geometrics_handler import HookGeometricsHandler
 from FC.FC_frame_handler import FrameHandler
 from FC.FC_call_move_linear_service import MoveLinearServiceClient
 from kr_msgs.msg import JogLinear
@@ -39,15 +39,15 @@ class TrajectoryControl(Node):
         self.get_logger().info("Service SetSystemFrame available!")
 
         self.Trans_needle_tfc = [0.0, 0.0, 0.0]       # in mm
-        self.Rot_needle_tfc = [0.0, 0.0, 0.0]           # in Grad
+        self.Rot_needle_tfc = [0.0, 0.0, 0.0]         # in Grad
         
         self.set_frame(self.Rot_needle_tfc, self.Trans_needle_tfc, frame="tcp", ref_frame="tfc")
 
         # Instanz Geometrics Handler
-        self.geometrics_handler = GeometricsHandler()
-        self.hook = self.geometrics_handler.get_hook_of_global_scan_dict(hook_num=self.hook_num)
-        self.geometrics_handler.update_hook_data(hook_num=self.hook_num)
-        self.geometrics_handler.calculate_hook_line()
+        self.hook_geometrics_handler = HookGeometricsHandler()
+        self.hook = self.hook_geometrics_handler.get_hook_of_global_scan_dict(hook_num=self.hook_num)
+        self.hook_geometrics_handler.update_hook_data(hook_num=self.hook_num)
+        self.hook_geometrics_handler.calculate_hook_line()
 
         # Instanz Gripper Handler
         # self.gripper_handler = GripperHandler()
@@ -129,13 +129,14 @@ class TrajectoryControl(Node):
             sync = 0.0,
             chaining = 0)
         '''
-        self.plane = None
-        self.geometrics_handler.update_hook_data(hook_num = self.hook_num)
-        self.geometrics_handler.calculate_hook_line()
-        self.plane = self.geometrics_handler.calculate_plane(trans_in_tfcframe = [0, 0, 112.0], rot_in_tfcframe = [0, 0, 0])
 
         # Lineares Anfahren der Position - erste grobe Positionierung
-        endpos_trans_in_worldframe, endpos_rot_in_worldframe = self.geometrics_handler.calculate_targetpose_in_worldframe()
+        self.plane = None
+        self.hook_geometrics_handler.update_hook_data(hook_num = self.hook_num)
+        self.hook_geometrics_handler.calculate_hook_line()
+        self.plane = self.hook_geometrics_handler.calculate_plane(trans_in_tfcframe = [0, 0, 112.0], rot_in_tfcframe = [0, 0, 0])
+
+        endpos_trans_in_worldframe, endpos_rot_in_worldframe = self.hook_geometrics_handler.calculate_targetpose_in_worldframe()
         self.grip_post_movement_done = self.move_lin_client.call_move_linear_service(
             pos = endpos_trans_in_worldframe,
             rot = endpos_rot_in_worldframe,
@@ -150,7 +151,7 @@ class TrajectoryControl(Node):
         print(endpos_trans_in_worldframe, endpos_rot_in_worldframe)
 
         # Timer für Regelungsalgorithmus
-        self.control_timer = self.create_timer(0.001, self.control)
+        self.control_timer = self.create_timer(0.001, self.control_callback)
 
 
 
@@ -165,11 +166,11 @@ class TrajectoryControl(Node):
             self.get_logger().error(f'Error calling service SelectJoggingFrame: {e}')
 
 
-    def control(self):
-        self.geometrics_handler.update_hook_data(hook_num = self.hook_num)
-        self.geometrics_handler.calculate_hook_line()
-        adjustment_angles = self.geometrics_handler.calculate_adjustment_angles()
-        translation_diff = self.geometrics_handler.calculate_translation_difference()
+    def control_callback(self):
+        self.hook_geometrics_handler.update_hook_data(hook_num = self.hook_num)
+        self.hook_geometrics_handler.calculate_hook_line()
+        adjustment_angles = self.hook_geometrics_handler.calculate_adjustment_angles()
+        translation_diff = self.hook_geometrics_handler.calculate_translation_difference()
 
         rotation_diff_worldframe = self.frame_handler.tansform_velocity_to_world(vel = adjustment_angles, from_frame = 'tfc')
         translation_diff_worldframe = self.frame_handler.tansform_velocity_to_world(vel = translation_diff, from_frame = 'tfc')
