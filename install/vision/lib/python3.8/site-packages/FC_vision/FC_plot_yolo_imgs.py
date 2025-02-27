@@ -226,5 +226,4 @@ def plot_combined_skeletons(hooks_dict):
             if 0 <= x < max_width and 0 <= y < max_height:
                 cv2.circle(skeleton_img_color, (x, y), radius = 8, color=(0, 255, 0), thickness=-1)
             break
-
     return skeleton_img_color
