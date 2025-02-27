@@ -2,10 +2,10 @@ import cv2
 import numpy as np
 
 # Originalbild und Template laden
-image_path = "/home/mo/Thesis/1.png"
+image_path = "/home/mo/YoloV8_InstanceSeg/dataset_1/image_1735929563.png"
 image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
 
-template_coords = (328, 127, 494, 354)  # Anpassen je nach Template-Position
+template_coords = (50, 35, 172, 264)  # Anpassen je nach Template-Position
 x1, y1, x2, y2 = template_coords
 template = image[y1:y2, x1:x2]
 
