@@ -412,6 +412,7 @@ class YOLOv8TwoImgInferenceNode(Node):
             hooks_dict[key]['path_points_xyz_in_camframe'] = path_points_xyz_in_camframe
             
 
+
     def publish_hooks_dict(self):
         """
         Publisher des gefilterten Output Dicts mit Masken, BBoxes und uv-Punkten für Spitze, Senke und Haken
@@ -446,4 +447,3 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
-
