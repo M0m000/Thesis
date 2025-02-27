@@ -2,7 +2,6 @@ from cv_bridge import CvBridge
 from rclpy.node import Node
 
 
-
 class DictReceiveProcessor(Node):
     def __init__(self, dual_cam_setup = False):
         """
