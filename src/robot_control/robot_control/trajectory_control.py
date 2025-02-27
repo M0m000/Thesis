@@ -39,7 +39,7 @@ class TrajectoryControl(Node):
         self.get_logger().info("Service SetSystemFrame available!")
 
         self.Trans_needle_tfc = [0.0, 0.0, 0.0]       # in mm
-        self.Rot_needle_tfc = [0.0, 0.0, 0.0]           # in Grad
+        self.Rot_needle_tfc = [0.0, 0.0, 0.0]         # in Grad
         
         self.set_frame(self.Rot_needle_tfc, self.Trans_needle_tfc, frame="tcp", ref_frame="tfc")
 
