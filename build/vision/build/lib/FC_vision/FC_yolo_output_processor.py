@@ -273,8 +273,8 @@ class YoloPostprocessor(Node):
                 hooks_dict[key]['skeleton_mask'] = skeleton_mask
 
                 # Den Pfad mit BFS finden
-                # shortest_path = self.bfs_shortest_path(skeleton_mask = skeleton_mask, start = uv_tip_int, end = uv_lowpoint_int)
-                shortest_path = self.astar_shortest_path(skeleton_mask = skeleton_mask, start = uv_tip_int, end = uv_lowpoint_int)
+                shortest_path = self.bfs_shortest_path(skeleton_mask = skeleton_mask, start = uv_tip_int, end = uv_lowpoint_int)
+                # shortest_path = self.astar_shortest_path(skeleton_mask = skeleton_mask, start = uv_tip_int, end = uv_lowpoint_int)
 
                 if shortest_path:
                     # print(f"Kürzester Pfad: {shortest_path}")
@@ -309,9 +309,8 @@ class YoloPostprocessor(Node):
         :param skeleton_mask: 2D NumPy Array der Skelettmaske (1px breite Linie)
         :param start: Tuple (y, x) des Startpunkts auf der Maske
         :param end: Tuple (y, x) des Endpunkts auf der Maske
-        :return: Liste von Punkten [(y1, x1), (y2, x2), ..., (yn, xn)] oder None, wenn kein Pfad gefunden wurde
+        :return: Liste von Punkten [(x1, y1), (x2, y2), ..., (xn, yn)] oder None, wenn kein Pfad gefunden wurde
         """
-
         time_start = time.perf_counter()
         rows, cols = skeleton_mask.shape
 
@@ -335,7 +334,7 @@ class YoloPostprocessor(Node):
             if current == end:
                 path = []
                 while current is not None:
-                    path.append(current)
+                    path.append((current[1], current[0]))  # (x, y) statt (y, x)
                     current = parent[current]
                 return path[::-1]  # Pfad umdrehen, da wir ihn vom Endpunkt zum Start rekonstruiert haben
 

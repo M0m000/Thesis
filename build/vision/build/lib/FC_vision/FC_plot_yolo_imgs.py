@@ -2,6 +2,8 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
+
+
 def plot_hooks_and_bars(received_img, hooks_dict, bar_dict):
     """
     Funktion für Plot des Segmentation Img
