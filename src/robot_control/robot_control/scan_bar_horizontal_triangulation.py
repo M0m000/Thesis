@@ -724,7 +724,7 @@ def main(args=None):
 
     try:
         while rclpy.ok():
-            rclpy.spin_once(node, timeout_sec=0.001)
+            rclpy.spin_once(node, timeout_sec=0.0001)
             if node.node_shutdown_flag:
                 node.shutdown_node()
                 break
