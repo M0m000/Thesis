@@ -125,25 +125,22 @@ class TrajectoryController(Node):
         self.hook_geometrics_handler.update_hook_data(hook_num = self.global_hook_num)
         self.hook_geometrics_handler.calculate_hook_line(p_0 = path_point_seq, p_1 = path_point_act)
 
-
         # Berechne aktuellen Regelfehler
         adjustment_angles = self.hook_geometrics_handler.calculate_adjustment_angles()
         translation_diff = self.hook_geometrics_handler.calculate_translation_difference()
-
 
         # Rechne Regelfeher von TFC-Frame ins WORLD-Frame um
         translation_diff_worldframe = self.frame_handler.tansform_velocity_to_world(vel = translation_diff, from_frame = 'tfc')
         rotation_diff_worldframe = self.frame_handler.tansform_velocity_to_world(vel = adjustment_angles, from_frame = 'tfc')
 
-
         # Logge, falls gewünscht
         if self.logging_active:
             self.get_logger().info(f"Controller Output: {translation_diff_worldframe}, {rotation_diff_worldframe}")
-        
 
         # P-Regler
         self.velocity_trans = translation_diff_worldframe * self.p_gain_translation
         self.velocity_rot = rotation_diff_worldframe * self.p_gain_rotation
+
 
 
 
