@@ -31,6 +31,7 @@ class HookDataListener(Node):
             self.get_logger().info(f"UV Tip: {hooks_dict['hook_1']['uv_tip']}")
             self.get_logger().info(f"Path Points: {hooks_dict['hook_1']['path_points']}")
             self.get_logger().info(f"UV Lowpoint: {hooks_dict['hook_1']['uv_lowpoint']}")
+            self.get_logger().info(f"Path Points XYZ: {hooks_dict['hook_1']['path_points_xyz_in_camframe']}")
 
 
 

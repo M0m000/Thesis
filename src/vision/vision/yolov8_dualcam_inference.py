@@ -17,6 +17,7 @@ from FC_vision.FC_yolo_output_processor import YoloPostprocessor
 from FC_vision.FC_plot_yolo_imgs import plot_hooks_and_bars, plot_points, plot_combined_skeletons
 from FC_vision.FC_process_hooks_dict_for_publishing import process_hook_for_publisher
 from FC_vision.FC_two_cam_stereo_triangulation_processor import TwoCamStereoTriangulationProcessor
+from FC_vision.FC_parameterized_cubic_spline import ParameterizedCubicSplineCalculator
 
 
 
@@ -96,9 +97,11 @@ class YOLOv8TwoImgInferenceNode(Node):
         self.img2_hooks_dict = {}
         self.img1_hooks_dict_processed = {}
         self.img2_hooks_dict_processed = {}
-
         self.img1_filtered_hooks_dict = {}
         self.img2_filtered_hooks_dict = {}
+
+        # Instanz des Spline-Calculator
+        self.spline_calculator = ParameterizedCubicSplineCalculator()
 
         # Instanz YoloPostprocessor
         self.yolo_postprocessor = YoloPostprocessor()
