@@ -415,7 +415,6 @@ class YoloPostprocessor(Node):
         return None  # Kein Pfad gefunden
 
 
-
     def get_evenly_spaced_points_on_path(self, path, num_points):
         """
         Berechnet N gleichmäßig verteilte Punkte entlang des Pfads.
@@ -460,3 +459,4 @@ class YoloPostprocessor(Node):
                 current_length = 0
             current_length += segment_length
         return spaced_points
+
