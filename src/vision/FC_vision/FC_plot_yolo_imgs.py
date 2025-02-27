@@ -2,6 +2,8 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
+
+
 def plot_hooks_and_bars(received_img, hooks_dict, bar_dict):
     """
     Funktion für Plot des Segmentation Img
@@ -199,7 +201,7 @@ def plot_combined_skeletons(hooks_dict):
                 print(f"Fehler: Ungültiges Punktformat für {key}: {point}")
                 continue
 
-            y, x = point
+            x, y = point
             if 0 <= x < max_width and 0 <= y < max_height:
                 if idx == 0:
                     # Erster Punkt grün

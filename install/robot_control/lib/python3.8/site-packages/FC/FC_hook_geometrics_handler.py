@@ -291,7 +291,7 @@ class HookGeometricsHandler(Node):
             # Differenz zwischen aktuellem Path Point und Mittelpunkt der Lochebene
             trans_diff_in_tfcframe = self.calculate_translation_difference(target_position = [x, y, z])
 
-            # Aktualisierung der Geraden (zwische jetzigem PPoint und nachfolgendem PPoint)
+            # Aktualisierung der Geraden (zwischen jetzigem PPoint und nachfolgendem PPoint)
             if seq_path_point is not None:
                 self.calculate_hook_line(p_1 = act_path_point, p_0 = seq_path_point)
 

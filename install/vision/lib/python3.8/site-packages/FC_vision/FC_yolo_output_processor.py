@@ -360,9 +360,8 @@ class YoloPostprocessor(Node):
         :param skeleton_mask: 2D NumPy Array der Skelettmaske (1px breite Linie)
         :param start: Tuple (y, x) des Startpunkts
         :param end: Tuple (y, x) des Endpunkts
-        :return: Liste von Punkten [(y1, x1), (y2, x2), ..., (yn, xn)] oder None, wenn kein Pfad gefunden wurde
+        :return: Liste von Punkten [(x1, y1), (x2, y2), ..., (xn, yn)] oder None, wenn kein Pfad gefunden wurde
         """
-
         time_start = time.perf_counter()
         rows, cols = skeleton_mask.shape
 
@@ -391,7 +390,7 @@ class YoloPostprocessor(Node):
             if current == end:
                 path = []
                 while current is not None:
-                    path.append(current)
+                    path.append((current[1], current[0]))  # (x, y) statt (y, x)
                     current = parent[current]
                 return path[::-1]  # Umkehren, da Rückverfolgung von Ende zu Start erfolgt
 
@@ -413,7 +412,7 @@ class YoloPostprocessor(Node):
 
         time_end = time.perf_counter()
         time_token = time_end - time_start
-        print(f"Time for BFS: {time_token:.6f} sec")
+        print(f"Time for A*: {time_token:.6f} sec")
         return None  # Kein Pfad gefunden
 
 

@@ -27,6 +27,7 @@
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC/FC_dict_receive_processing.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC/FC_parameterized_cubic_spline.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC/__init__.py
+/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC/FC_attachment_controller.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC/FC_edge_detector.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/set_working_frame_qr.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/define_working_frame_needle.cpython-38.pyc
@@ -57,6 +58,7 @@
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC/__pycache__/FC_dict_receive_processing.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC/__pycache__/FC_parameterized_cubic_spline.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC/__pycache__/__init__.cpython-38.pyc
+/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC/__pycache__/FC_attachment_controller.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC/__pycache__/FC_edge_detector.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/share/ament_index/resource_index/packages/robot_control
 /home/mo/Thesis/install/robot_control/share/robot_control/package.xml

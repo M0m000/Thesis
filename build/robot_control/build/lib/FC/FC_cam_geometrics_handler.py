@@ -145,6 +145,14 @@ class CamGeometricsHandler(Node):
             if visible_hook_ids[idx] == global_id:
                 return idx      # Index in der Liste visible_hook_ids ist direkt der Instanz-Index des Hakens im Bild -> NOCH ZU CHECKEN, ob rückwärts
         return None             # falls der Index nicht gefunden wurde -> Kamera steht falsch und kann den gewünschten Haken nicht sehen -> return None
+    
+
+
+    def get_robot_position_for_global_hook_id(self, global_id = 1):
+        """
+        Findet die richtige Roboterstellung, sodass Haken mit gewünschter ID im Bild zu sehen ist
+        """
+        pass
 
 
 

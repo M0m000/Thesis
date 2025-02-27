@@ -199,7 +199,7 @@ def plot_combined_skeletons(hooks_dict):
                 print(f"Fehler: Ungültiges Punktformat für {key}: {point}")
                 continue
 
-            y, x = point
+            x, y = point
             if 0 <= x < max_width and 0 <= y < max_height:
                 if idx == 0:
                     # Erster Punkt grün

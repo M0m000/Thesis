@@ -28,7 +28,9 @@ class HookDataListener(Node):
         """
         hooks_dict = self.dict_processor.process_hooks_dict(msg)
         if 'hook_1' in hooks_dict:
-            self.get_logger().info(f"Dict Keys: {hooks_dict.keys()}")
+            self.get_logger().info(f"UV Tip: {hooks_dict['hook_1']['uv_tip']}")
+            self.get_logger().info(f"Path Points: {hooks_dict['hook_1']['path_points']}")
+            self.get_logger().info(f"UV Lowpoint: {hooks_dict['hook_1']['uv_lowpoint']}")
 
 
 
