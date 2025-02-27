@@ -12,6 +12,10 @@ resource/sensopart_visor
 sensopart_visor/__init__.py
 sensopart_visor/visor_shutdown.py
 sensopart_visor/visor_startup.py
-test/test_copyright.py
-test/test_flake8.py
-test/test_pep257.py
+sensopart_visor.egg-info/PKG-INFO
+sensopart_visor.egg-info/SOURCES.txt
+sensopart_visor.egg-info/dependency_links.txt
+sensopart_visor.egg-info/entry_points.txt
+sensopart_visor.egg-info/requires.txt
+sensopart_visor.egg-info/top_level.txt
+sensopart_visor.egg-info/zip-safe

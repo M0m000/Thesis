@@ -18,9 +18,6 @@ FC_vision/FC_two_cam_stereo_triangulation_processor.py
 FC_vision/FC_yolo_output_processor.py
 FC_vision/__init__.py
 resource/vision
-test/test_copyright.py
-test/test_flake8.py
-test/test_pep257.py
 vision/OLD_nn_output_processor.py
 vision/OLD_process_nn_output.py
 vision/__init__.py
@@ -36,3 +33,10 @@ vision/test_node.py
 vision/vc_startup.py
 vision/yolov8_dualcam_inference.py
 vision/yolov8_inference.py
+vision.egg-info/PKG-INFO
+vision.egg-info/SOURCES.txt
+vision.egg-info/dependency_links.txt
+vision.egg-info/entry_points.txt
+vision.egg-info/requires.txt
+vision.egg-info/top_level.txt
+vision.egg-info/zip-safe

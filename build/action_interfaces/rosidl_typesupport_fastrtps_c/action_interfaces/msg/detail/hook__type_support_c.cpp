@@ -36,7 +36,7 @@ extern "C"
 
 #include "action_interfaces/msg/detail/bounding_box__functions.h"  // hook_box, lowpoint_box, tip_box
 #include "action_interfaces/msg/detail/uv__functions.h"  // path_points, shortest_path, uv_hook, uv_hook_img2, uv_lowpoint, uv_lowpoint_img2, uv_tip, uv_tip_img2
-#include "action_interfaces/msg/detail/xyz__functions.h"  // xyz_hook_in_camframe, xyz_lowpoint_in_camframe, xyz_tip_in_camframe
+#include "action_interfaces/msg/detail/xyz__functions.h"  // path_points_xyz_in_camframe, xyz_hook_in_camframe, xyz_lowpoint_in_camframe, xyz_tip_in_camframe
 #include "rosidl_runtime_c/string.h"  // name
 #include "rosidl_runtime_c/string_functions.h"  // name
 #include "sensor_msgs/msg/detail/image__functions.h"  // hook_mask, lowpoint_mask, skeleton_mask, tip_mask
@@ -404,6 +404,25 @@ static bool _Hook__cdr_serialize(
     }
   }
 
+  // Field name: path_points_xyz_in_camframe
+  {
+    const message_type_support_callbacks_t * callbacks =
+      static_cast<const message_type_support_callbacks_t *>(
+      ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(
+        rosidl_typesupport_fastrtps_c, action_interfaces, msg, XYZ
+      )()->data);
+    size_t size = ros_message->path_points_xyz_in_camframe.size;
+    auto array_ptr = ros_message->path_points_xyz_in_camframe.data;
+    cdr << static_cast<uint32_t>(size);
+    for (size_t i = 0; i < size; ++i) {
+      if (!callbacks->cdr_serialize(
+          &array_ptr[i], cdr))
+      {
+        return false;
+      }
+    }
+  }
+
   return true;
 }
 
@@ -759,6 +778,32 @@ static bool _Hook__cdr_deserialize(
     }
   }
 
+  // Field name: path_points_xyz_in_camframe
+  {
+    const message_type_support_callbacks_t * callbacks =
+      static_cast<const message_type_support_callbacks_t *>(
+      ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(
+        rosidl_typesupport_fastrtps_c, action_interfaces, msg, XYZ
+      )()->data);
+    uint32_t cdrSize;
+    cdr >> cdrSize;
+    size_t size = static_cast<size_t>(cdrSize);
+    if (ros_message->path_points_xyz_in_camframe.data) {
+      action_interfaces__msg__XYZ__Sequence__fini(&ros_message->path_points_xyz_in_camframe);
+    }
+    if (!action_interfaces__msg__XYZ__Sequence__init(&ros_message->path_points_xyz_in_camframe, size)) {
+      return "failed to create array for field 'path_points_xyz_in_camframe'";
+    }
+    auto array_ptr = ros_message->path_points_xyz_in_camframe.data;
+    for (size_t i = 0; i < size; ++i) {
+      if (!callbacks->cdr_deserialize(
+          cdr, &array_ptr[i]))
+      {
+        return false;
+      }
+    }
+  }
+
   return true;
 }
 
@@ -902,6 +947,18 @@ size_t get_serialized_size_action_interfaces__msg__Hook(
   {
     size_t array_size = ros_message->xyz_lowpoint_in_camframe.size;
     auto array_ptr = ros_message->xyz_lowpoint_in_camframe.data;
+    current_alignment += padding +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
+
+    for (size_t index = 0; index < array_size; ++index) {
+      current_alignment += get_serialized_size_action_interfaces__msg__XYZ(
+        &array_ptr[index], current_alignment);
+    }
+  }
+  // field.name path_points_xyz_in_camframe
+  {
+    size_t array_size = ros_message->path_points_xyz_in_camframe.size;
+    auto array_ptr = ros_message->path_points_xyz_in_camframe.data;
     current_alignment += padding +
       eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
 
@@ -1166,6 +1223,20 @@ size_t max_serialized_size_action_interfaces__msg__Hook(
     }
   }
   // member: xyz_lowpoint_in_camframe
+  {
+    size_t array_size = 0;
+    full_bounded = false;
+    current_alignment += padding +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
+
+
+    for (size_t index = 0; index < array_size; ++index) {
+      current_alignment +=
+        max_serialized_size_action_interfaces__msg__XYZ(
+        full_bounded, current_alignment);
+    }
+  }
+  // member: path_points_xyz_in_camframe
   {
     size_t array_size = 0;
     full_bounded = false;

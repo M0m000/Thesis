@@ -27,3 +27,5 @@ UV[] path_points
 XYZ[] xyz_hook_in_camframe
 XYZ[] xyz_tip_in_camframe
 XYZ[] xyz_lowpoint_in_camframe
+
+XYZ[] path_points_xyz_in_camframe

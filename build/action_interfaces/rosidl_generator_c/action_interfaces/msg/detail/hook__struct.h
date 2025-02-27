@@ -41,6 +41,7 @@ extern "C"
 // Member 'xyz_hook_in_camframe'
 // Member 'xyz_tip_in_camframe'
 // Member 'xyz_lowpoint_in_camframe'
+// Member 'path_points_xyz_in_camframe'
 #include "action_interfaces/msg/detail/xyz__struct.h"
 
 // Struct defined in msg/Hook in the package action_interfaces.
@@ -68,6 +69,7 @@ typedef struct action_interfaces__msg__Hook
   action_interfaces__msg__XYZ__Sequence xyz_hook_in_camframe;
   action_interfaces__msg__XYZ__Sequence xyz_tip_in_camframe;
   action_interfaces__msg__XYZ__Sequence xyz_lowpoint_in_camframe;
+  action_interfaces__msg__XYZ__Sequence path_points_xyz_in_camframe;
 } action_interfaces__msg__Hook;
 
 // Struct for a sequence of action_interfaces__msg__Hook.

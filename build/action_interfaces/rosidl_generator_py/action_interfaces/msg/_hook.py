@@ -91,6 +91,7 @@ class Hook(metaclass=Metaclass_Hook):
         '_xyz_hook_in_camframe',
         '_xyz_tip_in_camframe',
         '_xyz_lowpoint_in_camframe',
+        '_path_points_xyz_in_camframe',
     ]
 
     _fields_and_field_types = {
@@ -116,6 +117,7 @@ class Hook(metaclass=Metaclass_Hook):
         'xyz_hook_in_camframe': 'sequence<action_interfaces/XYZ>',
         'xyz_tip_in_camframe': 'sequence<action_interfaces/XYZ>',
         'xyz_lowpoint_in_camframe': 'sequence<action_interfaces/XYZ>',
+        'path_points_xyz_in_camframe': 'sequence<action_interfaces/XYZ>',
     }
 
     SLOT_TYPES = (
@@ -138,6 +140,7 @@ class Hook(metaclass=Metaclass_Hook):
         rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'UV'),  # noqa: E501
         rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'UV')),  # noqa: E501
         rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'UV')),  # noqa: E501
+        rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'XYZ')),  # noqa: E501
         rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'XYZ')),  # noqa: E501
         rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'XYZ')),  # noqa: E501
         rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.NamespacedType(['action_interfaces', 'msg'], 'XYZ')),  # noqa: E501
@@ -182,6 +185,7 @@ class Hook(metaclass=Metaclass_Hook):
         self.xyz_hook_in_camframe = kwargs.get('xyz_hook_in_camframe', [])
         self.xyz_tip_in_camframe = kwargs.get('xyz_tip_in_camframe', [])
         self.xyz_lowpoint_in_camframe = kwargs.get('xyz_lowpoint_in_camframe', [])
+        self.path_points_xyz_in_camframe = kwargs.get('path_points_xyz_in_camframe', [])
 
     def __repr__(self):
         typename = self.__class__.__module__.split('.')
@@ -255,6 +259,8 @@ class Hook(metaclass=Metaclass_Hook):
         if self.xyz_tip_in_camframe != other.xyz_tip_in_camframe:
             return False
         if self.xyz_lowpoint_in_camframe != other.xyz_lowpoint_in_camframe:
+            return False
+        if self.path_points_xyz_in_camframe != other.path_points_xyz_in_camframe:
             return False
         return True
 
@@ -616,3 +622,27 @@ class Hook(metaclass=Metaclass_Hook):
                  True), \
                 "The 'xyz_lowpoint_in_camframe' field must be a set or sequence and each value of type 'XYZ'"
         self._xyz_lowpoint_in_camframe = value
+
+    @property
+    def path_points_xyz_in_camframe(self):
+        """Message field 'path_points_xyz_in_camframe'."""
+        return self._path_points_xyz_in_camframe
+
+    @path_points_xyz_in_camframe.setter
+    def path_points_xyz_in_camframe(self, value):
+        if __debug__:
+            from action_interfaces.msg import XYZ
+            from collections.abc import Sequence
+            from collections.abc import Set
+            from collections import UserList
+            from collections import UserString
+            assert \
+                ((isinstance(value, Sequence) or
+                  isinstance(value, Set) or
+                  isinstance(value, UserList)) and
+                 not isinstance(value, str) and
+                 not isinstance(value, UserString) and
+                 all(isinstance(v, XYZ) for v in value) and
+                 True), \
+                "The 'path_points_xyz_in_camframe' field must be a set or sequence and each value of type 'XYZ'"
+        self._path_points_xyz_in_camframe = value

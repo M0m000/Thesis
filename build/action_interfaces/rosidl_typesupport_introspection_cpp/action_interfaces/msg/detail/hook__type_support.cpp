@@ -172,7 +172,34 @@ void resize_function__Hook__xyz_lowpoint_in_camframe(void * untyped_member, size
   member->resize(size);
 }
 
-static const ::rosidl_typesupport_introspection_cpp::MessageMember Hook_message_member_array[22] = {
+size_t size_function__Hook__path_points_xyz_in_camframe(const void * untyped_member)
+{
+  const auto * member = reinterpret_cast<const std::vector<action_interfaces::msg::XYZ> *>(untyped_member);
+  return member->size();
+}
+
+const void * get_const_function__Hook__path_points_xyz_in_camframe(const void * untyped_member, size_t index)
+{
+  const auto & member =
+    *reinterpret_cast<const std::vector<action_interfaces::msg::XYZ> *>(untyped_member);
+  return &member[index];
+}
+
+void * get_function__Hook__path_points_xyz_in_camframe(void * untyped_member, size_t index)
+{
+  auto & member =
+    *reinterpret_cast<std::vector<action_interfaces::msg::XYZ> *>(untyped_member);
+  return &member[index];
+}
+
+void resize_function__Hook__path_points_xyz_in_camframe(void * untyped_member, size_t size)
+{
+  auto * member =
+    reinterpret_cast<std::vector<action_interfaces::msg::XYZ> *>(untyped_member);
+  member->resize(size);
+}
+
+static const ::rosidl_typesupport_introspection_cpp::MessageMember Hook_message_member_array[23] = {
   {
     "name",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_STRING,  // type
@@ -502,13 +529,28 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember Hook_message_
     get_const_function__Hook__xyz_lowpoint_in_camframe,  // get_const(index) function pointer
     get_function__Hook__xyz_lowpoint_in_camframe,  // get(index) function pointer
     resize_function__Hook__xyz_lowpoint_in_camframe  // resize(index) function pointer
+  },
+  {
+    "path_points_xyz_in_camframe",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE,  // type
+    0,  // upper bound of string
+    ::rosidl_typesupport_introspection_cpp::get_message_type_support_handle<action_interfaces::msg::XYZ>(),  // members of sub message
+    true,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(action_interfaces::msg::Hook, path_points_xyz_in_camframe),  // bytes offset in struct
+    nullptr,  // default value
+    size_function__Hook__path_points_xyz_in_camframe,  // size() function pointer
+    get_const_function__Hook__path_points_xyz_in_camframe,  // get_const(index) function pointer
+    get_function__Hook__path_points_xyz_in_camframe,  // get(index) function pointer
+    resize_function__Hook__path_points_xyz_in_camframe  // resize(index) function pointer
   }
 };
 
 static const ::rosidl_typesupport_introspection_cpp::MessageMembers Hook_message_members = {
   "action_interfaces::msg",  // message namespace
   "Hook",  // message name
-  22,  // number of fields
+  23,  // number of fields
   sizeof(action_interfaces::msg::Hook),
   Hook_message_member_array,  // message members
   Hook_init_function,  // function to initialize message memory (memory has to be allocated)

@@ -43,6 +43,10 @@ robot_control/tf_frames_publisher.py
 robot_control/trajectory_control.py
 robot_control/transform_action_client.py
 robot_control/visual_servoing_control.py
-test/test_copyright.py
-test/test_flake8.py
-test/test_pep257.py
+robot_control.egg-info/PKG-INFO
+robot_control.egg-info/SOURCES.txt
+robot_control.egg-info/dependency_links.txt
+robot_control.egg-info/entry_points.txt
+robot_control.egg-info/requires.txt
+robot_control.egg-info/top_level.txt
+robot_control.egg-info/zip-safe

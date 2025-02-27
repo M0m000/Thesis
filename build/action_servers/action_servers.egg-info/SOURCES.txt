@@ -11,7 +11,11 @@ setup.py
 action_servers/MoveTcpAlongAxis_action_server.py
 action_servers/__init__.py
 action_servers/transform_action_server.py
+action_servers.egg-info/PKG-INFO
+action_servers.egg-info/SOURCES.txt
+action_servers.egg-info/dependency_links.txt
+action_servers.egg-info/entry_points.txt
+action_servers.egg-info/requires.txt
+action_servers.egg-info/top_level.txt
+action_servers.egg-info/zip-safe
 resource/action_servers
-test/test_copyright.py
-test/test_flake8.py
-test/test_pep257.py

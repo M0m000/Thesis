@@ -73,6 +73,8 @@ module action_interfaces {
       sequence<action_interfaces::msg::XYZ> xyz_tip_in_camframe;
 
       sequence<action_interfaces::msg::XYZ> xyz_lowpoint_in_camframe;
+
+      sequence<action_interfaces::msg::XYZ> path_points_xyz_in_camframe;
     };
   };
 };

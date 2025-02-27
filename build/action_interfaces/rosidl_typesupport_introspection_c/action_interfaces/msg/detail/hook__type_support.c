@@ -54,10 +54,12 @@
 // Member `xyz_hook_in_camframe`
 // Member `xyz_tip_in_camframe`
 // Member `xyz_lowpoint_in_camframe`
+// Member `path_points_xyz_in_camframe`
 #include "action_interfaces/msg/xyz.h"
 // Member `xyz_hook_in_camframe`
 // Member `xyz_tip_in_camframe`
 // Member `xyz_lowpoint_in_camframe`
+// Member `path_points_xyz_in_camframe`
 #include "action_interfaces/msg/detail/xyz__rosidl_typesupport_introspection_c.h"
 
 #ifdef __cplusplus
@@ -244,7 +246,40 @@ bool Hook__rosidl_typesupport_introspection_c__resize_function__XYZ__xyz_lowpoin
   return action_interfaces__msg__XYZ__Sequence__init(member, size);
 }
 
-static rosidl_typesupport_introspection_c__MessageMember Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[22] = {
+size_t Hook__rosidl_typesupport_introspection_c__size_function__XYZ__path_points_xyz_in_camframe(
+  const void * untyped_member)
+{
+  const action_interfaces__msg__XYZ__Sequence * member =
+    (const action_interfaces__msg__XYZ__Sequence *)(untyped_member);
+  return member->size;
+}
+
+const void * Hook__rosidl_typesupport_introspection_c__get_const_function__XYZ__path_points_xyz_in_camframe(
+  const void * untyped_member, size_t index)
+{
+  const action_interfaces__msg__XYZ__Sequence * member =
+    (const action_interfaces__msg__XYZ__Sequence *)(untyped_member);
+  return &member->data[index];
+}
+
+void * Hook__rosidl_typesupport_introspection_c__get_function__XYZ__path_points_xyz_in_camframe(
+  void * untyped_member, size_t index)
+{
+  action_interfaces__msg__XYZ__Sequence * member =
+    (action_interfaces__msg__XYZ__Sequence *)(untyped_member);
+  return &member->data[index];
+}
+
+bool Hook__rosidl_typesupport_introspection_c__resize_function__XYZ__path_points_xyz_in_camframe(
+  void * untyped_member, size_t size)
+{
+  action_interfaces__msg__XYZ__Sequence * member =
+    (action_interfaces__msg__XYZ__Sequence *)(untyped_member);
+  action_interfaces__msg__XYZ__Sequence__fini(member);
+  return action_interfaces__msg__XYZ__Sequence__init(member, size);
+}
+
+static rosidl_typesupport_introspection_c__MessageMember Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[23] = {
   {
     "name",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_STRING,  // type
@@ -574,13 +609,28 @@ static rosidl_typesupport_introspection_c__MessageMember Hook__rosidl_typesuppor
     Hook__rosidl_typesupport_introspection_c__get_const_function__XYZ__xyz_lowpoint_in_camframe,  // get_const(index) function pointer
     Hook__rosidl_typesupport_introspection_c__get_function__XYZ__xyz_lowpoint_in_camframe,  // get(index) function pointer
     Hook__rosidl_typesupport_introspection_c__resize_function__XYZ__xyz_lowpoint_in_camframe  // resize(index) function pointer
+  },
+  {
+    "path_points_xyz_in_camframe",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_MESSAGE,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message (initialized later)
+    true,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(action_interfaces__msg__Hook, path_points_xyz_in_camframe),  // bytes offset in struct
+    NULL,  // default value
+    Hook__rosidl_typesupport_introspection_c__size_function__XYZ__path_points_xyz_in_camframe,  // size() function pointer
+    Hook__rosidl_typesupport_introspection_c__get_const_function__XYZ__path_points_xyz_in_camframe,  // get_const(index) function pointer
+    Hook__rosidl_typesupport_introspection_c__get_function__XYZ__path_points_xyz_in_camframe,  // get(index) function pointer
+    Hook__rosidl_typesupport_introspection_c__resize_function__XYZ__path_points_xyz_in_camframe  // resize(index) function pointer
   }
 };
 
 static const rosidl_typesupport_introspection_c__MessageMembers Hook__rosidl_typesupport_introspection_c__Hook_message_members = {
   "action_interfaces__msg",  // message namespace
   "Hook",  // message name
-  22,  // number of fields
+  23,  // number of fields
   sizeof(action_interfaces__msg__Hook),
   Hook__rosidl_typesupport_introspection_c__Hook_message_member_array,  // message members
   Hook__rosidl_typesupport_introspection_c__Hook_init_function,  // function to initialize message memory (memory has to be allocated)
@@ -633,6 +683,8 @@ ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspecti
   Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[20].members_ =
     ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, action_interfaces, msg, XYZ)();
   Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[21].members_ =
+    ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, action_interfaces, msg, XYZ)();
+  Hook__rosidl_typesupport_introspection_c__Hook_message_member_array[22].members_ =
     ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, action_interfaces, msg, XYZ)();
   if (!Hook__rosidl_typesupport_introspection_c__Hook_message_type_support_handle.typesupport_identifier) {
     Hook__rosidl_typesupport_introspection_c__Hook_message_type_support_handle.typesupport_identifier =

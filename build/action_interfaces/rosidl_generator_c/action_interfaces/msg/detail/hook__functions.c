@@ -35,6 +35,7 @@
 // Member `xyz_hook_in_camframe`
 // Member `xyz_tip_in_camframe`
 // Member `xyz_lowpoint_in_camframe`
+// Member `path_points_xyz_in_camframe`
 #include "action_interfaces/msg/detail/xyz__functions.h"
 
 bool
@@ -141,6 +142,11 @@ action_interfaces__msg__Hook__init(action_interfaces__msg__Hook * msg)
     action_interfaces__msg__Hook__fini(msg);
     return false;
   }
+  // path_points_xyz_in_camframe
+  if (!action_interfaces__msg__XYZ__Sequence__init(&msg->path_points_xyz_in_camframe, 0)) {
+    action_interfaces__msg__Hook__fini(msg);
+    return false;
+  }
   return true;
 }
 
@@ -191,6 +197,8 @@ action_interfaces__msg__Hook__fini(action_interfaces__msg__Hook * msg)
   action_interfaces__msg__XYZ__Sequence__fini(&msg->xyz_tip_in_camframe);
   // xyz_lowpoint_in_camframe
   action_interfaces__msg__XYZ__Sequence__fini(&msg->xyz_lowpoint_in_camframe);
+  // path_points_xyz_in_camframe
+  action_interfaces__msg__XYZ__Sequence__fini(&msg->path_points_xyz_in_camframe);
 }
 
 bool
@@ -325,6 +333,12 @@ action_interfaces__msg__Hook__are_equal(const action_interfaces__msg__Hook * lhs
   {
     return false;
   }
+  // path_points_xyz_in_camframe
+  if (!action_interfaces__msg__XYZ__Sequence__are_equal(
+      &(lhs->path_points_xyz_in_camframe), &(rhs->path_points_xyz_in_camframe)))
+  {
+    return false;
+  }
   return true;
 }
 
@@ -453,6 +467,12 @@ action_interfaces__msg__Hook__copy(
   // xyz_lowpoint_in_camframe
   if (!action_interfaces__msg__XYZ__Sequence__copy(
       &(input->xyz_lowpoint_in_camframe), &(output->xyz_lowpoint_in_camframe)))
+  {
+    return false;
+  }
+  // path_points_xyz_in_camframe
+  if (!action_interfaces__msg__XYZ__Sequence__copy(
+      &(input->path_points_xyz_in_camframe), &(output->path_points_xyz_in_camframe)))
   {
     return false;
   }

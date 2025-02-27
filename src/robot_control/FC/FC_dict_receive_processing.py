@@ -26,7 +26,7 @@ class DictReceiveProcessor(Node):
                 'lowpoint_box': None, 'lowpoint_mask': None, 'conf_lowpoint': None,
                 'uv_hook': None, 'uv_tip': None, 'uv_lowpoint': None,
                 'uv_hook_img2': None, 'uv_tip_img2': None, "uv_lowpoint_img2": None,
-                'skeleton_mask': None, 'shortest_path': None, 'path_points': None
+                'skeleton_mask': None, 'shortest_path': None, 'path_points': None, 'path_points_xyz_in_camframe': None
             }
 
             # Hook BBox
@@ -127,6 +127,8 @@ class DictReceiveProcessor(Node):
                 hook_data['shortest_path'] = [(pt.u, pt.v) for pt in hook_msg.shortest_path]
             if hook_msg.path_points:
                 hook_data['path_points'] = [(pt.u, pt.v) for pt in hook_msg.path_points]
+            if hook_msg.path_points_xyz_in_camframe:
+                hook_data['path_points_xyz_in_camframe'] = [(pt.x, pt.y, pt.z) for pt in hook_msg.path_points]
 
 
 

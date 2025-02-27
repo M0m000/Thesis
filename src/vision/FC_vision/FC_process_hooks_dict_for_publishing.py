@@ -36,10 +36,13 @@ def process_hook_for_publisher(hook_name, hook_data, dual_camera_setup = False, 
                     hook.shortest_path = [UV(u = float(x), v = float(y)) for x, y in hook_data['shortest_path']]
 
             # verarbeite Path Points (für Interpolation zwischen Spitze und Senke)
-            if 'path_points' in hook_data:
-                if hook_data['path_points'] is not None:
-                    hook.path_points = [UV(u = float(x), v = float(y)) for x, y in hook_data['path_points']]
+            if 'path_points' in hook_data and hook_data['path_points'] is not None:
+                hook.path_points = [UV(u = float(x), v = float(y)) for x, y in hook_data['path_points']]
             
+            # XYZ Path Points
+            if 'path_points_xyz_in_camframe' in hook_data and hook_data['path_points_xyz_in_camframe'] is not None:
+                hook.path_points_xyz_in_camframe = [XYZ(x = float(x), y = float(y), z = float(z)) for x, y, z in hook_data['path_points_xyz_in_camframe']]
+
             # Conf-Wert von Hook
             hook.conf_hook = float(hook_data['conf_hook'])
 

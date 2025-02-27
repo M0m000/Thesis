@@ -132,6 +132,7 @@ class YoloPostprocessor(Node):
                     "skeleton_mask": None,
                     "shortest_path": None,
                     "path_points": None,
+                    "path_points_xyz_in_camframe": None,
                     "xyz_hook_in_camframe": None,
                     "xyz_tip_in_camframe": None,
                     "xyz_lowpoint_in_camframe": None,

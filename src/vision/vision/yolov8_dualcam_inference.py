@@ -216,6 +216,9 @@ class YOLOv8TwoImgInferenceNode(Node):
             
             # Berechnung der Triangulation mit fertigem Dict und anhängen der XYZ-Daten an Dict
             self.filtered_hooks_dict = self.do_triangulation(hooks_dict = self.filtered_hooks_dict)
+
+            # Berechne Path Point zwischen Spitze -> Senke und interpoliere XYZ-Werte
+            self.filtered_hooks_dict = self.interpolate_depth_shape(hooks_dict = self.filtered_hooks_dict)
                     
             # Plots
             if self.show_cam_img:
@@ -351,8 +354,60 @@ class YOLOv8TwoImgInferenceNode(Node):
             hooks_dict[key]['xyz_lowpoint_in_camframe'] = {}
             hooks_dict[key]['xyz_lowpoint_in_camframe'] = lowpoint_xyz
         return hooks_dict
+    
 
 
+    def interpolate_depth_shape(self, hooks_dict):
+        """
+        Berechnet die Path Points und interpoliert deren Tiefenwert -> Path Points in XYZ
+        """
+        for idx, key in enumerate(hooks_dict):
+            hook = hooks_dict[key]
+
+            # Hole uv_tip und uv_lowpoint aus Dict
+            uv_tip_img1 = hook['uv_tip']
+            uv_lowpoint_img1 = hook['uv_lowpoint']
+            uv_tip_img2 = hook['uv_tip_img2']
+            uv_lowpoint_img2 = hook['uv_lowpoint_img2']
+            xyz_tip_in_camframe = hook['xyz_tip_in_camframe']
+            xyz_lowpoint_in_camframe = hook['xyz_lowpoint_in_camframe']
+
+            # Falls Daten fehlen, diesen Hook überspringen
+            if not all([uv_tip_img1, uv_lowpoint_img1, uv_tip_img2, uv_lowpoint_img2, xyz_tip_in_camframe, xyz_lowpoint_in_camframe]):
+                continue
+
+            # Berechnung der Pixelstrecke von Tip bis Lowpoint für u und v
+            u_diff_ref = abs(uv_tip_img1[0] - uv_lowpoint_img1[0])
+            v_diff_ref = abs(uv_tip_img1[1] - uv_lowpoint_img1[1])
+            u_diff_horizontal = abs(uv_tip_img2[0] - uv_lowpoint_img2[0])
+            v_diff_horizontal = abs(uv_tip_img2[1] - uv_lowpoint_img2[1])
+            u_diff = (u_diff_ref + u_diff_horizontal) // 2 or 1  # Differenz von u_tip bis u_lowpoint in px - Falls 0, auf 1 setzen
+            v_diff = (v_diff_ref + v_diff_horizontal) // 2 or 1  # Differenz von v_tip bis v_lowpoint in px - Falls 0, auf 1 setzen
+
+            # Berechnung von mm_per_px in x- und y-Richtung
+            x_tip, y_tip, z_tip = xyz_tip_in_camframe
+            x_lowpoint, y_lowpoint, z_lowpoint = xyz_lowpoint_in_camframe
+            x_diff = abs(x_tip - x_lowpoint)
+            y_diff = abs(y_tip - y_lowpoint)
+            mm_per_px_x = x_diff / v_diff if v_diff != 0 else 0     # Übersetzung mm pro Pixel in x-Richtung
+            mm_per_px_y = y_diff / u_diff if u_diff != 0 else 0     # Übersetzung mm pro Pixel in y-Richtung 
+
+            # Berechnung von realen XY-Koordinaten der Path points
+            uv_path_points = hook.get('path_points', [])
+            if not uv_path_points:
+                hooks_dict[key]['path_points_xyz_in_camframe'] = []
+                continue
+
+            u_center = self.img_height / 2
+            v_center = self.img_width / 2
+            xy_path_points = [((p[1] - v_center) * mm_per_px_x, (p[0] - u_center) * mm_per_px_y) for p in uv_path_points]
+
+            # Berechnung von interpolierten Tiefenwerten für path_points
+            path_points_xyz_in_camframe = self.spline_calculator.interpolate(xy_points = xy_path_points, 
+                                                                             start_point_with_depth = xyz_tip_in_camframe, 
+                                                                             end_point_with_depth = xyz_lowpoint_in_camframe)
+            hooks_dict[key]['path_points_xyz_in_camframe'] = path_points_xyz_in_camframe
+            
 
     def publish_hooks_dict(self):
         """

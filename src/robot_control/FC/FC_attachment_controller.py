@@ -3,7 +3,6 @@ from rclpy.node import Node
 from FC.FC_hook_geometrics_handler import HookGeometricsHandler
 from FC.FC_cam_geometrics_handler import CamGeometricsHandler
 from FC.FC_frame_handler import FrameHandler
-import numpy as np
 
 
 
@@ -129,6 +128,7 @@ class TrajectoryController(Node):
         
         self.hook_line_p_1 = self.hook_geometrics_handler.path_points_in_tfcframe[self.act_path_point_idx]
         self.hook_line_p_0 = self.hook_geometrics_handler.path_points_in_tfcframe[self.act_path_point_idx + 1]
+
 
 
 

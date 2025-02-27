@@ -20,16 +20,32 @@ namespace msg
 namespace builder
 {
 
+class Init_Hook_path_points_xyz_in_camframe
+{
+public:
+  explicit Init_Hook_path_points_xyz_in_camframe(::action_interfaces::msg::Hook & msg)
+  : msg_(msg)
+  {}
+  ::action_interfaces::msg::Hook path_points_xyz_in_camframe(::action_interfaces::msg::Hook::_path_points_xyz_in_camframe_type arg)
+  {
+    msg_.path_points_xyz_in_camframe = std::move(arg);
+    return std::move(msg_);
+  }
+
+private:
+  ::action_interfaces::msg::Hook msg_;
+};
+
 class Init_Hook_xyz_lowpoint_in_camframe
 {
 public:
   explicit Init_Hook_xyz_lowpoint_in_camframe(::action_interfaces::msg::Hook & msg)
   : msg_(msg)
   {}
-  ::action_interfaces::msg::Hook xyz_lowpoint_in_camframe(::action_interfaces::msg::Hook::_xyz_lowpoint_in_camframe_type arg)
+  Init_Hook_path_points_xyz_in_camframe xyz_lowpoint_in_camframe(::action_interfaces::msg::Hook::_xyz_lowpoint_in_camframe_type arg)
   {
     msg_.xyz_lowpoint_in_camframe = std::move(arg);
-    return std::move(msg_);
+    return Init_Hook_path_points_xyz_in_camframe(msg_);
   }
 
 private:

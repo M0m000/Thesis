@@ -36,6 +36,7 @@
 // Member 'xyz_hook_in_camframe'
 // Member 'xyz_tip_in_camframe'
 // Member 'xyz_lowpoint_in_camframe'
+// Member 'path_points_xyz_in_camframe'
 #include "action_interfaces/msg/detail/xyz__struct.hpp"
 
 #ifndef _WIN32
@@ -174,6 +175,9 @@ struct Hook_
   using _xyz_lowpoint_in_camframe_type =
     std::vector<action_interfaces::msg::XYZ_<ContainerAllocator>, typename ContainerAllocator::template rebind<action_interfaces::msg::XYZ_<ContainerAllocator>>::other>;
   _xyz_lowpoint_in_camframe_type xyz_lowpoint_in_camframe;
+  using _path_points_xyz_in_camframe_type =
+    std::vector<action_interfaces::msg::XYZ_<ContainerAllocator>, typename ContainerAllocator::template rebind<action_interfaces::msg::XYZ_<ContainerAllocator>>::other>;
+  _path_points_xyz_in_camframe_type path_points_xyz_in_camframe;
 
   // setters for named parameter idiom
   Type & set__name(
@@ -308,6 +312,12 @@ struct Hook_
     this->xyz_lowpoint_in_camframe = _arg;
     return *this;
   }
+  Type & set__path_points_xyz_in_camframe(
+    const std::vector<action_interfaces::msg::XYZ_<ContainerAllocator>, typename ContainerAllocator::template rebind<action_interfaces::msg::XYZ_<ContainerAllocator>>::other> & _arg)
+  {
+    this->path_points_xyz_in_camframe = _arg;
+    return *this;
+  }
 
   // constant declarations
 
@@ -415,6 +425,9 @@ struct Hook_
       return false;
     }
     if (this->xyz_lowpoint_in_camframe != other.xyz_lowpoint_in_camframe) {
+      return false;
+    }
+    if (this->path_points_xyz_in_camframe != other.path_points_xyz_in_camframe) {
       return false;
     }
     return true;
