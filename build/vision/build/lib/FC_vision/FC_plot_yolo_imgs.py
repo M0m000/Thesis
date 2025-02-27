@@ -111,14 +111,19 @@ def plot_hooks_and_bars(received_img, hooks_dict, bar_dict):
             # Path Points
             if path_points is not None:
                 for idx, point in enumerate(path_points):
-                    y, x = point
+                    x, y = point
 
                     if idx == 0:
-                        cv2.circle(img_copy, (x, y), radius = 3, color = (0, 255, 0), thickness = -1)
+                        continue
                     elif idx == (len(path_points) - 1):
-                        cv2.circle(img_copy, (x, y), radius = 3, color = (0, 255, 0), thickness = -1)
+                        cv2.circle(img_copy, (x, y), radius = 8, color = (255, 0, 0), thickness = -1)
                     else:
-                        cv2.circle(img_copy, (x, y), radius = 3, color = (0, 0, 255), thickness = -1)
+                        cv2.circle(img_copy, (x, y), radius = 3, color = (255, 0, 255), thickness = -1)
+
+                for idx, point in enumerate(path_points):
+                    x, y = point
+                    cv2.circle(img_copy, (x, y), radius = 8, color = (0, 255, 0), thickness = -1)
+                    break
     return img_copy
 
 
@@ -204,15 +209,22 @@ def plot_combined_skeletons(hooks_dict):
             x, y = point
             if 0 <= x < max_width and 0 <= y < max_height:
                 if idx == 0:
-                    # Erster Punkt grün
-                    cv2.circle(skeleton_img_color, (x, y), radius=3, color=(0, 255, 0), thickness=-1)
+                    continue
                 elif idx == len(path_points) - 1:
-                    # Letzter Punkt blau
-                    cv2.circle(skeleton_img_color, (x, y), radius=3, color=(255, 0, 0), thickness=-1)
+                    cv2.circle(skeleton_img_color, (x, y), radius = 8, color=(255, 0, 0), thickness=-1)
                 else:
-                    # Alle anderen Punkte rot
-                    cv2.circle(skeleton_img_color, (x, y), radius=3, color=(0, 0, 255), thickness=-1)
+                    cv2.circle(skeleton_img_color, (x, y), radius = 3, color = (255, 0, 255), thickness = -1)
             else:
                 print(f"Warnung: Punkt außerhalb der Bildgrenzen ({x}, {y}) für {key}.")
+        
+        for idx, point in enumerate(path_points):
+            if not isinstance(point, (list, tuple)) or len(point) != 2:
+                print(f"Fehler: ungültiges Punktformat für {key}: {point}")
+                continue
+
+            x, y = point
+            if 0 <= x < max_width and 0 <= y < max_height:
+                cv2.circle(skeleton_img_color, (x, y), radius = 8, color=(0, 255, 0), thickness=-1)
+            break
 
     return skeleton_img_color

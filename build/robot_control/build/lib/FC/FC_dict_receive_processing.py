@@ -2,7 +2,6 @@ from cv_bridge import CvBridge
 from rclpy.node import Node
 
 
-
 class DictReceiveProcessor(Node):
     def __init__(self, dual_cam_setup = False):
         """
@@ -135,3 +134,4 @@ class DictReceiveProcessor(Node):
             # Speichere alles im Dictionary mit der Instanz-ID
             self.hooks_dict[hook_msg.name] = hook_data
         return self.hooks_dict
+
