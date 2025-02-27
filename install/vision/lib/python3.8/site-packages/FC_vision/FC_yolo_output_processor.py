@@ -273,8 +273,8 @@ class YoloPostprocessor(Node):
                 hooks_dict[key]['skeleton_mask'] = skeleton_mask
 
                 # Den Pfad mit BFS finden
-                shortest_path = self.bfs_shortest_path(skeleton_mask = skeleton_mask, start = uv_tip_int, end = uv_lowpoint_int)
-                # shortest_path = self.astar_shortest_path(skeleton_mask = skeleton_mask, start = uv_tip_int, end = uv_lowpoint_int)
+                # shortest_path = self.bfs_shortest_path(skeleton_mask = skeleton_mask, start = uv_tip_int, end = uv_lowpoint_int)
+                shortest_path = self.astar_shortest_path(skeleton_mask = skeleton_mask, start = uv_tip_int, end = uv_lowpoint_int)
 
                 if shortest_path:
                     # print(f"Kürzester Pfad: {shortest_path}")
@@ -413,7 +413,6 @@ class YoloPostprocessor(Node):
         time_token = time_end - time_start
         print(f"Time for A*: {time_token:.6f} sec")
         return None  # Kein Pfad gefunden
-
 
 
     def get_evenly_spaced_points_on_path(self, path, num_points):

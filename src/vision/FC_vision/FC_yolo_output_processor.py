@@ -459,4 +459,3 @@ class YoloPostprocessor(Node):
                 current_length = 0
             current_length += segment_length
         return spaced_points
-
