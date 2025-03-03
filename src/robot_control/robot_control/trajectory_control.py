@@ -166,7 +166,13 @@ class Attachment(Node):
 
         # Setze Hakennummer und aktiviere Regelung
         self.trajectory_controller.set_hook_num(global_hook_num = self.hook_num)
-        self.trajectory_controller.set_control(activate=True, manual_mode = self.manual_mode)
+        self.trajectory_controller.set_control(activate = False, manual_mode = self.manual_mode)
+
+        # Ausgabe zur Information über Tasten zur Aktivierung der Regelung
+        self.get_logger().info("Trajectory controller set up successfully.")
+        self.get_logger().warn("Press < r > to start controller.")
+        self.get_logger().warn("Press < t > to stop controller.")
+        self.get_logger().warn("Press < n > to shift path point [only available in manual mode].")
 
 
 
@@ -196,6 +202,9 @@ class Attachment(Node):
 
 
     def select_jogging_frame_callback(self, future):
+        """
+        Funktion für Service Callback SelectJoggingFrame
+        """
         try:
             response = future.result()
             if response.success:
@@ -208,6 +217,9 @@ class Attachment(Node):
 
 
     def publish_velocity(self):
+        """
+        Funktion für das Publishing der aktuellen Twist-Messages
+        """
         msg = JogLinear()
         msg.vel = self.velocity_trans
         msg.rot = self.velocity_rot
@@ -217,6 +229,9 @@ class Attachment(Node):
 
 
     def set_frame(self, rot, trans, frame="tcp", ref_frame="tfc"):
+        """
+        Funktion für Service Call SetSystemFrame -> setzt hier das TCP-Frame in Relation zum TFC-Frame
+        """
         request = SetSystemFrame.Request()
         request.name = frame
         request.ref = ref_frame
@@ -238,7 +253,9 @@ class Attachment(Node):
 
 
     def shutdown(self):
-        """Gibt alle Ressourcen frei, bevor der Node beendet wird."""
+        """
+        Gibt alle Ressourcen frei, bevor der Node beendet wird.
+        """
         self.jog_publisher_timer.cancel()
         self.control_timer.cancel()
         self.destroy_node()
