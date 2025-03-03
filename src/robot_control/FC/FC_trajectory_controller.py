@@ -25,7 +25,6 @@ class TrajectoryController(Node):
         # Instanzen HookGeometricsHandler, FrameHandler und CamGeometricsHandler
         self.hook_geometrics_handler = HookGeometricsHandler()
         self.frame_handler = FrameHandler(node_name = "frame_handler_for_attachment_controller")
-        # self.cam_geometrics_handler = CamGeometricsHandler(img_width = img_width, img_height = img_height)
 
         # Variablen für P-Regler translatorisch und rotatorisch
         self.p_gain_translation = p_gain_translation
@@ -70,20 +69,25 @@ class TrajectoryController(Node):
         self.log_vel_rot_z = []
         self.log_path_points = []
 
+        # Operationsmodus (kontinuierliches Abfahren der Path Points oder manual Mode)
+        self.manual_mode = False
+        self.take_next_path_point = False
 
 
 
-    def set_control(self, activate = False):
+    def set_control(self, activate=False, manual_mode=False):
         """
         Setzt Regelung auf Aktiv oder Inaktiv
         """
         if activate:
             self.controller_active = True
             self.handle_last_trajectory_point = False
+            self.manual_mode = manual_mode      # Wenn der manuelle Modus aktiviert ist
             self.set_controller_timer()
         else:
             self.controller_active = False
             self.handle_last_trajectory_point = False
+            self.manual_mode = False            # Deaktiviere manuelle Steuerung
             self.stop_controller_timer()
 
 
@@ -152,8 +156,16 @@ class TrajectoryController(Node):
         
         # Überprüfen, ob Regelfehler unter Toleranz liegt
         if abs(self.translation_diff_worldframe) <= self.translation_tolerance and abs(self.rotation_diff_worldframe) <= self.rotation_tolerance:
-            self.act_path_point_idx += 1
-            self.controller_data_logger.new_path_point_selected = True
+            if self.manual_mode:
+             # Falls im manuellen Modus, warte auf Flanke self.take_next_path_point
+             if self.take_next_path_point:
+                 self.act_path_point_idx += 1
+                 self.take_next_path_point = False
+                 self.controller_data_logger.new_path_point_selected = True
+            else:
+                # Falls manueller Modus inaktiv, automatisch nächster Path Point
+                self.act_path_point_idx += 1
+                self.controller_data_logger.new_path_point_selected = True
 
         # Extraktion der Punkte in Abhängigkeit des Index
         if self.act_path_point_idx + 1 < len(self.hook_geometrics_handler.path_points_in_tfcframe):
@@ -232,3 +244,4 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
