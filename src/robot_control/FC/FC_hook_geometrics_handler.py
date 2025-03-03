@@ -8,15 +8,12 @@ from scipy.spatial.transform import Rotation as R
 
 
 class HookGeometricsHandler(Node):
-    def __init__(self, use_dual_cam_dict = False):
+    def __init__(self, global_dict_filepath = '/home/mo/Thesis/src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv'):
         super().__init__("hook_geometrics_handler")
-
-        # Speichern, ob Dual Cam Dict aus Yolo-Output-Topic verwendet werden soll, oder GlobalScanDict
-        self.use_dual_cam_dict = use_dual_cam_dict
 
         # Laden des Global Scan Dict
         self.global_scan_dict = None
-        self.global_scan_dict = load_csv_to_dict(node = self, filename = '/home/mo/Thesis/src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv')
+        self.global_scan_dict = load_csv_to_dict(node = self, filename = global_dict_filepath)
         if self.global_scan_dict is not None:
             self.get_logger().info("Global Scan Dict loaded successfully from CSV for Geometrics Handler!")
         else:

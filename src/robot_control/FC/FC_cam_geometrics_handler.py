@@ -12,7 +12,8 @@ class CamGeometricsHandler(Node):
                  calib_path_cam1 = '/home/mo/Thesis/calibration_data.npz',
                  calib_path_cam2 = '/home/mo/Thesis/calibration_data.npz',
                  img_width = 1280,
-                 img_height = 720):
+                 img_height = 720,
+                 global_dict_filepath = '/home/mo/Thesis/src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv'):
         
         self.calib_data_cam1 = np.load(calib_path_cam1)
         self.calib_data_cam2 = np.load(calib_path_cam2)
@@ -43,7 +44,7 @@ class CamGeometricsHandler(Node):
         self.f_cam_2 = self.objective_2_f_in_mm/self.sensor_width_cam_2
 
         self.frame_handler = FrameHandler(node_name = "frame_handler_for_cam_geometrics_handler")
-        self.hook_geometrics_handler = HookGeometricsHandler()
+        self.hook_geometrics_handler = HookGeometricsHandler(global_dict_filepath = global_dict_filepath)
 
     
 

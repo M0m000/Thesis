@@ -1,0 +1,64 @@
+import rclpy
+from rclpy.node import Node
+from FC.FC_save_load_global_hook_dict import load_csv_to_dict
+from FC.FC_hook_geometrics_handler import HookGeometricsHandler
+from FC.FC_cam_geometrics_handler import CamGeometricsHandler
+from FC.FC_frame_handler import FrameHandler
+import numpy as np
+from scipy.spatial.transform import Rotation as R
+from std_msgs.msg import Int32
+from FC.FC_dict_receive_processing import DictReceiveProcessor
+from action_interfaces.msg import HookData
+
+
+
+
+class HookGeometricsDualCamWrapper(Node):
+    def __init__(self):
+        super().__init__("hook_geometrics_dual_cam_wrapper")
+
+        # Subscriber auf Bildgroesse
+        self.img_width = 896
+        self.img_height = 450
+        self.img_width_sub = self.create_subscription(Int32, 'vcnanoz/image_raw/width', self.received_img_width_callback, 10)
+        self.img_width_sub
+        self.img_height_sub = self.create_subscription(Int32, 'vcnanoz/image_raw/height', self.received_img_height_callback, 10)
+        self.img_height_sub
+        
+        # Instanz Cam Geometrics Handler
+        self.cam_geometrics_handler = CamGeometricsHandler(img_width = self.img_width, 
+                                                           img_height = self.img_height, 
+                                                           global_dict_filepath = 'src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal_dualcam.csv')
+
+        # Subscriber auf Yolo-Output Dict
+        self.yolo_output_dict_processor = DictReceiveProcessor(dual_cam_setup = True)
+
+        # Erstelle einen Subscriber, der auf das 'hook_data' Topic hört
+        self.local_hooks_dict = None
+        self.subscription = self.create_subscription(HookData, 'yolov8_output/hooks_dict', self.listener_callback, 10)
+        self.subscription
+
+
+
+
+    def received_img_width_callback(self, msg):
+        self.img_width = msg.data
+
+    def received_img_height_callback(self, msg):
+        self.img_height = msg.data
+
+    def listener_callback(self, msg):
+        self.local_hooks_dict = self.dict_processor.process_hooks_dict(msg)
+
+
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = HookGeometricsDualCamWrapper()
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
