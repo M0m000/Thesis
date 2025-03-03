@@ -106,7 +106,7 @@ class CamGeometricsHandler(Node):
     
 
 
-    def get_visible_global_hook_ids(self, cam_index = 1, distance_in_mm = 0):
+    def _get_visible_global_hook_ids(self, cam_index = 1, distance_in_mm = 0):
         """
         Findet die Indizes der momentan sichtbaren Haken aus Global Hook Dict
         """
@@ -114,7 +114,8 @@ class CamGeometricsHandler(Node):
 
         fov_width, fov_height = self._calculate_field_of_view(
             aperture_angle_width = aperture_angle_width, 
-            aperture_angle_height = aperture_angle_height)
+            aperture_angle_height = aperture_angle_height,
+            distance_in_mm = distance_in_mm)
         
         upper_left, lower_right = self._calculate_fov_borders_in_camframe(
             fov_width = fov_width, 
@@ -147,7 +148,8 @@ class CamGeometricsHandler(Node):
         """
         Findet für eine globale Hook-ID anhand des FoV und der aktuellen Kameraposition die lokale ID eines Hakens im Bild
         """
-        visible_hook_ids = self.get_visible_global_hook_ids(cam_index = cam_index, distance_in_mm = distance_in_mm)
+        visible_hook_ids = self._get_visible_global_hook_ids(cam_index = cam_index, 
+                                                             distance_in_mm = distance_in_mm)
         if visible_hook_ids is not None:
             for idx in range(len(visible_hook_ids)):
                 if visible_hook_ids[idx] == global_id:
