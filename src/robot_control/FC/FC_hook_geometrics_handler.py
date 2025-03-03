@@ -62,8 +62,10 @@ class HookGeometricsHandler(Node):
 
         # Dict für Speicherung der aktuellen Hakengerade
         self.hook_line = {}
-        ##########
 
+        # Variable zur Speicherung der Distanz von Kamera zu Hakenleiste (für Dual Cam Setup wichtig)
+        self.distance_cam_to_bar = None
+        ##########
 
         # Variablen für die Regelung
         self.plane = None
@@ -101,7 +103,7 @@ class HookGeometricsHandler(Node):
         Holt mit Hilfe des Cam Geometrics Handlers die LocalID des gewünschten Hakens (Global ID) und extrahiert die XYZ-Koordinaten aus NN-Local-Dict
         """
         self.cam_geometrics_handler.get_local_hook_id_to_follow(cam_index = 1, 
-                                                                distance_in_mm = bar_distance_in_mm, 
+                                                                distance_in_mm = self.distance_cam_to_bar, 
                                                                 global_id = hook_num)
         return self.hook_entry
         
