@@ -8,6 +8,7 @@ from FC.FC_trajectory_controller import TrajectoryController
 from kr_msgs.msg import JogLinear
 from kr_msgs.srv import SelectJoggingFrame
 from kr_msgs.srv import SetSystemFrame
+from pynput import keyboard
 
 
 
@@ -17,6 +18,8 @@ class Attachment(Node):
         
         self.declare_parameter('hook_num', 10)
         self.hook_num = self.get_parameter('hook_num').get_parameter_value().integer_value
+        self.declare_parameter('manual_mode', False)
+        self.manual_mode = self.get_parameter('manual_mode').get_parameter_value().bool_value
 
         # Publisher für Linear Servoing
         self.jog_publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
@@ -42,6 +45,10 @@ class Attachment(Node):
         self.trans_needle_tfc = [0.0, 0.0, 0.0]       # in mm
         self.rot_needle_tfc = [0.0, 0.0, 0.0]         # in Grad
         self.set_frame(self.rot_needle_tfc, self.trans_needle_tfc, frame="tcp", ref_frame="tfc")
+
+        # Starte den Keyboard-Listener (für das Starten der Regelung und weiterschalten der Path Points)
+        self.keyboard_listener = keyboard.Listener(on_release = self.keyboard_input)
+        self.keyboard_listener.start()
 
         # Instanz Geometrics Handler
         self.hook_geometrics_handler = HookGeometricsHandler()
@@ -159,7 +166,32 @@ class Attachment(Node):
 
         # Setze Hakennummer und aktiviere Regelung
         self.trajectory_controller.set_hook_num(global_hook_num = self.hook_num)
-        self.trajectory_controller.set_control(activate=True)
+        self.trajectory_controller.set_control(activate=True, manual_mode = self.manual_mode)
+
+
+
+    def keyboard_input(self, key):
+        """
+        Funktion für Keyboard-Eingabe -> hier wird auf Taste n überprüft -> dann wird der nächste Path Point genommmen
+        """
+        try:
+            if key.char == 'n' and self.manual_mode == True:
+                self.take_next_path_point = True
+                self.get_logger().info("take_next_path_point set to TRUE")
+            
+            if key.char == 'r':
+                if self.manual_mode == True:
+                    self.trajectory_controller.set_control(activate = True, manual_mode = True)
+                    self.get_logger().info("Trajectory controller activated in manual mode...")
+                else:
+                    self.trajectory_controller.set_control(activate = True, manual_mode = False)
+                    self.get_logger().info("Trajectory controller activated in automatic mode...")
+            
+            if key.char == 't':
+                self.trajectory_controller.set_control(activate = False)
+                self.get_logger().info("Trajectory controller stopped...")
+        except AttributeError:
+            pass
 
 
 
@@ -222,6 +254,7 @@ def main(args=None):
     except KeyboardInterrupt:
         node.get_logger().info("Shutting down...")
     finally:
+        node.keyboard_listener.stop()
         node.shutdown()
         rclpy.shutdown()
 
