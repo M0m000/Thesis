@@ -202,7 +202,7 @@ ros2 run robot_control scan_bar_horizontal_triangulation --ros-args -p do_vibrat
 
 ### **Scan Bar Vertical Triangulation** Node <br>
 ```bash
-ros2 run robot_control scan_bar_vertica_triangulation --ros-args -p do_vibration_test:=False -p speed_in_mm_per_s:=10.0 -p num_hooks_existing:=20
+ros2 run robot_control scan_bar_vertical_triangulation --ros-args -p do_vibration_test:=False -p speed_in_mm_per_s:=10.0 -p num_hooks_existing:=20
 ```
 >Enthält den gesammten Scan-Mechanismus. Die Referenzierfahrt für das WORK-Frame muss hierzu beendet sein und der tf frame pulisher Node muss aktiv sein und die Frames inkl. WORLD publishen. Dieser Knoten führt den gesamten Scan-Mechanismus inklusive veritkaler Triangulation durch und liefert am Ende ein Dict, welches alle Hakeninstanzen mit WORK-Position und CAM-Position in realen Koordinaten XYZ enthält. <br>
 <br>
