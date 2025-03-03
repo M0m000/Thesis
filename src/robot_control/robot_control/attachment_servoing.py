@@ -10,9 +10,9 @@ from kr_msgs.srv import SetSystemFrame
 
 
 
-class VisualServoingControl(Node):
+class AttachmentServoing(Node):
     def __init__(self):
-        super().__init__('visual_servoing_control')
+        super().__init__('attachment_servoing')
         
         self.declare_parameter('hook_num', 10)
         self.hook_num = self.get_parameter('hook_num').get_parameter_value().integer_value
@@ -176,7 +176,7 @@ class VisualServoingControl(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = VisualServoingControl()
+    node = AttachmentServoing()
 
     try:
         rclpy.spin(node)
