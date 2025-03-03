@@ -73,7 +73,7 @@ class TrajectoryController(Node):
         self.manual_mode = False
         self.take_next_path_point = False
 
-        
+
 
     
     def set_control(self, activate=False, manual_mode=False):
@@ -243,7 +243,7 @@ def main(args=None):
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
-        node.get_logger().info("TrajectoryController wird beendet.")
+        node.get_logger().info("Shutting down node...")
     finally:
         node.destroy_node()
         rclpy.shutdown()
