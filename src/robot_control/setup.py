@@ -41,7 +41,7 @@ setup(
             'scan_bar_vertical_triangulation = robot_control.scan_bar_vertical_triangulation:main',
             'scan_bar_combined_triangulation = robot_control.scan_bar_combined_triangulation:main',
             'hook_data_listener = robot_control.hook_data_listener:main',
-            'attachment_node = robot_contro.attachment_node:main'
+            'attachment_trajectory = robot_contro.attachment_trajectory:main'
         ],
     },
 )

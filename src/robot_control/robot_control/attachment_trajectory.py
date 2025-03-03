@@ -12,9 +12,9 @@ from pynput import keyboard
 
 
 
-class AttachmentNode(Node):
+class AttachmentTrajectory(Node):
     def __init__(self):
-        super().__init__('trajectory_control')
+        super().__init__('attachment_trajectory')
         
         self.declare_parameter('hook_num', 10)
         self.hook_num = self.get_parameter('hook_num').get_parameter_value().integer_value
@@ -266,7 +266,7 @@ class AttachmentNode(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = AttachmentNode()
+    node = AttachmentTrajectory()
 
     try:
         rclpy.spin(node)
