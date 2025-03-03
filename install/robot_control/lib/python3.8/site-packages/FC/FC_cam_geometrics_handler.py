@@ -56,7 +56,7 @@ class CamGeometricsHandler(Node):
             f_in_px = self.f_cam_1
             f_in_mm = self.objective_1_f_in_mm
         else:
-            sensor_widht, sensor_height = self.sensor_width_cam_2, self.sensor_height_cam_2
+            sensor_width, sensor_height = self.sensor_width_cam_2, self.sensor_height_cam_2
             f_in_px = self.f_cam_2
             f_in_mm = self.objective_2_f_in_mm
         
@@ -163,10 +163,14 @@ class CamGeometricsHandler(Node):
         """
         if yolo_output_img is not None and local_id is not None and global_id is not None:
             key = 'hook_' + str(global_id)
-            bbox_hook = self.hook_geometrics_handler.global_scan_dict[key]['hook_box']
-            x1, y1, x2, y2 = bbox_hook
-            cv2.rectangle(yolo_output_img, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 3)
-            return yolo_output_img
+
+            if key in self.hook_geometrics_handler.global_scan_dict:
+                bbox_hook = self.hook_geometrics_handler.global_scan_dict[key].get('hook_box', None)
+                x1, y1, x2, y2 = bbox_hook
+                cv2.rectangle(yolo_output_img, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 3)
+                return yolo_output_img
+            if bbox_hook is None:
+                self.get_logger().error(f"No Bounding Box found for {key}!")
         else:
             self.get_logger().error("No Image to plot...")
             return None

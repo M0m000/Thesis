@@ -7,11 +7,18 @@ from FC.FC_frame_handler import FrameHandler
 
 
 class TrajectoryController(Node):
-    def __init__(self, logging_active = False, p_gain_translation = 0.0, p_gain_rotation = 0.0, img_width = 896, img_height = 450):
+    def __init__(self, logging_active = False, 
+                 controller_output_logging_active = False, 
+                 p_gain_translation = 0.0, 
+                 p_gain_rotation = 0.0, 
+                 img_width = 896, 
+                 img_height = 450):
+        
         super().__init__("trajectory_controller")
 
         # Logging
         self.logging_active = logging_active
+        self.controller_output_logging_active = controller_output_logging_active
 
         # Instanzen HookGeometricsHandler, FrameHandler und CamGeometricsHandler
         self.hook_geometrics_handler = HookGeometricsHandler()
@@ -37,6 +44,12 @@ class TrajectoryController(Node):
         self.act_path_point_idx = None
         self.translation_diff_worldframe = None
         self.rotation_diff_worldframe = None
+        self.handle_last_trajectory_point = False
+
+        # Tolearnz-Werte für Translation und Rotation
+        self.translation_tolerance = 0.01  # Beispielwert
+        self.rotation_tolerance = 0.01  # Beispielwert
+
 
         # Zykluszeit für die Regelung
         self.controller_cycle_time = 0.001
@@ -81,7 +94,7 @@ class TrajectoryController(Node):
         """
         Stoppt den Callback-Timer für die Regelung
         """
-        if self.controller_timer_active == True:
+        if self.controller_timer_active and self.controller_callback_timer is not None:
             self.controller_callback_timer.cancel()
             self.controller_timer_active = False
 
@@ -125,10 +138,13 @@ class TrajectoryController(Node):
         
         if abs(self.translation_diff_worldframe) <= self.translation_tolerance and abs(self.rotation_diff_worldframe) <= self.rotation_tolerance:
             self.act_path_point_idx += 1
-        
-        self.hook_line_p_1 = self.hook_geometrics_handler.path_points_in_tfcframe[self.act_path_point_idx]
-        self.hook_line_p_0 = self.hook_geometrics_handler.path_points_in_tfcframe[self.act_path_point_idx + 1]
 
+        if self.act_path_point_idx + 1 < len(self.hook_geometrics_handler.path_points_in_tfcframe):
+            self.hook_line_p_1 = self.hook_geometrics_handler.path_points_in_tfcframe[self.act_path_point_idx]
+            self.hook_line_p_0 = self.hook_geometrics_handler.path_points_in_tfcframe[self.act_path_point_idx + 1]
+        else:
+            self.get_logger().info("Reached ending of trajectory.")
+            self.handle_last_trajectory_point = True
 
 
 
@@ -151,13 +167,20 @@ class TrajectoryController(Node):
         self.hook_geometrics_handler.update_hook_data(hook_num = self.global_hook_num)
         self.hook_geometrics_handler.calculate_hook_line(p_0 = self.hook_line_p_0, p_1 = self.hook_line_p_1)
 
+
         # Berechne aktuellen Regelfehler
         adjustment_angles = self.hook_geometrics_handler.calculate_adjustment_angles()
-        translation_diff = self.hook_geometrics_handler.calculate_translation_difference()
+
+        # Translation -- Falls Trajektorie fertig -> Positionierung an Senke
+        if self.handle_last_trajectory_point == True:
+            translation_diff = self.hook_geometrics_handler.calculate_translation_difference(calculate_translation_difference = True)
+        else:       # ansonsten -> fahre die Trajektorie-Punkte an
+            translation_diff = self.hook_geometrics_handler.calculate_translation_difference(calculate_translation_difference = False)
+
 
         # Rechne Regelfeher von TFC-Frame ins WORLD-Frame um
-        self.translation_diff_worldframe = self.frame_handler.tansform_velocity_to_world(vel = translation_diff, from_frame = 'tfc')
-        self.rotation_diff_worldframe = self.frame_handler.tansform_velocity_to_world(vel = adjustment_angles, from_frame = 'tfc')
+        self.translation_diff_worldframe = self.frame_handler.transform_velocity_to_world(vel = translation_diff, from_frame = 'tfc')
+        self.rotation_diff_worldframe = self.frame_handler.transform_velocity_to_world(vel = adjustment_angles, from_frame = 'tfc')
 
         # Logge, falls gewünscht
         if self.logging_active:
@@ -173,9 +196,13 @@ class TrajectoryController(Node):
 def main(args=None):
     rclpy.init(args=args)
     node = TrajectoryController()
-    rclpy.spin(node)
-    node.destroy_node()
-    rclpy.shutdown()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        node.get_logger().info("TrajectoryController wird beendet.")
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
 
 if __name__ == '__main__':
     main()

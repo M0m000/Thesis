@@ -3,15 +3,25 @@ from rclpy.node import Node
 from FC.FC_hook_geometrics_handler import HookGeometricsHandler
 from FC.FC_cam_geometrics_handler import CamGeometricsHandler
 from FC.FC_frame_handler import FrameHandler
-
+from FC.FC_controller_data_logger import ControllerDataLogger
+import os
+import csv
 
 
 class TrajectoryController(Node):
-    def __init__(self, logging_active = False, p_gain_translation = 0.0, p_gain_rotation = 0.0, img_width = 896, img_height = 450):
+    def __init__(self, logging_active = False, 
+                 controller_output_logging_active = False, 
+                 p_gain_translation = 0.0, 
+                 p_gain_rotation = 0.0, 
+                 img_width = 896, 
+                 img_height = 450):
+        
         super().__init__("trajectory_controller")
 
         # Logging
         self.logging_active = logging_active
+        self.controller_output_logging_active = controller_output_logging_active
+        self.controller_data_logger = ControllerDataLogger()
 
         # Instanzen HookGeometricsHandler, FrameHandler und CamGeometricsHandler
         self.hook_geometrics_handler = HookGeometricsHandler()
@@ -50,6 +60,17 @@ class TrajectoryController(Node):
         # Regler-Output Stellgroesse
         self.velocity_trans = [0.0, 0.0, 0.0]
         self.velocity_rot = [0.0, 0.0, 0.0]
+
+        # Logging Listen für Controller Output
+        self.log_iterations = []
+        self.log_vel_trans_x = []
+        self.log_vel_trans_y = []
+        self.log_vel_trans_z = []
+        self.log_vel_rot_x = []
+        self.log_vel_rot_y = []
+        self.log_vel_rot_z = []
+        self.log_path_points = []
+        self.new_path_point_selected = False
 
 
 
@@ -135,6 +156,7 @@ class TrajectoryController(Node):
         if self.act_path_point_idx + 1 < len(self.hook_geometrics_handler.path_points_in_tfcframe):
             self.hook_line_p_1 = self.hook_geometrics_handler.path_points_in_tfcframe[self.act_path_point_idx]
             self.hook_line_p_0 = self.hook_geometrics_handler.path_points_in_tfcframe[self.act_path_point_idx + 1]
+            self.new_path_point_selected = True
         else:
             self.get_logger().info("Reached ending of trajectory.")
             self.handle_last_trajectory_point = True
@@ -183,6 +205,126 @@ class TrajectoryController(Node):
         self.velocity_trans = self.translation_diff_worldframe * self.p_gain_translation
         self.velocity_rot = self.rotation_diff_worldframe * self.p_gain_rotation
 
+        # Falls aktiv -> logging der Stellgroessen
+        if self.controller_output_logging_active == True:
+            self.log_controller_output()
+
+    
+
+    def log_controller_output(self):
+        """
+        Logging der Stellgroessen in Listen
+        """
+        self.log_iterations.append(len(self.log_iterations) + 1)
+        self.log_vel_trans_x.append(self.velocity_trans[0])
+        self.log_vel_trans_y.append(self.velocity_trans[1])
+        self.log_vel_trans_z.append(self.velocity_trans[2])
+        self.log_vel_rot_x.append(self.velocity_rot[0])
+        self.log_vel_rot_y.append(self.velocity_rot[1])
+        self.log_vel_rot_z.append(self.velocity_rot[2])
+
+        if self.new_path_point_selected == False:
+            self.log_path_points.append(0)
+        else:
+            self.log_path_points.append(1)
+            self.new_path_point_selected = False
+
+
+
+    def reset_logging_lists(self):
+        """
+        Leert die Logging Listen wieder
+        """
+        self.log_iterations = []
+        self.log_vel_trans_x = []
+        self.log_vel_trans_y = []
+        self.log_vel_trans_z = []
+        self.log_vel_rot_x = []
+        self.log_vel_rot_y = []
+        self.log_vel_rot_z = []
+
+
+    
+    def save_logging_lists(self, directory = "/home/mo/Thesis/src/robot_control/robot_control/data/controller_output_logging"):
+        """
+        Speichert die Logging-Listen unter Directory als jeweiliges csv
+        """
+        # Sicherstellen, dass das Verzeichnis existiert
+        os.makedirs(directory, exist_ok=True)
+
+        # Dictionary mit den Logging-Daten
+        data_dict = {
+            "iterations": self.log_iterations,
+            "vel_trans_x": self.log_vel_trans_x,
+            "vel_trans_y": self.log_vel_trans_y,
+            "vel_trans_z": self.log_vel_trans_z,
+            "vel_rot_x": self.log_vel_rot_x,
+            "vel_rot_y": self.log_vel_rot_y,
+            "vel_rot_z": self.log_vel_rot_z,
+            "path_points": self.log_path_points
+        }
+
+        # CSV-Dateipfad
+        file_path = os.path.join(directory, "controller_output_log.csv")
+
+        try:
+            # Schreiben der CSV-Datei
+            with open(file_path, mode='w', newline='') as file:
+                writer = csv.writer(file)
+                # Kopfzeile schreiben
+                writer.writerow(data_dict.keys())
+                # Zeilenweise die Werte schreiben
+                for row in zip(*data_dict.values()):
+                    writer.writerow(row)
+
+            self.get_logger().info(f"Logging-Data saved successfully in directory: {file_path}")
+        except Exception as e:
+            self.get_logger().error(f"Error while saving logging data: {e}")
+
+
+    
+    def load_logging_lists(self, directory="/home/mo/Thesis/src/robot_control/robot_control/data/controller_output_logging"):
+        """
+        Lädt die Logging-Daten aus einer CSV-Datei zurück in die Listen.
+        """
+        file_path = os.path.join(directory, "controller_output_log.csv")
+
+        if not os.path.exists(file_path):
+            self.get_logger().error(f"Datei nicht gefunden: {file_path}")
+            return
+
+        try:
+            with open(file_path, mode='r', newline='') as file:
+                reader = csv.reader(file)
+                headers = next(reader)  # Erste Zeile als Header einlesen
+                data = list(reader)  # Restliche Zeilen einlesen
+
+            # Sicherstellen, dass Daten existieren
+            if not data:
+                self.get_logger().error("Die CSV-Datei enthält keine Daten.")
+                return
+
+            # Daten in Listen speichern
+            data_dict = {key: [] for key in headers}
+            for row in data:
+                for key, value in zip(headers, row):
+                    data_dict[key].append(float(value))  # Konvertiere Werte zu float
+
+            # Listen in die Klassenvariablen übertragen
+            self.log_iterations = data_dict["iterations"]
+            self.log_vel_trans_x = data_dict["vel_trans_x"]
+            self.log_vel_trans_y = data_dict["vel_trans_y"]
+            self.log_vel_trans_z = data_dict["vel_trans_z"]
+            self.log_vel_rot_x = data_dict["vel_rot_x"]
+            self.log_vel_rot_y = data_dict["vel_rot_y"]
+            self.log_vel_rot_z = data_dict["vel_rot_z"]
+            self.log_path_points = data_dict["path_points"]
+
+            self.get_logger().info(f"Logging-Daten erfolgreich geladen aus: {file_path}")
+        except Exception as e:
+            self.get_logger().error(f"Fehler beim Laden der Logging-Daten: {e}")
+
+
 
 
 
@@ -199,4 +341,3 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
-    

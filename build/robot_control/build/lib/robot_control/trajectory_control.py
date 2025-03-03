@@ -9,6 +9,7 @@ from kr_msgs.srv import SelectJoggingFrame
 from kr_msgs.srv import SetSystemFrame
 
 
+
 class TrajectoryControl(Node):
     def __init__(self):
         super().__init__('trajectory_control')

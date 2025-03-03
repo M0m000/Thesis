@@ -230,7 +230,7 @@ class HookGeometricsHandler(Node):
     
 
 
-    def calculate_translation_difference(self, target_position = None, plane = None, plane_midpoint = None):
+    def calculate_translation_difference(self, target_position = None, plane = None, plane_midpoint = None, handling_last_trajectory_point = False):
         """
         Berechnet die Reglerdifferenz für die translatorische Verschiebung
         zwischen dem Mittelpunkt der Ebene und einem Zielpunkt.
@@ -244,8 +244,12 @@ class HookGeometricsHandler(Node):
             plane = self.plane
             plane_midpoint = self.plane_midpoint
         
-        if target_position is None:
+        # Falls keine andere Zielposition angegeben und der letzte Punkt der Trajektorie noch nicht erreicht wurde -> nehme p1 der Gerade als Ziel
+        if target_position is None and handling_last_trajectory_point == False:
             target_position = self.hook_line['p_1']
+        # Falls letzter Punkt der Trajektorie erreicht -> nehme p0 der Gerade als Ziel
+        if target_position is None and handling_last_trajectory_point == True:
+            target_position = self.hook_line['p_0']
 
         # Der Mittelpunkt der Ebene
         P_center = plane_midpoint
