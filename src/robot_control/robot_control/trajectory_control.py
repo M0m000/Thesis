@@ -4,13 +4,14 @@ from FC.FC_gripper_handler import GripperHandler
 from FC.FC_hook_geometrics_handler import HookGeometricsHandler
 from FC.FC_frame_handler import FrameHandler
 from FC.FC_call_move_linear_service import MoveLinearServiceClient
+from FC.FC_trajectory_controller import TrajectoryController
 from kr_msgs.msg import JogLinear
 from kr_msgs.srv import SelectJoggingFrame
 from kr_msgs.srv import SetSystemFrame
 
 
 
-class TrajectoryControl(Node):
+class Attachment(Node):
     def __init__(self):
         super().__init__('trajectory_control')
         
@@ -38,17 +39,24 @@ class TrajectoryControl(Node):
         while not self.set_kassow_frame_client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info("Waiting for Service SetSystemFrame...")
         self.get_logger().info("Service SetSystemFrame available!")
-
-        self.Trans_needle_tfc = [0.0, 0.0, 0.0]       # in mm
-        self.Rot_needle_tfc = [0.0, 0.0, 0.0]         # in Grad
-        
-        self.set_frame(self.Rot_needle_tfc, self.Trans_needle_tfc, frame="tcp", ref_frame="tfc")
+        self.trans_needle_tfc = [0.0, 0.0, 0.0]       # in mm
+        self.rot_needle_tfc = [0.0, 0.0, 0.0]         # in Grad
+        self.set_frame(self.rot_needle_tfc, self.trans_needle_tfc, frame="tcp", ref_frame="tfc")
 
         # Instanz Geometrics Handler
         self.hook_geometrics_handler = HookGeometricsHandler()
         self.hook = self.hook_geometrics_handler.get_hook_of_global_scan_dict(hook_num=self.hook_num)
         self.hook_geometrics_handler.update_hook_data(hook_num=self.hook_num)
         self.hook_geometrics_handler.calculate_hook_line()
+
+        # Instanz Frame Handler
+        self.frame_handler = FrameHandler(node_name = 'frame_handler_for_dummy_node')
+
+        # Instanz Trajectory Controller
+        self.trajectory_controller = TrajectoryController(logging_active = True,
+                                                          controller_output_logging_active = True,
+                                                          p_gain_translation = 0.5,
+                                                          p_gain_rotation = 0.3)
 
         # Instanz Gripper Handler
         # self.gripper_handler = GripperHandler()
@@ -57,9 +65,6 @@ class TrajectoryControl(Node):
 
         # Instanz des MoveLinearServiceClient
         self.move_lin_client = MoveLinearServiceClient()
-
-        # Instanz Frame Handler
-        self.frame_handler = FrameHandler(node_name = 'frame_handler_for_dummy_node')
 
         # Position Grip in WORK Frame
         self.grip_pre_pos_in_workframe = [1018.0, -100.0, -50.0]
@@ -77,13 +82,14 @@ class TrajectoryControl(Node):
             rot = self.grip_rot_in_workframe,
             pose_ref_frame = "work")
         
-        # Position zum rausnehmen des Bauteils
+        # Position zum Rausnehmen des Bauteils
         self.grip_post_pos_in_workframe = [1018.0, -200.0, 20.0]
         self.grip_post_rot_in_workframe = [-45.0, 0.0, 0.0]
         self.grip_post_pos_in_worldframe, self.grip_post_rot_in_worldframe = self.frame_handler.transform_pose_to_world(
             trans = self.grip_post_pos_in_workframe,
             rot = self.grip_post_rot_in_workframe,
             pose_ref_frame = "work")
+        
         '''
         self.grip_pre_pos_movement_done = False
         self.grip_pre_pos_movement_done = self.move_lin_client.call_move_linear_service(
@@ -135,7 +141,7 @@ class TrajectoryControl(Node):
         self.plane = None
         self.hook_geometrics_handler.update_hook_data(hook_num = self.hook_num)
         self.hook_geometrics_handler.calculate_hook_line()
-        self.plane = self.hook_geometrics_handler.calculate_plane(trans_in_tfcframe = [0, 0, 112.0], rot_in_tfcframe = [0, 0, 0])
+        self.plane = self.hook_geometrics_handler.calculate_plane(trans_in_tfcframe = [0.0, 0.0, 112.0], rot_in_tfcframe = [0.0, 0.0, 0.0])
 
         endpos_trans_in_worldframe, endpos_rot_in_worldframe = self.hook_geometrics_handler.calculate_targetpose_in_worldframe()
         self.grip_post_movement_done = self.move_lin_client.call_move_linear_service(
@@ -151,8 +157,9 @@ class TrajectoryControl(Node):
             chaining = 0)
         print(endpos_trans_in_worldframe, endpos_rot_in_worldframe)
 
-        # Timer für Regelungsalgorithmus
-        self.control_timer = self.create_timer(0.001, self.control_callback)
+        # Setze Hakennummer und aktiviere Regelung
+        self.trajectory_controller.set_hook_num(global_hook_num = self.hook_num)
+        self.trajectory_controller.set_control(activate=True)
 
 
 
@@ -167,20 +174,6 @@ class TrajectoryControl(Node):
             self.get_logger().error(f'Error calling service SelectJoggingFrame: {e}')
 
 
-    def control_callback(self):
-        self.hook_geometrics_handler.update_hook_data(hook_num = self.hook_num)
-        self.hook_geometrics_handler.calculate_hook_line()
-        adjustment_angles = self.hook_geometrics_handler.calculate_adjustment_angles()
-        translation_diff = self.hook_geometrics_handler.calculate_translation_difference()
-
-        rotation_diff_worldframe = self.frame_handler.tansform_velocity_to_world(vel = adjustment_angles, from_frame = 'tfc')
-        translation_diff_worldframe = self.frame_handler.tansform_velocity_to_world(vel = translation_diff, from_frame = 'tfc')
-
-        print(translation_diff_worldframe, rotation_diff_worldframe)
-        
-        self.velocity_trans = translation_diff_worldframe * 0.5
-        self.velocity_rot = rotation_diff_worldframe * 0.3
-
 
     def publish_velocity(self):
         msg = JogLinear()
@@ -190,12 +183,13 @@ class TrajectoryControl(Node):
         self.jog_publisher.publish(msg = msg)
 
 
-    def set_frame(self, R, T, frame="tcp", ref_frame="tfc"):
+
+    def set_frame(self, rot, trans, frame="tcp", ref_frame="tfc"):
         request = SetSystemFrame.Request()
         request.name = frame
         request.ref = ref_frame
-        request.pos = T
-        request.rot = R
+        request.pos = trans
+        request.rot = rot
 
         future = self.set_kassow_frame_client.call_async(request)
         rclpy.spin_until_future_complete(self, future)
@@ -210,6 +204,7 @@ class TrajectoryControl(Node):
             self.get_logger().error(f"Service call of SetSystemFrame failed: {e}")
 
 
+
     def shutdown(self):
         """Gibt alle Ressourcen frei, bevor der Node beendet wird."""
         self.jog_publisher_timer.cancel()
@@ -220,7 +215,7 @@ class TrajectoryControl(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = TrajectoryControl()
+    node = Attachment()
 
     try:
         rclpy.spin(node)

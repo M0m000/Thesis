@@ -25,7 +25,7 @@ class TrajectoryController(Node):
         # Instanzen HookGeometricsHandler, FrameHandler und CamGeometricsHandler
         self.hook_geometrics_handler = HookGeometricsHandler()
         self.frame_handler = FrameHandler(node_name = "frame_handler_for_attachment_controller")
-        self.cam_geometrics_handler = CamGeometricsHandler(img_width = img_width, img_height = img_height)
+        # self.cam_geometrics_handler = CamGeometricsHandler(img_width = img_width, img_height = img_height)
 
         # Variablen für P-Regler translatorisch und rotatorisch
         self.p_gain_translation = p_gain_translation
@@ -159,8 +159,9 @@ class TrajectoryController(Node):
             self.controller_data_logger.new_path_point_selected = True
         elif self.act_path_point_idx == len(self.hook_geometrics_handler.path_points_in_tfcframe):
             self.get_logger().info("Trajectory control done.")
-            self.controller_data_logger.save_logging_lists()
-            self.controller_data_logger.reset_logging_lists()
+            if self.controller_output_logging_active == True:
+                self.controller_data_logger.save_logging_lists()
+                self.controller_data_logger.reset_logging_lists()
         else:
             self.get_logger().info("Handling last point of trajectory.")
             self.handle_last_trajectory_point = True
