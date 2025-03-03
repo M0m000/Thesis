@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Bild laden
-image_path = "/home/mo/Thesis/1.png"
+image_path = "/home/mo/YoloV8_InstanceSeg/dataset_2/image_1736192209.png"
 image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
 
 # Kanten mit Canny-Edge-Detection erkennen

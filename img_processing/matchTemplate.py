@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 # Originalbild laden
-image_path = "/home/mo/YoloV8_InstanceSeg/dataset_1/image_1735929563.png"
+image_path = "/home/mo/YoloV8_InstanceSeg/dataset_2/image_1736192209.png"
 image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
 
 # Überprüfen, ob das Bild geladen wurde
@@ -13,7 +13,7 @@ if image is None:
 # Template (ein einzelner Haken) aus dem Bild ausschneiden
 # (Hier sicherstellen, dass die Werte innerhalb der Bildgröße liegen)
 h_img, w_img = image.shape
-template_coords = (50, 35, 172, 264)  # Anpassen je nach Template-Position
+template_coords = (161, 110, 400, 519)  # Anpassen je nach Template-Position
 x1, y1, x2, y2 = template_coords
 
 # Falls das Template außerhalb des Bildes wäre → Fehler abfangen
