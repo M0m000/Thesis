@@ -166,7 +166,6 @@ class TrajectoryController(Node):
             self.handle_last_trajectory_point = True
 
 
-
     def trajectory_controller(self):
         """
         Funktion für Trajectory Controller -> Regelung basierend auf Path Points aus Global CSV Dict (nach einmaligem Scan-Vorgang)

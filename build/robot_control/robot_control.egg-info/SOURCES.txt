@@ -8,10 +8,10 @@ setup.py
 ../../build/robot_control/robot_control.egg-info/requires.txt
 ../../build/robot_control/robot_control.egg-info/top_level.txt
 ../../build/robot_control/robot_control.egg-info/zip-safe
-FC/FC_attachment_controller.py
 FC/FC_call_move_linear_service.py
 FC/FC_call_move_spline_service.py
 FC/FC_cam_geometrics_handler.py
+FC/FC_controller_data_logger.py
 FC/FC_dict_receive_processing.py
 FC/FC_edge_detector.py
 FC/FC_frame_handler.py
@@ -22,6 +22,7 @@ FC/FC_quaternion_to_euler.py
 FC/FC_save_load_global_hook_dict.py
 FC/FC_stereo_triangulation_processor.py
 FC/FC_tf_helper.py
+FC/FC_trajectory_controller.py
 FC/__init__.py
 config/vc_params.yaml
 launch/scan_bar_launch.py
