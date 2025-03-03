@@ -25,7 +25,6 @@ class TrajectoryController(Node):
         # Instanzen HookGeometricsHandler, FrameHandler und CamGeometricsHandler
         self.hook_geometrics_handler = HookGeometricsHandler()
         self.frame_handler = FrameHandler(node_name = "frame_handler_for_attachment_controller")
-        self.cam_geometrics_handler = CamGeometricsHandler(img_width = img_width, img_height = img_height)
 
         # Variablen für P-Regler translatorisch und rotatorisch
         self.p_gain_translation = p_gain_translation
@@ -47,11 +46,11 @@ class TrajectoryController(Node):
         self.translation_diff_worldframe = None
         self.rotation_diff_worldframe = None
         self.handle_last_trajectory_point = False
+        self.trajectory_control_finished = False
 
         # Tolearnz-Werte für Translation und Rotation
         self.translation_tolerance = 0.01  # Beispielwert
         self.rotation_tolerance = 0.01  # Beispielwert
-
 
         # Zykluszeit für die Regelung
         self.controller_cycle_time = 0.001
@@ -70,20 +69,26 @@ class TrajectoryController(Node):
         self.log_vel_rot_z = []
         self.log_path_points = []
 
+        # Operationsmodus (kontinuierliches Abfahren der Path Points oder manual Mode)
+        self.manual_mode = False
+        self.take_next_path_point = False
 
 
 
-    def set_control(self, activate = False):
+    
+    def set_control(self, activate=False, manual_mode=False):
         """
         Setzt Regelung auf Aktiv oder Inaktiv
         """
         if activate:
             self.controller_active = True
-            self.handle_last_trajectory_point = False
+            self.handle_last_trajectory_point = False   # Stelle sicher, dass der letzte Punkt nicht direkt bearbeitet wird
+            self.manual_mode = manual_mode              # Wenn der manuelle Modus aktiviert ist
             self.set_controller_timer()
         else:
             self.controller_active = False
-            self.handle_last_trajectory_point = False
+            self.handle_last_trajectory_point = False   # Rücksetzen des Flags
+            self.manual_mode = False                    # Deaktiviere manuelle Steuerung
             self.stop_controller_timer()
 
 
@@ -119,6 +124,10 @@ class TrajectoryController(Node):
         """
         self.global_hook_num = global_hook_num
 
+        self.act_path_point_idx = 0                 # Stelle sicher, dass der Path Point Index zurückgesetzt wird
+        self.trajectory_control_finished = False    # Rücksetzen des Flags
+        self.handle_last_trajectory_point = False   # Rücksetzen, um sicherzustellen, dass der letzte Punkt nicht direkt bearbeitet wird
+
 
     def reset_plane(self):
         """
@@ -150,21 +159,32 @@ class TrajectoryController(Node):
         if self.act_path_point_idx is None:
             self.update_path_point_idx(idx = 0)     # falls nicht anders festgelegt, beginne bei erstem Path-Point
         
+        # Überprüfen, ob Regelfehler unter Toleranz liegt
         if abs(self.translation_diff_worldframe) <= self.translation_tolerance and abs(self.rotation_diff_worldframe) <= self.rotation_tolerance:
-            self.act_path_point_idx += 1
+            if self.manual_mode:
+             # Falls im manuellen Modus, warte auf Flanke self.take_next_path_point
+             if self.take_next_path_point:
+                 self.act_path_point_idx += 1
+                 self.take_next_path_point = False
+                 self.controller_data_logger.new_path_point_selected = True
+            else:
+                # Falls manueller Modus inaktiv, automatisch nächster Path Point
+                self.act_path_point_idx += 1
+                self.controller_data_logger.new_path_point_selected = True
 
+        # Extraktion der Punkte in Abhängigkeit des Index
         if self.act_path_point_idx + 1 < len(self.hook_geometrics_handler.path_points_in_tfcframe):
             self.hook_line_p_1 = self.hook_geometrics_handler.path_points_in_tfcframe[self.act_path_point_idx]
             self.hook_line_p_0 = self.hook_geometrics_handler.path_points_in_tfcframe[self.act_path_point_idx + 1]
-            self.controller_data_logger.new_path_point_selected = True
         elif self.act_path_point_idx == len(self.hook_geometrics_handler.path_points_in_tfcframe):
             self.get_logger().info("Trajectory control done.")
-            self.controller_data_logger.save_logging_lists()
-            self.controller_data_logger.reset_logging_lists()
+            if self.controller_output_logging_active == True:
+                self.controller_data_logger.save_logging_lists()
+                self.controller_data_logger.reset_logging_lists()
+            self.trajectory_control_finished = True
         else:
             self.get_logger().info("Handling last point of trajectory.")
             self.handle_last_trajectory_point = True
-
 
 
     def trajectory_controller(self):
@@ -223,7 +243,7 @@ def main(args=None):
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
-        node.get_logger().info("TrajectoryController wird beendet.")
+        node.get_logger().info("Shutting down node...")
     finally:
         node.destroy_node()
         rclpy.shutdown()

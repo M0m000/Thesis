@@ -2,14 +2,21 @@ import rclpy
 from rclpy.node import Node
 from FC.FC_save_load_global_hook_dict import load_csv_to_dict
 from FC.FC_frame_handler import FrameHandler
+from FC.FC_cam_geometrics_handler import CamGeometricsHandler
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 
 
 
 class HookGeometricsHandler(Node):
-    def __init__(self, global_dict_filepath = '/home/mo/Thesis/src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv'):
+    def __init__(self, 
+                 global_dict_filepath = '/home/mo/Thesis/src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv',
+                 use_dual_cam_setup = False):
+        
         super().__init__("hook_geometrics_handler")
+
+        # Dual Cam Setup (True/False)
+        self.use_dual_cam_setup = use_dual_cam_setup
 
         # Laden des Global Scan Dict
         self.global_scan_dict = None
@@ -22,6 +29,10 @@ class HookGeometricsHandler(Node):
         # Instanziieren eines Frame Handlers
         self.frame_handler = FrameHandler(node_name = "frame_handler_for_geometrics_handler")
         self.get_logger().info("Frame Handler for Geometrics Handler instantiated successfully!")
+
+        # Instanziieren eines Cam Gemetrics Handlers
+        self.cam_geometrics_handler = CamGeometricsHandler(global_scan_dict = self.global_scan_dict)
+
 
         ########## speichern der aktuellen Hakeninstanz
         self.hook_entry = None
@@ -53,6 +64,7 @@ class HookGeometricsHandler(Node):
         self.hook_line = {}
         ##########
 
+
         # Variablen für die Regelung
         self.plane = None
         self.plane_midpoint = None
@@ -60,6 +72,7 @@ class HookGeometricsHandler(Node):
         self.control_state = None
         self.trans_diff_in_tfcframe = None
         self.rot_diff_in_tfcframe = None
+
 
 
 
@@ -81,6 +94,15 @@ class HookGeometricsHandler(Node):
             self.path_points_in_workframe = self.global_scan_dict[str(hook_num)]['xyz_path_points_in_workframe']
             return self.hook_entry
         
+
+
+    def get_local_hook_from_global_id(self, hook_num):
+        """
+        Holt mit Hilfe des Cam Geometrics Handlers die LocalID des gewünschten Hakens (Global ID) und extrahiert die XYZ-Koordinaten aus NN-Local-Dict
+        """
+        # TODO
+        return self.hook_entry
+        
         
 
     def update_hook_data(self, hook_num):
@@ -95,8 +117,14 @@ class HookGeometricsHandler(Node):
                 frame_desired = "work")
             
 
-            # hole die Haken Koordinaten im WORK Frame aus Global Scan Dict
-            _ = self.get_hook_of_global_scan_dict(hook_num)
+            # hole die Haken Koordinaten im WORK Frame aus Global Scan Dict bzw aus NN-Local-Dict (wenn Dual Cam Setup)
+            if self.use_dual_cam_setup == False:
+                _ = self.get_hook_of_global_scan_dict(hook_num)
+            else:
+                _ = self.get_local_hook_from_global_id(hook_num)
+
+
+            # weitere Verarbeitung
             T_work_in_tfcframe = np.linalg.inv(T_tfc_in_workframe)
 
             hook_point_in_workframe_hom = np.array([self.hook_pos_in_workframe[0], 

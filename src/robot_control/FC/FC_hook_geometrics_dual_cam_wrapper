@@ -28,14 +28,15 @@ class HookGeometricsDualCamWrapper(Node):
         # Instanz Cam Geometrics Handler
         self.cam_geometrics_handler = CamGeometricsHandler(img_width = self.img_width, 
                                                            img_height = self.img_height, 
-                                                           global_dict_filepath = 'src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal_dualcam.csv')
+                                                           global_dict_filepath = 'src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal_dualcam.csv',
+                                                           global_scan_dict = )
 
         # Subscriber auf Yolo-Output Dict
         self.yolo_output_dict_processor = DictReceiveProcessor(dual_cam_setup = True)
 
         # Erstelle einen Subscriber, der auf das 'hook_data' Topic hört
         self.local_hooks_dict = None
-        self.subscription = self.create_subscription(HookData, 'yolov8_output/hooks_dict', self.listener_callback, 10)
+        self.subscription = self.create_subscription(HookData, 'yolov8_output/hooks_dict', self.nn_output_callback, 10)
         self.subscription
 
 
@@ -47,8 +48,14 @@ class HookGeometricsDualCamWrapper(Node):
     def received_img_height_callback(self, msg):
         self.img_height = msg.data
 
-    def listener_callback(self, msg):
+    def nn_output_callback(self, msg):
+        """
+        Callback für Local Hooks Dict Topic Subscription
+        """
         self.local_hooks_dict = self.dict_processor.process_hooks_dict(msg)
+        
+
+
 
 
 

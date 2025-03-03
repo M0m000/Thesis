@@ -1,7 +1,6 @@
 import rclpy
 from rclpy.node import Node
 from FC.FC_frame_handler import FrameHandler
-from FC.FC_geometrics_handler import GeometricsHandler
 import numpy as np
 import cv2
 
@@ -12,7 +11,8 @@ class CamGeometricsHandler(Node):
                  calib_path_cam1 = '/home/mo/Thesis/calibration_data.npz',
                  calib_path_cam2 = '/home/mo/Thesis/calibration_data.npz',
                  img_width = 1280,
-                 img_height = 720):
+                 img_height = 720,
+                 global_scan_dict = None):
         
         self.calib_data_cam1 = np.load(calib_path_cam1)
         self.calib_data_cam2 = np.load(calib_path_cam2)
@@ -42,8 +42,11 @@ class CamGeometricsHandler(Node):
         self.f_cam_1 = self.objective_1_f_in_mm/self.sensor_width_cam_1         # Brennweite [px]
         self.f_cam_2 = self.objective_2_f_in_mm/self.sensor_width_cam_2
 
+        # Instanz Frame Handler
         self.frame_handler = FrameHandler(node_name = "frame_handler_for_cam_geometrics_handler")
-        self.hook_geometrics_handler = GeometricsHandler()
+
+        # Speichern des Global Scan Dict
+        self.global_scan_dict = global_scan_dict
 
     
 
@@ -126,14 +129,17 @@ class CamGeometricsHandler(Node):
         # Überprüfen aller Haken im Global Scan Dict, ob sie innerhalb des sichtbaren Bereichs liegen
         visible_hook_ids = []
 
-        for idx, key in enumerate(self.hook_geometrics_handler.global_scan_dict):
-            xyz_hook_in_workframe = self.hook_geometrics_handler.global_scan_dict[key]['xyz_hook_in_workframe']     # sobald Haken detektiert, gibt es diese Koordinate
+        if self.global_scan_dict is not None:
+            for idx, key in enumerate(self.global_scan_dict):
+                xyz_hook_in_workframe = self.global_scan_dict[key]['xyz_hook_in_workframe']     # sobald Haken detektiert, gibt es diese Koordinate
 
-            # Auf FoV-BBoxüberprüfen
-            if (xyz_hook_in_workframe[0] >= bbox_upper_left_in_workframe[0] and xyz_hook_in_workframe[1] >= bbox_upper_left_in_workframe[1] and
-                xyz_hook_in_workframe[0] <= bbox_lower_right_in_workframe[0] and xyz_hook_in_workframe[1] <= bbox_lower_right_in_workframe[1]):
-                visible_hook_ids.append(idx)
-        return visible_hook_ids
+                # Auf FoV-BBoxüberprüfen
+                if (xyz_hook_in_workframe[0] >= bbox_upper_left_in_workframe[0] and xyz_hook_in_workframe[1] >= bbox_upper_left_in_workframe[1] and
+                    xyz_hook_in_workframe[0] <= bbox_lower_right_in_workframe[0] and xyz_hook_in_workframe[1] <= bbox_lower_right_in_workframe[1]):
+                    visible_hook_ids.append(idx)
+            return visible_hook_ids
+        else:
+            return None
     
 
 
@@ -142,9 +148,10 @@ class CamGeometricsHandler(Node):
         Findet für eine globale Hook-ID anhand des FoV und der aktuellen Kameraposition die lokale ID eines Hakens im Bild
         """
         visible_hook_ids = self.get_visible_global_hook_ids(cam_index = cam_index, distance_in_mm = distance_in_mm)
-        for idx in range(len(visible_hook_ids)):
-            if visible_hook_ids[idx] == global_id:
-                return idx      # Index in der Liste visible_hook_ids ist direkt der Instanz-Index des Hakens im Bild -> NOCH ZU CHECKEN, ob rückwärts
+        if visible_hook_ids is not None:
+            for idx in range(len(visible_hook_ids)):
+                if visible_hook_ids[idx] == global_id:
+                    return idx      # Index in der Liste visible_hook_ids ist direkt der Instanz-Index des Hakens im Bild -> NOCH ZU CHECKEN, ob rückwärts
         return None             # falls der Index nicht gefunden wurde -> Kamera steht falsch und kann den gewünschten Haken nicht sehen -> return None
     
 
@@ -161,11 +168,11 @@ class CamGeometricsHandler(Node):
         """
         Plottet den zu trackenden Haken innerhalb des Yolo-Output-Bilds
         """
-        if yolo_output_img is not None and local_id is not None and global_id is not None:
+        if yolo_output_img is not None and local_id is not None and global_id is not None and self.global_scan_dict is not None:
             key = 'hook_' + str(global_id)
 
-            if key in self.hook_geometrics_handler.global_scan_dict:
-                bbox_hook = self.hook_geometrics_handler.global_scan_dict[key].get('hook_box', None)
+            if key in self.global_scan_dict:
+                bbox_hook = self.global_scan_dict[key].get('hook_box', None)
                 x1, y1, x2, y2 = bbox_hook
                 cv2.rectangle(yolo_output_img, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 3)
                 return yolo_output_img
@@ -174,6 +181,7 @@ class CamGeometricsHandler(Node):
         else:
             self.get_logger().error("No Image to plot...")
             return None
+
 
 
 

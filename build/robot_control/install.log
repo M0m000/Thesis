@@ -6,8 +6,8 @@
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/tf_frames_publisher.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/move_lin_by_key.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/tcp_frame_listener.py
+/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/attachment_node.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/transform_action_client.py
-/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/trajectory_control.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/scan_bar_combined_triangulation.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/scan_bar_horizontal_triangulation.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/visual_servoing_control.py
@@ -38,8 +38,8 @@
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/tf_frames_publisher.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/move_lin_by_key.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/tcp_frame_listener.cpython-38.pyc
+/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/attachment_node.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/transform_action_client.cpython-38.pyc
-/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/trajectory_control.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/scan_bar_combined_triangulation.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/scan_bar_horizontal_triangulation.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/visual_servoing_control.cpython-38.pyc
@@ -75,6 +75,7 @@
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info/PKG-INFO
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info/SOURCES.txt
 /home/mo/Thesis/install/robot_control/lib/robot_control/MoveTcpAlongAxis_action_client
+/home/mo/Thesis/install/robot_control/lib/robot_control/attachment_node
 /home/mo/Thesis/install/robot_control/lib/robot_control/define_working_frame_needle
 /home/mo/Thesis/install/robot_control/lib/robot_control/hook_data_listener
 /home/mo/Thesis/install/robot_control/lib/robot_control/ibvs_2d
@@ -85,5 +86,4 @@
 /home/mo/Thesis/install/robot_control/lib/robot_control/set_working_frame_qr
 /home/mo/Thesis/install/robot_control/lib/robot_control/tcp_frame_listener
 /home/mo/Thesis/install/robot_control/lib/robot_control/tf_frames_publisher
-/home/mo/Thesis/install/robot_control/lib/robot_control/trajectory_control
 /home/mo/Thesis/install/robot_control/lib/robot_control/transform_action_client
