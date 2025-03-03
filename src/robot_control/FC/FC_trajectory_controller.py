@@ -150,13 +150,15 @@ class TrajectoryController(Node):
         if self.act_path_point_idx is None:
             self.update_path_point_idx(idx = 0)     # falls nicht anders festgelegt, beginne bei erstem Path-Point
         
+        # Überprüfen, ob Regelfehler unter Toleranz liegt
         if abs(self.translation_diff_worldframe) <= self.translation_tolerance and abs(self.rotation_diff_worldframe) <= self.rotation_tolerance:
             self.act_path_point_idx += 1
+            self.controller_data_logger.new_path_point_selected = True
 
+        # Extraktion der Punkte in Abhängigkeit des Index
         if self.act_path_point_idx + 1 < len(self.hook_geometrics_handler.path_points_in_tfcframe):
             self.hook_line_p_1 = self.hook_geometrics_handler.path_points_in_tfcframe[self.act_path_point_idx]
             self.hook_line_p_0 = self.hook_geometrics_handler.path_points_in_tfcframe[self.act_path_point_idx + 1]
-            self.controller_data_logger.new_path_point_selected = True
         elif self.act_path_point_idx == len(self.hook_geometrics_handler.path_points_in_tfcframe):
             self.get_logger().info("Trajectory control done.")
             if self.controller_output_logging_active == True:
