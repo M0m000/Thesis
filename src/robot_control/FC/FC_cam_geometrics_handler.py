@@ -56,7 +56,7 @@ class CamGeometricsHandler(Node):
             f_in_px = self.f_cam_1
             f_in_mm = self.objective_1_f_in_mm
         else:
-            sensor_widht, sensor_height = self.sensor_width_cam_2, self.sensor_height_cam_2
+            sensor_width, sensor_height = self.sensor_width_cam_2, self.sensor_height_cam_2
             f_in_px = self.f_cam_2
             f_in_mm = self.objective_2_f_in_mm
         
