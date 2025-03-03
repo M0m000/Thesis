@@ -2,25 +2,18 @@ import rclpy
 from rclpy.node import Node
 from FC.FC_save_load_global_hook_dict import load_csv_to_dict
 from FC.FC_frame_handler import FrameHandler
-from FC.FC_cam_geometrics_handler import CamGeometricsHandler
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 
 
 
 class HookGeometricsHandler(Node):
-    def __init__(self, 
-                 global_dict_filepath = '/home/mo/Thesis/src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv',
-                 use_dual_cam_setup = False):
-        
+    def __init__(self):
         super().__init__("hook_geometrics_handler")
-
-        # Dual Cam Setup (True/False)
-        self.use_dual_cam_setup = use_dual_cam_setup
 
         # Laden des Global Scan Dict
         self.global_scan_dict = None
-        self.global_scan_dict = load_csv_to_dict(node = self, filename = global_dict_filepath)
+        self.global_scan_dict = load_csv_to_dict(node = self, filename = '/home/mo/Thesis/src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv')
         if self.global_scan_dict is not None:
             self.get_logger().info("Global Scan Dict loaded successfully from CSV for Geometrics Handler!")
         else:
@@ -29,10 +22,6 @@ class HookGeometricsHandler(Node):
         # Instanziieren eines Frame Handlers
         self.frame_handler = FrameHandler(node_name = "frame_handler_for_geometrics_handler")
         self.get_logger().info("Frame Handler for Geometrics Handler instantiated successfully!")
-
-        # Instanziieren eines Cam Gemetrics Handlers
-        self.cam_geometrics_handler = CamGeometricsHandler(global_scan_dict = self.global_scan_dict)
-
 
         ########## speichern der aktuellen Hakeninstanz
         self.hook_entry = None
@@ -62,9 +51,6 @@ class HookGeometricsHandler(Node):
 
         # Dict für Speicherung der aktuellen Hakengerade
         self.hook_line = {}
-
-        # Variable zur Speicherung der Distanz von Kamera zu Hakenleiste (für Dual Cam Setup wichtig)
-        self.distance_cam_to_bar = 0.1
         ##########
 
         # Variablen für die Regelung
@@ -74,15 +60,6 @@ class HookGeometricsHandler(Node):
         self.control_state = None
         self.trans_diff_in_tfcframe = None
         self.rot_diff_in_tfcframe = None
-
-
-
-    
-    def update_distance_cam_to_bar(self, distance_cam_to_bar = 0.1):
-        """
-        Funktion für Update des Distanzwerts von Kamera zu Hakenleiste
-        """
-        self.distance_cam_to_bar = distance_cam_to_bar
 
 
 
@@ -104,17 +81,6 @@ class HookGeometricsHandler(Node):
             self.path_points_in_workframe = self.global_scan_dict[str(hook_num)]['xyz_path_points_in_workframe']
             return self.hook_entry
         
-
-
-    def get_local_hook_from_global_id(self, hook_num):
-        """
-        Holt mit Hilfe des Cam Geometrics Handlers die LocalID des gewünschten Hakens (Global ID) und extrahiert die XYZ-Koordinaten aus NN-Local-Dict
-        """
-        local_id = self.cam_geometrics_handler.get_local_hook_id_to_follow(cam_index = 1, distance_in_mm = self.distance_cam_to_bar, global_id = hook_num)
-        self.
-        
-        return self.hook_entry
-        
         
 
     def update_hook_data(self, hook_num):
@@ -129,14 +95,8 @@ class HookGeometricsHandler(Node):
                 frame_desired = "work")
             
 
-            # hole die Haken Koordinaten im WORK Frame aus Global Scan Dict bzw aus NN-Local-Dict (wenn Dual Cam Setup)
-            if self.use_dual_cam_setup == False:
-                _ = self.get_hook_of_global_scan_dict(hook_num)
-            else:
-                _ = self.get_local_hook_from_global_id(hook_num)
-
-
-            # weitere Verarbeitung
+            # hole die Haken Koordinaten im WORK Frame aus Global Scan Dict
+            _ = self.get_hook_of_global_scan_dict(hook_num)
             T_work_in_tfcframe = np.linalg.inv(T_tfc_in_workframe)
 
             hook_point_in_workframe_hom = np.array([self.hook_pos_in_workframe[0], 
@@ -270,7 +230,7 @@ class HookGeometricsHandler(Node):
     
 
 
-    def calculate_translation_difference(self, target_position = None, plane = None, plane_midpoint = None, handling_last_trajectory_point = False):
+    def calculate_translation_difference(self, target_position = None, plane = None, plane_midpoint = None):
         """
         Berechnet die Reglerdifferenz für die translatorische Verschiebung
         zwischen dem Mittelpunkt der Ebene und einem Zielpunkt.
@@ -284,12 +244,8 @@ class HookGeometricsHandler(Node):
             plane = self.plane
             plane_midpoint = self.plane_midpoint
         
-        # Falls keine andere Zielposition angegeben und der letzte Punkt der Trajektorie noch nicht erreicht wurde -> nehme p1 der Gerade als Ziel
-        if target_position is None and handling_last_trajectory_point == False:
+        if target_position is None:
             target_position = self.hook_line['p_1']
-        # Falls letzter Punkt der Trajektorie erreicht -> nehme p0 der Gerade als Ziel
-        if target_position is None and handling_last_trajectory_point == True:
-            target_position = self.hook_line['p_0']
 
         # Der Mittelpunkt der Ebene
         P_center = plane_midpoint
@@ -317,7 +273,73 @@ class HookGeometricsHandler(Node):
             rot = rot_diff_in_tfcframe,
             pose_ref_frame = 'tfc')
         return trans_diff_in_worldframe, rot_diff_in_worldframe
+    
+
+
+    def control_feedback_algorithm(self, act_path_point = None, seq_path_point = None, hook_num = 1, plane = None):
+        """
+        Berechnet die aktuelle Regelabweichung
+        """
+        if act_path_point is not None:
+            # Hook-Daten mit gewuenschtem Index aktualisieren
+            self.update_hook_data(hook_num = hook_num)
+
+            x = act_path_point[0]
+            y = act_path_point[1]
+            z = act_path_point[2]
+            
+            # Differenz zwischen aktuellem Path Point und Mittelpunkt der Lochebene
+            trans_diff_in_tfcframe = self.calculate_translation_difference(target_position = [x, y, z])
+
+            # Aktualisierung der Geraden (zwischen jetzigem PPoint und nachfolgendem PPoint)
+            if seq_path_point is not None:
+                self.calculate_hook_line(p_1 = act_path_point, p_0 = seq_path_point)
+
+            # Berechnung der rotatorischen Stellgröße
+            rot_diff_in_tfcframe = self.calculate_adjustment_angles(plane = plane, line_dir = self.hook_line['p_dir'])
+            return trans_diff_in_tfcframe, rot_diff_in_tfcframe
         
+
+    
+    def visual_servoing_control(self, hook_num = 1, plane = None):
+        """
+        Enthält den Regelungs-Ablauf für das Einfädeln
+        """
+        for idx in range(len(self.path_points_in_tfcframe)):
+            # Aktueller Status des Einfädelvorgangs
+            if idx == 0:
+                self.control_state = "tip"                          # Spitze
+            elif idx == (len(self.path_points_in_tfcframe) - 1):
+                self.control_state == "lowpoint"                    # Senke
+            else:
+                self.control_state == "pp_" + str(idx)              # Zwischenpunkt n
+
+            # Extraktion des Zielpunkts und des nachfolgenden Zielpunkts
+            act_path_point = self.path_points_in_tfcframe[idx]
+
+            if self.control_state != "lowpoint":
+                seq_path_point = self.path_points_in_tfcframe[idx + 1]
+            
+            # Erlaubte Toleranzen für Translation und Rotation
+            translation_tolerance = [0.5, 0.5, 0.5]
+            rotation_tolerance = [2.0, 2.0, 2.0]
+
+            while True:
+                # Regelfehler berechnen
+                self.trans_diff_in_tfcframe, self.rot_diff_in_tfcframe = self.control_feedback_algorithm(
+                    act_path_point=act_path_point,
+                    seq_path_point=seq_path_point,
+                    hook_num=hook_num,
+                    plane=plane)
+
+                # Absolutwerte der Fehler berechnen
+                abs__trans_diff_in_tfcframe = np.abs(self.trans_diff_in_tfcframe)
+                abs__rot_diff_in_tfcframe = np.abs(self.rot_diff_in_tfcframe)
+
+                # Toleranzprüfung
+                if np.all(abs__trans_diff_in_tfcframe <= translation_tolerance) and np.all(abs__rot_diff_in_tfcframe <= rotation_tolerance):
+                    break  # Fehler innerhalb der Toleranz, zum nächsten Path Point übergehen
+
 
 
 
