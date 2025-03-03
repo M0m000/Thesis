@@ -37,6 +37,12 @@ class TrajectoryController(Node):
         self.act_path_point_idx = None
         self.translation_diff_worldframe = None
         self.rotation_diff_worldframe = None
+        self.handle_last_trajectory_point = False
+
+        # Tolearnz-Werte für Translation und Rotation
+        self.translation_tolerance = 0.01  # Beispielwert
+        self.rotation_tolerance = 0.01  # Beispielwert
+
 
         # Zykluszeit für die Regelung
         self.controller_cycle_time = 0.001
@@ -81,7 +87,7 @@ class TrajectoryController(Node):
         """
         Stoppt den Callback-Timer für die Regelung
         """
-        if self.controller_timer_active == True:
+        if self.controller_timer_active and self.controller_callback_timer is not None:
             self.controller_callback_timer.cancel()
             self.controller_timer_active = False
 
@@ -125,10 +131,13 @@ class TrajectoryController(Node):
         
         if abs(self.translation_diff_worldframe) <= self.translation_tolerance and abs(self.rotation_diff_worldframe) <= self.rotation_tolerance:
             self.act_path_point_idx += 1
-        
-        self.hook_line_p_1 = self.hook_geometrics_handler.path_points_in_tfcframe[self.act_path_point_idx]
-        self.hook_line_p_0 = self.hook_geometrics_handler.path_points_in_tfcframe[self.act_path_point_idx + 1]
 
+        if self.act_path_point_idx + 1 < len(self.hook_geometrics_handler.path_points_in_tfcframe):
+            self.hook_line_p_1 = self.hook_geometrics_handler.path_points_in_tfcframe[self.act_path_point_idx]
+            self.hook_line_p_0 = self.hook_geometrics_handler.path_points_in_tfcframe[self.act_path_point_idx + 1]
+        else:
+            self.get_logger().info("Reached ending of trajectory.")
+            self.handle_last_trajectory_point = True
 
 
 
@@ -146,6 +155,10 @@ class TrajectoryController(Node):
 
         # Path Points überprüfen und ggf eins weiter shiften
         self.shift_path_points()
+
+        # Falls Trajektorie fertig -> Positionierung an Senke
+        if self.handle_last_trajectory_point == True:
+            pass
 
         # Update Haken Koordinaten und Berechnung Haken-Gerade im TFC-Frame -> muss zyklisch wiederholt werden
         self.hook_geometrics_handler.update_hook_data(hook_num = self.global_hook_num)
