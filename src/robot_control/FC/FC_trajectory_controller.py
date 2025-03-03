@@ -46,11 +46,11 @@ class TrajectoryController(Node):
         self.translation_diff_worldframe = None
         self.rotation_diff_worldframe = None
         self.handle_last_trajectory_point = False
+        self.trajectory_control_finished = False
 
         # Tolearnz-Werte für Translation und Rotation
         self.translation_tolerance = 0.01  # Beispielwert
         self.rotation_tolerance = 0.01  # Beispielwert
-
 
         # Zykluszeit für die Regelung
         self.controller_cycle_time = 0.001
@@ -73,21 +73,22 @@ class TrajectoryController(Node):
         self.manual_mode = False
         self.take_next_path_point = False
 
+        
 
-
+    
     def set_control(self, activate=False, manual_mode=False):
         """
         Setzt Regelung auf Aktiv oder Inaktiv
         """
         if activate:
             self.controller_active = True
-            self.handle_last_trajectory_point = False
-            self.manual_mode = manual_mode      # Wenn der manuelle Modus aktiviert ist
+            self.handle_last_trajectory_point = False   # Stelle sicher, dass der letzte Punkt nicht direkt bearbeitet wird
+            self.manual_mode = manual_mode              # Wenn der manuelle Modus aktiviert ist
             self.set_controller_timer()
         else:
             self.controller_active = False
-            self.handle_last_trajectory_point = False
-            self.manual_mode = False            # Deaktiviere manuelle Steuerung
+            self.handle_last_trajectory_point = False   # Rücksetzen des Flags
+            self.manual_mode = False                    # Deaktiviere manuelle Steuerung
             self.stop_controller_timer()
 
 
@@ -122,6 +123,10 @@ class TrajectoryController(Node):
         Setzt die Regelung auf die Hakennummer (global)
         """
         self.global_hook_num = global_hook_num
+
+        self.act_path_point_idx = 0                 # Stelle sicher, dass der Path Point Index zurückgesetzt wird
+        self.trajectory_control_finished = False    # Rücksetzen des Flags
+        self.handle_last_trajectory_point = False   # Rücksetzen, um sicherzustellen, dass der letzte Punkt nicht direkt bearbeitet wird
 
 
     def reset_plane(self):
@@ -176,6 +181,7 @@ class TrajectoryController(Node):
             if self.controller_output_logging_active == True:
                 self.controller_data_logger.save_logging_lists()
                 self.controller_data_logger.reset_logging_lists()
+            self.trajectory_control_finished = True
         else:
             self.get_logger().info("Handling last point of trajectory.")
             self.handle_last_trajectory_point = True
