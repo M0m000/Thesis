@@ -172,8 +172,8 @@ class TrajectoryController(Node):
 
 
         # Rechne Regelfeher von TFC-Frame ins WORLD-Frame um
-        self.translation_diff_worldframe = self.frame_handler.tansform_velocity_to_world(vel = translation_diff, from_frame = 'tfc')
-        self.rotation_diff_worldframe = self.frame_handler.tansform_velocity_to_world(vel = adjustment_angles, from_frame = 'tfc')
+        self.translation_diff_worldframe = self.frame_handler.transform_velocity_to_world(vel = translation_diff, from_frame = 'tfc')
+        self.rotation_diff_worldframe = self.frame_handler.transform_velocity_to_world(vel = adjustment_angles, from_frame = 'tfc')
 
         # Logge, falls gewünscht
         if self.logging_active:

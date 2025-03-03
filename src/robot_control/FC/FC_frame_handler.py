@@ -83,7 +83,7 @@ class FrameHandler(Node):
 
 
 
-    def tansform_velocity_to_world(self, vel, from_frame):
+    def transform_velocity_to_world(self, vel, from_frame):
         """Transformiert eine Geschwindigkeit in das Welt-Koordinatensystem."""
         if from_frame == 'work':
             T_world_to_velframe = self.load_transformation_matrix_from_csv(frame_name = 'WORK_frame_in_world.csv')
