@@ -162,7 +162,7 @@ class Attachment(Node):
             bvalue = 100.0,
             sync = 0.0,
             chaining = 0)
-        print(endpos_trans_in_worldframe, endpos_rot_in_worldframe)
+        self.get_logger().warn(f"Controller Output - Translation: {endpos_trans_in_worldframe}, Rotation: {endpos_rot_in_worldframe}")
 
         # Setze Hakennummer und aktiviere Regelung
         self.trajectory_controller.set_hook_num(global_hook_num = self.hook_num)
