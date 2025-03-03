@@ -156,17 +156,20 @@ class TrajectoryController(Node):
         # Path Points überprüfen und ggf eins weiter shiften
         self.shift_path_points()
 
-        # Falls Trajektorie fertig -> Positionierung an Senke
-        if self.handle_last_trajectory_point == True:
-            pass
-
         # Update Haken Koordinaten und Berechnung Haken-Gerade im TFC-Frame -> muss zyklisch wiederholt werden
         self.hook_geometrics_handler.update_hook_data(hook_num = self.global_hook_num)
         self.hook_geometrics_handler.calculate_hook_line(p_0 = self.hook_line_p_0, p_1 = self.hook_line_p_1)
 
+
         # Berechne aktuellen Regelfehler
         adjustment_angles = self.hook_geometrics_handler.calculate_adjustment_angles()
-        translation_diff = self.hook_geometrics_handler.calculate_translation_difference()
+
+        # Translation -- Falls Trajektorie fertig -> Positionierung an Senke
+        if self.handle_last_trajectory_point == True:
+            translation_diff = self.hook_geometrics_handler.calculate_translation_difference(calculate_translation_difference = True)
+        else:       # ansonsten -> fahre die Trajektorie-Punkte an
+            translation_diff = self.hook_geometrics_handler.calculate_translation_difference(calculate_translation_difference = False)
+
 
         # Rechne Regelfeher von TFC-Frame ins WORLD-Frame um
         self.translation_diff_worldframe = self.frame_handler.tansform_velocity_to_world(vel = translation_diff, from_frame = 'tfc')
