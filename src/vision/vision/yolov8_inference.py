@@ -38,6 +38,8 @@ class YOLOv8InferenceNode(Node):
         self.show_skeleton_img = self.get_parameter('show_skeleton_img').get_parameter_value().bool_value
         self.declare_parameter('publish_masks', True)
         self.publish_masks = self.get_parameter('publish_masks').get_parameter_value().bool_value
+        self.declare_parameter('publish_output_imgs', True)
+        self.publish_output_imgs = self.get_parameter('publish_output_imgs').get_parameter_value().bool_value
         self.declare_parameter('filter_alpha', 1.0)
         self.filter_alpha = self.get_parameter('filter_alpha').get_parameter_value().double_value
         self.declare_parameter('filter_windowsize', 10)
@@ -62,6 +64,7 @@ class YOLOv8InferenceNode(Node):
         self.bridge = CvBridge()
         self.received_img = None
         self.output_img = None
+        self.output_img_filtered = None
         self.points_img = None
         self.skeleton_img = None
         self.get_logger().info('YOLOv8 Inference Node started...')
@@ -145,19 +148,20 @@ class YOLOv8InferenceNode(Node):
             if self.show_cam_img:
                 cv2.imshow('VC Cam Img', self.received_img)
                 cv2.waitKey(1)
-
+            
+            self.output_img = plot_hooks_and_bars(received_img = self.received_img, hooks_dict = self.hooks_dict_processed, bar_dict = self.bar_dict)
+            self.output_img_filtered = plot_hooks_and_bars(received_img = self.received_img, hooks_dict = self.filtered_hooks_dict, bar_dict = self.bar_dict)
+            
             if self.show_output_img:
-                self.output_img = plot_hooks_and_bars(received_img = self.received_img, hooks_dict = self.hooks_dict_processed, bar_dict = self.bar_dict)
-                output_segment_img = self.bridge.cv2_to_imgmsg(self.output_img, encoding="bgr8")
-                self.output_segment_img_publisher.publish(output_segment_img)
                 cv2.imshow('YoloV8 Output Segment Img', self.output_img)
                 cv2.waitKey(1)
-
-                self.output_img = plot_hooks_and_bars(received_img = self.received_img, hooks_dict = self.filtered_hooks_dict, bar_dict = self.bar_dict)
-                output_segment_img = self.bridge.cv2_to_imgmsg(self.output_img, encoding="bgr8")
-                self.output_segment_img_publisher.publish(output_segment_img)
                 cv2.imshow('YoloV8 Output Segment Img Filtered', self.output_img)
                 cv2.waitKey(1)
+            if self.publish_output_imgs:
+                # output_segment_img = self.bridge.cv2_to_imgmsg(self.output_img, encoding="bgr8")
+                # self.output_segment_img_publisher.publish(output_segment_img)
+                output_segment_img = self.bridge.cv2_to_imgmsg(self.output_img_filtered, encoding="bgr8")
+                self.output_segment_img_publisher.publish(output_segment_img)
 
             '''
             if self.show_point_img:

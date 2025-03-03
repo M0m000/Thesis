@@ -134,4 +134,3 @@ class DictReceiveProcessor(Node):
             # Speichere alles im Dictionary mit der Instanz-ID
             self.hooks_dict[hook_msg.name] = hook_data
         return self.hooks_dict
-
