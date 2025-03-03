@@ -8,8 +8,11 @@ from scipy.spatial.transform import Rotation as R
 
 
 class HookGeometricsHandler(Node):
-    def __init__(self):
+    def __init__(self, use_dual_cam_dict = False):
         super().__init__("hook_geometrics_handler")
+
+        # Speichern, ob Dual Cam Dict aus Yolo-Output-Topic verwendet werden soll, oder GlobalScanDict
+        self.use_dual_cam_dict = use_dual_cam_dict
 
         # Laden des Global Scan Dict
         self.global_scan_dict = None
