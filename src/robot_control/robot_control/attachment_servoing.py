@@ -40,10 +40,10 @@ class AttachmentServoing(Node):
         self.get_logger().info("Service SetSystemFrame available!")
 
         self.Trans_needle_tfc = [0.0, 0.0, 0.0]       # in mm
-        self.Rot_needle_tfc = [0.0, 0.0, 0.0]           # in Grad
+        self.Rot_needle_tfc = [0.0, 0.0, 0.0]         # in Grad
         
         self.set_frame(self.Rot_needle_tfc, self.Trans_needle_tfc, frame="tcp", ref_frame="tfc")
-
+        
         # Instanz Geometrics Handler
         self.geometrics_handler = GeometricsHandler()
         self.hook = self.geometrics_handler.get_hook_of_global_scan_dict(hook_num = self.hook_num)

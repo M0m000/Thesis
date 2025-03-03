@@ -1,7 +1,6 @@
 import rclpy
 from rclpy.node import Node
 from FC.FC_hook_geometrics_handler import HookGeometricsHandler
-from FC.FC_cam_geometrics_handler import CamGeometricsHandler
 from FC.FC_frame_handler import FrameHandler
 from FC.FC_controller_data_logger import ControllerDataLogger
 
@@ -22,7 +21,7 @@ class TrajectoryController(Node):
         self.controller_output_logging_active = controller_output_logging_active
         self.controller_data_logger = ControllerDataLogger()
 
-        # Instanzen HookGeometricsHandler, FrameHandler und CamGeometricsHandler
+        # Instanzen HookGeometricsHandler, FrameHandler
         self.hook_geometrics_handler = HookGeometricsHandler()
         self.frame_handler = FrameHandler(node_name = "frame_handler_for_attachment_controller")
 
