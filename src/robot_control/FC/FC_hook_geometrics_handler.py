@@ -277,73 +277,7 @@ class HookGeometricsHandler(Node):
             rot = rot_diff_in_tfcframe,
             pose_ref_frame = 'tfc')
         return trans_diff_in_worldframe, rot_diff_in_worldframe
-    
-
-
-    def control_feedback_algorithm(self, act_path_point = None, seq_path_point = None, hook_num = 1, plane = None):
-        """
-        Berechnet die aktuelle Regelabweichung
-        """
-        if act_path_point is not None:
-            # Hook-Daten mit gewuenschtem Index aktualisieren
-            self.update_hook_data(hook_num = hook_num)
-
-            x = act_path_point[0]
-            y = act_path_point[1]
-            z = act_path_point[2]
-            
-            # Differenz zwischen aktuellem Path Point und Mittelpunkt der Lochebene
-            trans_diff_in_tfcframe = self.calculate_translation_difference(target_position = [x, y, z])
-
-            # Aktualisierung der Geraden (zwischen jetzigem PPoint und nachfolgendem PPoint)
-            if seq_path_point is not None:
-                self.calculate_hook_line(p_1 = act_path_point, p_0 = seq_path_point)
-
-            # Berechnung der rotatorischen Stellgröße
-            rot_diff_in_tfcframe = self.calculate_adjustment_angles(plane = plane, line_dir = self.hook_line['p_dir'])
-            return trans_diff_in_tfcframe, rot_diff_in_tfcframe
         
-
-    
-    def visual_servoing_control(self, hook_num = 1, plane = None):
-        """
-        Enthält den Regelungs-Ablauf für das Einfädeln
-        """
-        for idx in range(len(self.path_points_in_tfcframe)):
-            # Aktueller Status des Einfädelvorgangs
-            if idx == 0:
-                self.control_state = "tip"                          # Spitze
-            elif idx == (len(self.path_points_in_tfcframe) - 1):
-                self.control_state == "lowpoint"                    # Senke
-            else:
-                self.control_state == "pp_" + str(idx)              # Zwischenpunkt n
-
-            # Extraktion des Zielpunkts und des nachfolgenden Zielpunkts
-            act_path_point = self.path_points_in_tfcframe[idx]
-
-            if self.control_state != "lowpoint":
-                seq_path_point = self.path_points_in_tfcframe[idx + 1]
-            
-            # Erlaubte Toleranzen für Translation und Rotation
-            translation_tolerance = [0.5, 0.5, 0.5]
-            rotation_tolerance = [2.0, 2.0, 2.0]
-
-            while True:
-                # Regelfehler berechnen
-                self.trans_diff_in_tfcframe, self.rot_diff_in_tfcframe = self.control_feedback_algorithm(
-                    act_path_point=act_path_point,
-                    seq_path_point=seq_path_point,
-                    hook_num=hook_num,
-                    plane=plane)
-
-                # Absolutwerte der Fehler berechnen
-                abs__trans_diff_in_tfcframe = np.abs(self.trans_diff_in_tfcframe)
-                abs__rot_diff_in_tfcframe = np.abs(self.rot_diff_in_tfcframe)
-
-                # Toleranzprüfung
-                if np.all(abs__trans_diff_in_tfcframe <= translation_tolerance) and np.all(abs__rot_diff_in_tfcframe <= rotation_tolerance):
-                    break  # Fehler innerhalb der Toleranz, zum nächsten Path Point übergehen
-
 
 
 
