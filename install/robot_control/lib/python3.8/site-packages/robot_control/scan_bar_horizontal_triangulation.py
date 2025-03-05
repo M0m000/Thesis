@@ -83,11 +83,12 @@ class ScanBarHorizontalTriangulation(Node):
         self.robot_position_horizontal = None
 
         # Instanz für Berechnung der Stereo Triangulation
-        self.triangulation_processor = StereoTriangulationProcessor(extrinsic_data = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
-                                                                    calib_path = '/home/mo/Thesis/calibration_data.npz',
-                                                                    measure_time = True,
-                                                                    img_width = self.img_width,
-                                                                    img_height = self.img_height)
+        self.triangulation_processor = StereoTriangulationProcessor(
+            extrinsic_data = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+            calib_path = '/home/mo/Thesis/calibration_data.npz',
+            measure_time = True,
+            img_width = self.img_width,
+            img_height = self.img_height)
         
         # Instanz FrameHandler
         frame_csv_path = os.path.expanduser("~/Thesis/src/robot_control/robot_control/data")
@@ -96,9 +97,10 @@ class ScanBarHorizontalTriangulation(Node):
 
         startpoint_trans_in_workframe = [160.0, -430.0, 80.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
-        self.startpoint_trans_worldframe, self.startpoint_rot_worldframe = self.frame_handler.transform_pose_to_world(trans = startpoint_trans_in_workframe,
-                                                                                                                      rot = startpoint_rot_in_workframe,
-                                                                                                                      pose_ref_frame = 'work')
+        self.startpoint_trans_worldframe, self.startpoint_rot_worldframe = self.frame_handler.transform_pose_to_world(
+            trans = startpoint_trans_in_workframe,
+            rot = startpoint_rot_in_workframe,
+            pose_ref_frame = 'work')
         
         # Publisher für Linear Servoing
         self.vel_lin_publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
@@ -139,16 +141,18 @@ class ScanBarHorizontalTriangulation(Node):
         self.startpoint_movement_done = False
         if self.startpoint_rot_worldframe is not None and self.startpoint_trans_worldframe is not None:
             self.startpoint_movement_done = False
-            self.startpoint_movement_done = self.move_linear_client.call_move_linear_service(pos = self.startpoint_trans_worldframe,
-                                                                                             rot = self.startpoint_rot_worldframe,
-                                                                                             ref = 0,
-                                                                                             ttype = 0,
-                                                                                             tvalue = 80.0,
-                                                                                             bpoint = 0,
-                                                                                             btype = 0,
-                                                                                             bvalue = 100.0,
-                                                                                             sync = 0.0,
-                                                                                             chaining = 0)
+            self.startpoint_movement_done = self.move_linear_client.call_move_linear_service(
+                pos = self.startpoint_trans_worldframe,
+                rot = self.startpoint_rot_worldframe,
+                ref = 0,
+                ttype = 0,
+                tvalue = 80.0,
+                bpoint = 0,
+                btype = 0,
+                bvalue = 100.0,
+                sync = 0.0,
+                chaining = 0)
+            
         if self.startpoint_movement_done == True:
             self.startpoint_movement_done = False
             self.get_logger().info("Init movement done successfully!")
@@ -195,10 +199,10 @@ class ScanBarHorizontalTriangulation(Node):
         '''
         Prozessablauf mit Schrittkette - wird zyklisch alle 1ms aufgerufen
         '''
-
         # prüfe auf Flanken für Haken am Bildrand
         rside_rising_edge, rside_falling_edge = self.edge_detector_rside.detect_edge(var=self.new_hook_in_picture)
         lside_rising_edge, lside_falling_edge = self.edge_detector_lside.detect_edge(var=self.hook_in_left_area)
+
 
         # Fahre von Init Position solange nach rechts, bis 2 Haken zu sehen sind
         if self.process_step == "move_until_2_hooks_visible":
@@ -206,7 +210,7 @@ class ScanBarHorizontalTriangulation(Node):
             Fahre weiter, bis 2 Haken im Bild zu sehen sind (zu Beginn des Scan-Prozesses benötigt)
             """
             vel_work = [self.speed_in_mm_per_s, 0.0, 0.0]
-            vel_world = self.frame_handler.tansform_velocity_to_world(vel = vel_work, from_frame='work')
+            vel_world = self.frame_handler.tansform_velocity_to_world(vel = vel_work, from_frame = 'work')
             self.publish_linear_velocity(vel_in_worldframe = vel_world)
 
             if rside_falling_edge:
@@ -220,7 +224,6 @@ class ScanBarHorizontalTriangulation(Node):
                 self.upcoming_process_step = "extract_hook_2_as_init_ref"
                 self.start_timer_for_step(3.0)    # Timer starten
                 self.process_step = "waiting_for_timer"
-
 
 
         # Doku - Messung der Schwingung nach Stillstand
@@ -260,7 +263,6 @@ class ScanBarHorizontalTriangulation(Node):
                 self.save_vibration_data_to_csv()
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 als initial Reference Point>")
                 self.process_step = "extract_hook_2_as_init_ref"
-        
 
 
         # Extrahiere Pixelkoordinaten von Haken 2 nach Beginn des Scans
@@ -276,7 +278,6 @@ class ScanBarHorizontalTriangulation(Node):
             self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.T_robot_position_ref[:3, 3], 'work')
             self.get_logger().info("Done! -> next process step <Move Until New Hook>")
             self.process_step = "move_until_new_hook"
-
 
 
         # Fahre, bis neuer Haken erscheint
@@ -306,7 +307,6 @@ class ScanBarHorizontalTriangulation(Node):
                     self.start_timer_for_step(3.0)    # Timer starten
                     self.process_step = "waiting_for_timer"
         
-
 
         # Extrahiere Pixelkoordinaten von Haken 3 (war vorher Haken 2)
         if self.process_step == "extract_hook_3_as_horizontal_point":
@@ -348,7 +348,6 @@ class ScanBarHorizontalTriangulation(Node):
                 self.process_step = "horizontal_triangulation"
 
 
-
         # Horizontale Triangulation
         if self.process_step == "horizontal_triangulation":
             """
@@ -361,15 +360,15 @@ class ScanBarHorizontalTriangulation(Node):
             if baseline_along_x == 0:
                 self.get_logger().error("ERROR either in moving robot or in position acquisition -> consider restarting KR810...")
 
-            [xyz_hook_in_camframe, xyz_tip_in_camframe, xyz_lowpoint_in_camframe], time_token = self.triangulation_processor.triangulate_3_points(point_1_1_uv = self.hook_horizontal['uv_hook'], point_2_1_uv = self.hook_ref['uv_hook'],
-                                                                                                                    point_1_2_uv = self.hook_horizontal['uv_tip'], point_2_2_uv = self.hook_ref['uv_tip'],
-                                                                                                                    point_1_3_uv = self.hook_horizontal['uv_lowpoint'], point_2_3_uv = self.hook_ref['uv_lowpoint'],
-                                                                                                                    baseline_vector = horizontal_baseline_vector,
-                                                                                                                    baseline = baseline_along_x, baseline_axis = 'x')
+            [xyz_hook_in_camframe, xyz_tip_in_camframe, xyz_lowpoint_in_camframe], time_token = self.triangulation_processor.triangulate_3_points(
+                point_1_1_uv = self.hook_horizontal['uv_hook'], point_2_1_uv = self.hook_ref['uv_hook'],
+                point_1_2_uv = self.hook_horizontal['uv_tip'], point_2_2_uv = self.hook_ref['uv_tip'],
+                point_1_3_uv = self.hook_horizontal['uv_lowpoint'], point_2_3_uv = self.hook_ref['uv_lowpoint'],
+                baseline_vector = horizontal_baseline_vector,
+                baseline = baseline_along_x, baseline_axis = 'x')
             
             self.get_logger().info("Done! -> next process step <Interpolate Depth Shape>")
             self.process_step = "interpolate_depth_shape"
-
 
 
         # Tiefeninterpolation für Spitze -> Senke
@@ -434,9 +433,10 @@ class ScanBarHorizontalTriangulation(Node):
                 xy_path_points.append((ppoint_x, ppoint_y))
 
             # Berechnung von interpolierten Tiefenwerten für path_points
-            path_points_xyz_in_camframe = self.spline_calculator.interpolate(xy_points = xy_path_points, 
-                                                                             start_point_with_depth = xyz_tip_in_camframe, 
-                                                                             end_point_with_depth = xyz_lowpoint_in_camframe)
+            path_points_xyz_in_camframe = self.spline_calculator.interpolate(
+                xy_points = xy_path_points, 
+                start_point_with_depth = xyz_tip_in_camframe, 
+                end_point_with_depth = xyz_lowpoint_in_camframe)
             
             # Durchgehen aller interpolierten Werte und Transformation in WORK-Frame
             path_points_xyz_in_workframe = []
@@ -457,7 +457,6 @@ class ScanBarHorizontalTriangulation(Node):
             self.process_step = "save_hook"
 
 
-        
         # Speicher die Daten des aktuellen Hakens
         if self.process_step == "save_hook":
             """
@@ -501,7 +500,6 @@ class ScanBarHorizontalTriangulation(Node):
                 self.upcoming_process_step = "extract_hook_2_as_ref"
                 self.start_timer_for_step(3.0)    # Timer starten
                 self.process_step = "waiting_for_timer"
-
 
 
         # Extrahiere Pixelkoordinaten von Haken 2 während Prozess
@@ -548,7 +546,6 @@ class ScanBarHorizontalTriangulation(Node):
                     self.process_step = "move_until_new_hook"
 
 
-
         # Fahre, bis Haken aus linkem Randbereich draußen
         if self.process_step == "move_until_hook_disappears":
             """
@@ -568,7 +565,6 @@ class ScanBarHorizontalTriangulation(Node):
                 self.process_step = "waiting_for_timer"
 
 
-
         # Speichern des Global Dict als CSV, wenn Scanvorgang fertig
         if self.process_step == "save_global_dict_as_csv":
             """
@@ -579,26 +575,26 @@ class ScanBarHorizontalTriangulation(Node):
             self.process_step = "move_back_to_init"
 
 
-
         # Zurückfahren auf Startposition
         if self.process_step == "move_back_to_init":
             """
             Zurückfahren auf die ursprüngliche Startposition
             """
-            self.startpoint_movement_done = self.move_linear_client.call_move_linear_service(pos = self.startpoint_trans_worldframe,
-                                                                                             rot = self.startpoint_rot_worldframe,
-                                                                                             ref = 0,
-                                                                                             ttype = 0,
-                                                                                             tvalue = 60.0,
-                                                                                             bpoint = 0,
-                                                                                             btype = 0,
-                                                                                             bvalue = 100.0,
-                                                                                             sync = 0.0,
-                                                                                             chaining = 0)
+            self.startpoint_movement_done = self.move_linear_client.call_move_linear_service(
+                pos = self.startpoint_trans_worldframe,
+                rot = self.startpoint_rot_worldframe,
+                ref = 0,
+                ttype = 0,
+                tvalue = 60.0,
+                bpoint = 0,
+                btype = 0,
+                bvalue = 100.0,
+                sync = 0.0,
+                chaining = 0)
+            
             if self.startpoint_movement_done:
                 self.get_logger().info("Done! -> next process step <Finish>")
                 self.process_step = "finish"
-        
 
 
         # Endzustand
@@ -733,3 +729,4 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+    

@@ -5,7 +5,6 @@ from FC.FC_dict_receive_processing import DictReceiveProcessor
 from FC.FC_call_move_linear_service import MoveLinearServiceClient
 from FC.FC_edge_detector import EdgeDetector
 from FC.FC_frame_handler import FrameHandler
-from FC.FC_stereo_triangulation_processor import StereoTriangulationProcessor
 from FC.FC_save_load_global_hook_dict import save_dict_to_csv
 from FC.FC_parameterized_cubic_spline import ParameterizedCubicSplineCalculator
 from kr_msgs.msg import JogLinear
@@ -15,7 +14,6 @@ from std_msgs.msg import Int32
 import os
 import time
 import numpy as np
-import csv
 
 
 
@@ -72,9 +70,10 @@ class ScanBar(Node):
 
         startpoint_trans_in_workframe = [160.0, -430.0, 80.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
-        self.startpoint_trans_worldframe, self.startpoint_rot_worldframe = self.frame_handler.transform_pose_to_world(trans = startpoint_trans_in_workframe,
-                                                                                                                      rot = startpoint_rot_in_workframe,
-                                                                                                                      pose_ref_frame = 'work')
+        self.startpoint_trans_worldframe, self.startpoint_rot_worldframe = self.frame_handler.transform_pose_to_world(
+            trans = startpoint_trans_in_workframe,
+            rot = startpoint_rot_in_workframe,
+            pose_ref_frame = 'work')
         
         # Publisher für Linear Servoing
         self.vel_lin_publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
@@ -118,16 +117,18 @@ class ScanBar(Node):
         self.startpoint_movement_done = False
         if self.startpoint_rot_worldframe is not None and self.startpoint_trans_worldframe is not None:
             self.startpoint_movement_done = False
-            self.startpoint_movement_done = self.move_linear_client.call_move_linear_service(pos = self.startpoint_trans_worldframe,
-                                                                                             rot = self.startpoint_rot_worldframe,
-                                                                                             ref = 0,
-                                                                                             ttype = 0,
-                                                                                             tvalue = 80.0,
-                                                                                             bpoint = 0,
-                                                                                             btype = 0,
-                                                                                             bvalue = 100.0,
-                                                                                             sync = 0.0,
-                                                                                             chaining = 0)
+            self.startpoint_movement_done = self.move_linear_client.call_move_linear_service(
+                pos = self.startpoint_trans_worldframe,
+                rot = self.startpoint_rot_worldframe,
+                ref = 0,
+                ttype = 0,
+                tvalue = 80.0,
+                bpoint = 0,
+                btype = 0,
+                bvalue = 100.0,
+                sync = 0.0,
+                chaining = 0)
+            
         if self.startpoint_movement_done == True:
             self.startpoint_movement_done = False
             self.get_logger().info("Init movement done successfully!")
@@ -174,11 +175,9 @@ class ScanBar(Node):
         '''
         Prozessablauf mit Schrittkette - wird zyklisch alle 1ms aufgerufen
         '''
-
         # prüfe auf Flanken für Haken am Bildrand
         rside_rising_edge, rside_falling_edge = self.edge_detector_rside.detect_edge(var = self.new_hook_in_picture)
         lside_rising_edge, lside_falling_edge = self.edge_detector_lside.detect_edge(var = self.hook_in_left_area)
-
 
 
         # Fahre von Init Position solange nach rechts, bis 2 Haken zu sehen sind
@@ -201,7 +200,6 @@ class ScanBar(Node):
                 self.upcoming_process_step = "extract_hook_2"
                 self.start_timer_for_step(3.0)    # Timer starten
                 self.process_step = "waiting_for_timer"
-
 
 
         # Extrahiere Pixelkoordinaten von Haken 2 nach Beginn des Scans
@@ -234,7 +232,6 @@ class ScanBar(Node):
 
             self.get_logger().info("Done! -> next process step <Move Until New Hook>")
             self.process_step = "interpolate_depth_shape"
-
 
 
         # Tiefeninterpolation für Spitze -> Senke
@@ -277,9 +274,10 @@ class ScanBar(Node):
                 xy_path_points.append((ppoint_x, ppoint_y))
 
             # Berechnung von interpolierten Tiefenwerten für path_points
-            path_points_xyz_in_camframe = self.spline_calculator.interpolate(xy_points = xy_path_points, 
-                                                                             start_point_with_depth = xyz_tip_in_workframe, 
-                                                                             end_point_with_depth = xyz_lowpoint_in_workframe)
+            path_points_xyz_in_camframe = self.spline_calculator.interpolate(
+                xy_points = xy_path_points, 
+                start_point_with_depth = self.xyz_tip_in_workframe, 
+                end_point_with_depth = self.xyz_lowpoint_in_workframe)
             
             # Durchgehen aller interpolierten Werte und Transformation in WORK-Frame
             path_points_xyz_in_workframe = []
@@ -298,7 +296,6 @@ class ScanBar(Node):
             
             self.get_logger().info("Done! -> next process step <Save Hook>")
             self.process_step = "save_hook"
-
 
 
         # Speicher die Daten des aktuellen Hakens
@@ -355,7 +352,6 @@ class ScanBar(Node):
                 self.process_step = "waiting_for_timer"
 
 
-
         # Fahre, bis neuer Haken erscheint
         if self.process_step == "move_until_new_hook":
             """
@@ -378,7 +374,6 @@ class ScanBar(Node):
                 self.process_step = "waiting_for_timer"
 
 
-
         # Fahre, bis Haken aus linkem Randbereich draußen
         if self.process_step == "move_until_hook_disappears":
             """
@@ -398,7 +393,6 @@ class ScanBar(Node):
                 self.process_step = "waiting_for_timer"
 
 
-
         # Speichern des Global Dict als CSV, wenn Scanvorgang fertig
         if self.process_step == "save_global_dict_as_csv":
             """
@@ -409,22 +403,23 @@ class ScanBar(Node):
             self.process_step = "move_back_to_init"
 
 
-
         # Zurückfahren auf Startposition
         if self.process_step == "move_back_to_init":
             """
             Zurückfahren auf die ursprüngliche Startposition
             """
-            self.startpoint_movement_done = self.move_linear_client.call_move_linear_service(pos = self.startpoint_trans_worldframe,
-                                                                                             rot = self.startpoint_rot_worldframe,
-                                                                                             ref = 0,
-                                                                                             ttype = 0,
-                                                                                             tvalue = 60.0,
-                                                                                             bpoint = 0,
-                                                                                             btype = 0,
-                                                                                             bvalue = 100.0,
-                                                                                             sync = 0.0,
-                                                                                             chaining = 0)
+            self.startpoint_movement_done = self.move_linear_client.call_move_linear_service(
+                pos = self.startpoint_trans_worldframe,
+                rot = self.startpoint_rot_worldframe,
+                ref = 0,
+                ttype = 0,
+                tvalue = 60.0,
+                bpoint = 0,
+                btype = 0,
+                bvalue = 100.0,
+                sync = 0.0,
+                chaining = 0)
+            
             if self.startpoint_movement_done:
                 self.get_logger().info("Done! -> next process step <Finish>")
                 self.process_step = "finish"
