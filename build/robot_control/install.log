@@ -4,11 +4,11 @@
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/MoveTcpAlongAxis_action_client.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/ibvs_2d.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/tf_frames_publisher.py
+/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/attachment_control_trajectory.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/move_lin_by_key.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/tcp_frame_listener.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/transform_action_client.py
-/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/attachment_trajectory.py
-/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/attachment_servoing.py
+/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/attachment_control_servoing.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/scan_bar_combined_triangulation.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/scan_bar_horizontal_triangulation.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/hook_data_listener.py
@@ -36,11 +36,11 @@
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/MoveTcpAlongAxis_action_client.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/ibvs_2d.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/tf_frames_publisher.cpython-38.pyc
+/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/attachment_control_trajectory.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/move_lin_by_key.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/tcp_frame_listener.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/transform_action_client.cpython-38.pyc
-/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/attachment_trajectory.cpython-38.pyc
-/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/attachment_servoing.cpython-38.pyc
+/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/attachment_control_servoing.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/scan_bar_combined_triangulation.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/scan_bar_horizontal_triangulation.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/hook_data_listener.cpython-38.pyc
@@ -75,7 +75,8 @@
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info/PKG-INFO
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info/SOURCES.txt
 /home/mo/Thesis/install/robot_control/lib/robot_control/MoveTcpAlongAxis_action_client
-/home/mo/Thesis/install/robot_control/lib/robot_control/attachment_trajectory
+/home/mo/Thesis/install/robot_control/lib/robot_control/attachment_control_servoing
+/home/mo/Thesis/install/robot_control/lib/robot_control/attachment_control_trajectory
 /home/mo/Thesis/install/robot_control/lib/robot_control/define_working_frame_needle
 /home/mo/Thesis/install/robot_control/lib/robot_control/hook_data_listener
 /home/mo/Thesis/install/robot_control/lib/robot_control/ibvs_2d

@@ -30,8 +30,8 @@ launch/vc_vision_launch.py
 resource/robot_control
 robot_control/MoveTcpAlongAxis_action_client.py
 robot_control/__init__.py
-robot_control/attachment_servoing.py
-robot_control/attachment_trajectory.py
+robot_control/attachment_control_servoing.py
+robot_control/attachment_control_trajectory.py
 robot_control/define_working_frame_needle.py
 robot_control/hook_data_listener.py
 robot_control/ibvs_2d.py
