@@ -12,7 +12,7 @@ from kr_msgs.srv import SetSystemFrame
 
 class AttachmentServoing(Node):
     def __init__(self):
-        super().__init__('attachment_servoing')
+        super().__init__('attachment_control_servoing')
         
         self.declare_parameter('hook_num', 10)
         self.hook_num = self.get_parameter('hook_num').get_parameter_value().integer_value

@@ -14,7 +14,7 @@ from pynput import keyboard
 
 class AttachmentTrajectory(Node):
     def __init__(self):
-        super().__init__('attachment_trajectory')
+        super().__init__('attachment_control_trajectory')
         
         self.declare_parameter('hook_num', 10)
         self.hook_num = self.get_parameter('hook_num').get_parameter_value().integer_value
