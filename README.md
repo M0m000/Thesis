@@ -16,7 +16,7 @@ Während das Aufnehmen eines Teils aus einer Kiste mit bereits bekannten Bin-Pic
 <br>
 
 <p align="center">
-  <img src="/imgs/2.png" alt="Abb 2 - Gitteranordnung" width="400"/>
+  <img src="/imgs/2.png" alt="Abb 2 - Gitteranordnung" width="600"/>
 </p>
 <p align="center"><em>Abb. 2 - Gitteranordnung</em></p>
 
