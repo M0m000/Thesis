@@ -45,7 +45,7 @@ Als Roboter kommt ein kollaborativer siebenachsiger Roboterarm des Herstellers K
 <br>
 
 <p align="center">
-  <img src="/imgs/4.png" alt="Kassow Robots KR810 (7 Achsen)" width="400"/>
+  <img src="/imgs/4.png" alt="Kassow Robots KR810 (7 Achsen)" width="600"/>
 </p>
 <p align="center"><em>Abb. 4 - Kassow Robots KR810 (7 Achsen)</em></p>
 
