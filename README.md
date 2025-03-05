@@ -205,21 +205,24 @@ ros2 run robot_control attachment_control_servoing --ros-args -p hook_num:=10 -p
 ros2 run robot_control scan_bar_horizontal_triangulation --ros-args -p do_vibration_test:=False -p speed_in_mm_per_s:=10.0 -p num_hooks_existing:=20
 ```
 >Enthält den gesammten Scan-Mechanismus. Die Referenzierfahrt für das WORK-Frame muss hierzu beendet sein und der tf frame pulisher Node muss aktiv sein und die Frames inkl. WORLD publishen. Dieser Knoten führt den gesamten Scan-Mechanismus inklusive horizontaler Triangulation durch und liefert am Ende ein Dict, welches alle Hakeninstanzen mit WORK-Position und CAM-Position in realen Koordinaten XYZ enthält. <br>
-<br>
 
 ### **Scan Bar Vertical Triangulation** Node <br>
 ```bash
 ros2 run robot_control scan_bar_vertical_triangulation --ros-args -p do_vibration_test:=False -p speed_in_mm_per_s:=10.0 -p num_hooks_existing:=20
 ```
->Enthält den gesammten Scan-Mechanismus. Die Referenzierfahrt für das WORK-Frame muss hierzu beendet sein und der tf frame pulisher Node muss aktiv sein und die Frames inkl. WORLD publishen. Dieser Knoten führt den gesamten Scan-Mechanismus inklusive veritkaler Triangulation durch und liefert am Ende ein Dict, welches alle Hakeninstanzen mit WORK-Position und CAM-Position in realen Koordinaten XYZ enthält. <br>
-<br>
+>Enthält den gesammten Scan-Mechanismus. Die Referenzierfahrt für das WORK-Frame muss hierzu beendet sein und die Frames inkl. WORLD publishen. Dieser Knoten führt den gesamten Scan-Mechanismus inklusive veritkaler Triangulation durch und liefert am Ende ein Dict, welches alle Hakeninstanzen mit WORK-Position und CAM-Position in realen Koordinaten XYZ enthält. <br>
 
 ### **Scan Bar Combined Triangulation** Node <br>
 ```bash
 ros2 run robot_control scan_bar_combined_triangulation --ros-args -p do_vibration_test:=False -p speed_in_mm_per_s:=10.0 -p num_hooks_existing:=20
 ```
->Enthält den gesammten Scan-Mechanismus. Die Referenzierfahrt für das WORK-Frame muss hierzu beendet sein und der tf frame pulisher Node muss aktiv sein und die Frames inkl. WORLD publishen. Dieser Knoten führt den gesamten Scan-Mechanismus inklusive kombinierter Triangulation durch und liefert am Ende ein Dict, welches alle Hakeninstanzen mit WORK-Position und CAM-Position in realen Koordinaten XYZ enthält. <br>
-<br>
+>Enthält den gesammten Scan-Mechanismus. Die Referenzierfahrt für das WORK-Frame muss hierzu beendet sein und die Frames inkl. WORLD publishen. Dieser Knoten führt den gesamten Scan-Mechanismus inklusive kombinierter Triangulation durch und liefert am Ende ein Dict, welches alle Hakeninstanzen mit WORK-Position und CAM-Position in realen Koordinaten XYZ enthält. <br>
+
+### **Scan Bar (Dual Cam)** Node <br>
+```bash
+ros2 run robot_control scan_bar --ros-args -p speed_in_mm_per_s:=10.0 -p num_hooks_existing:=20
+```
+>Enthält den gesammten Scan-Mechanismus. Die Referenzierfahrt für das WORK-Frame muss hierzu beendet sein und die Frames inkl. WORLD publishen. Dieser Knoten führt den gesamten Scan-Mechanismus mit Dual-Cam-Anordung durch und liefert am Ende ein Dict, welches alle Hakeninstanzen mit WORK-Position und CAM-Position in realen Koordinaten XYZ enthält. <br>
 
 ### **Hook Data Listener** Node <br>
 ```bash
