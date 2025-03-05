@@ -186,9 +186,16 @@ ros2 launch robot_control scan_bar_launch.py
 >Launchfile für Hochfahren von VC Cam, Regelung Ringlicht, Starten von Img-Receiver und Yolo-Inferenz-Node. Anschließend wird Scan-Prozess gestartet. <br>
 <br>
 
-### **Attachment** Node <br>
+### **Attachment Trajectory Controller** Node <br>
 ```bash
-ros2 run robot_control attachment_node --ros-args -p hook_num:=10
+ros2 run robot_control attachment_control_trajectory --ros-args -p hook_num:=10 -p manual_mode:=True
+```
+>Enthält das Anfahren und genaue Positionieren (durch eine Regelung) an der Hakenspitze. Die Orientierung wird so ausgeregelt, dass die Lochebene des Bauteils senkrecht von der verlängerten Hakengerade durchstoßen wird. Somit kann ein ortogonales Einfädeln erfolgen. Nutzt die FC-trajectory-controller Funktion zur Regelung.<br>
+<br>
+
+### **Attachment Servoing Controller** Node <br>
+```bash
+ros2 run robot_control attachment_control_servoing --ros-args -p hook_num:=10 -p manual_mode:=True
 ```
 >Enthält das Anfahren und genaue Positionieren (durch eine Regelung) an der Hakenspitze. Die Orientierung wird so ausgeregelt, dass die Lochebene des Bauteils senkrecht von der verlängerten Hakengerade durchstoßen wird. Somit kann ein ortogonales Einfädeln erfolgen. Nutzt die FC-trajectory-controller Funktion zur Regelung.<br>
 <br>
