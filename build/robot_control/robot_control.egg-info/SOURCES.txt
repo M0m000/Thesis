@@ -18,10 +18,8 @@ FC/FC_frame_handler.py
 FC/FC_gripper_handler.py
 FC/FC_hook_geometrics_handler.py
 FC/FC_parameterized_cubic_spline.py
-FC/FC_quaternion_to_euler.py
 FC/FC_save_load_global_hook_dict.py
 FC/FC_stereo_triangulation_processor.py
-FC/FC_tf_helper.py
 FC/FC_trajectory_controller.py
 FC/__init__.py
 config/vc_params.yaml
@@ -35,15 +33,12 @@ robot_control/attachment_control_trajectory.py
 robot_control/define_working_frame_needle.py
 robot_control/hook_data_listener.py
 robot_control/ibvs_2d.py
-robot_control/move_lin_by_key.py
 robot_control/scan_bar.py
 robot_control/scan_bar_combined_triangulation.py
 robot_control/scan_bar_horizontal_triangulation.py
 robot_control/scan_bar_vertical_triangulation.py
 robot_control/set_working_frame_qr.py
-robot_control/tcp_frame_listener.py
 robot_control/tf_frames_publisher.py
-robot_control/transform_action_client.py
 test/test_copyright.py
 test/test_flake8.py
 test/test_pep257.py
