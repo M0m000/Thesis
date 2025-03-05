@@ -175,11 +175,9 @@ class ScanBar(Node):
         '''
         Prozessablauf mit Schrittkette - wird zyklisch alle 1ms aufgerufen
         '''
-
         # prüfe auf Flanken für Haken am Bildrand
         rside_rising_edge, rside_falling_edge = self.edge_detector_rside.detect_edge(var = self.new_hook_in_picture)
         lside_rising_edge, lside_falling_edge = self.edge_detector_lside.detect_edge(var = self.hook_in_left_area)
-
 
 
         # Fahre von Init Position solange nach rechts, bis 2 Haken zu sehen sind
@@ -202,7 +200,6 @@ class ScanBar(Node):
                 self.upcoming_process_step = "extract_hook_2"
                 self.start_timer_for_step(3.0)    # Timer starten
                 self.process_step = "waiting_for_timer"
-
 
 
         # Extrahiere Pixelkoordinaten von Haken 2 nach Beginn des Scans
@@ -235,7 +232,6 @@ class ScanBar(Node):
 
             self.get_logger().info("Done! -> next process step <Move Until New Hook>")
             self.process_step = "interpolate_depth_shape"
-
 
 
         # Tiefeninterpolation für Spitze -> Senke
@@ -302,7 +298,6 @@ class ScanBar(Node):
             self.process_step = "save_hook"
 
 
-
         # Speicher die Daten des aktuellen Hakens
         if self.process_step == "save_hook":
             """
@@ -357,7 +352,6 @@ class ScanBar(Node):
                 self.process_step = "waiting_for_timer"
 
 
-
         # Fahre, bis neuer Haken erscheint
         if self.process_step == "move_until_new_hook":
             """
@@ -380,7 +374,6 @@ class ScanBar(Node):
                 self.process_step = "waiting_for_timer"
 
 
-
         # Fahre, bis Haken aus linkem Randbereich draußen
         if self.process_step == "move_until_hook_disappears":
             """
@@ -400,7 +393,6 @@ class ScanBar(Node):
                 self.process_step = "waiting_for_timer"
 
 
-
         # Speichern des Global Dict als CSV, wenn Scanvorgang fertig
         if self.process_step == "save_global_dict_as_csv":
             """
@@ -409,7 +401,6 @@ class ScanBar(Node):
             save_dict_to_csv(node = self, data = self.global_hooks_dict, filename = 'src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal_dualcam.csv')
             self.get_logger().info("Done! -> next process step <Finish>")
             self.process_step = "move_back_to_init"
-
 
 
         # Zurückfahren auf Startposition

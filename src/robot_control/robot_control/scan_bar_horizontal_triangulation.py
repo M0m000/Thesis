@@ -199,10 +199,10 @@ class ScanBarHorizontalTriangulation(Node):
         '''
         Prozessablauf mit Schrittkette - wird zyklisch alle 1ms aufgerufen
         '''
-
         # prüfe auf Flanken für Haken am Bildrand
         rside_rising_edge, rside_falling_edge = self.edge_detector_rside.detect_edge(var=self.new_hook_in_picture)
         lside_rising_edge, lside_falling_edge = self.edge_detector_lside.detect_edge(var=self.hook_in_left_area)
+
 
         # Fahre von Init Position solange nach rechts, bis 2 Haken zu sehen sind
         if self.process_step == "move_until_2_hooks_visible":
@@ -224,7 +224,6 @@ class ScanBarHorizontalTriangulation(Node):
                 self.upcoming_process_step = "extract_hook_2_as_init_ref"
                 self.start_timer_for_step(3.0)    # Timer starten
                 self.process_step = "waiting_for_timer"
-
 
 
         # Doku - Messung der Schwingung nach Stillstand
@@ -264,7 +263,6 @@ class ScanBarHorizontalTriangulation(Node):
                 self.save_vibration_data_to_csv()
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 als initial Reference Point>")
                 self.process_step = "extract_hook_2_as_init_ref"
-        
 
 
         # Extrahiere Pixelkoordinaten von Haken 2 nach Beginn des Scans
@@ -280,7 +278,6 @@ class ScanBarHorizontalTriangulation(Node):
             self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.T_robot_position_ref[:3, 3], 'work')
             self.get_logger().info("Done! -> next process step <Move Until New Hook>")
             self.process_step = "move_until_new_hook"
-
 
 
         # Fahre, bis neuer Haken erscheint
@@ -310,7 +307,6 @@ class ScanBarHorizontalTriangulation(Node):
                     self.start_timer_for_step(3.0)    # Timer starten
                     self.process_step = "waiting_for_timer"
         
-
 
         # Extrahiere Pixelkoordinaten von Haken 3 (war vorher Haken 2)
         if self.process_step == "extract_hook_3_as_horizontal_point":
@@ -352,7 +348,6 @@ class ScanBarHorizontalTriangulation(Node):
                 self.process_step = "horizontal_triangulation"
 
 
-
         # Horizontale Triangulation
         if self.process_step == "horizontal_triangulation":
             """
@@ -374,7 +369,6 @@ class ScanBarHorizontalTriangulation(Node):
             
             self.get_logger().info("Done! -> next process step <Interpolate Depth Shape>")
             self.process_step = "interpolate_depth_shape"
-
 
 
         # Tiefeninterpolation für Spitze -> Senke
@@ -463,7 +457,6 @@ class ScanBarHorizontalTriangulation(Node):
             self.process_step = "save_hook"
 
 
-        
         # Speicher die Daten des aktuellen Hakens
         if self.process_step == "save_hook":
             """
@@ -507,7 +500,6 @@ class ScanBarHorizontalTriangulation(Node):
                 self.upcoming_process_step = "extract_hook_2_as_ref"
                 self.start_timer_for_step(3.0)    # Timer starten
                 self.process_step = "waiting_for_timer"
-
 
 
         # Extrahiere Pixelkoordinaten von Haken 2 während Prozess
@@ -554,7 +546,6 @@ class ScanBarHorizontalTriangulation(Node):
                     self.process_step = "move_until_new_hook"
 
 
-
         # Fahre, bis Haken aus linkem Randbereich draußen
         if self.process_step == "move_until_hook_disappears":
             """
@@ -574,7 +565,6 @@ class ScanBarHorizontalTriangulation(Node):
                 self.process_step = "waiting_for_timer"
 
 
-
         # Speichern des Global Dict als CSV, wenn Scanvorgang fertig
         if self.process_step == "save_global_dict_as_csv":
             """
@@ -583,7 +573,6 @@ class ScanBarHorizontalTriangulation(Node):
             save_dict_to_csv(node = self, data = self.global_hooks_dict, filename = 'src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv')
             self.get_logger().info("Done! -> next process step <Finish>")
             self.process_step = "move_back_to_init"
-
 
 
         # Zurückfahren auf Startposition
@@ -606,7 +595,6 @@ class ScanBarHorizontalTriangulation(Node):
             if self.startpoint_movement_done:
                 self.get_logger().info("Done! -> next process step <Finish>")
                 self.process_step = "finish"
-        
 
 
         # Endzustand

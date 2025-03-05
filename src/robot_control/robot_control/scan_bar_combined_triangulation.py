@@ -199,11 +199,9 @@ class ScanBarCombinedTriangulation(Node):
         '''
         Prozessablauf mit Schrittkette - wird zyklisch alle 1ms aufgerufen
         '''
-
         # prüfe auf Flanken für Haken am Bildrand
         rside_rising_edge, rside_falling_edge = self.edge_detector_rside.detect_edge(var=self.new_hook_in_picture)
         lside_rising_edge, lside_falling_edge = self.edge_detector_lside.detect_edge(var=self.hook_in_left_area)
-
 
 
         # Fahre von Init Position solange nach rechts, bis 2 Haken zu sehen sind
@@ -226,7 +224,6 @@ class ScanBarCombinedTriangulation(Node):
                 self.upcoming_process_step = "extract_hook_2_as_init_ref"
                 self.start_timer_for_step(3.0)    # Timer starten
                 self.process_step = "waiting_for_timer"
-
 
 
         # Doku - Messung der Schwingung nach Stillstand
@@ -266,7 +263,6 @@ class ScanBarCombinedTriangulation(Node):
                 self.save_vibration_data_to_csv()
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 als initial Reference Point>")
                 self.process_step = "extract_hook_2_as_init_ref"
-        
 
 
         # Extrahiere Pixelkoordinaten von Haken 2 nach Beginn des Scans
@@ -283,7 +279,6 @@ class ScanBarCombinedTriangulation(Node):
             self.get_logger().info("Done! -> next process step <Move Until New Hook>")
             self.process_step = "move_vertical"
         
-
 
         # Nach oben fahren
         if self.process_step == "move_vertical":
@@ -302,7 +297,6 @@ class ScanBarCombinedTriangulation(Node):
                 self.process_step = "extract_vertical_hook"
 
 
-
         # Extrahiere Haken mit vertikaler Baseline
         if self.process_step == "extract_vertical_hook":
             """
@@ -315,7 +309,6 @@ class ScanBarCombinedTriangulation(Node):
             self.robot_position_vertical = self.frame_handler.transform_worldpoint_in_frame(self.robot_position_vertical[:3, 3], 'work')
             self.get_logger().info("Done! -> next process step <Move Back To Ref Hook>")
             self.process_step = "move_back_to_ref_hook"
-
 
 
         # Fahre zurück zur REF Position
@@ -345,7 +338,6 @@ class ScanBarCombinedTriangulation(Node):
                 self.process_step = "move_until_new_hook"
 
 
-
         # Fahre, bis neuer Haken erscheint
         if self.process_step == "move_until_new_hook":
             """
@@ -372,7 +364,6 @@ class ScanBarCombinedTriangulation(Node):
                     self.upcoming_process_step = "extract_hook_3_as_horizontal_point"
                     self.start_timer_for_step(3.0)    # Timer starten
                     self.process_step = "waiting_for_timer"
-        
 
 
         # Extrahiere Pixelkoordinaten von Haken 3 (war vorher Haken 2)
@@ -415,7 +406,6 @@ class ScanBarCombinedTriangulation(Node):
                 self.process_step = "horizontal_triangulation"
 
 
-
         # Kombinierte Triangulation
         if self.process_step == "horizontal_triangulation":
             """
@@ -454,7 +444,6 @@ class ScanBarCombinedTriangulation(Node):
 
             self.get_logger().info("Done! -> next process step <Interpolate Depth Shape>")
             self.process_step = "interpolate_depth_shape"
-
 
 
         # Tiefeninterpolation für Spitze -> Senke
@@ -542,7 +531,6 @@ class ScanBarCombinedTriangulation(Node):
             self.get_logger().info("Done! -> next process step <Save Hook>")
             self.process_step = "save_hook"
 
-
         
         # Speicher die Daten des aktuellen Hakens
         if self.process_step == "save_hook":
@@ -589,7 +577,6 @@ class ScanBarCombinedTriangulation(Node):
                 self.process_step = "waiting_for_timer"
 
 
-
         # Extrahiere Pixelkoordinaten von Haken 2 während Prozess:
         if self.process_step == "extract_hook_2_as_ref":
             """
@@ -634,7 +621,6 @@ class ScanBarCombinedTriangulation(Node):
                     self.process_step = "move_until_new_hook"
 
 
-
         # Fahre, bis Haken aus linkem Randbereich draußen
         if self.process_step == "move_until_hook_disappears":
             """
@@ -654,7 +640,6 @@ class ScanBarCombinedTriangulation(Node):
                 self.process_step = "waiting_for_timer"
 
 
-
         # Speichern des Global Dict als CSV, wenn Scanvorgang fertig
         if self.process_step == "save_global_dict_as_csv":
             """
@@ -663,7 +648,6 @@ class ScanBarCombinedTriangulation(Node):
             save_dict_to_csv(node = self, data = self.global_hooks_dict, filename = 'src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv')
             self.get_logger().info("Done! -> next process step <Finish>")
             self.process_step = "move_back_to_init"
-
 
 
         # Zurückfahren auf Startposition
@@ -687,7 +671,6 @@ class ScanBarCombinedTriangulation(Node):
                 self.get_logger().info("Done! -> next process step <Finish>")
                 self.process_step = "finish"
         
-
 
         # Endzustand
         if self.process_step == "finish":
