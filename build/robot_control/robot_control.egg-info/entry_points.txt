@@ -1,6 +1,6 @@
 [console_scripts]
 MoveTcpAlongAxis_action_client = robot_control.MoveTcpAlongAxis_action_client:main
-attachment_node = robot_contro.attachment_node:main
+attachment_trajectory = robot_contro.attachment_trajectory:main
 define_working_frame_needle = robot_control.define_working_frame_needle:main
 hook_data_listener = robot_control.hook_data_listener:main
 ibvs_2d = robot_control.ibvs_2d:main

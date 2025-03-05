@@ -1,7 +1,6 @@
 import rclpy
 from rclpy.node import Node
 from FC.FC_hook_geometrics_handler import HookGeometricsHandler
-from FC.FC_cam_geometrics_handler import CamGeometricsHandler
 from FC.FC_frame_handler import FrameHandler
 from FC.FC_controller_data_logger import ControllerDataLogger
 
@@ -22,7 +21,7 @@ class TrajectoryController(Node):
         self.controller_output_logging_active = controller_output_logging_active
         self.controller_data_logger = ControllerDataLogger()
 
-        # Instanzen HookGeometricsHandler, FrameHandler und CamGeometricsHandler
+        # Instanzen HookGeometricsHandler, FrameHandler
         self.hook_geometrics_handler = HookGeometricsHandler()
         self.frame_handler = FrameHandler(node_name = "frame_handler_for_attachment_controller")
 
@@ -92,6 +91,7 @@ class TrajectoryController(Node):
             self.stop_controller_timer()
 
 
+
     def set_controller_parameters(self, p_gain_translation = 0.0, p_gain_rotation = 0.0):
         """
         Setzt die Parameter der P-Regler
@@ -100,6 +100,7 @@ class TrajectoryController(Node):
         self.p_gain_rotation = p_gain_rotation
 
     
+
     def set_controller_timer(self):
         """
         Startet den Callback-Timer für die Regelung
@@ -109,6 +110,7 @@ class TrajectoryController(Node):
             self.controller_timer_active = True
     
 
+
     def stop_controller_timer(self):
         """
         Stoppt den Callback-Timer für die Regelung
@@ -116,6 +118,7 @@ class TrajectoryController(Node):
         if self.controller_timer_active and self.controller_callback_timer is not None:
             self.controller_callback_timer.cancel()
             self.controller_timer_active = False
+
 
 
     def set_hook_num(self, global_hook_num):
@@ -129,6 +132,7 @@ class TrajectoryController(Node):
         self.handle_last_trajectory_point = False   # Rücksetzen, um sicherzustellen, dass der letzte Punkt nicht direkt bearbeitet wird
 
 
+
     def reset_plane(self):
         """
         Funktion für das Rücksetzen der Lochebene -> wird dann zu Beginn des nächsten Regelungszyklus neu berechnet
@@ -136,12 +140,14 @@ class TrajectoryController(Node):
         self.plane = None
 
     
+
     def set_plane_parameters(self, trans_in_tfcframe = [0.0, 0.0, 112.0], rot_in_tfcframe = [0.0, 0.0, 0.0]):
         """
         Funktion für das Setzen der aktuellen Parameter der Loch-Ebene
         """
         self.plane_trans_in_tfcframe = trans_in_tfcframe
         self.plane_rot_in_tfcframe = rot_in_tfcframe
+
 
     
     def update_path_point_idx(self, idx = 0):
@@ -151,6 +157,7 @@ class TrajectoryController(Node):
         self.act_path_point_idx = idx
 
     
+
     def shift_path_points(self):
         """
         Funktion zum Überprüfen, ob Vorgabepunkt (Path Point) erreicht wurde -> wenn ja, nächster Path Point
@@ -185,6 +192,7 @@ class TrajectoryController(Node):
         else:
             self.get_logger().info("Handling last point of trajectory.")
             self.handle_last_trajectory_point = True
+
 
 
     def trajectory_controller(self):
