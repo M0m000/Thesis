@@ -3,7 +3,7 @@
 <br>
 
 <p align="center">
-  <img src="/imgs/1.png" alt="Abb. 1 - Kathodische Tauchlackierung" width="400"/>
+  <img src="/imgs/1.png" alt="Abb. 1 - Kathodische Tauchlackierung" width="700"/>
 </p>
 <p align="center"><em>Abb. 1 - Kathodische Tauchlackierung</em></p>
 
