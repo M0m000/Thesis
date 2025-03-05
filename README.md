@@ -16,7 +16,7 @@ Während das Aufnehmen eines Teils aus einer Kiste mit bereits bekannten Bin-Pic
 <br>
 
 <p align="center">
-  <img src="/imgs/2.png" alt="Abb 2 - Gitteranordnung" width="600"/>
+  <img src="/imgs/2.png" alt="Abb 2 - Gitteranordnung" width="700"/>
 </p>
 <p align="center"><em>Abb. 2 - Gitteranordnung</em></p>
 
@@ -26,7 +26,7 @@ Wie in Abb. 2 zu sehen, befinden sich an einem Gitter mehrere feste Haken, an de
 <br>
 
 <p align="center">
-  <img src="/imgs/3.png" alt="Mögliche Abweichungen an Aufhängevorrichtungen" width="600"/>
+  <img src="/imgs/3.png" alt="Mögliche Abweichungen an Aufhängevorrichtungen" width="700"/>
 </p>
 <p align="center"><em>Abb. 3 - Mögliche Abweichungen an Aufhängevorrichtungen</em></p>
 
