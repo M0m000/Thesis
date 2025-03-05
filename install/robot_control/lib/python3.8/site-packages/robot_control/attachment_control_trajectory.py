@@ -181,10 +181,12 @@ class AttachmentTrajectory(Node):
         Funktion für Keyboard-Eingabe -> hier wird auf Taste n überprüft -> dann wird der nächste Path Point genommmen
         """
         try:
+            # Weiterschalten der Path Points mit "n"
             if key.char == 'n' and self.manual_mode == True:
                 self.take_next_path_point = True
                 self.get_logger().info("take_next_path_point set to TRUE")
             
+            # Starten der Regelung mit "r"
             if key.char == 'r':
                 if self.manual_mode == True:
                     self.trajectory_controller.set_control(activate = True, manual_mode = True)
@@ -193,6 +195,7 @@ class AttachmentTrajectory(Node):
                     self.trajectory_controller.set_control(activate = True, manual_mode = False)
                     self.get_logger().info("Trajectory controller activated in automatic mode...")
             
+            # Stoppen der Regelung mit "t"
             if key.char == 't':
                 self.trajectory_controller.set_control(activate = False)
                 self.get_logger().info("Trajectory controller stopped...")
@@ -223,7 +226,6 @@ class AttachmentTrajectory(Node):
         msg = JogLinear()
         msg.vel = self.velocity_trans
         msg.rot = self.velocity_rot
-
         self.jog_publisher.publish(msg = msg)
 
 

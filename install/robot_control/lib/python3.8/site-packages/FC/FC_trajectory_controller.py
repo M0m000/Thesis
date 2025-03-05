@@ -126,7 +126,6 @@ class TrajectoryController(Node):
         Setzt die Regelung auf die Hakennummer (global)
         """
         self.global_hook_num = global_hook_num
-
         self.act_path_point_idx = 0                 # Stelle sicher, dass der Path Point Index zurückgesetzt wird
         self.trajectory_control_finished = False    # Rücksetzen des Flags
         self.handle_last_trajectory_point = False   # Rücksetzen, um sicherzustellen, dass der letzte Punkt nicht direkt bearbeitet wird
