@@ -364,7 +364,7 @@ class ScanBarHorizontalTriangulation(Node):
             """
             horizontal_baseline_vector = np.array(self.robot_position_horizontal) - np.array(self.robot_position_ref)
             baseline_along_x = horizontal_baseline_vector[0]
-            self.get_logger().info(f"Baseline X-Distanz: {baseline_along_x} mm")
+            self.get_logger().info(f"Baseline along X axis: {baseline_along_x} mm")
 
             if baseline_along_x == 0:
                 self.get_logger().error("ERROR either in moving robot or in position acquisition -> consider restarting KR810...")
