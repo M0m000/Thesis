@@ -167,6 +167,9 @@ class ScanBarHorizontalTriangulation(Node):
 
 
     def set_frame(self, R, T, frame="tcp", ref_frame="tfc"):
+        """
+        Funktion für Service Call von SetSystemFrame
+        """
         request = SetSystemFrame.Request()
         request.name = frame
         request.ref = ref_frame
@@ -188,17 +191,23 @@ class ScanBarHorizontalTriangulation(Node):
 
 
     def received_img_width(self, msg):
+        """
+        Topic-Callback für Bildaufloesung Breite
+        """
         self.img_width = msg.data
 
     def received_img_height(self, msg):
+        """
+        Topic-Callback für Bildauflösung Höhe
+        """
         self.img_height = msg.data
     
     
 
     def process_main(self):
-        '''
+        """
         Prozessablauf mit Schrittkette - wird zyklisch alle 1ms aufgerufen
-        '''
+        """
         # prüfe auf Flanken für Haken am Bildrand
         rside_rising_edge, rside_falling_edge = self.edge_detector_rside.detect_edge(var=self.new_hook_in_picture)
         lside_rising_edge, lside_falling_edge = self.edge_detector_lside.detect_edge(var=self.hook_in_left_area)
@@ -599,7 +608,8 @@ class ScanBarHorizontalTriangulation(Node):
 
         # Endzustand
         if self.process_step == "finish":
-            """ Ednzustand -> Finish
+            """
+            Endzustand -> Finish
             """
             self.get_logger().info("Scan finished!")
             self.node_shutdown_flag = True
@@ -607,17 +617,17 @@ class ScanBarHorizontalTriangulation(Node):
 
     
     def start_timer_for_step(self, delay_sec):
-        '''
+        """
         Starte einen Timer, der nach einer bestimmten Zeit den nächsten Schritt ausführt
-        '''
+        """
         next_step = self.upcoming_process_step
         self.get_logger().info(f"Starting timer for {next_step} with {delay_sec} seconds delay")
         self.wait_timer = self.create_timer(delay_sec, self.timer_callback)
 
     def timer_callback(self):
-        '''
+        """
         Callback, der nach Ablauf des Timers ausgeführt wird
-        '''
+        """
         next_step = self.upcoming_process_step
         self.get_logger().info(f"Timer expired, switching to {next_step}")
         self.process_step = next_step
@@ -654,6 +664,9 @@ class ScanBarHorizontalTriangulation(Node):
 
 
     def publish_linear_velocity(self, vel_in_worldframe):
+        """
+        Funktion für Publish der Twist-Msg
+        """
         jog_msg = JogLinear()
         jog_msg.vel = vel_in_worldframe
         jog_msg.rot = [0.0, 0.0, 0.0]
@@ -662,9 +675,9 @@ class ScanBarHorizontalTriangulation(Node):
 
 
     def load_work_frame(self):
-        '''
+        """
         Funktion für das Laden einer Transformation zwischen zwei Frames aus FrameHandler
-        '''
+        """
         csv_name = 'WORK_frame_in_world.csv'
         transformation_matrix = self.frame_handler.load_transformation_matrix_from_csv(frame_name = csv_name)
 
@@ -678,18 +691,18 @@ class ScanBarHorizontalTriangulation(Node):
 
 
     def hooks_dict_callback(self, msg):
-        '''
+        """
         Callback für das Ankommen neuer Nachrichten aus NN Output
-        '''
+        """
         self.yolo_hooks_dict = self.hooks_dict_processor.process_hooks_dict(msg)
 
 
     
     def check_for_new_hook_instance(self):
-        '''
+        """
         überprüft kontinuierlich den Netzoutput, ob im rechten Randbereich des Bildausschnitts eine neue Hakeninstanz auftaucht
         falls ja, setzt diese Funktion die Variable self.new_hook_in_picture auf True
-        '''
+        """
         if self.yolo_hooks_dict is not {} and "hook_1" in self.yolo_hooks_dict:
             if self.yolo_hooks_dict['hook_1']['hook_box'][0] > (self.img_width * 0.8):
                 self.new_hook_in_picture = True
@@ -705,6 +718,9 @@ class ScanBarHorizontalTriangulation(Node):
 
         
     def shutdown_node(self):
+        """
+        Funktion für Node-Shutdown
+        """
         # Timer stoppen und Node zerstören
         self.process_timer.cancel()
         self.timer_check_new_instances.cancel()
