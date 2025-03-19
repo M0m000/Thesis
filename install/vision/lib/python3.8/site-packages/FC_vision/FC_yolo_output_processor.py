@@ -433,6 +433,8 @@ class YoloPostprocessor(Node):
             total_length += np.linalg.norm([y2 - y1, x2 - x1])      # kummulierte Summe aller Distanzen
 
         # Berechne den Abstand zwischen den Punkten
+        if num_points < 2:      # es muessen mindestens 2 Path Points gefordert werden (Spitze und Senke)
+            num_points = 2
         step_size = total_length / (num_points - 1)  # Da der erste Punkt am Startpunkt liegt, (num_points-1) Schritte
 
         # Punkte entlang des Pfads berechnen

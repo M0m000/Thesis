@@ -24,9 +24,10 @@ yolov8_inference_node:
     publish_masks: True
     filter_alpha: 0.2
     filter_windowsize: 5
+    num_path_points: 10
     
 scan_bar_horizontal_triangulation_node:
   ros__parameters:
     do_vibration_test: False
     speed_in_mm_per_s: 15.0
-    num_hooks_existing: 25
+    num_hooks_existing: 20

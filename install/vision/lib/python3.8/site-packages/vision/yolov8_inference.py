@@ -44,6 +44,8 @@ class YOLOv8InferenceNode(Node):
         self.filter_alpha = self.get_parameter('filter_alpha').get_parameter_value().double_value
         self.declare_parameter('filter_windowsize', 10)
         self.filter_windowsize = self.get_parameter('filter_windowsize').get_parameter_value().integer_value
+        self.declare_parameter('num_path_points', 5)
+        self.num_path_points = self.get_parameter('num_path_points').get_parameter_value().integer_value
 
         # Subscriber auf VC Cam
         self.subscription = self.create_subscription(Image, 'vcnanoz/image_raw', self.image_callback, 1)
@@ -137,11 +139,11 @@ class YOLOv8InferenceNode(Node):
             '''
             ### Zuerst filtern und dann Pfad berechnen
             self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)
-            self.filtered_hooks_dict = self.yolo_postprocessor.find_hooks_shape(hooks_dict = self.filtered_hooks_dict, num_interpolation_points = 10)
+            self.filtered_hooks_dict = self.yolo_postprocessor.find_hooks_shape(hooks_dict = self.filtered_hooks_dict, num_interpolation_points = self.num_path_points)
             '''
 
             ### Zuerst Pfad berechnen und dann filtern (Pfad wird aber nicht mitgefiltert)
-            self.hooks_dict_processed = self.yolo_postprocessor.find_hooks_shape(hooks_dict = self.hooks_dict_processed, num_interpolation_points = 20)
+            self.hooks_dict_processed = self.yolo_postprocessor.find_hooks_shape(hooks_dict = self.hooks_dict_processed, num_interpolation_points = self.num_path_points)
             self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)
 
             # Plots

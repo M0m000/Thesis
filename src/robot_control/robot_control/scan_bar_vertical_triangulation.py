@@ -210,7 +210,7 @@ class ScanBarHorizontalTriangulation(Node):
             Fahre weiter, bis 2 Haken im Bild zu sehen sind (zu Beginn des Scan-Prozesses benötigt)
             """
             vel_work = [self.speed_in_mm_per_s, 0.0, 0.0]
-            vel_world = self.frame_handler.tansform_velocity_to_world(vel = vel_work, from_frame='work')
+            vel_world = self.frame_handler.transform_velocity_to_world(vel = vel_work, from_frame='work')
             self.publish_linear_velocity(vel_in_worldframe = vel_world)
 
             if rside_falling_edge:
@@ -286,7 +286,7 @@ class ScanBarHorizontalTriangulation(Node):
             """
             if self.yolo_hooks_dict['hook_2']['uv_lowpoint'][1] < (self.img_height * 0.8):
                 vel_work = [0.0, -self.speed_in_mm_per_s, 0.0]
-                vel_world = self.frame_handler.tansform_velocity_to_world(vel = vel_work, from_frame='work')
+                vel_world = self.frame_handler.transform_velocity_to_world(vel = vel_work, from_frame='work')
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
             else:
                 vel_world = [0.0, 0.0, 0.0]
@@ -343,7 +343,7 @@ class ScanBarHorizontalTriangulation(Node):
             Weiterfahren, bis im rechten Bildrand eine neue Hakeninstanz auftaucht, dann Stopp
             """
             vel_work = [self.speed_in_mm_per_s, 0.0, 0.0]
-            vel_world = self.frame_handler.tansform_velocity_to_world(vel = vel_work, from_frame='work')
+            vel_world = self.frame_handler.transform_velocity_to_world(vel = vel_work, from_frame='work')
             self.publish_linear_velocity(vel_in_worldframe = vel_world)
 
             if rside_falling_edge:
@@ -569,7 +569,7 @@ class ScanBarHorizontalTriangulation(Node):
             Weiterfahren, bis der linke Hand im Bild verschwindet (wird für das Handling der letzten 2 Haken benötigt, da Überprüfung auf rechten Bildrand hier nicht mehr funktioniert)
             """
             vel_work = [self.speed_in_mm_per_s, 0.0, 0.0]
-            vel_world = self.frame_handler.tansform_velocity_to_world(vel = vel_work, from_frame='work')
+            vel_world = self.frame_handler.transform_velocity_to_world(vel = vel_work, from_frame='work')
             self.publish_linear_velocity(vel_in_worldframe = vel_world)
             
             if lside_rising_edge:

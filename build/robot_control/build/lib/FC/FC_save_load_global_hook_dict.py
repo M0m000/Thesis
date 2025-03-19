@@ -43,8 +43,8 @@ def save_dict_to_csv(node, data, filename="output.csv"):
                 row.extend(values[point])
             
             # Schreibe tfc_workframe und tfc_worldframe
-            row.extend(values["tfc_workframe"])  # Liste mit drei Werten
-            row.extend(values["tfc_worldframe"])  # NumPy-Array mit drei Werten
+            row.extend(values["tfc_in_workframe"])  # Liste mit drei Werten
+            row.extend(values["tfc_in_worldframe"])  # NumPy-Array mit drei Werten
 
             # Anzahl der Path-Punkte
             path_points = values.get("xyz_path_points_in_workframe", [])

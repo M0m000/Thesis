@@ -26,13 +26,12 @@ class ParameterizedCubicSplineCalculator(Node):
 
 
     def _calculate_distance_for_path_points(self):
-        self.distance = []
+        # Berechne die kumulative Distanz entlang der xy-Punkte
+        self.distance = [0.0]
         for i in range(1, len(self.xy_points)):
-            # Berechne die Distanz zwischen aufeinanderfolgendem Punkt
             dist = self._calculate_euclidean(self.xy_points[i-1], self.xy_points[i])
-            self.distance.append(dist)
-        # Am Ende noch die Distanz für den letzten Punkt berechnen
-        self.distance.append(self._calculate_euclidean(self.xy_points[-1], self.xy_points[-1]))
+            self.distance.append(self.distance[-1] + dist[0])
+
 
 
 
@@ -42,26 +41,19 @@ class ParameterizedCubicSplineCalculator(Node):
         self.start_point = start_point_with_depth
         self.end_point = end_point_with_depth
 
-        # Lege Liste für Ergebnisse an (erste Position ist Start-Tiefenwert, letzte Position ist End-Tiefenwert)
-        depth_results = [None] * self.num_points
-        depth_results[0] = self.start_point[2]
-        depth_results[-1] = self.end_point[2]
-
         self._calculate_distance_for_path_points()      # Berechne Distanz als Laufparameter für Interpolation
-
+        x_known = [self.distance[0], self.distance[-1]]
+        y_known = [self.start_point[2], self.end_point[2]]
+        
         # Berechne die kubische Spline-Interpolation
-        # 'self.distance' sind die x-Werte, 'depth_results' sind die y-Werte
-        cs = CubicSpline(self.distance, depth_results, bc_type='natural')
+        cs = CubicSpline(x_known, y_known, bc_type='natural')
 
         # Berechne den interpolierten Wert für jede Position in der xy_points
         interpolated_depths = cs(self.distance)
-
-        # Ergebnis in depth_results eintragen
-        for i in range(1, self.num_points - 1):
-            depth_results[i] = interpolated_depths[i]
+        print(interpolated_depths)
 
         # Fertige Liste mit XYZ-Werten aufbauen
-        self.xyz_points = [(self.xy_points[i][0], self.xy_points[i][1], depth_results[i]) for i in range(self.num_points)]
+        self.xyz_points = [(self.xy_points[i][0], self.xy_points[i][1], interpolated_depths[i]) for i in range(self.num_points)]
         return self.xyz_points
 
 

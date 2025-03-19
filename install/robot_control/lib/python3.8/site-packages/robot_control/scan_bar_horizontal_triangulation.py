@@ -54,12 +54,12 @@ class ScanBarHorizontalTriangulation(Node):
         self.handling_last_hook = False
 
         # Subscriber auf Bildgroesse
+        self.img_width = 896
+        self.img_height = 450
         self.img_width_sub = self.create_subscription(Int32, 'vcnanoz/image_raw/width', self.received_img_width, 10)
         self.img_width_sub
         self.img_height_sub = self.create_subscription(Int32, 'vcnanoz/image_raw/height', self.received_img_height, 10)
         self.img_height_sub
-        self.img_width = 896
-        self.img_height = 450
 
         # Variablen für Prozess
         self.hook_ref = {}
@@ -95,7 +95,7 @@ class ScanBarHorizontalTriangulation(Node):
         self.frame_handler = FrameHandler(node_name = 'frame_handler_node_for_scan_bar', save_path = frame_csv_path)
         self.cam_to_world_transform = None
 
-        startpoint_trans_in_workframe = [160.0, -430.0, 80.0]
+        startpoint_trans_in_workframe = [160.0, -440.0, 80.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
         self.startpoint_trans_worldframe, self.startpoint_rot_worldframe = self.frame_handler.transform_pose_to_world(
             trans = startpoint_trans_in_workframe,
@@ -167,6 +167,9 @@ class ScanBarHorizontalTriangulation(Node):
 
 
     def set_frame(self, R, T, frame="tcp", ref_frame="tfc"):
+        """
+        Funktion für Service Call von SetSystemFrame
+        """
         request = SetSystemFrame.Request()
         request.name = frame
         request.ref = ref_frame
@@ -188,17 +191,23 @@ class ScanBarHorizontalTriangulation(Node):
 
 
     def received_img_width(self, msg):
+        """
+        Topic-Callback für Bildaufloesung Breite
+        """
         self.img_width = msg.data
 
     def received_img_height(self, msg):
+        """
+        Topic-Callback für Bildauflösung Höhe
+        """
         self.img_height = msg.data
     
     
 
     def process_main(self):
-        '''
+        """
         Prozessablauf mit Schrittkette - wird zyklisch alle 1ms aufgerufen
-        '''
+        """
         # prüfe auf Flanken für Haken am Bildrand
         rside_rising_edge, rside_falling_edge = self.edge_detector_rside.detect_edge(var=self.new_hook_in_picture)
         lside_rising_edge, lside_falling_edge = self.edge_detector_lside.detect_edge(var=self.hook_in_left_area)
@@ -210,7 +219,7 @@ class ScanBarHorizontalTriangulation(Node):
             Fahre weiter, bis 2 Haken im Bild zu sehen sind (zu Beginn des Scan-Prozesses benötigt)
             """
             vel_work = [self.speed_in_mm_per_s, 0.0, 0.0]
-            vel_world = self.frame_handler.tansform_velocity_to_world(vel = vel_work, from_frame = 'work')
+            vel_world = self.frame_handler.transform_velocity_to_world(vel = vel_work, from_frame = 'work')
             self.publish_linear_velocity(vel_in_worldframe = vel_world)
 
             if rside_falling_edge:
@@ -270,14 +279,20 @@ class ScanBarHorizontalTriangulation(Node):
             """
             Extrahieren des ersten Haken_2 als initiale Referenz für Triangulation des ersten Hakens
             """
-            self.hook_ref['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
-            self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
-            self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
+            if self.yolo_hooks_dict['hook_2']['path_points'] != []:         # wenn path_points im Dict vefügbar
+                self.hook_ref['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
+                self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
+                self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
+                self.hook_ref['path_points'] = self.yolo_hooks_dict['hook_2']['path_points']
+                hook_extraction_done = True
+            else:       # wenn 'path_points' gerade nicht vergübar, warte nächsten Prozesszyklus ab, bis verfügbar
+                hook_extraction_done = False
 
-            _, _, self.T_robot_position_ref = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
-            self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.T_robot_position_ref[:3, 3], 'work')
-            self.get_logger().info("Done! -> next process step <Move Until New Hook>")
-            self.process_step = "move_until_new_hook"
+            if hook_extraction_done:        # nächster Prozessschritt nur, wenn Hook erfolgreich extrahiert
+                _, _, self.T_robot_position_ref = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
+                self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.T_robot_position_ref[:3, 3], 'work')
+                self.get_logger().info("Done! -> next process step <Move Until New Hook>")
+                self.process_step = "move_until_new_hook"
 
 
         # Fahre, bis neuer Haken erscheint
@@ -286,7 +301,7 @@ class ScanBarHorizontalTriangulation(Node):
             Weiterfahren, bis im rechten Bildrand eine neue Hakeninstanz auftaucht, dann Stopp
             """
             vel_work = [self.speed_in_mm_per_s, 0.0, 0.0]
-            vel_world = self.frame_handler.tansform_velocity_to_world(vel = vel_work, from_frame='work')
+            vel_world = self.frame_handler.transform_velocity_to_world(vel = vel_work, from_frame='work')
             self.publish_linear_velocity(vel_in_worldframe = vel_world)
 
             if rside_falling_edge:
@@ -355,7 +370,7 @@ class ScanBarHorizontalTriangulation(Node):
             """
             horizontal_baseline_vector = np.array(self.robot_position_horizontal) - np.array(self.robot_position_ref)
             baseline_along_x = horizontal_baseline_vector[0]
-            self.get_logger().info(f"Baseline X-Distanz: {baseline_along_x} mm")
+            self.get_logger().info(f"Baseline along X axis: {baseline_along_x} mm")
 
             if baseline_along_x == 0:
                 self.get_logger().error("ERROR either in moving robot or in position acquisition -> consider restarting KR810...")
@@ -382,20 +397,23 @@ class ScanBarHorizontalTriangulation(Node):
             # self.cam_to_world_transform = self.frame_handler.get_cam_transform_in_world()
             self.cam_to_world_transform = robot_position_in_tfcframe @ transform_cam_in_tfcframe
 
+            self.act_hook_num += 1
+            self.global_hooks_dict[str(self.act_hook_num)] = {}
+
             hook_xyz_hom = np.append(xyz_hook_in_camframe, 1)
             xyz_hook_in_worldframe = self.cam_to_world_transform @ hook_xyz_hom
             self.xyz_hook_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = xyz_hook_in_worldframe, frame_desired = 'work')
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_workframe'] = self.xyz_hook_in_workframe
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_workframe'] = self.xyz_hook_in_workframe
             
             tip_xyz_hom = np.append(xyz_tip_in_camframe, 1)
             xyz_tip_in_worldframe = self.cam_to_world_transform @ tip_xyz_hom
             self.xyz_tip_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = xyz_tip_in_worldframe, frame_desired = 'work')
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_workframe'] = self.xyz_tip_in_workframe
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_workframe'] = self.xyz_tip_in_workframe
             
             lowpoint_xyz_hom = np.append(xyz_lowpoint_in_camframe, 1)
             xyz_lowpoint_in_worldframe = self.cam_to_world_transform @ lowpoint_xyz_hom
             self.xyz_lowpoint_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = xyz_lowpoint_in_worldframe, frame_desired = 'work')
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_workframe'] = self.xyz_lowpoint_in_workframe
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_workframe'] = self.xyz_lowpoint_in_workframe
 
 
             # Hole uv_tip und uv_lowpoint aus Dict
@@ -425,12 +443,16 @@ class ScanBarHorizontalTriangulation(Node):
             xy_path_points = []
             u_center = self.img_height / 2
             v_center = self.img_width / 2
-            for p in uv_path_points:
-                ppoint_u = p[0]
-                ppoint_v = p[1]
-                ppoint_x = (ppoint_v - v_center) * mm_per_px_x
-                ppoint_y = (ppoint_u - u_center) * mm_per_px_y
-                xy_path_points.append((ppoint_x, ppoint_y))
+            
+            if uv_path_points is not None:
+                for p in uv_path_points:
+                    ppoint_u = p[0]
+                    ppoint_v = p[1]
+                    ppoint_x = (ppoint_v - v_center) * mm_per_px_x
+                    ppoint_y = (ppoint_u - u_center) * mm_per_px_y
+                    xy_path_points.append((ppoint_x, ppoint_y))
+            else:
+                xy_path_points.append((None, None))
 
             # Berechnung von interpolierten Tiefenwerten für path_points
             path_points_xyz_in_camframe = self.spline_calculator.interpolate(
@@ -441,12 +463,14 @@ class ScanBarHorizontalTriangulation(Node):
             # Durchgehen aller interpolierten Werte und Transformation in WORK-Frame
             path_points_xyz_in_workframe = []
             for p in path_points_xyz_in_camframe:
-                ppoint_x = p[0]
-                ppoint_y = p[1]
-                ppoint_z = p[2]
+                ppoint_x = p[0][0]
+                ppoint_y = p[1][0]
+                ppoint_z = p[2][0]
 
                 # Transformation des Path Points aus CAM-Frame ins WORK-Frame
                 T_cam_in_worldframe = self.frame_handler.get_cam_transform_in_world()
+                print(T_cam_in_worldframe)
+                print(ppoint_x, ppoint_y, ppoint_z)
                 ppoint_in_worldframe = T_cam_in_worldframe @ np.array([ppoint_x, ppoint_y, ppoint_z, 1.0])
                 ppoint_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = ppoint_in_worldframe[:3], frame_desired = 'work')
 
@@ -466,28 +490,26 @@ class ScanBarHorizontalTriangulation(Node):
             - TFC-Roboterposition bei Aufnahme des Hakens
             --- TFC-Pose im WORK- und WORLD-Frame
             """
-            self.act_hook_num += 1
-            self.global_hooks_dict[str(self.act_hook_num)] = {}
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_camframe'] = xyz_hook_in_camframe
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_camframe'] = xyz_tip_in_camframe
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_camframe'] = xyz_lowpoint_in_camframe
 
-            # self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_worldframe'] = xyz_hook_in_worldframe
-            # self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_worldframe'] = xyz_tip_in_worldframe
-            # self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_worldframe'] = xyz_lowpoint_in_worldframe
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_worldframe'] = xyz_hook_in_worldframe
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_worldframe'] = xyz_tip_in_worldframe
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_worldframe'] = xyz_lowpoint_in_worldframe
 
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_workframe'] = self.xyz_hook_in_workframe
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_workframe'] = self.xyz_tip_in_workframe
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_workframe'] = self.xyz_lowpoint_in_workframe
+            # self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_workframe'] = self.xyz_hook_in_workframe
+            # self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_workframe'] = self.xyz_tip_in_workframe
+            # self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_workframe'] = self.xyz_lowpoint_in_workframe
 
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_path_points_in_workframe'] = path_points_xyz_in_workframe
 
             self.global_hooks_dict[str(self.act_hook_num)]['tfc_in_workframe'] = self.robot_position_horizontal
             self.global_hooks_dict[str(self.act_hook_num)]['tfc_in_worldframe'], _, _ = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
 
-            self.get_logger().warn(f"Hook XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_workframe']}")
-            self.get_logger().warn(f"Tip XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_workframe']}")
-            self.get_logger().warn(f"Lowpoint XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_workframe']}")
+            self.get_logger().warn(f"Hook XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_workframe']}")
+            self.get_logger().warn(f"Tip XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_workframe']}")
+            self.get_logger().warn(f"Lowpoint XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_workframe']}")
             self.get_logger().warn(f"Time token for triangulation [horizontal]: {time_token}sec")
 
             self.get_logger().info(f"already scanned: {len(self.global_hooks_dict)} Hooks")
@@ -518,7 +540,7 @@ class ScanBarHorizontalTriangulation(Node):
                     hook_extraction_done = False
 
             else:
-                if self.yolo_hooks_dict['hook_2']['pyth_points'] != []:         # wenn path_points im Dict vefügbar
+                if self.yolo_hooks_dict['hook_2']['path_points'] != []:         # wenn path_points im Dict vefügbar
                     self.hook_ref['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
                     self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
                     self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
@@ -552,7 +574,7 @@ class ScanBarHorizontalTriangulation(Node):
             Weiterfahren, bis der linke Hand im Bild verschwindet (wird für das Handling der letzten 2 Haken benötigt, da Überprüfung auf rechten Bildrand hier nicht mehr funktioniert)
             """
             vel_work = [self.speed_in_mm_per_s, 0.0, 0.0]
-            vel_world = self.frame_handler.tansform_velocity_to_world(vel = vel_work, from_frame='work')
+            vel_world = self.frame_handler.transform_velocity_to_world(vel = vel_work, from_frame='work')
             self.publish_linear_velocity(vel_in_worldframe = vel_world)
             
             if lside_rising_edge:
@@ -599,7 +621,8 @@ class ScanBarHorizontalTriangulation(Node):
 
         # Endzustand
         if self.process_step == "finish":
-            """ Ednzustand -> Finish
+            """
+            Endzustand -> Finish
             """
             self.get_logger().info("Scan finished!")
             self.node_shutdown_flag = True
@@ -607,17 +630,17 @@ class ScanBarHorizontalTriangulation(Node):
 
     
     def start_timer_for_step(self, delay_sec):
-        '''
+        """
         Starte einen Timer, der nach einer bestimmten Zeit den nächsten Schritt ausführt
-        '''
+        """
         next_step = self.upcoming_process_step
         self.get_logger().info(f"Starting timer for {next_step} with {delay_sec} seconds delay")
         self.wait_timer = self.create_timer(delay_sec, self.timer_callback)
 
     def timer_callback(self):
-        '''
+        """
         Callback, der nach Ablauf des Timers ausgeführt wird
-        '''
+        """
         next_step = self.upcoming_process_step
         self.get_logger().info(f"Timer expired, switching to {next_step}")
         self.process_step = next_step
@@ -654,6 +677,9 @@ class ScanBarHorizontalTriangulation(Node):
 
 
     def publish_linear_velocity(self, vel_in_worldframe):
+        """
+        Funktion für Publish der Twist-Msg
+        """
         jog_msg = JogLinear()
         jog_msg.vel = vel_in_worldframe
         jog_msg.rot = [0.0, 0.0, 0.0]
@@ -662,9 +688,9 @@ class ScanBarHorizontalTriangulation(Node):
 
 
     def load_work_frame(self):
-        '''
+        """
         Funktion für das Laden einer Transformation zwischen zwei Frames aus FrameHandler
-        '''
+        """
         csv_name = 'WORK_frame_in_world.csv'
         transformation_matrix = self.frame_handler.load_transformation_matrix_from_csv(frame_name = csv_name)
 
@@ -678,18 +704,18 @@ class ScanBarHorizontalTriangulation(Node):
 
 
     def hooks_dict_callback(self, msg):
-        '''
+        """
         Callback für das Ankommen neuer Nachrichten aus NN Output
-        '''
+        """
         self.yolo_hooks_dict = self.hooks_dict_processor.process_hooks_dict(msg)
 
 
     
     def check_for_new_hook_instance(self):
-        '''
+        """
         überprüft kontinuierlich den Netzoutput, ob im rechten Randbereich des Bildausschnitts eine neue Hakeninstanz auftaucht
         falls ja, setzt diese Funktion die Variable self.new_hook_in_picture auf True
-        '''
+        """
         if self.yolo_hooks_dict is not {} and "hook_1" in self.yolo_hooks_dict:
             if self.yolo_hooks_dict['hook_1']['hook_box'][0] > (self.img_width * 0.8):
                 self.new_hook_in_picture = True
@@ -705,6 +731,9 @@ class ScanBarHorizontalTriangulation(Node):
 
         
     def shutdown_node(self):
+        """
+        Funktion für Node-Shutdown
+        """
         # Timer stoppen und Node zerstören
         self.process_timer.cancel()
         self.timer_check_new_instances.cancel()
@@ -729,4 +758,3 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
-    
