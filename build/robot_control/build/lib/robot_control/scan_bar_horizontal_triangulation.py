@@ -18,7 +18,6 @@ import numpy as np
 import csv
 
 
-
 class ScanBarHorizontalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_horizontal_triangulation')
