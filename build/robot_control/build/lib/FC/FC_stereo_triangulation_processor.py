@@ -115,7 +115,7 @@ class StereoTriangulationProcessor:
     def triangulate_3_points(self, point_1_1_uv = None, point_1_2_uv = None, point_1_3_uv = None,
                                    point_2_1_uv = None, point_2_2_uv = None, point_2_3_uv = None,
                                    baseline_vector = [0.0, 0.0, 0.0],
-                                   baseline=0.0,
+                                   baseline = 0.0,
                                    baseline_axis='x'):
         start_time = time.perf_counter() if self.measure_time else None
 
@@ -127,3 +127,33 @@ class StereoTriangulationProcessor:
         time_token = end_time - start_time if self.measure_time else None
         return [point_1_xyz, point_2_xyz, point_3_xyz], time_token if self.measure_time else [point_1_xyz, point_2_xyz, point_3_xyz]
 
+
+
+    def triangulate_path_points(self, uv_path_points_1 = None, uv_path_points_2 = None,
+                                baseline_vector = [0.0, 0.0, 0.0],
+                                baseline = 0.0,
+                                baseline_axis = 'x'):
+        """
+        Berechnet die Stereo-Triangulation für eine komplette Path Point Länge entsprechend beider Path Point Liste
+        """
+        xyz_path_points = []
+
+        start_time = time.perf_counter() if self.measure_time else None
+
+        num_ppoints_1 = len(uv_path_points_1)
+        num_ppoints_2 = len(uv_path_points_2)
+
+        # wenn Listen ungleiche Länge haben -> Fehler!
+        if num_ppoints_1 != num_ppoints_2:
+            self.get_logger().error(f"ERROR - Lengths of Path Point Lists are unequal!")
+            return None
+        else:
+            for idx in range(num_ppoints_1):
+                ppoint_img1 = uv_path_points_1[idx]
+                ppoint_img2 = uv_path_points_2[idx]
+                xyz_ppoint = self.triangulate_single_point(ppoint_img1, ppoint_img2, baseline_vector = baseline_vector, baseline = baseline, baseline_axis = baseline_axis)
+                xyz_path_points.append(xyz_ppoint)
+        
+        end_time = time.perf_counter() if self.measure_time else None
+        time_token = end_time - start_time if self.measure_time else None
+        return xyz_path_points, time_token if self.measure_time else xyz_path_points

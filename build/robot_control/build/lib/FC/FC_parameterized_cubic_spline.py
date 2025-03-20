@@ -34,9 +34,9 @@ class ParameterizedCubicSplineCalculator(Node):
 
 
 
-
     def interpolate(self, xy_points, start_point_with_depth, end_point_with_depth):
         self.xy_points = xy_points
+        print(f"xy_points vor Interpolation: {self.xy_points}")
         self.num_points = len(xy_points)
         self.start_point = start_point_with_depth
         self.end_point = end_point_with_depth

@@ -13,6 +13,9 @@ class LightController(Node):
     def __init__(self):
         super().__init__('light_controller')
 
+        self.declare_parameter('desired_brightness', 210.0)
+        self.desired_brightness = self.get_parameter('desired_brightness').get_parameter_value().double_value
+
         # Subscriber auf VC Cam
         self.subscription = self.create_subscription(
             Image,
@@ -41,7 +44,6 @@ class LightController(Node):
         self.light_control_freeze = False
 
         # Parameter für Regelung
-        self.desired_brightness = 220
         self.current_voltage = 2.0
         self.K_p = 0.005
 

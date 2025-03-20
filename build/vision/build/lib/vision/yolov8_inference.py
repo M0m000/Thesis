@@ -59,8 +59,8 @@ class YOLOv8InferenceNode(Node):
         self.output_point_img_publisher = self.create_publisher(Image, 'yolov8_output/output_point_img', 10)
 
         # Filterinstanzen zur Filterung des Outputs
-        self.ema_filter = HookFilterEMA(alpha = self.filter_alpha, confirmation_frames = 10, disappearance_frames = 5)
-        self.movingavg_filter = HookFilterMovingAvg(window_size = self.filter_windowsize, confirmation_frames = 10, disappearance_frames = 5)
+        # self.ema_filter = HookFilterEMA(alpha = self.filter_alpha, confirmation_frames = 10, disappearance_frames = 10)
+        self.movingavg_filter = HookFilterMovingAvg(window_size = self.filter_windowsize, confirmation_frames = 3, disappearance_frames = 3)
 
         # Variablen
         self.bridge = CvBridge()
@@ -136,15 +136,16 @@ class YOLOv8InferenceNode(Node):
             # Berechnung der Spitzen- und Senken-Punkte auf Pixelebene
             self.hooks_dict_processed = self.yolo_postprocessor.process_output_hooks_dict(hooks_dict = self.hooks_dict)
 
-            '''
+            
             ### Zuerst filtern und dann Pfad berechnen
             self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)
             self.filtered_hooks_dict = self.yolo_postprocessor.find_hooks_shape(hooks_dict = self.filtered_hooks_dict, num_interpolation_points = self.num_path_points)
+            
             '''
-
             ### Zuerst Pfad berechnen und dann filtern (Pfad wird aber nicht mitgefiltert)
             self.hooks_dict_processed = self.yolo_postprocessor.find_hooks_shape(hooks_dict = self.hooks_dict_processed, num_interpolation_points = self.num_path_points)
             self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)
+            '''
 
             # Plots
             if self.show_cam_img:
