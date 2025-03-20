@@ -46,11 +46,14 @@ class ParameterizedCubicSplineCalculator(Node):
         y_known = [self.start_point[2], self.end_point[2]]
         
         # Berechne die kubische Spline-Interpolation
-        cs = CubicSpline(x_known, y_known, bc_type='natural')
+        if x_known == [0.0, 0.0]:
+            interpolated_depths = [[0.0],[0.0]]
+        else:
+            cs = CubicSpline(x_known, y_known, bc_type='natural')
 
-        # Berechne den interpolierten Wert für jede Position in der xy_points
-        interpolated_depths = cs(self.distance)
-        print(interpolated_depths)
+            # Berechne den interpolierten Wert für jede Position in der xy_points
+            interpolated_depths = cs(self.distance)
+            self.get_logger().warn(f"Interpolated depths for path: {interpolated_depths}")
 
         # Fertige Liste mit XYZ-Werten aufbauen
         self.xyz_points = [(self.xy_points[i][0], self.xy_points[i][1], interpolated_depths[i]) for i in range(self.num_points)]

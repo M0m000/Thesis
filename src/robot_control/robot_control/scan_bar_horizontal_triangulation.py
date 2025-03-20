@@ -443,6 +443,8 @@ class ScanBarHorizontalTriangulation(Node):
             u_center = self.img_height / 2
             v_center = self.img_width / 2
             
+            # nur, wenn Path Points gefunden wurden, wird die Tiefe interpoliert, ansonsten bleibt Liste leer []
+            path_points_xyz_in_workframe = []
             if uv_path_points is not None:
                 for p in uv_path_points:
                     ppoint_u = p[0]
@@ -450,31 +452,26 @@ class ScanBarHorizontalTriangulation(Node):
                     ppoint_x = (ppoint_v - v_center) * mm_per_px_x
                     ppoint_y = (ppoint_u - u_center) * mm_per_px_y
                     xy_path_points.append((ppoint_x, ppoint_y))
-            else:
-                xy_path_points.append((None, None))
 
-            # Berechnung von interpolierten Tiefenwerten für path_points
-            path_points_xyz_in_camframe = self.spline_calculator.interpolate(
-                xy_points = xy_path_points, 
-                start_point_with_depth = xyz_tip_in_camframe, 
-                end_point_with_depth = xyz_lowpoint_in_camframe)
-            
-            # Durchgehen aller interpolierten Werte und Transformation in WORK-Frame
-            path_points_xyz_in_workframe = []
-            for p in path_points_xyz_in_camframe:
-                ppoint_x = p[0][0]
-                ppoint_y = p[1][0]
-                ppoint_z = p[2][0]
+                # Berechnung von interpolierten Tiefenwerten für path_points
+                path_points_xyz_in_camframe = self.spline_calculator.interpolate(
+                    xy_points = xy_path_points, 
+                    start_point_with_depth = xyz_tip_in_camframe, 
+                    end_point_with_depth = xyz_lowpoint_in_camframe)
 
-                # Transformation des Path Points aus CAM-Frame ins WORK-Frame
-                T_cam_in_worldframe = self.frame_handler.get_cam_transform_in_world()
-                print(T_cam_in_worldframe)
-                print(ppoint_x, ppoint_y, ppoint_z)
-                ppoint_in_worldframe = T_cam_in_worldframe @ np.array([ppoint_x, ppoint_y, ppoint_z, 1.0])
-                ppoint_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = ppoint_in_worldframe[:3], frame_desired = 'work')
+                # Durchgehen aller interpolierten Werte und Transformation in WORK-Frame
+                for p in path_points_xyz_in_camframe:
+                    ppoint_x = p[0][0]
+                    ppoint_y = p[1][0]
+                    ppoint_z = p[2][0]
 
-                # Path Points im WORK-Frame
-                path_points_xyz_in_workframe.append(ppoint_in_workframe)
+                    # Transformation des Path Points aus CAM-Frame ins WORK-Frame
+                    T_cam_in_worldframe = self.frame_handler.get_cam_transform_in_world()
+                    ppoint_in_worldframe = T_cam_in_worldframe @ np.array([ppoint_x, ppoint_y, ppoint_z, 1.0])
+                    ppoint_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = ppoint_in_worldframe[:3], frame_desired = 'work')
+
+                    # Path Points im WORK-Frame
+                    path_points_xyz_in_workframe.append(ppoint_in_workframe)
             
             self.get_logger().info("Done! -> next process step <Save Hook>")
             self.process_step = "save_hook"
