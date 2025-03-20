@@ -30,7 +30,7 @@ class ParameterizedCubicSplineCalculator(Node):
         self.distance = [0.0]
         for i in range(1, len(self.xy_points)):
             dist = self._calculate_euclidean(self.xy_points[i-1], self.xy_points[i])
-            self.distance.append(self.distance[-1] + dist[0])
+            self.distance.append(self.distance[-1] + dist)
 
 
 
@@ -47,16 +47,15 @@ class ParameterizedCubicSplineCalculator(Node):
         
         # Berechne die kubische Spline-Interpolation
         if x_known == [0.0, 0.0]:
-            interpolated_depths = [[0.0],[0.0]]
+            interpolated_depths = [[0.0]] * len(self.xy_points)
         else:
             cs = CubicSpline(x_known, y_known, bc_type='natural')
 
             # Berechne den interpolierten Wert für jede Position in der xy_points
             interpolated_depths = cs(self.distance)
-            self.get_logger().warn(f"Interpolated depths for path: {interpolated_depths}")
-
+        
         # Fertige Liste mit XYZ-Werten aufbauen
-        self.xyz_points = [(self.xy_points[i][0], self.xy_points[i][1], interpolated_depths[i]) for i in range(self.num_points)]
+        self.xyz_points = [(self.xy_points[i][0], self.xy_points[i][1], interpolated_depths[i][0]) for i in range(self.num_points)]
         return self.xyz_points
 
 

@@ -105,7 +105,8 @@ class StereoTriangulationProcessor:
 
             points4D_hom = cv2.triangulatePoints(self.projection_matrix_point_1, self.projection_matrix_point_2,
                                                  point_1_uv, point_2_uv)
-            return points4D_hom[:3] / points4D_hom[3]
+            points3D = points4D_hom[:3] / points4D_hom[3]
+            return points3D
         else:
             return None
 

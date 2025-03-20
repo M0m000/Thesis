@@ -23,6 +23,7 @@ class ScanBarHorizontalTriangulation(Node):
         super().__init__('scan_bar_horizontal_triangulation')
 
         self.node_shutdown_flag = False
+        self.baseline_error = False
 
         self.declare_parameter('num_hooks_existing', 1)
         self.num_hooks_existing = self.get_parameter('num_hooks_existing').get_parameter_value().integer_value
@@ -372,17 +373,21 @@ class ScanBarHorizontalTriangulation(Node):
             self.get_logger().info(f"Baseline along X axis: {baseline_along_x} mm")
 
             if baseline_along_x == 0:
-                self.get_logger().error("ERROR either in moving robot or in position acquisition -> consider restarting KR810...")
+                self.get_logger().error(f"!!!!!!!!!!!!!!!!!!!!")
+                self.get_logger().error("ERROR either in moving robot or in position acquisition!")
+                self.get_logger().error(f"!!!!!!!!!!!!!!!!!!!!")
+                self.baseline_error = True
+                self.process_step = "move_back_to_init"
+            else:
+                [xyz_hook_in_camframe, xyz_tip_in_camframe, xyz_lowpoint_in_camframe], time_token = self.triangulation_processor.triangulate_3_points(
+                    point_1_1_uv = self.hook_horizontal['uv_hook'], point_2_1_uv = self.hook_ref['uv_hook'],
+                    point_1_2_uv = self.hook_horizontal['uv_tip'], point_2_2_uv = self.hook_ref['uv_tip'],
+                    point_1_3_uv = self.hook_horizontal['uv_lowpoint'], point_2_3_uv = self.hook_ref['uv_lowpoint'],
+                    baseline_vector = horizontal_baseline_vector,
+                    baseline = baseline_along_x, baseline_axis = 'x')
 
-            [xyz_hook_in_camframe, xyz_tip_in_camframe, xyz_lowpoint_in_camframe], time_token = self.triangulation_processor.triangulate_3_points(
-                point_1_1_uv = self.hook_horizontal['uv_hook'], point_2_1_uv = self.hook_ref['uv_hook'],
-                point_1_2_uv = self.hook_horizontal['uv_tip'], point_2_2_uv = self.hook_ref['uv_tip'],
-                point_1_3_uv = self.hook_horizontal['uv_lowpoint'], point_2_3_uv = self.hook_ref['uv_lowpoint'],
-                baseline_vector = horizontal_baseline_vector,
-                baseline = baseline_along_x, baseline_axis = 'x')
-            
-            self.get_logger().info("Done! -> next process step <Interpolate Depth Shape>")
-            self.process_step = "interpolate_depth_shape"
+                self.get_logger().info("Done! -> next process step <Interpolate Depth Shape>")
+                self.process_step = "interpolate_depth_shape"
 
 
         # Tiefeninterpolation für Spitze -> Senke
@@ -414,7 +419,6 @@ class ScanBarHorizontalTriangulation(Node):
             self.xyz_lowpoint_in_workframe = self.frame_handler.transform_worldpoint_in_frame(point = xyz_lowpoint_in_worldframe, frame_desired = 'work')
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_workframe'] = self.xyz_lowpoint_in_workframe
 
-
             # Hole uv_tip und uv_lowpoint aus Dict
             uv_tip_ref = self.hook_ref['uv_tip']
             uv_lowpoint_ref = self.hook_ref['uv_lowpoint']
@@ -436,22 +440,25 @@ class ScanBarHorizontalTriangulation(Node):
             y_diff = abs(y_tip - y_lowpoint)
             mm_per_px_x = x_diff / v_diff           # Übersetzung mm pro Pixel in x-Richtung
             mm_per_px_y = y_diff / u_diff           # Übersetzung mm pro Pixel in y-Richtung
-
+            mm_per_px_x = mm_per_px_x[0]
+            mm_per_px_y = mm_per_px_y[0]
+            
             # Berechnung von realen XY-Koordinaten der Path points
-            uv_path_points = self.hook_ref['path_points']
+            uv_path_points = self.hook_horizontal['path_points']
             xy_path_points = []
             u_center = self.img_height / 2
             v_center = self.img_width / 2
             
             # nur, wenn Path Points gefunden wurden, wird die Tiefe interpoliert, ansonsten bleibt Liste leer []
             path_points_xyz_in_workframe = []
+
             if uv_path_points is not None:
                 for p in uv_path_points:
                     ppoint_u = p[0]
                     ppoint_v = p[1]
                     ppoint_x = (ppoint_v - v_center) * mm_per_px_x
                     ppoint_y = (ppoint_u - u_center) * mm_per_px_y
-                    xy_path_points.append((ppoint_x, ppoint_y))
+                    xy_path_points.append([ppoint_x, ppoint_y])
 
                 # Berechnung von interpolierten Tiefenwerten für path_points
                 path_points_xyz_in_camframe = self.spline_calculator.interpolate(
@@ -461,9 +468,9 @@ class ScanBarHorizontalTriangulation(Node):
 
                 # Durchgehen aller interpolierten Werte und Transformation in WORK-Frame
                 for p in path_points_xyz_in_camframe:
-                    ppoint_x = p[0][0]
-                    ppoint_y = p[1][0]
-                    ppoint_z = p[2][0]
+                    ppoint_x = p[0]
+                    ppoint_y = p[1]
+                    ppoint_z = p[2]
 
                     # Transformation des Path Points aus CAM-Frame ins WORK-Frame
                     T_cam_in_worldframe = self.frame_handler.get_cam_transform_in_world()
@@ -490,25 +497,30 @@ class ScanBarHorizontalTriangulation(Node):
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_camframe'] = xyz_tip_in_camframe
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_camframe'] = xyz_lowpoint_in_camframe
 
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_worldframe'] = xyz_hook_in_worldframe
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_worldframe'] = xyz_tip_in_worldframe
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_worldframe'] = xyz_lowpoint_in_worldframe
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_worldframe'] = xyz_hook_in_worldframe[:3]
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_worldframe'] = xyz_tip_in_worldframe[:3]
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_worldframe'] = xyz_lowpoint_in_worldframe[:3]
 
             # self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_workframe'] = self.xyz_hook_in_workframe
             # self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_workframe'] = self.xyz_tip_in_workframe
             # self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_workframe'] = self.xyz_lowpoint_in_workframe
 
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_path_points_in_workframe'] = path_points_xyz_in_workframe
-
             self.global_hooks_dict[str(self.act_hook_num)]['tfc_in_workframe'] = self.robot_position_horizontal
             self.global_hooks_dict[str(self.act_hook_num)]['tfc_in_worldframe'], _, _ = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
 
+            self.get_logger().warn(f"------------------------------------------------------------------")
+            self.get_logger().warn(f"Data for hook {self.act_hook_num}")
             self.get_logger().warn(f"Hook XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_workframe']}")
-            self.get_logger().warn(f"Tip XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_workframe']}")
+            self.get_logger().warn(f"Hook XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_camframe']}")
             self.get_logger().warn(f"Lowpoint XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_workframe']}")
-            self.get_logger().warn(f"Time token for triangulation [horizontal]: {time_token}sec")
-
-            self.get_logger().info(f"already scanned: {len(self.global_hooks_dict)} Hooks")
+            self.get_logger().warn(f"Lowpoint XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_camframe']}")
+            self.get_logger().warn(f"Tip XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_workframe']}")
+            self.get_logger().warn(f"Tip XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_camframe']}")
+            self.get_logger().warn(f"Interpolated Path Points: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_path_points_in_workframe']}")
+            self.get_logger().warn(f"Time token for triangulation [horizontal]: {time_token:.6f}sec")
+            self.get_logger().warn(f"already scanned: {len(self.global_hooks_dict)} Hooks")
+            self.get_logger().warn(f"------------------------------------------------------------------")
 
             if len(self.global_hooks_dict) == self.num_hooks_existing:
                 self.get_logger().info("Done! -> next process step <Save Global Dict as CSV>")
@@ -610,9 +622,11 @@ class ScanBarHorizontalTriangulation(Node):
                 sync = 0.0,
                 chaining = 0)
             
-            if self.startpoint_movement_done:
+            if self.startpoint_movement_done and not self.baseline_error:
                 self.get_logger().info("Done! -> next process step <Finish>")
                 self.process_step = "finish"
+            else:
+                self.node_shutdown_flag = True
 
 
         # Endzustand
@@ -730,10 +744,14 @@ class ScanBarHorizontalTriangulation(Node):
         """
         Funktion für Node-Shutdown
         """
+        if self.baseline_error:
+            self.get_logger().error("Shutting down node... Consider restarting KR1205 Controller")
+        else:
+            self.get_logger().info("Shutting down node...")
+
         # Timer stoppen und Node zerstören
         self.process_timer.cancel()
         self.timer_check_new_instances.cancel()
-        self.get_logger().info("Shutting down node...")
         self.destroy_node()
         rclpy.shutdown()
 

@@ -186,15 +186,15 @@ class FrameHandler(Node):
         rclpy.spin_until_future_complete(self, future)
 
         if future.result() is not None and future.result().success:
-            pos = future.result().pos
-            rot = future.result().rot
+            pos = future.result().pos.tolist()
+            rot = future.result().rot.tolist()
 
             R = self.calculate_rot_matrix(rot = rot)
             T = np.eye(4)
             T[:3, :3] = R
             T[:3, 3] = np.array(pos)
 
-            return np.array(pos), np.array(rot), T
+            return pos, rot, T
         else:
             self.get_logger().error("Error at service call GetSystemFrame.")
             return None, None, None

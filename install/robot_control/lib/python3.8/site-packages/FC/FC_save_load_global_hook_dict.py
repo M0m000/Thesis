@@ -5,184 +5,194 @@ import numpy as np
 def save_dict_to_csv(node, data, filename="output.csv"):
     """
     Speichert ein geschachteltes Dictionary mit NumPy-Arrays und Listen als CSV-Datei.
-
+    
+    Erwartete Struktur des Dictionary:
+    {
+        'index': {
+            'xyz_hook_in_camframe': np.array, 
+            'xyz_tip_in_camframe': np.array, 
+            'xyz_lowpoint_in_camframe': np.array,
+            'xyz_hook_in_workframe': [x, y, z], 
+            'xyz_tip_in_workframe': [x, y, z], 
+            'xyz_lowpoint_in_workframe': [x, y, z],
+            'xyz_hook_in_worldframe': np.array oder list,
+            'xyz_tip_in_worldframe': np.array oder list,
+            'xyz_lowpoint_in_worldframe': np.array oder list,
+            'tfc_in_workframe': [a, b, c],
+            'tfc_in_worldframe': np.array oder list,
+            'xyz_path_points_in_workframe': [[x, y, z], ...]
+        },
+        ...
+    }
+    
     Parameters:
-        data (dict): Dictionary mit Struktur {'index': {'xyz_hook': np.array, ..., 'tfc_workframe': list, 'tfc_worldframe': np.array, 'xyz_path_points_in_workframe': [(x, y, z), ...]}}
+        data (dict): Dictionary mit den oben genannten Schlüsseln.
         filename (str): Name der zu speichernden CSV-Datei (optional)
     """
     with open(filename, mode="w", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
 
         # Spaltenüberschriften definieren
-        header = ["Index",
-                  "Hook_X_in_camframe", "Hook_Y_in_camframe", "Hook_Z_in_camframe",
-                  "Tip_X_in_camframe", "Tip_Y_in_camframe", "Tip_Z_in_camframe",
-                  "Lowpoint_X_in_camframe", "Lowpoint_Y_in_camframe", "Lowpoint_Z_in_camframe",
-                  "Hook_X_in_workframe", "Hook_Y_in_workframe", "Hook_Z_in_workframe",
-                  "Tip_X_in_workframe", "Tip_Y_in_workframe", "Tip_Z_in_workframe",
-                  "Lowpoint_X_in_workframe", "Lowpoint_Y_in_workframe", "Lowpoint_Z_in_workframe",
-                  "TFC_X_in_workframe", "TFC_Y_in_workframe", "TFC_Z_in_workframe",
-                  "TFC_X_in_worldframe", "TFC_Y_in_worldframe", "TFC_Z_in_worldframe",
-                  "Path_Points_Count"]  # Zählt die Anzahl der Path-Punkte
+        header = [
+            "Index",
+            "Hook_X_in_camframe", "Hook_Y_in_camframe", "Hook_Z_in_camframe",
+            "Tip_X_in_camframe", "Tip_Y_in_camframe", "Tip_Z_in_camframe",
+            "Lowpoint_X_in_camframe", "Lowpoint_Y_in_camframe", "Lowpoint_Z_in_camframe",
+            "Hook_X_in_workframe", "Hook_Y_in_workframe", "Hook_Z_in_workframe",
+            "Tip_X_in_workframe", "Tip_Y_in_workframe", "Tip_Z_in_workframe",
+            "Lowpoint_X_in_workframe", "Lowpoint_Y_in_workframe", "Lowpoint_Z_in_workframe",
+            "Hook_X_in_worldframe", "Hook_Y_in_worldframe", "Hook_Z_in_worldframe",
+            "Tip_X_in_worldframe", "Tip_Y_in_worldframe", "Tip_Z_in_worldframe",
+            "Lowpoint_X_in_worldframe", "Lowpoint_Y_in_worldframe", "Lowpoint_Z_in_worldframe",
+            "TFC_X_in_workframe", "TFC_Y_in_workframe", "TFC_Z_in_workframe",
+            "TFC_X_in_worldframe", "TFC_Y_in_worldframe", "TFC_Z_in_worldframe",
+            "Path_Points_Count"
+        ]
         writer.writerow(header)
 
         # Daten schreiben
         for key, values in data.items():
             row = [key]  # Erste Spalte: Index
-            
-            # Schreibe die bekannten Punkte xyz_hook, xyz_tip, xyz_lowpoint
-            for point in ["xyz_hook_in_camframe", "xyz_tip_in_camframe", "xyz_lowpoint_in_camframe"]:
-                row.extend(values[point].flatten())  # x, y, z Werte hinzufügen
-            
-            # Schreibe die Workframe-Punkte xyz_hook_workframe, xyz_tip_workframe, xyz_lowpoint_workframe
-            for point in ["xyz_hook_in_workframe", "xyz_tip_in_workframe", "xyz_lowpoint_in_workframe"]:
-                row.extend(values[point])  # x, y, z Werte hinzufügen
 
-            # Schreibe die Worldframe-Punkte
-            for point in ["xyz_hook_in_worldframe", "xyz_hook_in_worldframe", "xyz_hook_in_worldframe"]:
+            # Werte in Camframe (NumPy-Array oder Liste) hinzufügen
+            for point in ["xyz_hook_in_camframe", "xyz_tip_in_camframe", "xyz_lowpoint_in_camframe"]:
+                value = values[point]
+                if hasattr(value, "flatten"):
+                    row.extend(value.flatten())
+                else:
+                    row.extend(value)
+
+            # Werte im Workframe
+            for point in ["xyz_hook_in_workframe", "xyz_tip_in_workframe", "xyz_lowpoint_in_workframe"]:
                 row.extend(values[point])
             
-            # Schreibe tfc_workframe und tfc_worldframe
-            row.extend(values["tfc_in_workframe"])  # Liste mit drei Werten
-            row.extend(values["tfc_in_worldframe"])  # NumPy-Array mit drei Werten
-
+            # Werte im Worldframe
+            for point in ["xyz_hook_in_worldframe", "xyz_tip_in_worldframe", "xyz_lowpoint_in_worldframe"]:
+                value = values[point]
+                if hasattr(value, "flatten"):
+                    row.extend(value.flatten())
+                else:
+                    row.extend(value)
+            
+            # tfc-Werte
+            row.extend(values["tfc_in_workframe"])
+            tfc_world = values["tfc_in_worldframe"]
+            if hasattr(tfc_world, "flatten"):
+                row.extend(tfc_world.flatten())
+            else:
+                row.extend(tfc_world)
+            
             # Anzahl der Path-Punkte
             path_points = values.get("xyz_path_points_in_workframe", [])
-            row.append(len(path_points))  # Füge die Anzahl der Path-Punkte als Zahl hinzu
-
-            # Schreibe die Path-Punkte (x, y, z) in eine Zeile
+            row.append(len(path_points))
+            
+            # Path-Punkte (jede als (x, y, z) Tupel)
             for point in path_points:
-                row.extend(point)  # Füge jeden (x, y, z) Tupel zu der Zeile hinzu
-
-            # Schreibe die Zeile in die CSV
+                row.extend(point)
+            
+            # Zeile in die CSV schreiben
             writer.writerow(row)
 
-    node.get_logger().info(f"CSV gespeichert als {filename}!")
+    node.get_logger().info(f"CSV save as {filename}!")
 
-'''
-def save_dict_to_csv(node, data, filename="output.csv"):
+
+
+def load_csv_to_dict(filename="output.csv"):
     """
-    Speichert ein geschachteltes Dictionary mit NumPy-Arrays und Listen als CSV-Datei.
-
-    Parameters:
-        data (dict): Dictionary mit Struktur {'index': {'xyz_hook': np.array, ..., 'tfc_workframe': list, 'tfc_worldframe': np.array}}
-        filename (str): Name der zu speichernden CSV-Datei (optional)
-    """
-    with open(filename, mode="w", newline="", encoding="utf-8") as file:
-        writer = csv.writer(file)
-
-        # Spaltenüberschriften definieren
-        header = ["Index",
-                  "Hook_X", "Hook_Y", "Hook_Z",
-                  "Tip_X", "Tip_Y", "Tip_Z",
-                  "Lowpoint_X", "Lowpoint_Y", "Lowpoint_Z",
-                  "Hook_WF_X", "Hook_WF_Y", "Hook_WF_Z",
-                  "Tip_WF_X", "Tip_WF_Y", "Tip_WF_Z",
-                  "Lowpoint_WF_X", "Lowpoint_WF_Y", "Lowpoint_WF_Z",
-                  "TFC_WF_X", "TFC_WF_Y", "TFC_WF_Z",
-                  "TFC_World_X", "TFC_World_Y", "TFC_World_Z"]
-        writer.writerow(header)
-
-        # Daten schreiben
-        for key, values in data.items():
-            row = [key]  # Erste Spalte: Index
-            for point in ["xyz_hook", "xyz_tip", "xyz_lowpoint"]:
-                row.extend(values[point].flatten())  # x, y, z Werte hinzufügen
-            
-            for point in ["xyz_hook_workframe", "xyz_tip_workframe", "xyz_lowpoint_workframe"]:
-                row.extend(values[point])  # x, y, z Werte hinzufügen
-            
-            row.extend(values["tfc_workframe"])  # Liste mit drei Werten
-            row.extend(values["tfc_worldframe"])  # NumPy-Array mit drei Werten
-            
-            writer.writerow(row)
-
-    node.get_logger().info(f"CSV gespeichert als {filename}!")
-'''
-
-
-
-
-
-def load_csv_to_dict(node, filename="output.csv"):
-    """
-    Lädt eine CSV-Datei und wandelt sie zurück in das ursprüngliche Dictionary-Format mit NumPy-Arrays und Listen.
-
-    Parameters:
-        filename (str): Name der zu ladenden CSV-Datei (optional)
-
+    Lädt eine CSV-Datei, die mit save_dict_to_csv erzeugt wurde, und baut das ursprüngliche Dictionary wieder auf.
+    
+    Erwartete CSV-Struktur (Spalten):
+        Index,
+        Hook_X_in_camframe, Hook_Y_in_camframe, Hook_Z_in_camframe,
+        Tip_X_in_camframe, Tip_Y_in_camframe, Tip_Z_in_camframe,
+        Lowpoint_X_in_camframe, Lowpoint_Y_in_camframe, Lowpoint_Z_in_camframe,
+        Hook_X_in_workframe, Hook_Y_in_workframe, Hook_Z_in_workframe,
+        Tip_X_in_workframe, Tip_Y_in_workframe, Tip_Z_in_workframe,
+        Lowpoint_X_in_workframe, Lowpoint_Y_in_workframe, Lowpoint_Z_in_workframe,
+        Hook_X_in_worldframe, Hook_Y_in_worldframe, Hook_Z_in_worldframe,
+        Tip_X_in_worldframe, Tip_Y_in_worldframe, Tip_Z_in_worldframe,
+        Lowpoint_X_in_worldframe, Lowpoint_Y_in_worldframe, Lowpoint_Z_in_worldframe,
+        TFC_X_in_workframe, TFC_Y_in_workframe, TFC_Z_in_workframe,
+        TFC_X_in_worldframe, TFC_Y_in_worldframe, TFC_Z_in_worldframe,
+        Path_Points_Count,
+        ... (folgende 3 Spalten pro Path-Punkt)
+    
     Returns:
-        dict: Wiederhergestelltes Dictionary mit NumPy-Arrays und Listen
-    """
-    data = {}
-
-    with open(filename, mode="r", newline="", encoding="utf-8") as file:
-        reader = csv.reader(file)
-        header = next(reader)  # Erste Zeile überspringen (Spaltennamen)
-
-        for row in reader:
-            key = int(row[0])  # Erster Wert ist der Index
-            values = list(map(float, row[1:]))  # Restliche Werte in Float umwandeln
-
-            # Extrahiere die Path-Punkte-Daten
-            path_points_count = int(row[26])  # Anzahl der Path-Punkte ist in der 27. Spalte
-            xyz_path_points_in_workframe = []
-
-            # Die Path-Punkte beginnen nach den festen Spalten
-            # Jede Path-Punkt besteht aus 3 Werten (x, y, z)
-            for i in range(path_points_count):
-                offset = 27 + i * 3  # Start-Index für die Path-Punkte (nach den festen Spalten)
-                xyz_path_points_in_workframe.append((values[offset], values[offset + 1], values[offset + 2]))
-
-            # Dictionary mit NumPy-Arrays und Listen erstellen
-            data[key] = {
-                "xyz_hook_in_camframe": np.array([[values[0]], [values[1]], [values[2]]]),
-                "xyz_tip_in_camframe": np.array([[values[3]], [values[4]], [values[5]]]),
-                "xyz_lowpoint_in_camframe": np.array([[values[6]], [values[7]], [values[8]]]),
-                "xyz_hook_in_workframe": values[9:12],
-                "xyz_tip_in_workframe": values[12:15],
-                "xyz_lowpoint_in_workframe": values[15:18],
-                "tfc_in_workframe": values[18:21],
-                "tfc_in_worldframe": np.array(values[21:24]),
-                "xyz_path_points_in_workframe": xyz_path_points_in_workframe  # Path-Punkte als Liste von Tupeln (x, y, z)
+        dict: Das rekonstruierte Dictionary mit folgender Struktur:
+            {
+                'Index': {
+                    'xyz_hook_in_camframe': np.array, 
+                    'xyz_tip_in_camframe': np.array, 
+                    'xyz_lowpoint_in_camframe': np.array,
+                    'xyz_hook_in_workframe': [x, y, z], 
+                    'xyz_tip_in_workframe': [x, y, z], 
+                    'xyz_lowpoint_in_workframe': [x, y, z],
+                    'xyz_hook_in_worldframe': np.array,
+                    'xyz_tip_in_worldframe': np.array,
+                    'xyz_lowpoint_in_worldframe': np.array,
+                    'tfc_in_workframe': [a, b, c],
+                    'tfc_in_worldframe': np.array,
+                    'xyz_path_points_in_workframe': [[x, y, z], ...]
+                },
+                ...
             }
-
-    node.get_logger().info(f"CSV loaded successfully from {filename}!")
-    return data
-
-'''
-def load_csv_to_dict(node, filename="output.csv"):
-    """
-    Lädt eine CSV-Datei und wandelt sie zurück in das ursprüngliche Dictionary-Format mit NumPy-Arrays und Listen.
-
-    Parameters:
-        filename (str): Name der zu ladenden CSV-Datei (optional)
-
-    Returns:
-        dict: Wiederhergestelltes Dictionary mit NumPy-Arrays und Listen
     """
     data = {}
-
+    
     with open(filename, mode="r", newline="", encoding="utf-8") as file:
         reader = csv.reader(file)
-        header = next(reader)  # Erste Zeile überspringen (Spaltennamen)
-
+        header = next(reader)  # Überschrift überspringen
+        
         for row in reader:
-            key = row[0]  # Erster Wert ist der Index
-            values = list(map(float, row[1:]))  # Restliche Werte in Float umwandeln
-
-            # Dictionary mit NumPy-Arrays und Listen erstellen
+            if not row:
+                continue
+            
+            key = row[0]
+            
+            # Werte aus der CSV-Zeile in numerische Listen bzw. NumPy-Arrays umwandeln
+            # Camframe-Werte (ursprünglich NumPy-Arrays)
+            cam_hook = np.array([float(x) for x in row[1:4]])
+            cam_tip = np.array([float(x) for x in row[4:7]])
+            cam_lowpoint = np.array([float(x) for x in row[7:10]])
+            
+            # Workframe-Werte (als Listen)
+            work_hook = [float(x) for x in row[10:13]]
+            work_tip = [float(x) for x in row[13:16]]
+            work_lowpoint = [float(x) for x in row[16:19]]
+            
+            # Worldframe-Werte (ursprünglich NumPy-Arrays)
+            world_hook = np.array([float(x) for x in row[19:22]])
+            world_tip = np.array([float(x) for x in row[22:25]])
+            world_lowpoint = np.array([float(x) for x in row[25:28]])
+            
+            # TFC-Werte
+            tfc_work = [float(x) for x in row[28:31]]
+            tfc_world = np.array([float(x) for x in row[31:34]])
+            
+            # Anzahl der Path-Punkte
+            path_points_count = int(float(row[34]))
+            
+            # Path-Punkte (je 3 Werte pro Punkt)
+            path_points = []
+            index_start = 35
+            for i in range(path_points_count):
+                start = index_start + i * 3
+                point = [float(x) for x in row[start:start+3]]
+                path_points.append(point)
+            
             data[key] = {
-                "xyz_hook": np.array([[values[0]], [values[1]], [values[2]]]),
-                "xyz_tip": np.array([[values[3]], [values[4]], [values[5]]]),
-                "xyz_lowpoint": np.array([[values[6]], [values[7]], [values[8]]]),
-                "xyz_hook_workframe": values[9:12],
-                "xyz_tip_workframe": values[12:15],
-                "xyz_lowpoint_workframe": values[15:18],
-                "tfc_workframe": values[18:21],
-                "tfc_worldframe": np.array(values[21:24])
+                "xyz_hook_in_camframe": cam_hook,
+                "xyz_tip_in_camframe": cam_tip,
+                "xyz_lowpoint_in_camframe": cam_lowpoint,
+                "xyz_hook_in_workframe": work_hook,
+                "xyz_tip_in_workframe": work_tip,
+                "xyz_lowpoint_in_workframe": work_lowpoint,
+                "xyz_hook_in_worldframe": world_hook,
+                "xyz_tip_in_worldframe": world_tip,
+                "xyz_lowpoint_in_worldframe": world_lowpoint,
+                "tfc_in_workframe": tfc_work,
+                "tfc_in_worldframe": tfc_world,
+                "xyz_path_points_in_workframe": path_points
             }
     
-    node.get_logger().info(f"CSV loaded successfully from {filename}!")
     return data
-'''
