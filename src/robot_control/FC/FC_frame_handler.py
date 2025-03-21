@@ -62,8 +62,10 @@ class FrameHandler(Node):
 
 
 
-    def transform_pose_to_world(self, trans, rot, pose_ref_frame):
-        """Transformiert eine gegebene Position und Orientierung (in einem lokalen Frame) in das Welt-Koordinatensystem."""
+    def transform_pose_to_world(self, pose_ref_frame, trans=[0.0, 0.0, 0.0], rot=[0.0, 0.0, 0.0]):
+        """
+        Transformiert eine gegebene Position und Orientierung (in einem lokalen Frame) in das Welt-Koordinatensystem.
+        """
         R_local = self.calculate_rot_matrix(rot)
         if pose_ref_frame == "work":
             T_ref_to_poseframe = self.load_transformation_matrix_from_csv(frame_name = 'WORK_frame_in_world.csv')

@@ -23,7 +23,7 @@ class TrajectoryController(Node):
 
         # Instanzen HookGeometricsHandler, FrameHandler
         self.hook_geometrics_handler = HookGeometricsHandler()
-        self.frame_handler = FrameHandler(node_name = "frame_handler_for_attachment_controller")
+        self.frame_handler = FrameHandler(node_name = "frame_handler_for_trajectory_controller")
 
         # Variablen für P-Regler translatorisch und rotatorisch
         self.p_gain_translation = p_gain_translation
