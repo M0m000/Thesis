@@ -484,6 +484,8 @@ class ScanBarHorizontalTriangulationPXMM(Node):
                     xy_points = xy_path_points, 
                     start_point_with_depth = xyz_tip_in_camframe, 
                     end_point_with_depth = xyz_lowpoint_in_camframe)
+                
+                print("Path Points im Camframe nach Interpolation: ", path_points_xyz_in_camframe)
 
                 # Durchgehen aller interpolierten Werte und Transformation in WORK-Frame
                 for p in path_points_xyz_in_camframe:
