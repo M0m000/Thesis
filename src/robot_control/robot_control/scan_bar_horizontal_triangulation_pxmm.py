@@ -18,9 +18,9 @@ import numpy as np
 import csv
 
 
-class ScanBarHorizontalTriangulation(Node):
+class ScanBarHorizontalTriangulationPXMM(Node):
     def __init__(self):
-        super().__init__('scan_bar_horizontal_triangulation')
+        super().__init__('scan_bar_horizontal_triangulation_pxmm')
 
         self.node_shutdown_flag = False
         self.baseline_error = False
@@ -765,7 +765,7 @@ class ScanBarHorizontalTriangulation(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = ScanBarHorizontalTriangulation()
+    node = ScanBarHorizontalTriangulationPXMM()
 
     try:
         while rclpy.ok():

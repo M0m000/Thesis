@@ -40,7 +40,8 @@ setup(
             'scan_bar = robot_control.scan_bar:main',
             'hook_data_listener = robot_control.hook_data_listener:main',
             'attachment_control_trajectory = robot_contro.attachment_control_trajectory:main',
-            'attachment_control_servoing = robot_control.attachment_control_servoing:main'
+            'attachment_control_servoing = robot_control.attachment_control_servoing:main',
+            'scan_bar_horizontal_triangulation_pxmm = robot_control.scan_bar_horizontal_triangulation_pxmm:main'
         ],
     },
 )
