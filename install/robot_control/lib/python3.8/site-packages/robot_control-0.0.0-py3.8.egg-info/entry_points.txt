@@ -8,6 +8,7 @@ ibvs_2d = robot_control.ibvs_2d:main
 scan_bar = robot_control.scan_bar:main
 scan_bar_combined_triangulation = robot_control.scan_bar_combined_triangulation:main
 scan_bar_horizontal_triangulation = robot_control.scan_bar_horizontal_triangulation:main
+scan_bar_horizontal_triangulation_pxmm = robot_control.scan_bar_horizontal_triangulation_pxmm:main
 scan_bar_vertical_triangulation = robot_control.scan_bar_vertical_triangulation:main
 set_working_frame_qr = robot_control.set_working_frame_qr:main
 tf_frames_publisher = robot_control.tf_frames_publisher:main

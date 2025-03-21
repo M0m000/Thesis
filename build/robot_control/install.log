@@ -75,6 +75,7 @@
 /home/mo/Thesis/install/robot_control/lib/robot_control/scan_bar
 /home/mo/Thesis/install/robot_control/lib/robot_control/scan_bar_combined_triangulation
 /home/mo/Thesis/install/robot_control/lib/robot_control/scan_bar_horizontal_triangulation
+/home/mo/Thesis/install/robot_control/lib/robot_control/scan_bar_horizontal_triangulation_pxmm
 /home/mo/Thesis/install/robot_control/lib/robot_control/scan_bar_vertical_triangulation
 /home/mo/Thesis/install/robot_control/lib/robot_control/set_working_frame_qr
 /home/mo/Thesis/install/robot_control/lib/robot_control/tf_frames_publisher

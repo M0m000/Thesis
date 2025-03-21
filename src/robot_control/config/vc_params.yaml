@@ -17,7 +17,7 @@ yolov8_inference_node:
   ros__parameters:
     yolov8_inference_node: "/home/mo/Thesis/YoloV8_InstanceSeg/runs/train/medium/full_set/20250118_1640/weights/best.pt"
     confidence_threshold: 0.2
-    do_preprocessing: True
+    do_preprocessing: False
     show_cam_img: False
     show_output_img: True
     show_point_img: True
