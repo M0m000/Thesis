@@ -18,7 +18,7 @@ class AttachmentTrajectory(Node):
         
         self.declare_parameter('hook_num', 10)
         self.hook_num = self.get_parameter('hook_num').get_parameter_value().integer_value
-        self.declare_parameter('manual_mode', False)
+        self.declare_parameter('manual_mode', True)
         self.manual_mode = self.get_parameter('manual_mode').get_parameter_value().bool_value
 
         # Publisher für Linear Servoing
