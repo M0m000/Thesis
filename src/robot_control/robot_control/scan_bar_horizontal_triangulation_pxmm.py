@@ -425,6 +425,10 @@ class ScanBarHorizontalTriangulationPXMM(Node):
             uv_tip_horizontal = self.hook_horizontal['uv_tip']
             uv_lowpoint_horizontal = self.hook_horizontal['uv_lowpoint']
 
+            print("uv_tip_ref, uv_tip_horizontal: ", uv_tip_ref, uv_tip_horizontal)
+            print("uv_lowpoint_ref, uv_lowpoint_horizontal", uv_lowpoint_ref, uv_lowpoint_horizontal)
+            print()
+
             ####################
             # Berechnung der Pixelstrecke von Tip bis Lowpoint für u und v
             u_diff_ref = abs(uv_tip_ref[0] - uv_lowpoint_ref[0])
@@ -433,27 +437,35 @@ class ScanBarHorizontalTriangulationPXMM(Node):
             v_diff_horizontal = abs(uv_tip_horizontal[1] - uv_lowpoint_horizontal[1])
             u_diff = (u_diff_ref + u_diff_horizontal) / 2      # Differenz von u_tip bis u_lowpoint in px
             v_diff = (v_diff_ref + v_diff_horizontal) / 2      # Differenz von v_tip bis v_lowpoint in px
-            print(f"u_diff_ref: {u_diff_ref}")
-            print(f"u_diff_horizontal: {u_diff_horizontal}")
+            print("u_diff_ref, v_diff_ref: ", u_diff_ref, v_diff_ref)
+            print("u_diff_horizontal, v_diff_horizontal: ", u_diff_horizontal, v_diff_horizontal)
+            print("u_diff, v_diff: ", u_diff, v_diff)
             ####################
 
             # Berechnung von mm_per_px in x- und y-Richtung
             x_tip, y_tip, z_tip = xyz_tip_in_camframe
             x_lowpoint, y_lowpoint, z_lowpoint = xyz_lowpoint_in_camframe
+            print("x_tip, y_tip, z_tip: ", x_tip, y_tip, z_tip)
+            print("x_lowpoint, y_lowpoint, z_lowpoint: ", x_lowpoint, y_lowpoint, z_lowpoint)
+
             x_diff = abs(x_tip - x_lowpoint)
             y_diff = abs(y_tip - y_lowpoint)
+            print("x_diff, y_diff: ", x_diff, y_diff)
+
             mm_per_px_x = x_diff / v_diff           # Übersetzung mm pro Pixel in x-Richtung
             mm_per_px_y = y_diff / u_diff           # Übersetzung mm pro Pixel in y-Richtung
             mm_per_px_x = mm_per_px_x[0]
             mm_per_px_y = mm_per_px_y[0]
-            print(f"mm_per_px_x: {mm_per_px_x}")
-            print(f"mm_per_px_y: {mm_per_px_y}")
+            print("mm_per_px_x, mm_per_px_y: ", mm_per_px_x, mm_per_px_y)
             
             # Berechnung von realen XY-Koordinaten der Path points
             uv_path_points = self.hook_horizontal['path_points']
+            print("uv_path_points: ", uv_path_points)
+
             xy_path_points = []
             u_center = self.img_height / 2
             v_center = self.img_width / 2
+            print("Mittelpunkt Bild u_center, v_center: ", u_center, v_center)
             
             # nur, wenn Path Points gefunden wurden, wird die Tiefe interpoliert, ansonsten bleibt Liste leer []
             path_points_xyz_in_workframe = []
@@ -465,7 +477,8 @@ class ScanBarHorizontalTriangulationPXMM(Node):
                     ppoint_x = (ppoint_v - v_center) * mm_per_px_x
                     ppoint_y = (ppoint_u - u_center) * mm_per_px_y
                     xy_path_points.append([ppoint_x, ppoint_y])
-
+                print("Ueber Pixelverhaeltnisse berechnete Path Point XY-Werte: ", ppoint_x, ppoint_y)
+                
                 # Berechnung von interpolierten Tiefenwerten für path_points
                 path_points_xyz_in_camframe = self.spline_calculator.interpolate(
                     xy_points = xy_path_points, 
