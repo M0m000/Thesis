@@ -22,7 +22,7 @@ class ScanBarHorizontalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_horizontal_triangulation')
 
-        startpoint_trans_in_workframe = [130.0, -440.0, 60.0]
+        startpoint_trans_in_workframe = [110.0, -430.0, 20.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
 
         self.node_shutdown_flag = False
@@ -281,7 +281,6 @@ class ScanBarHorizontalTriangulation(Node):
             Extrahieren des ersten Haken_2 als initiale Referenz für Triangulation des ersten Hakens
             """
             if self.yolo_hooks_dict['hook_2']['path_points'] != []:         # wenn path_points im Dict vefügbar
-                print(self.yolo_hooks_dict['hook_2']['path_points'])
                 self.hook_ref['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
                 self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
                 self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']

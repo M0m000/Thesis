@@ -13,7 +13,7 @@ class LightController(Node):
     def __init__(self):
         super().__init__('light_controller')
 
-        self.declare_parameter('desired_brightness', 210.0)
+        self.declare_parameter('desired_brightness', 220.0)
         self.desired_brightness = self.get_parameter('desired_brightness').get_parameter_value().double_value
 
         # Subscriber auf VC Cam

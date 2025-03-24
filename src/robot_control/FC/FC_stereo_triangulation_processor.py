@@ -145,7 +145,7 @@ class StereoTriangulationProcessor:
 
         # wenn Listen ungleiche Länge haben -> Fehler!
         if num_ppoints_1 != num_ppoints_2:
-            self.get_logger().error(f"ERROR - Lengths of Path Point Lists are unequal!")
+            print(f"ERROR - Lengths of Path Point Lists are unequal!")
             return None
         else:
             for idx in range(num_ppoints_1):
