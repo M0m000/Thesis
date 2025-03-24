@@ -184,7 +184,8 @@ class AttachmentTrajectory(Node):
                     act_point = self.trajectory[self.trajectory_point_num]
                     pos_trans_in_worldframe = act_point[0].tolist()
                     pos_rot_in_worldframe = act_point[1].tolist()
-                    self.get_logger().info(f"Bewege zu Trajektorienpunkt {self.trajectory_point_num}: Pose: {pos_trans_in_worldframe}, Rotation: {pos_rot_in_worldframe}")
+                    self.get_logger().warn(f"Moving to current trajectory point {self.trajectory_point_num}")
+                    self.get_logger().warn(f"Pose: {pos_trans_in_worldframe}, Rotation: {pos_rot_in_worldframe}")
                     self.move_lin_client.call_move_linear_service(
                         pos=pos_trans_in_worldframe,
                         rot=pos_rot_in_worldframe,
