@@ -13,7 +13,7 @@ class HookGeometricsHandler(Node):
 
         # Laden des Global Scan Dict
         self.global_scan_dict = None
-        self.global_scan_dict = load_csv_to_dict(filename = '/home/mo/Thesis/src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal_modellD.csv')
+        self.global_scan_dict = load_csv_to_dict(filename = '/home/mo/Thesis/src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal_modellA.csv')
         if self.global_scan_dict is not None:
             self.get_logger().info("Global Scan Dict loaded successfully from CSV for Geometrics Handler!")
         else:

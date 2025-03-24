@@ -13,6 +13,10 @@ class VCStartupNode(Node):
         self.shutter_time = self.get_parameter('shutter_time').get_parameter_value().integer_value
         self.declare_parameter('gain', 1)
         self.gain = self.get_parameter('gain').get_parameter_value().integer_value
+        self.declare_parameter('ipv4', '192.168.3.15')
+        self.ipv4 = self.get_parameter('ipv4').get_parameter_value().string_value
+        self.declare_parameter('port', 2002)
+        self.port = self.get_parameter('port').get_parameter_value().integer_value
 
         self.light_vcc_on = False
         self.light_set_brightness_done = False
@@ -53,8 +57,8 @@ class VCStartupNode(Node):
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
         try:
-            self.get_logger().info('Try SSH connection to 192.168.3.15 ...')
-            ssh.connect('192.168.3.15', username='root', password='root')
+            self.get_logger().info('Try SSH connection to {self.ipv4} ...')
+            ssh.connect(self.ipv4, username='root', password=self.port)
             self.get_logger().info('SSH connected.')
 
             command1 = 'vcimgnetsrv &'
@@ -81,8 +85,7 @@ class VCStartupNode(Node):
                     break
                 if not output_line and not error_line:
                     break
-            
-
+        
         except Exception as e:
             self.get_logger().error(f'SSH-ERROR: {e}')
         '''
@@ -96,6 +99,8 @@ class VCStartupNode(Node):
         self.get_logger().info('Shutting down node...')
         self.destroy_node()
         rclpy.shutdown()
+
+
 
 def main(args=None):
     rclpy.init(args=args)
