@@ -1,7 +1,7 @@
 vc_startup_node:
   ros__parameters:
-    shutter_time: 10000
-    gain: 30
+    shutter_time: 15000
+    gain: 50
 
 vc_img_receiver_node:
   ros__parameters:
@@ -34,4 +34,4 @@ scan_bar_horizontal_triangulation_node:
     
 light_controller_node:
   ros__parameters:
-    desired_brightness: 210.0
+    desired_brightness: 220.0
