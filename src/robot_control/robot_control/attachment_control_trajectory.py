@@ -4,11 +4,9 @@ from FC.FC_gripper_handler import GripperHandler
 from FC.FC_hook_geometrics_handler_for_controller import HookGeometricsHandler
 from FC.FC_frame_handler import FrameHandler
 from FC.FC_call_move_linear_service import MoveLinearServiceClient
-from FC.FC_trajectory_controller import TrajectoryController
 from kr_msgs.msg import JogLinear
 from kr_msgs.srv import SelectJoggingFrame
 from kr_msgs.srv import SetSystemFrame
-from pynput import keyboard
 import sys, select, termios, tty
 
 
@@ -257,7 +255,9 @@ class AttachmentTrajectory(Node):
         """
         Gibt alle Ressourcen frei, bevor der Node beendet wird.
         """
+        self.get_logger().info("Shutting down...")
         self.jog_publisher_timer.cancel()
+        termios.tcsetattr(sys.stdin, termios.TCSADRAIN, self.orig_term_settings)  # Terminal zurücksetzen
         self.destroy_node()
 
 
@@ -270,7 +270,7 @@ def main(args=None):
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
-        node.get_logger().info("Shutting down...")
+        node.get_logger().warn("Shutting down...")
     finally:
         node.shutdown()
         rclpy.shutdown()

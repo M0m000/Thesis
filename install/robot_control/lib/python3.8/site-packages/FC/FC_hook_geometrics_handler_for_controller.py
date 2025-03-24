@@ -13,7 +13,7 @@ class HookGeometricsHandler(Node):
 
         # Laden des Global Scan Dict
         self.global_scan_dict = None
-        self.global_scan_dict = load_csv_to_dict(filename = '/home/mo/Thesis/src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv')
+        self.global_scan_dict = load_csv_to_dict(filename = '/home/mo/Thesis/src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal_modellA.csv')
         if self.global_scan_dict is not None:
             self.get_logger().info("Global Scan Dict loaded successfully from CSV for Geometrics Handler!")
         else:
@@ -66,6 +66,9 @@ class HookGeometricsHandler(Node):
 
 
     def get_hook_of_global_scan_dict(self, hook_num):
+        """
+        Lädt alle Daten für eine gegebene Hakennummer aus Global Scan Dict
+        """
         if hook_num != 0 and hook_num <= len(self.global_scan_dict) and self.global_scan_dict is not None:
             self.hook_tfc_pos_in_workframe = self.global_scan_dict[str(hook_num)]['tfc_in_workframe']
             self.hook_tfc_pos_in_worldframe = self.global_scan_dict[str(hook_num)]['tfc_in_worldframe']
@@ -301,9 +304,14 @@ class HookGeometricsHandler(Node):
             trajectory = []
             _ = self.get_hook_of_global_scan_dict(hook_num=hook_num)
             
-            for idx in range(len(self.path_points_in_tcpframe)):
+            idx = 0
+            while idx < len(self.path_points_in_tcpframe):
+                if idx == 0:
+                    print("Creating initial trajectory point...")
+
                 self.handling_last_path_point = False       # Flag für letzten path point zurücksetzen
                 self.get_logger().info(f"calculating path point {idx + 1}")
+                
                 if idx < (len(self.path_points_in_tcpframe) - 1):
                     ppoint_1 = self.path_points_in_tcpframe[idx]
                     ppoint_0 = self.path_points_in_tcpframe[idx + 1]
@@ -315,12 +323,9 @@ class HookGeometricsHandler(Node):
                     self.hook_line['p_1'] = self.path_points_in_tcpframe[idx]
 
                 trajectory.append(self.calculate_targetpose_in_worldframe())
+
+                idx += 1
             return trajectory
-                
-
-
-                
-
 
 
 

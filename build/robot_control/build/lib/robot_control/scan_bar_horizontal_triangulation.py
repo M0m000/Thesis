@@ -281,7 +281,6 @@ class ScanBarHorizontalTriangulation(Node):
             Extrahieren des ersten Haken_2 als initiale Referenz für Triangulation des ersten Hakens
             """
             if self.yolo_hooks_dict['hook_2']['path_points'] != []:         # wenn path_points im Dict vefügbar
-                print(self.yolo_hooks_dict['hook_2']['path_points'])
                 self.hook_ref['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
                 self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
                 self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
