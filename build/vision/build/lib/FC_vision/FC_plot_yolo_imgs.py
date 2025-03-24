@@ -118,7 +118,7 @@ def plot_hooks_and_bars(received_img, hooks_dict, bar_dict):
                     elif idx == (len(path_points) - 1):
                         cv2.circle(img_copy, (x, y), radius = 8, color = (255, 0, 0), thickness = -1)
                     else:
-                        cv2.circle(img_copy, (x, y), radius = 3, color = (255, 0, 255), thickness = -1)
+                        cv2.circle(img_copy, (x, y), radius = 5, color = (255, 0, 255), thickness = -1)
 
                 for idx, point in enumerate(path_points):
                     x, y = point

@@ -1,0 +1,65 @@
+running egg_info
+writing ../../build/robot_control/robot_control.egg-info/PKG-INFO
+writing dependency_links to ../../build/robot_control/robot_control.egg-info/dependency_links.txt
+writing entry points to ../../build/robot_control/robot_control.egg-info/entry_points.txt
+writing requirements to ../../build/robot_control/robot_control.egg-info/requires.txt
+writing top-level names to ../../build/robot_control/robot_control.egg-info/top_level.txt
+reading manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'
+writing manifest file '../../build/robot_control/robot_control.egg-info/SOURCES.txt'
+running build
+running build_py
+copying robot_control/set_working_frame_qr.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+copying robot_control/define_working_frame_needle.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+copying robot_control/scan_bar_vertical_triangulation.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+copying robot_control/MoveTcpAlongAxis_action_client.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+copying robot_control/ibvs_2d.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+copying robot_control/tf_frames_publisher.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+copying robot_control/attachment_control_trajectory.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+copying robot_control/scan_bar_horizontal_triangulation_pxmm.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+copying robot_control/attachment_control_servoing.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+copying robot_control/scan_bar_combined_triangulation.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+copying robot_control/scan_bar_horizontal_triangulation.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+copying robot_control/hook_data_listener.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+copying robot_control/scan_bar.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+copying robot_control/__init__.py -> /home/mo/Thesis/build/robot_control/build/lib/robot_control
+copying FC/FC_trajectory_controller.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+copying FC/FC_hook_geometrics_handler_for_controller.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+copying FC/FC_gripper_handler.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+copying FC/FC_controller_data_logger.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+copying FC/FC_save_load_global_hook_dict.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+copying FC/FC_call_move_spline_service.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+copying FC/FC_hook_geometrics_handler_for_trajectory.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+copying FC/FC_call_move_linear_service.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+copying FC/FC_stereo_triangulation_processor.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+copying FC/FC_frame_handler.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+copying FC/FC_cam_geometrics_handler.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+copying FC/FC_dict_receive_processing.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+copying FC/FC_parameterized_cubic_spline.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+copying FC/__init__.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+copying FC/FC_edge_detector.py -> /home/mo/Thesis/build/robot_control/build/lib/FC
+running install
+running install_lib
+running install_data
+copying resource/robot_control -> /home/mo/Thesis/install/robot_control/share/ament_index/resource_index/packages
+copying package.xml -> /home/mo/Thesis/install/robot_control/share/robot_control
+copying launch/vc_vision_launch.py -> /home/mo/Thesis/install/robot_control/share/robot_control/launch
+copying launch/scan_bar_launch.py -> /home/mo/Thesis/install/robot_control/share/robot_control/launch
+copying config/vc_params.yaml -> /home/mo/Thesis/install/robot_control/share/robot_control/config
+running install_egg_info
+removing '/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info' (and everything under it)
+Copying ../../build/robot_control/robot_control.egg-info to /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info
+running install_scripts
+Installing MoveTcpAlongAxis_action_client script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing attachment_control_servoing script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing attachment_control_trajectory script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing define_working_frame_needle script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing hook_data_listener script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing ibvs_2d script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing scan_bar script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing scan_bar_combined_triangulation script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing scan_bar_horizontal_triangulation script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing scan_bar_horizontal_triangulation_pxmm script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing scan_bar_vertical_triangulation script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing set_working_frame_qr script to /home/mo/Thesis/install/robot_control/lib/robot_control
+Installing tf_frames_publisher script to /home/mo/Thesis/install/robot_control/lib/robot_control
+writing list of installed files to '/home/mo/Thesis/build/robot_control/install.log'

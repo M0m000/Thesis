@@ -14,6 +14,7 @@ class YoloPostprocessor(Node):
     def __init__(self):
         self.inference_results = None
 
+
     def postprocess(self, results):
         """
         Funktion mit allen Aufrufen für das Postprocessing
@@ -24,6 +25,7 @@ class YoloPostprocessor(Node):
         bar_dict = self.create_bar_instance(boxes_bar, masks_bar, confs_bar)
         return bar_dict, hooks_dict
     
+
     def extract_output(self, results):
         """
         TEIL DES POSTPROCESSING
@@ -47,6 +49,7 @@ class YoloPostprocessor(Node):
         else:
             masks = None
         return boxes, masks, confs, classes
+
 
     def split_outputs_by_class(self, boxes, masks, confs, classes):
         """
@@ -78,6 +81,7 @@ class YoloPostprocessor(Node):
         else:
             return None, None, None, None, None, None, None, None, None, None, None, None
         
+
     def create_hook_instances(self, boxes_hooks, masks_hooks, 
                               boxes_tips, masks_tips, 
                               boxes_lowpoints, masks_lowpoints, 
@@ -147,12 +151,14 @@ class YoloPostprocessor(Node):
         
         return sorted_hooks_dict
     
+
     def calc_box_midpoint(self, box):
         """
         Funktion zur Berechnung des Mittelpunkts einer Bounding Box
         """
         return np.array([(box[0] + box[2]) / 2, (box[1] + box[3]) / 2])
     
+
     def is_point_inside_box(self, point, box):
         """
         Funktion zur Prüfung, ob ein Punkt innerhalb einer Bounding Box liegt
@@ -160,6 +166,7 @@ class YoloPostprocessor(Node):
         x1, y1, x2, y2 = box
         return x1 <= point[0] <= x2 and y1 <= point[1] <= y2
     
+
     def create_bar_instance(self, boxes_bar, masks_bar, confs_bar):
         """
         TEIL DES OUTPUT POSTPROCESSING
@@ -188,6 +195,7 @@ class YoloPostprocessor(Node):
                 }
         return bar_dict
     
+
     def process_output_hooks_dict(self, hooks_dict):
         """
         Funktion zur Berechnung der Spitze- und Senke-Punkte aus Output Dict
@@ -222,6 +230,7 @@ class YoloPostprocessor(Node):
         # self.get_logger().info(f"Time of Point Calculation: {(endtime-starttime):.4f} sec")
         return hooks_dict_processed
     
+
     def calc_mean_of_mask(self, mask, title='none'):
         """
         Funktion zur Berechnung des Mittelpunkts einer Binärmaske
@@ -233,9 +242,11 @@ class YoloPostprocessor(Node):
             cy = np.mean(ys)
             return [cx, cy]
     
-    def find_hooks_shape(self, hooks_dict, num_interpolation_points = 5):
+
+    def find_hooks_shape(self, hooks_dict, num_interpolation_points=5):
         """
-        Funktion, um die Form des Hakens als Pfad von Spitze zu Senke zu berechnen
+        Funktion, um die Form des Hakens als Pfad von Spitze zu Senke zu berechnen.
+        Dabei wird sichergestellt, dass uv_tip und uv_lowpoint direkt mit dem Skelett verbunden sind.
         """
         for idx, key in enumerate(hooks_dict):
             mask = hooks_dict[key]['hook_mask']
@@ -250,43 +261,74 @@ class YoloPostprocessor(Node):
             # Skelettierung des Hakens
             skeleton_mask = skeletonize(mask).astype(np.uint8) * 255
 
-            # Hinzufügen von Spitze und Senke zu Skelett
+            # Endpunkte (Spitze und Senke)
             uv_tip = hooks_dict[key]['uv_tip']
             uv_lowpoint = hooks_dict[key]['uv_lowpoint']
 
             if uv_tip is not None and uv_lowpoint is not None:
-                # Wandeln von uv_tip und uv_lowpoint in integer Koordinaten
-                uv_tip_int = (int(round(uv_tip[1])), int(round(uv_tip[0])))  # (x, y) -> (Spalte, Zeile)
-                uv_lowpoint_int = (int(round(uv_lowpoint[1])), int(round(uv_lowpoint[0])))  # (x, y) -> (Spalte, Zeile)
-                skeleton_mask[uv_tip_int[0], uv_tip_int[1]] = 255
-                skeleton_mask[uv_lowpoint_int[0], uv_lowpoint_int[1]] = 255
-                
+                # Konvertiere uv-Koordinaten in Integer (Format: (Zeile, Spalte))
+                uv_tip_int = (int(round(uv_tip[1])), int(round(uv_tip[0])))
+                uv_lowpoint_int = (int(round(uv_lowpoint[1])), int(round(uv_lowpoint[0])))
+
+                '''
                 # Schließen von Lücken im Skelett
-                kernel_size = 15
-                kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (kernel_size, kernel_size))
+                kernel_size = 20
+                kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (kernel_size, kernel_size))
                 skeleton_mask = cv2.morphologyEx(skeleton_mask, cv2.MORPH_CLOSE, kernel)
+                '''
 
-                # Sicherstellen, dass Spitze und Senke nach dem Closing noch vorhanden sind
+                # Verbreitern des Skeletts
+                skeleton_thickness = 1
+                kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (skeleton_thickness, skeleton_thickness))  # oder eine andere Größe wählen
+                skeleton_mask = cv2.dilate(skeleton_mask, kernel, iterations=1)
+
+                # Erneut sicherstellen, dass uv_tip und uv_lowpoint gesetzt sind
                 skeleton_mask[uv_tip_int[0], uv_tip_int[1]] = 255
                 skeleton_mask[uv_lowpoint_int[0], uv_lowpoint_int[1]] = 255
 
-                # Speichern der Skelett-Maske in Hooks Dict
+                # Hilfsfunktion: Zeichnet eine Linie von 'endpoint' zum nächsten weißen Pixel im Skelett.
+                def connect_endpoint(skel_mask, endpoint):
+                    # Stelle sicher, dass der Endpunkt enthalten ist
+                    skel_mask[endpoint[0], endpoint[1]] = 255
+
+                    # Finde alle weißen Pixel im Skelett
+                    ys, xs = np.where(skel_mask == 255)
+                    candidates = list(zip(ys, xs))
+
+                    # Entferne den Endpunkt selbst
+                    candidates = [pt for pt in candidates if pt != endpoint]
+                    if candidates:
+                        # Finde den Kandidaten mit minimaler euklidischer Distanz
+                        distances = [np.linalg.norm(np.array(pt) - np.array(endpoint)) for pt in candidates]
+                        nearest_point = candidates[np.argmin(distances)]
+                        # Zeichne eine direkte Linie zwischen dem Endpunkt und dem nächsten Skelettpunkt
+                        cv2.line(skel_mask, (endpoint[1], endpoint[0]),
+                                 (nearest_point[1], nearest_point[0]), 255, thickness=skeleton_thickness)
+                    return skel_mask
+
+                # Verbinde uv_tip und uv_lowpoint jeweils mit dem nächstgelegenen Punkt im Skelett
+                skeleton_mask = connect_endpoint(skeleton_mask, uv_tip_int)
+                skeleton_mask = connect_endpoint(skeleton_mask, uv_lowpoint_int)
+
+                # Speichern der modifizierten Skelett-Maske in hooks_dict
                 hooks_dict[key]['skeleton_mask'] = skeleton_mask
 
-                # Den Pfad mit BFS finden
-                # shortest_path = self.bfs_shortest_path(skeleton_mask = skeleton_mask, start = uv_tip_int, end = uv_lowpoint_int)
-                shortest_path = self.astar_shortest_path(skeleton_mask = skeleton_mask, start = uv_tip_int, end = uv_lowpoint_int)
+                # Den Pfad mit A* (oder alternativ BFS) finden
+                shortest_path = self.astar_shortest_path(skeleton_mask=skeleton_mask,
+                                                         start=uv_tip_int,
+                                                         end=uv_lowpoint_int)
 
                 if shortest_path:
-                    # print(f"Kürzester Pfad: {shortest_path}")
-                    hooks_dict[key]['shortest_path'] = shortest_path  # Speichern des Pfads
+                    hooks_dict[key]['shortest_path'] = shortest_path  # Pfad speichern
 
-                    # N Pfadpunkte in festem Abstand anlegen
-                    path_points = self.get_evenly_spaced_points_on_path(path = shortest_path, num_points = num_interpolation_points)
-                    # print(f"Path Points: {path_points}")
+                    # Erzeuge gleichmäßig verteilte Punkte entlang des Pfads
+                    path_points = self.get_evenly_spaced_points_on_path(path=shortest_path,
+                                                                         num_points=num_interpolation_points)
                     hooks_dict[key]['path_points'] = path_points
+                else:
+                    print("ERROR - no shortest path found!")
         return hooks_dict
-    
+
 
     def crop_skeleton_to_path(self, skeleton_mask, uv_tip, uv_lowpoint):
         # Extrahiere die Y- und X-Koordinaten der beiden Punkte (uv_tip und uv_lowpoint)
@@ -367,7 +409,7 @@ class YoloPostprocessor(Node):
 
         # Überprüfen, ob Start- und Endpunkt auf dem Skelett liegen
         if skeleton_mask[start] != 255 or skeleton_mask[end] != 255:
-            print("Start oder Ende nicht auf Skelett!")
+            print("Tip or Lowpoint can not be found on skeleton!")
             return None
 
         # Bewegungsmöglichkeiten (8 Richtungen)

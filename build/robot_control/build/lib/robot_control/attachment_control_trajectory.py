@@ -171,6 +171,7 @@ class AttachmentTrajectory(Node):
         self.keyboard_timer = self.create_timer(0.1, self.check_keyboard)
 
 
+
     def check_keyboard(self):
         """
         Überprüft non-blocking, ob eine Taste gedrückt wurde.
@@ -258,7 +259,6 @@ class AttachmentTrajectory(Node):
         """
         self.jog_publisher_timer.cancel()
         self.destroy_node()
-
 
 
 

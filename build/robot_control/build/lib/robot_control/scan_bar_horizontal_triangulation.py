@@ -22,7 +22,7 @@ class ScanBarHorizontalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_horizontal_triangulation')
 
-        startpoint_trans_in_workframe = [160.0, -430.0, 40.0]
+        startpoint_trans_in_workframe = [130.0, -440.0, 60.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
 
         self.node_shutdown_flag = False
@@ -70,6 +70,7 @@ class ScanBarHorizontalTriangulation(Node):
         self.act_hook_num = 0
         self.path_point_triangulation_successful = False
         self.xyz_path_points_in_camframe = None
+        self.hook_extraction_done = False
 
         # Instanz des Spline-Calculator
         self.spline_calculator = ParameterizedCubicSplineCalculator()
@@ -280,15 +281,16 @@ class ScanBarHorizontalTriangulation(Node):
             Extrahieren des ersten Haken_2 als initiale Referenz für Triangulation des ersten Hakens
             """
             if self.yolo_hooks_dict['hook_2']['path_points'] != []:         # wenn path_points im Dict vefügbar
+                print(self.yolo_hooks_dict['hook_2']['path_points'])
                 self.hook_ref['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
                 self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
                 self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
                 self.hook_ref['path_points'] = self.yolo_hooks_dict['hook_2']['path_points']
-                hook_extraction_done = True
+                self.hook_extraction_done = True
             else:       # wenn 'path_points' gerade nicht vergübar, warte nächsten Prozesszyklus ab, bis verfügbar
-                hook_extraction_done = False
+                self.hook_extraction_done = False
 
-            if hook_extraction_done:        # nächster Prozessschritt nur, wenn Hook erfolgreich extrahiert
+            if self.hook_extraction_done == True:        # nächster Prozessschritt nur, wenn Hook erfolgreich extrahiert
                 _, _, self.T_robot_position_ref = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
                 self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.T_robot_position_ref[:3, 3], 'work')
                 self.get_logger().info("Done! -> next process step <Move Until New Hook>")
@@ -334,29 +336,29 @@ class ScanBarHorizontalTriangulation(Node):
                     self.hook_horizontal['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
                     self.hook_horizontal['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
                     self.hook_horizontal['path_points'] = self.yolo_hooks_dict['hook_2']['path_points']
-                    extract_hook_3_as_horizontal_point___hook_extraction_done = True
+                    self.hook_extraction_done = True
                 else:
-                    extract_hook_3_as_horizontal_point___hook_extraction_done = False
+                    self.hook_extraction_done = False
             elif self.handling_last_hook:
                 if self.yolo_hooks_dict['hook_1']['path_points'] != []:         # wenn path_points im Dict vefügbar
                     self.hook_horizontal['uv_hook'] = self.yolo_hooks_dict['hook_1']['uv_hook']
                     self.hook_horizontal['uv_tip'] = self.yolo_hooks_dict['hook_1']['uv_tip']
                     self.hook_horizontal['uv_lowpoint'] = self.yolo_hooks_dict['hook_1']['uv_lowpoint']
                     self.hook_horizontal['path_points'] = self.yolo_hooks_dict['hook_1']['path_points']
-                    extract_hook_3_as_horizontal_point___hook_extraction_done = True
+                    self.hook_extraction_done = True
                 else:
-                    extract_hook_3_as_horizontal_point___hook_extraction_done = False
+                    self.hook_extraction_done = False
             else:
                 if self.yolo_hooks_dict['hook_3']['path_points'] != []:         # wenn path_points im Dict vefügbar
                     self.hook_horizontal['uv_hook'] = self.yolo_hooks_dict['hook_3']['uv_hook']
                     self.hook_horizontal['uv_tip'] = self.yolo_hooks_dict['hook_3']['uv_tip']
                     self.hook_horizontal['uv_lowpoint'] = self.yolo_hooks_dict['hook_3']['uv_lowpoint']
                     self.hook_horizontal['path_points'] = self.yolo_hooks_dict['hook_3']['path_points']
-                    extract_hook_3_as_horizontal_point___hook_extraction_done = True
+                    self.hook_extraction_done = True
                 else:
-                    extract_hook_3_as_horizontal_point___hook_extraction_done = False
+                    self.hook_extraction_done = False
 
-            if extract_hook_3_as_horizontal_point___hook_extraction_done:
+            if self.hook_extraction_done == True:
                 _, _, self.T_robot_position_horizontal = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
                 self.robot_position_horizontal = self.frame_handler.transform_worldpoint_in_frame(self.T_robot_position_horizontal[:3, 3], 'work')
                 self.get_logger().info("Done! -> next process step <Horizontal Triangulation>")
@@ -500,13 +502,14 @@ class ScanBarHorizontalTriangulation(Node):
             """
             if self.handling_last_two_hooks:
                 if self.yolo_hooks_dict['hook_1']['path_points'] != []:         # wenn path_points im Dict vefügbar
+                    print(self.yolo_hooks_dict['hook_1']['path_points'])
                     self.hook_ref['uv_hook'] = self.yolo_hooks_dict['hook_1']['uv_hook']
                     self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_1']['uv_tip']
                     self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_1']['uv_lowpoint']
                     self.hook_ref['path_points'] = self.yolo_hooks_dict['hook_1']['path_points']
-                    hook_extraction_done = True
+                    self.hook_extraction_done = True
                 else:       # wenn 'path_points' gerade nicht vergübar, warte nächsten Prozesszyklus ab, bis verfügbar
-                    hook_extraction_done = False
+                    self.hook_extraction_done = False
 
             else:
                 if self.yolo_hooks_dict['hook_2']['path_points'] != []:         # wenn path_points im Dict vefügbar
@@ -514,11 +517,11 @@ class ScanBarHorizontalTriangulation(Node):
                     self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
                     self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
                     self.hook_ref['path_points'] = self.yolo_hooks_dict['hook_2']['path_points']
-                    hook_extraction_done = True
+                    self.hook_extraction_done = True
                 else:       # wenn 'path_points' gerade nicht vergübar, warte nächsten Prozesszyklus ab, bis verfügbar
-                    hook_extraction_done = False
+                    self.hook_extraction_done = False
 
-            if hook_extraction_done:        # nächster Prozessschritt nur, wenn Hook erfolgreich extrahiert
+            if self.hook_extraction_done == True:        # nächster Prozessschritt nur, wenn Hook erfolgreich extrahiert
                 _, _, self.T_robot_position_ref = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
                 self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.T_robot_position_ref[:3, 3], 'work')
 
@@ -688,12 +691,20 @@ class ScanBarHorizontalTriangulation(Node):
         falls ja, setzt diese Funktion die Variable self.new_hook_in_picture auf True
         """
         if self.yolo_hooks_dict is not {} and "hook_1" in self.yolo_hooks_dict:
-            if self.yolo_hooks_dict['hook_1']['hook_box'][0] > (self.img_width * 0.8):
+            ### Prüfen auf rechten Randbereich -> Detektion, ob neuer Haken
+            if self.yolo_hooks_dict['hook_1']['uv_hook'][0] > (self.img_width * 0.9):
                 self.new_hook_in_picture = True
             if self.yolo_hooks_dict['hook_1']['uv_hook'][0] < (self.img_width * 0.9):
                 self.new_hook_in_picture = False
             
-            x_left_hook = self.yolo_hooks_dict[(list(self.yolo_hooks_dict.keys())[0])]['uv_tip'][0]
+            ### Prüfen auf linken Randbereich -> Detektion, ob alter Haken weg
+            if self.handling_last_two_hooks:
+                x_left_hook = self.yolo_hooks_dict['hook_3']['uv_hook'][0]
+            elif self.handling_last_hook:
+                x_left_hook = self.yolo_hooks_dict['hook_2']['uv_hook'][0]
+            else:
+                x_left_hook = self.yolo_hooks_dict[(list(self.yolo_hooks_dict.keys())[0])]['uv_hook'][0]
+            
             if x_left_hook < (self.img_width * 0.1) and x_left_hook != 0:
                 self.hook_in_left_area = True
             if x_left_hook > (self.img_width * 0.1) and x_left_hook != 0:

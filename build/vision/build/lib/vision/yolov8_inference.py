@@ -60,7 +60,7 @@ class YOLOv8InferenceNode(Node):
 
         # Filterinstanzen zur Filterung des Outputs
         # self.ema_filter = HookFilterEMA(alpha = self.filter_alpha, confirmation_frames = 10, disappearance_frames = 10)
-        self.movingavg_filter = HookFilterMovingAvg(window_size = self.filter_windowsize, confirmation_frames = 3, disappearance_frames = 3)
+        self.movingavg_filter = HookFilterMovingAvg(window_size = self.filter_windowsize, confirmation_frames = 5, disappearance_frames = 5)
 
         # Variablen
         self.bridge = CvBridge()
@@ -158,7 +158,7 @@ class YOLOv8InferenceNode(Node):
             if self.show_output_img:
                 cv2.imshow('YoloV8 Output Segment Img', self.output_img)
                 cv2.waitKey(1)
-                cv2.imshow('YoloV8 Output Segment Img Filtered', self.output_img)
+                cv2.imshow('YoloV8 Output Segment Img Filtered', self.output_img_filtered)
                 cv2.waitKey(1)
             if self.publish_output_imgs:
                 # output_segment_img = self.bridge.cv2_to_imgmsg(self.output_img, encoding="bgr8")
