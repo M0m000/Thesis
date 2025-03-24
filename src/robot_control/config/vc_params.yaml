@@ -15,14 +15,16 @@ vc_1_img_receiver_node:
     img_width: 896
     img_height: 480
     rgb_stream: False
-    show_img: False
+    show_img: True
     take_pictures: False
     
 vc_2_img_receiver_node:
   ros__parameters:
-    ipv4: "192.168.3.15"
+    ipv4: "192.168.3.16"
     port: 2002
-    show_img: False
+    img_width: 896
+    img_height: 480
+    show_img: True
     take_pictures: False
 
 yolov8_inference_node:
@@ -33,6 +35,20 @@ yolov8_inference_node:
     show_cam_img: False
     show_output_img: True
     show_point_img: True
+    publish_masks: True
+    filter_alpha: 0.2
+    filter_windowsize: 5
+    num_path_points: 10
+    
+yolov8_dualcam_inference_node:
+  ros__parameters:
+    yolov8_inference_node: "/home/mo/Thesis/YoloV8_InstanceSeg/runs/train/nano/full_set/20250119_1052/weights/best.pt"
+    confidence_threshold: 0.2
+    do_preprocessing: False
+    show_cam_img: False
+    show_output_img: True
+    show_point_img: True
+    show_skeleton_img: True
     publish_masks: True
     filter_alpha: 0.2
     filter_windowsize: 5

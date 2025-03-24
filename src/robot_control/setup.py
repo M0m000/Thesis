@@ -11,6 +11,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/launch', ['launch/vc_vision_launch.py']),
+        ('share/' + package_name + '/launch', ['launch/vc_vision_dualcam_launch.py']),
         ('share/' + package_name + '/launch', ['launch/scan_bar_launch.py']),
         ('share/' + package_name + '/config', ['config/vc_params.yaml']),
     ],

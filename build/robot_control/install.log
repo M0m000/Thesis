@@ -59,6 +59,7 @@
 /home/mo/Thesis/install/robot_control/share/ament_index/resource_index/packages/robot_control
 /home/mo/Thesis/install/robot_control/share/robot_control/package.xml
 /home/mo/Thesis/install/robot_control/share/robot_control/launch/vc_vision_launch.py
+/home/mo/Thesis/install/robot_control/share/robot_control/launch/vc_vision_dualcam_launch.py
 /home/mo/Thesis/install/robot_control/share/robot_control/launch/scan_bar_launch.py
 /home/mo/Thesis/install/robot_control/share/robot_control/config/vc_params.yaml
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info/entry_points.txt

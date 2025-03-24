@@ -57,8 +57,8 @@ class VCStartupNode(Node):
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
         try:
-            self.get_logger().info('Try SSH connection to {self.ipv4} ...')
-            ssh.connect(self.ipv4, username='root', password=self.port)
+            self.get_logger().info(f'Try SSH connection to {self.ipv4} ...')
+            ssh.connect(self.ipv4, username='root', password='root')
             self.get_logger().info('SSH connected.')
 
             command1 = 'vcimgnetsrv &'

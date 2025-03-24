@@ -25,6 +25,7 @@ FC/FC_trajectory_controller.py
 FC/__init__.py
 config/vc_params.yaml
 launch/scan_bar_launch.py
+launch/vc_vision_dualcam_launch.py
 launch/vc_vision_launch.py
 resource/robot_control
 robot_control/MoveTcpAlongAxis_action_client.py

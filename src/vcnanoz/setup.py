@@ -23,7 +23,8 @@ setup(
             'vc_startup = vcnanoz.vc_startup:main',
             'vc_shutdown = vcnanoz.vc_shutdown:main',
             'srvServer_vc_startup = vcnanoz.srvServer_vc_startup.py:main',
-            'srvClient_vc_startup = vcnanoz.srvClient_vc_startup.py:main'
+            'srvClient_vc_startup = vcnanoz.srvClient_vc_startup.py:main',
+            'vc_img2_receiver = vcnanoz.vc_img2_receiver:main'
         ],
     },
 )

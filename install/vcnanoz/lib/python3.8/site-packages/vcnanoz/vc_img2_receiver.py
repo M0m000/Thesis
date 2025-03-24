@@ -37,26 +37,21 @@ class VCImage2Receiver(Node):
         self.ipv4 = self.get_parameter('ipv4').get_parameter_value().string_value
         self.declare_parameter('port', 2002)
         self.port = self.get_parameter('port').get_parameter_value().integer_value
+        self.declare_parameter('img_width', 2048)
+        self.dx = self.get_parameter('img_width').get_parameter_value().integer_value
+        self.declare_parameter('img_height', 1536)
+        self.dy = self.get_parameter('img_height').get_parameter_value().integer_value
         self.declare_parameter('show_img', True)
         self.show_img = self.get_parameter('show_img').get_parameter_value().bool_value
         self.declare_parameter('take_pictures', True)
         self.take_pictures = self.get_parameter('take_pictures').get_parameter_value().bool_value
 
-        # Bildauflösung an Kamera 1 anpassen
-        self.dx = None
-        self.dy = None
-        self.img_1_width_sub = self.create_subscription(Int32, 'vcnanoz/image_raw/width', self.width_received_callback)
-        self.img_1_height_sub = self.create_subscription(Int32, 'vcnanoz/image_raw/height', self.height_received_callback)
-
-        while self.dx == None:
-            self.get_logger().info("Waiting for resolution information of camera 1...")
-            time.sleep(0.1)# warte, bis Auflösung Kamera 1 bekannt
-
-        self.get_logger().info("Resolution information of camera 1 available.")
-        self.x0 = int((self.img_wdith - self.dx)/2)
-        self.y0 = int((self.img_height - self.dy)/2)
+        # Bild
+        self.x0 = int((2048 - self.dx)/2)
+        self.y0 = int((1536 - self.dy)/2)
         self.incrx = 1
         self.incry = 1
+        self.rgb_stream = False
 
         # Bildspeicherpfad
         self.declare_parameter('save_path', '/home/mo/Thesis/vc_imgs')

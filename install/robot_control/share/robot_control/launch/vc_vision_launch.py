@@ -12,19 +12,19 @@ def generate_launch_description():
     config_path = os.path.join(get_package_share_directory('robot_control'), 'config', 'vc_params.yaml')
 
     # Definition vc_startup
-    vc_startup_node = launch_ros.actions.Node(
+    vc_1_startup_node = launch_ros.actions.Node(
         package = 'vcnanoz',
         executable = 'vc_startup',
-        name = 'vc_startup_node',
+        name = 'vc_1_startup_node',
         parameters = [config_path],
         output = 'screen'
     )
 
     # Definition vc_img_receiver
-    vc_img_receiver_node = launch_ros.actions.Node(
+    vc_1_img_receiver_node = launch_ros.actions.Node(
         package = 'vcnanoz',
         executable = 'vc_img_receiver',
-        name = 'vc_img_receiver_node',
+        name = 'vc_1_img_receiver_node',
         parameters = [config_path],
         output = 'screen'
     )
@@ -48,12 +48,12 @@ def generate_launch_description():
     )
 
     return launch.LaunchDescription([
-        vc_startup_node,
+        vc_1_startup_node,
         light_controller_node,
         
         # Receiver und YoloV8 Nodes starten 1min später
         TimerAction(
             period=60.0,
-            actions=[vc_img_receiver_node, yolov8_inference_node]
+            actions=[vc_1_img_receiver_node, yolov8_inference_node]
         ),
     ])

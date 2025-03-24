@@ -45,6 +45,8 @@ class YOLOv8TwoImgInferenceNode(Node):
         self.filter_alpha = self.get_parameter('filter_alpha').get_parameter_value().double_value
         self.declare_parameter('filter_windowsize', 10)
         self.filter_windowsize = self.get_parameter('filter_windowsize').get_parameter_value().integer_value
+        self.declare_parameter('num_path_points', 5)
+        self.num_path_points = self.get_parameter('num_path_points').get_parameter_value().integer_value
 
         # Subscriber auf VC Cam
         self.subscription = self.create_subscription(Image, 'vcnanoz/image_raw', self.image_1_callback, 1)
