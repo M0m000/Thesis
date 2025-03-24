@@ -8,12 +8,12 @@ from scipy.spatial.transform import Rotation as R
 
 
 class HookGeometricsHandler(Node):
-    def __init__(self):
+    def __init__(self, distance_to_tip_in_mm):
         super().__init__("hook_geometrics_handler")
 
         # Laden des Global Scan Dict
         self.global_scan_dict = None
-        self.global_scan_dict = load_csv_to_dict(filename = '/home/mo/Thesis/src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal_modellA.csv')
+        self.global_scan_dict = load_csv_to_dict(filename = '/home/mo/Thesis/src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal_modellD.csv')
         if self.global_scan_dict is not None:
             self.get_logger().info("Global Scan Dict loaded successfully from CSV for Geometrics Handler!")
         else:
@@ -52,6 +52,7 @@ class HookGeometricsHandler(Node):
         # Dict für Speicherung der aktuellen Hakengerade
         self.hook_line = {}
         self.handling_last_path_point = False
+        self.distance_to_tip_in_mm = distance_to_tip_in_mm
         ##########
 
         # Variablen für die Regelung
@@ -293,6 +294,17 @@ class HookGeometricsHandler(Node):
     
 
 
+    def calculate_init_trajectory_point(self):
+        """
+        Berechnet den Init-Punkt für die Trjaketorie mit Abstand distance_to_tip_in_mm in [mm] zur Spitze
+        """
+        p_tip = self.hook_line['p_1']
+        p_dir = self.hook_line['p_dir']
+        p_traj_init = p_tip + self.distance_to_tip_in_mm * p_dir
+        self.hook_line['p_traj_init'] = p_traj_init
+
+
+
     def plan_trajectory(self, hook_num=None):
         """
         Berechnet die vollständige Trajektorie für das Einfädeln entlang der Hakenform
@@ -304,14 +316,15 @@ class HookGeometricsHandler(Node):
             trajectory = []
             _ = self.get_hook_of_global_scan_dict(hook_num=hook_num)
             
-            idx = 0
-            while idx < len(self.path_points_in_tcpframe):
-                if idx == 0:
-                    print("Creating initial trajectory point...")
+            # Berechne Init-Punkt (mit Abstand zur Spitze)
+            self.get_logger().info("Calculating initial trajectory point...")
+            self.calculate_init_trajectory_point()
+            p_traj_init = self.hook_line['p_traj_init']
+            trajectory.append(self.calculate_targetpose_in_worldframe(target_position = p_traj_init, line_dir = self.hook_line['p_dir']))
 
-                self.handling_last_path_point = False       # Flag für letzten path point zurücksetzen
-                self.get_logger().info(f"calculating path point {idx + 1}")
-                
+            # Berechne alle Trajektorienpunkt von Spitze bis Senke
+            for idx in range(len(self.path_points_in_tcpframe)):
+                self.get_logger().info(f"Calculation trajectory path point {idx + 1}")
                 if idx < (len(self.path_points_in_tcpframe) - 1):
                     ppoint_1 = self.path_points_in_tcpframe[idx]
                     ppoint_0 = self.path_points_in_tcpframe[idx + 1]
@@ -321,10 +334,7 @@ class HookGeometricsHandler(Node):
                     self.handling_last_path_point = True    # Flag für letzten path point setzen
                     self.get_logger().info(f"Handling last path point...")
                     self.hook_line['p_1'] = self.path_points_in_tcpframe[idx]
-
                 trajectory.append(self.calculate_targetpose_in_worldframe())
-
-                idx += 1
             return trajectory
 
 

@@ -17,6 +17,8 @@ class AttachmentTrajectory(Node):
         
         self.declare_parameter('hook_num', 5)
         self.hook_num = self.get_parameter('hook_num').get_parameter_value().integer_value
+        self.declare_parameter('distance_to_tip_in_mm', 10)
+        self.distance_to_tip_in_mm = self.get_parameter('distance_to_tip_in_mm').get_parameter_value().double_value
 
         # Publisher für Linear Servoing
         self.jog_publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
@@ -44,7 +46,7 @@ class AttachmentTrajectory(Node):
         self.set_frame(self.tcp_in_tfc_rot, self.tcp_in_tfc_trans, frame="tcp", ref_frame="tfc")
 
         # Instanz Hook Geometrics Handler
-        self.hook_geometrics_handler = HookGeometricsHandler()
+        self.hook_geometrics_handler = HookGeometricsHandler(distance_to_tip_in_mm = self.distance_to_tip_in_mm)
         self.hook = self.hook_geometrics_handler.get_hook_of_global_scan_dict(hook_num=self.hook_num)
         self.hook_geometrics_handler.update_hook_data(hook_num=self.hook_num)
         self.hook_geometrics_handler.calculate_hook_line()
@@ -154,10 +156,10 @@ class AttachmentTrajectory(Node):
             rot=pos_rot_in_worldframe,
             ref=0,
             ttype=0,
-            tvalue=30.0,
+            tvalue=60.0,
             bpoint=0,
             btype=0,
-            bvalue=100.0,
+            bvalue=30.0,
             sync=0.0,
             chaining=0)
 
