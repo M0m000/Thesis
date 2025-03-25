@@ -8,12 +8,12 @@ from scipy.spatial.transform import Rotation as R
 
 
 class HookGeometricsHandler(Node):
-    def __init__(self):
+    def __init__(self, distance_to_tip_in_mm):
         super().__init__("hook_geometrics_handler")
 
         # Laden des Global Scan Dict
         self.global_scan_dict = None
-        self.global_scan_dict = load_csv_to_dict(filename = '/home/mo/Thesis/src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv')
+        self.global_scan_dict = load_csv_to_dict(filename = '/home/mo/Thesis/src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal_modellA.csv')
         if self.global_scan_dict is not None:
             self.get_logger().info("Global Scan Dict loaded successfully from CSV for Geometrics Handler!")
         else:
@@ -51,23 +51,10 @@ class HookGeometricsHandler(Node):
 
         # Dict für Speicherung der aktuellen Hakengerade
         self.hook_line = {}
-        self.hook_line['p0_in_workframe'] = None
-        self.hook_line['p1_in_workframe'] = None
-        self.hook_line['pdir_in_workframe'] = None
-        self.hook_line['p0_in_tfcframe'] = None
-        self.hook_line['p1_in_tfcframe'] = None
-        self.hook_line['pdir_in_tfcframe'] = None
-        self.hook_line['p0_in_pinholeframe'] = None
-        self.hook_line['p1_in_pinholeframe'] = None
-        self.hook_line['pdir_in_pinholeframe'] = None
-        
-        # Dict für die Lochebene
-        self.pinhole_plane = {}
-        self.pinhole_plane['normal_vector'] = None
-        self.pinhole_plane['d'] = None
-        self.pinhole_plane['midpoint_in_tfcframe'] = None
-
+        self.handling_last_path_point = False
+        self.distance_to_tip_in_mm = distance_to_tip_in_mm
         ##########
+
         # Variablen für die Regelung
         self.plane = None
         self.plane_midpoint = None
@@ -79,17 +66,10 @@ class HookGeometricsHandler(Node):
 
 
 
-    def plan_trajectory(self, hook_num = 5):
-        """
-        Plant die Trajektorie für alle Path Points inkl. Spitze und Senke
-        """
-        self.get_hook_of_global_scan_dict(hook_num=hook_num)
-        print(self.hook_entry)
-
-
-
-
     def get_hook_of_global_scan_dict(self, hook_num):
+        """
+        Lädt alle Daten für eine gegebene Hakennummer aus Global Scan Dict
+        """
         if hook_num != 0 and hook_num <= len(self.global_scan_dict) and self.global_scan_dict is not None:
             self.hook_tfc_pos_in_workframe = self.global_scan_dict[str(hook_num)]['tfc_in_workframe']
             self.hook_tfc_pos_in_worldframe = self.global_scan_dict[str(hook_num)]['tfc_in_worldframe']
@@ -115,15 +95,15 @@ class HookGeometricsHandler(Node):
         """
         if self.global_scan_dict is not None:
             # hole die aktuelle TFC Position im WORLD-Frame und rechne sie ins WORK-Frame um
-            _, _, T_tfc_in_worldframe = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
-            T_tfc_in_workframe = self.frame_handler.transform_worldpose_to_desired_frame(
-                T_in_worldframe = T_tfc_in_worldframe,
+            _, _, T_tcp_in_worldframe = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
+            T_tcp_in_workframe = self.frame_handler.transform_worldpose_to_desired_frame(
+                T_in_worldframe = T_tcp_in_worldframe,
                 frame_desired = "work")
             
 
             # hole die Haken Koordinaten im WORK Frame aus Global Scan Dict
             _ = self.get_hook_of_global_scan_dict(hook_num)
-            T_work_in_tfcframe = np.linalg.inv(T_tfc_in_workframe)
+            T_work_in_tcpframe = np.linalg.inv(T_tcp_in_workframe)
 
             hook_point_in_workframe_hom = np.array([self.hook_pos_in_workframe[0], 
                                                     self.hook_pos_in_workframe[1], 
@@ -140,43 +120,43 @@ class HookGeometricsHandler(Node):
             
 
             # rechne die Hakenkoordinaten vom WORK-Frame ins TFC-Frame um
-            self.hook_pos_in_tfcframe = T_work_in_tfcframe @ hook_point_in_workframe_hom
-            self.hook_pos_in_tfcframe = self.hook_pos_in_tfcframe[:3]
+            self.hook_pos_in_tcpframe = T_work_in_tcpframe @ hook_point_in_workframe_hom
+            self.hook_pos_in_tcpframe = self.hook_pos_in_tcpframe[:3]
 
-            self.tip_pos_in_tfcframe = T_work_in_tfcframe @ tip_point_in_workframe_hom
-            self.tip_pos_in_tfcframe = self.tip_pos_in_tfcframe[:3]
+            self.tip_pos_in_tcpframe = T_work_in_tcpframe @ tip_point_in_workframe_hom
+            self.tip_pos_in_tcpframe = self.tip_pos_in_tcpframe[:3]
 
-            self.lowpoint_pos_in_tfcframe = T_work_in_tfcframe @ lowpoint_point_in_workframe_hom
-            self.lowpoint_pos_in_tfcframe = self.lowpoint_pos_in_tfcframe[:3]
+            self.lowpoint_pos_in_tcpframe = T_work_in_tcpframe @ lowpoint_point_in_workframe_hom
+            self.lowpoint_pos_in_tcpframe = self.lowpoint_pos_in_tcpframe[:3]
 
 
             # rechne die Path Points ins TFC Frame um
-            self.path_points_in_tfcframe = []       # leeren der bisherigen Liste
+            self.path_points_in_tcpframe = []       # leeren der bisherigen Liste
             for ppoint in self.path_points_in_workframe:
                 x = ppoint[0]
                 y = ppoint[1]
                 z = ppoint[2]
                 ppoint_hom = np.array([x, y, z, 1.0])
-                ppoint_in_tfcframe = T_work_in_tfcframe @ ppoint_hom
-                ppoint_in_tfcframe = ppoint_in_tfcframe[:3]
-                self.path_points_in_tfcframe.append(ppoint_in_tfcframe)         # speichern in Liste
+                ppoint_in_tcpframe = T_work_in_tcpframe @ ppoint_hom
+                ppoint_in_tcpframe = ppoint_in_tcpframe[:3]
+                self.path_points_in_tcpframe.append(ppoint_in_tcpframe)         # speichern in Liste
 
 
 
-    def calculate_hook_line(self, p_0 = None, p_1 = None):
+    def calculate_hook_line(self, p_0_in_tcpframe = None, p_1_in_tcpframe = None):
         """
         Berechnet eine Gerade entlang des Haken von p_0 (Senke) nach p_1 (Spitze)
         --> kann auch für stückweise tangentiale Geraden verwendet werden, dann p_0 bzw. p_1 eintragen
         """
-        if self.hook_pos_in_tfcframe is not None and self.tip_pos_in_tfcframe is not None and self.lowpoint_pos_in_tfcframe is not None:
-            if p_0 is None:
-                p_0 = self.lowpoint_pos_in_tfcframe     # p_0 ist Lowpoint
+        if self.hook_pos_in_tcpframe is not None and self.tip_pos_in_tcpframe is not None and self.lowpoint_pos_in_tcpframe is not None:
+            if p_0_in_tcpframe is None:
+                p_0 = self.lowpoint_pos_in_tcpframe     # p_0 ist Lowpoint
             else:
-                p_0 = p_0
-            if p_1 is None:
-                p_1 = self.tip_pos_in_tfcframe          # p_1 ist Spitze
+                p_0 = p_0_in_tcpframe
+            if p_1_in_tcpframe is None:
+                p_1 = self.tip_pos_in_tcpframe          # p_1 ist Spitze
             else:
-                p_1 = p_1
+                p_1 = p_1_in_tcpframe
             
             # Richtungsvektor (normiert)
             p_dir = p_1 - p_0
@@ -184,7 +164,7 @@ class HookGeometricsHandler(Node):
             if abs_p_dir != 0:
                 p_dir /= abs_p_dir
 
-            # wird gespeichert in TFC-Frame
+            # wird gespeichert in TCP-Frame
             self.hook_line['p_0'] = p_0
             self.hook_line['p_1'] = p_1
             self.hook_line['p_dir'] = p_dir
@@ -192,18 +172,18 @@ class HookGeometricsHandler(Node):
         
 
 
-    def calculate_plane(self, trans_in_tfcframe, rot_in_tfcframe):
+    def calculate_plane(self, trans_in_tcpframe, rot_in_tcpframe):
         """
         Berechnet die Ebene des Aufhängelochs basierend auf festen translatorischen und rotatorischen Werten in Bezug auf TFC
         """
-        x, y, z = trans_in_tfcframe
+        x, y, z = trans_in_tcpframe
         
         # Berechne Rotationsmatrix
-        R = self.frame_handler.calculate_rot_matrix(rot = rot_in_tfcframe)
+        R = self.frame_handler.calculate_rot_matrix(rot = rot_in_tcpframe)
         self.T_plane_in_tfcframe[:3, :3] = R
         self.T_plane_in_tfcframe[:3, 3] = np.array([x, y, z])
 
-        # Berechne Normalenvektor in Pinhole-Frame und in TCP-Frame
+        # Berechne Normalenvektor in Pinhole-Frame (=TCP-Frame)
         normal_in_pinhole_frame = np.array([1.0, 0.0, 0.0])     # Normalenvektor im Pinhole ist die x-Achse
         normal_in_tcp_frame = R @ normal_in_pinhole_frame
         abs_normal_in_tcp_frame = np.linalg.norm(normal_in_tcp_frame)
@@ -214,7 +194,7 @@ class HookGeometricsHandler(Node):
         n_x, n_y, n_z = normal_in_tcp_frame
         d = -(n_x * x + n_y * y + n_z * z)
         self.plane = (n_x, n_y, n_z, d)
-        self.plane_midpoint = np.array(trans_in_tfcframe)
+        self.plane_midpoint = np.array(trans_in_tcpframe)
         return n_x, n_y, n_z, d
     
 
@@ -232,9 +212,9 @@ class HookGeometricsHandler(Node):
             plane = self.plane
 
         if line_dir is None:
-            line_dir = self.hook_line['p_dir']  # in TFC-Frame
+            line_dir = self.hook_line['p_dir']  # in TCP-Frame
 
-        n = np.array(plane[:3])  # Normalenvektor der Ebene
+        n = np.array(plane[:3])     # Normalenvektor der Ebene
         d_vec = np.array(line_dir)  # Richtungsvektor der Geraden
 
         # Berechnung der Rotationsachse
@@ -248,19 +228,18 @@ class HookGeometricsHandler(Node):
         angle = np.arccos(np.clip(np.dot(n, d_vec) / (np.linalg.norm(n) * np.linalg.norm(d_vec)), -1.0, 1.0))
         R_adj = R.from_rotvec(angle * rot_axis).as_matrix()
 
-        # Transformation in den TFC-Frame mit Inversen
-        R_plane = self.T_plane_in_tfcframe[:3, :3]  # Rotationsanteil der Matrix
-        R_adjustment_TFC = R_plane @ R_adj @ np.linalg.inv(R_plane)
+        # Transformation in den TCP-Frame mit Inversen
+        # R_plane = self.T_plane_in_tcpframe[:3, :3]  # Rotationsanteil der Matrix
+        R_adjustment_TFC = R_adj    # R_plane @ R_adj @ np.linalg.inv(R_plane)
 
         # Extrahiere Euler-Winkel (z.B. im 'xyz'-Format) aus der umgerechneten Rotationsmatrix
-        delta_angles_TFC = R.from_matrix(R_adjustment_TFC).as_euler('xyz')
-        delta_angles_TFC = np.array(delta_angles_TFC) * (180 / np.pi)           # Umrechnung in Grad
+        delta_angles_TCP = R.from_matrix(R_adjustment_TFC).as_euler('xyz')
+        delta_angles_TCP = np.array(delta_angles_TCP) * (180 / np.pi)           # Umrechnung in Grad
 
-        self.delta_angles = delta_angles_TFC
+        self.delta_angles = delta_angles_TCP
         return self.delta_angles
 
     
-
 
     def calculate_translation_difference(self, target_position = None, plane = None, plane_midpoint = None):
         """
@@ -277,14 +256,21 @@ class HookGeometricsHandler(Node):
             plane_midpoint = self.plane_midpoint
         
         if target_position is None:
-            target_position = self.hook_line['p_1']
+            target_position = self.hook_line['p_1'] if self.handling_last_path_point == False else self.hook_line['p_0']    # in TCP    # umschalten auf p0, wenn letzter Path Point
+        
+        '''
+        # Transformation der Hakenkoordinaten in Spitze
+        target_position_hom = np.append(plane_midpoint, 1)
+        target_position_in_pinholeframe = self.T_plane_in_tfcframe @ target_position_hom
+        target_position_in_pinholeframe = target_position_in_pinholeframe[:3]
+        '''
 
         # Der Mittelpunkt der Ebene
         P_center = plane_midpoint
-        P_target = np.array(target_position)
+        P_target = np.array(target_position)    # target_position_in_pinholeframe
 
         # Berechne die Differenz (Verschiebung)
-        translation_diff = P_target - P_center
+        translation_diff = P_target # - P_center
         return translation_diff
     
 
@@ -293,19 +279,63 @@ class HookGeometricsHandler(Node):
         """
         Berechnet die Endpose des TFC im WORLD-Frame -> kann dann direkt für MoveLinear servcie call genutzt werden...
         """
-        trans_diff_in_tfcframe = self.calculate_translation_difference(
+        trans_diff_in_tcpframe = self.calculate_translation_difference(
             target_position = target_position, 
             plane = plane, 
             plane_midpoint = plane_midpoint)
         
-        rot_diff_in_tfcframe = self.calculate_adjustment_angles(plane = plane, line_dir = line_dir)
+        rot_diff_in_tcpframe = self.calculate_adjustment_angles(plane = plane, line_dir = line_dir)
 
         trans_diff_in_worldframe, rot_diff_in_worldframe = self.frame_handler.transform_pose_to_world(
-            trans = trans_diff_in_tfcframe, 
-            rot = rot_diff_in_tfcframe,
-            pose_ref_frame = 'tfc')
+            trans = trans_diff_in_tcpframe, 
+            rot = rot_diff_in_tcpframe,
+            pose_ref_frame = 'tcp')
         return trans_diff_in_worldframe, rot_diff_in_worldframe
+    
 
+
+    def calculate_init_trajectory_point(self):
+        """
+        Berechnet den Init-Punkt für die Trjaketorie mit Abstand distance_to_tip_in_mm in [mm] zur Spitze
+        """
+        p_tip = self.hook_line['p_1']
+        p_dir = self.hook_line['p_dir']
+        p_traj_init = p_tip + self.distance_to_tip_in_mm * p_dir
+        self.hook_line['p_traj_init'] = p_traj_init
+
+
+
+    def plan_trajectory(self, hook_num=None):
+        """
+        Berechnet die vollständige Trajektorie für das Einfädeln entlang der Hakenform
+        """
+        if hook_num is None:
+            self.get_logger().error(f"No Hook Num selected!")
+            return None
+        else:
+            trajectory = []
+            _ = self.get_hook_of_global_scan_dict(hook_num=hook_num)
+            
+            # Berechne Init-Punkt (mit Abstand zur Spitze)
+            self.get_logger().info("Calculating initial trajectory point...")
+            self.calculate_init_trajectory_point()
+            p_traj_init = self.hook_line['p_traj_init']
+            trajectory.append(self.calculate_targetpose_in_worldframe(target_position = p_traj_init, line_dir = self.hook_line['p_dir']))
+
+            # Berechne alle Trajektorienpunkt von Spitze bis Senke
+            for idx in range(len(self.path_points_in_tcpframe)):
+                self.get_logger().info(f"Calculation trajectory path point {idx + 1}")
+                if idx < (len(self.path_points_in_tcpframe) - 1):
+                    ppoint_1 = self.path_points_in_tcpframe[idx]
+                    ppoint_0 = self.path_points_in_tcpframe[idx + 1]
+                    self.calculate_hook_line(p_0_in_tcpframe = ppoint_0, p_1_in_tcpframe = ppoint_1)
+
+                if idx == (len(self.path_points_in_tcpframe) - 1):
+                    self.handling_last_path_point = True    # Flag für letzten path point setzen
+                    self.get_logger().info(f"Handling last path point...")
+                    self.hook_line['p_1'] = self.path_points_in_tcpframe[idx]
+                trajectory.append(self.calculate_targetpose_in_worldframe())
+            return trajectory
 
 
 

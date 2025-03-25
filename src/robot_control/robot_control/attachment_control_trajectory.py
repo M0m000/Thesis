@@ -1,7 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from FC.FC_gripper_handler import GripperHandler
-from FC.FC_hook_geometrics_handler_for_controller import HookGeometricsHandler
+from FC.FC_hook_geometrics_handler_for_trajectory import HookGeometricsHandler
 from FC.FC_frame_handler import FrameHandler
 from FC.FC_call_move_linear_service import MoveLinearServiceClient
 from kr_msgs.msg import JogLinear

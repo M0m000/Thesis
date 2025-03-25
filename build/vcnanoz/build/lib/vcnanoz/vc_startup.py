@@ -17,6 +17,8 @@ class VCStartupNode(Node):
         self.ipv4 = self.get_parameter('ipv4').get_parameter_value().string_value
         self.declare_parameter('port', 2002)
         self.port = self.get_parameter('port').get_parameter_value().integer_value
+        self.declare_parameter('cam_num', 1)
+        self.cam_num = self.get_parameter('cam_num').get_parameter_value().integer_value
 
         self.light_vcc_on = False
         self.light_set_brightness_done = False
@@ -33,11 +35,26 @@ class VCStartupNode(Node):
 
         # Kamera und Beleuchtung starten
         self.powerup_vc()
+
+    def get_dout_for_cam_num(self):
+        """
+        Entscheidet auf Basis der gegebenen Kamera-Nummer, welche Output geschalten wird
+        """
+        if self.cam_num > 2 or self.cam_num < 1:
+            out = None
+            self.get_logger().error(f"ERROR - Selected cam number not available!")
+        elif self.cam_num == 1:
+            out = 1
+            self.get_logger().warn(f"Cam {self.cam_num} selected!")
+        elif self.cam_num == 2:
+            out = 4
+            self.get_logger().warn(f"Cam {self.cam_num} selected!")
+        return out
         
     def powerup_vc(self):
         self.get_logger().info("Power Up VC nano Z...")
         request = SetDiscreteOutput.Request()
-        request.index = 1
+        request.index = self.get_dout_for_cam_num()
         request.value = 1
         future = self.discrete_output_client.call_async(request)
         future.add_done_callback(self.cam_powerup_done_callback)
