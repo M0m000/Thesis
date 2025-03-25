@@ -29,7 +29,7 @@ class ScanBarHorizontalTriangulation(Node):
         self.node_shutdown_flag = False
         self.baseline_error = False
 
-        self.declare_parameter('num_hooks_existing', 1)
+        self.declare_parameter('num_hooks_existing', 2)
         self.num_hooks_existing = self.get_parameter('num_hooks_existing').get_parameter_value().integer_value
         self.declare_parameter('do_vibration_test', False)
         self.do_vibration_test = self.get_parameter('do_vibration_test').get_parameter_value().bool_value
@@ -72,9 +72,6 @@ class ScanBarHorizontalTriangulation(Node):
         self.path_point_triangulation_successful = False
         self.xyz_path_points_in_camframe = None
         self.hook_extraction_done = False
-
-        # Instanz des Spline-Calculator
-        self.spline_calculator = ParameterizedCubicSplineCalculator()
 
         # Dict für die Aufzeichnung von Schwingungsdaten
         self.vibration_data = {'time': [], 'uv_hook': [], 'uv_tip': [], 'uv_lowpoint': []}  # Schwingungsdaten
@@ -390,6 +387,8 @@ class ScanBarHorizontalTriangulation(Node):
                     baseline_vector = horizontal_baseline_vector,
                     baseline = baseline_along_x, baseline_axis = 'x')
                 
+                print(xyz_hook_in_camframe)
+                
                 # Berechne Triangulation für Path Points
                 uv_path_points_ref = self.hook_ref['path_points']
                 uv_path_points_horizontal = self.hook_horizontal['path_points']
@@ -502,7 +501,6 @@ class ScanBarHorizontalTriangulation(Node):
             """
             if self.handling_last_two_hooks:
                 if self.yolo_hooks_dict['hook_1']['path_points'] != []:         # wenn path_points im Dict vefügbar
-                    print(self.yolo_hooks_dict['hook_1']['path_points'])
                     self.hook_ref['uv_hook'] = self.yolo_hooks_dict['hook_1']['uv_hook']
                     self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_1']['uv_tip']
                     self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_1']['uv_lowpoint']
