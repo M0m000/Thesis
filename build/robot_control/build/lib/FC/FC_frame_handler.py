@@ -204,9 +204,25 @@ class FrameHandler(Node):
 
 
     def get_cam_transform_in_world(self):
+        """Lädt die Transformation von CAM zu WORLD"""
         _, _, T_world_tfc = self.get_system_frame(name = 'tfc', ref = 'world')
         T_tfc_cam = self.load_transformation_matrix_from_csv(frame_name = 'CAM_frame_in_tfc.csv')
         return T_world_tfc @ T_tfc_cam
+    
+
+
+    def get_world_transform_in_cam(self):
+        """Lädt die Transformation von WORLD zu CAM"""
+        T_cam_in_worldframe = self.get_cam_transform_in_world()
+        return np.linalg.inv(T_cam_in_worldframe)
+    
+
+
+    def get_cam_transform_in_workframe(self):
+        """Lädt die Transformation von CAM zu WORK"""
+        T_cam_in_worldframe = self.get_cam_transform_in_world()
+        return self.transform_worldpose_to_desired_frame(T_cam_in_worldframe, 'work')
+    
 
 
 

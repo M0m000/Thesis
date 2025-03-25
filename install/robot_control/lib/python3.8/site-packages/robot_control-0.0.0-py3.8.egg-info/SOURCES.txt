@@ -21,6 +21,7 @@ FC/FC_parameterized_cubic_spline.py
 FC/FC_save_load_global_hook_dict.py
 FC/FC_stereo_triangulation_processor.py
 FC/FC_trajectory_controller.py
+FC/FC_triangulation_processor.py
 FC/__init__.py
 config/vc_params.yaml
 launch/scan_bar_launch.py

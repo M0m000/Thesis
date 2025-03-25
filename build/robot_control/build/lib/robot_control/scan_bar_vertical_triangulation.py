@@ -293,7 +293,7 @@ class ScanBarVerticalTriangulation(Node):
             if self.hook_extraction_done == True:        # nächster Prozessschritt nur, wenn Hook erfolgreich extrahiert
                 self.robot_position_ref_trans, self.robot_position_ref_rot, self.T_robot_position_ref = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
                 self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.T_robot_position_ref[:3, 3], 'work')
-                self.get_logger().info("Done! -> next process step <Move Until New Hook>")
+                self.get_logger().info("Done! -> next process step <Move Vertical>")
                 self.process_step = "move_vertical"
         
 
@@ -331,8 +331,8 @@ class ScanBarVerticalTriangulation(Node):
             if self.hook_extraction_done == True:
                 self.robot_position_vertical_trans, self.robot_position_vertical_rot, self.T_robot_position_vertical = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
                 self.robot_position_vertical = self.frame_handler.transform_worldpoint_in_frame(self.T_robot_position_vertical[:3, 3], 'work')
-                self.get_logger().info("Done! -> next process step <Move Back To Reference Hook>")
-                self.process_step = "move_back_to_ref_hook"
+                self.get_logger().info("Done! -> next process step <Vertical Triangulation>")
+                self.process_step = "vertical_triangulation"
 
 
         # Fahre zurück zur REF Position
@@ -385,7 +385,7 @@ class ScanBarVerticalTriangulation(Node):
                     self.process_step = "measure_vibration"
                 else:
                     self.get_logger().info("Done! -> next process step <Vertical triangulation>")
-                    self.upcoming_process_step = "vertical_triangulation"
+                    self.upcoming_process_step = "extract_hook_2_as_ref"
                     self.start_timer_for_step(3.0)    # Timer starten
                     self.process_step = "waiting_for_timer"
 
@@ -393,7 +393,7 @@ class ScanBarVerticalTriangulation(Node):
         # Vertikale Triangulation
         if self.process_step == "vertical_triangulation":
             """
-            Kombinierte Triangulation (Berechnung der realen Koordinaten der Hakenpunkte)
+            Vertikale Triangulation (Berechnung der realen Koordinaten der Hakenpunkte)
             """
             vertical_baseline_vector = np.array(self.robot_position_vertical) - np.array(self.robot_position_ref)
             baseline_along_y = vertical_baseline_vector[1]
@@ -413,9 +413,7 @@ class ScanBarVerticalTriangulation(Node):
                     point_1_3_uv = self.hook_vertical['uv_lowpoint'], point_2_3_uv = self.hook_ref['uv_lowpoint'],
                     baseline_vector = vertical_baseline_vector,
                     baseline = baseline_along_y, baseline_axis = 'y')
-                
-                print(xyz_hook_in_camframe)
-                
+                    
                 # Berechne Triangulation für Path Points
                 uv_path_points_ref = self.hook_ref['path_points']
                 uv_path_points_vertical = self.hook_vertical['path_points']
@@ -452,7 +450,7 @@ class ScanBarVerticalTriangulation(Node):
             self.global_hooks_dict[str(self.act_hook_num)] = {}
 
             ##### Umrechnung der Punkte XYZ von Hook, Tip und Lowpoint in das aktuelle WORK-Frame
-            robot_position_in_tfcframe = self.T_robot_position_vertical
+            robot_position_in_tfcframe = self.T_robot_position_ref
             transform_cam_in_tfcframe = self.frame_handler.load_transformation_matrix_from_csv(frame_name = 'CAM_frame_in_tfc.csv')
             # self.cam_to_world_transform = self.frame_handler.get_cam_transform_in_world()
             self.cam_to_world_transform = robot_position_in_tfcframe @ transform_cam_in_tfcframe
@@ -495,7 +493,7 @@ class ScanBarVerticalTriangulation(Node):
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_workframe'] = xyz_lowpoint_in_workframe
 
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_path_points_in_workframe'] = xyz_path_points_in_workframe
-            self.global_hooks_dict[str(self.act_hook_num)]['tfc_in_workframe'] = self.robot_position_vertical
+            self.global_hooks_dict[str(self.act_hook_num)]['tfc_in_workframe'] = self.robot_position_ref
             self.global_hooks_dict[str(self.act_hook_num)]['tfc_in_worldframe'], _, _ = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
 
             ##### Ausgabe der aktuellen Daten
@@ -516,7 +514,7 @@ class ScanBarVerticalTriangulation(Node):
                 self.process_step = "save_global_dict_as_csv"
             else:
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 as Reference>")
-                self.upcoming_process_step = "extract_hook_2_as_ref"
+                self.upcoming_process_step = "move_back_to_ref_hook"
                 self.start_timer_for_step(3.0)    # Timer starten
                 self.process_step = "waiting_for_timer"
 

@@ -12,21 +12,19 @@ class StereoTriangulationProcessor:
                  img_height = 720):
         
         self.calib_data = np.load(calib_path)
-        self.intrinsics = self.calib_data['mtx']     # Kameramatrix (mit Brennweite Verzerrung etc.)
+        # self.intrinsics = self.calib_data['mtx']     # Kameramatrix (mit Brennweite Verzerrung etc.)
 
         f_x = 0.006/3.45e-6
         f_y = 0.006/3.45e-6
         c_x = img_width / 2
         c_y = img_height / 2
 
-        self.intrinsics[0][2] = c_x
-        self.intrinsics[1][2] = c_y
-
-        '''
         self.intrinsics = np.array([[f_x, 0, c_x], 
                                     [0, f_y, c_y], 
                                     [0, 0, 1]])
-        '''
+
+        self.intrinsics[0][2] = c_x
+        self.intrinsics[1][2] = c_y
         
         self.dist = self.calib_data['dist']          # Verzerrungskoeffizienten
         self.rvecs = self.calib_data['rvecs']        # Rotationsvektoren - UNBENUTZT
@@ -121,72 +119,62 @@ class StereoTriangulationProcessor:
     def triangulate_vertical_points(self, projection_matrix_point_1, projection_matrix_point_2,
                                     point_1_uv, point_2_uv):
         """
-        Berechnet den 3D-Punkt aus zwei korrespondierenden Bildpunkten bei vertikaler Verschiebung,
-        indem eine vollständige Rotation des Systems vorgenommen wird.
+        Berechnet den 3D-Punkt aus zwei korrespondierenden Bildpunkten bei vertikaler Verschiebung.
 
-        Vorgehen:
-          1. Definiere eine Rotationsmatrix R, um das Koordinatensystem so zu drehen, 
-             dass der vertikale Baseline-Versatz (entlang der y-Achse) in einen horizontalen
-             Versatz überführt wird. Hier verwenden wir eine Drehung um -90° um die z-Achse.
-          2. Erzeuge aus R eine 4x4-Transformationsmatrix Q.
-          3. Transformiere die Projektionsmatrizen: P_rot = P * Q⁻¹.
-          4. Transformiere die Bildpunkte: p_rot = R * [u, v, 1]ᵀ (und normiere).
-          5. Führe die horizontale Triangulation (DLT) im rotierten System durch.
-          6. Transformiere die erhaltenen 3D-Punkte zurück in das Originalkoordinatensystem.
+        Erwartetes Ergebnis-Koordinatensystem:
+          - x-Achse: von links nach rechts
+          - y-Achse: von oben nach unten
+          - z-Achse: in die Bildebene hinein
+          - Ursprung: Bildmitte (optisches Zentrum)
 
-        Rückgabe:
-          Ein numpy-Array mit den XYZ-Koordinaten des berechneten 3D-Punktes.
+        Ansatz:
+          1. Tausche in den Bildpunkten u und v (d.h. [u,v] → [v,u]) sowie die korrespondierenden
+             Zeilen in den Projektionsmatrizen (mittels einer Permutationsmatrix).
+          2. Führe die Standard-DLT-Triangulation mit den geswappten Größen durch.
+          3. Tausche die resultierenden x- und y-Koordinaten zurück, um in das Originalsystem zu gelangen.
         """
-        # 1. Definiere die Rotationsmatrix R (Rotation um -90° um die z-Achse)
-        theta = np.radians(-90)
-        R = np.array([[np.cos(theta), -np.sin(theta), 0],
-                      [np.sin(theta),  np.cos(theta), 0],
-                      [0,              0,             1]])
+        # Erzeuge eine Permutationsmatrix zum Tausch der ersten beiden Zeilen
+        T_swap = np.array([[0, 1, 0],
+                           [1, 0, 0],
+                           [0, 0, 1]])
 
-        # 2. Erzeuge eine 4x4 Transformationsmatrix Q aus R
-        Q = np.eye(4)
-        Q[:3, :3] = R
-        # Da Q eine reine Rotation ist, entspricht Q⁻¹ = Qᵀ
-        Q_inv = Q.T
+        # Transformiere die Projektionsmatrizen entsprechend
+        P1_swapped = T_swap @ projection_matrix_point_1
+        P2_swapped = T_swap @ projection_matrix_point_2
 
-        # 3. Transformiere die Projektionsmatrizen in das rotierte Koordinatensystem
-        #    P_rot = P * Q⁻¹
-        P1_rot = projection_matrix_point_1 @ Q_inv
-        P2_rot = projection_matrix_point_2 @ Q_inv
-
-        # 4. Transformiere die Bildpunkte:
-        #    Zunächst in homogene Koordinaten überführen und dann mit R rotieren.
+        # Tausche u und v in den Bildpunkten
         p1 = np.ravel(point_1_uv)
         p2 = np.ravel(point_2_uv)
-        p1_hom = np.array([p1[0], p1[1], 1.0])
-        p2_hom = np.array([p2[0], p2[1], 1.0])
-        p1_rot_hom = R @ p1_hom
-        p2_rot_hom = R @ p2_hom
-        # Normiere, sodass der dritte Eintrag 1 ist (falls möglich)
-        p1_rot = p1_rot_hom[:2] / p1_rot_hom[2]
-        p2_rot = p2_rot_hom[:2] / p2_rot_hom[2]
+        p1_swapped = np.array([p1[1], p1[0]])
+        p2_swapped = np.array([p2[1], p2[0]])
 
-        # 5. Trianguliere im rotierten Koordinatensystem mithilfe der horizontalen Methode.
-        #    Die Funktion triangulate_horizontal_points erwartet 2D-Punkte (u,v)
-        X_rot = self.triangulate_horizontal_points(projection_matrix_point_1=P1_rot,
-                                                   projection_matrix_point_2=P2_rot,
-                                                   point_1_uv=p1_rot,
-                                                   point_2_uv=p2_rot)
+        # Aufbau des 4x4-Gleichungssystems (wie beim Standard-DLT)
+        u1, v1 = p1_swapped[0], p1_swapped[1]
+        u2, v2 = p2_swapped[0], p2_swapped[1]
+        A = np.zeros((4, 4))
+        A[0, :] = u1 * P1_swapped[2, :] - P1_swapped[0, :]
+        A[1, :] = v1 * P1_swapped[2, :] - P1_swapped[1, :]
+        A[2, :] = u2 * P2_swapped[2, :] - P2_swapped[0, :]
+        A[3, :] = v2 * P2_swapped[2, :] - P2_swapped[1, :]
 
-        # 6. Transformiere die berechneten 3D-Punkte zurück in das Originalkoordinatensystem:
-        #    Da X_rot = Q * X gilt, folgt: X = Q⁻¹ * X_rot = Qᵀ * X_rot.
-        X_rot_hom = np.append(X_rot, 1.0)
-        X_hom = Q_inv @ X_rot_hom  # Q_inv = Qᵀ
-        X_hom = X_hom / X_hom[3]
-        X = X_hom[:3]
-        return X
+        # Lösung des homogenen Gleichungssystems mittels SVD
+        _, _, Vt = np.linalg.svd(A)
+        X_swapped = Vt[-1]
+        X_swapped = X_swapped / X_swapped[3]  # Normierung in kartesische Koordinaten
+
+        # Rücktransformation in das ursprüngliche Koordinatensystem:
+        # Da wir zuvor u und v vertauscht haben, tauschen wir auch wieder die x- und y-Komponente.
+        X_original = np.array([X_swapped[1], X_swapped[0], X_swapped[2]])
+        return X_original
     
 
 
     def triangulate_single_point(self, point_1_uv = None, point_2_uv = None, baseline_vector = [0.0, 0.0, 0.0], baseline = 5.0, baseline_axis = 'x'):
         if point_1_uv is not None and point_2_uv is not None:
-            extrinsics_point_1 = self.calculate_extrinsics(baseline_vector = [0.0, 0.0, 0.0], baseline = 0.0, baseline_axis = baseline_axis)
-            extrinsics_point_2 = self.calculate_extrinsics(baseline_vector = baseline_vector, baseline = baseline, baseline_axis = baseline_axis)
+            # extrinsics_point_1 = self.calculate_extrinsics(baseline_vector = [0.0, 0.0, 0.0], baseline = 0.0, baseline_axis = baseline_axis)
+            # extrinsics_point_2 = self.calculate_extrinsics(baseline_vector = baseline_vector, baseline = baseline, baseline_axis = baseline_axis)
+            extrinsics_point_2 = self.calculate_extrinsics(baseline_vector=[0,0,0], baseline=0, baseline_axis=baseline_axis)
+            extrinsics_point_1 = self.calculate_extrinsics(baseline_vector=baseline_vector, baseline=baseline, baseline_axis=baseline_axis)
 
             self.projection_matrix_point_1 = self.calculate_projection_matrix(extrinsics = extrinsics_point_1)
             self.projection_matrix_point_2 = self.calculate_projection_matrix(extrinsics = extrinsics_point_2)
@@ -194,12 +182,12 @@ class StereoTriangulationProcessor:
             point_1_uv = self.prepare_point_for_triangulation(point_1_uv)
             point_2_uv = self.prepare_point_for_triangulation(point_2_uv)
             
-            '''
+            
             points4D_hom = cv2.triangulatePoints(self.projection_matrix_point_1, self.projection_matrix_point_2,
                                                  point_1_uv, point_2_uv)
-            points3D = points4D_hom[:3] / points4D_hom[3]'
+            points3D = points4D_hom[:3] / points4D_hom[3]
+            
             '''
-
             if baseline_axis == 'x':
                 points3D = self.triangulate_horizontal_points(
                     projection_matrix_point_1 = self.projection_matrix_point_1,
@@ -211,7 +199,8 @@ class StereoTriangulationProcessor:
                     projection_matrix_point_1 = self.projection_matrix_point_1,
                     projection_matrix_point_2 = self.projection_matrix_point_2,
                     point_1_uv = point_1_uv,
-                    point_2_uv = point_2_uv)
+                    point_2_uv = point_2_uv)'
+            '''
             return points3D
         else:
             return None

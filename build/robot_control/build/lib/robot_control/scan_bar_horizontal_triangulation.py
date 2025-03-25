@@ -5,9 +5,8 @@ from FC.FC_dict_receive_processing import DictReceiveProcessor
 from FC.FC_call_move_linear_service import MoveLinearServiceClient
 from FC.FC_edge_detector import EdgeDetector
 from FC.FC_frame_handler import FrameHandler
-from FC.FC_stereo_triangulation_processor import StereoTriangulationProcessor
+from FC.FC_triangulation_processor import StereoTriangulationProcessor
 from FC.FC_save_load_global_hook_dict import save_dict_to_csv
-from FC.FC_parameterized_cubic_spline import ParameterizedCubicSplineCalculator
 from kr_msgs.msg import JogLinear
 from kr_msgs.srv import SelectJoggingFrame
 from kr_msgs.srv import SetSystemFrame
@@ -23,7 +22,7 @@ class ScanBarHorizontalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_horizontal_triangulation')
 
-        startpoint_trans_in_workframe = [110.0, -430.0, 20.0]
+        startpoint_trans_in_workframe = [130.0, -430.0, 20.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
 
         self.node_shutdown_flag = False
@@ -81,11 +80,12 @@ class ScanBarHorizontalTriangulation(Node):
 
         self.robot_position_ref = None
         self.T_robot_position_ref = None
+        self.T_cam_in_workframe_ref = None
+        self.T_cam_in_workframe_horizontal = None
         self.robot_position_horizontal = None
 
         # Instanz für Berechnung der Stereo Triangulation
         self.triangulation_processor = StereoTriangulationProcessor(
-            extrinsic_data = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
             calib_path = '/home/mo/Thesis/calibration_data.npz',
             measure_time = True,
             img_width = self.img_width,
@@ -217,17 +217,23 @@ class ScanBarHorizontalTriangulation(Node):
             """
             Fahre weiter, bis 2 Haken im Bild zu sehen sind (zu Beginn des Scan-Prozesses benötigt)
             """
+            # setze und publishe Geschwindigkit für Regelung
             vel_work = [self.speed_in_mm_per_s, 0.0, 0.0]
             vel_world = self.frame_handler.transform_velocity_to_world(vel = vel_work, from_frame = 'work')
             self.publish_linear_velocity(vel_in_worldframe = vel_world)
-
+            
+            # Prüfen, ob neuer Haken detektiert
             if rside_falling_edge:
                 self.previous_edge_rside = "falling"
-            
+            # wenn detektiert:
             if rside_rising_edge and self.previous_edge_rside == "falling":
                 self.previous_edge_rside = None
+
+                # Roboter stoppen
                 vel_world = [0.0, 0.0, 0.0]
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
+
+                # Timer für nächsten Prozessschritt
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 as initial Reference Point>")
                 self.upcoming_process_step = "extract_hook_2_as_init_ref"
                 self.start_timer_for_step(3.0)    # Timer starten
@@ -288,8 +294,14 @@ class ScanBarHorizontalTriangulation(Node):
                 self.hook_extraction_done = False
 
             if self.hook_extraction_done == True:        # nächster Prozessschritt nur, wenn Hook erfolgreich extrahiert
+
+                # Roboterposition extrahieren und ins CAM-Frame transformieren für Triangulation
                 _, _, self.T_robot_position_ref = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
                 self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.T_robot_position_ref[:3, 3], 'work')
+                
+                self.T_cam_in_workframe_ref = self.frame_handler.get_cam_transform_in_workframe()
+                print(self.T_cam_in_workframe_ref)
+
                 self.get_logger().info("Done! -> next process step <Move Until New Hook>")
                 self.process_step = "move_until_new_hook"
 
@@ -358,6 +370,10 @@ class ScanBarHorizontalTriangulation(Node):
             if self.hook_extraction_done == True:
                 _, _, self.T_robot_position_horizontal = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
                 self.robot_position_horizontal = self.frame_handler.transform_worldpoint_in_frame(self.T_robot_position_horizontal[:3, 3], 'work')
+
+                self.T_cam_in_workframe_horizontal = self.frame_handler.get_cam_transform_in_workframe()
+                print(self.T_cam_in_workframe_horizontal)
+
                 self.get_logger().info("Done! -> next process step <Horizontal Triangulation>")
                 self.process_step = "horizontal_triangulation"
 
@@ -367,9 +383,11 @@ class ScanBarHorizontalTriangulation(Node):
             """
             Horizontale Triangulation (Berechnung der realen Koordinaten der Hakenpunkte)
             """
-            horizontal_baseline_vector = np.array(self.robot_position_horizontal) - np.array(self.robot_position_ref)
+            # Berechnung der Baseline
+            horizontal_baseline_vector = self.T_cam_in_workframe_horizontal[:3, 3] - self.T_cam_in_workframe_ref[:3, 3]
             baseline_along_x = horizontal_baseline_vector[0]
             self.get_logger().info(f"Baseline along X axis: {baseline_along_x} mm")
+            
             self.path_point_triangulation_successful = False
 
             if baseline_along_x == 0:
@@ -380,26 +398,51 @@ class ScanBarHorizontalTriangulation(Node):
                 self.process_step = "move_back_to_init"
             else:
                 # Berechne Triangulation für Hook, Tip, Lowpoint
+                xyz_hook_in_camframe = self.triangulation_processor.triangulate_single_point(
+                    point_1_uv = self.hook_ref['uv_hook'], 
+                    point_2_uv = self.hook_horizontal['uv_hook'], 
+                    T_cam_1_in_workframe = self.T_cam_in_workframe_ref, 
+                    T_cam_2_in_workframe = self.T_cam_in_workframe_horizontal)
+                
+                xyz_tip_in_camframe = self.triangulation_processor.triangulate_single_point(
+                    point_1_uv = self.hook_ref['uv_tip'], 
+                    point_2_uv = self.hook_horizontal['uv_tip'], 
+                    T_cam_1_in_workframe = self.T_cam_in_workframe_ref, 
+                    T_cam_2_in_workframe = self.T_cam_in_workframe_horizontal)
+                
+                xyz_lowpoint_in_camframe = self.triangulation_processor.triangulate_single_point(
+                    point_1_uv = self.hook_ref['uv_lowpoint'], 
+                    point_2_uv = self.hook_horizontal['uv_lowpoint'], 
+                    T_cam_1_in_workframe = self.T_cam_in_workframe_ref, 
+                    T_cam_2_in_workframe = self.T_cam_in_workframe_horizontal)
+                
+                print(xyz_hook_in_camframe)
+
+
+
+
+
+                '''
                 [xyz_hook_in_camframe, xyz_tip_in_camframe, xyz_lowpoint_in_camframe], time_token = self.triangulation_processor.triangulate_3_points(
-                    point_1_1_uv = self.hook_horizontal['uv_hook'], point_2_1_uv = self.hook_ref['uv_hook'],
-                    point_1_2_uv = self.hook_horizontal['uv_tip'], point_2_2_uv = self.hook_ref['uv_tip'],
-                    point_1_3_uv = self.hook_horizontal['uv_lowpoint'], point_2_3_uv = self.hook_ref['uv_lowpoint'],
+                    point_1_1_uv = self.hook_ref['uv_hook'], point_2_1_uv = self.hook_horizontal['uv_hook'],
+                    point_1_2_uv = self.hook_ref['uv_tip'], point_2_2_uv = self.hook_horizontal['uv_tip'],
+                    point_1_3_uv = self.hook_ref['uv_lowpoint'], point_2_3_uv = self.hook_horizontal['uv_lowpoint'],
                     baseline_vector = horizontal_baseline_vector,
                     baseline = baseline_along_x, baseline_axis = 'x')
                 
                 print(xyz_hook_in_camframe)
-                
+                '''
+
                 # Berechne Triangulation für Path Points
                 uv_path_points_ref = self.hook_ref['path_points']
                 uv_path_points_horizontal = self.hook_horizontal['path_points']
 
                 if uv_path_points_ref is not None and uv_path_points_horizontal is not None:
                     self.path_point_triangulation_successful = True
-                    self.xyz_path_points_in_camframe, time_token_ppoint_triangulation = self.triangulation_processor.triangulate_path_points(
-                        uv_path_points_1 = uv_path_points_horizontal,
-                        uv_path_points_2 = uv_path_points_ref,
-                        baseline_vector = horizontal_baseline_vector,
-                        baseline = baseline_along_x, baseline_axis = 'x')
+                    self.xyz_path_points_in_camframe, time_token_ppoint_triangulation = self.triangulation_processor.triangulate_path_points(                    
+                        uv_path_points_1 = uv_path_points_horizontal, uv_path_points_2 = uv_path_points_ref,
+                        T_cam_1_in_workframe = self.T_cam_in_workframe_ref, T_cam_2_in_workframe = self.T_cam_in_workframe_horizontal)
+
                     uv_path_points_ref = None
                     uv_path_points_horizontal = None
                 else:
@@ -425,9 +468,32 @@ class ScanBarHorizontalTriangulation(Node):
             self.global_hooks_dict[str(self.act_hook_num)] = {}
 
             ##### Umrechnung der Punkte XYZ von Hook, Tip und Lowpoint in das aktuelle WORK-Frame
-            robot_position_in_tfcframe = self.T_robot_position_horizontal
+            xyz_hook_in_camframe_hom = np.array([xyz_hook_in_camframe[0], xyz_hook_in_camframe[1], xyz_hook_in_camframe[2]]).reshape(3, 1)
+            xyz_hook_in_camframe_hom = np.vstack((xyz_hook_in_camframe_hom, [[1]]))  # -> (4, 1)
+            xyz_hook_in_workframe = self.T_cam_in_workframe_horizontal @ xyz_hook_in_camframe_hom
+            xyz_hook_in_workframe = xyz_hook_in_workframe[:3]
+
+            xyz_tip_in_camframe_hom = np.array([xyz_tip_in_camframe[0], xyz_tip_in_camframe[1], xyz_tip_in_camframe[2]]).reshape(3, 1)
+            xyz_tip_in_camframe_hom = np.vstack((xyz_tip_in_camframe_hom, [[1]]))  # -> (4, 1)
+            xyz_tip_in_workframe = self.T_cam_in_workframe_horizontal @ xyz_tip_in_camframe_hom
+            xyz_tip_in_workframe = xyz_tip_in_workframe[:3]
+
+            xyz_lowpoint_in_camframe_hom = np.array([xyz_lowpoint_in_camframe[0], xyz_lowpoint_in_camframe[1], xyz_lowpoint_in_camframe[2]]).reshape(3, 1)
+            xyz_lowpoint_in_camframe_hom = np.vstack((xyz_lowpoint_in_camframe_hom, [[1]]))  # -> (4, 1)
+            xyz_lowpoint_in_workframe = self.T_cam_in_workframe_horizontal @ xyz_lowpoint_in_camframe_hom
+            xyz_lowpoint_in_workframe = xyz_lowpoint_in_workframe[:3]
+
+
+            print()
+            print(xyz_hook_in_workframe)
+            print()
+
+
+
+
+            robot_position_in_tfcframe = self.T_robot_position_ref
             transform_cam_in_tfcframe = self.frame_handler.load_transformation_matrix_from_csv(frame_name = 'CAM_frame_in_tfc.csv')
-            # self.cam_to_world_transform = self.frame_handler.get_cam_transform_in_world()
+            self.cam_to_world_transform = self.frame_handler.get_cam_transform_in_world()
             self.cam_to_world_transform = robot_position_in_tfcframe @ transform_cam_in_tfcframe
 
             # Umrechung von Hook in Workframe
@@ -480,7 +546,7 @@ class ScanBarHorizontalTriangulation(Node):
             if self.path_point_triangulation_successful:
                 self.get_logger().warn(f"Time token for path points triangulation [horizontal]: {time_token_ppoint_triangulation:.6f} sec")
                 self.get_logger().warn(f"Path points XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_path_points_in_workframe']}")
-            self.get_logger().warn(f"Time token for hook triangulation [horizontal]: {time_token:.6f} sec")
+            # self.get_logger().warn(f"Time token for hook triangulation [horizontal]: {time_token:.6f} sec")
             self.get_logger().warn(f"already scanned: {len(self.global_hooks_dict)} Hooks")
             self.get_logger().warn(f"------------------------------------------------------------------")
 
@@ -522,6 +588,8 @@ class ScanBarHorizontalTriangulation(Node):
             if self.hook_extraction_done == True:        # nächster Prozessschritt nur, wenn Hook erfolgreich extrahiert
                 _, _, self.T_robot_position_ref = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
                 self.robot_position_ref = self.frame_handler.transform_worldpoint_in_frame(self.T_robot_position_ref[:3, 3], 'work')
+
+                self.T_cam_in_workframe_ref = self.frame_handler.get_cam_transform_in_workframe()
 
                 if len(self.global_hooks_dict) == (self.num_hooks_existing - 2):
                     self.handling_last_two_hooks = True
