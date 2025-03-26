@@ -70,7 +70,7 @@ class LightController(Node):
 
                 # Regelabweichung berechnen
                 e_brightness = self.desired_brightness - brightness
-                control_signal = self.K_p * e_brightness                # P-Regler
+                control_signal = self.K_p * e_brightness        # P-Regler
 
                 # Stellgröße - begrenzt auf 2..10V
                 self.current_voltage = max(2.0, min(10.0, self.current_voltage + control_signal))
