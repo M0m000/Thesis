@@ -21,9 +21,6 @@ class ScanBarVerticalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_vertical_triangulation')
 
-        self.scan_process_start_time = time.perf_counter()
-        self.scan_process_end_time = None
-
         startpoint_trans_in_workframe = [130.0, -430.0, 20.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
 
@@ -195,6 +192,8 @@ class ScanBarVerticalTriangulation(Node):
         # self.get_logger().info("Wait 5 sec...")
         time.sleep(1)
         ###########################################################
+        self.scan_process_start_time = time.perf_counter()
+        self.scan_process_end_time = None
     
 
 
@@ -565,6 +564,7 @@ class ScanBarVerticalTriangulation(Node):
                     self.process_step = "move_until_hook_disappears"
                 else:
                     self.get_logger().info("Done! -> next process step <Move until new hook visible>")
+                    self.get_logger().warn(f"actual process duration: {((time.perf_counter() - self.scan_process_start_time) / 60):.4f} min")
                     self.process_step = "move_until_new_hook"
 
 
