@@ -37,6 +37,10 @@ class StereoTriangulationProcessor:
         self.R_baseline = None
         self.t_baseline = None
 
+        self.rot_matrix = np.array([[1, 0, 0],
+                                    [0, -1, 0],
+                                    [0, 0, -1]])
+
 
     def calculate_relatvie_pose(self, T_cam_1_in_workframe, T_cam_2_in_workframe):
         """
@@ -93,9 +97,9 @@ class StereoTriangulationProcessor:
         point_1_uv = self.prepare_point_for_triangulation(point = point_1_uv)
         point_2_uv = self.prepare_point_for_triangulation(point = point_2_uv)
         xyz_point = self.triangulate_point(point_1_uv = point_1_uv, point_2_uv = point_2_uv)
-        print(xyz_point)
-        xyz_point[1] = xyz_point[1] * (-1)
-        xyz_point[2] = xyz_point[2] * (-1)
+        print("XYZ Point before Rotation: ", xyz_point)
+        xyz_point = self.rot_matrix @ xyz_point
+        print("XYZ Point after Rotation: ", xyz_point)
         return xyz_point
 
 
