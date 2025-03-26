@@ -161,8 +161,8 @@ class ScanBarHorizontalTriangulation(Node):
         else:
             self.get_logger().error("Init movement failed!")
         
-        self.get_logger().info("Wait 5 sec...")
-        time.sleep(5)
+        # self.get_logger().info("Wait 5 sec...")
+        time.sleep(1)
         ###########################################################
     
 
@@ -527,9 +527,10 @@ class ScanBarHorizontalTriangulation(Node):
                 self.process_step = "save_global_dict_as_csv"
             else:
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 as Reference>")
-                self.upcoming_process_step = "extract_hook_2_as_ref"
-                self.start_timer_for_step(2.0)    # Timer starten
-                self.process_step = "waiting_for_timer"
+                # self.upcoming_process_step = "extract_hook_2_as_ref"
+                # self.start_timer_for_step(2.0)    # Timer starten
+                # self.process_step = "waiting_for_timer"
+                self.process_step = "extract_hook_2_as_ref"
 
 
         ##### Extrahiere Pixelkoordinaten von Haken 2 während Prozess

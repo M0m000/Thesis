@@ -161,8 +161,8 @@ class ScanBarVerticalTriangulation(Node):
         else:
             self.get_logger().error("Init movement failed!")
         
-        self.get_logger().info("Wait 5 sec...")
-        time.sleep(5)
+        # self.get_logger().info("Wait 5 sec...")
+        time.sleep(1)
         ###########################################################
     
 
@@ -321,7 +321,7 @@ class ScanBarVerticalTriangulation(Node):
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
                 self.get_logger().info("Done! -> next process step <Extract Vertical Hook>")
                 self.upcoming_process_step = "extract_vertical_hook"
-                self.start_timer_for_step(3.0)    # Timer starten
+                self.start_timer_for_step(2.0)    # Timer starten
                 self.process_step = "waiting_for_timer"
 
 
