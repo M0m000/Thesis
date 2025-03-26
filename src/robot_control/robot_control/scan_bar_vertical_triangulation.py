@@ -330,14 +330,24 @@ class ScanBarVerticalTriangulation(Node):
             """
             Extrahiere Daten von Haken 2 in vertikal verschobener Position
             """
-            if self.yolo_hooks_dict['hook_2']['path_points'] is not None:         # wenn path_points im Dict vefügbar
-                self.hook_vertical['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
-                self.hook_vertical['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
-                self.hook_vertical['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
-                self.hook_vertical['path_points'] = self.yolo_hooks_dict['hook_2']['path_points']
-                self.hook_extraction_done = True
+            if self.handling_last_hook:
+                if self.yolo_hooks_dict['hook_1']['path_points'] is not None:         # wenn path_points im Dict vefügbar
+                    self.hook_vertical['uv_hook'] = self.yolo_hooks_dict['hook_1']['uv_hook']
+                    self.hook_vertical['uv_tip'] = self.yolo_hooks_dict['hook_1']['uv_tip']
+                    self.hook_vertical['uv_lowpoint'] = self.yolo_hooks_dict['hook_1']['uv_lowpoint']
+                    self.hook_vertical['path_points'] = self.yolo_hooks_dict['hook_1']['path_points']
+                    self.hook_extraction_done = True
+                else:
+                    self.hook_extraction_done = False
             else:
-                self.hook_extraction_done = False
+                if self.yolo_hooks_dict['hook_2']['path_points'] is not None:         # wenn path_points im Dict vefügbar
+                    self.hook_vertical['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
+                    self.hook_vertical['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
+                    self.hook_vertical['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
+                    self.hook_vertical['path_points'] = self.yolo_hooks_dict['hook_2']['path_points']
+                    self.hook_extraction_done = True
+                else:
+                    self.hook_extraction_done = False
 
             if self.hook_extraction_done == True:
                 # CAM Pose in WORK speichern
@@ -564,14 +574,24 @@ class ScanBarVerticalTriangulation(Node):
             """
             Extrahieren von Haken 2 (rechts im Bild) als Referenzpunkt für die Triangulation
             """
-            if self.yolo_hooks_dict['hook_2']['path_points'] is not None:         # wenn path_points im Dict vefügbar
-                self.hook_ref['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
-                self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
-                self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
-                self.hook_ref['path_points'] = self.yolo_hooks_dict['hook_2']['path_points']
-                self.hook_extraction_done = True
-            else:       # wenn 'path_points' gerade nicht vergübar, warte nächsten Prozesszyklus ab, bis verfügbar
-                self.hook_extraction_done = False
+            if self.handling_last_hook:
+                if self.yolo_hooks_dict['hook_1']['path_points'] is not None:         # wenn path_points im Dict vefügbar
+                    self.hook_ref['uv_hook'] = self.yolo_hooks_dict['hook_1']['uv_hook']
+                    self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_1']['uv_tip']
+                    self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_1']['uv_lowpoint']
+                    self.hook_ref['path_points'] = self.yolo_hooks_dict['hook_1']['path_points']
+                    self.hook_extraction_done = True
+                else:       # wenn 'path_points' gerade nicht vergübar, warte nächsten Prozesszyklus ab, bis verfügbar
+                    self.hook_extraction_done = False
+            else:
+                if self.yolo_hooks_dict['hook_2']['path_points'] is not None:         # wenn path_points im Dict vefügbar
+                    self.hook_ref['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
+                    self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
+                    self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
+                    self.hook_ref['path_points'] = self.yolo_hooks_dict['hook_2']['path_points']
+                    self.hook_extraction_done = True
+                else:       # wenn 'path_points' gerade nicht vergübar, warte nächsten Prozesszyklus ab, bis verfügbar
+                    self.hook_extraction_done = False
 
             if self.hook_extraction_done == True:        # nächster Prozessschritt nur, wenn Hook erfolgreich extrahiert
                 # CAM Pose in WORK speichern
@@ -746,9 +766,9 @@ class ScanBarVerticalTriangulation(Node):
             else:
                 x_left_hook = self.yolo_hooks_dict[(list(self.yolo_hooks_dict.keys())[0])]['uv_hook'][0]
             
-            if x_left_hook < (self.img_width * 0.1) and x_left_hook != 0:
+            if x_left_hook < (self.img_width * 0.2) and x_left_hook != 0:
                 self.hook_in_left_area = True
-            if x_left_hook > (self.img_width * 0.1) and x_left_hook != 0:
+            if x_left_hook > (self.img_width * 0.2) and x_left_hook != 0:
                 self.hook_in_left_area = False
             
 
