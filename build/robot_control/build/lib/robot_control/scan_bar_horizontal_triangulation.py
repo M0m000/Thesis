@@ -285,7 +285,7 @@ class ScanBarHorizontalTriangulation(Node):
             """
             Extrahieren des ersten Haken_2 als initiale Referenz für Triangulation des ersten Hakens
             """
-            if self.yolo_hooks_dict['hook_2']['path_points'] != []:         # wenn path_points im Dict vefügbar
+            if self.yolo_hooks_dict['hook_2']['path_points'] is not None:         # wenn path_points im Dict vefügbar
                 self.hook_ref['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
                 self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
                 self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
@@ -295,8 +295,7 @@ class ScanBarHorizontalTriangulation(Node):
                 self.hook_extraction_done = False
 
             if self.hook_extraction_done == True:        # nächster Prozessschritt nur, wenn Hook erfolgreich extrahiert
-
-                # Roboterposition extrahieren und ins CAM-Frame transformieren für Triangulation
+                # CAM Pose in WORK speichern
                 self.T_cam_in_workframe_ref = self.frame_handler.get_cam_transform_in_workframe()
                 self.T_cam_in_worldframe_ref = self.frame_handler.get_cam_transform_in_world()
 
@@ -341,7 +340,7 @@ class ScanBarHorizontalTriangulation(Node):
             Extrahieren von Haken 3 (links im Bild) als zweiter Punkt für Triangulation
             """
             if self.handling_last_two_hooks:
-                if self.yolo_hooks_dict['hook_2']['path_points'] != []:         # wenn path_points im Dict vefügbar
+                if self.yolo_hooks_dict['hook_2']['path_points'] is not None:         # wenn path_points im Dict vefügbar
                     self.hook_horizontal['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
                     self.hook_horizontal['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
                     self.hook_horizontal['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
@@ -350,7 +349,7 @@ class ScanBarHorizontalTriangulation(Node):
                 else:
                     self.hook_extraction_done = False
             elif self.handling_last_hook:
-                if self.yolo_hooks_dict['hook_1']['path_points'] != []:         # wenn path_points im Dict vefügbar
+                if self.yolo_hooks_dict['hook_1']['path_points'] is not None:         # wenn path_points im Dict vefügbar
                     self.hook_horizontal['uv_hook'] = self.yolo_hooks_dict['hook_1']['uv_hook']
                     self.hook_horizontal['uv_tip'] = self.yolo_hooks_dict['hook_1']['uv_tip']
                     self.hook_horizontal['uv_lowpoint'] = self.yolo_hooks_dict['hook_1']['uv_lowpoint']
@@ -369,6 +368,7 @@ class ScanBarHorizontalTriangulation(Node):
                     self.hook_extraction_done = False
 
             if self.hook_extraction_done == True:
+                # CAM Pose in WORK speichern
                 self.T_cam_in_workframe_horizontal = self.frame_handler.get_cam_transform_in_workframe()
                 self.T_cam_in_worldframe_horizontal = self.frame_handler.get_cam_transform_in_world()
 
@@ -535,7 +535,7 @@ class ScanBarHorizontalTriangulation(Node):
             Extrahieren von Haken 2 (rechts im Bild) als Referenzpunkt für die Triangulation
             """
             if self.handling_last_two_hooks:
-                if self.yolo_hooks_dict['hook_1']['path_points'] != []:         # wenn path_points im Dict vefügbar
+                if self.yolo_hooks_dict['hook_1']['path_points'] is not None:         # wenn path_points im Dict vefügbar
                     self.hook_ref['uv_hook'] = self.yolo_hooks_dict['hook_1']['uv_hook']
                     self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_1']['uv_tip']
                     self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_1']['uv_lowpoint']
@@ -545,7 +545,7 @@ class ScanBarHorizontalTriangulation(Node):
                     self.hook_extraction_done = False
 
             else:
-                if self.yolo_hooks_dict['hook_2']['path_points'] != []:         # wenn path_points im Dict vefügbar
+                if self.yolo_hooks_dict['hook_2']['path_points'] is not None:         # wenn path_points im Dict vefügbar
                     self.hook_ref['uv_hook'] = self.yolo_hooks_dict['hook_2']['uv_hook']
                     self.hook_ref['uv_tip'] = self.yolo_hooks_dict['hook_2']['uv_tip']
                     self.hook_ref['uv_lowpoint'] = self.yolo_hooks_dict['hook_2']['uv_lowpoint']
