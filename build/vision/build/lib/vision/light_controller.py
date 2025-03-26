@@ -7,6 +7,7 @@ import numpy as np
 from kr_msgs.srv import SetDiscreteOutput
 from kr_msgs.srv import SetAnalogOutput
 from std_msgs.msg import Bool
+from std_msgs.msg import Float64
 
 
 class LightController(Node):
@@ -40,6 +41,8 @@ class LightController(Node):
         # Subs auf Topics zur Aktivierung/Freezing der Regelung
         self.subscription_light_control_active = self.create_subscription(Bool, '/vision/light_control/active', self.sub_control_active_callback, 10)
         self.subscription_light_control_freeze = self.create_subscription(Bool, '/vision/light_control/freeze', self.sub_control_freeze_callback, 10)
+        self.subscription_light_control_manual = self.create_subscription(Bool, '/vision/light_control/manual_mode', self.sub_control_manual_mode_callback, 10)
+        self.subscription_manual_brightness = self.create_subscription(Float64, '/vision/light_control/manual_brightness', self.sub_manual_control_callback, 10)
         self.light_control_active = True
         self.light_control_freeze = False
 
@@ -51,11 +54,13 @@ class LightController(Node):
         self.set_digital_output(index = 2, value = 1)                       # Spannungsversorgung
         self.set_digital_output(index = 3, value = 1)                       # Schalteingang
         self.set_analog_output(index = 1, value = self.current_voltage)     # Helligkeit auf 2V (minimal)
+        self.manual_voltage = 0
+        self.manual_mode_active = False
 
     
     def image_callback(self, msg):
         try:
-            if self.light_control_active:
+            if self.light_control_active == True and self.manual_mode_active == False:
                 self.set_digital_output(index = 3, value = 1)       # Licht einschalten
                 self.get_logger().warn("Light control on...")
 
@@ -75,15 +80,28 @@ class LightController(Node):
                     self.set_analog_output(index=1, value=self.current_voltage)
                 else:
                     self.get_logger().warn("Light control output freezed...")
-            else:
+            
+            elif self.light_control_active == True and self.manual_mode_active == True:
+                self.set_digital_output(index=3, value=1)  # Licht einschalten
+                self.set_analog_output(index=1, value=self.manual_voltage)
+                self.get_logger().info(f"Manual mode active: setting voltage to {self.manual_voltage:.2f}V")
+
+            elif self.light_control_active == False:
                 self.set_digital_output(index = 3, value = 0)       # Licht ausschalten
                 self.get_logger().warn("Light control off...")
 
         except Exception as e:
             self.get_logger().error(f'Error in image processing: {e}')
 
-
-
+    
+    def manual_brightness_callback(self, msg):
+        if not self.light_control_active:
+            percent = max(0.0, min(100.0, msg.data))  # Begrenzung auf 0-100 %
+            voltage = 2.0 + (percent / 100.0) * (10.0 - 2.0)  # Lineare Skalierung auf 2-10 V
+            self.current_voltage = voltage
+            self.set_analog_output(index=1, value=voltage)
+            self.set_digital_output(index=3, value=1)  # Licht einschalten
+            self.get_logger().info(f'Manual brightness set to {percent}% → {voltage:.2f}V')
 
 
     def set_analog_output(self, index = 1, value = 0.0):
@@ -93,6 +111,7 @@ class LightController(Node):
 
         future = self.set_analog_out_client.call_async(request = req)
         future.add_done_callback(self.analog_output_service_response)
+
 
     def analog_output_service_response(self, future):
         try:
@@ -112,6 +131,7 @@ class LightController(Node):
 
         future = self.set_dig_out_client.call_async(request = req)
         future.add_done_callback(self.digital_output_service_response)
+
 
     def digital_output_service_response(self, future):
         try:
@@ -135,13 +155,21 @@ class LightController(Node):
         self.set_digital_output(index=3, value=0)
 
 
-
     def sub_control_active_callback(self, msg):
         self.light_control_active = msg.data
+
 
     def sub_control_freeze_callback(self, msg):
         self.light_control_freeze = msg.data
 
+    
+    def sub_manual_control_callback(self, msg):
+        percent = max(0.0, min(100.0, msg.data))  # Begrenzung auf 0-100 %
+        self.manual_voltage = 2.0 + (percent / 100.0) * (10.0 - 2.0)  # Lineare Skalierung auf 2-10 V
+
+
+    def sub_control_manual_mode_callback(self, msg):
+        self.manual_mode_active = msg.data
 
 
 
@@ -160,4 +188,3 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
-
