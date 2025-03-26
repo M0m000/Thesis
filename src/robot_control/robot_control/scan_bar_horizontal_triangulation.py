@@ -206,12 +206,12 @@ class ScanBarHorizontalTriangulation(Node):
         """
         Prozessablauf mit Schrittkette - wird zyklisch alle 1ms aufgerufen
         """
-        # prüfe auf Flanken für Haken am Bildrand
+        ##### prüfe auf Flanken für Haken am Bildrand
         rside_rising_edge, rside_falling_edge = self.edge_detector_rside.detect_edge(var=self.new_hook_in_picture)
         lside_rising_edge, lside_falling_edge = self.edge_detector_lside.detect_edge(var=self.hook_in_left_area)
 
 
-        # Fahre von Init Position solange nach rechts, bis 2 Haken zu sehen sind
+        ##### Fahre von Init Position solange nach rechts, bis 2 Haken zu sehen sind
         if self.process_step == "move_until_2_hooks_visible":
             """
             Fahre weiter, bis 2 Haken im Bild zu sehen sind (zu Beginn des Scan-Prozesses benötigt)
@@ -239,7 +239,7 @@ class ScanBarHorizontalTriangulation(Node):
                 self.process_step = "waiting_for_timer"
 
 
-        # Doku - Messung der Schwingung nach Stillstand
+        ##### Doku - Messung der Schwingung nach Stillstand
         if self.process_step == "measure_vibration":
             """
             Messung der Vibrationen nach einem Roboterstopp (zu Testzwecken)
@@ -280,7 +280,7 @@ class ScanBarHorizontalTriangulation(Node):
                 self.process_step = "extract_hook_2_as_init_ref"
 
 
-        # Extrahiere Pixelkoordinaten von Haken 2 nach Beginn des Scans
+        ##### Extrahiere Pixelkoordinaten von Haken 2 nach Beginn des Scans
         if self.process_step == "extract_hook_2_as_init_ref":
             """
             Extrahieren des ersten Haken_2 als initiale Referenz für Triangulation des ersten Hakens
@@ -305,7 +305,7 @@ class ScanBarHorizontalTriangulation(Node):
                 self.process_step = "move_until_new_hook"
 
 
-        # Fahre, bis neuer Haken erscheint
+        ##### Fahre, bis neuer Haken erscheint
         if self.process_step == "move_until_new_hook":
             """
             Weiterfahren, bis im rechten Bildrand eine neue Hakeninstanz auftaucht, dann Stopp
@@ -335,7 +335,7 @@ class ScanBarHorizontalTriangulation(Node):
                     self.process_step = "waiting_for_timer"
         
 
-        # Extrahiere Pixelkoordinaten von Haken 3 (war vorher Haken 2)
+        ##### Extrahiere Pixelkoordinaten von Haken 3 (war vorher Haken 2)
         if self.process_step == "extract_hook_3_as_horizontal_point":
             """
             Extrahieren von Haken 3 (links im Bild) als zweiter Punkt für Triangulation
@@ -377,7 +377,7 @@ class ScanBarHorizontalTriangulation(Node):
                 self.process_step = "horizontal_triangulation"
 
 
-        # Horizontale Triangulation
+        ##### Horizontale Triangulation
         if self.process_step == "horizontal_triangulation":
             """
             Horizontale Triangulation (Berechnung der realen Koordinaten der Hakenpunkte)
@@ -442,7 +442,7 @@ class ScanBarHorizontalTriangulation(Node):
                 self.process_step = "save_hook"
 
 
-        # Speicher die Daten des aktuellen Hakens
+        ##### Speicher die Daten des aktuellen Hakens
         if self.process_step == "save_hook":
             """
             Abspeichern aller Hakenparameter
@@ -529,7 +529,7 @@ class ScanBarHorizontalTriangulation(Node):
                 self.process_step = "waiting_for_timer"
 
 
-        # Extrahiere Pixelkoordinaten von Haken 2 während Prozess
+        ##### Extrahiere Pixelkoordinaten von Haken 2 während Prozess
         if self.process_step == "extract_hook_2_as_ref":
             """
             Extrahieren von Haken 2 (rechts im Bild) als Referenzpunkt für die Triangulation
@@ -574,7 +574,7 @@ class ScanBarHorizontalTriangulation(Node):
                     self.process_step = "move_until_new_hook"
 
 
-        # Fahre, bis Haken aus linkem Randbereich draußen
+        ##### Fahre, bis Haken aus linkem Randbereich draußen
         if self.process_step == "move_until_hook_disappears":
             """
             Weiterfahren, bis der linke Hand im Bild verschwindet (wird für das Handling der letzten 2 Haken benötigt, da Überprüfung auf rechten Bildrand hier nicht mehr funktioniert)
@@ -594,7 +594,7 @@ class ScanBarHorizontalTriangulation(Node):
                 self.process_step = "waiting_for_timer"
 
 
-        # Speichern des Global Dict als CSV, wenn Scanvorgang fertig
+        ##### Speichern des Global Dict als CSV, wenn Scanvorgang fertig
         if self.process_step == "save_global_dict_as_csv":
             """
             Abspeichern des fertigen Dict mit allen Haken
@@ -605,7 +605,7 @@ class ScanBarHorizontalTriangulation(Node):
             self.process_step = "move_back_to_init"
 
 
-        # Zurückfahren auf Startposition
+        ##### Zurückfahren auf Startposition
         if self.process_step == "move_back_to_init":
             """
             Zurückfahren auf die ursprüngliche Startposition
@@ -630,7 +630,7 @@ class ScanBarHorizontalTriangulation(Node):
                 self.node_shutdown_flag = True
 
 
-        # Endzustand
+        ##### Endzustand
         if self.process_step == "finish":
             """
             Endzustand -> Finish
@@ -639,7 +639,9 @@ class ScanBarHorizontalTriangulation(Node):
             self.node_shutdown_flag = True
 
 
-    
+
+
+
     def start_timer_for_step(self, delay_sec):
         """
         Starte einen Timer, der nach einer bestimmten Zeit den nächsten Schritt ausführt
@@ -647,6 +649,7 @@ class ScanBarHorizontalTriangulation(Node):
         next_step = self.upcoming_process_step
         self.get_logger().info(f"Starting timer for {next_step} with {delay_sec} seconds delay")
         self.wait_timer = self.create_timer(delay_sec, self.timer_callback)
+
 
     def timer_callback(self):
         """
@@ -659,7 +662,6 @@ class ScanBarHorizontalTriangulation(Node):
         self.wait_timer = None
 
     
-
     def save_vibration_data_to_csv(self):
         """
         Speichert die Schwingungsdaten in einer CSV-Datei.
@@ -683,9 +685,7 @@ class ScanBarHorizontalTriangulation(Node):
                                  self.vibration_data['uv_tip'][i],
                                  self.vibration_data['uv_lowpoint'][i]])
         self.get_logger().info(f"Vibration data saved as CSV.")
-            
-
-
+    
 
     def publish_linear_velocity(self, vel_in_worldframe):
         """
@@ -713,7 +713,6 @@ class ScanBarHorizontalTriangulation(Node):
             return None
 
 
-
     def hooks_dict_callback(self, msg):
         """
         Callback für das Ankommen neuer Nachrichten aus NN Output
@@ -721,7 +720,6 @@ class ScanBarHorizontalTriangulation(Node):
         self.yolo_hooks_dict = self.hooks_dict_processor.process_hooks_dict(msg)
 
 
-    
     def check_for_new_hook_instance(self):
         """
         überprüft kontinuierlich den Netzoutput, ob im rechten Randbereich des Bildausschnitts eine neue Hakeninstanz auftaucht
@@ -746,8 +744,7 @@ class ScanBarHorizontalTriangulation(Node):
                 self.hook_in_left_area = True
             if x_left_hook > (self.img_width * 0.1) and x_left_hook != 0:
                 self.hook_in_left_area = False
-            
-
+    
         
     def shutdown_node(self):
         """
@@ -763,6 +760,7 @@ class ScanBarHorizontalTriangulation(Node):
         self.timer_check_new_instances.cancel()
         self.destroy_node()
         rclpy.shutdown()
+
 
 
 
