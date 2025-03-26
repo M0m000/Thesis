@@ -38,8 +38,8 @@ class StereoTriangulationProcessor:
         self.t_baseline = None
 
         self.rot_matrix = np.array([[1, 0, 0],
-                                    [0, -1, 0],
-                                    [0, 0, -1]])
+                                    [0, 1, 0],
+                                    [0, 0, 1]])
 
 
     def calculate_relatvie_pose(self, T_cam_1_in_workframe, T_cam_2_in_workframe):
@@ -83,7 +83,7 @@ class StereoTriangulationProcessor:
         projection_matrix_cam1 = self.projection_matrix_cam1 if projection_matrix_cam1 is None else projection_matrix_cam1
         projection_matrix_cam2 = self.projection_matrix_cam2 if projection_matrix_cam2 is None else projection_matrix_cam2
 
-        X_hom = cv2.triangulatePoints(projection_matrix_cam2, projection_matrix_cam1, point_2_uv, point_1_uv)
+        X_hom = cv2.triangulatePoints(projection_matrix_cam1, projection_matrix_cam2, point_1_uv, point_2_uv)
         X = X_hom[:3] / X_hom[3]
         return X
 
@@ -99,11 +99,9 @@ class StereoTriangulationProcessor:
         point_1_uv = self.prepare_point_for_triangulation(point = point_1_uv)
         point_2_uv = self.prepare_point_for_triangulation(point = point_2_uv)
         xyz_point = self.triangulate_point(point_1_uv = point_1_uv, point_2_uv = point_2_uv)
-        print("XYZ Point before Rotation: ", xyz_point)
         xyz_point = self.rot_matrix @ xyz_point
-        print("XYZ Point after Rotation: ", xyz_point)
 
-        end_time = time.perf_counter
+        end_time = time.perf_counter()
         time_token = end_time - start_time
         return xyz_point, time_token if self.measure_time else xyz_point
 

@@ -221,6 +221,7 @@ class FrameHandler(Node):
     def get_cam_transform_in_workframe(self):
         """Lädt die Transformation von CAM zu WORK"""
         T_cam_in_worldframe = self.get_cam_transform_in_world()
+        print(T_cam_in_worldframe)
         return self.transform_worldpose_to_desired_frame(T_cam_in_worldframe, 'work')
     
 

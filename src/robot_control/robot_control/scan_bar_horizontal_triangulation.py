@@ -58,7 +58,7 @@ class ScanBarHorizontalTriangulation(Node):
 
         # Subscriber auf Bildgroesse
         self.img_width = 896
-        self.img_height = 450
+        self.img_height = 480
         self.img_width_sub = self.create_subscription(Int32, 'vcnanoz/image_raw/width', self.received_img_width, 10)
         self.img_width_sub
         self.img_height_sub = self.create_subscription(Int32, 'vcnanoz/image_raw/height', self.received_img_height, 10)
@@ -414,6 +414,10 @@ class ScanBarHorizontalTriangulation(Node):
                     point_2_uv = self.hook_horizontal['uv_lowpoint'], 
                     T_cam_1_in_workframe = self.T_cam_in_workframe_ref, 
                     T_cam_2_in_workframe = self.T_cam_in_workframe_horizontal)
+                
+                print("xyz_hook_in_camframe: ", xyz_hook_in_camframe)
+                print("xyz_tip_in_camframe: ", xyz_tip_in_camframe)
+                print("xyz_lowpoint_in_camframe: ", xyz_lowpoint_in_camframe)
                 
                 time_token = time1 + time2 + time3      # Berechnungszeiten aller drei Punkten addieren
                 
