@@ -742,7 +742,7 @@ class ScanBarVerticalTriangulation(Node):
             
             ### Prüfen auf linken Randbereich -> Detektion, ob alter Haken weg
             if self.handling_last_hook == True:
-                x_left_hook = self.yolo_hooks_dict['hook_2']['uv_hook'][0]
+                x_left_hook = self.yolo_hooks_dict['hook_3']['uv_hook'][0]
             else:
                 x_left_hook = self.yolo_hooks_dict[(list(self.yolo_hooks_dict.keys())[0])]['uv_hook'][0]
             
