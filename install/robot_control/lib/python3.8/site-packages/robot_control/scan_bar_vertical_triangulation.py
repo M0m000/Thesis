@@ -137,8 +137,38 @@ class ScanBarVerticalTriangulation(Node):
         self.wait_timer = None
         self.move_linear_client = MoveLinearServiceClient()
         
+        # Bewegung zum Init-Startpunkt in der Mitte des Gestells
+        init_position_tfc_in_workframe = [662.7679417387326, -457.86324018092, 10.694603651697957]
+        init_rotation_tfc_in_workframe = [0.0, 0.0, 0.0]
+        init_position_tfc_in_worldframe, init_rotation_tfc_in_worldframe = self.frame_handler.transform_pose_to_world(
+            pose_ref_frame = 'work',
+            trans = init_position_tfc_in_workframe,
+            rot = init_rotation_tfc_in_workframe
+        )
 
         ########## Bewege Roboter auf die Startposition ##########
+        self.init_movement_done = False
+        if init_position_tfc_in_worldframe is not None and init_rotation_tfc_in_worldframe is not None:
+            self.init_movement_done = False
+            self.init_movement_done = self.move_linear_client.call_move_linear_service(
+                pos = init_position_tfc_in_worldframe,
+                rot = init_rotation_tfc_in_worldframe,
+                ref = 0,
+                ttype = 0,
+                tvalue = 80.0,
+                bpoint = 0,
+                btype = 0,
+                bvalue = 100.0,
+                sync = 0.0,
+                chaining = 0)
+            
+        if self.init_movement_done == True:
+            self.init_movement_done = False
+            self.get_logger().info("Init movement done successfully!")
+            self.process_step = "move_until_2_hooks_visible"
+        else:
+            self.get_logger().error("Init movement failed!")
+
         self.startpoint_movement_done = False
         if self.startpoint_rot_worldframe is not None and self.startpoint_trans_worldframe is not None:
             self.startpoint_movement_done = False
@@ -156,10 +186,10 @@ class ScanBarVerticalTriangulation(Node):
             
         if self.startpoint_movement_done == True:
             self.startpoint_movement_done = False
-            self.get_logger().info("Init movement done successfully!")
+            self.get_logger().info("Startpose movement done successfully!")
             self.process_step = "move_until_2_hooks_visible"
         else:
-            self.get_logger().error("Init movement failed!")
+            self.get_logger().error("Startpose movement failed!")
         
         # self.get_logger().info("Wait 5 sec...")
         time.sleep(1)
