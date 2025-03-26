@@ -21,6 +21,9 @@ class ScanBarVerticalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_vertical_triangulation')
 
+        self.scan_process_start_time = time.perf_counter()
+        self.scan_process_end_time = None
+
         startpoint_trans_in_workframe = [130.0, -430.0, 20.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
 
@@ -235,7 +238,7 @@ class ScanBarVerticalTriangulation(Node):
                 ##### Nächster Prozessschritt
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 as initial Reference Point>")
                 self.upcoming_process_step = "extract_hook_2_as_init_ref"
-                self.start_timer_for_step(3.0)    # Timer starten
+                self.start_timer_for_step(2.0)    # Timer starten
                 self.process_step = "waiting_for_timer"
 
 
@@ -350,7 +353,6 @@ class ScanBarVerticalTriangulation(Node):
             Vertikale Triangulation (Berechnung der realen Koordinaten der Hakenpunkte)
             """
             vertical_baseline_vector = self.T_cam_in_workframe_vertical[:3, 3] - self.T_cam_in_workframe_ref[:3, 3]
-            print("vertical_baseline_vector: ", vertical_baseline_vector)
             baseline_along_y = vertical_baseline_vector[1]
             self.get_logger().info(f"Baseline along Y axis: {baseline_along_y} mm")
             self.path_point_triangulation_successful = False
@@ -459,9 +461,9 @@ class ScanBarVerticalTriangulation(Node):
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_worldframe'] = xyz_tip_in_worldframe[:3]
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_worldframe'] = xyz_lowpoint_in_worldframe[:3]
 
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_workframe'] = xyz_hook_in_workframe
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_workframe'] = xyz_tip_in_workframe
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_workframe'] = xyz_lowpoint_in_workframe
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_workframe'] = xyz_hook_in_workframe.flatten().tolist()
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_workframe'] = xyz_tip_in_workframe.flatten().tolist()
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_workframe'] = xyz_lowpoint_in_workframe.flatten().tolist()
 
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_path_points_in_workframe'] = xyz_path_points_in_workframe
 
@@ -473,13 +475,13 @@ class ScanBarVerticalTriangulation(Node):
             ##### Ausgabe der aktuellen Daten
             self.get_logger().warn(f"------------------------------------------------------------------")
             self.get_logger().warn(f"Data for hook {self.act_hook_num}")
-            self.get_logger().warn(f"Hook XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_workframe']}")
-            self.get_logger().warn(f"Lowpoint XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_workframe']}")
-            self.get_logger().warn(f"Tip XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_workframe']}")
+            self.get_logger().warn(f"Hook XYZ [vertical]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_workframe']}")
+            self.get_logger().warn(f"Lowpoint XYZ [vertical]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_workframe']}")
+            self.get_logger().warn(f"Tip XYZ [vertical]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_workframe']}")
             if self.path_point_triangulation_successful:
-                self.get_logger().warn(f"Time token for path points triangulation [horizontal]: {time_token_ppoint_triangulation:.6f} sec")
-                self.get_logger().warn(f"Path points XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_path_points_in_workframe']}")
-            self.get_logger().warn(f"Time token for hook triangulation [horizontal]: {time_token:.6f} sec")
+                self.get_logger().warn(f"Time token for path points triangulation [vertical]: {time_token_ppoint_triangulation:.6f} sec")
+                self.get_logger().warn(f"Path points XYZ [vertical]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_path_points_in_workframe']}")
+            self.get_logger().warn(f"Time token for hook triangulation [vertical]: {time_token:.6f} sec")
             self.get_logger().warn(f"already scanned: {len(self.global_hooks_dict)} Hooks")
             self.get_logger().warn(f"------------------------------------------------------------------")
             
@@ -492,7 +494,7 @@ class ScanBarVerticalTriangulation(Node):
                     self.handling_last_hook = True
                 self.get_logger().info("Done! -> next process step <Move Back To Ref Hook>")
                 self.upcoming_process_step = "move_back_to_ref_hook"
-                self.start_timer_for_step(3.0)    # Timer starten
+                self.start_timer_for_step(2.0)    # Timer starten
                 self.process_step = "waiting_for_timer"
 
 
@@ -553,7 +555,7 @@ class ScanBarVerticalTriangulation(Node):
                 else:
                     self.get_logger().info("Done! -> next process step <Extract Hook 2 as Reference>")
                     self.upcoming_process_step = "extract_hook_2_as_ref"
-                    self.start_timer_for_step(3.0)    # Timer starten
+                    self.start_timer_for_step(2.0)    # Timer starten
                     self.process_step = "waiting_for_timer"
 
 
@@ -599,7 +601,7 @@ class ScanBarVerticalTriangulation(Node):
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 as Horizontal Point>")
                 self.upcoming_process_step = "extract_hook_2_as_ref"
-                self.start_timer_for_step(3.0)      # Timer starten
+                self.start_timer_for_step(2.0)      # Timer starten
                 self.process_step = "waiting_for_timer"
 
 
@@ -641,6 +643,9 @@ class ScanBarVerticalTriangulation(Node):
             """
             self.get_logger().info("Scan finished!")
             self.node_shutdown_flag = True
+            self.scan_process_end_time = time.perf_counter()
+            self.get_logger().warn(f"Time token for full scan process: {((self.scan_process_end_time - self.scan_process_start_time) / 60):.2f}min")
+
 
 
 

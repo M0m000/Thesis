@@ -132,7 +132,7 @@ class StereoTriangulationProcessor:
                     T_cam_2_in_workframe = T_cam_2_in_workframe)
                 xyz_path_points.append(xyz_ppoint)
         
-        end_time = time.perf_counter() if self.measure_time else None
-        time_token = end_time - start_time if self.measure_time else None
+        end_time = time.perf_counter()
+        time_token = end_time - start_time
         return xyz_path_points, time_token if self.measure_time else xyz_path_points
     

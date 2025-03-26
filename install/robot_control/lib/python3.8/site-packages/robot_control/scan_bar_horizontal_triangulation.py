@@ -22,6 +22,9 @@ class ScanBarHorizontalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_horizontal_triangulation')
 
+        self.scan_process_start_time = time.perf_counter()
+        self.scan_process_end_time = None
+
         startpoint_trans_in_workframe = [130.0, -430.0, 20.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
 
@@ -235,7 +238,7 @@ class ScanBarHorizontalTriangulation(Node):
                 ##### Nächster Prozessschritt
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 as initial Reference Point>")
                 self.upcoming_process_step = "extract_hook_2_as_init_ref"
-                self.start_timer_for_step(3.0)    # Timer starten
+                self.start_timer_for_step(2.0)    # Timer starten
                 self.process_step = "waiting_for_timer"
 
 
@@ -330,7 +333,7 @@ class ScanBarHorizontalTriangulation(Node):
                 else:
                     self.get_logger().info("Done! -> next process step <Extract Hook 3 as Horizontal Point>")
                     self.upcoming_process_step = "extract_hook_3_as_horizontal_point"
-                    self.start_timer_for_step(3.0)    # Timer starten
+                    self.start_timer_for_step(2.0)    # Timer starten
                     self.process_step = "waiting_for_timer"
         
 
@@ -494,9 +497,9 @@ class ScanBarHorizontalTriangulation(Node):
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_worldframe'] = xyz_tip_in_worldframe[:3]
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_worldframe'] = xyz_lowpoint_in_worldframe[:3]
 
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_workframe'] = xyz_hook_in_workframe
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_workframe'] = xyz_tip_in_workframe
-            self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_workframe'] = xyz_lowpoint_in_workframe
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_workframe'] = xyz_hook_in_workframe.flatten().tolist()
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_workframe'] = xyz_tip_in_workframe.flatten().tolist()
+            self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_workframe'] = xyz_lowpoint_in_workframe.flatten().tolist()
 
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_path_points_in_workframe'] = xyz_path_points_in_workframe
 
@@ -525,7 +528,7 @@ class ScanBarHorizontalTriangulation(Node):
             else:
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 as Reference>")
                 self.upcoming_process_step = "extract_hook_2_as_ref"
-                self.start_timer_for_step(3.0)    # Timer starten
+                self.start_timer_for_step(2.0)    # Timer starten
                 self.process_step = "waiting_for_timer"
 
 
@@ -590,7 +593,7 @@ class ScanBarHorizontalTriangulation(Node):
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 as Horizontal Point>")
                 self.upcoming_process_step = "extract_hook_3_as_horizontal_point"
-                self.start_timer_for_step(3.0)    # Timer starten
+                self.start_timer_for_step(2.0)    # Timer starten
                 self.process_step = "waiting_for_timer"
 
 
@@ -637,6 +640,8 @@ class ScanBarHorizontalTriangulation(Node):
             """
             self.get_logger().info("Scan finished!")
             self.node_shutdown_flag = True
+            self.scan_process_end_time = time.perf_counter()
+            self.get_logger().warn(f"Time token for full scan process: {((self.scan_process_end_time - self.scan_process_start_time) / 60):.2f}min")
 
 
 
