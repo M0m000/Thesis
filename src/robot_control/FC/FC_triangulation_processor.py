@@ -92,6 +92,8 @@ class StereoTriangulationProcessor:
         """
         Funktion, die für die Triangulation mit vorgegebener Baseline Transformation genutzt werden kann
         """
+        start_time = time.perf_counter()
+
         self.calculate_relatvie_pose(T_cam_1_in_workframe = T_cam_1_in_workframe, T_cam_2_in_workframe = T_cam_2_in_workframe)
         self.calculate_projection_matrices()
         point_1_uv = self.prepare_point_for_triangulation(point = point_1_uv)
@@ -100,7 +102,10 @@ class StereoTriangulationProcessor:
         print("XYZ Point before Rotation: ", xyz_point)
         xyz_point = self.rot_matrix @ xyz_point
         print("XYZ Point after Rotation: ", xyz_point)
-        return xyz_point
+
+        end_time = time.perf_counter
+        time_token = end_time - start_time
+        return xyz_point, time_token if self.measure_time else xyz_point
 
 
     def triangulate_path_points(self, uv_path_points_1 = None, uv_path_points_2 = None,
@@ -123,11 +128,13 @@ class StereoTriangulationProcessor:
             for idx in range(num_ppoints_1):
                 ppoint_img1 = uv_path_points_1[idx]
                 ppoint_img2 = uv_path_points_2[idx]
-                xyz_ppoint = self.triangulate_single_point(point_1_uv = ppoint_img1, point_2_uv = ppoint_img2, 
-                                                           T_cam_1_in_workframe = T_cam_1_in_workframe, 
-                                                           T_cam_2_in_workframe = T_cam_2_in_workframe)
+                xyz_ppoint, _ = self.triangulate_single_point(
+                    point_1_uv = ppoint_img1, point_2_uv = ppoint_img2, 
+                    T_cam_1_in_workframe = T_cam_1_in_workframe, 
+                    T_cam_2_in_workframe = T_cam_2_in_workframe)
                 xyz_path_points.append(xyz_ppoint)
         
         end_time = time.perf_counter() if self.measure_time else None
         time_token = end_time - start_time if self.measure_time else None
         return xyz_path_points, time_token if self.measure_time else xyz_path_points
+    
