@@ -37,9 +37,9 @@ class StereoTriangulationProcessor:
         self.R_baseline = None
         self.t_baseline = None
 
-        self.rot_matrix = np.array([[1, 0, 0],
-                                    [0, 1, 0],
-                                    [0, 0, 1]])
+        self.rot_matrix = np.array([[-1, 0, 0],
+                                    [0, -1, 0],
+                                    [0, 0, -1]])
 
 
     def calculate_relatvie_pose(self, T_cam_1_in_workframe, T_cam_2_in_workframe):
@@ -83,7 +83,7 @@ class StereoTriangulationProcessor:
         projection_matrix_cam1 = self.projection_matrix_cam1 if projection_matrix_cam1 is None else projection_matrix_cam1
         projection_matrix_cam2 = self.projection_matrix_cam2 if projection_matrix_cam2 is None else projection_matrix_cam2
 
-        X_hom = cv2.triangulatePoints(projection_matrix_cam1, projection_matrix_cam2, point_1_uv, point_2_uv)
+        X_hom = cv2.triangulatePoints(projection_matrix_cam2, projection_matrix_cam1, point_2_uv, point_1_uv)
         X = X_hom[:3] / X_hom[3]
         return X
 

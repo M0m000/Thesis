@@ -415,10 +415,6 @@ class ScanBarHorizontalTriangulation(Node):
                     T_cam_1_in_workframe = self.T_cam_in_workframe_ref, 
                     T_cam_2_in_workframe = self.T_cam_in_workframe_horizontal)
                 
-                print("xyz_hook_in_camframe: ", xyz_hook_in_camframe)
-                print("xyz_tip_in_camframe: ", xyz_tip_in_camframe)
-                print("xyz_lowpoint_in_camframe: ", xyz_lowpoint_in_camframe)
-                
                 time_token = time1 + time2 + time3      # Berechnungszeiten aller drei Punkten addieren
                 
 
@@ -429,8 +425,8 @@ class ScanBarHorizontalTriangulation(Node):
                 if uv_path_points_ref is not None and uv_path_points_horizontal is not None:
                     self.path_point_triangulation_successful = True
                     self.xyz_path_points_in_camframe, time_token_ppoint_triangulation = self.triangulation_processor.triangulate_path_points(                    
-                        uv_path_points_1 = uv_path_points_horizontal, 
-                        uv_path_points_2 = uv_path_points_ref,
+                        uv_path_points_1 = uv_path_points_ref, 
+                        uv_path_points_2 = uv_path_points_horizontal,
                         T_cam_1_in_workframe = self.T_cam_in_workframe_ref, 
                         T_cam_2_in_workframe = self.T_cam_in_workframe_horizontal)
 
