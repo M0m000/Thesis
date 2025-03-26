@@ -98,7 +98,7 @@ class ScanBarHorizontalTriangulation(Node):
         self.frame_handler = FrameHandler(node_name = 'frame_handler_node_for_scan_bar', save_path = frame_csv_path)
         self.cam_to_world_transform = None
 
-        self.startpoint_trans_worldframe, self.startpoint_rot_worldframe = self.frame_handler.transform_pose_to_world(
+        self.start_position_tfc_in_worldframe, self.start_rotation_tfc_in_worldframe = self.frame_handler.transform_pose_to_world(
             trans = startpoint_trans_in_workframe,
             rot = startpoint_rot_in_workframe,
             pose_ref_frame = 'work')
@@ -141,7 +141,7 @@ class ScanBarHorizontalTriangulation(Node):
         # Bewegung zum Init-Startpunkt in der Mitte des Gestells
         init_position_tfc_in_workframe = [662.7679417387326, -457.86324018092, 10.694603651697957]
         init_rotation_tfc_in_workframe = [0.0, 0.0, 0.0]
-        init_position_tfc_in_worldframe, init_rotation_tfc_in_worldframe = self.frame_handler.transform_pose_to_world(
+        self.init_position_tfc_in_worldframe, self.init_rotation_tfc_in_worldframe = self.frame_handler.transform_pose_to_world(
             pose_ref_frame = 'work',
             trans = init_position_tfc_in_workframe,
             rot = init_rotation_tfc_in_workframe
@@ -149,14 +149,14 @@ class ScanBarHorizontalTriangulation(Node):
 
         ########## Bewege Roboter auf die Startposition ##########
         self.init_movement_done = False
-        if init_position_tfc_in_worldframe is not None and init_rotation_tfc_in_worldframe is not None:
+        if self.init_position_tfc_in_worldframe is not None and self.init_rotation_tfc_in_worldframe is not None:
             self.init_movement_done = False
             self.init_movement_done = self.move_linear_client.call_move_linear_service(
-                pos = init_position_tfc_in_worldframe,
-                rot = init_rotation_tfc_in_worldframe,
+                pos = self.init_position_tfc_in_worldframe,
+                rot = self.init_rotation_tfc_in_worldframe,
                 ref = 0,
                 ttype = 0,
-                tvalue = 80.0,
+                tvalue = 150.0,
                 bpoint = 0,
                 btype = 0,
                 bvalue = 100.0,
@@ -171,14 +171,14 @@ class ScanBarHorizontalTriangulation(Node):
             self.get_logger().error("Init movement failed!")
 
         self.startpoint_movement_done = False
-        if self.startpoint_rot_worldframe is not None and self.startpoint_trans_worldframe is not None:
+        if self.start_rotation_tfc_in_worldframe is not None and self.start_position_tfc_in_worldframe is not None:
             self.startpoint_movement_done = False
             self.startpoint_movement_done = self.move_linear_client.call_move_linear_service(
-                pos = self.startpoint_trans_worldframe,
-                rot = self.startpoint_rot_worldframe,
+                pos = self.start_position_tfc_in_worldframe,
+                rot = self.start_rotation_tfc_in_worldframe,
                 ref = 0,
                 ttype = 0,
-                tvalue = 80.0,
+                tvalue = 100.0,
                 bpoint = 0,
                 btype = 0,
                 bvalue = 100.0,
@@ -646,8 +646,8 @@ class ScanBarHorizontalTriangulation(Node):
             Zurückfahren auf die ursprüngliche Startposition
             """
             self.startpoint_movement_done = self.move_linear_client.call_move_linear_service(
-                pos = self.startpoint_trans_worldframe,
-                rot = self.startpoint_rot_worldframe,
+                pos = self.init_position_tfc_in_worldframe,
+                rot = self.init_rotation_tfc_in_worldframe,
                 ref = 0,
                 ttype = 0,
                 tvalue = 100.0,
