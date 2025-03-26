@@ -69,6 +69,7 @@ class ScanBarVerticalTriangulation(Node):
         self.path_point_triangulation_successful = False
         self.xyz_path_points_in_camframe = None
         self.hook_extraction_done = False
+        self._help_movement_service_called = False
 
         # Dict für die Aufzeichnung von Schwingungsdaten
         self.vibration_data = {'time': [], 'uv_hook': [], 'uv_tip': [], 'uv_lowpoint': []}  # Schwingungsdaten
@@ -128,8 +129,6 @@ class ScanBarVerticalTriangulation(Node):
         # Timer für Prozess
         self.process_step = None
         self.process_timer = self.create_timer(0.001, self.process_main)
-        self._help_movement_done = False
-        self._help_movement_service_called = False
         self.upcoming_process_step = None
         self.wait_timer = None
         self.move_linear_client = MoveLinearServiceClient()
