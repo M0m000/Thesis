@@ -23,7 +23,7 @@ class ScanBarHorizontalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_horizontal_triangulation')
 
-        startpoint_trans_in_workframe = [150.0, -430.0, 30.0]
+        startpoint_trans_in_workframe = [150.0, -430.0, 40.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
 
         self.node_shutdown_flag = False
@@ -81,7 +81,7 @@ class ScanBarHorizontalTriangulation(Node):
 
         # Instanz Doku Plotfenster
         self.doc_visualizer = DocVisualization(plot_save_filename = 'src/robot_control/robot_control/data/global_scan_dicts/horizontal_scan_plot.png')
-        self.doc_visualizer.init_plot()
+        # self.doc_visualizer.init_plot()
 
         self.T_cam_in_workframe_ref = None
         self.T_cam_in_worldframe_ref = None
@@ -554,12 +554,13 @@ class ScanBarHorizontalTriangulation(Node):
             self.get_logger().warn(f"already scanned: {len(self.global_hooks_dict)} Hooks")
             self.get_logger().warn(f"------------------------------------------------------------------")
 
+            
             ##### Visualisierung aktualisieren
             self.doc_visualizer.update_lists(hook_point = xyz_hook_in_workframe.flatten().tolist(),
                                              lowpoint_point = xyz_lowpoint_in_workframe.flatten().tolist(),
-                                             tip_point = xyz_tip_in_workframe.flatten().tolist())
+                                             tip_point = xyz_tip_in_workframe.flatten().tolist(),
+                                             path_points = xyz_path_points_in_workframe)
             self.doc_visualizer.update_plot()
-            self.doc_visualizer.show_interactive_plot()
             
             ##### Nächster Prozessschritt
             if len(self.global_hooks_dict) == self.num_hooks_existing:
@@ -645,7 +646,6 @@ class ScanBarHorizontalTriangulation(Node):
             Abspeichern des fertigen Dict mit allen Haken
             """
             save_dict_to_csv(node = self, data = self.global_hooks_dict, filename = 'src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv')
-            self.doc_visualizer.save_plot_as_png()
             
             ##### Nächster Prozessschritt
             self.get_logger().info("Done! -> next process step <Finish>")
@@ -801,11 +801,13 @@ class ScanBarHorizontalTriangulation(Node):
         """
         Funktion für Node-Shutdown
         """
+        self.doc_visualizer.save_plot_as_png()
+
         if self.baseline_error:
             self.get_logger().error("Shutting down node... Consider restarting KR1205 Controller")
         else:
             self.get_logger().info("Shutting down node...")
-
+        
         # Timer stoppen und Node zerstören
         self.process_timer.cancel()
         self.timer_check_new_instances.cancel()

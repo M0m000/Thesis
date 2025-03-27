@@ -1,112 +1,161 @@
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
+import pyqtgraph as pg
+import pyqtgraph.opengl as gl
+from PyQt5 import QtWidgets
 import numpy as np
-import cv2
-from io import BytesIO
+import sys
 from PIL import Image
 
+# pg.setConfigOption('background', 'w')
+# pg.setConfigOption('foreground', 'k')
+
 class DocVisualization:
-    def __init__(self, plot_save_filename = 'plot.png'):
-        self.hook_points = []
-        self.lowpoint_points = []
-        self.tip_points = []
-        
-        # Plot-Objekte
-        self.fig = None
-        self.ax3d = None
-        self.scatter_hook = None
-        self.scatter_lowpoint = None
-        self.scatter_tip = None
+    def __init__(self, plot_save_filename='3d_graphic.png'):
 
         self.plot_save_filename = plot_save_filename
 
-    def update_lists(self, hook_point, lowpoint_point, tip_point):
+        self.hook_points = []
+        self.lowpoint_points = []
+        self.tip_points = []
+        self.path_points = []
+
+        # Qt-Init
+        self.app = QtWidgets.QApplication(sys.argv)
+        self.window = gl.GLViewWidget()
+        self.window.setWindowTitle('3D Visualisierung')
+        self.window.setGeometry(0, 110, 1920, 720)
+        self.window.show()
+        self.window.setCameraPosition(elevation=30, azimuth=260)
+
+        # Achsen hinzufügen
+        grid = gl.GLGridItem()
+        # grid.setColor((0.5, 0.5, 0.5, 1))
+        grid.scale(1000, 1000, 1000)
+        self.window.addItem(grid)
+        self.window.opts['distance'] = 2000
+
+        # Scatter-Objekte
+        self.scatter_hook = gl.GLScatterPlotItem()
+        self.scatter_lowpoint = gl.GLScatterPlotItem()
+        self.scatter_tip = gl.GLScatterPlotItem()
+        self.scatter_path = gl.GLScatterPlotItem()
+
+        # Linienliste
+        self.line_items = []
+
+        self.window.addItem(self.scatter_hook)
+        self.window.addItem(self.scatter_lowpoint)
+        self.window.addItem(self.scatter_tip)
+        self.window.addItem(self.scatter_path)
+
+    def update_lists(self, hook_point, lowpoint_point, tip_point, path_points):
         self.hook_points.append(hook_point)
         self.lowpoint_points.append(lowpoint_point)
         self.tip_points.append(tip_point)
-
-    def init_plot(self):
-        self.fig = plt.figure(figsize=(10, 6))
-        self.ax3d = self.fig.add_subplot(projection='3d')
-
-        # Leere Scatterplots erzeugen
-        self.scatter_hook = self.ax3d.scatter([], [], [], color='red', s=60, label='Haken')
-        self.scatter_lowpoint = self.ax3d.scatter([], [], [], color='green', s=60, label='Spitze')
-        self.scatter_tip = self.ax3d.scatter([], [], [], color='blue', s=60, label='Senke')
-
-        self.ax3d.set_xlabel("X")
-        self.ax3d.set_ylabel("Z")
-        self.ax3d.set_zlabel("Y")
-        self.ax3d.set_title("Vergleich Triangulationsverfahren Hakenspitze")
-        self.ax3d.set_xlim([0, 1000])
-        self.ax3d.set_ylim([200, 380])
-        self.ax3d.set_zlim([0, 600])
-        self.ax3d.legend()
+        self.path_points.append(path_points)
 
     def update_plot(self):
-        if self.fig is None or self.ax3d is None:
-            self.init_plot()
+        def convert_points(points):
+            return np.array([[p[0], p[2], -p[1]] for p in points])  # x, y, z (negiertes y → z)
 
-        def extract_xyz(points):
-            x = [p[0] for p in points]
-            y = [-p[1] for p in points]
-            z = [p[2] for p in points]
-            return x, y, z
+        hook_array = convert_points(self.hook_points)
+        low_array = convert_points(self.lowpoint_points)
+        tip_array = convert_points(self.tip_points)
+        path_array = np.vstack([convert_points(p) for p in self.path_points]) if self.path_points else np.empty((0, 3))
 
-        # Update Daten der Scatterplots
-        xh, yh, zh = extract_xyz(self.hook_points)
-        xl, yl, zl = extract_xyz(self.lowpoint_points)
-        xt, yt, zt = extract_xyz(self.tip_points)
+        # Update Scatter
+        self.scatter_hook.setData(pos=hook_array, color=(1, 0, 0, 1), size=10)      # rot
+        self.scatter_lowpoint.setData(pos=low_array, color=(0, 0, 1, 1), size=10)   # blau
+        self.scatter_tip.setData(pos=tip_array, color=(0, 1, 0, 1), size=10)        # grün
+        self.scatter_path.setData(pos=path_array, color=(1, 0, 1, 1), size=5)       # magenta
 
-        # Damit matplotlib nicht alles übereinander zeichnet: clear
-        self.ax3d.cla()
+        # Alte Linien entfernen
+        for line in self.line_items:
+            self.window.removeItem(line)
+        self.line_items.clear()
 
-        # Achsen & Labels neu setzen
-        self.ax3d.set_xlabel("X")
-        self.ax3d.set_ylabel("Z")
-        self.ax3d.set_zlabel("Y")
-        self.ax3d.set_title("Vergleich Triangulationsverfahren Hakenspitze")
-        self.ax3d.set_xlim([0, 1000])
-        self.ax3d.set_ylim([200, 380])
-        self.ax3d.set_zlim([0, 600])
+        # Neue Linien (Hook → Lowpoint → Tip)
+        for i in range(len(self.hook_points)):
+            if i < len(self.lowpoint_points) and i < len(self.tip_points):
+                h = self.hook_points[i]
+                l = self.lowpoint_points[i]
+                t = self.tip_points[i]
 
-        # Neue Daten setzen
-        self.ax3d.scatter(xh, yh, zh, color='red', s=60, label='Haken')
-        self.ax3d.scatter(xl, yl, zl, color='green', s=60, label='Spitze')
-        self.ax3d.scatter(xt, yt, zt, color='blue', s=60, label='Senke')
-        self.ax3d.legend()
+                hl = np.array([[h[0], h[2], -h[1]], [l[0], l[2], -l[1]]])
+                lt = np.array([[l[0], l[2], -l[1]], [t[0], t[2], -t[1]]])
 
-    def _show_plot_cv2(self):
-        buf = BytesIO()
-        self.fig.tight_layout()
-        self.fig.savefig(buf, format='png')
-        buf.seek(0)
-        img = np.array(Image.open(buf))
-        img_cv = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+                line1 = gl.GLLinePlotItem(pos=hl, color=(0.5, 0.5, 0.5, 1), width=2, antialias=True)
+                line2 = gl.GLLinePlotItem(pos=lt, color=(0.5, 0.5, 0.5, 1), width=2, antialias=True)
+                self.window.addItem(line1)
+                self.window.addItem(line2)
+                self.line_items.extend([line1, line2])
 
-        cv2.imshow("3D Plot", img_cv)
-        cv2.waitKey(1)  # Nur kurzes Warten (z. B. für Live-Update)
+        # Automatische Kamerazentrierung & Skalierung
+        all_points = np.concatenate([
+            hook_array,
+            low_array,
+            tip_array,
+            path_array
+        ]) if len(path_array) > 0 else np.concatenate([
+            hook_array,
+            low_array,
+            tip_array
+        ])
+
+        if all_points.size > 0:
+            min_vals = np.min(all_points, axis=0)
+            max_vals = np.max(all_points, axis=0)
+            center = (min_vals + max_vals) / 2
+            max_range = np.max(max_vals - min_vals)
+
+            # Kamera zentrieren
+            self.window.setCameraPosition(
+                pos=pg.Vector(*center),
+                distance=max_range * 1.0,
+                elevation=self.window.opts['elevation'],
+                azimuth=self.window.opts['azimuth']
+            )
+
+            # Dynamisches Koordinatensystem anzeigen
+            axis_len = max_range * 0.1
+
+            if hasattr(self, 'axis_items'):
+                for item in self.axis_items:
+                    self.window.removeItem(item)
+
+            origin = center
+            self.axis_items = []
+
+            # X-Achse (rot)
+            x_axis = gl.GLLinePlotItem(pos=np.array([
+                origin,
+                origin + np.array([axis_len, 0, 0])
+            ]), color=(1, 0, 0, 0.7), width=2)
+            self.window.addItem(x_axis)
+            self.axis_items.append(x_axis)
+
+            # Y-Achse (grün)
+            y_axis = gl.GLLinePlotItem(pos=np.array([
+                origin,
+                origin + np.array([0, 0, -axis_len])
+            ]), color=(0, 1, 0, 0.7), width=2)
+            self.window.addItem(y_axis)
+            self.axis_items.append(y_axis)
+
+            # Z-Achse (blau)
+            z_axis = gl.GLLinePlotItem(pos=np.array([
+                origin,
+                origin + np.array([0, axis_len, 0])
+            ]), color=(0, 0, 1, 0.7), width=2)
+            self.window.addItem(z_axis)
+            self.axis_items.append(z_axis)
+
+        self.app.processEvents()
 
     def save_plot_as_png(self):
-        """
-        Speichert den aktuellen Plot als PNG-Datei.
-        """
-        # In OpenCV anzeigen
-        self._show_plot_cv2()
-        
-        if self.fig is None or self.ax3d is None:
-            print("Plot wurde noch nicht initialisiert. Wird nun erstellt.")
-            self.update_plot()  # Erstellt automatisch initialen Plot
-
-        self.fig.tight_layout()
-        self.fig.savefig(self.plot_save_filename, format='png')
-        print(f"Plot gespeichert als: {self.plot_save_filename}")
-
-    def show_interactive_plot(self):
-        """
-        Zeigt den Plot in einem interaktiven Matplotlib-Fenster (mit Mausnavigation).
-        """
-        if self.fig is None or self.ax3d is None:
-            self.update_plot()
-
-        plt.show()
+        screenshot = self.window.grabFramebuffer()
+        success = screenshot.save(self.plot_save_filename, 'PNG')
+        if success:
+            print(f"3D Plot saved as: {self.plot_save_filename}")
+        else:
+            print("Error at saving 3D Plot!")
+    
