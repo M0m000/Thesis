@@ -29,7 +29,7 @@ vc_2_img_receiver_node:
 
 yolov8_inference_node:
   ros__parameters:
-    yolov8_inference_node: "/home/mo/Thesis/YoloV8_InstanceSeg/runs/train/nano/full_set/20250119_1052/weights/best.pt"
+    yolov8_inference_node: "/home/mo/Thesis/YoloV8_InstanceSeg/runs/train/mediun/full_set/20250118_1640/weights/best.pt"
     confidence_threshold: 0.2
     do_preprocessing: False
     show_cam_img: False
@@ -65,4 +65,4 @@ scan_bar_horizontal_triangulation_node:
     
 light_controller_node:
   ros__parameters:
-    desired_brightness: 220.0
+    desired_brightness: 230.0

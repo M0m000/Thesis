@@ -1,0 +1,21 @@
+running develop
+running egg_info
+writing kr_example_python.egg-info/PKG-INFO
+writing dependency_links to kr_example_python.egg-info/dependency_links.txt
+writing entry points to kr_example_python.egg-info/entry_points.txt
+writing requirements to kr_example_python.egg-info/requires.txt
+writing top-level names to kr_example_python.egg-info/top_level.txt
+reading manifest file 'kr_example_python.egg-info/SOURCES.txt'
+writing manifest file 'kr_example_python.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/mo/Thesis/install/kr_example_python/lib/python3.8/site-packages/kr-example-python.egg-link (link to .)
+Installing follow_joint script to /home/mo/Thesis/install/kr_example_python/lib/kr_example_python
+Installing jog_linear script to /home/mo/Thesis/install/kr_example_python/lib/kr_example_python
+Installing move_joint script to /home/mo/Thesis/install/kr_example_python/lib/kr_example_python
+Installing robot_state script to /home/mo/Thesis/install/kr_example_python/lib/kr_example_python
+Installing self_motion script to /home/mo/Thesis/install/kr_example_python/lib/kr_example_python
+
+Installed /home/mo/Thesis/build/kr_example_python
+running symlink_data
+symbolically linking /home/mo/Thesis/build/kr_example_python/resource/kr_example_python -> /home/mo/Thesis/install/kr_example_python/share/ament_index/resource_index/packages
+symbolically linking /home/mo/Thesis/build/kr_example_python/package.xml -> /home/mo/Thesis/install/kr_example_python/share/kr_example_python

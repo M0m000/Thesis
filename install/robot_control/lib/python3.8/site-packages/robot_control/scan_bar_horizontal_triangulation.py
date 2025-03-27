@@ -7,6 +7,7 @@ from FC.FC_edge_detector import EdgeDetector
 from FC.FC_frame_handler import FrameHandler
 from FC.FC_triangulation_processor import StereoTriangulationProcessor
 from FC.FC_save_load_global_hook_dict import save_dict_to_csv
+from FC.FC_doc_visualization import DocVisualization
 from kr_msgs.msg import JogLinear
 from kr_msgs.srv import SelectJoggingFrame
 from kr_msgs.srv import SetSystemFrame
@@ -22,7 +23,7 @@ class ScanBarHorizontalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_horizontal_triangulation')
 
-        startpoint_trans_in_workframe = [130.0, -430.0, 20.0]
+        startpoint_trans_in_workframe = [150.0, -430.0, 30.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
 
         self.node_shutdown_flag = False
@@ -77,6 +78,10 @@ class ScanBarHorizontalTriangulation(Node):
         self.first_measurement_iteration = True
         self.measurement_start_time = None
         self.measure_hook_2 = True
+
+        # Instanz Doku Plotfenster
+        self.doc_visualizer = DocVisualization(plot_save_filename = 'src/robot_control/robot_control/data/global_scan_dicts/horizontal_scan_plot.png')
+        self.doc_visualizer.init_plot()
 
         self.T_cam_in_workframe_ref = None
         self.T_cam_in_worldframe_ref = None
@@ -548,6 +553,13 @@ class ScanBarHorizontalTriangulation(Node):
             self.get_logger().warn(f"Time token for hook triangulation [horizontal]: {time_token:.6f} sec")
             self.get_logger().warn(f"already scanned: {len(self.global_hooks_dict)} Hooks")
             self.get_logger().warn(f"------------------------------------------------------------------")
+
+            ##### Visualisierung aktualisieren
+            self.doc_visualizer.update_lists(hook_point = xyz_hook_in_workframe.flatten().tolist(),
+                                             lowpoint_point = xyz_lowpoint_in_workframe.flatten().tolist(),
+                                             tip_point = xyz_tip_in_workframe.flatten().tolist())
+            self.doc_visualizer.update_plot()
+            self.doc_visualizer.show_interactive_plot()
             
             ##### Nächster Prozessschritt
             if len(self.global_hooks_dict) == self.num_hooks_existing:
@@ -633,6 +645,8 @@ class ScanBarHorizontalTriangulation(Node):
             Abspeichern des fertigen Dict mit allen Haken
             """
             save_dict_to_csv(node = self, data = self.global_hooks_dict, filename = 'src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv')
+            self.doc_visualizer.save_plot_as_png()
+            
             ##### Nächster Prozessschritt
             self.get_logger().info("Done! -> next process step <Finish>")
             self.process_step = "move_back_to_init"

@@ -1,0 +1,32 @@
+[1.637s] Invoking command in '/home/mo/Thesis/build/vision': PYTHONPATH=/home/mo/Thesis/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/mo/Thesis/build/vision/build --no-deps symlink_data --force
+[2.009s] running develop
+[2.319s] running egg_info
+[2.348s] writing vision.egg-info/PKG-INFO
+[2.348s] writing dependency_links to vision.egg-info/dependency_links.txt
+[2.348s] writing entry points to vision.egg-info/entry_points.txt
+[2.348s] writing requirements to vision.egg-info/requires.txt
+[2.348s] writing top-level names to vision.egg-info/top_level.txt
+[2.405s] reading manifest file 'vision.egg-info/SOURCES.txt'
+[2.407s] writing manifest file 'vision.egg-info/SOURCES.txt'
+[2.486s] running build_ext
+[2.486s] Creating /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision.egg-link (link to .)
+[2.487s] Installing calibration script to /home/mo/Thesis/install/vision/lib/vision
+[2.487s] Installing hook_detector script to /home/mo/Thesis/install/vision/lib/vision
+[2.488s] Installing image_filters script to /home/mo/Thesis/install/vision/lib/vision
+[2.489s] Installing image_receiver script to /home/mo/Thesis/install/vision/lib/vision
+[2.490s] Installing light_controller script to /home/mo/Thesis/install/vision/lib/vision
+[2.490s] Installing maskrcnn_inference script to /home/mo/Thesis/install/vision/lib/vision
+[2.491s] Installing nn_output_processor script to /home/mo/Thesis/install/vision/lib/vision
+[2.492s] Installing point_finder_2d script to /home/mo/Thesis/install/vision/lib/vision
+[2.492s] Installing point_finder_3d script to /home/mo/Thesis/install/vision/lib/vision
+[2.493s] Installing stereo_triangulation script to /home/mo/Thesis/install/vision/lib/vision
+[2.493s] Installing stereo_triangulation_with_robot script to /home/mo/Thesis/install/vision/lib/vision
+[2.493s] Installing test_node script to /home/mo/Thesis/install/vision/lib/vision
+[2.494s] Installing yolov8_dualcam_inference script to /home/mo/Thesis/install/vision/lib/vision
+[2.494s] Installing yolov8_inference script to /home/mo/Thesis/install/vision/lib/vision
+[2.494s] 
+[2.495s] Installed /home/mo/Thesis/build/vision
+[2.495s] running symlink_data
+[2.495s] symbolically linking /home/mo/Thesis/build/vision/resource/vision -> /home/mo/Thesis/install/vision/share/ament_index/resource_index/packages
+[2.496s] symbolically linking /home/mo/Thesis/build/vision/package.xml -> /home/mo/Thesis/install/vision/share/vision
+[2.633s] Invoked command in '/home/mo/Thesis/build/vision' returned '0': PYTHONPATH=/home/mo/Thesis/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/mo/Thesis/build/vision/build --no-deps symlink_data --force
