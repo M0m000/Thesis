@@ -14,6 +14,9 @@ import sys, select, termios, tty
 class AttachmentTrajectory(Node):
     def __init__(self):
         super().__init__('attachment_control_trajectory')
+
+        startpoint_trans_in_workframe = [150.0, -430.0, 40.0]
+        startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
         
         self.declare_parameter('hook_num', 5)
         self.hook_num = self.get_parameter('hook_num').get_parameter_value().integer_value
@@ -46,7 +49,9 @@ class AttachmentTrajectory(Node):
         self.set_frame(self.tcp_in_tfc_rot, self.tcp_in_tfc_trans, frame="tcp", ref_frame="tfc")
 
         # Instanz Hook Geometrics Handler
-        self.hook_geometrics_handler = HookGeometricsHandler(distance_to_tip_in_mm = self.distance_to_tip_in_mm)
+        self.hook_geometrics_handler = HookGeometricsHandler(
+            distance_to_tip_in_mm = self.distance_to_tip_in_mm,
+            global_scan_dict_filename = '/home/mo/Thesis/Evaluation/1_Scan-Prozess/1_Triangulationsmethoden/1_Horizontale-Triangulation/d_50/global_hook_dict_horizontal.csv')
         self.hook = self.hook_geometrics_handler.get_hook_of_global_scan_dict(hook_num=self.hook_num)
         self.hook_geometrics_handler.update_hook_data(hook_num=self.hook_num)
         self.hook_geometrics_handler.calculate_hook_line()
@@ -61,6 +66,69 @@ class AttachmentTrajectory(Node):
 
         # Instanz des MoveLinearServiceClient
         self.move_lin_client = MoveLinearServiceClient()
+
+
+        ########## Bewege Roboter auf die Startposition ##########
+        # Bewegung zum Init-Startpunkt in der Mitte des Gestells
+        init_position_tfc_in_workframe = [662.7679417387326, -457.86324018092, 10.694603651697957]
+        init_rotation_tfc_in_workframe = [0.0, 0.0, 0.0]
+        self.init_position_tfc_in_worldframe, self.init_rotation_tfc_in_worldframe = self.frame_handler.transform_pose_to_world(
+            pose_ref_frame = 'work',
+            trans = init_position_tfc_in_workframe,
+            rot = init_rotation_tfc_in_workframe
+        )
+
+        self.start_position_tfc_in_worldframe, self.start_rotation_tfc_in_worldframe = self.frame_handler.transform_pose_to_world(
+            trans = startpoint_trans_in_workframe,
+            rot = startpoint_rot_in_workframe,
+            pose_ref_frame = 'work')
+
+        self.init_movement_done = False
+        if self.init_position_tfc_in_worldframe is not None and self.init_rotation_tfc_in_worldframe is not None:
+            self.init_movement_done = False
+            self.init_movement_done = self.move_lin_client.call_move_linear_service(
+                pos = self.init_position_tfc_in_worldframe,
+                rot = self.init_rotation_tfc_in_worldframe,
+                ref = 0,
+                ttype = 0,
+                tvalue = 150.0,
+                bpoint = 0,
+                btype = 0,
+                bvalue = 100.0,
+                sync = 0.0,
+                chaining = 0)
+            
+        if self.init_movement_done == True:
+            self.init_movement_done = False
+            self.get_logger().info("Init movement done successfully!")
+            self.process_step = "move_until_2_hooks_visible"
+        else:
+            self.get_logger().error("Init movement failed!")
+
+        self.startpoint_movement_done = False
+        if self.start_rotation_tfc_in_worldframe is not None and self.start_position_tfc_in_worldframe is not None:
+            self.startpoint_movement_done = False
+            self.startpoint_movement_done = self.move_lin_client.call_move_linear_service(
+                pos = self.start_position_tfc_in_worldframe,
+                rot = self.start_rotation_tfc_in_worldframe,
+                ref = 0,
+                ttype = 0,
+                tvalue = 100.0,
+                bpoint = 0,
+                btype = 0,
+                bvalue = 100.0,
+                sync = 0.0,
+                chaining = 0)
+            
+        if self.startpoint_movement_done == True:
+            self.startpoint_movement_done = False
+            self.get_logger().info("Startpose movement done successfully!")
+            self.process_step = "move_until_2_hooks_visible"
+        else:
+            self.get_logger().error("Startpose movement failed!")
+        ###########################################################
+
+
 
         # Position Grip in WORK Frame
         self.grip_pre_pos_in_workframe = [1018.0, -100.0, -50.0]
