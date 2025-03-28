@@ -22,7 +22,7 @@ class DocVisualization:
         self.app = QtWidgets.QApplication(sys.argv)
         self.window = gl.GLViewWidget()
         self.window.setWindowTitle('3D Visualisierung')
-        self.window.setGeometry(0, 110, 1200, 1000)
+        self.window.setGeometry(0, 110, 1200, 800)
         self.window.show()
         self.window.setCameraPosition(elevation=30, azimuth=260)
 
@@ -53,17 +53,17 @@ class DocVisualization:
         fixed_points_raw = [
             [0, 0, 0],
             [0, 0, 500],
-            [1100, 0, 500],
-            [1100, 0, 0],
-            [0, -800, 500],
-            [1100, -800, 500]
+            [1050, 0, 500],
+            [1050, 0, 0],
+            [0, -600, 500],
+            [1050, -600, 500]
         ]
 
         self.p_down = [
             [0, 0, 0],     # p_down_1
             [0, 0, 500],   # p_down_2
-            [1100, 0, 500],  # p_down_3
-            [1100, 0, 0], # p_down_4
+            [1050, 0, 500],  # p_down_3
+            [1050, 0, 0], # p_down_4
             [0, 0, 0]
         ]
 
@@ -79,9 +79,9 @@ class DocVisualization:
 
         self.p_up = [
             [0, 0, 500],
-            [0, -800, 500],
-            [1100, -800, 500],
-            [1100, 0, 500]
+            [0, -600, 500],
+            [1050, -600, 500],
+            [1050, 0, 500]
         ]
 
         p_up_line_points = np.array([[p[0], p[2], -p[1]] for p in self.p_up])
