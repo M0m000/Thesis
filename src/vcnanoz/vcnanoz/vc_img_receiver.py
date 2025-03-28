@@ -48,6 +48,8 @@ class VCImageReceiver(Node):
         self.show_img = self.get_parameter('show_img').get_parameter_value().bool_value
         self.declare_parameter('take_pictures', True)
         self.take_pictures = self.get_parameter('take_pictures').get_parameter_value().bool_value
+        self.declare_parameter('rotate_image', 0)
+        self.rotate_image = self.get_parameter('rotate_image').get_parameter_value().integer_value
 
         # Bild
         self.x0 = int((2048 - self.dx)/2)
@@ -162,6 +164,7 @@ class VCImageReceiver(Node):
         if self.img is None:
             print("No Image available to save!")
             self.img_tensor = None
+            return
 
         dx = int(self.img['dx']) / int(self.img['incrx'])
         dy = int(self.img['dy']) / int(self.img['incry'])
@@ -171,15 +174,25 @@ class VCImageReceiver(Node):
 
         if self.rgb_stream:
             dy //= 3
-            img_data_packed = bytearray(chain.from_iterable(zip(mv_img_data[int(2 * pitch * dy):], mv_img_data[int(1 * pitch * dy):], mv_img_data[int(0 * pitch * dy):])))
+            img_data_packed = bytearray(chain.from_iterable(zip(mv_img_data[int(2 * pitch * dy):],
+                                                                 mv_img_data[int(1 * pitch * dy):],
+                                                                 mv_img_data[int(0 * pitch * dy):])))
         else:
             dy //= 1
-            img_data_packed = bytearray(chain.from_iterable(zip(mv_img_data[int(0 * pitch * dy):], mv_img_data[int(0 * pitch * dy):], mv_img_data[int(0 * pitch * dy):])))
+            img_data_packed = bytearray(chain.from_iterable(zip(mv_img_data[int(0 * pitch * dy):],
+                                                                 mv_img_data[int(0 * pitch * dy):],
+                                                                 mv_img_data[int(0 * pitch * dy):])))
 
         img_array = np.frombuffer(img_data_packed, dtype=np.uint8)
         img_array = img_array.reshape((int(dy), int(dx), 3))
 
         if img_array is not None:
+            if self.rotate_image == 90:
+                img_array = cv2.rotate(img_array, cv2.ROTATE_90_CLOCKWISE)
+            elif self.rotate_image == 180:
+                img_array = cv2.rotate(img_array, cv2.ROTATE_180)
+            elif self.rotate_image == 270:
+                img_array = cv2.rotate(img_array, cv2.ROTATE_90_COUNTERCLOCKWISE)
             self.img_tensor = img_array
 
     def connect(self):
@@ -199,11 +212,11 @@ class VCImageReceiver(Node):
                 self.sock.settimeout(10.0)
                 self.sock.connect(self.sock_to)
                 self.sock.settimeout(None)
-                break  # Exit the loop once the connection is successful
+                break
             except Exception as e:
                 self.get_logger().info(f"Connection failed: {e}")
                 self.get_logger().info("Retrying...")
-                time.sleep(2)  # Retry every 2 seconds
+                time.sleep(2)
 
         self.img_nr = 0
         return True
@@ -214,7 +227,6 @@ class VCImageReceiver(Node):
             self.sock.close()
         self.sock = None
         self.sock_to = None
-
 
     def shutdown(self):
         self.get_logger().info("shutting down image receiver node...")
@@ -235,6 +247,7 @@ def main(args=None):
     finally:
         node.shutdown()
         rclpy.shutdown()
+
 
 if __name__ == '__main__':
     main()
