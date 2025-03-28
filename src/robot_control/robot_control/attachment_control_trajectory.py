@@ -129,7 +129,6 @@ class AttachmentTrajectory(Node):
         ###########################################################
 
 
-
         # Position Grip in WORK Frame
         self.grip_pre_pos_in_workframe = [1018.0, -100.0, -50.0]
         self.grip_pre_rot_in_workframe = [-45.0, 0.0, 0.0]
