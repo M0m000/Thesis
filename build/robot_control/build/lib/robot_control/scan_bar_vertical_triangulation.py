@@ -7,6 +7,7 @@ from FC.FC_edge_detector import EdgeDetector
 from FC.FC_frame_handler import FrameHandler
 from FC.FC_triangulation_processor import StereoTriangulationProcessor
 from FC.FC_save_load_global_hook_dict import save_dict_to_csv
+from FC.FC_doc_visualization import DocVisualization
 from kr_msgs.msg import JogLinear
 from kr_msgs.srv import SelectJoggingFrame
 from kr_msgs.srv import SetSystemFrame
@@ -76,6 +77,10 @@ class ScanBarVerticalTriangulation(Node):
         self.first_measurement_iteration = True
         self.measurement_start_time = None
         self.measure_hook_2 = True
+
+        # Instanz Doku Plotfenster
+        self.doc_visualizer = DocVisualization(plot_save_filename = 'src/robot_control/robot_control/data/global_scan_dicts/horizontal_scan_plot.png')
+        # self.doc_visualizer.init_plot()
 
         self.T_cam_in_workframe_ref = None
         self.T_cam_in_worldframe_ref = None
@@ -523,6 +528,13 @@ class ScanBarVerticalTriangulation(Node):
             self.get_logger().warn(f"Time token for hook triangulation [vertical]: {time_token:.6f} sec")
             self.get_logger().warn(f"already scanned: {len(self.global_hooks_dict)} Hooks")
             self.get_logger().warn(f"------------------------------------------------------------------")
+
+            ##### Visualisierung aktualisieren
+            self.doc_visualizer.update_lists(hook_point = xyz_hook_in_workframe.flatten().tolist(),
+                                             lowpoint_point = xyz_lowpoint_in_workframe.flatten().tolist(),
+                                             tip_point = xyz_tip_in_workframe.flatten().tolist(),
+                                             path_points = xyz_path_points_in_workframe)
+            self.doc_visualizer.update_plot()
             
             ##### Nächster Prozessschritt
             if len(self.global_hooks_dict) == self.num_hooks_existing:
@@ -805,10 +817,19 @@ class ScanBarVerticalTriangulation(Node):
 
         
     def shutdown_node(self):
+        """
+        Funktion für Node-Shutdown
+        """
+        self.doc_visualizer.save_plot_as_png()
+
+        if self.baseline_error:
+            self.get_logger().error("Shutting down node... Consider restarting KR1205 Controller")
+        else:
+            self.get_logger().info("Shutting down node...")
+        
         # Timer stoppen und Node zerstören
         self.process_timer.cancel()
         self.timer_check_new_instances.cancel()
-        self.get_logger().info("Shutting down node...")
         self.destroy_node()
         rclpy.shutdown()
 

@@ -22,7 +22,7 @@ class DocVisualization:
         self.app = QtWidgets.QApplication(sys.argv)
         self.window = gl.GLViewWidget()
         self.window.setWindowTitle('3D Visualisierung')
-        self.window.setGeometry(0, 110, 1920, 720)
+        self.window.setGeometry(0, 110, 1200, 1000)
         self.window.show()
         self.window.setCameraPosition(elevation=30, azimuth=260)
 
@@ -38,6 +38,8 @@ class DocVisualization:
         self.scatter_lowpoint = gl.GLScatterPlotItem()
         self.scatter_tip = gl.GLScatterPlotItem()
         self.scatter_path = gl.GLScatterPlotItem()
+        self.scatter_fixed_points = gl.GLScatterPlotItem()
+        self.window.addItem(self.scatter_fixed_points)
 
         # Linienliste
         self.line_items = []
@@ -46,6 +48,57 @@ class DocVisualization:
         self.window.addItem(self.scatter_lowpoint)
         self.window.addItem(self.scatter_tip)
         self.window.addItem(self.scatter_path)
+
+        # Feste Punkte vorbereiten -> Gestell
+        fixed_points_raw = [
+            [0, 0, 0],
+            [0, 0, 500],
+            [1100, 0, 500],
+            [1100, 0, 0],
+            [0, -800, 500],
+            [1100, -800, 500]
+        ]
+
+        self.p_down = [
+            [0, 0, 0],     # p_down_1
+            [0, 0, 500],   # p_down_2
+            [1100, 0, 500],  # p_down_3
+            [1100, 0, 0], # p_down_4
+            [0, 0, 0]
+        ]
+
+        p_down_line_points = np.array([[p[0], p[2], -p[1]] for p in self.p_down])
+        self.line_p_down = gl.GLLinePlotItem(
+            pos=p_down_line_points,
+            color=(1, 1, 1, 1),  # schwarz
+            width=4,
+            antialias=True,
+            mode='line_strip'
+        )
+        self.window.addItem(self.line_p_down)
+
+        self.p_up = [
+            [0, 0, 500],
+            [0, -800, 500],
+            [1100, -800, 500],
+            [1100, 0, 500]
+        ]
+
+        p_up_line_points = np.array([[p[0], p[2], -p[1]] for p in self.p_up])
+        self.line_p_up = gl.GLLinePlotItem(
+            pos=p_up_line_points,
+            color=(1, 1, 1, 1),  # schwarz
+            width=4,
+            antialias=True,
+            mode='line_strip'
+        )
+        self.window.addItem(self.line_p_up)
+
+        # Umrechnen: [x, z, -y]
+        self.fixed_points = np.array([[p[0], p[2], -p[1]] for p in fixed_points_raw])
+
+        # Plot setzen
+        self.scatter_fixed_points.setData(pos=self.fixed_points, color=(1, 1, 1, 1), size=10)
 
     def update_lists(self, hook_point, lowpoint_point, tip_point, path_points):
         self.hook_points.append(hook_point)
@@ -94,11 +147,13 @@ class DocVisualization:
             hook_array,
             low_array,
             tip_array,
-            path_array
+            path_array,
+            self.fixed_points
         ]) if len(path_array) > 0 else np.concatenate([
             hook_array,
             low_array,
-            tip_array
+            tip_array,
+            self.fixed_points
         ])
 
         if all_points.size > 0:
@@ -110,7 +165,7 @@ class DocVisualization:
             # Kamera zentrieren
             self.window.setCameraPosition(
                 pos=pg.Vector(*center),
-                distance=max_range * 1.0,
+                distance=max_range * 2.0,
                 elevation=self.window.opts['elevation'],
                 azimuth=self.window.opts['azimuth']
             )
