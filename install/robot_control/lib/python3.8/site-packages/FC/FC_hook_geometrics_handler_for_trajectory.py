@@ -340,8 +340,8 @@ class HookGeometricsHandler(Node):
                     self.hook_line['p_1'] = self.path_points_in_tcpframe[idx]
                 trajectory.append(self.calculate_targetpose_in_worldframe())
             trajectory_smoothed = self.smooth_trajectory_rotations(trajectory = trajectory, z_thresh = 2.3)
-            trajectory_regression = self.polynomial_regression_trajectory_positions(trajectory = trajectory_smoothed, degree = 1)
-            return trajectory_regression
+            trajectory = self.polynomial_regression_trajectory_positions(trajectory = trajectory_smoothed, degree = 3)
+            return trajectory
     
 
 
@@ -399,7 +399,7 @@ class HookGeometricsHandler(Node):
             interpolated[:, axis] = series.interpolate(method='linear', limit_direction='both').to_numpy()
         return interpolated
     
-    
+
 
     def smooth_trajectory_rotations(self, trajectory, z_thresh=2.0):
         """

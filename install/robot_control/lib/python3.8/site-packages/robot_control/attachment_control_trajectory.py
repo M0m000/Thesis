@@ -229,7 +229,7 @@ class AttachmentTrajectory(Node):
             rot = self.target_pos_rot_in_worldframe,
             ref = 0,
             ttype = 0,
-            tvalue = 10.0,
+            tvalue = 30.0,
             bpoint = 0,
             btype = 0,
             bvalue = 30.0,
