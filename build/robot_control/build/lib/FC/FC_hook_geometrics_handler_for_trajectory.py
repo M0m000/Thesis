@@ -4,6 +4,10 @@ from FC.FC_save_load_global_hook_dict import load_csv_to_dict
 from FC.FC_frame_handler import FrameHandler
 import numpy as np
 from scipy.spatial.transform import Rotation as R
+import pandas as pd
+from scipy import stats
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import PolynomialFeatures
 
 
 
@@ -335,7 +339,85 @@ class HookGeometricsHandler(Node):
                     self.get_logger().info(f"Handling last path point...")
                     self.hook_line['p_1'] = self.path_points_in_tcpframe[idx]
                 trajectory.append(self.calculate_targetpose_in_worldframe())
-            return trajectory
+            trajectory_smoothed = self.smooth_trajectory_rotations(trajectory = trajectory, z_thresh = 2.3)
+            trajectory_regression = self.polynomial_regression_trajectory_positions(trajectory = trajectory_smoothed, degree = 1)
+            return trajectory_regression
+    
+
+
+    def polynomial_regression_trajectory_positions(self, trajectory, degree=2):
+        """
+        Erstellt eine neue Trajektorie, bei der die Positionen durch eine polynomiale Regression geglättet wurden.
+        Rotation bleibt unverändert.
+        """
+        positions = [pos for pos, _ in trajectory]  # Shape (N, 3)
+        rotations = np.array([rot for _, rot in trajectory])
+        indices = np.arange(len(rotations)).reshape(-1, 1)
+
+        poly = PolynomialFeatures(degree=degree)
+        X_poly = poly.fit_transform(indices)
+
+        smoothed_rotations = []
+        for axis in range(3):  # x, y, z
+            y = rotations[:, axis]
+            model = LinearRegression()
+            model.fit(X_poly, y)
+            predicted = model.predict(X_poly)
+            smoothed_rotations.append(predicted)
+
+        smoothed_rotations = np.stack(smoothed_rotations, axis=1)
+        new_trajectory = [(pos, rot) for pos, rot in zip(positions, smoothed_rotations)]
+        return new_trajectory
+    
+
+
+    def interpolate_outlier_vectors_zscore(self, vector, z_thresh=2.0):
+        """
+        Identifiziert Ausreißer auf Vektorebene (z. B. 3D Rotation) und interpoliert sie.
+
+        Parameter:
+            rotations: np.ndarray der Form (N, 3)
+            z_thresh: z-Score-Schwelle zur Ausreißererkennung
+
+        Rückgabe:
+            Interpolierte Rotationen gleicher Form (N, 3)
+        """
+        # Z-Score pro Achse berechnen
+        z_scores = np.abs(stats.zscore(vector, nan_policy='omit'))
+
+        # Vektoren als Ausreißer markieren, wenn **irgendein** Wert im Vektor über Schwelle liegt
+        outlier_mask = np.any(z_scores > z_thresh, axis=1)
+
+        # Daten vorbereiten
+        vector_with_nans = vector.copy().astype(float)
+        vector_with_nans[outlier_mask] = np.nan
+
+        # Achsenweise Interpolation durchführen
+        interpolated = np.empty_like(vector_with_nans)
+        for axis in range(3):
+            series = pd.Series(vector_with_nans[:, axis])
+            interpolated[:, axis] = series.interpolate(method='linear', limit_direction='both').to_numpy()
+        return interpolated
+    
+    
+
+    def smooth_trajectory_rotations(self, trajectory, z_thresh=2.0):
+        """
+        Glättet die Rotationen in einer Trajektorie durch Vektorausreißer-Erkennung und Interpolation.
+
+        Parameter:
+            trajectory: Liste von (Position, Rotation)
+            z_thresh: Z-Score-Schwellenwert
+
+        Rückgabe:
+            Neue geglättete Trajektorie mit gleich aufgebauter Struktur
+        """
+        positions = [pos for pos, _ in trajectory]
+        rotations = np.array([rot for _, rot in trajectory])  # Shape (N, 3)
+
+        smoothed_rot = self.interpolate_outlier_vectors_zscore(rotations, z_thresh=z_thresh)
+        new_trajectory = [(pos, rot) for pos, rot in zip(positions, smoothed_rot)]
+        return new_trajectory
 
 
 
