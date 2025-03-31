@@ -13,6 +13,7 @@ FC/FC_call_move_spline_service.py
 FC/FC_cam_geometrics_handler.py
 FC/FC_controller_data_logger.py
 FC/FC_dict_receive_processing.py
+FC/FC_doc_plot_attachment.py
 FC/FC_doc_visualization.py
 FC/FC_edge_detector.py
 FC/FC_frame_handler.py

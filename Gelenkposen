@@ -1,5 +1,5 @@
 # init
-ros2 service call /kr/motion/move_joint kr_msgs/srv/MoveJoint "jsconf: [90.0, -60.0, 0.0, 135.0, 180.0, -15.0, 60.0]
+ros2 service call /kr/motion/move_joint kr_msgs/srv/MoveJoint "jsconf: [90.0, -60.0, 0.0, 135.0, 180.0, -15.0, 90.0]
 ttype: 0
 tvalue: 30.0
 bpoint: 0

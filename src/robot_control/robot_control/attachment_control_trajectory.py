@@ -4,6 +4,7 @@ from FC.FC_gripper_handler import GripperHandler
 from FC.FC_hook_geometrics_handler_for_trajectory import HookGeometricsHandler
 from FC.FC_frame_handler import FrameHandler
 from FC.FC_call_move_linear_service import MoveLinearServiceClient
+from FC.FC_doc_plot_attachment import DocPlotAttachment
 from kr_msgs.msg import JogLinear
 from kr_msgs.srv import SelectJoggingFrame
 from kr_msgs.srv import SetSystemFrame
@@ -51,10 +52,14 @@ class AttachmentTrajectory(Node):
         # Instanz Hook Geometrics Handler
         self.hook_geometrics_handler = HookGeometricsHandler(
             distance_to_tip_in_mm = self.distance_to_tip_in_mm,
-            global_scan_dict_filename = '/home/mo/Thesis/Evaluation/1_Scan-Prozess/1_Triangulationsmethoden/1_Horizontale-Triangulation/d_50/global_hook_dict_horizontal.csv')
+            global_scan_dict_filename = '/home/mo/Thesis/src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv')           # /home/mo/Thesis/Evaluation/1_Scan-Prozess/1_Triangulationsmethoden/1_Horizontale-Triangulation/d_50/global_hook_dict_horizontal.csv
         self.hook = self.hook_geometrics_handler.get_hook_of_global_scan_dict(hook_num=self.hook_num)
         self.hook_geometrics_handler.update_hook_data(hook_num=self.hook_num)
         self.hook_geometrics_handler.calculate_hook_line()
+
+        # Instanz DOKUMENTATION Plot-Fkt
+        self.doc_plot = DocPlotAttachment(plot_save_filename='/home/mo/Thesis/src/robot_control/robot_control/data/controller_output_logging', hook_num = self.hook_num)
+        self.doc_plot.initialize_plot()
 
         # Instanz Frame Handler
         self.frame_handler = FrameHandler(node_name = 'frame_handler_for_dummy_node')
@@ -214,21 +219,22 @@ class AttachmentTrajectory(Node):
 
         # Starte initial den ersten Bewegungsbefehl (falls gewünscht)
         initial_point = self.trajectory[self.trajectory_point_num]
-        pos_trans_in_worldframe = initial_point[0].tolist()
-        pos_rot_in_worldframe = initial_point[1].tolist()
+        self.target_pos_trans_in_worldframe = initial_point[0].tolist()
+        self.target_pos_rot_in_worldframe = initial_point[1].tolist()
+        self.prepare_and_update_plot()
         
-        self.get_logger().warn(f"Starte Bewegung zu Punkt 0: Pose: {pos_trans_in_worldframe}, Rotation: {pos_rot_in_worldframe}")
+        self.get_logger().warn(f"Starte Bewegung zu Punkt 0: Pose: {self.target_pos_trans_in_worldframe}, Rotation: {self.target_pos_rot_in_worldframe}")
         self.move_lin_client.call_move_linear_service(
-            pos=pos_trans_in_worldframe,
-            rot=pos_rot_in_worldframe,
-            ref=0,
-            ttype=0,
-            tvalue=60.0,
-            bpoint=0,
-            btype=0,
-            bvalue=30.0,
-            sync=0.0,
-            chaining=0)
+            pos = self.target_pos_trans_in_worldframe,
+            rot = self.target_pos_rot_in_worldframe,
+            ref = 0,
+            ttype = 0,
+            tvalue = 10.0,
+            bpoint = 0,
+            btype = 0,
+            bvalue = 30.0,
+            sync = 0.0,
+            chaining = 0)
 
         # Setze das Terminal in den "cbreak" Modus für non-blocking Tastatureingaben
         self.orig_term_settings = termios.tcgetattr(sys.stdin)
@@ -250,24 +256,41 @@ class AttachmentTrajectory(Node):
                 self.trajectory_point_num += 1
                 if self.trajectory_point_num < len(self.trajectory):
                     act_point = self.trajectory[self.trajectory_point_num]
-                    pos_trans_in_worldframe = act_point[0].tolist()
-                    pos_rot_in_worldframe = act_point[1].tolist()
+                    self.target_pos_trans_in_worldframe = act_point[0].tolist()
+                    self.target_pos_rot_in_worldframe = act_point[1].tolist()
+
+                    self.prepare_and_update_plot()
+
                     self.get_logger().warn(f"Moving to current trajectory point {self.trajectory_point_num}")
-                    self.get_logger().warn(f"Pose: {pos_trans_in_worldframe}, Rotation: {pos_rot_in_worldframe}")
+                    self.get_logger().warn(f"Pose: {self.target_pos_trans_in_worldframe}, Rotation: {self.target_pos_rot_in_worldframe}")
                     self.move_lin_client.call_move_linear_service(
-                        pos=pos_trans_in_worldframe,
-                        rot=pos_rot_in_worldframe,
-                        ref=0,
-                        ttype=0,
-                        tvalue=30.0,
-                        bpoint=0,
-                        btype=0,
-                        bvalue=100.0,
-                        sync=0.0,
-                        chaining=0)
+                        pos = self.target_pos_trans_in_worldframe,
+                        rot = self.target_pos_rot_in_worldframe,
+                        ref = 0,
+                        ttype = 0,
+                        tvalue = 30.0,
+                        bpoint = 0,
+                        btype = 0,
+                        bvalue = 100.0,
+                        sync = 0.0,
+                        chaining = 0)
                 else:
+                    self.doc_plot.save_plot_as_png()
                     self.get_logger().info("Reached last trajectory point!")
 
+
+
+    def prepare_and_update_plot(self):
+        """
+        Methode für das Aufbereiten der Plot-Parameter mit anschließendem Update-Plot-Aufruf
+        """
+        self.doc_plot.update_plot_lists(
+            target_trans_list = self.target_pos_trans_in_worldframe,
+            target_rot_list = self.target_pos_rot_in_worldframe,
+            num_trajectory_point = self.trajectory_point_num,
+        )
+        self.doc_plot.update_plot()
+        
         
 
     def select_jogging_frame_callback(self, future):

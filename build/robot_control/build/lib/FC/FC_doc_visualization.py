@@ -48,7 +48,7 @@ class DocVisualization:
         self.window.addItem(self.scatter_lowpoint)
         self.window.addItem(self.scatter_tip)
         self.window.addItem(self.scatter_path)
-
+        '''
         # Feste Punkte vorbereiten -> Gestell
         fixed_points_raw = [
             [0, 0, 0],
@@ -98,7 +98,8 @@ class DocVisualization:
         self.fixed_points = np.array([[p[0], p[2], -p[1]] for p in fixed_points_raw])
 
         # Plot setzen
-        self.scatter_fixed_points.setData(pos=self.fixed_points, color=(1, 1, 1, 1), size=10)
+        self.scatter_fixed_points.setData(pos=self.fixed_points, color=(1, 1, 1, 1), size=10)'
+        '''
 
     def update_lists(self, hook_point, lowpoint_point, tip_point, path_points):
         self.hook_points.append(hook_point)
@@ -147,13 +148,11 @@ class DocVisualization:
             hook_array,
             low_array,
             tip_array,
-            path_array,
-            self.fixed_points
+            path_array
         ]) if len(path_array) > 0 else np.concatenate([
             hook_array,
             low_array,
-            tip_array,
-            self.fixed_points
+            tip_array
         ])
 
         if all_points.size > 0:

@@ -24,4 +24,3 @@ float64    tvalue   # tracking value (in deg/s or seconds)
 int8       bpoint   # see BLEND_POINT
 int8       btype    # see BLEND_TYPE
 float64    bvalue   # blend value (in deg/s^2 or seconds)
-
