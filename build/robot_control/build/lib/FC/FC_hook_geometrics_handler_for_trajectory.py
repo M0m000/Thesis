@@ -326,7 +326,7 @@ class HookGeometricsHandler(Node):
             p_traj_init = self.hook_line['p_traj_init']
             trajectory.append(self._calculate_targetpose_in_worldframe(target_position = p_traj_init, line_dir = self.hook_line['p_dir']))
 
-            # Berechne alle Trajektorienpunkt von Spitze bis Senke
+            # Berechne alle Trajektorienpunkte von Spitze bis Senke
             for idx in range(len(self.path_points_in_tcpframe)):
                 self.get_logger().info(f"Calculation trajectory path point {idx + 1}")
                 if idx < (len(self.path_points_in_tcpframe) - 1):
@@ -460,12 +460,48 @@ class HookGeometricsHandler(Node):
     
 
 
-    def plan_trajectory_with_fixed_orientation():
+    def plan_trajectory_with_fixed_orientation(self, hook_num = None, tip_ppoint = None):
         """
         Variante 2 - Berechnung von Trajektorie mit fester Orientierung
             -> Orientierung kommt von Gerade Spitze -> Senke
         """
-        pass
+        if hook_num is None:
+            self.get_logger().error(f"No Hook Num selected!")
+            return None
+        else:
+            if tip_ppoint is None:      # falls nicht anders übergeben, geht die Trajektorie bis in den letzten Path-Point
+                tip_ppoint = len(self.path_points_in_tcpframe)
+
+            trajectory = []
+            _ = self.get_hook_of_global_scan_dict(hook_num=hook_num)
+            
+            # Berechne Init-Punkt (mit Abstand zur Spitze) - entlang der Hook-Line von Senke nach Spitze
+            self.get_logger().info("Calculating initial trajectory point...")
+            self._calculate_init_trajectory_point()
+            p_traj_init = self.hook_line['p_traj_init']
+            p_traj_init_translation_in_worldframe, p_traj_init_rotation_in_worldframe = self._calculate_targetpose_in_worldframe(target_position = p_traj_init, line_dir = self.hook_line['p_dir'])
+            trajectory.append((p_traj_init_translation_in_worldframe, p_traj_init_rotation_in_worldframe))
+
+            # Berechne alle Trajektorienpunkte von Spitze bis ausgesuchter Senke
+            for idx in range(tip_ppoint):
+                self.get_logger().info(f"Calculation trajectory path point {idx + 1}")
+
+                if idx < (len(self.path_points_in_tcpframe) - 1):       # solange Senke noch nicht erreicht, normale Berechnung
+                    ppoint_1 = self.path_points_in_tcpframe[idx]
+                    ppoint_0 = self.path_points_in_tcpframe[idx + 1]
+                    self.calculate_hook_line(p_0_in_tcpframe = ppoint_0, p_1_in_tcpframe = ppoint_1)
+
+                if idx == (len(self.path_points_in_tcpframe) - 1):
+                    self.handling_last_path_point = True    # Flag für letzten path point setzen
+                    self.get_logger().info(f"Handling last path point...")
+                    self.hook_line['p_1'] = self.path_points_in_tcpframe[idx]
+                trajpoint_translation, _ = self._calculate_targetpose_in_worldframe()
+                trajectory.append((trajpoint_translation, p_traj_init_rotation_in_worldframe))
+            # trajectory_smoothed = self._smooth_trajectory_rotations(trajectory = trajectory, z_thresh = 2.3)
+            # trajectory = self._polynomial_regression_trajectory_positions(trajectory = trajectory_smoothed, degree = 3)
+            return trajectory
+
+
 
 
 

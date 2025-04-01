@@ -217,7 +217,8 @@ class AttachmentTrajectory(Node):
         self.hook_geometrics_handler.calculate_hook_line()
         
         # Trajektorie als Liste von Punkten, wobei jeder Punkt ein Tupel aus (Translation, Rotation) ist
-        self.trajectory = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num=self.hook_num)
+        self.trajectory = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num = self.hook_num)
+        # self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num, tip_ppoint = 7)
         self.trajectory_point_num = 0
 
 
