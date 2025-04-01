@@ -72,8 +72,8 @@ class AttachmentTrajectory(Node):
         # Instanz des MoveLinearServiceClient
         self.move_lin_client = MoveLinearServiceClient()
 
-        '''
-        ########## Bewege Roboter auf die Startposition ##########
+        
+        ########## Bewege Roboter auf die Startposition und anschließend auf die Ausgleichsposition (wegen LIN-Bewegung) ##########
         # Bewegung zum Init-Startpunkt in der Mitte des Gestells
         init_position_tfc_in_workframe = [662.7679417387326, -457.86324018092, 10.694603651697957]
         init_rotation_tfc_in_workframe = [0.0, 0.0, 0.0]
@@ -132,8 +132,11 @@ class AttachmentTrajectory(Node):
         else:
             self.get_logger().error("Startpose movement failed!")
         ###########################################################
-        '''
 
+
+
+        '''
+        ########## Positionen Greifer ##########
         # Position Grip in WORK Frame
         self.grip_pre_pos_in_workframe = [1018.0, -100.0, -50.0]
         self.grip_pre_rot_in_workframe = [-45.0, 0.0, 0.0]
@@ -158,7 +161,7 @@ class AttachmentTrajectory(Node):
             rot = self.grip_post_rot_in_workframe,
             pose_ref_frame = "work")
         
-        '''
+
         self.grip_pre_pos_movement_done = False
         self.grip_pre_pos_movement_done = self.move_lin_client.call_move_linear_service(
             pos = self.grip_pre_pos_in_worldframe,
@@ -203,26 +206,23 @@ class AttachmentTrajectory(Node):
             bvalue = 100.0,
             sync = 0.0,
             chaining = 0)
+        ###########################################################'
         '''
 
+        ########## Aufruf Trajektorienberechnung ##########
         # Berechne die Trajektorie basierend auf den Hook-Daten
         self.plane = self.hook_geometrics_handler.calculate_plane(trans_in_tcpframe=[0.0, 0.0, 0.0], 
                                                                   rot_in_tcpframe=[0.0, 0.0, 0.0])
         self.hook_geometrics_handler.update_hook_data(hook_num=self.hook_num)
         self.hook_geometrics_handler.calculate_hook_line()
         
-        # endpos_trans_in_worldframe, endpos_rot_in_worldframe = self.hook_geometrics_handler.calculate_targetpose_in_worldframe()
-
         # Trajektorie als Liste von Punkten, wobei jeder Punkt ein Tupel aus (Translation, Rotation) ist
         self.trajectory = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num=self.hook_num)
-        self.hook_pre_position, self.hook_pre_rotation = self.hook_geometrics_handler.calculate_pre_position_with_z_offset(trajectory_in_worldframe = self.trajectory, z_off_in_mm_in_workframe = 200)
         self.trajectory_point_num = 0
 
-        # Starte initial den ersten Bewegungsbefehl (falls gewünscht)
-        initial_point = self.trajectory[self.trajectory_point_num]
-        self.target_pos_trans_in_worldframe = initial_point[0].tolist()
-        self.target_pos_rot_in_worldframe = initial_point[1].tolist()
-        self.prepare_and_update_plot()
+
+        ########## Bewegung zur Pre-Pose mit z-Offset ##########
+        self.hook_pre_position, self.hook_pre_rotation = self.hook_geometrics_handler.calculate_pre_position_with_z_offset(trajectory_in_worldframe = self.trajectory, z_off_in_mm_in_workframe = 200)
         
         self.get_logger().warn(f"Starte Bewegung zu Pre-Position: Pose: {self.hook_pre_position}, Rotation: {self.hook_pre_rotation}")
         self.move_lin_client.call_move_linear_service(
@@ -236,6 +236,10 @@ class AttachmentTrajectory(Node):
             bvalue = 30.0,
             sync = 0.0,
             chaining = 0)
+        
+        # Variablen und Plot für Trajektorien-Ansteuerung
+        self.target_pos_trans_in_worldframe = None
+        self.target_pos_rot_in_worldframe = None
 
         # Setze das Terminal in den "cbreak" Modus für non-blocking Tastatureingaben
         self.orig_term_settings = termios.tcgetattr(sys.stdin)
@@ -254,13 +258,17 @@ class AttachmentTrajectory(Node):
         if select.select([sys.stdin], [], [], 0)[0]:
             key = sys.stdin.read(1)
             if key == 'n':
-                self.trajectory_point_num += 1
-                if self.trajectory_point_num < len(self.trajectory):
+                if self.trajectory_point_num == 0:      # wenn es sich um den resten Trajektorienpunkt handelt
+                    initial_point = self.trajectory[self.trajectory_point_num]
+                    self.target_pos_trans_in_worldframe = initial_point[0].tolist()
+                    self.target_pos_rot_in_worldframe = initial_point[1].tolist()
+                    self.prepare_and_update_plot()      # Plot updaten
+
+                if self.trajectory_point_num < len(self.trajectory):        # wenn es sich um Path Point handelt
                     act_point = self.trajectory[self.trajectory_point_num]
                     self.target_pos_trans_in_worldframe = act_point[0].tolist()
                     self.target_pos_rot_in_worldframe = act_point[1].tolist()
-
-                    self.prepare_and_update_plot()
+                    self.prepare_and_update_plot()      # Plot updaten
 
                     self.get_logger().warn(f"Moving to current trajectory point {self.trajectory_point_num}")
                     self.get_logger().warn(f"Pose: {self.target_pos_trans_in_worldframe}, Rotation: {self.target_pos_rot_in_worldframe}")
@@ -278,6 +286,7 @@ class AttachmentTrajectory(Node):
                 else:
                     self.doc_plot.save_plot_as_png()
                     self.get_logger().info("Reached last trajectory point!")
+                self.trajectory_point_num += 1
 
 
 
