@@ -342,6 +342,45 @@ class HookGeometricsHandler(Node):
             # trajectory_smoothed = self._smooth_trajectory_rotations(trajectory = trajectory, z_thresh = 2.3)
             # trajectory = self._polynomial_regression_trajectory_positions(trajectory = trajectory_smoothed, degree = 3)
             return trajectory
+        
+
+    def calculate_pre_position_with_z_offset(self, trajectory_in_worldframe = None, z_off_in_mm_in_workframe = 0.0):
+        """
+        Berechnet eine Pre-Pose für den TCP mit einem z-Offset z_off_in_mm zum Haken
+            -> anschließend kann mit linearer Bewegung an den Haken gefahren werden
+        """
+        if trajectory_in_worldframe is not None:
+            # extrahiere ersten Punkt (Spitze) aus der Trajektorie
+            p_start_hook = trajectory_in_worldframe[0]
+            p_start_hook_translation = p_start_hook[0]
+            p_start_hook_rotation = p_start_hook[1]
+
+            # Berechne Homogene Matrix der Pose in WORLD
+            R_hook_pose_in_worldframe = self.frame_handler.calculate_rot_matrix(rot = p_start_hook_rotation)
+            T_hook_pose_in_worldframe = np.eye(4)
+            T_hook_pose_in_worldframe[:3, :3] = R_hook_pose_in_worldframe
+            T_hook_pose_in_worldframe[:3, 3] = p_start_hook_translation
+
+            # Transformiere die Pose in das WORK-Frame
+            T_world_in_workframe = self.frame_handler.get_world_in_workframe()
+            T_pose_in_workframe = T_world_in_workframe @ T_hook_pose_in_worldframe
+
+            # Berechne neuen Translationsvektor für Pre-Pose
+            translation_hook_in_workframe = T_pose_in_workframe[:3, 3]
+            translation_hook_in_workframe[2] = translation_hook_in_workframe[2] - z_off_in_mm_in_workframe
+            T_pose_in_workframe[:3, 3] = translation_hook_in_workframe
+
+            # Zurücktransformieren ins WORLD-Frame als Listen zur Ansteuerung des Roboters
+            pre_pose_translaion_in_worldframe, pre_pose_rotation_in_worldframe = self.frame_handler.transform_pose_to_world(
+                pose_ref_frame = 'work',
+                trans = T_pose_in_workframe[:3, 3],
+                rot = self.frame_handler.rotation_matrix_to_euler_angles(rotation_matrix = T_pose_in_workframe[:3, :3]),
+                )
+            return pre_pose_translaion_in_worldframe, pre_pose_rotation_in_worldframe
+        else:
+            self.get_logger().error(f"Unable to calculate pre position - trajectory missing!")
+            return None, None
+
     
 
 

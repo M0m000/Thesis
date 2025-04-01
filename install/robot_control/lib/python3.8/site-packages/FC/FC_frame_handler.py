@@ -225,6 +225,23 @@ class FrameHandler(Node):
     
 
 
+    def get_work_in_worldframe(self):
+        """Liefert die homogene Transformation von WORK in WORLD"""
+        T_work_in_worldframe = self.query_and_load_frame(frame_name = 'WORK_frame_in_world.csv')
+        return T_work_in_worldframe
+
+
+
+    def get_world_in_workframe(self):
+        """Liefert die homogene Transformation von WORLD in WORK"""
+        T_work_in_worldframe = self.query_and_load_frame(frame_name = 'WORK_frame_in_world.csv')
+        T_world_in_workframe = np.linalg.inv(T_work_in_worldframe)
+        return T_world_in_workframe
+        
+
+    
+
+
 
 
 def main(args=None):

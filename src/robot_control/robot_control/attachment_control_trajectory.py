@@ -72,7 +72,7 @@ class AttachmentTrajectory(Node):
         # Instanz des MoveLinearServiceClient
         self.move_lin_client = MoveLinearServiceClient()
 
-
+        '''
         ########## Bewege Roboter auf die Startposition ##########
         # Bewegung zum Init-Startpunkt in der Mitte des Gestells
         init_position_tfc_in_workframe = [662.7679417387326, -457.86324018092, 10.694603651697957]
@@ -132,7 +132,7 @@ class AttachmentTrajectory(Node):
         else:
             self.get_logger().error("Startpose movement failed!")
         ###########################################################
-
+        '''
 
         # Position Grip in WORK Frame
         self.grip_pre_pos_in_workframe = [1018.0, -100.0, -50.0]
@@ -215,6 +215,7 @@ class AttachmentTrajectory(Node):
 
         # Trajektorie als Liste von Punkten, wobei jeder Punkt ein Tupel aus (Translation, Rotation) ist
         self.trajectory = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num=self.hook_num)
+        self.hook_pre_position, self.hook_pre_rotation = self.hook_geometrics_handler.calculate_pre_position_with_z_offset(trajectory_in_worldframe = self.trajectory, z_off_in_mm_in_workframe = 200)
         self.trajectory_point_num = 0
 
         # Starte initial den ersten Bewegungsbefehl (falls gewünscht)
@@ -223,10 +224,10 @@ class AttachmentTrajectory(Node):
         self.target_pos_rot_in_worldframe = initial_point[1].tolist()
         self.prepare_and_update_plot()
         
-        self.get_logger().warn(f"Starte Bewegung zu Punkt 0: Pose: {self.target_pos_trans_in_worldframe}, Rotation: {self.target_pos_rot_in_worldframe}")
+        self.get_logger().warn(f"Starte Bewegung zu Pre-Position: Pose: {self.hook_pre_position}, Rotation: {self.hook_pre_rotation}")
         self.move_lin_client.call_move_linear_service(
-            pos = self.target_pos_trans_in_worldframe,
-            rot = self.target_pos_rot_in_worldframe,
+            pos = self.hook_pre_position,
+            rot = self.hook_pre_rotation,
             ref = 0,
             ttype = 0,
             tvalue = 30.0,
