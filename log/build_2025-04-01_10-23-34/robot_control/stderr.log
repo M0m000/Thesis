@@ -1,0 +1,5 @@
+  File "/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/FC/FC_hook_geometrics_handler_for_trajectory.py", line 424
+    def plan_3_point_trajectory()
+                                ^
+SyntaxError: invalid syntax
+

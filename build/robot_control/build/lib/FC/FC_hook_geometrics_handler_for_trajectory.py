@@ -203,7 +203,7 @@ class HookGeometricsHandler(Node):
     
 
 
-    def calculate_adjustment_angles(self, plane=None, line_dir=None):
+    def _calculate_adjustment_angles(self, plane=None, line_dir=None):
         """
         Berechnet die notwendigen Roll-Pitch-Yaw-Winkel, um die Ebene so zu drehen,
         dass ihr Normalenvektor mit dem Richtungsvektor der Geraden übereinstimmt.
@@ -245,7 +245,7 @@ class HookGeometricsHandler(Node):
 
     
 
-    def calculate_translation_difference(self, target_position = None, plane = None, plane_midpoint = None):
+    def _calculate_translation_difference(self, target_position = None, plane = None, plane_midpoint = None):
         """
         Berechnet die Reglerdifferenz für die translatorische Verschiebung
         zwischen dem Mittelpunkt der Ebene und einem Zielpunkt.
@@ -279,16 +279,16 @@ class HookGeometricsHandler(Node):
     
 
 
-    def calculate_targetpose_in_worldframe(self, target_position = None, line_dir = None, plane = None, plane_midpoint = None):
+    def _calculate_targetpose_in_worldframe(self, target_position = None, line_dir = None, plane = None, plane_midpoint = None):
         """
         Berechnet die Endpose des TFC im WORLD-Frame -> kann dann direkt für MoveLinear servcie call genutzt werden...
         """
-        trans_diff_in_tcpframe = self.calculate_translation_difference(
+        trans_diff_in_tcpframe = self._calculate_translation_difference(
             target_position = target_position, 
             plane = plane, 
             plane_midpoint = plane_midpoint)
         
-        rot_diff_in_tcpframe = self.calculate_adjustment_angles(plane = plane, line_dir = line_dir)
+        rot_diff_in_tcpframe = self._calculate_adjustment_angles(plane = plane, line_dir = line_dir)
 
         trans_diff_in_worldframe, rot_diff_in_worldframe = self.frame_handler.transform_pose_to_world(
             trans = trans_diff_in_tcpframe, 
@@ -298,7 +298,7 @@ class HookGeometricsHandler(Node):
     
 
 
-    def calculate_init_trajectory_point(self):
+    def _calculate_init_trajectory_point(self):
         """
         Berechnet den Init-Punkt für die Trjaketorie mit Abstand distance_to_tip_in_mm in [mm] zur Spitze
         """
@@ -309,7 +309,7 @@ class HookGeometricsHandler(Node):
 
 
 
-    def plan_trajectory(self, hook_num=None):
+    def plan_path_point_trajectory(self, hook_num=None):
         """
         Berechnet die vollständige Trajektorie für das Einfädeln entlang der Hakenform
         """
@@ -322,9 +322,9 @@ class HookGeometricsHandler(Node):
             
             # Berechne Init-Punkt (mit Abstand zur Spitze)
             self.get_logger().info("Calculating initial trajectory point...")
-            self.calculate_init_trajectory_point()
+            self._calculate_init_trajectory_point()
             p_traj_init = self.hook_line['p_traj_init']
-            trajectory.append(self.calculate_targetpose_in_worldframe(target_position = p_traj_init, line_dir = self.hook_line['p_dir']))
+            trajectory.append(self._calculate_targetpose_in_worldframe(target_position = p_traj_init, line_dir = self.hook_line['p_dir']))
 
             # Berechne alle Trajektorienpunkt von Spitze bis Senke
             for idx in range(len(self.path_points_in_tcpframe)):
@@ -338,14 +338,14 @@ class HookGeometricsHandler(Node):
                     self.handling_last_path_point = True    # Flag für letzten path point setzen
                     self.get_logger().info(f"Handling last path point...")
                     self.hook_line['p_1'] = self.path_points_in_tcpframe[idx]
-                trajectory.append(self.calculate_targetpose_in_worldframe())
-            trajectory_smoothed = self.smooth_trajectory_rotations(trajectory = trajectory, z_thresh = 2.3)
-            trajectory = self.polynomial_regression_trajectory_positions(trajectory = trajectory_smoothed, degree = 3)
+                trajectory.append(self._calculate_targetpose_in_worldframe())
+            # trajectory_smoothed = self._smooth_trajectory_rotations(trajectory = trajectory, z_thresh = 2.3)
+            # trajectory = self._polynomial_regression_trajectory_positions(trajectory = trajectory_smoothed, degree = 3)
             return trajectory
     
 
 
-    def polynomial_regression_trajectory_positions(self, trajectory, degree=2):
+    def _polynomial_regression_trajectory_positions(self, trajectory, degree=2):
         """
         Erstellt eine neue Trajektorie, bei der die Positionen durch eine polynomiale Regression geglättet wurden.
         Rotation bleibt unverändert.
@@ -371,7 +371,7 @@ class HookGeometricsHandler(Node):
     
 
 
-    def interpolate_outlier_vectors_zscore(self, vector, z_thresh=2.0):
+    def _interpolate_outlier_vectors_zscore(self, vector, z_thresh=2.0):
         """
         Identifiziert Ausreißer auf Vektorebene (z. B. 3D Rotation) und interpoliert sie.
 
@@ -401,7 +401,7 @@ class HookGeometricsHandler(Node):
     
 
 
-    def smooth_trajectory_rotations(self, trajectory, z_thresh=2.0):
+    def _smooth_trajectory_rotations(self, trajectory, z_thresh=2.0):
         """
         Glättet die Rotationen in einer Trajektorie durch Vektorausreißer-Erkennung und Interpolation.
 
@@ -415,9 +415,18 @@ class HookGeometricsHandler(Node):
         positions = [pos for pos, _ in trajectory]
         rotations = np.array([rot for _, rot in trajectory])  # Shape (N, 3)
 
-        smoothed_rot = self.interpolate_outlier_vectors_zscore(rotations, z_thresh=z_thresh)
+        smoothed_rot = self._interpolate_outlier_vectors_zscore(rotations, z_thresh=z_thresh)
         new_trajectory = [(pos, rot) for pos, rot in zip(positions, smoothed_rot)]
         return new_trajectory
+    
+
+
+    def plan_trajectory_with_fixed_orientation():
+        """
+        Variante 2 - Berechnung von Trajektorie mit fester Orientierung
+            -> Orientierung kommt von Gerade Spitze -> Senke
+        """
+        pass
 
 
 

@@ -214,7 +214,7 @@ class AttachmentTrajectory(Node):
         # endpos_trans_in_worldframe, endpos_rot_in_worldframe = self.hook_geometrics_handler.calculate_targetpose_in_worldframe()
 
         # Trajektorie als Liste von Punkten, wobei jeder Punkt ein Tupel aus (Translation, Rotation) ist
-        self.trajectory = self.hook_geometrics_handler.plan_trajectory(hook_num=self.hook_num)
+        self.trajectory = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num=self.hook_num)
         self.trajectory_point_num = 0
 
         # Starte initial den ersten Bewegungsbefehl (falls gewünscht)
