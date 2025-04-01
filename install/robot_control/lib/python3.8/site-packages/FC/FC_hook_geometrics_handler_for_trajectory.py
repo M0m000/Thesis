@@ -339,8 +339,8 @@ class HookGeometricsHandler(Node):
                     self.get_logger().info(f"Handling last path point...")
                     self.hook_line['p_1'] = self.path_points_in_tcpframe[idx]
                 trajectory.append(self._calculate_targetpose_in_worldframe())
-            # trajectory_smoothed = self._smooth_trajectory_rotations(trajectory = trajectory, z_thresh = 2.3)
-            # trajectory = self._polynomial_regression_trajectory_positions(trajectory = trajectory_smoothed, degree = 3)
+            trajectory_smoothed = self._smooth_trajectory_rotations(trajectory = trajectory, z_thresh = 2.3)
+            trajectory = self._polynomial_regression_trajectory_positions(trajectory = trajectory_smoothed, degree = 1)
             return trajectory
         
 
