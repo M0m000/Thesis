@@ -308,81 +308,6 @@ class HookGeometricsHandler(Node):
         p_dir = self.hook_line['p_dir']
         p_traj_init = p_tip + self.distance_to_tip_in_mm * p_dir
         self.hook_line['p_traj_init'] = p_traj_init
-
-
-
-    def plan_path_point_trajectory(self, hook_num=None):
-        """
-        Berechnet die vollständige Trajektorie für das Einfädeln entlang der Hakenform
-        """
-        if hook_num is None:
-            self.get_logger().error(f"No Hook Num selected!")
-            return None
-        else:
-            trajectory = []
-            _ = self.get_hook_of_global_scan_dict(hook_num=hook_num)
-            
-            # Berechne Init-Punkt (mit Abstand zur Spitze)
-            self.get_logger().info("Calculating initial trajectory point...")
-            self._calculate_init_trajectory_point()
-            p_traj_init = self.hook_line['p_traj_init']
-            trajectory.append(self._calculate_targetpose_in_worldframe(target_position = p_traj_init, line_dir = self.hook_line['p_dir']))
-
-            # Berechne alle Trajektorienpunkte von Spitze bis Senke
-            for idx in range(len(self.path_points_in_tcpframe)):
-                self.get_logger().info(f"Calculation trajectory path point {idx + 1}")
-                if idx < (len(self.path_points_in_tcpframe) - 1):
-                    ppoint_1 = self.path_points_in_tcpframe[idx]
-                    ppoint_0 = self.path_points_in_tcpframe[idx + 1]
-                    self.calculate_hook_line(p_0_in_tcpframe = ppoint_0, p_1_in_tcpframe = ppoint_1)
-
-                if idx == (len(self.path_points_in_tcpframe) - 1):
-                    self.handling_last_path_point = True    # Flag für letzten path point setzen
-                    self.get_logger().info(f"Handling last path point...")
-                    self.hook_line['p_1'] = self.path_points_in_tcpframe[idx]
-                trajectory.append(self._calculate_targetpose_in_worldframe())
-            trajectory_smoothed = self._smooth_trajectory_rotations(trajectory = trajectory, z_thresh = 2.3)
-            trajectory = self._polynomial_regression_trajectory_positions(trajectory = trajectory_smoothed, degree = 1)
-            return trajectory
-        
-
-    def calculate_pre_position_with_z_offset(self, trajectory_in_worldframe = None, z_off_in_mm_in_workframe = 0.0):
-        """
-        Berechnet eine Pre-Pose für den TCP mit einem z-Offset z_off_in_mm zum Haken
-            -> anschließend kann mit linearer Bewegung an den Haken gefahren werden
-        """
-        if trajectory_in_worldframe is not None:
-            # extrahiere ersten Punkt (Spitze) aus der Trajektorie
-            p_start_hook = trajectory_in_worldframe[0]
-            p_start_hook_translation = p_start_hook[0]
-            p_start_hook_rotation = p_start_hook[1]
-
-            # Berechne Homogene Matrix der Pose in WORLD
-            R_hook_pose_in_worldframe = self.frame_handler.calculate_rot_matrix(rot = p_start_hook_rotation)
-            T_hook_pose_in_worldframe = np.eye(4)
-            T_hook_pose_in_worldframe[:3, :3] = R_hook_pose_in_worldframe
-            T_hook_pose_in_worldframe[:3, 3] = p_start_hook_translation
-
-            # Transformiere die Pose in das WORK-Frame
-            T_world_in_workframe = self.frame_handler.get_world_in_workframe()
-            T_pose_in_workframe = T_world_in_workframe @ T_hook_pose_in_worldframe
-
-            # Berechne neuen Translationsvektor für Pre-Pose
-            translation_hook_in_workframe = T_pose_in_workframe[:3, 3]
-            translation_hook_in_workframe[2] = translation_hook_in_workframe[2] - z_off_in_mm_in_workframe
-            T_pose_in_workframe[:3, 3] = translation_hook_in_workframe
-
-            # Zurücktransformieren ins WORLD-Frame als Listen zur Ansteuerung des Roboters
-            pre_pose_translaion_in_worldframe, pre_pose_rotation_in_worldframe = self.frame_handler.transform_pose_to_world(
-                pose_ref_frame = 'work',
-                trans = T_pose_in_workframe[:3, 3],
-                rot = self.frame_handler.rotation_matrix_to_euler_angles(rotation_matrix = T_pose_in_workframe[:3, :3]),
-                )
-            return pre_pose_translaion_in_worldframe, pre_pose_rotation_in_worldframe
-        else:
-            self.get_logger().error(f"Unable to calculate pre position - trajectory missing!")
-            return None, None
-
     
 
 
@@ -462,6 +387,42 @@ class HookGeometricsHandler(Node):
     
 
 
+    def plan_path_point_trajectory(self, hook_num=None):
+        """
+        Berechnet die vollständige Trajektorie für das Einfädeln entlang der Hakenform
+        """
+        if hook_num is None:
+            self.get_logger().error(f"No Hook Num selected!")
+            return None
+        else:
+            trajectory = []
+            _ = self.get_hook_of_global_scan_dict(hook_num=hook_num)
+            
+            # Berechne Init-Punkt (mit Abstand zur Spitze)
+            self.get_logger().info("Calculating initial trajectory point...")
+            self._calculate_init_trajectory_point()
+            p_traj_init = self.hook_line['p_traj_init']
+            trajectory.append(self._calculate_targetpose_in_worldframe(target_position = p_traj_init, line_dir = self.hook_line['p_dir']))
+
+            # Berechne alle Trajektorienpunkte von Spitze bis Senke
+            for idx in range(len(self.path_points_in_tcpframe)):
+                self.get_logger().info(f"Calculation trajectory path point {idx + 1}")
+                if idx < (len(self.path_points_in_tcpframe) - 1):
+                    ppoint_1 = self.path_points_in_tcpframe[idx]
+                    ppoint_0 = self.path_points_in_tcpframe[idx + 1]
+                    self.calculate_hook_line(p_0_in_tcpframe = ppoint_0, p_1_in_tcpframe = ppoint_1)
+
+                if idx == (len(self.path_points_in_tcpframe) - 1):
+                    self.handling_last_path_point = True    # Flag für letzten path point setzen
+                    self.get_logger().info(f"Handling last path point...")
+                    self.hook_line['p_1'] = self.path_points_in_tcpframe[idx]
+                trajectory.append(self._calculate_targetpose_in_worldframe())
+            trajectory_smoothed = self._smooth_trajectory_rotations(trajectory = trajectory, z_thresh = 2.3)
+            trajectory = self._polynomial_regression_trajectory_positions(trajectory = trajectory_smoothed, degree = 1)
+            return trajectory
+    
+
+
     def plan_trajectory_with_fixed_orientation(self, hook_num = None, tip_ppoint = None):
         """
         Variante 2 - Berechnung von Trajektorie mit fester Orientierung
@@ -502,6 +463,64 @@ class HookGeometricsHandler(Node):
             # trajectory_smoothed = self._smooth_trajectory_rotations(trajectory = trajectory, z_thresh = 2.3)
             # trajectory = self._polynomial_regression_trajectory_positions(trajectory = trajectory_smoothed, degree = 3)
             return trajectory
+        
+
+    
+    def plan_trajectory_with_optimized_orientation(self, hook_num = None, attachment_distance_in_mm = None, tip_ppoint = None):
+        """
+        Ansatz 3 - Berechnung der Trajektorie unter Voraussetzung einer optimalen Orientierung
+            - Orientierung mit Hook-Line (Spitze -> Senke) berechnen und mit optimaler Orientierung (entsprechend Hakenmodell) vergleichen
+                -> wenn Abweichung zu hoch -> Haken nicht nutzbar!
+            - Orientierung korrigieren auf Mittelmaß zwischen Optimum und berechneter Orientierung
+            - Planen der Trajektorie mit festem Einfädelungs-Weg attachment_distance_in_mm
+        """
+        # TODO
+        
+        '''
+        trajectory_smoothed = self._smooth_trajectory_rotations(trajectory = trajectory, z_thresh = 2.3)
+        trajectory = self._polynomial_regression_trajectory_positions(trajectory = trajectory_smoothed, degree = 1)
+        return trajectory
+        '''
+        pass
+
+
+
+    def calculate_pre_position_with_z_offset(self, trajectory_in_worldframe = None, z_off_in_mm_in_workframe = 0.0):
+        """
+        Berechnet eine Pre-Pose für den TCP mit einem z-Offset z_off_in_mm zum Haken
+            -> anschließend kann mit linearer Bewegung an den Haken gefahren werden
+        """
+        if trajectory_in_worldframe is not None:
+            # extrahiere ersten Punkt (Spitze) aus der Trajektorie
+            p_start_hook = trajectory_in_worldframe[0]
+            p_start_hook_translation = p_start_hook[0]
+            p_start_hook_rotation = p_start_hook[1]
+
+            # Berechne Homogene Matrix der Pose in WORLD
+            R_hook_pose_in_worldframe = self.frame_handler.calculate_rot_matrix(rot = p_start_hook_rotation)
+            T_hook_pose_in_worldframe = np.eye(4)
+            T_hook_pose_in_worldframe[:3, :3] = R_hook_pose_in_worldframe
+            T_hook_pose_in_worldframe[:3, 3] = p_start_hook_translation
+
+            # Transformiere die Pose in das WORK-Frame
+            T_world_in_workframe = self.frame_handler.get_world_in_workframe()
+            T_pose_in_workframe = T_world_in_workframe @ T_hook_pose_in_worldframe
+
+            # Berechne neuen Translationsvektor für Pre-Pose
+            translation_hook_in_workframe = T_pose_in_workframe[:3, 3]
+            translation_hook_in_workframe[2] = translation_hook_in_workframe[2] - z_off_in_mm_in_workframe
+            T_pose_in_workframe[:3, 3] = translation_hook_in_workframe
+
+            # Zurücktransformieren ins WORLD-Frame als Listen zur Ansteuerung des Roboters
+            pre_pose_translaion_in_worldframe, pre_pose_rotation_in_worldframe = self.frame_handler.transform_pose_to_world(
+                pose_ref_frame = 'work',
+                trans = T_pose_in_workframe[:3, 3],
+                rot = self.frame_handler.rotation_matrix_to_euler_angles(rotation_matrix = T_pose_in_workframe[:3, :3]),
+                )
+            return pre_pose_translaion_in_worldframe, pre_pose_rotation_in_worldframe
+        else:
+            self.get_logger().error(f"Unable to calculate pre position - trajectory missing!")
+            return None, None
 
 
 
