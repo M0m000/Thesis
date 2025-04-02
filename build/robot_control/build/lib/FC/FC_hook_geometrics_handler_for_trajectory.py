@@ -141,8 +141,10 @@ class HookGeometricsHandler(Node):
                 y = ppoint[1]
                 z = ppoint[2]
                 ppoint_hom = np.array([x, y, z, 1.0])
+                print("T_work_in_tcpframe: ", T_work_in_tcpframe)
                 ppoint_in_tcpframe = T_work_in_tcpframe @ ppoint_hom
                 ppoint_in_tcpframe = ppoint_in_tcpframe[:3]
+                print("ppoint_in_tcpframe: ", ppoint_in_tcpframe)
                 self.path_points_in_tcpframe.append(ppoint_in_tcpframe)         # speichern in Liste
 
 
