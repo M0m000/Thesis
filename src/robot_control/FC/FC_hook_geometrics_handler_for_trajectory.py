@@ -475,6 +475,12 @@ class HookGeometricsHandler(Node):
             - Planen der Trajektorie mit festem Einfädelungs-Weg attachment_distance_in_mm
         """
         # TODO
+        
+        '''
+        trajectory_smoothed = self._smooth_trajectory_rotations(trajectory = trajectory, z_thresh = 2.3)
+        trajectory = self._polynomial_regression_trajectory_positions(trajectory = trajectory_smoothed, degree = 1)
+        return trajectory
+        '''
         pass
 
 
