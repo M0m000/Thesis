@@ -22,7 +22,7 @@ class ScanBarVerticalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_vertical_triangulation')
 
-        startpoint_trans_in_workframe = [150.0, -430.0, 40.0]
+        startpoint_trans_in_workframe = [-20.0, -430.0, -10.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
 
         self.node_shutdown_flag = False
@@ -129,7 +129,7 @@ class ScanBarVerticalTriangulation(Node):
         while not self.set_kassow_frame_client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info("Waiting for Service SetSystemFrame...")
         self.get_logger().info("Service SetSystemFrame available!")
-        self.set_frame([0.0, 0.0, 0.0], [0.0, 0.0, 0.0], frame="tcp", ref_frame="tfc")
+        self.set_frame(trans = [0.0, 0.0, 0.0], rot = [0.0, 0.0, 30.0], frame = "tcp", ref_frame = "tfc")
 
         # Timer für Prozess
         self.process_step = None
@@ -201,15 +201,15 @@ class ScanBarVerticalTriangulation(Node):
     
 
 
-    def set_frame(self, R, T, frame="tcp", ref_frame="tfc"):
+    def set_frame(self, trans, rot, frame="tcp", ref_frame="tfc"):
         """
         Funktion für Service Call von SetSystemFrame
         """
         request = SetSystemFrame.Request()
         request.name = frame
         request.ref = ref_frame
-        request.pos = T
-        request.rot = R
+        request.pos = trans
+        request.rot = rot
 
         future = self.set_kassow_frame_client.call_async(request)
         rclpy.spin_until_future_complete(self, future)
@@ -334,7 +334,7 @@ class ScanBarVerticalTriangulation(Node):
                 self.T_cam_in_worldframe_ref = self.frame_handler.get_cam_transform_in_world()
 
                 # Roboter-Pose speichern
-                self.tfc_in_worldframe_ref_trans, self.tfc_in_worldframe_ref_rot, _ = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
+                self.tfc_in_worldframe_ref_trans, self.tfc_in_worldframe_ref_rot, _ = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
                 
                 ##### Nächster Prozessschritt
                 self.get_logger().info("Done! -> next process step <Move Vertical>")
@@ -639,7 +639,7 @@ class ScanBarVerticalTriangulation(Node):
                 self.T_cam_in_worldframe_ref = self.frame_handler.get_cam_transform_in_world()
 
                 # Roboter-Pose speichern
-                self.tfc_in_worldframe_ref_trans, self.tfc_in_worldframe_ref_rot, _ = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
+                self.tfc_in_worldframe_ref_trans, self.tfc_in_worldframe_ref_rot, _ = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
                 
                 ##### Nächster Prozessschritt
                 self.get_logger().info("Done! -> next process step <Move Vertical>")
