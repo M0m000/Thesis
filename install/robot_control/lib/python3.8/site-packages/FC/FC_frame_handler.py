@@ -205,8 +205,8 @@ class FrameHandler(Node):
 
     def get_cam_transform_in_world(self):
         """Lädt die Transformation von CAM zu WORLD"""
-        _, _, T_world_tfc = self.get_system_frame(name = 'tfc', ref = 'world')
-        T_tfc_cam = self.load_transformation_matrix_from_csv(frame_name = 'CAM_frame_in_tfc.csv')
+        _, _, T_world_tfc = self.get_system_frame(name = 'tcp', ref = 'world')
+        T_tfc_cam = self.load_transformation_matrix_from_csv(frame_name = 'CAM_frame_in_tcp.csv')
         return T_world_tfc @ T_tfc_cam
     
 

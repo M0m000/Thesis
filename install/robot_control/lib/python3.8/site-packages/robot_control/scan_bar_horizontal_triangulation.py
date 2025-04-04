@@ -23,7 +23,7 @@ class ScanBarHorizontalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_horizontal_triangulation')
 
-        startpoint_trans_in_workframe = [130.0, -420.0, 0.0]
+        startpoint_trans_in_workframe = [-20.0, -430.0, -40.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
 
         self.node_shutdown_flag = False
@@ -100,6 +100,7 @@ class ScanBarHorizontalTriangulation(Node):
         self.frame_handler = FrameHandler(node_name = 'frame_handler_node_for_scan_bar', save_path = frame_csv_path)
         self.cam_to_world_transform = None
 
+        # Transformation der Startpose in das WORLD-Frame
         self.start_position_tfc_in_worldframe, self.start_rotation_tfc_in_worldframe = self.frame_handler.transform_pose_to_world(
             trans = startpoint_trans_in_workframe,
             rot = startpoint_rot_in_workframe,
@@ -128,7 +129,7 @@ class ScanBarHorizontalTriangulation(Node):
         while not self.set_kassow_frame_client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info("Waiting for Service SetSystemFrame...")
         self.get_logger().info("Service SetSystemFrame available!")
-        self.set_frame([0.0, 0.0, 0.0], [0.0, 0.0, 0.0], frame="tcp", ref_frame="tfc")
+        self.set_frame(trans = [0.0, 0.0, 0.0], rot = [0.0, 0.0, 30.0], frame = "tcp", ref_frame = "tfc")
 
         # Timer für Prozess
         self.process_step = None
@@ -200,15 +201,15 @@ class ScanBarHorizontalTriangulation(Node):
     
 
 
-    def set_frame(self, R, T, frame="tcp", ref_frame="tfc"):
+    def set_frame(self, trans, rot, frame="tcp", ref_frame="tfc"):
         """
         Funktion für Service Call von SetSystemFrame
         """
         request = SetSystemFrame.Request()
         request.name = frame
         request.ref = ref_frame
-        request.pos = T
-        request.rot = R
+        request.pos = trans
+        request.rot = rot
 
         future = self.set_kassow_frame_client.call_async(request)
         rclpy.spin_until_future_complete(self, future)

@@ -17,7 +17,7 @@ vc_1_img_receiver_node:
     rgb_stream: False
     show_img: False
     take_pictures: False
-    rotate_image: 0
+    rotate_image: 90
     
 vc_2_img_receiver_node:
   ros__parameters:

@@ -39,9 +39,9 @@ class VCImageReceiver(Node):
         self.declare_parameter('port', 2002)
         self.port = self.get_parameter('port').get_parameter_value().integer_value
         self.declare_parameter('img_width', 2048)
-        self.dx = self.get_parameter('img_width').get_parameter_value().integer_value
+        self.original_dx = self.get_parameter('img_width').get_parameter_value().integer_value
         self.declare_parameter('img_height', 1536)
-        self.dy = self.get_parameter('img_height').get_parameter_value().integer_value
+        self.original_dy = self.get_parameter('img_height').get_parameter_value().integer_value
         self.declare_parameter('rgb_stream', False)
         self.rgb_stream = self.get_parameter('rgb_stream').get_parameter_value().bool_value
         self.declare_parameter('show_img', True)
@@ -52,8 +52,6 @@ class VCImageReceiver(Node):
         self.rotate_image = self.get_parameter('rotate_image').get_parameter_value().integer_value
 
         # Bild
-        self.x0 = int((2048 - self.dx)/2)
-        self.y0 = int((1536 - self.dy)/2)
         self.incrx = 1
         self.incry = 1
 
@@ -73,6 +71,7 @@ class VCImageReceiver(Node):
         # Versuche kontinuierlich zu verbinden
         self.connect()
 
+    
     def publish_image(self):
         if self.img_tensor is not None:
             ros_image = self.bridge.cv2_to_imgmsg(self.img_tensor, encoding='passthrough')
@@ -81,7 +80,8 @@ class VCImageReceiver(Node):
             ros_image.header.stamp = self.get_clock().now().to_msg()
             ros_image.header.frame_id = 'vc_nano_z'
             self.image_publisher.publish(ros_image)
-
+            
+            '''
             width = Int32()
             width.data = int(self.dx)
             self.image_width_publisher.publish(width)
@@ -89,7 +89,16 @@ class VCImageReceiver(Node):
             height = Int32()
             height.data = int(self.dy)
             self.image_height_publisher.publish(height)
+            '''
+            width = Int32()
+            height = Int32()
+            width.data = int(self.original_dx)
+            height.data = int(self.original_dy)
+            self.image_width_publisher.publish(width)
+            self.image_height_publisher.publish(height)
 
+    
+    
     def receive_img(self):
         if self.sock is None:
             return False
@@ -102,7 +111,20 @@ class VCImageReceiver(Node):
         self.last_frame_time = current_time
         self.get_logger().info(f"Streaming {self.fps:.2f} fps")
 
+        # hdr_req = struct.pack("IIIIII", self.x0, self.y0, self.dx, self.dy, self.incrx, self.incry)
+        # Dynamische Bilddimensionen basierend auf Rotation
+        if self.rotate_image in [90, 270]:
+            self.dx = self.original_dy
+            self.dy = self.original_dx
+        else:
+            self.dx = self.original_dx
+            self.dy = self.original_dy
+
+        self.x0 = int((2048 - self.dx) / 2)
+        self.y0 = int((1536 - self.dy) / 2)
+
         hdr_req = struct.pack("IIIIII", self.x0, self.y0, self.dx, self.dy, self.incrx, self.incry)
+
 
         try:
             self.sock.sendall(hdr_req)

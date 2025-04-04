@@ -121,7 +121,7 @@ class StereoTriangulationProcessor:
         # wenn Listen ungleiche Länge haben -> Fehler!
         if num_ppoints_1 != num_ppoints_2:
             print(f"ERROR - Lengths of Path Point Lists are unequal!")
-            return None
+            return None, None if self.measure_time else None
         else:
             for idx in range(num_ppoints_1):
                 ppoint_img1 = uv_path_points_1[idx]
