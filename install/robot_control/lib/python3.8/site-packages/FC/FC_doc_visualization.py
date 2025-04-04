@@ -4,6 +4,7 @@ from PyQt5 import QtWidgets
 import numpy as np
 import sys
 from PIL import Image
+import time
 
 # pg.setConfigOption('background', 'w')
 # pg.setConfigOption('foreground', 'k')
@@ -114,7 +115,14 @@ class DocVisualization:
         hook_array = convert_points(self.hook_points)
         low_array = convert_points(self.lowpoint_points)
         tip_array = convert_points(self.tip_points)
-        path_array = np.vstack([convert_points(p) for p in self.path_points]) if self.path_points else np.empty((0, 3))
+
+        valid_path_points = [p for p in self.path_points if isinstance(p, (list, np.ndarray)) and len(p) > 0]
+        path_array = np.vstack([convert_points(p) for p in valid_path_points]) if valid_path_points else np.empty((0, 3))
+
+        for idx, p in enumerate(self.path_points):
+            if not isinstance(p, (list, np.ndarray)) or len(p) == 0:
+                print(f"Ungültiger path_point an Index {idx}: {p}")
+
 
         # Update Scatter
         self.scatter_hook.setData(pos=hook_array, color=(1, 0, 0, 1), size=10)      # rot
@@ -204,6 +212,17 @@ class DocVisualization:
             self.axis_items.append(z_axis)
 
         self.app.processEvents()
+        self.flush_gui_events()
+
+        if len(self.hook_points) == 1:
+            self.flush_gui_events()
+            time.sleep(0.05)
+
+
+    def flush_gui_events(self, times=3):
+        for _ in range(times):
+            QtWidgets.QApplication.processEvents()
+
 
     def save_plot_as_png(self):
         screenshot = self.window.grabFramebuffer()

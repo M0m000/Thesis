@@ -156,6 +156,16 @@ class VCImageReceiver(Node):
 
         self.img = dict(x0=int(img_x0), y0=int(img_y0), dx=int(img_dx), dy=int(img_dy), incrx=img_incrx, incry=img_incry, data=img_data)
 
+        # Messung der Übertragungsgeschwindigkeit
+        elapsed_time = time.time() - current_time
+        mbits = (img_bytes * 8) / (elapsed_time * 1e6)
+        self.last_mbit_values = getattr(self, 'last_mbit_values', [])
+        self.last_mbit_values.append(mbits)
+        if len(self.last_mbit_values) > 5:
+            self.last_mbit_values.pop(0)
+        avg_mbits = sum(self.last_mbit_values) / len(self.last_mbit_values)
+        self.get_logger().info(f"Uebertragungsgeschwindigkeit: {mbits:.2f} MBit/s | durchschnittl. {avg_mbits:.2f} MBit/s")
+
         self.create_img_tensor()
 
         # Bild veröffentlichen, wenn es vorhanden ist

@@ -548,7 +548,7 @@ class ScanBarHorizontalTriangulation(Node):
             self.get_logger().warn(f"Hook XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_workframe']}")
             self.get_logger().warn(f"Lowpoint XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_workframe']}")
             self.get_logger().warn(f"Tip XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_workframe']}")
-            if self.path_point_triangulation_successful:
+            if time_token_ppoint_triangulation is not None:
                 self.get_logger().warn(f"Time token for path points triangulation [horizontal]: {time_token_ppoint_triangulation:.6f} sec")
                 self.get_logger().warn(f"Path points XYZ [horizontal]: {self.global_hooks_dict[str(self.act_hook_num)]['xyz_path_points_in_workframe']}")
             self.get_logger().warn(f"Time token for hook triangulation [horizontal]: {time_token:.6f} sec")
