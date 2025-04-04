@@ -22,7 +22,7 @@ class ScanBarVerticalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_vertical_triangulation')
 
-        startpoint_trans_in_workframe = [-20.0, -430.0, -10.0]
+        startpoint_trans_in_workframe = [-20.0, -430.0, -50.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
 
         self.node_shutdown_flag = False
