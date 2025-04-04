@@ -1,5 +1,0 @@
-  File "/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/scan_bar_horizontal_triangulation.py", line 559
-    tip_point = xyz_tip_in_workframe.flatten().tolist())
-    ^
-SyntaxError: invalid syntax
-

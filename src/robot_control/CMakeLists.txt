@@ -18,6 +18,10 @@ install(DIRECTORY config/
     DESTINATION share/${PROJECT_NAME}/config
 )
 
+install(DIRECTORY urdf meshes
+  DESTINATION share/${PROJECT_NAME}
+)
+
 # Installiere Python-Quellcode-Dateien
 install(PROGRAMS
   src/robot_control/move_robot_service_server.py
@@ -30,5 +34,7 @@ install(
   DIRECTORY src/robot_control/
   DESTINATION lib/python${PYTHON_VERSION}/site-packages
 )
+
+
 
 ament_package()

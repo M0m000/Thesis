@@ -1,1 +1,0 @@
-/home/mo/Thesis/src/robot_control/launch/vc_startup_launch.py

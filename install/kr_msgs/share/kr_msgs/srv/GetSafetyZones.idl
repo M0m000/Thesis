@@ -1,1 +1,22 @@
-/home/mo/Thesis/build/kr_msgs/rosidl_adapter/kr_msgs/srv/GetSafetyZones.idl
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from kr_msgs/srv/system/GetSafetyZones.srv
+// generated code does not contain a copyright notice
+
+#include "kr_msgs/msg/SafetyZone.idl"
+
+module kr_msgs {
+  module srv {
+    @verbatim (language="comment", text=
+      "#####################################################" "\n"
+      "                  GET SAFETY ZONES                  #" "\n"
+      "#####################################################")
+    struct GetSafetyZones_Request {
+      uint8 structure_needs_at_least_one_member;
+    };
+    struct GetSafetyZones_Response {
+      sequence<kr_msgs::msg::SafetyZone> zones;
+
+      boolean success;
+    };
+  };
+};

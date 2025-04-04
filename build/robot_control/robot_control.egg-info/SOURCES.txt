@@ -26,6 +26,7 @@ FC/FC_trajectory_controller.py
 FC/FC_triangulation_processor.py
 FC/__init__.py
 config/vc_params.yaml
+launch/robot_launch.py
 launch/scan_bar_launch.py
 launch/vc_vision_dualcam_launch.py
 launch/vc_vision_launch.py
@@ -37,6 +38,7 @@ robot_control/attachment_control_trajectory.py
 robot_control/define_working_frame_needle.py
 robot_control/hook_data_listener.py
 robot_control/ibvs_2d.py
+robot_control/ptp_movement_node.py
 robot_control/scan_bar.py
 robot_control/scan_bar_combined_triangulation.py
 robot_control/scan_bar_combined_triangulation_old.py

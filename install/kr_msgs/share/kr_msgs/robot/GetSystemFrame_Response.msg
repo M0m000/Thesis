@@ -1,1 +1,4 @@
-/home/mo/Thesis/build/kr_msgs/rosidl_cmake/srv/robot/GetSystemFrame_Response.msg
+
+float64[3] pos      # position - x, y, z [mm]
+float64[3] rot      # orientation - r, p, y [degrees]
+bool       success

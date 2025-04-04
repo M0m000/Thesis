@@ -1,5 +1,0 @@
-  File "<fstring>", line 1
-    (sel••••••••••f.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_workframe'])
-                  ^
-SyntaxError: invalid character in identifier
-

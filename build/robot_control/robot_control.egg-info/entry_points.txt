@@ -5,6 +5,7 @@ attachment_control_trajectory = robot_control.attachment_control_trajectory:main
 define_working_frame_needle = robot_control.define_working_frame_needle:main
 hook_data_listener = robot_control.hook_data_listener:main
 ibvs_2d = robot_control.ibvs_2d:main
+ptp_movement_node = robot_control.ptp_movement_node:main
 scan_bar = robot_control.scan_bar:main
 scan_bar_combined_triangulation = robot_control.scan_bar_combined_triangulation:main
 scan_bar_horizontal_triangulation = robot_control.scan_bar_horizontal_triangulation:main

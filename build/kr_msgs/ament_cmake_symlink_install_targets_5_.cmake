@@ -1,1 +1,0 @@
-ament_cmake_symlink_install_targets("TARGET_FILES" "/home/mo/Thesis/build/kr_msgs/rosidl_generator_py/kr_msgs/libkr_msgs__python.so" "TARGETS" "kr_msgs__python" "ARCHIVE_DESTINATION" "lib" "LIBRARY_DESTINATION" "lib" "RUNTIME_DESTINATION" "bin")

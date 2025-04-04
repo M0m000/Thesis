@@ -1,1 +1,1 @@
-/home/mo/Thesis/build/kr_msgs/ament_cmake_environment_hooks/ament_prefix_path.dsv
+prepend-non-duplicate;AMENT_PREFIX_PATH;

@@ -1,1 +1,5 @@
-/home/mo/Thesis/src/orange-ros2/kr_msgs/msg/SelfMotion.msg
+######################################################
+#                    Self Motion                     #
+######################################################
+
+float64  speed      # norm self-motion speed

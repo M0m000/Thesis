@@ -1,1 +1,9 @@
-/home/mo/Thesis/build/kr_msgs/rosidl_cmake/srv/robot/GetSystemLoad_Request.msg
+######################################################
+#                 GET SYSTEM LOAD                    #
+######################################################
+
+# SUPPORTED_LOADS
+string TOOLLOAD  = "toolload"
+string PAYLOAD   = "payload"
+
+string      name      # see SUPPORTED_LOADS

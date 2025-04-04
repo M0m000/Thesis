@@ -1,1 +1,80 @@
-/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/msg/Hook.idl
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from action_interfaces/msg/Hook.msg
+// generated code does not contain a copyright notice
+
+#include "action_interfaces/msg/BoundingBox.idl"
+#include "action_interfaces/msg/UV.idl"
+#include "action_interfaces/msg/XYZ.idl"
+#include "sensor_msgs/msg/Image.idl"
+
+module action_interfaces {
+  module msg {
+    @verbatim (language="comment", text=
+      " Hook.msg")
+    struct Hook {
+      @verbatim (language="comment", text=
+        " Name des Haken")
+      string name;
+
+      action_interfaces::msg::BoundingBox hook_box;
+
+      action_interfaces::msg::BoundingBox tip_box;
+
+      action_interfaces::msg::BoundingBox lowpoint_box;
+
+      @verbatim (language="comment", text=
+        " Masken für den Hook als Image")
+      sensor_msgs::msg::Image hook_mask;
+
+      @verbatim (language="comment", text=
+        " Masken für den Tip als Image")
+      sensor_msgs::msg::Image tip_mask;
+
+      @verbatim (language="comment", text=
+        " Masken für den Lowpoint als Image")
+      sensor_msgs::msg::Image lowpoint_mask;
+
+      @verbatim (language="comment", text=
+        " Masken für das Skelett als Image")
+      sensor_msgs::msg::Image skeleton_mask;
+
+      @verbatim (language="comment", text=
+        " Konfidenz für Hook")
+      float conf_hook;
+
+      @verbatim (language="comment", text=
+        " Konfidenz für Tip")
+      float conf_tip;
+
+      @verbatim (language="comment", text=
+        " Konfidenz für Lowpoint")
+      float conf_lowpoint;
+
+      action_interfaces::msg::UV uv_hook;
+
+      action_interfaces::msg::UV uv_tip;
+
+      action_interfaces::msg::UV uv_lowpoint;
+
+      @verbatim (language="comment", text=
+        " für 2-Cam-Betrieb")
+      action_interfaces::msg::UV uv_hook_img2;
+
+      action_interfaces::msg::UV uv_tip_img2;
+
+      action_interfaces::msg::UV uv_lowpoint_img2;
+
+      sequence<action_interfaces::msg::UV> shortest_path;
+
+      sequence<action_interfaces::msg::UV> path_points;
+
+      sequence<action_interfaces::msg::XYZ> xyz_hook_in_camframe;
+
+      sequence<action_interfaces::msg::XYZ> xyz_tip_in_camframe;
+
+      sequence<action_interfaces::msg::XYZ> xyz_lowpoint_in_camframe;
+
+      sequence<action_interfaces::msg::XYZ> path_points_xyz_in_camframe;
+    };
+  };
+};

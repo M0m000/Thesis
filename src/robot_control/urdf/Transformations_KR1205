@@ -1,0 +1,39 @@
+base_link:
+Position: 0mm; 0mm; 111mm
+Achse: 0,58; 0,58; 0,58
+Winkel: 120°
+
+link_1:
+Position: 49,00 mm; 0,00 mm; 308,00 mm
+Achse: 0,58; -0,58; -0,58
+Winkel: 120°
+
+link_2:
+Position: 50,00 mm; -85,70 mm; 308,70 mm
+Achse: -0,58; 0,58; -0,58
+Winkel: 120°
+
+link_3:
+Position: 38,89 mm; -85,70 mm; 924,95 mm
+Achse: 0,58; -0,58, -0,58
+Winkel: 120°
+
+link_4:
+Position: 40,89 mm; -1,65 mm; 927,95 mm
+Achse: 0,58; 0,58; -0,58
+Winkel: 240°
+
+link_5:
+Position: 0,39 mm; 0,35 mm; 1501,95 mm
+Achse: 0; 0; -1
+Winkel: 90°
+
+link_6:
+Position: 0,39 mm; 109,35 mm; 1504,95 mm
+Achse: 0,58; -0,58; -0,58
+Winkel: 240°
+
+link_7:
+Position: -0,61 mm; 105,35 mm; 1502,95 mm
+Achse: -0,58, -0,58, 0,58
+Winkel: 240°

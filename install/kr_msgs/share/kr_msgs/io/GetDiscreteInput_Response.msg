@@ -1,1 +1,3 @@
-/home/mo/Thesis/build/kr_msgs/rosidl_cmake/srv/io/GetDiscreteInput_Response.msg
+
+int8       value    # see INPUT_VALUE
+bool       success

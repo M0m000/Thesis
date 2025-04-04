@@ -1,1 +1,16 @@
-/home/mo/Thesis/build/action_interfaces/rosidl_adapter/action_interfaces/msg/XYZ.idl
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from action_interfaces/msg/XYZ.msg
+// generated code does not contain a copyright notice
+
+
+module action_interfaces {
+  module msg {
+    struct XYZ {
+      float x;
+
+      float y;
+
+      float z;
+    };
+  };
+};

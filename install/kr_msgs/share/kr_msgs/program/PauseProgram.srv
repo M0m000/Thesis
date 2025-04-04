@@ -1,1 +1,6 @@
-/home/mo/Thesis/src/orange-ros2/kr_msgs/srv/program/PauseProgram.srv
+######################################################
+#             PAUSE PROGRAM EXECUTION                #
+######################################################
+
+---
+bool       success

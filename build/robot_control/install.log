@@ -6,6 +6,7 @@
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/tf_frames_publisher.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/attachment_control_trajectory.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/scan_bar_horizontal_triangulation_pxmm.py
+/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/ptp_movement_node.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/attachment_control_servoing.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/scan_bar_combined_triangulation.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/scan_bar_horizontal_triangulation.py
@@ -38,6 +39,7 @@
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/tf_frames_publisher.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/attachment_control_trajectory.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/scan_bar_horizontal_triangulation_pxmm.cpython-38.pyc
+/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/ptp_movement_node.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/attachment_control_servoing.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/scan_bar_combined_triangulation.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/scan_bar_horizontal_triangulation.cpython-38.pyc
@@ -67,6 +69,7 @@
 /home/mo/Thesis/install/robot_control/share/robot_control/launch/vc_vision_launch.py
 /home/mo/Thesis/install/robot_control/share/robot_control/launch/vc_vision_dualcam_launch.py
 /home/mo/Thesis/install/robot_control/share/robot_control/launch/scan_bar_launch.py
+/home/mo/Thesis/install/robot_control/share/robot_control/launch/robot_launch.py
 /home/mo/Thesis/install/robot_control/share/robot_control/config/vc_params.yaml
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info/entry_points.txt
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control-0.0.0-py3.8.egg-info/zip-safe
@@ -81,6 +84,7 @@
 /home/mo/Thesis/install/robot_control/lib/robot_control/define_working_frame_needle
 /home/mo/Thesis/install/robot_control/lib/robot_control/hook_data_listener
 /home/mo/Thesis/install/robot_control/lib/robot_control/ibvs_2d
+/home/mo/Thesis/install/robot_control/lib/robot_control/ptp_movement_node
 /home/mo/Thesis/install/robot_control/lib/robot_control/scan_bar
 /home/mo/Thesis/install/robot_control/lib/robot_control/scan_bar_combined_triangulation
 /home/mo/Thesis/install/robot_control/lib/robot_control/scan_bar_horizontal_triangulation

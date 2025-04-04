@@ -1,1 +1,9 @@
-/home/mo/Thesis/build/kr_msgs/rosidl_cmake/srv/program/ProgramRecovery_Request.msg
+######################################################
+#                  PROGRAM RECOVERY                  #
+######################################################
+
+# SUPPORTED_ACTIONS
+int8 RECOVER = 0
+int8 SKIP    = 1
+
+int8 action  # see SUPPORTED_ACTIONS

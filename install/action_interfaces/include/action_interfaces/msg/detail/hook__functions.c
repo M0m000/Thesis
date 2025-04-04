@@ -21,11 +21,22 @@
 // Member `hook_mask`
 // Member `tip_mask`
 // Member `lowpoint_mask`
+// Member `skeleton_mask`
 #include "sensor_msgs/msg/detail/image__functions.h"
 // Member `uv_hook`
 // Member `uv_tip`
 // Member `uv_lowpoint`
+// Member `uv_hook_img2`
+// Member `uv_tip_img2`
+// Member `uv_lowpoint_img2`
+// Member `shortest_path`
+// Member `path_points`
 #include "action_interfaces/msg/detail/uv__functions.h"
+// Member `xyz_hook_in_camframe`
+// Member `xyz_tip_in_camframe`
+// Member `xyz_lowpoint_in_camframe`
+// Member `path_points_xyz_in_camframe`
+#include "action_interfaces/msg/detail/xyz__functions.h"
 
 bool
 action_interfaces__msg__Hook__init(action_interfaces__msg__Hook * msg)
@@ -68,6 +79,11 @@ action_interfaces__msg__Hook__init(action_interfaces__msg__Hook * msg)
     action_interfaces__msg__Hook__fini(msg);
     return false;
   }
+  // skeleton_mask
+  if (!sensor_msgs__msg__Image__init(&msg->skeleton_mask)) {
+    action_interfaces__msg__Hook__fini(msg);
+    return false;
+  }
   // conf_hook
   // conf_tip
   // conf_lowpoint
@@ -83,6 +99,51 @@ action_interfaces__msg__Hook__init(action_interfaces__msg__Hook * msg)
   }
   // uv_lowpoint
   if (!action_interfaces__msg__UV__init(&msg->uv_lowpoint)) {
+    action_interfaces__msg__Hook__fini(msg);
+    return false;
+  }
+  // uv_hook_img2
+  if (!action_interfaces__msg__UV__init(&msg->uv_hook_img2)) {
+    action_interfaces__msg__Hook__fini(msg);
+    return false;
+  }
+  // uv_tip_img2
+  if (!action_interfaces__msg__UV__init(&msg->uv_tip_img2)) {
+    action_interfaces__msg__Hook__fini(msg);
+    return false;
+  }
+  // uv_lowpoint_img2
+  if (!action_interfaces__msg__UV__init(&msg->uv_lowpoint_img2)) {
+    action_interfaces__msg__Hook__fini(msg);
+    return false;
+  }
+  // shortest_path
+  if (!action_interfaces__msg__UV__Sequence__init(&msg->shortest_path, 0)) {
+    action_interfaces__msg__Hook__fini(msg);
+    return false;
+  }
+  // path_points
+  if (!action_interfaces__msg__UV__Sequence__init(&msg->path_points, 0)) {
+    action_interfaces__msg__Hook__fini(msg);
+    return false;
+  }
+  // xyz_hook_in_camframe
+  if (!action_interfaces__msg__XYZ__Sequence__init(&msg->xyz_hook_in_camframe, 0)) {
+    action_interfaces__msg__Hook__fini(msg);
+    return false;
+  }
+  // xyz_tip_in_camframe
+  if (!action_interfaces__msg__XYZ__Sequence__init(&msg->xyz_tip_in_camframe, 0)) {
+    action_interfaces__msg__Hook__fini(msg);
+    return false;
+  }
+  // xyz_lowpoint_in_camframe
+  if (!action_interfaces__msg__XYZ__Sequence__init(&msg->xyz_lowpoint_in_camframe, 0)) {
+    action_interfaces__msg__Hook__fini(msg);
+    return false;
+  }
+  // path_points_xyz_in_camframe
+  if (!action_interfaces__msg__XYZ__Sequence__init(&msg->path_points_xyz_in_camframe, 0)) {
     action_interfaces__msg__Hook__fini(msg);
     return false;
   }
@@ -109,6 +170,8 @@ action_interfaces__msg__Hook__fini(action_interfaces__msg__Hook * msg)
   sensor_msgs__msg__Image__fini(&msg->tip_mask);
   // lowpoint_mask
   sensor_msgs__msg__Image__fini(&msg->lowpoint_mask);
+  // skeleton_mask
+  sensor_msgs__msg__Image__fini(&msg->skeleton_mask);
   // conf_hook
   // conf_tip
   // conf_lowpoint
@@ -118,6 +181,24 @@ action_interfaces__msg__Hook__fini(action_interfaces__msg__Hook * msg)
   action_interfaces__msg__UV__fini(&msg->uv_tip);
   // uv_lowpoint
   action_interfaces__msg__UV__fini(&msg->uv_lowpoint);
+  // uv_hook_img2
+  action_interfaces__msg__UV__fini(&msg->uv_hook_img2);
+  // uv_tip_img2
+  action_interfaces__msg__UV__fini(&msg->uv_tip_img2);
+  // uv_lowpoint_img2
+  action_interfaces__msg__UV__fini(&msg->uv_lowpoint_img2);
+  // shortest_path
+  action_interfaces__msg__UV__Sequence__fini(&msg->shortest_path);
+  // path_points
+  action_interfaces__msg__UV__Sequence__fini(&msg->path_points);
+  // xyz_hook_in_camframe
+  action_interfaces__msg__XYZ__Sequence__fini(&msg->xyz_hook_in_camframe);
+  // xyz_tip_in_camframe
+  action_interfaces__msg__XYZ__Sequence__fini(&msg->xyz_tip_in_camframe);
+  // xyz_lowpoint_in_camframe
+  action_interfaces__msg__XYZ__Sequence__fini(&msg->xyz_lowpoint_in_camframe);
+  // path_points_xyz_in_camframe
+  action_interfaces__msg__XYZ__Sequence__fini(&msg->path_points_xyz_in_camframe);
 }
 
 bool
@@ -168,6 +249,12 @@ action_interfaces__msg__Hook__are_equal(const action_interfaces__msg__Hook * lhs
   {
     return false;
   }
+  // skeleton_mask
+  if (!sensor_msgs__msg__Image__are_equal(
+      &(lhs->skeleton_mask), &(rhs->skeleton_mask)))
+  {
+    return false;
+  }
   // conf_hook
   if (lhs->conf_hook != rhs->conf_hook) {
     return false;
@@ -195,6 +282,60 @@ action_interfaces__msg__Hook__are_equal(const action_interfaces__msg__Hook * lhs
   // uv_lowpoint
   if (!action_interfaces__msg__UV__are_equal(
       &(lhs->uv_lowpoint), &(rhs->uv_lowpoint)))
+  {
+    return false;
+  }
+  // uv_hook_img2
+  if (!action_interfaces__msg__UV__are_equal(
+      &(lhs->uv_hook_img2), &(rhs->uv_hook_img2)))
+  {
+    return false;
+  }
+  // uv_tip_img2
+  if (!action_interfaces__msg__UV__are_equal(
+      &(lhs->uv_tip_img2), &(rhs->uv_tip_img2)))
+  {
+    return false;
+  }
+  // uv_lowpoint_img2
+  if (!action_interfaces__msg__UV__are_equal(
+      &(lhs->uv_lowpoint_img2), &(rhs->uv_lowpoint_img2)))
+  {
+    return false;
+  }
+  // shortest_path
+  if (!action_interfaces__msg__UV__Sequence__are_equal(
+      &(lhs->shortest_path), &(rhs->shortest_path)))
+  {
+    return false;
+  }
+  // path_points
+  if (!action_interfaces__msg__UV__Sequence__are_equal(
+      &(lhs->path_points), &(rhs->path_points)))
+  {
+    return false;
+  }
+  // xyz_hook_in_camframe
+  if (!action_interfaces__msg__XYZ__Sequence__are_equal(
+      &(lhs->xyz_hook_in_camframe), &(rhs->xyz_hook_in_camframe)))
+  {
+    return false;
+  }
+  // xyz_tip_in_camframe
+  if (!action_interfaces__msg__XYZ__Sequence__are_equal(
+      &(lhs->xyz_tip_in_camframe), &(rhs->xyz_tip_in_camframe)))
+  {
+    return false;
+  }
+  // xyz_lowpoint_in_camframe
+  if (!action_interfaces__msg__XYZ__Sequence__are_equal(
+      &(lhs->xyz_lowpoint_in_camframe), &(rhs->xyz_lowpoint_in_camframe)))
+  {
+    return false;
+  }
+  // path_points_xyz_in_camframe
+  if (!action_interfaces__msg__XYZ__Sequence__are_equal(
+      &(lhs->path_points_xyz_in_camframe), &(rhs->path_points_xyz_in_camframe)))
   {
     return false;
   }
@@ -251,6 +392,12 @@ action_interfaces__msg__Hook__copy(
   {
     return false;
   }
+  // skeleton_mask
+  if (!sensor_msgs__msg__Image__copy(
+      &(input->skeleton_mask), &(output->skeleton_mask)))
+  {
+    return false;
+  }
   // conf_hook
   output->conf_hook = input->conf_hook;
   // conf_tip
@@ -272,6 +419,60 @@ action_interfaces__msg__Hook__copy(
   // uv_lowpoint
   if (!action_interfaces__msg__UV__copy(
       &(input->uv_lowpoint), &(output->uv_lowpoint)))
+  {
+    return false;
+  }
+  // uv_hook_img2
+  if (!action_interfaces__msg__UV__copy(
+      &(input->uv_hook_img2), &(output->uv_hook_img2)))
+  {
+    return false;
+  }
+  // uv_tip_img2
+  if (!action_interfaces__msg__UV__copy(
+      &(input->uv_tip_img2), &(output->uv_tip_img2)))
+  {
+    return false;
+  }
+  // uv_lowpoint_img2
+  if (!action_interfaces__msg__UV__copy(
+      &(input->uv_lowpoint_img2), &(output->uv_lowpoint_img2)))
+  {
+    return false;
+  }
+  // shortest_path
+  if (!action_interfaces__msg__UV__Sequence__copy(
+      &(input->shortest_path), &(output->shortest_path)))
+  {
+    return false;
+  }
+  // path_points
+  if (!action_interfaces__msg__UV__Sequence__copy(
+      &(input->path_points), &(output->path_points)))
+  {
+    return false;
+  }
+  // xyz_hook_in_camframe
+  if (!action_interfaces__msg__XYZ__Sequence__copy(
+      &(input->xyz_hook_in_camframe), &(output->xyz_hook_in_camframe)))
+  {
+    return false;
+  }
+  // xyz_tip_in_camframe
+  if (!action_interfaces__msg__XYZ__Sequence__copy(
+      &(input->xyz_tip_in_camframe), &(output->xyz_tip_in_camframe)))
+  {
+    return false;
+  }
+  // xyz_lowpoint_in_camframe
+  if (!action_interfaces__msg__XYZ__Sequence__copy(
+      &(input->xyz_lowpoint_in_camframe), &(output->xyz_lowpoint_in_camframe)))
+  {
+    return false;
+  }
+  // path_points_xyz_in_camframe
+  if (!action_interfaces__msg__XYZ__Sequence__copy(
+      &(input->path_points_xyz_in_camframe), &(output->path_points_xyz_in_camframe)))
   {
     return false;
   }
