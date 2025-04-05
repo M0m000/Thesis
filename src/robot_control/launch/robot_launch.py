@@ -10,7 +10,7 @@ def generate_launch_description():
             executable='robot_state_publisher',
             name='robot_state_publisher',
             output='screen',
-            parameters=[{'robot_description': open('/home/mo/Thesis/src/robot_control/urdf/kr1205.urdf.xacro').read()}]
+            parameters=[{'robot_description': open('/home/mo/Thesis/src/robot_control/urdf/7_axis.urdf.xacro').read()}]
         ),
         Node(
             package='joint_state_publisher_gui',

@@ -14,6 +14,7 @@ setup(
         ('share/' + package_name + '/launch', ['launch/vc_vision_dualcam_launch.py']),
         ('share/' + package_name + '/launch', ['launch/scan_bar_launch.py']),
         ('share/' + package_name + '/launch', ['launch/robot_launch.py']),
+        ('share/' + package_name + '/launch', ['launch/test_7dof.launch.py']),
         ('share/' + package_name + '/config', ['config/vc_params.yaml']),
     ],
     install_requires=['setuptools'],
@@ -44,7 +45,8 @@ setup(
             'attachment_control_trajectory = robot_control.attachment_control_trajectory:main',
             'attachment_control_servoing = robot_control.attachment_control_servoing:main',
             'scan_bar_horizontal_triangulation_pxmm = robot_control.scan_bar_horizontal_triangulation_pxmm:main',
-            'ptp_movement_node = robot_control.ptp_movement_node:main'
+            'ptp_movement_node = robot_control.ptp_movement_node:main',
+            'ik_solver_node = robot_control.ik_solver_node:main'
         ],
     },
 )

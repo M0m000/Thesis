@@ -1,0 +1,2 @@
+Invoking command in '/home/mo/Thesis/build/trac_ik_lib': /usr/bin/cmake /home/mo/Thesis/src/trac_ik/trac_ik_lib -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/mo/Thesis/install/trac_ik_lib
+Invoked command in '/home/mo/Thesis/build/trac_ik_lib' returned '1': /usr/bin/cmake /home/mo/Thesis/src/trac_ik/trac_ik_lib -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/mo/Thesis/install/trac_ik_lib

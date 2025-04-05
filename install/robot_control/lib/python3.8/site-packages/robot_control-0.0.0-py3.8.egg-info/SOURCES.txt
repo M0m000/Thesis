@@ -28,6 +28,7 @@ FC/__init__.py
 config/vc_params.yaml
 launch/robot_launch.py
 launch/scan_bar_launch.py
+launch/test_7dof.launch.py
 launch/vc_vision_dualcam_launch.py
 launch/vc_vision_launch.py
 resource/robot_control
@@ -38,6 +39,7 @@ robot_control/attachment_control_trajectory.py
 robot_control/define_working_frame_needle.py
 robot_control/hook_data_listener.py
 robot_control/ibvs_2d.py
+robot_control/ik_solver_node.py
 robot_control/ptp_movement_node.py
 robot_control/scan_bar.py
 robot_control/scan_bar_combined_triangulation.py

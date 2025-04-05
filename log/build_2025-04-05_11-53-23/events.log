@@ -1,0 +1,12 @@
+[0.000000] (-) TimerEvent: {}
+[0.000405] (-) JobUnselected: {'identifier': 'action_interfaces'}
+[0.000443] (-) JobUnselected: {'identifier': 'action_servers'}
+[0.000624] (-) JobUnselected: {'identifier': 'kdl_parser'}
+[0.000665] (-) JobUnselected: {'identifier': 'kr_example_cpp'}
+[0.000687] (-) JobUnselected: {'identifier': 'kr_example_python'}
+[0.000705] (-) JobUnselected: {'identifier': 'kr_msgs'}
+[0.000720] (-) JobUnselected: {'identifier': 'robot_control'}
+[0.000743] (-) JobUnselected: {'identifier': 'sensopart_visor'}
+[0.000765] (-) JobUnselected: {'identifier': 'vcnanoz'}
+[0.000779] (-) JobUnselected: {'identifier': 'vision'}
+[0.000793] (-) EventReactorShutdown: {}
