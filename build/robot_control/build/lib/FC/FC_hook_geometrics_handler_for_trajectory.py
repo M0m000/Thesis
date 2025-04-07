@@ -141,10 +141,10 @@ class HookGeometricsHandler(Node):
                 y = ppoint[1]
                 z = ppoint[2]
                 ppoint_hom = np.array([x, y, z, 1.0])
-                print("T_work_in_tcpframe: ", T_work_in_tcpframe)
+                # print("T_work_in_tcpframe: ", T_work_in_tcpframe)
                 ppoint_in_tcpframe = T_work_in_tcpframe @ ppoint_hom
                 ppoint_in_tcpframe = ppoint_in_tcpframe[:3]
-                print("ppoint_in_tcpframe: ", ppoint_in_tcpframe)
+                # print("ppoint_in_tcpframe: ", ppoint_in_tcpframe)
                 self.path_points_in_tcpframe.append(ppoint_in_tcpframe)         # speichern in Liste
 
 
@@ -311,7 +311,7 @@ class HookGeometricsHandler(Node):
     
 
 
-    def _polynomial_regression_trajectory_positions(self, trajectory, degree=2):
+    def _polynomial_regression_trajectory_rotations(self, trajectory, degree=2):
         """
         Erstellt eine neue Trajektorie, bei der die Positionen durch eine polynomiale Regression geglättet wurden.
         Rotation bleibt unverändert.
@@ -367,7 +367,7 @@ class HookGeometricsHandler(Node):
     
 
 
-    def _smooth_trajectory_rotations(self, trajectory, z_thresh=2.0):
+    def _smooth_trajectory(self, trajectory, z_thresh=2.0):
         """
         Glättet die Rotationen in einer Trajektorie durch Vektorausreißer-Erkennung und Interpolation.
 
@@ -378,11 +378,20 @@ class HookGeometricsHandler(Node):
         Rückgabe:
             Neue geglättete Trajektorie mit gleich aufgebauter Struktur
         """
-        positions = [pos for pos, _ in trajectory]
+        positions = np.array([pos for pos, _ in trajectory])
         rotations = np.array([rot for _, rot in trajectory])  # Shape (N, 3)
 
-        smoothed_rot = self._interpolate_outlier_vectors_zscore(rotations, z_thresh=z_thresh)
-        new_trajectory = [(pos, rot) for pos, rot in zip(positions, smoothed_rot)]
+        smoothed_rot = self._interpolate_outlier_vectors_zscore(rotations, z_thresh = z_thresh)
+        smoothed_trans = self._interpolate_outlier_vectors_zscore(positions, z_thresh = z_thresh)
+
+        # Geglättete Trajektorie - Translatorisch und Rotatorisch
+        new_trajectory = [(pos, rot) for pos, rot in zip (smoothed_trans, smoothed_rot)]
+
+        # Geglättete Trajektorie - Rotatorisch
+        # new_trajectory = [(pos, rot) for pos, rot in zip(positions, smoothed_rot)]
+
+        # Geglättete Trajektorie - Translatorisch
+        # new_trajectory = [(pos, rot) for pos, rot in zip(smoothed_ptrans, rotations)]
         return new_trajectory
     
 
@@ -417,8 +426,11 @@ class HookGeometricsHandler(Node):
                     self.get_logger().info(f"Handling last path point...")
                     self.hook_line['p_1'] = self.path_points_in_tcpframe[idx]
                 trajectory.append(self._calculate_targetpose_in_worldframe())
-            trajectory_smoothed = self._smooth_trajectory_rotations(trajectory = trajectory, z_thresh = 2.3)
-            trajectory = self._polynomial_regression_trajectory_positions(trajectory = trajectory_smoothed, degree = 1)
+
+            # Ausreißer auf Translation und Rotationen entfernen
+            trajectory_smoothed = self._smooth_trajectory(trajectory = trajectory, z_thresh = 2.3)
+            # Rotationen glätten durch Polynom-Regression n=3
+            trajectory = self._polynomial_regression_trajectory_rotations(trajectory = trajectory_smoothed, degree = 1)
             return trajectory
     
 
@@ -442,6 +454,7 @@ class HookGeometricsHandler(Node):
             self.get_logger().info("Calculating initial trajectory point...")
             self._calculate_init_trajectory_point()
             p_traj_init = self.hook_line['p_traj_init']
+            print("Richtungsvektor: ", self.hook_line['p_dir'])
             p_traj_init_translation_in_worldframe, p_traj_init_rotation_in_worldframe = self._calculate_targetpose_in_worldframe(target_position = p_traj_init, line_dir = self.hook_line['p_dir'])
             trajectory.append((p_traj_init_translation_in_worldframe, p_traj_init_rotation_in_worldframe))
 
@@ -460,13 +473,17 @@ class HookGeometricsHandler(Node):
                     self.hook_line['p_1'] = self.path_points_in_tcpframe[idx]
                 trajpoint_translation, _ = self._calculate_targetpose_in_worldframe()
                 trajectory.append((trajpoint_translation, p_traj_init_rotation_in_worldframe))
-            # trajectory_smoothed = self._smooth_trajectory_rotations(trajectory = trajectory, z_thresh = 2.3)
-            # trajectory = self._polynomial_regression_trajectory_positions(trajectory = trajectory_smoothed, degree = 3)
+            
+            # Ausreißer auf Translation und Rotationen entfernen
+            trajectory = self._smooth_trajectory(trajectory = trajectory, z_thresh = 2.3)
+
+            # Rotationen glätten durch Polynom-Regression n=3 -> WIRD HIER NICHT BENÖTIGT, DA ROTATION IMMER GLEICH
+            # trajectory = self._polynomial_regression_trajectory_rotations(trajectory = trajectory_smoothed, degree = 3)
             return trajectory
         
 
     
-    def plan_trajectory_with_optimized_orientation(self, hook_num = None, attachment_distance_in_mm = None, tip_ppoint = None):
+    def plan_trajectory_with_optimized_orientation(self, hook_num = None, attachment_distance_in_mm = None, tip_ppoint = None, hook_type = 'a'):
         """
         Ansatz 3 - Berechnung der Trajektorie unter Voraussetzung einer optimalen Orientierung
             - Orientierung mit Hook-Line (Spitze -> Senke) berechnen und mit optimaler Orientierung (entsprechend Hakenmodell) vergleichen
@@ -474,11 +491,25 @@ class HookGeometricsHandler(Node):
             - Orientierung korrigieren auf Mittelmaß zwischen Optimum und berechneter Orientierung
             - Planen der Trajektorie mit festem Einfädelungs-Weg attachment_distance_in_mm
         """
+        # Optimale Richtungsvektoren für Gerade speichern und auf Basis von hook_type rausholen
+        optim_dir_vector_a = [0.83, -0.12, 0.532]       # optimaler Richtungsvektor für Hook-Line bei Hakenmodell A
+        optim_dir_vector_b = [1, -1, 0]
+        optim_dir_vector_c = [1, -0.6, 0]
+        optim_dir_vector_d = [1, -1, 0]
+        optim_p_dir_list = [optim_dir_vector_a, optim_dir_vector_b, optim_dir_vector_c, optim_dir_vector_d]
+        p_dir_optim = optim_p_dir_list[(np.where(hook_type == np.array(['a', 'b', 'c', 'd'])))[0][0]]        
+        
+        # Gerade mit echten Istwerten berechnen (Spitze -> Senke (Tip-PPoint))
+        # Vergleich von Ist-Rotation mit optimaler Rotation
+        # Ausgabe -> Fehlerfall (1) oder Korrektur (2) anhand eines Thresholds
+        # Begrenzug/GLättung der Translation über Funktionsaufruf -> Ausreißer eliminieren und glätten
+        # Aufbauen der Trajektorie von Spitze bis Tip-Path-Point
         # TODO
         
         '''
-        trajectory_smoothed = self._smooth_trajectory_rotations(trajectory = trajectory, z_thresh = 2.3)
-        trajectory = self._polynomial_regression_trajectory_positions(trajectory = trajectory_smoothed, degree = 1)
+        # Ausreißer auf Translation und Rotationen entfernen
+        trajectory_smoothed = self._smooth_trajectory(trajectory = trajectory, z_thresh = 2.3)
+        trajectory = self._polynomial_regression_trajectory_rotations(trajectory = trajectory_smoothed, degree = 1)
         return trajectory
         '''
         pass
