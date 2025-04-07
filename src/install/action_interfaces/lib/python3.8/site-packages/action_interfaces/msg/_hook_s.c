@@ -1,0 +1,917 @@
+// generated from rosidl_generator_py/resource/_idl_support.c.em
+// with input from action_interfaces:msg/Hook.idl
+// generated code does not contain a copyright notice
+#define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
+#include <Python.h>
+#include <stdbool.h>
+#ifndef _WIN32
+# pragma GCC diagnostic push
+# pragma GCC diagnostic ignored "-Wunused-function"
+#endif
+#include "numpy/ndarrayobject.h"
+#ifndef _WIN32
+# pragma GCC diagnostic pop
+#endif
+#include "rosidl_runtime_c/visibility_control.h"
+#include "action_interfaces/msg/detail/hook__struct.h"
+#include "action_interfaces/msg/detail/hook__functions.h"
+
+#include "rosidl_runtime_c/string.h"
+#include "rosidl_runtime_c/string_functions.h"
+
+#include "rosidl_runtime_c/primitives_sequence.h"
+#include "rosidl_runtime_c/primitives_sequence_functions.h"
+
+// Nested array functions includes
+#include "action_interfaces/msg/detail/uv__functions.h"
+#include "action_interfaces/msg/detail/xyz__functions.h"
+// end nested array functions include
+bool action_interfaces__msg__bounding_box__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__bounding_box__convert_to_py(void * raw_ros_message);
+bool action_interfaces__msg__bounding_box__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__bounding_box__convert_to_py(void * raw_ros_message);
+bool action_interfaces__msg__bounding_box__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__bounding_box__convert_to_py(void * raw_ros_message);
+ROSIDL_GENERATOR_C_IMPORT
+bool sensor_msgs__msg__image__convert_from_py(PyObject * _pymsg, void * _ros_message);
+ROSIDL_GENERATOR_C_IMPORT
+PyObject * sensor_msgs__msg__image__convert_to_py(void * raw_ros_message);
+ROSIDL_GENERATOR_C_IMPORT
+bool sensor_msgs__msg__image__convert_from_py(PyObject * _pymsg, void * _ros_message);
+ROSIDL_GENERATOR_C_IMPORT
+PyObject * sensor_msgs__msg__image__convert_to_py(void * raw_ros_message);
+ROSIDL_GENERATOR_C_IMPORT
+bool sensor_msgs__msg__image__convert_from_py(PyObject * _pymsg, void * _ros_message);
+ROSIDL_GENERATOR_C_IMPORT
+PyObject * sensor_msgs__msg__image__convert_to_py(void * raw_ros_message);
+ROSIDL_GENERATOR_C_IMPORT
+bool sensor_msgs__msg__image__convert_from_py(PyObject * _pymsg, void * _ros_message);
+ROSIDL_GENERATOR_C_IMPORT
+PyObject * sensor_msgs__msg__image__convert_to_py(void * raw_ros_message);
+bool action_interfaces__msg__uv__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__uv__convert_to_py(void * raw_ros_message);
+bool action_interfaces__msg__uv__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__uv__convert_to_py(void * raw_ros_message);
+bool action_interfaces__msg__uv__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__uv__convert_to_py(void * raw_ros_message);
+bool action_interfaces__msg__uv__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__uv__convert_to_py(void * raw_ros_message);
+bool action_interfaces__msg__uv__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__uv__convert_to_py(void * raw_ros_message);
+bool action_interfaces__msg__uv__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__uv__convert_to_py(void * raw_ros_message);
+bool action_interfaces__msg__uv__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__uv__convert_to_py(void * raw_ros_message);
+bool action_interfaces__msg__uv__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__uv__convert_to_py(void * raw_ros_message);
+bool action_interfaces__msg__xyz__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__xyz__convert_to_py(void * raw_ros_message);
+bool action_interfaces__msg__xyz__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__xyz__convert_to_py(void * raw_ros_message);
+bool action_interfaces__msg__xyz__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__xyz__convert_to_py(void * raw_ros_message);
+bool action_interfaces__msg__xyz__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * action_interfaces__msg__xyz__convert_to_py(void * raw_ros_message);
+
+ROSIDL_GENERATOR_C_EXPORT
+bool action_interfaces__msg__hook__convert_from_py(PyObject * _pymsg, void * _ros_message)
+{
+  // check that the passed message is of the expected Python class
+  {
+    char full_classname_dest[33];
+    {
+      char * class_name = NULL;
+      char * module_name = NULL;
+      {
+        PyObject * class_attr = PyObject_GetAttrString(_pymsg, "__class__");
+        if (class_attr) {
+          PyObject * name_attr = PyObject_GetAttrString(class_attr, "__name__");
+          if (name_attr) {
+            class_name = (char *)PyUnicode_1BYTE_DATA(name_attr);
+            Py_DECREF(name_attr);
+          }
+          PyObject * module_attr = PyObject_GetAttrString(class_attr, "__module__");
+          if (module_attr) {
+            module_name = (char *)PyUnicode_1BYTE_DATA(module_attr);
+            Py_DECREF(module_attr);
+          }
+          Py_DECREF(class_attr);
+        }
+      }
+      if (!class_name || !module_name) {
+        return false;
+      }
+      snprintf(full_classname_dest, sizeof(full_classname_dest), "%s.%s", module_name, class_name);
+    }
+    assert(strncmp("action_interfaces.msg._hook.Hook", full_classname_dest, 32) == 0);
+  }
+  action_interfaces__msg__Hook * ros_message = _ros_message;
+  {  // name
+    PyObject * field = PyObject_GetAttrString(_pymsg, "name");
+    if (!field) {
+      return false;
+    }
+    assert(PyUnicode_Check(field));
+    PyObject * encoded_field = PyUnicode_AsUTF8String(field);
+    if (!encoded_field) {
+      Py_DECREF(field);
+      return false;
+    }
+    rosidl_runtime_c__String__assign(&ros_message->name, PyBytes_AS_STRING(encoded_field));
+    Py_DECREF(encoded_field);
+    Py_DECREF(field);
+  }
+  {  // hook_box
+    PyObject * field = PyObject_GetAttrString(_pymsg, "hook_box");
+    if (!field) {
+      return false;
+    }
+    if (!action_interfaces__msg__bounding_box__convert_from_py(field, &ros_message->hook_box)) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_DECREF(field);
+  }
+  {  // tip_box
+    PyObject * field = PyObject_GetAttrString(_pymsg, "tip_box");
+    if (!field) {
+      return false;
+    }
+    if (!action_interfaces__msg__bounding_box__convert_from_py(field, &ros_message->tip_box)) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_DECREF(field);
+  }
+  {  // lowpoint_box
+    PyObject * field = PyObject_GetAttrString(_pymsg, "lowpoint_box");
+    if (!field) {
+      return false;
+    }
+    if (!action_interfaces__msg__bounding_box__convert_from_py(field, &ros_message->lowpoint_box)) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_DECREF(field);
+  }
+  {  // hook_mask
+    PyObject * field = PyObject_GetAttrString(_pymsg, "hook_mask");
+    if (!field) {
+      return false;
+    }
+    if (!sensor_msgs__msg__image__convert_from_py(field, &ros_message->hook_mask)) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_DECREF(field);
+  }
+  {  // tip_mask
+    PyObject * field = PyObject_GetAttrString(_pymsg, "tip_mask");
+    if (!field) {
+      return false;
+    }
+    if (!sensor_msgs__msg__image__convert_from_py(field, &ros_message->tip_mask)) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_DECREF(field);
+  }
+  {  // lowpoint_mask
+    PyObject * field = PyObject_GetAttrString(_pymsg, "lowpoint_mask");
+    if (!field) {
+      return false;
+    }
+    if (!sensor_msgs__msg__image__convert_from_py(field, &ros_message->lowpoint_mask)) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_DECREF(field);
+  }
+  {  // skeleton_mask
+    PyObject * field = PyObject_GetAttrString(_pymsg, "skeleton_mask");
+    if (!field) {
+      return false;
+    }
+    if (!sensor_msgs__msg__image__convert_from_py(field, &ros_message->skeleton_mask)) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_DECREF(field);
+  }
+  {  // conf_hook
+    PyObject * field = PyObject_GetAttrString(_pymsg, "conf_hook");
+    if (!field) {
+      return false;
+    }
+    assert(PyFloat_Check(field));
+    ros_message->conf_hook = (float)PyFloat_AS_DOUBLE(field);
+    Py_DECREF(field);
+  }
+  {  // conf_tip
+    PyObject * field = PyObject_GetAttrString(_pymsg, "conf_tip");
+    if (!field) {
+      return false;
+    }
+    assert(PyFloat_Check(field));
+    ros_message->conf_tip = (float)PyFloat_AS_DOUBLE(field);
+    Py_DECREF(field);
+  }
+  {  // conf_lowpoint
+    PyObject * field = PyObject_GetAttrString(_pymsg, "conf_lowpoint");
+    if (!field) {
+      return false;
+    }
+    assert(PyFloat_Check(field));
+    ros_message->conf_lowpoint = (float)PyFloat_AS_DOUBLE(field);
+    Py_DECREF(field);
+  }
+  {  // uv_hook
+    PyObject * field = PyObject_GetAttrString(_pymsg, "uv_hook");
+    if (!field) {
+      return false;
+    }
+    if (!action_interfaces__msg__uv__convert_from_py(field, &ros_message->uv_hook)) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_DECREF(field);
+  }
+  {  // uv_tip
+    PyObject * field = PyObject_GetAttrString(_pymsg, "uv_tip");
+    if (!field) {
+      return false;
+    }
+    if (!action_interfaces__msg__uv__convert_from_py(field, &ros_message->uv_tip)) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_DECREF(field);
+  }
+  {  // uv_lowpoint
+    PyObject * field = PyObject_GetAttrString(_pymsg, "uv_lowpoint");
+    if (!field) {
+      return false;
+    }
+    if (!action_interfaces__msg__uv__convert_from_py(field, &ros_message->uv_lowpoint)) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_DECREF(field);
+  }
+  {  // uv_hook_img2
+    PyObject * field = PyObject_GetAttrString(_pymsg, "uv_hook_img2");
+    if (!field) {
+      return false;
+    }
+    if (!action_interfaces__msg__uv__convert_from_py(field, &ros_message->uv_hook_img2)) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_DECREF(field);
+  }
+  {  // uv_tip_img2
+    PyObject * field = PyObject_GetAttrString(_pymsg, "uv_tip_img2");
+    if (!field) {
+      return false;
+    }
+    if (!action_interfaces__msg__uv__convert_from_py(field, &ros_message->uv_tip_img2)) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_DECREF(field);
+  }
+  {  // uv_lowpoint_img2
+    PyObject * field = PyObject_GetAttrString(_pymsg, "uv_lowpoint_img2");
+    if (!field) {
+      return false;
+    }
+    if (!action_interfaces__msg__uv__convert_from_py(field, &ros_message->uv_lowpoint_img2)) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_DECREF(field);
+  }
+  {  // shortest_path
+    PyObject * field = PyObject_GetAttrString(_pymsg, "shortest_path");
+    if (!field) {
+      return false;
+    }
+    PyObject * seq_field = PySequence_Fast(field, "expected a sequence in 'shortest_path'");
+    if (!seq_field) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_ssize_t size = PySequence_Size(field);
+    if (-1 == size) {
+      Py_DECREF(seq_field);
+      Py_DECREF(field);
+      return false;
+    }
+    if (!action_interfaces__msg__UV__Sequence__init(&(ros_message->shortest_path), size)) {
+      PyErr_SetString(PyExc_RuntimeError, "unable to create action_interfaces__msg__UV__Sequence ros_message");
+      Py_DECREF(seq_field);
+      Py_DECREF(field);
+      return false;
+    }
+    action_interfaces__msg__UV * dest = ros_message->shortest_path.data;
+    for (Py_ssize_t i = 0; i < size; ++i) {
+      if (!action_interfaces__msg__uv__convert_from_py(PySequence_Fast_GET_ITEM(seq_field, i), &dest[i])) {
+        Py_DECREF(seq_field);
+        Py_DECREF(field);
+        return false;
+      }
+    }
+    Py_DECREF(seq_field);
+    Py_DECREF(field);
+  }
+  {  // path_points
+    PyObject * field = PyObject_GetAttrString(_pymsg, "path_points");
+    if (!field) {
+      return false;
+    }
+    PyObject * seq_field = PySequence_Fast(field, "expected a sequence in 'path_points'");
+    if (!seq_field) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_ssize_t size = PySequence_Size(field);
+    if (-1 == size) {
+      Py_DECREF(seq_field);
+      Py_DECREF(field);
+      return false;
+    }
+    if (!action_interfaces__msg__UV__Sequence__init(&(ros_message->path_points), size)) {
+      PyErr_SetString(PyExc_RuntimeError, "unable to create action_interfaces__msg__UV__Sequence ros_message");
+      Py_DECREF(seq_field);
+      Py_DECREF(field);
+      return false;
+    }
+    action_interfaces__msg__UV * dest = ros_message->path_points.data;
+    for (Py_ssize_t i = 0; i < size; ++i) {
+      if (!action_interfaces__msg__uv__convert_from_py(PySequence_Fast_GET_ITEM(seq_field, i), &dest[i])) {
+        Py_DECREF(seq_field);
+        Py_DECREF(field);
+        return false;
+      }
+    }
+    Py_DECREF(seq_field);
+    Py_DECREF(field);
+  }
+  {  // xyz_hook_in_camframe
+    PyObject * field = PyObject_GetAttrString(_pymsg, "xyz_hook_in_camframe");
+    if (!field) {
+      return false;
+    }
+    PyObject * seq_field = PySequence_Fast(field, "expected a sequence in 'xyz_hook_in_camframe'");
+    if (!seq_field) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_ssize_t size = PySequence_Size(field);
+    if (-1 == size) {
+      Py_DECREF(seq_field);
+      Py_DECREF(field);
+      return false;
+    }
+    if (!action_interfaces__msg__XYZ__Sequence__init(&(ros_message->xyz_hook_in_camframe), size)) {
+      PyErr_SetString(PyExc_RuntimeError, "unable to create action_interfaces__msg__XYZ__Sequence ros_message");
+      Py_DECREF(seq_field);
+      Py_DECREF(field);
+      return false;
+    }
+    action_interfaces__msg__XYZ * dest = ros_message->xyz_hook_in_camframe.data;
+    for (Py_ssize_t i = 0; i < size; ++i) {
+      if (!action_interfaces__msg__xyz__convert_from_py(PySequence_Fast_GET_ITEM(seq_field, i), &dest[i])) {
+        Py_DECREF(seq_field);
+        Py_DECREF(field);
+        return false;
+      }
+    }
+    Py_DECREF(seq_field);
+    Py_DECREF(field);
+  }
+  {  // xyz_tip_in_camframe
+    PyObject * field = PyObject_GetAttrString(_pymsg, "xyz_tip_in_camframe");
+    if (!field) {
+      return false;
+    }
+    PyObject * seq_field = PySequence_Fast(field, "expected a sequence in 'xyz_tip_in_camframe'");
+    if (!seq_field) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_ssize_t size = PySequence_Size(field);
+    if (-1 == size) {
+      Py_DECREF(seq_field);
+      Py_DECREF(field);
+      return false;
+    }
+    if (!action_interfaces__msg__XYZ__Sequence__init(&(ros_message->xyz_tip_in_camframe), size)) {
+      PyErr_SetString(PyExc_RuntimeError, "unable to create action_interfaces__msg__XYZ__Sequence ros_message");
+      Py_DECREF(seq_field);
+      Py_DECREF(field);
+      return false;
+    }
+    action_interfaces__msg__XYZ * dest = ros_message->xyz_tip_in_camframe.data;
+    for (Py_ssize_t i = 0; i < size; ++i) {
+      if (!action_interfaces__msg__xyz__convert_from_py(PySequence_Fast_GET_ITEM(seq_field, i), &dest[i])) {
+        Py_DECREF(seq_field);
+        Py_DECREF(field);
+        return false;
+      }
+    }
+    Py_DECREF(seq_field);
+    Py_DECREF(field);
+  }
+  {  // xyz_lowpoint_in_camframe
+    PyObject * field = PyObject_GetAttrString(_pymsg, "xyz_lowpoint_in_camframe");
+    if (!field) {
+      return false;
+    }
+    PyObject * seq_field = PySequence_Fast(field, "expected a sequence in 'xyz_lowpoint_in_camframe'");
+    if (!seq_field) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_ssize_t size = PySequence_Size(field);
+    if (-1 == size) {
+      Py_DECREF(seq_field);
+      Py_DECREF(field);
+      return false;
+    }
+    if (!action_interfaces__msg__XYZ__Sequence__init(&(ros_message->xyz_lowpoint_in_camframe), size)) {
+      PyErr_SetString(PyExc_RuntimeError, "unable to create action_interfaces__msg__XYZ__Sequence ros_message");
+      Py_DECREF(seq_field);
+      Py_DECREF(field);
+      return false;
+    }
+    action_interfaces__msg__XYZ * dest = ros_message->xyz_lowpoint_in_camframe.data;
+    for (Py_ssize_t i = 0; i < size; ++i) {
+      if (!action_interfaces__msg__xyz__convert_from_py(PySequence_Fast_GET_ITEM(seq_field, i), &dest[i])) {
+        Py_DECREF(seq_field);
+        Py_DECREF(field);
+        return false;
+      }
+    }
+    Py_DECREF(seq_field);
+    Py_DECREF(field);
+  }
+  {  // path_points_xyz_in_camframe
+    PyObject * field = PyObject_GetAttrString(_pymsg, "path_points_xyz_in_camframe");
+    if (!field) {
+      return false;
+    }
+    PyObject * seq_field = PySequence_Fast(field, "expected a sequence in 'path_points_xyz_in_camframe'");
+    if (!seq_field) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_ssize_t size = PySequence_Size(field);
+    if (-1 == size) {
+      Py_DECREF(seq_field);
+      Py_DECREF(field);
+      return false;
+    }
+    if (!action_interfaces__msg__XYZ__Sequence__init(&(ros_message->path_points_xyz_in_camframe), size)) {
+      PyErr_SetString(PyExc_RuntimeError, "unable to create action_interfaces__msg__XYZ__Sequence ros_message");
+      Py_DECREF(seq_field);
+      Py_DECREF(field);
+      return false;
+    }
+    action_interfaces__msg__XYZ * dest = ros_message->path_points_xyz_in_camframe.data;
+    for (Py_ssize_t i = 0; i < size; ++i) {
+      if (!action_interfaces__msg__xyz__convert_from_py(PySequence_Fast_GET_ITEM(seq_field, i), &dest[i])) {
+        Py_DECREF(seq_field);
+        Py_DECREF(field);
+        return false;
+      }
+    }
+    Py_DECREF(seq_field);
+    Py_DECREF(field);
+  }
+
+  return true;
+}
+
+ROSIDL_GENERATOR_C_EXPORT
+PyObject * action_interfaces__msg__hook__convert_to_py(void * raw_ros_message)
+{
+  /* NOTE(esteve): Call constructor of Hook */
+  PyObject * _pymessage = NULL;
+  {
+    PyObject * pymessage_module = PyImport_ImportModule("action_interfaces.msg._hook");
+    assert(pymessage_module);
+    PyObject * pymessage_class = PyObject_GetAttrString(pymessage_module, "Hook");
+    assert(pymessage_class);
+    Py_DECREF(pymessage_module);
+    _pymessage = PyObject_CallObject(pymessage_class, NULL);
+    Py_DECREF(pymessage_class);
+    if (!_pymessage) {
+      return NULL;
+    }
+  }
+  action_interfaces__msg__Hook * ros_message = (action_interfaces__msg__Hook *)raw_ros_message;
+  {  // name
+    PyObject * field = NULL;
+    field = PyUnicode_DecodeUTF8(
+      ros_message->name.data,
+      strlen(ros_message->name.data),
+      "replace");
+    if (!field) {
+      return NULL;
+    }
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "name", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // hook_box
+    PyObject * field = NULL;
+    field = action_interfaces__msg__bounding_box__convert_to_py(&ros_message->hook_box);
+    if (!field) {
+      return NULL;
+    }
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "hook_box", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // tip_box
+    PyObject * field = NULL;
+    field = action_interfaces__msg__bounding_box__convert_to_py(&ros_message->tip_box);
+    if (!field) {
+      return NULL;
+    }
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "tip_box", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // lowpoint_box
+    PyObject * field = NULL;
+    field = action_interfaces__msg__bounding_box__convert_to_py(&ros_message->lowpoint_box);
+    if (!field) {
+      return NULL;
+    }
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "lowpoint_box", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // hook_mask
+    PyObject * field = NULL;
+    field = sensor_msgs__msg__image__convert_to_py(&ros_message->hook_mask);
+    if (!field) {
+      return NULL;
+    }
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "hook_mask", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // tip_mask
+    PyObject * field = NULL;
+    field = sensor_msgs__msg__image__convert_to_py(&ros_message->tip_mask);
+    if (!field) {
+      return NULL;
+    }
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "tip_mask", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // lowpoint_mask
+    PyObject * field = NULL;
+    field = sensor_msgs__msg__image__convert_to_py(&ros_message->lowpoint_mask);
+    if (!field) {
+      return NULL;
+    }
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "lowpoint_mask", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // skeleton_mask
+    PyObject * field = NULL;
+    field = sensor_msgs__msg__image__convert_to_py(&ros_message->skeleton_mask);
+    if (!field) {
+      return NULL;
+    }
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "skeleton_mask", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // conf_hook
+    PyObject * field = NULL;
+    field = PyFloat_FromDouble(ros_message->conf_hook);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "conf_hook", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // conf_tip
+    PyObject * field = NULL;
+    field = PyFloat_FromDouble(ros_message->conf_tip);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "conf_tip", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // conf_lowpoint
+    PyObject * field = NULL;
+    field = PyFloat_FromDouble(ros_message->conf_lowpoint);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "conf_lowpoint", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // uv_hook
+    PyObject * field = NULL;
+    field = action_interfaces__msg__uv__convert_to_py(&ros_message->uv_hook);
+    if (!field) {
+      return NULL;
+    }
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "uv_hook", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // uv_tip
+    PyObject * field = NULL;
+    field = action_interfaces__msg__uv__convert_to_py(&ros_message->uv_tip);
+    if (!field) {
+      return NULL;
+    }
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "uv_tip", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // uv_lowpoint
+    PyObject * field = NULL;
+    field = action_interfaces__msg__uv__convert_to_py(&ros_message->uv_lowpoint);
+    if (!field) {
+      return NULL;
+    }
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "uv_lowpoint", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // uv_hook_img2
+    PyObject * field = NULL;
+    field = action_interfaces__msg__uv__convert_to_py(&ros_message->uv_hook_img2);
+    if (!field) {
+      return NULL;
+    }
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "uv_hook_img2", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // uv_tip_img2
+    PyObject * field = NULL;
+    field = action_interfaces__msg__uv__convert_to_py(&ros_message->uv_tip_img2);
+    if (!field) {
+      return NULL;
+    }
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "uv_tip_img2", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // uv_lowpoint_img2
+    PyObject * field = NULL;
+    field = action_interfaces__msg__uv__convert_to_py(&ros_message->uv_lowpoint_img2);
+    if (!field) {
+      return NULL;
+    }
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "uv_lowpoint_img2", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // shortest_path
+    PyObject * field = NULL;
+    size_t size = ros_message->shortest_path.size;
+    field = PyList_New(size);
+    if (!field) {
+      return NULL;
+    }
+    action_interfaces__msg__UV * item;
+    for (size_t i = 0; i < size; ++i) {
+      item = &(ros_message->shortest_path.data[i]);
+      PyObject * pyitem = action_interfaces__msg__uv__convert_to_py(item);
+      if (!pyitem) {
+        Py_DECREF(field);
+        return NULL;
+      }
+      int rc = PyList_SetItem(field, i, pyitem);
+      (void)rc;
+      assert(rc == 0);
+    }
+    assert(PySequence_Check(field));
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "shortest_path", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // path_points
+    PyObject * field = NULL;
+    size_t size = ros_message->path_points.size;
+    field = PyList_New(size);
+    if (!field) {
+      return NULL;
+    }
+    action_interfaces__msg__UV * item;
+    for (size_t i = 0; i < size; ++i) {
+      item = &(ros_message->path_points.data[i]);
+      PyObject * pyitem = action_interfaces__msg__uv__convert_to_py(item);
+      if (!pyitem) {
+        Py_DECREF(field);
+        return NULL;
+      }
+      int rc = PyList_SetItem(field, i, pyitem);
+      (void)rc;
+      assert(rc == 0);
+    }
+    assert(PySequence_Check(field));
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "path_points", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // xyz_hook_in_camframe
+    PyObject * field = NULL;
+    size_t size = ros_message->xyz_hook_in_camframe.size;
+    field = PyList_New(size);
+    if (!field) {
+      return NULL;
+    }
+    action_interfaces__msg__XYZ * item;
+    for (size_t i = 0; i < size; ++i) {
+      item = &(ros_message->xyz_hook_in_camframe.data[i]);
+      PyObject * pyitem = action_interfaces__msg__xyz__convert_to_py(item);
+      if (!pyitem) {
+        Py_DECREF(field);
+        return NULL;
+      }
+      int rc = PyList_SetItem(field, i, pyitem);
+      (void)rc;
+      assert(rc == 0);
+    }
+    assert(PySequence_Check(field));
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "xyz_hook_in_camframe", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // xyz_tip_in_camframe
+    PyObject * field = NULL;
+    size_t size = ros_message->xyz_tip_in_camframe.size;
+    field = PyList_New(size);
+    if (!field) {
+      return NULL;
+    }
+    action_interfaces__msg__XYZ * item;
+    for (size_t i = 0; i < size; ++i) {
+      item = &(ros_message->xyz_tip_in_camframe.data[i]);
+      PyObject * pyitem = action_interfaces__msg__xyz__convert_to_py(item);
+      if (!pyitem) {
+        Py_DECREF(field);
+        return NULL;
+      }
+      int rc = PyList_SetItem(field, i, pyitem);
+      (void)rc;
+      assert(rc == 0);
+    }
+    assert(PySequence_Check(field));
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "xyz_tip_in_camframe", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // xyz_lowpoint_in_camframe
+    PyObject * field = NULL;
+    size_t size = ros_message->xyz_lowpoint_in_camframe.size;
+    field = PyList_New(size);
+    if (!field) {
+      return NULL;
+    }
+    action_interfaces__msg__XYZ * item;
+    for (size_t i = 0; i < size; ++i) {
+      item = &(ros_message->xyz_lowpoint_in_camframe.data[i]);
+      PyObject * pyitem = action_interfaces__msg__xyz__convert_to_py(item);
+      if (!pyitem) {
+        Py_DECREF(field);
+        return NULL;
+      }
+      int rc = PyList_SetItem(field, i, pyitem);
+      (void)rc;
+      assert(rc == 0);
+    }
+    assert(PySequence_Check(field));
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "xyz_lowpoint_in_camframe", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // path_points_xyz_in_camframe
+    PyObject * field = NULL;
+    size_t size = ros_message->path_points_xyz_in_camframe.size;
+    field = PyList_New(size);
+    if (!field) {
+      return NULL;
+    }
+    action_interfaces__msg__XYZ * item;
+    for (size_t i = 0; i < size; ++i) {
+      item = &(ros_message->path_points_xyz_in_camframe.data[i]);
+      PyObject * pyitem = action_interfaces__msg__xyz__convert_to_py(item);
+      if (!pyitem) {
+        Py_DECREF(field);
+        return NULL;
+      }
+      int rc = PyList_SetItem(field, i, pyitem);
+      (void)rc;
+      assert(rc == 0);
+    }
+    assert(PySequence_Check(field));
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "path_points_xyz_in_camframe", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+
+  // ownership of _pymessage is transferred to the caller
+  return _pymessage;
+}

@@ -1,0 +1,728 @@
+[0.200s] [34mcolcon[0m [1;30mDEBUG[0m [32mCommand line arguments: ['/usr/bin/colcon', 'build'][0m
+[0.201s] [34mcolcon[0m [1;30mDEBUG[0m [32mParsed command line arguments: Namespace(allow_overriding=[], ament_cmake_args=None, base_paths=['.'], build_base='build', catkin_cmake_args=None, catkin_skip_building_tests=False, cmake_args=None, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, cmake_target=None, cmake_target_skip_unavailable=False, continue_on_error=False, event_handlers=None, executor='parallel', ignore_user_meta=False, install_base='install', log_base=None, log_level=None, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7f59ad74b640>>, merge_install=False, metas=['./colcon.meta'], mixin=None, mixin_files=None, mixin_verb=('build',), packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=None, packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, parallel_workers=16, paths=None, symlink_install=False, test_result_base=None, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7f59ad74b640>, verb_name='build', verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x7f59ad758100>)[0m
+[0.235s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(colcon_meta) check parameters
+[0.235s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) check parameters
+[0.235s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) check parameters
+[0.235s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) check parameters
+[0.235s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(colcon_meta) discover
+[0.235s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) discover
+[0.235s] [34mcolcon.colcon_core.package_discovery[0m [1;30mINFO[0m Crawling recursively for packages in '/home/mo/Thesis/src'
+[0.235s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.235s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ignore'
+[0.235s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ignore_ament_install'
+[0.235s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['colcon_pkg']
+[0.235s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'colcon_pkg'
+[0.235s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['colcon_meta']
+[0.236s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'colcon_meta'
+[0.236s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['ros']
+[0.236s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ros'
+[0.252s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['cmake', 'python']
+[0.252s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'cmake'
+[0.253s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'python'
+[0.253s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['python_setup_py']
+[0.253s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'python_setup_py'
+[0.253s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(action_interfaces) by extensions ['ignore', 'ignore_ament_install']
+[0.253s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(action_interfaces) by extension 'ignore'
+[0.253s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(action_interfaces) by extension 'ignore_ament_install'
+[0.253s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(action_interfaces) by extensions ['colcon_pkg']
+[0.253s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(action_interfaces) by extension 'colcon_pkg'
+[0.253s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(action_interfaces) by extensions ['colcon_meta']
+[0.253s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(action_interfaces) by extension 'colcon_meta'
+[0.253s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(action_interfaces) by extensions ['ros']
+[0.253s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(action_interfaces) by extension 'ros'
+[0.255s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'action_interfaces' with type 'ros.ament_cmake' and name 'action_interfaces'[0m
+[0.255s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(action_servers) by extensions ['ignore', 'ignore_ament_install']
+[0.255s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(action_servers) by extension 'ignore'
+[0.255s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(action_servers) by extension 'ignore_ament_install'
+[0.255s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(action_servers) by extensions ['colcon_pkg']
+[0.255s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(action_servers) by extension 'colcon_pkg'
+[0.255s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(action_servers) by extensions ['colcon_meta']
+[0.255s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(action_servers) by extension 'colcon_meta'
+[0.255s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(action_servers) by extensions ['ros']
+[0.255s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(action_servers) by extension 'ros'
+[0.256s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'action_servers' with type 'ros.ament_python' and name 'action_servers'[0m
+[0.256s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.256s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) by extension 'ignore'
+[0.256s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) ignored
+[0.256s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.256s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) by extension 'ignore'
+[0.256s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) ignored
+[0.256s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser) by extensions ['ignore', 'ignore_ament_install']
+[0.256s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser) by extension 'ignore'
+[0.256s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser) by extension 'ignore_ament_install'
+[0.256s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser) by extensions ['colcon_pkg']
+[0.256s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser) by extension 'colcon_pkg'
+[0.256s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser) by extensions ['colcon_meta']
+[0.256s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser) by extension 'colcon_meta'
+[0.256s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser) by extensions ['ros']
+[0.256s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser) by extension 'ros'
+[0.256s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser) by extensions ['cmake', 'python']
+[0.256s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser) by extension 'cmake'
+[0.256s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser) by extension 'python'
+[0.257s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser) by extensions ['python_setup_py']
+[0.257s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser) by extension 'python_setup_py'
+[0.257s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser/kdl_parser) by extensions ['ignore', 'ignore_ament_install']
+[0.257s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser/kdl_parser) by extension 'ignore'
+[0.257s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser/kdl_parser) by extension 'ignore_ament_install'
+[0.257s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser/kdl_parser) by extensions ['colcon_pkg']
+[0.257s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser/kdl_parser) by extension 'colcon_pkg'
+[0.257s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser/kdl_parser) by extensions ['colcon_meta']
+[0.257s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser/kdl_parser) by extension 'colcon_meta'
+[0.257s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser/kdl_parser) by extensions ['ros']
+[0.257s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser/kdl_parser) by extension 'ros'
+[0.258s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'kdl_parser/kdl_parser' with type 'ros.ament_cmake' and name 'kdl_parser'[0m
+[0.258s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser/kdl_parser_py) by extensions ['ignore', 'ignore_ament_install']
+[0.258s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser/kdl_parser_py) by extension 'ignore'
+[0.258s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser/kdl_parser_py) by extension 'ignore_ament_install'
+[0.258s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser/kdl_parser_py) by extensions ['colcon_pkg']
+[0.258s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser/kdl_parser_py) by extension 'colcon_pkg'
+[0.258s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser/kdl_parser_py) by extensions ['colcon_meta']
+[0.258s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser/kdl_parser_py) by extension 'colcon_meta'
+[0.258s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser/kdl_parser_py) by extensions ['ros']
+[0.258s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser/kdl_parser_py) by extension 'ros'
+[0.258s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(kdl_parser/kdl_parser_py) ignored
+[0.258s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.258s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) by extension 'ignore'
+[0.258s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) ignored
+[0.258s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2) by extensions ['ignore', 'ignore_ament_install']
+[0.258s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2) by extension 'ignore'
+[0.258s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2) by extension 'ignore_ament_install'
+[0.258s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2) by extensions ['colcon_pkg']
+[0.258s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2) by extension 'colcon_pkg'
+[0.258s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2) by extensions ['colcon_meta']
+[0.258s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2) by extension 'colcon_meta'
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2) by extensions ['ros']
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2) by extension 'ros'
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2) by extensions ['cmake', 'python']
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2) by extension 'cmake'
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2) by extension 'python'
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2) by extensions ['python_setup_py']
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2) by extension 'python_setup_py'
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example) by extensions ['ignore', 'ignore_ament_install']
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example) by extension 'ignore'
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example) by extension 'ignore_ament_install'
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example) by extensions ['colcon_pkg']
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example) by extension 'colcon_pkg'
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example) by extensions ['colcon_meta']
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example) by extension 'colcon_meta'
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example) by extensions ['ros']
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example) by extension 'ros'
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example) by extensions ['cmake', 'python']
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example) by extension 'cmake'
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example) by extension 'python'
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example) by extensions ['python_setup_py']
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example) by extension 'python_setup_py'
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example/cpp) by extensions ['ignore', 'ignore_ament_install']
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example/cpp) by extension 'ignore'
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example/cpp) by extension 'ignore_ament_install'
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example/cpp) by extensions ['colcon_pkg']
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example/cpp) by extension 'colcon_pkg'
+[0.259s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example/cpp) by extensions ['colcon_meta']
+[0.260s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example/cpp) by extension 'colcon_meta'
+[0.260s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example/cpp) by extensions ['ros']
+[0.260s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example/cpp) by extension 'ros'
+[0.260s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'orange-ros2/kr_example/cpp' with type 'ros.ament_cmake' and name 'kr_example_cpp'[0m
+[0.260s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example/python) by extensions ['ignore', 'ignore_ament_install']
+[0.260s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example/python) by extension 'ignore'
+[0.260s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example/python) by extension 'ignore_ament_install'
+[0.260s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example/python) by extensions ['colcon_pkg']
+[0.260s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example/python) by extension 'colcon_pkg'
+[0.260s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example/python) by extensions ['colcon_meta']
+[0.260s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example/python) by extension 'colcon_meta'
+[0.260s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example/python) by extensions ['ros']
+[0.260s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_example/python) by extension 'ros'
+[0.261s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'orange-ros2/kr_example/python' with type 'ros.ament_python' and name 'kr_example_python'[0m
+[0.261s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_msgs) by extensions ['ignore', 'ignore_ament_install']
+[0.261s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_msgs) by extension 'ignore'
+[0.261s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_msgs) by extension 'ignore_ament_install'
+[0.261s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_msgs) by extensions ['colcon_pkg']
+[0.261s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_msgs) by extension 'colcon_pkg'
+[0.261s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_msgs) by extensions ['colcon_meta']
+[0.261s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_msgs) by extension 'colcon_meta'
+[0.261s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_msgs) by extensions ['ros']
+[0.261s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(orange-ros2/kr_msgs) by extension 'ros'
+[0.262s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'orange-ros2/kr_msgs' with type 'ros.ament_cmake' and name 'kr_msgs'[0m
+[0.262s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(robot_control) by extensions ['ignore', 'ignore_ament_install']
+[0.262s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(robot_control) by extension 'ignore'
+[0.262s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(robot_control) by extension 'ignore_ament_install'
+[0.262s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(robot_control) by extensions ['colcon_pkg']
+[0.262s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(robot_control) by extension 'colcon_pkg'
+[0.262s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(robot_control) by extensions ['colcon_meta']
+[0.262s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(robot_control) by extension 'colcon_meta'
+[0.262s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(robot_control) by extensions ['ros']
+[0.262s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(robot_control) by extension 'ros'
+[0.263s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'robot_control' with type 'ros.ament_python' and name 'robot_control'[0m
+[0.263s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(sensopart_visor) by extensions ['ignore', 'ignore_ament_install']
+[0.263s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(sensopart_visor) by extension 'ignore'
+[0.263s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(sensopart_visor) by extension 'ignore_ament_install'
+[0.263s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(sensopart_visor) by extensions ['colcon_pkg']
+[0.263s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(sensopart_visor) by extension 'colcon_pkg'
+[0.263s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(sensopart_visor) by extensions ['colcon_meta']
+[0.263s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(sensopart_visor) by extension 'colcon_meta'
+[0.263s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(sensopart_visor) by extensions ['ros']
+[0.263s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(sensopart_visor) by extension 'ros'
+[0.263s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'sensopart_visor' with type 'ros.ament_python' and name 'sensopart_visor'[0m
+[0.264s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(vcnanoz) by extensions ['ignore', 'ignore_ament_install']
+[0.264s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(vcnanoz) by extension 'ignore'
+[0.264s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(vcnanoz) by extension 'ignore_ament_install'
+[0.264s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(vcnanoz) by extensions ['colcon_pkg']
+[0.264s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(vcnanoz) by extension 'colcon_pkg'
+[0.264s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(vcnanoz) by extensions ['colcon_meta']
+[0.264s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(vcnanoz) by extension 'colcon_meta'
+[0.264s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(vcnanoz) by extensions ['ros']
+[0.264s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(vcnanoz) by extension 'ros'
+[0.264s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'vcnanoz' with type 'ros.ament_python' and name 'vcnanoz'[0m
+[0.264s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(vision) by extensions ['ignore', 'ignore_ament_install']
+[0.264s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(vision) by extension 'ignore'
+[0.264s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(vision) by extension 'ignore_ament_install'
+[0.264s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(vision) by extensions ['colcon_pkg']
+[0.264s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(vision) by extension 'colcon_pkg'
+[0.265s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(vision) by extensions ['colcon_meta']
+[0.265s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(vision) by extension 'colcon_meta'
+[0.265s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(vision) by extensions ['ros']
+[0.265s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(vision) by extension 'ros'
+[0.265s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'vision' with type 'ros.ament_python' and name 'vision'[0m
+[0.265s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) using defaults
+[0.265s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) discover
+[0.265s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) using defaults
+[0.265s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) discover
+[0.265s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) using defaults
+[0.278s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(prefix_path) check parameters
+[0.278s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(prefix_path) discover
+[0.279s] [34mcolcon.colcon_installed_package_information.package_discovery[0m [1;30mDEBUG[0m [32mFound 11 installed packages in /home/mo/Thesis/install[0m
+[0.281s] [34mcolcon.colcon_installed_package_information.package_discovery[0m [1;30mDEBUG[0m [32mFound 299 installed packages in /opt/ros/foxy[0m
+[0.291s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(prefix_path) using defaults
+[0.332s] [34mcolcon.colcon_core.package_selection[0m [1;30mWARNING[0m [33mSome selected packages are already built in one or more underlay workspaces:
+	'kdl_parser' is in: /home/mo/Thesis/install/kdl_parser, /opt/ros/foxy
+If a package in a merged underlay workspace is overridden and it installs headers, then all packages in the overlay must sort their include directories by workspace order. Failure to do so may result in build failures or undefined behavior at run time.
+If the overridden package is used by another package in any underlay, then the overriding package in the overlay must be API and ABI compatible or undefined behavior at run time may occur.
+
+If you understand the risks and want to override a package anyways, add the following to the command line:
+	--allow-overriding kdl_parser
+
+This may be promoted to an error in a future release of colcon-override-check.[0m
+[0.332s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'action_interfaces' build argument 'cmake_args' from command line to 'None'
+[0.332s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'action_interfaces' build argument 'cmake_target' from command line to 'None'
+[0.332s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'action_interfaces' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.332s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'action_interfaces' build argument 'cmake_clean_cache' from command line to 'False'
+[0.332s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'action_interfaces' build argument 'cmake_clean_first' from command line to 'False'
+[0.332s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'action_interfaces' build argument 'cmake_force_configure' from command line to 'False'
+[0.332s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'action_interfaces' build argument 'ament_cmake_args' from command line to 'None'
+[0.332s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'action_interfaces' build argument 'catkin_cmake_args' from command line to 'None'
+[0.333s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'action_interfaces' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.333s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'action_interfaces' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mo/Thesis/src/build/action_interfaces', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mo/Thesis/src/install/action_interfaces', 'merge_install': False, 'path': '/home/mo/Thesis/src/action_interfaces', 'symlink_install': False, 'test_result_base': None}[0m
+[0.333s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kdl_parser' build argument 'cmake_args' from command line to 'None'
+[0.333s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kdl_parser' build argument 'cmake_target' from command line to 'None'
+[0.333s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kdl_parser' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.333s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kdl_parser' build argument 'cmake_clean_cache' from command line to 'False'
+[0.333s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kdl_parser' build argument 'cmake_clean_first' from command line to 'False'
+[0.333s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kdl_parser' build argument 'cmake_force_configure' from command line to 'False'
+[0.333s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kdl_parser' build argument 'ament_cmake_args' from command line to 'None'
+[0.333s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kdl_parser' build argument 'catkin_cmake_args' from command line to 'None'
+[0.333s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kdl_parser' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.333s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'kdl_parser' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mo/Thesis/src/build/kdl_parser', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mo/Thesis/src/install/kdl_parser', 'merge_install': False, 'path': '/home/mo/Thesis/src/kdl_parser/kdl_parser', 'symlink_install': False, 'test_result_base': None}[0m
+[0.333s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_msgs' build argument 'cmake_args' from command line to 'None'
+[0.333s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_msgs' build argument 'cmake_target' from command line to 'None'
+[0.333s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_msgs' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.333s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_msgs' build argument 'cmake_clean_cache' from command line to 'False'
+[0.333s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_msgs' build argument 'cmake_clean_first' from command line to 'False'
+[0.333s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_msgs' build argument 'cmake_force_configure' from command line to 'False'
+[0.333s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_msgs' build argument 'ament_cmake_args' from command line to 'None'
+[0.333s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_msgs' build argument 'catkin_cmake_args' from command line to 'None'
+[0.334s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_msgs' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.334s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'kr_msgs' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mo/Thesis/src/build/kr_msgs', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mo/Thesis/src/install/kr_msgs', 'merge_install': False, 'path': '/home/mo/Thesis/src/orange-ros2/kr_msgs', 'symlink_install': False, 'test_result_base': None}[0m
+[0.334s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sensopart_visor' build argument 'cmake_args' from command line to 'None'
+[0.334s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sensopart_visor' build argument 'cmake_target' from command line to 'None'
+[0.334s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sensopart_visor' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.334s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sensopart_visor' build argument 'cmake_clean_cache' from command line to 'False'
+[0.334s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sensopart_visor' build argument 'cmake_clean_first' from command line to 'False'
+[0.334s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sensopart_visor' build argument 'cmake_force_configure' from command line to 'False'
+[0.334s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sensopart_visor' build argument 'ament_cmake_args' from command line to 'None'
+[0.334s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sensopart_visor' build argument 'catkin_cmake_args' from command line to 'None'
+[0.334s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sensopart_visor' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.334s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'sensopart_visor' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mo/Thesis/src/build/sensopart_visor', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mo/Thesis/src/install/sensopart_visor', 'merge_install': False, 'path': '/home/mo/Thesis/src/sensopart_visor', 'symlink_install': False, 'test_result_base': None}[0m
+[0.334s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'vcnanoz' build argument 'cmake_args' from command line to 'None'
+[0.334s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'vcnanoz' build argument 'cmake_target' from command line to 'None'
+[0.334s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'vcnanoz' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.334s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'vcnanoz' build argument 'cmake_clean_cache' from command line to 'False'
+[0.334s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'vcnanoz' build argument 'cmake_clean_first' from command line to 'False'
+[0.334s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'vcnanoz' build argument 'cmake_force_configure' from command line to 'False'
+[0.334s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'vcnanoz' build argument 'ament_cmake_args' from command line to 'None'
+[0.334s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'vcnanoz' build argument 'catkin_cmake_args' from command line to 'None'
+[0.334s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'vcnanoz' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.334s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'vcnanoz' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mo/Thesis/src/build/vcnanoz', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mo/Thesis/src/install/vcnanoz', 'merge_install': False, 'path': '/home/mo/Thesis/src/vcnanoz', 'symlink_install': False, 'test_result_base': None}[0m
+[0.335s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'vision' build argument 'cmake_args' from command line to 'None'
+[0.335s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'vision' build argument 'cmake_target' from command line to 'None'
+[0.335s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'vision' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.335s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'vision' build argument 'cmake_clean_cache' from command line to 'False'
+[0.335s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'vision' build argument 'cmake_clean_first' from command line to 'False'
+[0.335s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'vision' build argument 'cmake_force_configure' from command line to 'False'
+[0.335s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'vision' build argument 'ament_cmake_args' from command line to 'None'
+[0.335s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'vision' build argument 'catkin_cmake_args' from command line to 'None'
+[0.335s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'vision' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.335s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'vision' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mo/Thesis/src/build/vision', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mo/Thesis/src/install/vision', 'merge_install': False, 'path': '/home/mo/Thesis/src/vision', 'symlink_install': False, 'test_result_base': None}[0m
+[0.335s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'action_servers' build argument 'cmake_args' from command line to 'None'
+[0.335s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'action_servers' build argument 'cmake_target' from command line to 'None'
+[0.335s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'action_servers' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.335s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'action_servers' build argument 'cmake_clean_cache' from command line to 'False'
+[0.335s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'action_servers' build argument 'cmake_clean_first' from command line to 'False'
+[0.335s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'action_servers' build argument 'cmake_force_configure' from command line to 'False'
+[0.335s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'action_servers' build argument 'ament_cmake_args' from command line to 'None'
+[0.335s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'action_servers' build argument 'catkin_cmake_args' from command line to 'None'
+[0.335s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'action_servers' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.335s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'action_servers' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mo/Thesis/src/build/action_servers', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mo/Thesis/src/install/action_servers', 'merge_install': False, 'path': '/home/mo/Thesis/src/action_servers', 'symlink_install': False, 'test_result_base': None}[0m
+[0.336s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_example_cpp' build argument 'cmake_args' from command line to 'None'
+[0.336s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_example_cpp' build argument 'cmake_target' from command line to 'None'
+[0.336s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_example_cpp' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.336s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_example_cpp' build argument 'cmake_clean_cache' from command line to 'False'
+[0.336s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_example_cpp' build argument 'cmake_clean_first' from command line to 'False'
+[0.336s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_example_cpp' build argument 'cmake_force_configure' from command line to 'False'
+[0.336s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_example_cpp' build argument 'ament_cmake_args' from command line to 'None'
+[0.336s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_example_cpp' build argument 'catkin_cmake_args' from command line to 'None'
+[0.336s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_example_cpp' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.336s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'kr_example_cpp' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mo/Thesis/src/build/kr_example_cpp', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mo/Thesis/src/install/kr_example_cpp', 'merge_install': False, 'path': '/home/mo/Thesis/src/orange-ros2/kr_example/cpp', 'symlink_install': False, 'test_result_base': None}[0m
+[0.336s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_example_python' build argument 'cmake_args' from command line to 'None'
+[0.336s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_example_python' build argument 'cmake_target' from command line to 'None'
+[0.336s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_example_python' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.336s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_example_python' build argument 'cmake_clean_cache' from command line to 'False'
+[0.336s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_example_python' build argument 'cmake_clean_first' from command line to 'False'
+[0.336s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_example_python' build argument 'cmake_force_configure' from command line to 'False'
+[0.336s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_example_python' build argument 'ament_cmake_args' from command line to 'None'
+[0.336s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_example_python' build argument 'catkin_cmake_args' from command line to 'None'
+[0.336s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'kr_example_python' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.336s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'kr_example_python' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mo/Thesis/src/build/kr_example_python', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mo/Thesis/src/install/kr_example_python', 'merge_install': False, 'path': '/home/mo/Thesis/src/orange-ros2/kr_example/python', 'symlink_install': False, 'test_result_base': None}[0m
+[0.336s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'robot_control' build argument 'cmake_args' from command line to 'None'
+[0.336s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'robot_control' build argument 'cmake_target' from command line to 'None'
+[0.337s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'robot_control' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.337s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'robot_control' build argument 'cmake_clean_cache' from command line to 'False'
+[0.337s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'robot_control' build argument 'cmake_clean_first' from command line to 'False'
+[0.337s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'robot_control' build argument 'cmake_force_configure' from command line to 'False'
+[0.337s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'robot_control' build argument 'ament_cmake_args' from command line to 'None'
+[0.337s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'robot_control' build argument 'catkin_cmake_args' from command line to 'None'
+[0.337s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'robot_control' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.337s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'robot_control' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mo/Thesis/src/build/robot_control', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mo/Thesis/src/install/robot_control', 'merge_install': False, 'path': '/home/mo/Thesis/src/robot_control', 'symlink_install': False, 'test_result_base': None}[0m
+[0.337s] [34mcolcon.colcon_core.executor[0m [1;30mINFO[0m Executing jobs using 'parallel' executor
+[0.338s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mrun_until_complete[0m
+[0.338s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in '/home/mo/Thesis/src/action_interfaces' with build type 'ament_cmake'
+[0.338s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/home/mo/Thesis/src/action_interfaces'
+[0.340s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.340s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.340s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.345s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in '/home/mo/Thesis/src/orange-ros2/kr_msgs' with build type 'ament_cmake'
+[0.345s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/home/mo/Thesis/src/orange-ros2/kr_msgs'
+[0.346s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.346s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.351s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in '/home/mo/Thesis/src/kdl_parser/kdl_parser' with build type 'ament_cmake'
+[0.351s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/home/mo/Thesis/src/kdl_parser/kdl_parser'
+[0.351s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.351s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.356s] [34mcolcon.colcon_ros.task.ament_python.build[0m [1;30mINFO[0m Building ROS package in '/home/mo/Thesis/src/sensopart_visor' with build type 'ament_python'
+[0.356s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('sensopart_visor', 'ament_prefix_path')
+[0.356s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/sensopart_visor/share/sensopart_visor/hook/ament_prefix_path.ps1'
+[0.357s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/sensopart_visor/share/sensopart_visor/hook/ament_prefix_path.dsv'
+[0.358s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/sensopart_visor/share/sensopart_visor/hook/ament_prefix_path.sh'
+[0.358s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.359s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.366s] [34mcolcon.colcon_ros.task.ament_python.build[0m [1;30mINFO[0m Building ROS package in '/home/mo/Thesis/src/vcnanoz' with build type 'ament_python'
+[0.366s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('vcnanoz', 'ament_prefix_path')
+[0.367s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/vcnanoz/share/vcnanoz/hook/ament_prefix_path.ps1'
+[0.367s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/vcnanoz/share/vcnanoz/hook/ament_prefix_path.dsv'
+[0.368s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/vcnanoz/share/vcnanoz/hook/ament_prefix_path.sh'
+[0.368s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.368s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.372s] [34mcolcon.colcon_ros.task.ament_python.build[0m [1;30mINFO[0m Building ROS package in '/home/mo/Thesis/src/vision' with build type 'ament_python'
+[0.373s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('vision', 'ament_prefix_path')
+[0.373s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/vision/share/vision/hook/ament_prefix_path.ps1'
+[0.374s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/vision/share/vision/hook/ament_prefix_path.dsv'
+[0.374s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/vision/share/vision/hook/ament_prefix_path.sh'
+[0.374s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.374s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.384s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/mo/Thesis/src/build/action_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy /usr/bin/cmake /home/mo/Thesis/src/action_interfaces -DCMAKE_INSTALL_PREFIX=/home/mo/Thesis/src/install/action_interfaces[0m
+[0.387s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/mo/Thesis/src/build/kr_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy /usr/bin/cmake /home/mo/Thesis/src/orange-ros2/kr_msgs -DCMAKE_INSTALL_PREFIX=/home/mo/Thesis/src/install/kr_msgs[0m
+[0.391s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/mo/Thesis/src/build/kdl_parser': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy /usr/bin/cmake /home/mo/Thesis/src/kdl_parser/kdl_parser -DCMAKE_INSTALL_PREFIX=/home/mo/Thesis/src/install/kdl_parser[0m
+[0.583s] [34mcolcon.colcon_core.task.python.build[0m [1;30mINFO[0m Building Python package in '/home/mo/Thesis/src/sensopart_visor'
+[0.584s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.584s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.789s] [34mcolcon.colcon_core.task.python.build[0m [1;30mINFO[0m Building Python package in '/home/mo/Thesis/src/vcnanoz'
+[0.790s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.790s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[1.006s] [34mcolcon.colcon_core.task.python.build[0m [1;30mINFO[0m Building Python package in '/home/mo/Thesis/src/vision'
+[1.007s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.007s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[1.619s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/mo/Thesis/src/build/kdl_parser' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy /usr/bin/cmake /home/mo/Thesis/src/kdl_parser/kdl_parser -DCMAKE_INSTALL_PREFIX=/home/mo/Thesis/src/install/kdl_parser[0m
+[1.623s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/mo/Thesis/src/build/kdl_parser': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy /usr/bin/cmake --build /home/mo/Thesis/src/build/kdl_parser -- -j16 -l16[0m
+[1.812s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/mo/Thesis/src/sensopart_visor': PYTHONPATH=/home/mo/Thesis/src/build/sensopart_visor/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/src/install/sensopart_visor/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/sensopart_visor build --build-base /home/mo/Thesis/src/build/sensopart_visor/build install --record /home/mo/Thesis/src/build/sensopart_visor/install.log --single-version-externally-managed install_data[0m
+[1.816s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/mo/Thesis/src/vision': PYTHONPATH=/home/mo/Thesis/src/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/src/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/vision build --build-base /home/mo/Thesis/src/build/vision/build install --record /home/mo/Thesis/src/build/vision/install.log --single-version-externally-managed install_data[0m
+[1.874s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/mo/Thesis/src/vcnanoz': PYTHONPATH=/home/mo/Thesis/src/build/vcnanoz/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/src/install/vcnanoz/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/vcnanoz build --build-base /home/mo/Thesis/src/build/vcnanoz/build install --record /home/mo/Thesis/src/build/vcnanoz/install.log --single-version-externally-managed install_data[0m
+[2.347s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/mo/Thesis/src/sensopart_visor' returned '0': PYTHONPATH=/home/mo/Thesis/src/build/sensopart_visor/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/src/install/sensopart_visor/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/sensopart_visor build --build-base /home/mo/Thesis/src/build/sensopart_visor/build install --record /home/mo/Thesis/src/build/sensopart_visor/install.log --single-version-externally-managed install_data[0m
+[2.349s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/sensopart_visor' for CMake module files
+[2.350s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/sensopart_visor' for CMake config files
+[2.350s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/sensopart_visor/lib'
+[2.350s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/sensopart_visor/bin'
+[2.350s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/sensopart_visor/lib/pkgconfig/sensopart_visor.pc'
+[2.351s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/sensopart_visor/lib/python3.8/site-packages'
+[2.351s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('sensopart_visor', 'pythonpath')
+[2.351s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/sensopart_visor/share/sensopart_visor/hook/pythonpath.ps1'
+[2.351s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/sensopart_visor/share/sensopart_visor/hook/pythonpath.dsv'
+[2.352s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/sensopart_visor/share/sensopart_visor/hook/pythonpath.sh'
+[2.352s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/sensopart_visor/bin'
+[2.352s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(sensopart_visor)
+[2.352s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/sensopart_visor/share/sensopart_visor/package.ps1'
+[2.353s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/mo/Thesis/src/install/sensopart_visor/share/sensopart_visor/package.dsv'
+[2.353s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/sensopart_visor/share/sensopart_visor/package.sh'
+[2.354s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/sensopart_visor/share/sensopart_visor/package.bash'
+[2.355s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/sensopart_visor/share/sensopart_visor/package.zsh'
+[2.355s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/mo/Thesis/src/install/sensopart_visor/share/colcon-core/packages/sensopart_visor)
+[2.370s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/vision' for CMake module files
+[2.370s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/mo/Thesis/src/vision' returned '0': PYTHONPATH=/home/mo/Thesis/src/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/src/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/vision build --build-base /home/mo/Thesis/src/build/vision/build install --record /home/mo/Thesis/src/build/vision/install.log --single-version-externally-managed install_data[0m
+[2.371s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/vision' for CMake config files
+[2.371s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/vision/lib'
+[2.372s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/vision/bin'
+[2.372s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/vision/lib/pkgconfig/vision.pc'
+[2.372s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/vision/lib/python3.8/site-packages'
+[2.372s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('vision', 'pythonpath')
+[2.372s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/vision/share/vision/hook/pythonpath.ps1'
+[2.372s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/vision/share/vision/hook/pythonpath.dsv'
+[2.373s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/vision/share/vision/hook/pythonpath.sh'
+[2.373s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/vision/bin'
+[2.373s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(vision)
+[2.374s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/vision/share/vision/package.ps1'
+[2.374s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/mo/Thesis/src/install/vision/share/vision/package.dsv'
+[2.375s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/vision/share/vision/package.sh'
+[2.375s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/vision/share/vision/package.bash'
+[2.375s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/vision/share/vision/package.zsh'
+[2.376s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/mo/Thesis/src/install/vision/share/colcon-core/packages/vision)
+[2.427s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/vcnanoz' for CMake module files
+[2.428s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/mo/Thesis/src/vcnanoz' returned '0': PYTHONPATH=/home/mo/Thesis/src/build/vcnanoz/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/src/install/vcnanoz/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/vcnanoz build --build-base /home/mo/Thesis/src/build/vcnanoz/build install --record /home/mo/Thesis/src/build/vcnanoz/install.log --single-version-externally-managed install_data[0m
+[2.428s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/vcnanoz' for CMake config files
+[2.429s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/vcnanoz/lib'
+[2.429s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/vcnanoz/bin'
+[2.429s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/vcnanoz/lib/pkgconfig/vcnanoz.pc'
+[2.429s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/vcnanoz/lib/python3.8/site-packages'
+[2.429s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('vcnanoz', 'pythonpath')
+[2.429s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/vcnanoz/share/vcnanoz/hook/pythonpath.ps1'
+[2.430s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/vcnanoz/share/vcnanoz/hook/pythonpath.dsv'
+[2.430s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/vcnanoz/share/vcnanoz/hook/pythonpath.sh'
+[2.431s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/vcnanoz/bin'
+[2.431s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(vcnanoz)
+[2.431s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/vcnanoz/share/vcnanoz/package.ps1'
+[2.431s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/mo/Thesis/src/install/vcnanoz/share/vcnanoz/package.dsv'
+[2.432s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/vcnanoz/share/vcnanoz/package.sh'
+[2.432s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/vcnanoz/share/vcnanoz/package.bash'
+[2.432s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/vcnanoz/share/vcnanoz/package.zsh'
+[2.433s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/mo/Thesis/src/install/vcnanoz/share/colcon-core/packages/vcnanoz)
+[2.900s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/mo/Thesis/src/build/kdl_parser' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy /usr/bin/cmake --build /home/mo/Thesis/src/build/kdl_parser -- -j16 -l16[0m
+[2.915s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/mo/Thesis/src/build/kdl_parser': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy /usr/bin/cmake --install /home/mo/Thesis/src/build/kdl_parser[0m
+[2.930s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(kdl_parser)
+[2.931s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kdl_parser' for CMake module files
+[2.931s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/mo/Thesis/src/build/kdl_parser' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy /usr/bin/cmake --install /home/mo/Thesis/src/build/kdl_parser[0m
+[2.932s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kdl_parser' for CMake config files
+[2.932s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('kdl_parser', 'cmake_prefix_path')
+[2.932s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kdl_parser/share/kdl_parser/hook/cmake_prefix_path.ps1'
+[2.933s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/kdl_parser/share/kdl_parser/hook/cmake_prefix_path.dsv'
+[2.933s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kdl_parser/share/kdl_parser/hook/cmake_prefix_path.sh'
+[2.934s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kdl_parser/lib'
+[2.934s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('kdl_parser', 'ld_library_path_lib')
+[2.934s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kdl_parser/share/kdl_parser/hook/ld_library_path_lib.ps1'
+[2.934s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/kdl_parser/share/kdl_parser/hook/ld_library_path_lib.dsv'
+[2.934s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kdl_parser/share/kdl_parser/hook/ld_library_path_lib.sh'
+[2.935s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kdl_parser/bin'
+[2.935s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kdl_parser/lib/pkgconfig/kdl_parser.pc'
+[2.935s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kdl_parser/lib/python3.8/site-packages'
+[2.935s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kdl_parser/bin'
+[2.935s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kdl_parser/share/kdl_parser/package.ps1'
+[2.936s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/mo/Thesis/src/install/kdl_parser/share/kdl_parser/package.dsv'
+[2.936s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kdl_parser/share/kdl_parser/package.sh'
+[2.937s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kdl_parser/share/kdl_parser/package.bash'
+[2.937s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kdl_parser/share/kdl_parser/package.zsh'
+[2.937s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/mo/Thesis/src/install/kdl_parser/share/colcon-core/packages/kdl_parser)
+[2.938s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(kdl_parser)
+[2.938s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kdl_parser' for CMake module files
+[2.939s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kdl_parser' for CMake config files
+[2.939s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('kdl_parser', 'cmake_prefix_path')
+[2.939s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kdl_parser/share/kdl_parser/hook/cmake_prefix_path.ps1'
+[2.939s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/kdl_parser/share/kdl_parser/hook/cmake_prefix_path.dsv'
+[2.940s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kdl_parser/share/kdl_parser/hook/cmake_prefix_path.sh'
+[2.940s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kdl_parser/lib'
+[2.940s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('kdl_parser', 'ld_library_path_lib')
+[2.940s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kdl_parser/share/kdl_parser/hook/ld_library_path_lib.ps1'
+[2.941s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/kdl_parser/share/kdl_parser/hook/ld_library_path_lib.dsv'
+[2.941s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kdl_parser/share/kdl_parser/hook/ld_library_path_lib.sh'
+[2.942s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kdl_parser/bin'
+[2.942s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kdl_parser/lib/pkgconfig/kdl_parser.pc'
+[2.942s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kdl_parser/lib/python3.8/site-packages'
+[2.942s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kdl_parser/bin'
+[2.942s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kdl_parser/share/kdl_parser/package.ps1'
+[2.943s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/mo/Thesis/src/install/kdl_parser/share/kdl_parser/package.dsv'
+[2.943s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kdl_parser/share/kdl_parser/package.sh'
+[2.943s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kdl_parser/share/kdl_parser/package.bash'
+[2.944s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kdl_parser/share/kdl_parser/package.zsh'
+[2.944s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/mo/Thesis/src/install/kdl_parser/share/colcon-core/packages/kdl_parser)
+[3.065s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/mo/Thesis/src/build/kr_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy /usr/bin/cmake /home/mo/Thesis/src/orange-ros2/kr_msgs -DCMAKE_INSTALL_PREFIX=/home/mo/Thesis/src/install/kr_msgs[0m
+[3.068s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/mo/Thesis/src/build/kr_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy /usr/bin/cmake --build /home/mo/Thesis/src/build/kr_msgs -- -j16 -l16[0m
+[3.110s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/mo/Thesis/src/build/action_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy /usr/bin/cmake /home/mo/Thesis/src/action_interfaces -DCMAKE_INSTALL_PREFIX=/home/mo/Thesis/src/install/action_interfaces[0m
+[3.114s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/mo/Thesis/src/build/action_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy /usr/bin/cmake --build /home/mo/Thesis/src/build/action_interfaces -- -j16 -l16[0m
+[10.671s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/mo/Thesis/src/build/action_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy /usr/bin/cmake --build /home/mo/Thesis/src/build/action_interfaces -- -j16 -l16[0m
+[10.675s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/mo/Thesis/src/build/action_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy /usr/bin/cmake --install /home/mo/Thesis/src/build/action_interfaces[0m
+[10.761s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(action_interfaces)
+[10.762s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/action_interfaces' for CMake module files
+[10.763s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/mo/Thesis/src/build/action_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy /usr/bin/cmake --install /home/mo/Thesis/src/build/action_interfaces[0m
+[10.763s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/action_interfaces' for CMake config files
+[10.764s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('action_interfaces', 'cmake_prefix_path')
+[10.764s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/hook/cmake_prefix_path.ps1'
+[10.765s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/hook/cmake_prefix_path.dsv'
+[10.765s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/hook/cmake_prefix_path.sh'
+[10.766s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/action_interfaces/lib'
+[10.766s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('action_interfaces', 'ld_library_path_lib')
+[10.766s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/hook/ld_library_path_lib.ps1'
+[10.766s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/hook/ld_library_path_lib.dsv'
+[10.767s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/hook/ld_library_path_lib.sh'
+[10.767s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/action_interfaces/bin'
+[10.767s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/action_interfaces/lib/pkgconfig/action_interfaces.pc'
+[10.767s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/action_interfaces/lib/python3.8/site-packages'
+[10.768s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('action_interfaces', 'pythonpath')
+[10.768s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/hook/pythonpath.ps1'
+[10.768s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/hook/pythonpath.dsv'
+[10.768s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/hook/pythonpath.sh'
+[10.769s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/action_interfaces/bin'
+[10.769s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/package.ps1'
+[10.770s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/package.dsv'
+[10.771s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/package.sh'
+[10.771s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/package.bash'
+[10.771s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/package.zsh'
+[10.772s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/mo/Thesis/src/install/action_interfaces/share/colcon-core/packages/action_interfaces)
+[10.773s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(action_interfaces)
+[10.773s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/action_interfaces' for CMake module files
+[10.773s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/action_interfaces' for CMake config files
+[10.774s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('action_interfaces', 'cmake_prefix_path')
+[10.774s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/hook/cmake_prefix_path.ps1'
+[10.775s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/hook/cmake_prefix_path.dsv'
+[10.775s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/hook/cmake_prefix_path.sh'
+[10.776s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/action_interfaces/lib'
+[10.776s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('action_interfaces', 'ld_library_path_lib')
+[10.776s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/hook/ld_library_path_lib.ps1'
+[10.776s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/hook/ld_library_path_lib.dsv'
+[10.777s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/hook/ld_library_path_lib.sh'
+[10.777s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/action_interfaces/bin'
+[10.777s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/action_interfaces/lib/pkgconfig/action_interfaces.pc'
+[10.778s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/action_interfaces/lib/python3.8/site-packages'
+[10.778s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('action_interfaces', 'pythonpath')
+[10.778s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/hook/pythonpath.ps1'
+[10.778s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/hook/pythonpath.dsv'
+[10.779s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/hook/pythonpath.sh'
+[10.779s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/action_interfaces/bin'
+[10.780s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/package.ps1'
+[10.780s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/package.dsv'
+[10.781s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/package.sh'
+[10.782s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/package.bash'
+[10.782s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/action_interfaces/share/action_interfaces/package.zsh'
+[10.782s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/mo/Thesis/src/install/action_interfaces/share/colcon-core/packages/action_interfaces)
+[10.783s] [34mcolcon.colcon_ros.task.ament_python.build[0m [1;30mINFO[0m Building ROS package in '/home/mo/Thesis/src/action_servers' with build type 'ament_python'
+[10.783s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('action_servers', 'ament_prefix_path')
+[10.783s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/action_servers/share/action_servers/hook/ament_prefix_path.ps1'
+[10.784s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/action_servers/share/action_servers/hook/ament_prefix_path.dsv'
+[10.785s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/action_servers/share/action_servers/hook/ament_prefix_path.sh'
+[10.785s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[10.785s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[10.791s] [34mcolcon.colcon_ros.task.ament_python.build[0m [1;30mINFO[0m Building ROS package in '/home/mo/Thesis/src/robot_control' with build type 'ament_python'
+[10.792s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('robot_control', 'ament_prefix_path')
+[10.792s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/robot_control/share/robot_control/hook/ament_prefix_path.ps1'
+[10.793s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/robot_control/share/robot_control/hook/ament_prefix_path.dsv'
+[10.793s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/robot_control/share/robot_control/hook/ament_prefix_path.sh'
+[10.794s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[10.794s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[11.000s] [34mcolcon.colcon_core.task.python.build[0m [1;30mINFO[0m Building Python package in '/home/mo/Thesis/src/action_servers'
+[11.000s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[11.000s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[11.216s] [34mcolcon.colcon_core.task.python.build[0m [1;30mINFO[0m Building Python package in '/home/mo/Thesis/src/robot_control'
+[11.217s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[11.217s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[12.068s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/mo/Thesis/src/action_servers': AMENT_PREFIX_PATH=/home/mo/Thesis/src/install/action_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mo/Thesis/src/install/action_interfaces:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/home/mo/Thesis/src/install/action_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mo/Thesis/src/build/action_servers/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/src/install/action_servers/lib/python3.8/site-packages:/home/mo/Thesis/src/install/action_interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/action_servers build --build-base /home/mo/Thesis/src/build/action_servers/build install --record /home/mo/Thesis/src/build/action_servers/install.log --single-version-externally-managed install_data[0m
+[12.101s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/mo/Thesis/src/robot_control': AMENT_PREFIX_PATH=/home/mo/Thesis/src/install/action_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mo/Thesis/src/install/action_interfaces:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/home/mo/Thesis/src/install/action_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mo/Thesis/src/build/robot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/src/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/src/install/action_interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/robot_control build --build-base /home/mo/Thesis/src/build/robot_control/build install --record /home/mo/Thesis/src/build/robot_control/install.log --single-version-externally-managed install_data[0m
+[13.236s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/action_servers' for CMake module files
+[13.237s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/action_servers' for CMake config files
+[13.238s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/action_servers/lib'
+[13.238s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/action_servers/bin'
+[13.238s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/action_servers/lib/pkgconfig/action_servers.pc'
+[13.238s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/action_servers/lib/python3.8/site-packages'
+[13.238s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('action_servers', 'pythonpath')
+[13.239s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/action_servers/share/action_servers/hook/pythonpath.ps1'
+[13.240s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/action_servers/share/action_servers/hook/pythonpath.dsv'
+[13.240s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/action_servers/share/action_servers/hook/pythonpath.sh'
+[13.241s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/action_servers/bin'
+[13.241s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(action_servers)
+[13.242s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/action_servers/share/action_servers/package.ps1'
+[13.243s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/mo/Thesis/src/install/action_servers/share/action_servers/package.dsv'
+[13.243s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/action_servers/share/action_servers/package.sh'
+[13.244s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/action_servers/share/action_servers/package.bash'
+[13.244s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/action_servers/share/action_servers/package.zsh'
+[13.245s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/mo/Thesis/src/install/action_servers/share/colcon-core/packages/action_servers)
+[13.246s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/mo/Thesis/src/action_servers' returned '0': AMENT_PREFIX_PATH=/home/mo/Thesis/src/install/action_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mo/Thesis/src/install/action_interfaces:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/home/mo/Thesis/src/install/action_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mo/Thesis/src/build/action_servers/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/src/install/action_servers/lib/python3.8/site-packages:/home/mo/Thesis/src/install/action_interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/action_servers build --build-base /home/mo/Thesis/src/build/action_servers/build install --record /home/mo/Thesis/src/build/action_servers/install.log --single-version-externally-managed install_data[0m
+[13.358s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/robot_control' for CMake module files
+[13.359s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/robot_control' for CMake config files
+[13.360s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/robot_control/lib'
+[13.360s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/robot_control/bin'
+[13.360s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/robot_control/lib/pkgconfig/robot_control.pc'
+[13.361s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/robot_control/lib/python3.8/site-packages'
+[13.361s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('robot_control', 'pythonpath')
+[13.361s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/robot_control/share/robot_control/hook/pythonpath.ps1'
+[13.362s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/robot_control/share/robot_control/hook/pythonpath.dsv'
+[13.362s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/robot_control/share/robot_control/hook/pythonpath.sh'
+[13.363s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/robot_control/bin'
+[13.363s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(robot_control)
+[13.364s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/robot_control/share/robot_control/package.ps1'
+[13.364s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/mo/Thesis/src/install/robot_control/share/robot_control/package.dsv'
+[13.365s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/robot_control/share/robot_control/package.sh'
+[13.366s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/robot_control/share/robot_control/package.bash'
+[13.366s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/robot_control/share/robot_control/package.zsh'
+[13.367s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/mo/Thesis/src/install/robot_control/share/colcon-core/packages/robot_control)
+[13.368s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/mo/Thesis/src/robot_control' returned '0': AMENT_PREFIX_PATH=/home/mo/Thesis/src/install/action_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mo/Thesis/src/install/action_interfaces:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/home/mo/Thesis/src/install/action_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mo/Thesis/src/build/robot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/src/install/robot_control/lib/python3.8/site-packages:/home/mo/Thesis/src/install/action_interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/robot_control build --build-base /home/mo/Thesis/src/build/robot_control/build install --record /home/mo/Thesis/src/build/robot_control/install.log --single-version-externally-managed install_data[0m
+[34.644s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/mo/Thesis/src/build/kr_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy /usr/bin/cmake --build /home/mo/Thesis/src/build/kr_msgs -- -j16 -l16[0m
+[34.648s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/mo/Thesis/src/build/kr_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy /usr/bin/cmake --install /home/mo/Thesis/src/build/kr_msgs[0m
+[34.871s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(kr_msgs)
+[34.871s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_msgs' for CMake module files
+[34.871s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/mo/Thesis/src/build/kr_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy /usr/bin/cmake --install /home/mo/Thesis/src/build/kr_msgs[0m
+[34.872s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_msgs' for CMake config files
+[34.873s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('kr_msgs', 'cmake_prefix_path')
+[34.873s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/hook/cmake_prefix_path.ps1'
+[34.874s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/hook/cmake_prefix_path.dsv'
+[34.874s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/hook/cmake_prefix_path.sh'
+[34.875s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_msgs/lib'
+[34.875s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('kr_msgs', 'ld_library_path_lib')
+[34.875s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/hook/ld_library_path_lib.ps1'
+[34.875s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/hook/ld_library_path_lib.dsv'
+[34.876s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/hook/ld_library_path_lib.sh'
+[34.876s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_msgs/bin'
+[34.876s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_msgs/lib/pkgconfig/kr_msgs.pc'
+[34.876s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_msgs/lib/python3.8/site-packages'
+[34.876s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('kr_msgs', 'pythonpath')
+[34.876s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/hook/pythonpath.ps1'
+[34.877s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/hook/pythonpath.dsv'
+[34.877s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/hook/pythonpath.sh'
+[34.877s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_msgs/bin'
+[34.878s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/package.ps1'
+[34.878s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/package.dsv'
+[34.879s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/package.sh'
+[34.879s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/package.bash'
+[34.879s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/package.zsh'
+[34.880s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/mo/Thesis/src/install/kr_msgs/share/colcon-core/packages/kr_msgs)
+[34.880s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(kr_msgs)
+[34.881s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_msgs' for CMake module files
+[34.881s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_msgs' for CMake config files
+[34.882s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('kr_msgs', 'cmake_prefix_path')
+[34.882s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/hook/cmake_prefix_path.ps1'
+[34.882s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/hook/cmake_prefix_path.dsv'
+[34.883s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/hook/cmake_prefix_path.sh'
+[34.883s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_msgs/lib'
+[34.883s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('kr_msgs', 'ld_library_path_lib')
+[34.883s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/hook/ld_library_path_lib.ps1'
+[34.883s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/hook/ld_library_path_lib.dsv'
+[34.884s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/hook/ld_library_path_lib.sh'
+[34.884s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_msgs/bin'
+[34.884s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_msgs/lib/pkgconfig/kr_msgs.pc'
+[34.884s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_msgs/lib/python3.8/site-packages'
+[34.884s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('kr_msgs', 'pythonpath')
+[34.884s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/hook/pythonpath.ps1'
+[34.885s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/hook/pythonpath.dsv'
+[34.885s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/hook/pythonpath.sh'
+[34.885s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_msgs/bin'
+[34.886s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/package.ps1'
+[34.886s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/package.dsv'
+[34.886s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/package.sh'
+[34.887s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/package.bash'
+[34.887s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kr_msgs/share/kr_msgs/package.zsh'
+[34.887s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/mo/Thesis/src/install/kr_msgs/share/colcon-core/packages/kr_msgs)
+[34.888s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in '/home/mo/Thesis/src/orange-ros2/kr_example/cpp' with build type 'ament_cmake'
+[34.888s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/home/mo/Thesis/src/orange-ros2/kr_example/cpp'
+[34.888s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[34.888s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[34.893s] [34mcolcon.colcon_ros.task.ament_python.build[0m [1;30mINFO[0m Building ROS package in '/home/mo/Thesis/src/orange-ros2/kr_example/python' with build type 'ament_python'
+[34.894s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('kr_example_python', 'ament_prefix_path')
+[34.894s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kr_example_python/share/kr_example_python/hook/ament_prefix_path.ps1'
+[34.895s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/kr_example_python/share/kr_example_python/hook/ament_prefix_path.dsv'
+[34.895s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kr_example_python/share/kr_example_python/hook/ament_prefix_path.sh'
+[34.896s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[34.896s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[34.905s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/mo/Thesis/src/build/kr_example_cpp': AMENT_PREFIX_PATH=/home/mo/Thesis/src/install/kr_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mo/Thesis/src/install/kr_msgs:/home/mo/Thesis/install/kr_example_cpp:/home/mo/Thesis/install/kr_msgs:/home/mo/Thesis/install/kdl_parser:/home/mo/Thesis/install/action_interfaces:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy LD_LIBRARY_PATH=/home/mo/Thesis/src/install/kr_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mo/Thesis/src/install/kr_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /home/mo/Thesis/src/orange-ros2/kr_example/cpp -DCMAKE_INSTALL_PREFIX=/home/mo/Thesis/src/install/kr_example_cpp[0m
+[35.098s] [34mcolcon.colcon_core.task.python.build[0m [1;30mINFO[0m Building Python package in '/home/mo/Thesis/src/orange-ros2/kr_example/python'
+[35.100s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[35.100s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[35.788s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/mo/Thesis/src/orange-ros2/kr_example/python': AMENT_PREFIX_PATH=/home/mo/Thesis/src/install/kr_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mo/Thesis/src/install/kr_msgs:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/home/mo/Thesis/src/install/kr_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mo/Thesis/src/build/kr_example_python/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/src/install/kr_example_python/lib/python3.8/site-packages:/home/mo/Thesis/src/install/kr_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/kr_example_python build --build-base /home/mo/Thesis/src/build/kr_example_python/build install --record /home/mo/Thesis/src/build/kr_example_python/install.log --single-version-externally-managed install_data[0m
+[36.316s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_example_python' for CMake module files
+[36.317s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/mo/Thesis/src/orange-ros2/kr_example/python' returned '0': AMENT_PREFIX_PATH=/home/mo/Thesis/src/install/kr_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mo/Thesis/src/install/kr_msgs:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/home/mo/Thesis/src/install/kr_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mo/Thesis/src/build/kr_example_python/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/src/install/kr_example_python/lib/python3.8/site-packages:/home/mo/Thesis/src/install/kr_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/kr_example_python build --build-base /home/mo/Thesis/src/build/kr_example_python/build install --record /home/mo/Thesis/src/build/kr_example_python/install.log --single-version-externally-managed install_data[0m
+[36.318s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_example_python' for CMake config files
+[36.318s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_example_python/lib'
+[36.318s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_example_python/bin'
+[36.319s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_example_python/lib/pkgconfig/kr_example_python.pc'
+[36.319s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_example_python/lib/python3.8/site-packages'
+[36.319s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('kr_example_python', 'pythonpath')
+[36.319s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kr_example_python/share/kr_example_python/hook/pythonpath.ps1'
+[36.321s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/kr_example_python/share/kr_example_python/hook/pythonpath.dsv'
+[36.322s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kr_example_python/share/kr_example_python/hook/pythonpath.sh'
+[36.322s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_example_python/bin'
+[36.322s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(kr_example_python)
+[36.322s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kr_example_python/share/kr_example_python/package.ps1'
+[36.323s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/mo/Thesis/src/install/kr_example_python/share/kr_example_python/package.dsv'
+[36.323s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kr_example_python/share/kr_example_python/package.sh'
+[36.324s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kr_example_python/share/kr_example_python/package.bash'
+[36.324s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kr_example_python/share/kr_example_python/package.zsh'
+[36.324s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/mo/Thesis/src/install/kr_example_python/share/colcon-core/packages/kr_example_python)
+[36.659s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/mo/Thesis/src/build/kr_example_cpp' returned '0': AMENT_PREFIX_PATH=/home/mo/Thesis/src/install/kr_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mo/Thesis/src/install/kr_msgs:/home/mo/Thesis/install/kr_example_cpp:/home/mo/Thesis/install/kr_msgs:/home/mo/Thesis/install/kdl_parser:/home/mo/Thesis/install/action_interfaces:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy LD_LIBRARY_PATH=/home/mo/Thesis/src/install/kr_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mo/Thesis/src/install/kr_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /home/mo/Thesis/src/orange-ros2/kr_example/cpp -DCMAKE_INSTALL_PREFIX=/home/mo/Thesis/src/install/kr_example_cpp[0m
+[36.662s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/mo/Thesis/src/build/kr_example_cpp': AMENT_PREFIX_PATH=/home/mo/Thesis/src/install/kr_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mo/Thesis/src/install/kr_msgs:/home/mo/Thesis/install/kr_example_cpp:/home/mo/Thesis/install/kr_msgs:/home/mo/Thesis/install/kdl_parser:/home/mo/Thesis/install/action_interfaces:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy LD_LIBRARY_PATH=/home/mo/Thesis/src/install/kr_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mo/Thesis/src/install/kr_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/mo/Thesis/src/build/kr_example_cpp -- -j16 -l16[0m
+[41.103s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/mo/Thesis/src/build/kr_example_cpp' returned '0': AMENT_PREFIX_PATH=/home/mo/Thesis/src/install/kr_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mo/Thesis/src/install/kr_msgs:/home/mo/Thesis/install/kr_example_cpp:/home/mo/Thesis/install/kr_msgs:/home/mo/Thesis/install/kdl_parser:/home/mo/Thesis/install/action_interfaces:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy LD_LIBRARY_PATH=/home/mo/Thesis/src/install/kr_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mo/Thesis/src/install/kr_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/mo/Thesis/src/build/kr_example_cpp -- -j16 -l16[0m
+[41.109s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/mo/Thesis/src/build/kr_example_cpp': AMENT_PREFIX_PATH=/home/mo/Thesis/src/install/kr_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mo/Thesis/src/install/kr_msgs:/home/mo/Thesis/install/kr_example_cpp:/home/mo/Thesis/install/kr_msgs:/home/mo/Thesis/install/kdl_parser:/home/mo/Thesis/install/action_interfaces:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy LD_LIBRARY_PATH=/home/mo/Thesis/src/install/kr_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mo/Thesis/src/install/kr_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/mo/Thesis/src/build/kr_example_cpp[0m
+[41.133s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(kr_example_cpp)
+[41.134s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_example_cpp' for CMake module files
+[41.134s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/mo/Thesis/src/build/kr_example_cpp' returned '0': AMENT_PREFIX_PATH=/home/mo/Thesis/src/install/kr_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mo/Thesis/src/install/kr_msgs:/home/mo/Thesis/install/kr_example_cpp:/home/mo/Thesis/install/kr_msgs:/home/mo/Thesis/install/kdl_parser:/home/mo/Thesis/install/action_interfaces:/home/mo/Thesis/install/vision:/home/mo/Thesis/install/vcnanoz:/home/mo/Thesis/install/sensopart_visor:/home/mo/Thesis/install/robot_control:/home/mo/Thesis/install/kr_example_python:/home/mo/Thesis/install/action_servers:/opt/ros/foxy LD_LIBRARY_PATH=/home/mo/Thesis/src/install/kr_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mo/Thesis/src/install/kr_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/mo/Thesis/src/build/kr_example_cpp[0m
+[41.134s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_example_cpp' for CMake config files
+[41.135s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('kr_example_cpp', 'cmake_prefix_path')
+[41.136s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kr_example_cpp/share/kr_example_cpp/hook/cmake_prefix_path.ps1'
+[41.137s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/kr_example_cpp/share/kr_example_cpp/hook/cmake_prefix_path.dsv'
+[41.138s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kr_example_cpp/share/kr_example_cpp/hook/cmake_prefix_path.sh'
+[41.140s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_example_cpp/lib'
+[41.140s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_example_cpp/bin'
+[41.140s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_example_cpp/lib/pkgconfig/kr_example_cpp.pc'
+[41.141s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_example_cpp/lib/python3.8/site-packages'
+[41.141s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_example_cpp/bin'
+[41.142s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kr_example_cpp/share/kr_example_cpp/package.ps1'
+[41.142s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/mo/Thesis/src/install/kr_example_cpp/share/kr_example_cpp/package.dsv'
+[41.143s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kr_example_cpp/share/kr_example_cpp/package.sh'
+[41.143s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kr_example_cpp/share/kr_example_cpp/package.bash'
+[41.143s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kr_example_cpp/share/kr_example_cpp/package.zsh'
+[41.143s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/mo/Thesis/src/install/kr_example_cpp/share/colcon-core/packages/kr_example_cpp)
+[41.144s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(kr_example_cpp)
+[41.144s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_example_cpp' for CMake module files
+[41.144s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_example_cpp' for CMake config files
+[41.145s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('kr_example_cpp', 'cmake_prefix_path')
+[41.145s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kr_example_cpp/share/kr_example_cpp/hook/cmake_prefix_path.ps1'
+[41.145s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/mo/Thesis/src/install/kr_example_cpp/share/kr_example_cpp/hook/cmake_prefix_path.dsv'
+[41.146s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/mo/Thesis/src/install/kr_example_cpp/share/kr_example_cpp/hook/cmake_prefix_path.sh'
+[41.146s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_example_cpp/lib'
+[41.146s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_example_cpp/bin'
+[41.146s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_example_cpp/lib/pkgconfig/kr_example_cpp.pc'
+[41.146s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_example_cpp/lib/python3.8/site-packages'
+[41.146s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/mo/Thesis/src/install/kr_example_cpp/bin'
+[41.147s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kr_example_cpp/share/kr_example_cpp/package.ps1'
+[41.147s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/mo/Thesis/src/install/kr_example_cpp/share/kr_example_cpp/package.dsv'
+[41.147s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kr_example_cpp/share/kr_example_cpp/package.sh'
+[41.148s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kr_example_cpp/share/kr_example_cpp/package.bash'
+[41.148s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/mo/Thesis/src/install/kr_example_cpp/share/kr_example_cpp/package.zsh'
+[41.148s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/mo/Thesis/src/install/kr_example_cpp/share/colcon-core/packages/kr_example_cpp)
+[41.149s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mclosing loop[0m
+[41.149s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mloop closed[0m
+[41.149s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mrun_until_complete finished with '0'[0m
+[41.149s] [34mcolcon.colcon_core.event_reactor[0m [1;30mDEBUG[0m [32mjoining thread[0m
+[41.158s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[41.158s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[41.158s] [34mcolcon.colcon_notification.desktop_notification[0m [1;30mINFO[0m Sending desktop notification using 'notify2'
+[41.184s] [34mcolcon.colcon_core.event_reactor[0m [1;30mDEBUG[0m [32mjoined thread[0m
+[41.184s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/home/mo/Thesis/src/install/local_setup.ps1'
+[41.185s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix util module '/home/mo/Thesis/src/install/_local_setup_util_ps1.py'
+[41.186s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/home/mo/Thesis/src/install/setup.ps1'
+[41.188s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/home/mo/Thesis/src/install/local_setup.sh'
+[41.189s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix util module '/home/mo/Thesis/src/install/_local_setup_util_sh.py'
+[41.190s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/home/mo/Thesis/src/install/setup.sh'
+[41.193s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/home/mo/Thesis/src/install/local_setup.bash'
+[41.194s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/home/mo/Thesis/src/install/setup.bash'
+[41.195s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/home/mo/Thesis/src/install/local_setup.zsh'
+[41.196s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/home/mo/Thesis/src/install/setup.zsh'

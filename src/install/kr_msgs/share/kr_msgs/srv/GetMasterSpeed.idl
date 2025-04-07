@@ -1,0 +1,23 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from kr_msgs/srv/system/GetMasterSpeed.srv
+// generated code does not contain a copyright notice
+
+
+module kr_msgs {
+  module srv {
+    @verbatim (language="comment", text=
+      "#####################################################" "\n"
+      "                   GET MASTER SPEED                 #" "\n"
+      "#####################################################")
+    struct GetMasterSpeed_Request {
+      uint8 structure_needs_at_least_one_member;
+    };
+    struct GetMasterSpeed_Response {
+      @verbatim (language="comment", text=
+        " master speed (0 < speed <= 1)")
+      double speed;
+
+      boolean success;
+    };
+  };
+};

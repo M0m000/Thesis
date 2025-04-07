@@ -1,0 +1,11 @@
+# Goal
+string ref_frame  # Referenz-Frame
+string frame      # Ziel-Frame
+
+---
+# Result
+geometry_msgs/TransformStamped transform  # Die Transformation
+
+---
+# Feedback
+string status  # Status der Anfrage (kann z.B. "Warten auf Transformation" sein)

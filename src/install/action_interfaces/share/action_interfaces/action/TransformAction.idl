@@ -1,0 +1,33 @@
+// generated from rosidl_adapter/resource/action.idl.em
+// with input from action_interfaces/action/TransformAction.action
+// generated code does not contain a copyright notice
+
+#include "geometry_msgs/msg/TransformStamped.idl"
+
+module action_interfaces {
+  module action {
+    @verbatim (language="comment", text=
+      " Goal")
+    struct TransformAction_Goal {
+      @verbatim (language="comment", text=
+        " Referenz-Frame")
+      string ref_frame;
+
+      @verbatim (language="comment", text=
+        " Ziel-Frame")
+      string frame;
+    };
+    struct TransformAction_Result {
+      @verbatim (language="comment", text=
+        " Result" "\n"
+        " Die Transformation")
+      geometry_msgs::msg::TransformStamped transform;
+    };
+    struct TransformAction_Feedback {
+      @verbatim (language="comment", text=
+        " Feedback" "\n"
+        " Status der Anfrage (kann z.B. \"Warten auf Transformation\" sein)")
+      string status;
+    };
+  };
+};

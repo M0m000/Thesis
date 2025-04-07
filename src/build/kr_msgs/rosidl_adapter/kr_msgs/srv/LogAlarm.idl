@@ -1,0 +1,22 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from kr_msgs/srv/system/LogAlarm.srv
+// generated code does not contain a copyright notice
+
+#include "kr_msgs/msg/SafetyEvent.idl"
+
+module kr_msgs {
+  module srv {
+    @verbatim (language="comment", text=
+      "#####################################################" "\n"
+      "                     LOG ALARM                      #" "\n"
+      "#####################################################")
+    struct LogAlarm_Request {
+      uint8 structure_needs_at_least_one_member;
+    };
+    struct LogAlarm_Response {
+      sequence<kr_msgs::msg::SafetyEvent> safety_events;
+
+      boolean success;
+    };
+  };
+};

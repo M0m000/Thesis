@@ -1,0 +1,34 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from kr_msgs/msg/Quadrature.msg
+// generated code does not contain a copyright notice
+
+
+module kr_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "#####################################################" "\n"
+      "                    QUADRATURE                      #" "\n"
+      "#####################################################")
+    struct Quadrature {
+      @verbatim (language="comment", text=
+        " direction (-1 or +1)")
+      int8 direction;
+
+      @verbatim (language="comment", text=
+        " pulse count")
+      int32 pulse_count;
+
+      @verbatim (language="comment", text=
+        " frequency")
+      int32 frequency;
+
+      @verbatim (language="comment", text=
+        " abs pulse count")
+      int32 abs_pulse_count;
+
+      @verbatim (language="comment", text=
+        " pulse per second")
+      int32 pulse_per_sec;
+    };
+  };
+};

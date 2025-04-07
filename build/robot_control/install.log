@@ -5,6 +5,7 @@
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/ibvs_2d.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/tf_frames_publisher.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/attachment_control_trajectory.py
+/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/seven_dof_ik_node.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/scan_bar_horizontal_triangulation_pxmm.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/ptp_movement_node.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/attachment_control_servoing.py
@@ -39,6 +40,7 @@
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/ibvs_2d.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/tf_frames_publisher.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/attachment_control_trajectory.cpython-38.pyc
+/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/seven_dof_ik_node.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/scan_bar_horizontal_triangulation_pxmm.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/ptp_movement_node.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/attachment_control_servoing.cpython-38.pyc
@@ -95,4 +97,5 @@
 /home/mo/Thesis/install/robot_control/lib/robot_control/scan_bar_horizontal_triangulation_pxmm
 /home/mo/Thesis/install/robot_control/lib/robot_control/scan_bar_vertical_triangulation
 /home/mo/Thesis/install/robot_control/lib/robot_control/set_working_frame_qr
+/home/mo/Thesis/install/robot_control/lib/robot_control/seven_dof_ik_node
 /home/mo/Thesis/install/robot_control/lib/robot_control/tf_frames_publisher

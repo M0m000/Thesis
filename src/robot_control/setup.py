@@ -46,7 +46,8 @@ setup(
             'attachment_control_servoing = robot_control.attachment_control_servoing:main',
             'scan_bar_horizontal_triangulation_pxmm = robot_control.scan_bar_horizontal_triangulation_pxmm:main',
             'ptp_movement_node = robot_control.ptp_movement_node:main',
-            'ik_solver_node = robot_control.ik_solver_node:main'
+            'ik_solver_node = robot_control.ik_solver_node:main',
+            'seven_dof_ik_node = robot_control.seven_dof_ik_node:main'
         ],
     },
 )

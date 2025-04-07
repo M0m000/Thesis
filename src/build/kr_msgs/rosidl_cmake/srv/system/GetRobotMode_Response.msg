@@ -1,0 +1,3 @@
+
+RobotMode  mode    
+bool       success

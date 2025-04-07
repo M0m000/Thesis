@@ -1,0 +1,19 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from kr_msgs/srv/program/StopProgram.srv
+// generated code does not contain a copyright notice
+
+
+module kr_msgs {
+  module srv {
+    @verbatim (language="comment", text=
+      "#####################################################" "\n"
+      "               STOP PROGRAM EXECUTION               #" "\n"
+      "#####################################################")
+    struct StopProgram_Request {
+      uint8 structure_needs_at_least_one_member;
+    };
+    struct StopProgram_Response {
+      boolean success;
+    };
+  };
+};
