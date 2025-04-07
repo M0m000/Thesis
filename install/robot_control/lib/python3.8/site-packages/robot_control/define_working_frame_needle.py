@@ -3,6 +3,8 @@ from rclpy.node import Node
 import numpy as np
 from kr_msgs.srv import GetSystemFrame
 from kr_msgs.srv import SetSystemFrame
+from FC.FC_gripper_handler import GripperHandler
+import time
 
 
 class DefineWorkingFrameNeedle(Node):
@@ -23,6 +25,13 @@ class DefineWorkingFrameNeedle(Node):
         self.Rot_needle_tfc = [0.0, 0.0, 0.0]           # in Grad
         
         self.set_frame(self.Rot_needle_tfc, self.Trans_needle_tfc, frame="tcp", ref_frame="tfc")        # setze Frame TCP auf die Nadel
+
+        # Gripper Handler instanziieren und Greifer schließen
+        self.gripper_handler = GripperHandler()
+        self.gripper_handler.gripper_startup()
+        time.sleep(2)
+        self.gripper_handler.close_gripper()
+        
 
         self.stations = ['Init', 'REF', 'POS1', 'POS2']
         self.current_station = 0

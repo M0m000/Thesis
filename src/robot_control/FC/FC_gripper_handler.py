@@ -31,6 +31,8 @@ class GripperHandler(Node):
         """Manuelle Initialisierung des Greifers"""
         if self.set_output(6):
             self.gripper_initialized = True
+            self.reset_output(7)    # unbestimmter Zustand bei Startup
+            self.reset_output(8)    # unbestimmter Zustand bei Startup
             self.get_logger().info("Gripper initialized...")
         else:
             self.gripper_initialized = False
