@@ -22,6 +22,10 @@ class PTPMovementNode(Node):
         self.pose_publisher.publish(msg)
         self.get_logger().info(f'Publiziert: pos={msg.pos}, rot={msg.rot}\n')
 
+        flag_msg = Number()
+        flag_msg.value = 1.0
+        self.start_flag_publisher.publish(flag_msg)
+
 
 def main(args=None):
     rclpy.init(args=args)
