@@ -499,14 +499,10 @@ class HookGeometricsHandler(Node):
         p_dir_optim = optim_p_dir_list[(np.where(hook_type == np.array(['a', 'b', 'c', 'd'])))[0][0]]
 
         # Ausreißer in Path Points entfernen und glätten
-        for p in self.path_points_in_tcpframe:
-            print("Path Points Roh: ", p)
-        
-        positions = np.array([pos for pos in self.path_points_in_tcpframe])
-        path_points_smoothed = self._interpolate_outlier_vectors_zscore(positions, z_thresh = 2.0)
-
-        for p in path_points_smoothed:
-            print("Path Points smoothed: ", p)
+        path_points_smoothed_in_camframe = self._interpolate_outlier_vectors_zscore(
+            np.array([pos for pos in self.path_points_in_tcpframe]), 
+            z_thresh = 2.3
+        )
         
         # Gerade mit echten Istwerten berechnen (Spitze -> Senke (Tip-PPoint))
         hook_line = self.calculate_hook_line()
