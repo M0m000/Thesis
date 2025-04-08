@@ -503,7 +503,7 @@ class HookGeometricsHandler(Node):
             print("Path Points Roh: ", p)
         
         positions = np.array([pos for pos in self.path_points_in_tcpframe])
-        path_points_smoothed = self._interpolate_outlier_vectors_zscore(positions, z_thresh = 2.3)
+        path_points_smoothed = self._interpolate_outlier_vectors_zscore(positions, z_thresh = 2.0)
 
         for p in path_points_smoothed:
             print("Path Points smoothed: ", p)
