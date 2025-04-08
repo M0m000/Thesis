@@ -393,7 +393,7 @@ class HookGeometricsHandler(Node):
         # Geglättete Trajektorie - Translatorisch
         # new_trajectory = [(pos, rot) for pos, rot in zip(smoothed_ptrans, rotations)]
         return new_trajectory
-    
+
 
 
     def plan_path_point_trajectory(self, hook_num=None):
@@ -415,7 +415,7 @@ class HookGeometricsHandler(Node):
 
             # Berechne alle Trajektorienpunkte von Spitze bis Senke
             for idx in range(len(self.path_points_in_tcpframe)):
-                self.get_logger().info(f"Calculation trajectory path point {idx + 1}")
+                # self.get_logger().info(f"Calculation trajectory path point {idx + 1}")
                 if idx < (len(self.path_points_in_tcpframe) - 1):
                     ppoint_1 = self.path_points_in_tcpframe[idx]
                     ppoint_0 = self.path_points_in_tcpframe[idx + 1]
@@ -491,7 +491,7 @@ class HookGeometricsHandler(Node):
             - Planen der Trajektorie mit festem Einfädelungs-Weg attachment_distance_in_mm
         """
         # Optimale Richtungsvektoren für Gerade speichern und auf Basis von hook_type rausholen
-        optim_dir_vector_a = [0.83, -0.12, 0.532]       # optimaler Richtungsvektor für Hook-Line bei Hakenmodell A
+        optim_dir_vector_a = [0.83, -0.12, -0.532]       # optimaler Richtungsvektor für Hook-Line bei Hakenmodell A
         optim_dir_vector_b = [1, -1, 0]
         optim_dir_vector_c = [1, -0.6, 0]
         optim_dir_vector_d = [1, -1, 0]
@@ -499,9 +499,14 @@ class HookGeometricsHandler(Node):
         p_dir_optim = optim_p_dir_list[(np.where(hook_type == np.array(['a', 'b', 'c', 'd'])))[0][0]]
 
         # Ausreißer in Path Points entfernen und glätten
-        print("Path Points Roh: ", self.path_points_in_tcpframe)
-        path_points_smoothed = self._smooth_trajectory(trajectory = self.path_points_in_tcpframe, z_thresh = 2.3)
-        print("Path Points geglättet: ", path_points_smoothed)
+        for p in self.path_points_in_tcpframe:
+            print("Path Points Roh: ", p)
+        
+        positions = np.array([pos for pos in self.path_points_in_tcpframe])
+        path_points_smoothed = self._interpolate_outlier_vectors_zscore(positions, z_thresh = 2.3)
+
+        for p in path_points_smoothed:
+            print("Path Points smoothed: ", p)
         
         # Gerade mit echten Istwerten berechnen (Spitze -> Senke (Tip-PPoint))
         hook_line = self.calculate_hook_line()
@@ -509,7 +514,7 @@ class HookGeometricsHandler(Node):
         
         # Vergleich von Ist-Rotation mit optimaler Rotation
         print("p_dir_calc: ", p_dir_calc)
-        print("p_dir_calc: ", p_dir_optim)
+        print("p_dir_optim: ", p_dir_optim)
         
         # Ausgabe -> Fehlerfall (1) oder Korrektur (2) anhand eines Thresholds
         # Begrenzung/Glättung der Translation über Funktionsaufruf -> Ausreißer eliminieren und glätten

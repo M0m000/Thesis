@@ -252,7 +252,7 @@ class ScanBarHorizontalTriangulation(Node):
         if t > self.process_cycle_time:
             self.get_logger().warn(f"Process Cycle Time - {t:.4f}")
         '''
-        
+
         ##### prüfe auf Flanken für Haken am Bildrand
         rside_rising_edge, rside_falling_edge = self.edge_detector_rside.detect_edge(var=self.new_hook_in_picture)
         lside_rising_edge, lside_falling_edge = self.edge_detector_lside.detect_edge(var=self.hook_in_left_area)
@@ -787,9 +787,9 @@ class ScanBarHorizontalTriangulation(Node):
         """
         if self.yolo_hooks_dict is not {} and "hook_1" in self.yolo_hooks_dict:
             ### Prüfen auf rechten Randbereich -> Detektion, ob neuer Haken
-            if self.yolo_hooks_dict['hook_1']['uv_hook'][0] > (self.img_width * 0.9):
+            if self.yolo_hooks_dict['hook_1']['uv_hook'][0] > (self.img_width * 0.8):
                 self.new_hook_in_picture = True
-            if self.yolo_hooks_dict['hook_1']['uv_hook'][0] < (self.img_width * 0.9):
+            if self.yolo_hooks_dict['hook_1']['uv_hook'][0] < (self.img_width * 0.8):
                 self.new_hook_in_picture = False
             
             ### Prüfen auf linken Randbereich -> Detektion, ob alter Haken weg
@@ -802,9 +802,9 @@ class ScanBarHorizontalTriangulation(Node):
             else:
                 x_left_hook = self.yolo_hooks_dict[(list(self.yolo_hooks_dict.keys())[0])]['uv_hook'][0]
             
-            if x_left_hook < (self.img_width * 0.1) and x_left_hook != 0:
+            if x_left_hook < (self.img_width * 0.2) and x_left_hook != 0:
                 self.hook_in_left_area = True
-            if x_left_hook > (self.img_width * 0.1) and x_left_hook != 0:
+            if x_left_hook > (self.img_width * 0.2) and x_left_hook != 0:
                 self.hook_in_left_area = False
     
         
