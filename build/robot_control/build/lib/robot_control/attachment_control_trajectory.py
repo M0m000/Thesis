@@ -31,9 +31,12 @@ class AttachmentTrajectory(Node):
         self.velocity_rot = [0.0, 0.0, 0.0]
 
         # Client für Auswahl von Servoing Frame
+        self.max_retry = 10
         self.select_jog_frame_client = self.create_client(SelectJoggingFrame, '/kr/motion/select_jogging_frame')
-        while not self.select_jog_frame_client.wait_for_service(timeout_sec=1.0):
+        i = 0
+        while not self.select_jog_frame_client.wait_for_service(timeout_sec=1.0) and i < self.max_retry:
             self.get_logger().info("Waiting for service SelectJoggingFrame...")
+            i += 1
         self.get_logger().info("Service SelectJoggingFrame available!")
         req = SelectJoggingFrame.Request()
         req.ref = 0     # Servoing passiert in WORLD Frame
@@ -42,14 +45,17 @@ class AttachmentTrajectory(Node):
 
         # Setze TCP auf TFC
         self.set_kassow_frame_client = self.create_client(SetSystemFrame, '/kr/robot/set_system_frame')
-        while not self.set_kassow_frame_client.wait_for_service(timeout_sec=1.0):
+        i = 0
+        while not self.set_kassow_frame_client.wait_for_service(timeout_sec=1.0) and i < self.max_retry:
             self.get_logger().info("Waiting for Service SetSystemFrame...")
+            i += 1
         self.get_logger().info("Service SetSystemFrame available!")
         self.tcp_in_tfc_trans = [0.0, 0.0, 117.0]       # in mm
         self.tcp_in_tfc_rot = [0.0, 0.0, 0.0]         # in Grad
         self.set_frame(self.tcp_in_tfc_rot, self.tcp_in_tfc_trans, frame="tcp", ref_frame="tfc")
 
         # Instanz Hook Geometrics Handler
+        print("Test")
         self.hook_geometrics_handler = HookGeometricsHandler(
             distance_to_tip_in_mm = self.distance_to_tip_in_mm,
             global_scan_dict_filename = '/home/mo/Thesis/src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv')           # /home/mo/Thesis/Evaluation/1_Scan-Prozess/1_Triangulationsmethoden/1_Horizontale-Triangulation/d_50/global_hook_dict_horizontal.csv

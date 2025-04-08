@@ -510,7 +510,7 @@ class HookGeometricsHandler(Node):
         # Vergleich von Ist-Rotation mit optimaler Rotation
         print("p_dir_calc: ", p_dir_calc)
         print("p_dir_calc: ", p_dir_optim)
-
+        
         # Ausgabe -> Fehlerfall (1) oder Korrektur (2) anhand eines Thresholds
         # Begrenzung/Glättung der Translation über Funktionsaufruf -> Ausreißer eliminieren und glätten
         # Aufbauen der Trajektorie von Spitze bis Tip-Path-Point

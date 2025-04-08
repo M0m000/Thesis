@@ -1,0 +1,5 @@
+  File "/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/attachment_control_trajectory.py", line 46
+    self.set_kassow_frame_client = self.create_client(SetSystemFrame, '/kr/robot/set_system_frame')c
+                                                                                                   ^
+SyntaxError: invalid syntax
+
