@@ -454,7 +454,6 @@ class HookGeometricsHandler(Node):
             self.get_logger().info("Calculating initial trajectory point...")
             self._calculate_init_trajectory_point()
             p_traj_init = self.hook_line['p_traj_init']
-            print("Richtungsvektor: ", self.hook_line['p_dir'])
             p_traj_init_translation_in_worldframe, p_traj_init_rotation_in_worldframe = self._calculate_targetpose_in_worldframe(target_position = p_traj_init, line_dir = self.hook_line['p_dir'])
             trajectory.append((p_traj_init_translation_in_worldframe, p_traj_init_rotation_in_worldframe))
 
