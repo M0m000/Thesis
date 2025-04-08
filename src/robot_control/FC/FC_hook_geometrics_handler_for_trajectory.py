@@ -496,7 +496,12 @@ class HookGeometricsHandler(Node):
         optim_dir_vector_c = [1, -0.6, 0]
         optim_dir_vector_d = [1, -1, 0]
         optim_p_dir_list = [optim_dir_vector_a, optim_dir_vector_b, optim_dir_vector_c, optim_dir_vector_d]
-        p_dir_optim = optim_p_dir_list[(np.where(hook_type == np.array(['a', 'b', 'c', 'd'])))[0][0]]        
+        p_dir_optim = optim_p_dir_list[(np.where(hook_type == np.array(['a', 'b', 'c', 'd'])))[0][0]]
+
+        # Ausreißer in Path Points entfernen und glätten
+        print("Path Points Roh: ", self.path_points_in_tcpframe)
+        path_points_smoothed = self._smooth_trajectory(trajectory = self.path_points_in_tcpframe, z_thresh = 2.3)
+        print("Path Points geglättet: ", path_points_smoothed)
         
         # Gerade mit echten Istwerten berechnen (Spitze -> Senke (Tip-PPoint))
         hook_line = self.calculate_hook_line()
@@ -507,7 +512,7 @@ class HookGeometricsHandler(Node):
         print("p_dir_calc: ", p_dir_optim)
 
         # Ausgabe -> Fehlerfall (1) oder Korrektur (2) anhand eines Thresholds
-        # Begrenzug/GLättung der Translation über Funktionsaufruf -> Ausreißer eliminieren und glätten
+        # Begrenzung/Glättung der Translation über Funktionsaufruf -> Ausreißer eliminieren und glätten
         # Aufbauen der Trajektorie von Spitze bis Tip-Path-Point
         # TODO
         
