@@ -499,7 +499,13 @@ class HookGeometricsHandler(Node):
         p_dir_optim = optim_p_dir_list[(np.where(hook_type == np.array(['a', 'b', 'c', 'd'])))[0][0]]        
         
         # Gerade mit echten Istwerten berechnen (Spitze -> Senke (Tip-PPoint))
+        hook_line = self.calculate_hook_line()
+        p_dir_calc = hook_line['p_dir']
+        
         # Vergleich von Ist-Rotation mit optimaler Rotation
+        print("p_dir_calc: ", p_dir_calc)
+        print("p_dir_calc: ", p_dir_optim)
+
         # Ausgabe -> Fehlerfall (1) oder Korrektur (2) anhand eines Thresholds
         # Begrenzug/GLättung der Translation über Funktionsaufruf -> Ausreißer eliminieren und glätten
         # Aufbauen der Trajektorie von Spitze bis Tip-Path-Point
