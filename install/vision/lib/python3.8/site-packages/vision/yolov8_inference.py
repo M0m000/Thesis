@@ -60,8 +60,8 @@ class YOLOv8InferenceNode(Node):
 
         # Filterinstanzen zur Filterung des Outputs
         # self.ema_filter = HookFilterEMA(alpha = self.filter_alpha, confirmation_frames = 10, disappearance_frames = 10)
-        self.movingavg_filter = HookFilterMovingAvg(window_size = self.filter_windowsize, confirmation_frames = 5, disappearance_frames = 5)
-
+        self.movingavg_filter = HookFilterMovingAvg(window_size = self.filter_windowsize, confirmation_frames = 1, disappearance_frames = 1)
+        
         # Variablen
         self.bridge = CvBridge()
         self.received_img = None

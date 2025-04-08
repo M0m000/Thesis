@@ -133,7 +133,9 @@ class ScanBarHorizontalTriangulation(Node):
 
         # Timer für Prozess
         self.process_step = None
-        self.process_timer = self.create_timer(0.001, self.process_main)
+        self.process_cycle_time = 0.001
+        self.process_timer = self.create_timer(self.process_cycle_time, self.process_main)
+        self.process_time_val = time.perf_counter()
         self.upcoming_process_step = None
         self.wait_timer = None
         self.move_linear_client = MoveLinearServiceClient()
@@ -243,6 +245,14 @@ class ScanBarHorizontalTriangulation(Node):
         """
         Prozessablauf mit Schrittkette - wird zyklisch alle 1ms aufgerufen
         """
+        '''
+        ##### Berechne Zykluszeit
+        t = time.perf_counter() - self.process_time_val
+        self.process_time_val = time.perf_counter()
+        if t > self.process_cycle_time:
+            self.get_logger().warn(f"Process Cycle Time - {t:.4f}")
+        '''
+        
         ##### prüfe auf Flanken für Haken am Bildrand
         rside_rising_edge, rside_falling_edge = self.edge_detector_rside.detect_edge(var=self.new_hook_in_picture)
         lside_rising_edge, lside_falling_edge = self.edge_detector_lside.detect_edge(var=self.hook_in_left_area)
