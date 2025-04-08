@@ -803,6 +803,7 @@ class ScanBarHorizontalTriangulation(Node):
         Funktion für Node-Shutdown
         """
         self.doc_visualizer.save_plot_as_png()
+        save_dict_to_csv(node = self, data = self.global_hooks_dict, filename = 'src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv')
 
         if self.baseline_error:
             self.get_logger().error("Shutting down node... Consider restarting KR1205 Controller")

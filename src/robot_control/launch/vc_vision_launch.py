@@ -64,6 +64,6 @@ def generate_launch_description():
         # Receiver und YoloV8 Nodes starten 1min später
         TimerAction(
             period=60.0,
-            actions=[vc_1_img_receiver_node, yolov8_inference_node]
+            actions=[vc_1_img_receiver_node, yolov8_inference_node, light_controller_gui_node]
         ),
     ])
