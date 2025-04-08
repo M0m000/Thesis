@@ -24,6 +24,7 @@ test/test_pep257.py
 vision/__init__.py
 vision/calibration.py
 vision/light_controller.py
+vision/light_controller_gui.py
 vision/maskrcnn_inference.py
 vision/point_finder_2d.py
 vision/point_finder_3d.py

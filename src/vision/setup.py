@@ -34,6 +34,7 @@ setup(
             'maskrcnn_inference = vision.maskrcnn_inference:main',
             'nn_output_processor = vision.nn_output_processor:main',
             'light_controller = vision.light_controller:main',
+            'light_controller_gui = vision.light_controller_gui:main',
             'yolov8_dualcam_inference = vision.yolov8_dualcam_inference:main'
         ],
     },

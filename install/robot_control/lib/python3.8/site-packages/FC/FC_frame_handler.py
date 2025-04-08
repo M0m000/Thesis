@@ -195,7 +195,6 @@ class FrameHandler(Node):
             T = np.eye(4)
             T[:3, :3] = R
             T[:3, 3] = np.array(pos)
-
             return pos, rot, T
         else:
             self.get_logger().error("Error at service call GetSystemFrame.")
@@ -237,9 +236,6 @@ class FrameHandler(Node):
         T_work_in_worldframe = self.query_and_load_frame(frame_name = 'WORK_frame_in_world.csv')
         T_world_in_workframe = np.linalg.inv(T_work_in_worldframe)
         return T_world_in_workframe
-        
-
-    
 
 
 

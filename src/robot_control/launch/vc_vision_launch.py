@@ -43,9 +43,19 @@ def generate_launch_description():
         package = 'vision',
         executable = 'light_controller',
         name = 'light_controller_node',
-        # parameters = [config_path],
+        parameters = [config_path],
         output = 'screen'
     )
+    
+    # Definition Light Controller GUI
+    light_controller_gui_node = launch_ros.actions.Node(
+    	package = 'vision',
+    	executable = 'light_controller_gui',
+    	name = 'light_controller_gui_node',
+    	# parameters = [congig_path],
+    	output = 'screen'
+    )
+    
 
     return launch.LaunchDescription([
         vc_1_startup_node,
