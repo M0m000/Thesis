@@ -147,12 +147,13 @@ class HookGeometricsHandler(Node):
 
             # Optimale Richtungsvektoren umrechnen ins TCP-Frame und normieren auf Länge 1
             for dir_vector in self.optim_dir_list_in_workframe:
-                print("dir_vector in TFC: ", dir_vector)
-                dir_vector_hom = np.append(np.array(dir_vector), 0)         # Translatorische Verschiebung aus, da Richtungsvektor
-                dir_vector_in_tcpframe = T_work_in_tcpframe @ dir_vector_hom
-                print("dir_vector in TCP: ", dir_vector_in_tcpframe)
-                abs = np.linalg.norm(dir_vector_in_tcpframe[:3])
-                self.optim_dir_list_in_tcpframe.append(dir_vector_in_tcpframe[:3]/abs)
+                # print("dir_vector in TFC: ", dir_vector)
+                # dir_vector_hom = np.append(np.array(dir_vector), 0)         # Translatorische Verschiebung aus, da Richtungsvektor
+                # dir_vector_in_tcpframe = T_work_in_tcpframe @ dir_vector_hom
+                # print("dir_vector in TCP: ", dir_vector_in_tcpframe)
+                # abs = np.linalg.norm(dir_vector_in_tcpframe[:3])
+                # self.optim_dir_list_in_tcpframe.append(dir_vector_in_tcpframe[:3]/abs)
+                self.optim_dir_list_in_tcpframe.append(np.array(dir_vector))
 
 
             # rechne die Path Points ins TFC Frame um
