@@ -23,7 +23,7 @@ class ScanBarHorizontalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_horizontal_triangulation')
 
-        startpoint_trans_in_workframe = [-20.0, -400.0, -10.0]
+        startpoint_trans_in_workframe = [-20.0, -400.0, -20.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
 
         self.node_shutdown_flag = False
@@ -795,10 +795,10 @@ class ScanBarHorizontalTriangulation(Node):
             ### Prüfen auf linken Randbereich -> Detektion, ob alter Haken weg
             if self.handling_last_two_hooks:
                 # x_left_hook = self.yolo_hooks_dict['hook_3']['uv_hook'][0]
-                x_left_hook = self.yolo_hooks_dict[(list(self.yolo_hooks_dict.keys())[0])]['uv_hook'][0]
+                x_left_hook = self.yolo_hooks_dict[(list(self.yolo_hooks_dict.keys())[-3])]['uv_hook'][0]
             elif self.handling_last_hook:
                 # x_left_hook = self.yolo_hooks_dict['hook_2']['uv_hook'][0]
-                x_left_hook = self.yolo_hooks_dict[(list(self.yolo_hooks_dict.keys())[0])]['uv_hook'][0]
+                x_left_hook = self.yolo_hooks_dict[(list(self.yolo_hooks_dict.keys())[-2])]['uv_hook'][0]
             else:
                 x_left_hook = self.yolo_hooks_dict[(list(self.yolo_hooks_dict.keys())[0])]['uv_hook'][0]
             

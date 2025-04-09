@@ -1,0 +1,56 @@
+running egg_info
+writing ../../build/vision/vision.egg-info/PKG-INFO
+writing dependency_links to ../../build/vision/vision.egg-info/dependency_links.txt
+writing entry points to ../../build/vision/vision.egg-info/entry_points.txt
+writing requirements to ../../build/vision/vision.egg-info/requires.txt
+writing top-level names to ../../build/vision/vision.egg-info/top_level.txt
+reading manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+writing manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+running build
+running build_py
+copying vision/light_controller_gui.py -> /home/mo/Thesis/build/vision/build/lib/vision
+copying vision/yolov8_dualcam_inference.py -> /home/mo/Thesis/build/vision/build/lib/vision
+copying vision/point_finder_3d.py -> /home/mo/Thesis/build/vision/build/lib/vision
+copying vision/light_controller.py -> /home/mo/Thesis/build/vision/build/lib/vision
+copying vision/point_finder_2d.py -> /home/mo/Thesis/build/vision/build/lib/vision
+copying vision/maskrcnn_inference.py -> /home/mo/Thesis/build/vision/build/lib/vision
+copying vision/calibration.py -> /home/mo/Thesis/build/vision/build/lib/vision
+copying vision/yolov8_inference.py -> /home/mo/Thesis/build/vision/build/lib/vision
+copying vision/__init__.py -> /home/mo/Thesis/build/vision/build/lib/vision
+copying vision/test_node.py -> /home/mo/Thesis/build/vision/build/lib/vision
+copying FC_vision/FC_process_hooks_dict_for_publishing.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+copying FC_vision/FC_lowpass_filter.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+copying FC_vision/FC_plot_yolo_imgs.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+copying FC_vision/FC_two_cam_stereo_triangulation_processor.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+copying FC_vision/FC_ema_filter.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+copying FC_vision/FC_yolo_output_processor.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+copying FC_vision/FC_moving_avg_filter.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+copying FC_vision/FC_parameterized_cubic_spline.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+copying FC_vision/__init__.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+running install
+running install_lib
+copying /home/mo/Thesis/build/vision/build/lib/vision/yolov8_inference.py -> /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision
+byte-compiling /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision/yolov8_inference.py to yolov8_inference.cpython-38.pyc
+running install_data
+copying resource/vision -> /home/mo/Thesis/install/vision/share/ament_index/resource_index/packages
+copying package.xml -> /home/mo/Thesis/install/vision/share/vision
+running install_egg_info
+removing '/home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision-0.0.0-py3.8.egg-info' (and everything under it)
+Copying ../../build/vision/vision.egg-info to /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision-0.0.0-py3.8.egg-info
+running install_scripts
+Installing calibration script to /home/mo/Thesis/install/vision/lib/vision
+Installing hook_detector script to /home/mo/Thesis/install/vision/lib/vision
+Installing image_filters script to /home/mo/Thesis/install/vision/lib/vision
+Installing image_receiver script to /home/mo/Thesis/install/vision/lib/vision
+Installing light_controller script to /home/mo/Thesis/install/vision/lib/vision
+Installing light_controller_gui script to /home/mo/Thesis/install/vision/lib/vision
+Installing maskrcnn_inference script to /home/mo/Thesis/install/vision/lib/vision
+Installing nn_output_processor script to /home/mo/Thesis/install/vision/lib/vision
+Installing point_finder_2d script to /home/mo/Thesis/install/vision/lib/vision
+Installing point_finder_3d script to /home/mo/Thesis/install/vision/lib/vision
+Installing stereo_triangulation script to /home/mo/Thesis/install/vision/lib/vision
+Installing stereo_triangulation_with_robot script to /home/mo/Thesis/install/vision/lib/vision
+Installing test_node script to /home/mo/Thesis/install/vision/lib/vision
+Installing yolov8_dualcam_inference script to /home/mo/Thesis/install/vision/lib/vision
+Installing yolov8_inference script to /home/mo/Thesis/install/vision/lib/vision
+writing list of installed files to '/home/mo/Thesis/build/vision/install.log'
