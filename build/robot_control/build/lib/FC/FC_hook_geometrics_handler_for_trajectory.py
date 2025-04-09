@@ -70,6 +70,16 @@ class HookGeometricsHandler(Node):
         self.trans_diff_in_tfcframe = None
         self.rot_diff_in_tfcframe = None
 
+        # Optimale Richtungsvektoren für Gerade in WORK-Frame
+        optim_rotation_a_in_workframe = [1, -1, 0]
+        optim_rotation_b_in_workframe = [1, -1, 0]
+        optim_rotation_c_in_workframe = [1, -0.6, 0]
+        optim_rotation_d_in_workframe = [1, -0.5, 0]
+        self.optim_dir_list_in_workframe = [optim_rotation_a_in_workframe, 
+                                            optim_rotation_b_in_workframe, 
+                                            optim_rotation_c_in_workframe, 
+                                            optim_rotation_d_in_workframe]
+        self.optim_dir_list_in_tcpframe = []
 
 
     def get_hook_of_global_scan_dict(self, hook_num):
@@ -105,11 +115,11 @@ class HookGeometricsHandler(Node):
             T_tcp_in_workframe = self.frame_handler.transform_worldpose_to_desired_frame(
                 T_in_worldframe = T_tcp_in_worldframe,
                 frame_desired = "work")
-            
+            T_work_in_tcpframe = np.linalg.inv(T_tcp_in_workframe)
+            print("T_work_in_tcpframe: ", T_work_in_tcpframe)
 
             # hole die Haken Koordinaten im WORK Frame aus Global Scan Dict
             _ = self.get_hook_of_global_scan_dict(hook_num)
-            T_work_in_tcpframe = np.linalg.inv(T_tcp_in_workframe)
 
             hook_point_in_workframe_hom = np.array([self.hook_pos_in_workframe[0], 
                                                     self.hook_pos_in_workframe[1], 
@@ -134,6 +144,15 @@ class HookGeometricsHandler(Node):
 
             self.lowpoint_pos_in_tcpframe = T_work_in_tcpframe @ lowpoint_point_in_workframe_hom
             self.lowpoint_pos_in_tcpframe = self.lowpoint_pos_in_tcpframe[:3]
+
+            # Optimale Richtungsvektoren umrechnen ins TCP-Frame und normieren auf Länge 1
+            for dir_vector in self.optim_dir_list_in_workframe:
+                print("dir_vector in TFC: ", dir_vector)
+                dir_vector_hom = np.append(np.array(dir_vector), 0)         # Translatorische Verschiebung aus, da Richtungsvektor
+                dir_vector_in_tcpframe = T_work_in_tcpframe @ dir_vector_hom
+                print("dir_vector in TCP: ", dir_vector_in_tcpframe)
+                abs = np.linalg.norm(dir_vector_in_tcpframe[:3])
+                self.optim_dir_list_in_tcpframe.append(dir_vector_in_tcpframe[:3]/abs)
 
 
             # rechne die Path Points ins TFC Frame um
@@ -498,13 +517,8 @@ class HookGeometricsHandler(Node):
             - Orientierung korrigieren auf Mittelmaß zwischen Optimum und berechneter Orientierung
             - Planen der Trajektorie mit festem Einfädelungs-Weg attachment_distance_in_mm
         """
-        # Optimale Richtungsvektoren für Gerade speichern und auf Basis von hook_type rausholen
-        optim_rotation_a = [45, -45, 0]       # optimaler Richtungsvektor für Hook-Line bei Hakenmodell A
-        optim_rotation_b = [0, 0, 45]
-        optim_rotation_c = [0, 0, 30]
-        optim_rotation_d = [0, 0, 20]
-        optim_rotation_list = [optim_rotation_a, optim_rotation_b, optim_rotation_c, optim_rotation_d]
-        rotation_optim = optim_rotation_list[(np.where(hook_type == np.array(['a', 'b', 'c', 'd'])))[0][0]]
+        # Optimalen Richtungsvektor für Hook Type aus Liste extrahieren
+        p_dir_optim = self.optim_dir_list_in_tcpframe[(np.where(hook_type == np.array(['a', 'b', 'c', 'd'])))[0][0]]
 
         # Ausreißer in Path Points entfernen und glätten
         path_points_smoothed_in_tcpframe = self._interpolate_outlier_vectors_zscore(
@@ -515,24 +529,26 @@ class HookGeometricsHandler(Node):
         # Gerade mit echten Istwerten berechnen (Spitze -> Senke (Tip-PPoint))
         hook_line = self.calculate_hook_line()
         p_dir_calc = hook_line['p_dir']
-        rotation_calculated_in_tcpframe = self._calculate_adjustment_angles(line_dir = p_dir_calc)
-        print("rotation_optim: ", rotation_optim)
-        rotation_optim_in_tcpframe = np.array([0, 0, 30]) + rotation_optim
-        print("rotation_optim_in_tcpframe: ", rotation_optim_in_tcpframe)
-        
 
+        # Vergleich Richtungsvektoren
         # Ausgabe -> Fehlerfall (1) oder Korrektur (2) anhand eines Thresholds
 
         # Gewichtung der Rotationen
         beta = 1 if beta > 1 else beta
         beta = 0 if beta < 0 else beta
+        p_dir_weighted = (1-beta) * np.array(p_dir_optim) + (beta) * np.array(p_dir_calc)
+
+        # Ausgabe aller drei Richtungsvektoren
+        self.get_logger().info(f"Direction vector calculated: {p_dir_calc}")
+        self.get_logger().info(f"Direction vector optimal: {p_dir_optim}")
+        self.get_logger().info(f"Direction vector weighted: {p_dir_weighted}")
         
         # Berechne Init-Punkt (mit Abstand zur Spitze) - entlang der Hook-Line von Senke nach Spitze
         trajectory = []
         self.get_logger().info("Calculating initial trajectory point...")
-        self._calculate_init_trajectory_point(p_dir = p_dir)
+        self._calculate_init_trajectory_point(p_dir = p_dir_weighted)
         p_traj_init = self.hook_line['p_traj_init']
-        p_traj_init_translation_in_worldframe, p_traj_init_rotation_in_worldframe = self._calculate_targetpose_in_worldframe(target_position = p_traj_init, line_dir = p_dir_mixed)
+        p_traj_init_translation_in_worldframe, p_traj_init_rotation_in_worldframe = self._calculate_targetpose_in_worldframe(target_position = p_traj_init, line_dir = p_dir_weighted)
         pre_pose = p_traj_init_translation_in_worldframe, p_traj_init_rotation_in_worldframe
 
         # Berechne alle Trajektorienpunkte von Spitze bis ausgesuchter Senke
@@ -542,7 +558,7 @@ class HookGeometricsHandler(Node):
             ppoint = path_points_smoothed_in_tcpframe[idx]
             trajpoint_translation, trajpoint_rotation = self._calculate_targetpose_in_worldframe(
                 target_position = ppoint,
-                line_dir = p_dir_mixed
+                line_dir = p_dir_weighted
             )
             trajectory.append((trajpoint_translation, trajpoint_rotation))
 
