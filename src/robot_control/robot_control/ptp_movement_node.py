@@ -16,7 +16,7 @@ class PTPMovementNode(Node):
 
     def timer_callback(self):
         msg = RobotPose()
-        msg.pos = [111.38807096, 165.31715605, 892.60883048]  # Beispielwerte in mm
+        msg.pos = [111.38807096, 165.31715605, 700.60883048]  # Beispielwerte in mm
         msg.rot = [-9.10904006e+01, -9.34049597e-01, -2.65766291e-02]      # Beispielwerte in Grad
 
         self.pose_publisher.publish(msg)
