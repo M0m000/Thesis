@@ -113,7 +113,7 @@ class AttachmentTrajectory(Node):
             self.get_logger().info("Init movement done successfully!")
         else:
             self.get_logger().error("Init movement failed!")
-        
+        '''
         self.startpoint_movement_done = False
         if self.start_rotation_tfc_in_worldframe is not None and self.start_position_tfc_in_worldframe is not None:
             self.startpoint_movement_done = False
@@ -134,6 +134,7 @@ class AttachmentTrajectory(Node):
             self.get_logger().info("Startpose movement done successfully!")
         else:
             self.get_logger().error("Startpose movement failed!")
+        '''
         ###########################################################
         
 
