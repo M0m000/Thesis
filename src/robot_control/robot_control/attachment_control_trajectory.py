@@ -9,6 +9,7 @@ from kr_msgs.msg import JogLinear
 from kr_msgs.srv import SelectJoggingFrame
 from kr_msgs.srv import SetSystemFrame
 import sys, select, termios, tty
+import time
 
 
 
@@ -51,7 +52,7 @@ class AttachmentTrajectory(Node):
             i += 1
         self.get_logger().info("Service SetSystemFrame available!")
         self.tcp_in_tfc_trans = [0.0, 0.0, 244.2]       # in mm
-        self.tcp_in_tfc_rot = [0.0, 0.0, 0.0]         # in Grad
+        self.tcp_in_tfc_rot = [0.0, 0.0, -30.0]         # in Grad
         self.set_frame(self.tcp_in_tfc_rot, self.tcp_in_tfc_trans, frame="tcp", ref_frame="tfc")
 
         # Instanz Hook Geometrics Handler
@@ -77,7 +78,7 @@ class AttachmentTrajectory(Node):
         # Instanz des MoveLinearServiceClient
         self.move_lin_client = MoveLinearServiceClient()
 
-        
+        '''
         ########## Bewege Roboter auf die Startposition und anschließend auf die Ausgleichsposition (wegen LIN-Bewegung) ##########
         # Bewegung zum Init-Startpunkt in der Mitte des Gestells
         init_position_tfc_in_workframe = [662.7679417387326, -457.86324018092, 10.694603651697957]
@@ -113,7 +114,7 @@ class AttachmentTrajectory(Node):
             self.get_logger().info("Init movement done successfully!")
         else:
             self.get_logger().error("Init movement failed!")
-        '''
+
         self.startpoint_movement_done = False
         if self.start_rotation_tfc_in_worldframe is not None and self.start_position_tfc_in_worldframe is not None:
             self.startpoint_movement_done = False
@@ -134,10 +135,8 @@ class AttachmentTrajectory(Node):
             self.get_logger().info("Startpose movement done successfully!")
         else:
             self.get_logger().error("Startpose movement failed!")
-        '''
         ###########################################################
-        
-
+        '''
 
 
         '''
@@ -216,6 +215,7 @@ class AttachmentTrajectory(Node):
 
         ########## Aufruf Trajektorienberechnung ##########
         # Berechne die Trajektorie basierend auf den Hook-Daten
+        time.sleep(5)
         self.plane = self.hook_geometrics_handler.calculate_plane(trans_in_tcpframe=[0.0, 0.0, 0.0], 
                                                                   rot_in_tcpframe=[0.0, 0.0, 0.0])
         self.hook_geometrics_handler.update_hook_data(hook_num=self.hook_num)
@@ -224,15 +224,14 @@ class AttachmentTrajectory(Node):
         # Trajektorie als Liste von Punkten, wobei jeder Punkt ein Tupel aus (Translation, Rotation) ist
         # self.trajectory = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num = self.hook_num)
         # self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num, tip_ppoint = 7)
-        self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, attachment_distance_in_mm = self.distance_to_tip_in_mm, tip_ppoint = None, hook_type = 'a', beta = 0.5)
+        self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, attachment_distance_in_mm = self.distance_to_tip_in_mm, tip_ppoint = 7, hook_type = 'a', beta = 1)
         
         for k in range(len(self.trajectory)):
             print("Trajektorie im Hauptprogramm: ", self.trajectory[k])
 
-        # self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num, tip_ppoint = 7)
         self.trajectory_point_num = 0
 
-
+        
         ########## Bewegung zur Pre-Pose mit z-Offset ##########
         self.hook_pre_position, self.hook_pre_rotation = self.hook_geometrics_handler.calculate_pre_position_with_z_offset(trajectory_in_worldframe = self.trajectory, z_off_in_mm_in_workframe = 200)
         
@@ -284,7 +283,6 @@ class AttachmentTrajectory(Node):
 
                     self.get_logger().warn(f"Moving to current trajectory point {self.trajectory_point_num}")
                     self.get_logger().warn(f"Pose: {self.target_pos_trans_in_worldframe}, Rotation: {self.target_pos_rot_in_worldframe}")
-                    
                     self.move_lin_client.call_move_linear_service(
                         pos = self.target_pos_trans_in_worldframe,
                         rot = self.target_pos_rot_in_worldframe,
