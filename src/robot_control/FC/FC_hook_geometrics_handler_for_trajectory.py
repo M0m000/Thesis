@@ -509,15 +509,16 @@ class HookGeometricsHandler(Node):
         p_dir_calc = hook_line['p_dir']
         
         # Vergleich von Ist-Rotation mit optimaler Rotation
-        print("p_dir_calc: ", p_dir_calc)
-        print("p_dir_optim: ", p_dir_optim)        
+        self.get_logger().info(f"Direction vector calculated: {p_dir_calc}")
+        self.get_logger().info(f"Direction vector optimal: {p_dir_optim}")        
 
         # Ausgabe -> Fehlerfall (1) oder Korrektur (2) anhand eines Thresholds
 
         # Gewichtung der Rotationen
         beta = 1 if beta > 1 else beta
         beta = 0 if beta < 0 else beta
-        p_dir_mixed = (1 - beta) * p_dir_optim + beta * p_dir_calc        
+        p_dir_mixed = (1 - beta) * np.array(p_dir_optim) + beta * np.array(p_dir_calc)
+        self.get_logger().info(f"Direction vector weighted: {p_dir_mixed}")
         
         # Berechne Init-Punkt (mit Abstand zur Spitze) - entlang der Hook-Line von Senke nach Spitze
         trajectory = []
@@ -528,6 +529,7 @@ class HookGeometricsHandler(Node):
         trajectory.append((p_traj_init_translation_in_worldframe, p_traj_init_rotation_in_worldframe))
 
         # Berechne alle Trajektorienpunkte von Spitze bis ausgesuchter Senke
+        tip_ppoint = tip_ppoint if tip_ppoint is not None else len(path_points_smoothed_in_tcpframe)
         for idx in range(tip_ppoint):
             self.get_logger().info(f"Calculation trajectory path point {idx + 1}")
             ppoint = path_points_smoothed_in_tcpframe[idx]

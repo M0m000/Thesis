@@ -50,7 +50,7 @@ class AttachmentTrajectory(Node):
             self.get_logger().info("Waiting for Service SetSystemFrame...")
             i += 1
         self.get_logger().info("Service SetSystemFrame available!")
-        self.tcp_in_tfc_trans = [0.0, 0.0, 117.0]       # in mm
+        self.tcp_in_tfc_trans = [0.0, 0.0, 244.2]       # in mm
         self.tcp_in_tfc_rot = [0.0, 0.0, 0.0]         # in Grad
         self.set_frame(self.tcp_in_tfc_rot, self.tcp_in_tfc_trans, frame="tcp", ref_frame="tfc")
 
@@ -92,7 +92,7 @@ class AttachmentTrajectory(Node):
             trans = startpoint_trans_in_workframe,
             rot = startpoint_rot_in_workframe,
             pose_ref_frame = 'work')
-        '''
+        
         self.init_movement_done = False
         if self.init_position_tfc_in_worldframe is not None and self.init_rotation_tfc_in_worldframe is not None:
             self.init_movement_done = False
@@ -135,7 +135,7 @@ class AttachmentTrajectory(Node):
         else:
             self.get_logger().error("Startpose movement failed!")
         ###########################################################
-        '''
+        
 
 
 
@@ -222,11 +222,11 @@ class AttachmentTrajectory(Node):
         
         # Trajektorie als Liste von Punkten, wobei jeder Punkt ein Tupel aus (Translation, Rotation) ist
         # self.trajectory = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num = self.hook_num)
-        self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num, tip_ppoint = 7)
-        self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, attachment_distance_in_mm = self.distance_to_tip_in_mm, tip_ppoint = None, hook_type = 'a')
+        # self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num, tip_ppoint = 7)
+        self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, attachment_distance_in_mm = self.distance_to_tip_in_mm, tip_ppoint = None, hook_type = 'a', beta = 0.5)
         
         for k in range(len(self.trajectory)):
-            print("Trajektorie im Hauptprogramm - ", self.trajectory[k])
+            print("Trajektorie im Hauptprogramm: ", self.trajectory[k])
 
         # self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num, tip_ppoint = 7)
         self.trajectory_point_num = 0
@@ -234,7 +234,7 @@ class AttachmentTrajectory(Node):
 
         ########## Bewegung zur Pre-Pose mit z-Offset ##########
         self.hook_pre_position, self.hook_pre_rotation = self.hook_geometrics_handler.calculate_pre_position_with_z_offset(trajectory_in_worldframe = self.trajectory, z_off_in_mm_in_workframe = 200)
-        '''
+        
         self.get_logger().warn(f"Starte Bewegung zu Pre-Position: Pose: {self.hook_pre_position}, Rotation: {self.hook_pre_rotation}")
         self.move_lin_client.call_move_linear_service(
             pos = self.hook_pre_position,
@@ -247,7 +247,7 @@ class AttachmentTrajectory(Node):
             bvalue = 30.0,
             sync = 0.0,
             chaining = 0)
-        '''
+        
         # Variablen und Plot für Trajektorien-Ansteuerung
         self.target_pos_trans_in_worldframe = None
         self.target_pos_rot_in_worldframe = None
@@ -283,7 +283,7 @@ class AttachmentTrajectory(Node):
 
                     self.get_logger().warn(f"Moving to current trajectory point {self.trajectory_point_num}")
                     self.get_logger().warn(f"Pose: {self.target_pos_trans_in_worldframe}, Rotation: {self.target_pos_rot_in_worldframe}")
-                    '''
+                    
                     self.move_lin_client.call_move_linear_service(
                         pos = self.target_pos_trans_in_worldframe,
                         rot = self.target_pos_rot_in_worldframe,
@@ -295,7 +295,7 @@ class AttachmentTrajectory(Node):
                         bvalue = 100.0,
                         sync = 0.0,
                         chaining = 0)
-                        '''
+                        
                 else:
                     self.doc_plot.save_plot_as_png()
                     self.get_logger().info("Reached last trajectory point!")

@@ -38,56 +38,79 @@ class DocPlotAttachment:
 
     def initialize_plot(self):
         """
-        Erstellt 2 vertikale Subplots:
-        1. Translation (x, y, z)
-        2. Rotation (x, y, z)
+        Erstellt 2x3 Subplots mit individuellen Achsenbeschriftungen und sauberer Gruppierung.
         """
         plt.ion()
-        self.fig, self.axes = plt.subplots(2, 1, figsize=(10, 10), sharex=True)
-        self.fig.suptitle(f"Trajektorie für Haken {self.hook_num}", fontsize=16)
+        self.fig, self.axes = plt.subplots(2, 3, figsize=(15, 8), sharex=True)
 
-        titles = ['Translation (X, Y, Z)', 'Rotation (X, Y, Z)']
+        # Haupttitel oben
+        self.fig.suptitle(f"Trajektorie für Haken {self.hook_num}", fontsize=16, y=0.98)
 
-        for i, ax in enumerate(self.axes):
-            ax.set_title(titles[i])
-            ax.set_ylabel('Sollwert Trajektorie')
-            ax.grid(True)
+        # Gruppentitel
+        # self.fig.text(0.5, 0.91, "Translatorisch", ha='center', fontsize=14, weight='bold')
+        # self.fig.text(0.5, 0.46, "Rotatorisch", ha='center', fontsize=14, weight='bold')
 
-        # self.axes[-1].set_xlabel('Trajektorienpunkt')
-        # plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+        y_labels_trans = ['Translation - X [mm]', 'Translation - Y [mm]', 'Translation - Z [mm]']
+        y_labels_rot = ['Rotation - X [°]', 'Rotation - Y [°]', 'Rotation - Z [°]']
+
+        for col in range(3):
+            # Obere Zeile: Translation
+            ax_trans = self.axes[0][col]
+            ax_trans.set_ylabel(y_labels_trans[col])
+            ax_trans.set_xlabel('Trajektorienpunkt')
+            ax_trans.grid(True)
+
+            # Untere Zeile: Rotation
+            ax_rot = self.axes[1][col]
+            ax_rot.set_ylabel(y_labels_rot[col])
+            ax_rot.set_xlabel('Trajektorienpunkt')
+            ax_rot.grid(True)
+
+        # Platzanpassung für sauberes Layout
+        # plt.subplots_adjust(top=0.92, hspace=0.4)
+        plt.tight_layout()
         plt.show()
 
 
 
     def update_plot(self):
         """
-        Aktualisiert die drei Subplots: Trajektorienpunkt, Translationen, Rotationen
+        Aktualisiert die 2x3 Subplots: jede Achse bekommt ihren eigenen Plot.
         """
         if self.fig is None or self.axes is None:
             raise RuntimeError("Plot wurde noch nicht initialisiert. Bitte zuerst initialize_plot() aufrufen.")
 
-        for ax in self.axes:
-            ax.cla()
+        for row in self.axes:
+            for ax in row:
+                ax.cla()
 
-        # 2. Translation
-        self.axes[0].set_title('Translation (X, Y, Z)')
-        self.axes[0].plot(self.target_trans_x, label='X', marker='o')
-        self.axes[0].plot(self.target_trans_y, label='Y', marker='o')
-        self.axes[0].plot(self.target_trans_z, label='Z', marker='o')
-        self.axes[0].legend()
-        self.axes[0].grid(True)
-        self.axes[0].set_xlabel('Trajektorienpunkt')
-        self.axes[0].set_ylabel('Sollwert [mm]')
+        x_values = self.num_trajectory_point
 
-        # 3. Rotation
-        self.axes[1].set_title('Rotation (X, Y, Z)')
-        self.axes[1].plot(self.target_rot_x, label='X', marker='x')
-        self.axes[1].plot(self.target_rot_y, label='Y', marker='x')
-        self.axes[1].plot(self.target_rot_z, label='Z', marker='x')
-        self.axes[1].legend()
-        self.axes[1].grid(True)
-        self.axes[1].set_xlabel('Trajektorienpunkt')
-        self.axes[1].set_ylabel('Sollwert [°]')
+        # Translation
+        self.axes[0][0].plot(x_values, self.target_trans_x, label='Translation X', marker='o')
+        self.axes[0][1].plot(x_values, self.target_trans_y, label='Translation Y', marker='o')
+        self.axes[0][2].plot(x_values, self.target_trans_z, label='Translation Z', marker='o')
+
+        # Rotation
+        self.axes[1][0].plot(x_values, self.target_rot_x, label='Rotation X', marker='x')
+        self.axes[1][1].plot(x_values, self.target_rot_y, label='Rotation Y', marker='x')
+        self.axes[1][2].plot(x_values, self.target_rot_z, label='Rotation Z', marker='x')
+
+        y_labels_trans = ['Translation - X [mm]', 'Translation - Y [mm]', 'Translation - Z [mm]']
+        y_labels_rot = ['Rotation - X [°]', 'Rotation - Y [°]', 'Rotation - Z [°]']
+
+        for col in range(3):
+            # Obere Reihe
+            self.axes[0][col].set_ylabel(y_labels_trans[col])
+            self.axes[0][col].set_xlabel('Trajektorienpunkt')
+            self.axes[0][col].legend()
+            self.axes[0][col].grid(True)
+
+            # Untere Reihe
+            self.axes[1][col].set_ylabel(y_labels_rot[col])
+            self.axes[1][col].set_xlabel('Trajektorienpunkt')
+            self.axes[1][col].legend()
+            self.axes[1][col].grid(True)
 
         self.fig.canvas.draw()
         self.fig.canvas.flush_events()
