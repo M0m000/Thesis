@@ -296,7 +296,6 @@ class AttachmentTrajectory(Node):
                         bvalue = 100.0,
                         sync = 0.0,
                         chaining = 0)
-                        
                 else:
                     self.doc_plot.save_plot_as_png()
                     self.get_logger().info("Reached last trajectory point!")
