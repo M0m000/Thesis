@@ -517,8 +517,7 @@ class HookGeometricsHandler(Node):
         p_dir_calc = hook_line['p_dir']
         rotation_calculated_in_tcpframe = self._calculate_adjustment_angles(line_dir = p_dir_calc)
         print("rotation_optim: ", rotation_optim)
-        print(self.plane_rot_in_tcpframe)
-        rotation_optim_in_tcpframe = np.array(self.plane_rot_in_tcpframe) + rotation_optim
+        rotation_optim_in_tcpframe = np.array([0, 0, 30]) + rotation_optim
         print("rotation_optim_in_tcpframe: ", rotation_optim_in_tcpframe)
         
 
@@ -531,7 +530,7 @@ class HookGeometricsHandler(Node):
         # Berechne Init-Punkt (mit Abstand zur Spitze) - entlang der Hook-Line von Senke nach Spitze
         trajectory = []
         self.get_logger().info("Calculating initial trajectory point...")
-        self._calculate_init_trajectory_point(p_dir = p_dir_mixed)
+        self._calculate_init_trajectory_point(p_dir = p_dir)
         p_traj_init = self.hook_line['p_traj_init']
         p_traj_init_translation_in_worldframe, p_traj_init_rotation_in_worldframe = self._calculate_targetpose_in_worldframe(target_position = p_traj_init, line_dir = p_dir_mixed)
         pre_pose = p_traj_init_translation_in_worldframe, p_traj_init_rotation_in_worldframe

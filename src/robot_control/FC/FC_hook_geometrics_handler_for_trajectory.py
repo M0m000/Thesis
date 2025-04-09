@@ -70,6 +70,16 @@ class HookGeometricsHandler(Node):
         self.trans_diff_in_tfcframe = None
         self.rot_diff_in_tfcframe = None
 
+        # Optimale Richtungsvektoren für Gerade in WORK-Frame
+        optim_rotation_a_in_workframe = [45, -45, 0]
+        optim_rotation_b_in_workframe = [0, 0, 45]
+        optim_rotation_c_in_workframe = [0, 0, 30]
+        optim_rotation_d_in_workframe = [0, 0, 20]
+        self.optim_rotation_list_in_workframe = [optim_rotation_a_in_workframe, 
+                                                 optim_rotation_b_in_workframe, 
+                                                 optim_rotation_c_in_workframe, 
+                                                 optim_rotation_d_in_workframe]
+        self.optim_rotation_list_in_tcpframe = None
 
 
     def get_hook_of_global_scan_dict(self, hook_num):
@@ -135,6 +145,10 @@ class HookGeometricsHandler(Node):
             self.lowpoint_pos_in_tcpframe = T_work_in_tcpframe @ lowpoint_point_in_workframe_hom
             self.lowpoint_pos_in_tcpframe = self.lowpoint_pos_in_tcpframe[:3]
 
+            for dir_vector in self.optim_rotation_list_in_workframe:
+                dir_vector_hom = np.append(np.array(dir_vector), 0)         # Translatorische Verschiebung aus, da Richtungsvektor
+                dir_vector_in_tcpframe = T_work_in_tcpframe @ dir_vector_hom
+                self.optim_rotation_list_in_tcpframe.append(dir_vector_in_tcpframe[:3])
 
             # rechne die Path Points ins TFC Frame um
             self.path_points_in_tcpframe = []       # leeren der bisherigen Liste
@@ -498,12 +512,7 @@ class HookGeometricsHandler(Node):
             - Orientierung korrigieren auf Mittelmaß zwischen Optimum und berechneter Orientierung
             - Planen der Trajektorie mit festem Einfädelungs-Weg attachment_distance_in_mm
         """
-        # Optimale Richtungsvektoren für Gerade speichern und auf Basis von hook_type rausholen
-        optim_rotation_a = [45, -45, 0]       # optimaler Richtungsvektor für Hook-Line bei Hakenmodell A
-        optim_rotation_b = [0, 0, 45]
-        optim_rotation_c = [0, 0, 30]
-        optim_rotation_d = [0, 0, 20]
-        optim_rotation_list = [optim_rotation_a, optim_rotation_b, optim_rotation_c, optim_rotation_d]
+        
         rotation_optim = optim_rotation_list[(np.where(hook_type == np.array(['a', 'b', 'c', 'd'])))[0][0]]
 
         # Ausreißer in Path Points entfernen und glätten
