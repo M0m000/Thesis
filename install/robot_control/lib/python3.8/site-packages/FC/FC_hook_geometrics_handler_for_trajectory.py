@@ -33,7 +33,7 @@ class HookGeometricsHandler(Node):
         # Variablen für Hook-Pos in WORK und TFC
         self.hook_pos_in_camframe = None
         self.hook_pos_in_workframe = None
-        self.hook_pos_in_tfcframe = None
+        self.hook_pos_in_tcpframe = None
 
         # Variablen für Tip-Pos in WORK und TFC
         self.tip_pos_in_camframe = None
@@ -43,7 +43,7 @@ class HookGeometricsHandler(Node):
         # Variablen für Lowpoints-Pos in WORK und TFC
         self.lowpoint_pos_in_camframe = None
         self.lowpoint_pos_in_workframe = None
-        self.lowpoint_pos_in_tfcframe = None
+        self.lowpoint_pos_in_tcpframe = None
 
         # Variablen für Path-Points in WORK und TFC
         self.path_points_in_workframe = None
@@ -63,6 +63,8 @@ class HookGeometricsHandler(Node):
         self.plane = None
         self.plane_midpoint = None
         self.T_plane_in_tfcframe = np.eye(4)
+        self.plane_trans_in_tcpframe = None
+        self.plane_rot_in_tcpframe = None
         self.delta_angles = None
         self.control_state = None
         self.trans_diff_in_tfcframe = None
@@ -183,6 +185,8 @@ class HookGeometricsHandler(Node):
         Berechnet die Ebene des Aufhängelochs basierend auf festen translatorischen und rotatorischen Werten in Bezug auf TFC
         """
         x, y, z = trans_in_tcpframe
+        self.plane_trans_in_tcpframe = trans_in_tcpframe
+        self.plane_rot_in_tcpframe = rot_in_tcpframe
         
         # Berechne Rotationsmatrix
         R = self.frame_handler.calculate_rot_matrix(rot = rot_in_tcpframe)
@@ -495,14 +499,12 @@ class HookGeometricsHandler(Node):
             - Planen der Trajektorie mit festem Einfädelungs-Weg attachment_distance_in_mm
         """
         # Optimale Richtungsvektoren für Gerade speichern und auf Basis von hook_type rausholen
-        optim_dir_vector_a = [0.83, -0.12, -0.532]       # optimaler Richtungsvektor für Hook-Line bei Hakenmodell A
-        optim_dir_vector_b = [1, -1, 0]
-        optim_dir_vector_c = [1, -0.6, 0]
-        optim_dir_vector_d = [1, -1, 0]
-        optim_p_dir_list = [optim_dir_vector_a, optim_dir_vector_b, optim_dir_vector_c, optim_dir_vector_d]
-        p_dir_optim = optim_p_dir_list[(np.where(hook_type == np.array(['a', 'b', 'c', 'd'])))[0][0]]
-        abs_p_dir_optim = np.linalg.norm(p_dir_optim)
-        p_dir_optim /= abs_p_dir_optim
+        optim_rotation_a = [45, -45, 0]       # optimaler Richtungsvektor für Hook-Line bei Hakenmodell A
+        optim_rotation_b = [0, 0, 45]
+        optim_rotation_c = [0, 0, 30]
+        optim_rotation_d = [0, 0, 20]
+        optim_rotation_list = [optim_rotation_a, optim_rotation_b, optim_rotation_c, optim_rotation_d]
+        rotation_optim = optim_rotation_list[(np.where(hook_type == np.array(['a', 'b', 'c', 'd'])))[0][0]]
 
         # Ausreißer in Path Points entfernen und glätten
         path_points_smoothed_in_tcpframe = self._interpolate_outlier_vectors_zscore(
@@ -513,18 +515,18 @@ class HookGeometricsHandler(Node):
         # Gerade mit echten Istwerten berechnen (Spitze -> Senke (Tip-PPoint))
         hook_line = self.calculate_hook_line()
         p_dir_calc = hook_line['p_dir']
+        rotation_calculated_in_tcpframe = self._calculate_adjustment_angles(line_dir = p_dir_calc)
+        print("rotation_optim: ", rotation_optim)
+        print(self.plane_rot_in_tcpframe)
+        rotation_optim_in_tcpframe = np.array(self.plane_rot_in_tcpframe) + rotation_optim
+        print("rotation_optim_in_tcpframe: ", rotation_optim_in_tcpframe)
         
-        # Vergleich von Ist-Rotation mit optimaler Rotation
-        self.get_logger().info(f"Direction vector calculated: {p_dir_calc}")
-        self.get_logger().info(f"Direction vector optimal: {p_dir_optim}")
 
         # Ausgabe -> Fehlerfall (1) oder Korrektur (2) anhand eines Thresholds
 
         # Gewichtung der Rotationen
         beta = 1 if beta > 1 else beta
         beta = 0 if beta < 0 else beta
-        p_dir_mixed = (1 - beta) * np.array(p_dir_optim) + beta * np.array(p_dir_calc)
-        self.get_logger().info(f"Direction vector weighted: {p_dir_mixed}")
         
         # Berechne Init-Punkt (mit Abstand zur Spitze) - entlang der Hook-Line von Senke nach Spitze
         trajectory = []
