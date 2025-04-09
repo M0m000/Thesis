@@ -300,12 +300,12 @@ class HookGeometricsHandler(Node):
     
 
 
-    def _calculate_init_trajectory_point(self):
+    def _calculate_init_trajectory_point(self, p_1 = None, p_dir = None):
         """
         Berechnet den Init-Punkt für die Trjaketorie mit Abstand distance_to_tip_in_mm in [mm] zur Spitze
         """
-        p_tip = self.hook_line['p_1']
-        p_dir = self.hook_line['p_dir']
+        p_tip = self.hook_line['p_1'] if p_1 is None else p_1
+        p_dir = self.hook_line['p_dir'] if p_dir is None else p_dir
         p_traj_init = p_tip + self.distance_to_tip_in_mm * p_dir
         self.hook_line['p_traj_init'] = p_traj_init
     
@@ -482,7 +482,7 @@ class HookGeometricsHandler(Node):
         
 
     
-    def plan_trajectory_with_optimized_orientation(self, hook_num = None, attachment_distance_in_mm = None, tip_ppoint = None, hook_type = 'a'):
+    def plan_trajectory_with_optimized_orientation(self, hook_num = None, attachment_distance_in_mm = None, tip_ppoint = None, hook_type = 'a', beta=0):
         """
         Ansatz 3 - Berechnung der Trajektorie unter Voraussetzung einer optimalen Orientierung
             - Orientierung mit Hook-Line (Spitze -> Senke) berechnen und mit optimaler Orientierung (entsprechend Hakenmodell) vergleichen
@@ -499,7 +499,7 @@ class HookGeometricsHandler(Node):
         p_dir_optim = optim_p_dir_list[(np.where(hook_type == np.array(['a', 'b', 'c', 'd'])))[0][0]]
 
         # Ausreißer in Path Points entfernen und glätten
-        path_points_smoothed_in_camframe = self._interpolate_outlier_vectors_zscore(
+        path_points_smoothed_in_tcpframe = self._interpolate_outlier_vectors_zscore(
             np.array([pos for pos in self.path_points_in_tcpframe]), 
             z_thresh = 2.3
         )
@@ -510,12 +510,37 @@ class HookGeometricsHandler(Node):
         
         # Vergleich von Ist-Rotation mit optimaler Rotation
         print("p_dir_calc: ", p_dir_calc)
-        print("p_dir_optim: ", p_dir_optim)
-        
+        print("p_dir_optim: ", p_dir_optim)        
+
         # Ausgabe -> Fehlerfall (1) oder Korrektur (2) anhand eines Thresholds
+
+        # Gewichtung der Rotationen
+        beta = 1 if beta > 1 else beta
+        beta = 0 if beta < 0 else beta
+        p_dir_mixed = (1 - beta) * p_dir_optim + beta * p_dir_calc        
+        
+        # Berechne Init-Punkt (mit Abstand zur Spitze) - entlang der Hook-Line von Senke nach Spitze
+        trajectory = []
+        self.get_logger().info("Calculating initial trajectory point...")
+        self._calculate_init_trajectory_point(p_dir = p_dir_mixed)
+        p_traj_init = self.hook_line['p_traj_init']
+        p_traj_init_translation_in_worldframe, p_traj_init_rotation_in_worldframe = self._calculate_targetpose_in_worldframe(target_position = p_traj_init, line_dir = p_dir_mixed)
+        trajectory.append((p_traj_init_translation_in_worldframe, p_traj_init_rotation_in_worldframe))
+
+        # Berechne alle Trajektorienpunkte von Spitze bis ausgesuchter Senke
+        for idx in range(tip_ppoint):
+            self.get_logger().info(f"Calculation trajectory path point {idx + 1}")
+            ppoint = path_points_smoothed_in_tcpframe[idx]
+            trajpoint_translation, trajpoint_rotation = self._calculate_targetpose_in_worldframe(
+                target_position = ppoint,
+                line_dir = p_dir_mixed
+            )
+            trajectory.append((trajpoint_translation, trajpoint_rotation))
+        
+        return trajectory
+        
         # Begrenzung/Glättung der Translation über Funktionsaufruf -> Ausreißer eliminieren und glätten
         # Aufbauen der Trajektorie von Spitze bis Tip-Path-Point
-        # TODO
         
         '''
         # Ausreißer auf Translation und Rotationen entfernen
@@ -523,7 +548,6 @@ class HookGeometricsHandler(Node):
         trajectory = self._polynomial_regression_trajectory_rotations(trajectory = trajectory_smoothed, degree = 1)
         return trajectory
         '''
-        pass
 
 
 
