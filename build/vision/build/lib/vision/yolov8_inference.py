@@ -215,7 +215,7 @@ class YOLOv8InferenceNode(Node):
         results = self.yolo_model.predict(source = self.received_img,
                                 device = self.inference_device,
                                 conf = self.confidence_threshold,
-                                iou = 0.1,
+                                iou = 0.2,
                                 max_det = 100,
                                 visualize = False,
                                 classes = [0, 1, 2, 3],
