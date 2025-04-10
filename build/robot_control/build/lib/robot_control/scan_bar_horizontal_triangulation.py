@@ -11,7 +11,7 @@ from FC.FC_doc_visualization import DocVisualization
 from kr_msgs.msg import JogLinear
 from kr_msgs.srv import SelectJoggingFrame
 from kr_msgs.srv import SetSystemFrame
-from std_msgs.msg import Int32
+from std_msgs.msg import Int32, Bool
 import os
 import time
 import numpy as np
@@ -64,6 +64,12 @@ class ScanBarHorizontalTriangulation(Node):
         self.img_width_sub
         self.img_height_sub = self.create_subscription(Int32, 'vcnanoz/image_raw/height', self.received_img_height, 10)
         self.img_height_sub
+
+        # Publisher für Filter-Schaltung bei NN Output
+        self.nn_output_filter_publisher = self.create_publisher(Bool, 'vision/nn_output_filter/enable', 10)
+        filter_enable = Bool()
+        filter_enable.data = False
+        self.nn_output_filter_publisher.publish(filter_enable)
 
         # Variablen für Prozess
         self.hook_ref = {}
@@ -278,6 +284,11 @@ class ScanBarHorizontalTriangulation(Node):
                 # Roboter stoppen
                 vel_world = [0.0, 0.0, 0.0]
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
+                
+                # Filter NN Output aktivieren
+                filter_enabled = Bool()
+                filter_enabled.data = True
+                self.nn_output_filter_publisher.publish(filter_enabled)
 
                 ##### Nächster Prozessschritt
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 as initial Reference Point>")
@@ -346,6 +357,11 @@ class ScanBarHorizontalTriangulation(Node):
                 self.T_cam_in_workframe_ref = self.frame_handler.get_cam_transform_in_workframe()
                 self.T_cam_in_worldframe_ref = self.frame_handler.get_cam_transform_in_world()
 
+                # Filter NN Output ausschalten
+                filter_enabled = Bool()
+                filter_enabled.data = False
+                self.nn_output_filter_publisher.publish(filter_enabled)
+
                 ##### Nächster Prozessschritt
                 self.get_logger().info("Done! -> next process step <Move Until New Hook>")
                 self.process_step = "move_until_new_hook"
@@ -367,6 +383,11 @@ class ScanBarHorizontalTriangulation(Node):
                 self.previous_edge_rside = None
                 vel_world = [0.0, 0.0, 0.0]
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
+
+                # Filter NN Output einschalten
+                filter_enabled = Bool()
+                filter_enabled.data = True
+                self.nn_output_filter_publisher.publish(filter_enabled)
 
                 ##### Nächster Prozessschritt
                 if self.do_vibration_test:
@@ -418,6 +439,11 @@ class ScanBarHorizontalTriangulation(Node):
                 # CAM Pose in WORK speichern
                 self.T_cam_in_workframe_horizontal = self.frame_handler.get_cam_transform_in_workframe()
                 self.T_cam_in_worldframe_horizontal = self.frame_handler.get_cam_transform_in_world()
+
+                # Filter NN Output ausschalten
+                filter_enabled = Bool()
+                filter_enabled.data = False
+                self.nn_output_filter_publisher.publish(filter_enabled)
 
                 ##### Nächster Prozessschritt
                 self.get_logger().info("Done! -> next process step <Horizontal Triangulation>")
@@ -645,6 +671,12 @@ class ScanBarHorizontalTriangulation(Node):
                 self.previous_edge_lside = None
                 vel_world = [0.0, 0.0, 0.0]
                 self.publish_linear_velocity(vel_in_worldframe = vel_world)
+
+                # Filter NN Output einschalten
+                filter_enabled = Bool()
+                filter_enabled.data = True
+                self.nn_output_filter_publisher.publish(filter_enabled)
+
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 as Horizontal Point>")
                 self.upcoming_process_step = "extract_hook_3_as_horizontal_point"
                 self.start_timer_for_step(2.0)    # Timer starten

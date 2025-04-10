@@ -8,12 +8,17 @@ class HookFilterMovingAvg:
         self.confirmation_frames = confirmation_frames
         self.disappearance_frames = disappearance_frames
         self.hook_history = {}  # Speichert Historie pro Haken (für UV-Koordinaten und Boxen)
+        self.enabled = True
 
     def update(self, hooks_dict):
         """
         Nimmt das hooks_dict (mit allen Haken und deren Parametern) und gibt ein gefiltertes Dict zurück.
         Filtert die UV-Koordinaten und zusätzlich die Bounding Box-Koordinaten.
         """
+        if not self.enabled:
+            # Wenn der Filter deaktiviert ist, einfach alles durchreichen
+            return hooks_dict
+        
         filtered_hooks_dict = {}
     
         # Vorhandene Haken updaten oder neu hinzufügen
@@ -104,3 +109,8 @@ class HookFilterMovingAvg:
     def reset(self):
         self.hook_history.clear()
 
+    def set_enabled(self, enabled: bool):
+        """Methode für das Ein- bzw. Ausschalten des Filters"""
+        self.enabled = enabled
+
+    

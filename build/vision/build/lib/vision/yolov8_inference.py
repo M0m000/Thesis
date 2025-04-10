@@ -1,6 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image
+from std_msgs.msg import Bool
 from cv_bridge import CvBridge
 import numpy as np
 import torch
@@ -62,6 +63,10 @@ class YOLOv8InferenceNode(Node):
         # self.ema_filter = HookFilterEMA(alpha = self.filter_alpha, confirmation_frames = 10, disappearance_frames = 10)
         self.movingavg_filter = HookFilterMovingAvg(window_size = self.filter_windowsize, confirmation_frames = 5, disappearance_frames = 5)
         
+        # Subscriber auf Filter-Enable-Topic zur Schaltung des Filters
+        self.filter_enable_subscriber = self.create_subscription(Bool, 'vision/nn_output_filter/enable', self.filter_enable_callback, 10)
+        self.filter_enabled = True
+
         # Variablen
         self.bridge = CvBridge()
         self.received_img = None
@@ -90,6 +95,10 @@ class YOLOv8InferenceNode(Node):
         # Instanz YoloPostprocessor
         self.yolo_postprocessor = YoloPostprocessor()
 
+
+    def filter_enable_callback(self, msg):
+        """Callback für Enable Topic des Filters"""
+        self.filter_enabled = msg.data
 
     def set_device(self):
         """
@@ -136,6 +145,8 @@ class YOLOv8InferenceNode(Node):
             # Berechnung der Spitzen- und Senken-Punkte auf Pixelebene
             self.hooks_dict_processed = self.yolo_postprocessor.process_output_hooks_dict(hooks_dict = self.hooks_dict)
 
+            # Filter aktivieren/deaktivieren (je nach Topic)
+            self.movingavg_filter.set_enabled(self.filter_enabled)
             
             ### Zuerst filtern und dann Pfad berechnen
             self.filtered_hooks_dict = self.movingavg_filter.update(hooks_dict = self.hooks_dict_processed)

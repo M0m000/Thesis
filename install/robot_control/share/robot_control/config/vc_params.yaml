@@ -40,7 +40,7 @@ yolov8_inference_node:
     publish_masks: True
     publish_output_imgs: True
     filter_alpha: 0.2
-    filter_windowsize: 1
+    filter_windowsize: 5
     num_path_points: 10
     
 yolov8_dualcam_inference_node:
@@ -55,7 +55,7 @@ yolov8_dualcam_inference_node:
     publish_masks: True
     publish_output_imgs: True
     filter_alpha: 0.2
-    filter_windowsize: 1
+    filter_windowsize: 5
     num_path_points: 10
     
 scan_bar_horizontal_triangulation_node:
