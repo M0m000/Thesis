@@ -9,6 +9,7 @@ setup.py
 ../../build/robot_control/robot_control.egg-info/top_level.txt
 ../../build/robot_control/robot_control.egg-info/zip-safe
 FC/FC_call_move_linear_service.py
+FC/FC_call_move_ptp_service.py
 FC/FC_call_move_spline_service.py
 FC/FC_cam_geometrics_handler.py
 FC/FC_controller_data_logger.py

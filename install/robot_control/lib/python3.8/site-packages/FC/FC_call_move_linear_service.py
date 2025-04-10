@@ -8,7 +8,7 @@ class MoveLinearServiceClient(Node):
         super().__init__('move_linear_service_client')
         self.client = self.create_client(MoveLinear, '/kr/motion/move_linear')
 
-    def call_move_linear_service(self, pos, rot, ref, ttype, tvalue, bpoint, btype, bvalue, sync, chaining):
+    def call_move_linear_service(self, pos, rot, ttype, tvalue, bpoint, btype, bvalue, sync, chaining):
         # Warte, bis der Service verfügbar ist
         while not self.client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('Service not available, waiting again...')
@@ -18,7 +18,6 @@ class MoveLinearServiceClient(Node):
         request = MoveLinear.Request()
         request.pos = pos
         request.rot = rot
-        request.ref = ref
         request.ttype = ttype
         request.tvalue = tvalue
         request.bpoint = bpoint
@@ -44,3 +43,4 @@ class MoveLinearServiceClient(Node):
             elif time() - start_time > 10:  # Timeout nach 10 Sekunden
                 self.get_logger().warn("Service call timed out!")
                 return False  # Timeout, falls keine Antwort innerhalb von 10 Sekunden
+
