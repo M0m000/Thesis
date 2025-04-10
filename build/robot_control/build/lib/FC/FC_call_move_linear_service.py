@@ -1,7 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from kr_msgs.srv import MoveLinear
-from time import time
+import time
 
 class MoveLinearServiceClient(Node):
     def __init__(self):
