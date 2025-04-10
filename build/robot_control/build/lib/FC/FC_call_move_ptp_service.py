@@ -142,4 +142,3 @@ class MovePTPServiceClient(Node):
         if self.ik_state == 'waiting_result':
             self.ik_result = msg
             self.ik_state = 'ik_successful'
-
