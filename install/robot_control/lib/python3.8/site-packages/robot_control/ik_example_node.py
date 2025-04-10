@@ -16,7 +16,7 @@ class IKExampleNode(Node):
         self.get_logger().info('Sende Beispiel-PTP-Request...')
         try:
             self.ik_executor.move_to_pose(
-                pos=[100.0, 420.0, 700.0],
+                pos=[400.0, 620.0, 800.0],
                 rot=[-90.0, -60.0, 0.0]
             )
             self.get_logger().info("Bewegung erfolgreich ausgeführt.")

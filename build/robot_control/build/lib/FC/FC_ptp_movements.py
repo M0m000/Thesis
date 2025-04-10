@@ -1,8 +1,9 @@
 import rclpy
 from rclpy.node import Node
-from rclpy.task import Future
 from kr_msgs.srv import MoveJoint, GetRobotPose
 from kr_msgs.msg import RobotPose, Number
+import time
+
 
 class IKMoveExecutor(Node):
     def __init__(self):
@@ -34,12 +35,15 @@ class IKMoveExecutor(Node):
         self.ik_result = None
 
     def move_to_pose(self, pos, rot):
+        self.reset_trigger_bits()  # ⬅️ vor dem Start: alle Bits zurücksetzen
+        time.sleep(0.1)  # kleine Pause, um Reset zu propagieren
+
         self.ik_state = 'requested'
         self.target_trans = pos
         self.target_rot = rot
         self.ik_result = None
 
-        # === Request IK Berechnung ===
+        # === Anfrage starten ===
         self.send_req_bit()
         self.wait_for_state('req_accepted')
 
@@ -50,15 +54,14 @@ class IKMoveExecutor(Node):
 
         self.wait_for_state('ik_successful')
 
-        print(self.ik_result)
         if self.ik_result is None:
             raise RuntimeError("IK result missing")
 
         self.send_move_joint(self.ik_result)
+        self.reset_trigger_bits()  # ⬅️ nach Erfolg: alles zurücksetzen
 
     ##### Hilfsfunktionen
     def wait_for_state(self, desired_state, timeout_sec=10.0):
-        import time
         start = time.time()
         while rclpy.ok() and self.ik_state != desired_state:
             rclpy.spin_once(self, timeout_sec=0.1)
@@ -80,6 +83,16 @@ class IKMoveExecutor(Node):
         msg = Number()
         msg.value = 1.0
         self.start_flag_publisher.publish(msg)
+
+    def reset_trigger_bits(self):
+        """Setze req_bit und start_flag zurück auf 0"""
+        req_bit = Number()
+        req_bit.value = 0.0
+        self.req_publisher.publish(req_bit)
+
+        start_flag = Number()
+        start_flag.value = 0.0
+        self.start_flag_publisher.publish(start_flag)
 
     def publish_actual_pose(self, pose):
         msg = RobotPose()
@@ -129,18 +142,3 @@ class IKMoveExecutor(Node):
         if self.ik_state == 'waiting_result':
             self.ik_result = msg
             self.ik_state = 'ik_successful'
-
-
-def main(args=None):
-    rclpy.init(args=args)
-    executor = IKMoveExecutor()
-    try:
-        executor.move_to_pose([150.0, 420.0, 800.0], [-90.0, -60.0, 0.0])
-    except Exception as e:
-        executor.get_logger().error(str(e))
-    executor.destroy_node()
-    rclpy.shutdown()
-
-
-if __name__ == '__main__':
-    main()
