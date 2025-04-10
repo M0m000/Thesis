@@ -10,7 +10,7 @@ class MoveLinearServiceClient(Node):
 
     def call_move_linear_service(self, pos, rot, ttype, tvalue, bpoint, btype, bvalue, sync, chaining):
         # Warte, bis der Service verfügbar ist
-        while not self.client.wait_for_service(timeout_sec=1.0):
+        while not self.client.wait_for_service(timeout_sec = 1.0):
             self.get_logger().info('Service not available, waiting again...')
         self.get_logger().info('Service MoveLinear available, making service call...')
         
@@ -43,4 +43,3 @@ class MoveLinearServiceClient(Node):
             elif time() - start_time > 10:  # Timeout nach 10 Sekunden
                 self.get_logger().warn("Service call timed out!")
                 return False  # Timeout, falls keine Antwort innerhalb von 10 Sekunden
-

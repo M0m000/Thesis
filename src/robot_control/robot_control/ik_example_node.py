@@ -1,52 +1,47 @@
 import rclpy
 from rclpy.node import Node
-from FC.FC_ik_interface import IK_Interface
-from FC.FC_call_move_ptp_service import MovePTPServiceClient
-import numpy as np
+from FC.FC_ptp_movements import IKMoveExecutor  # Importiere deine Bewegungsklasse
 
 class IKExampleNode(Node):
     def __init__(self):
         super().__init__('ik_example_node')
 
-        self.ptp_movement = MovePTPServiceClient()
+        # Erstelle eine Instanz von IKMoveExecutor
+        self.ik_executor = IKMoveExecutor()
 
-        # Beispiel: Sende eine Zielpose nach 2 Sekunden
+        # Warte 2 Sekunden und führe dann die Bewegung aus
         self.timer = self.create_timer(2.0, self.send_example_request)
 
     def send_example_request(self):
-        target_translation = [150.0, 420.0, 800.0]
-        target_rotation = [-90.0, -60.0, 0.0]
-
         self.get_logger().info('Sende Beispiel-PTP-Request...')
-        self.ptp_movement.call_move_ptp_service(
-            pos = target_translation,
-            rot = target_rotation,
-            ttype = 0,
-            tvalue = 30.0,
-            bpoint = 0,
-            btype = 0,
-            bvalue = 30.0,
-            sync = 0,
-            chaining = 0,
-        )
+        try:
+            self.ik_executor.move_to_pose(
+                pos=[100.0, 420.0, 700.0],
+                rot=[-90.0, -60.0, 0.0]
+            )
+            self.get_logger().info("Bewegung erfolgreich ausgeführt.")
+        except Exception as e:
+            self.get_logger().error(f"Fehler bei Bewegung: {str(e)}")
 
+        # Timer beenden, damit nicht mehrfach aufgerufen wird
         self.timer.cancel()
+
+    def shutdown(self):
+        self.ik_executor.destroy_node()
+        self.destroy_node()
 
 
 def main(args=None):
     rclpy.init(args=args)
     node = IKExampleNode()
-    
-    # Spinne sowohl den Sender-Node als auch den eingebetteten Bewegungsknoten
-    executor = rclpy.executors.MultiThreadedExecutor()
-    executor.add_node(node)
-    # executor.add_node(node.ptp_node)
-    executor.spin()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.shutdown()
+        rclpy.shutdown()
 
-    # node.ptp_node.destroy_node()
-    
-    node.destroy_node()
-    rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
