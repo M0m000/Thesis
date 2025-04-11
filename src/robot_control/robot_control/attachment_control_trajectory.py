@@ -52,7 +52,7 @@ class AttachmentTrajectory(Node):
             i += 1
         self.get_logger().info("Service SetSystemFrame available!")
         self.tcp_in_tfc_trans = [0.0, 0.0, 244.2]       # in mm
-        self.tcp_in_tfc_rot = [0.0, 0.0, 0.0]         # in Grad
+        self.tcp_in_tfc_rot = [0.0, 0.0, 30.0]         # in Grad
         self.set_frame(self.tcp_in_tfc_rot, self.tcp_in_tfc_trans, frame="tcp", ref_frame="tfc")
 
         # Instanz Hook Geometrics Handler
