@@ -23,7 +23,7 @@ class ScanBarHorizontalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_horizontal_triangulation')
 
-        startpoint_trans_in_workframe = [-20.0, -400.0, -40.0]
+        startpoint_trans_in_workframe = [-15.0, -400.0, -40.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
 
         self.node_shutdown_flag = False
@@ -67,9 +67,9 @@ class ScanBarHorizontalTriangulation(Node):
 
         # Publisher für Filter-Schaltung bei NN Output
         self.nn_output_filter_publisher = self.create_publisher(Bool, 'vision/nn_output_filter/enable', 10)
-        filter_enable = Bool()
-        filter_enable.data = False
-        self.nn_output_filter_publisher.publish(filter_enable)
+        filter_enabled = Bool()
+        filter_enabled.data = False
+        self.nn_output_filter_publisher.publish(filter_enabled)
 
         # Variablen für Prozess
         self.hook_ref = {}

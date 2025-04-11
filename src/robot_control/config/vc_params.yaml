@@ -30,7 +30,7 @@ vc_2_img_receiver_node:
 
 yolov8_inference_node:
   ros__parameters:
-    yolov8_inference_node: "/home/mo/Thesis/YoloV8_InstanceSeg/runs/train/mediun/full_set/20250118_1640/weights/best.pt"
+    yolov8_inference_node: "/home/mo/Thesis/YoloV8_InstanceSeg/runs/train/medium/full_set/20250118_1640/weights/best.pt"
     confidence_threshold: 0.2
     do_preprocessing: False
     show_cam_img: False
@@ -40,12 +40,12 @@ yolov8_inference_node:
     publish_masks: True
     publish_output_imgs: True
     filter_alpha: 0.2
-    filter_windowsize: 5
+    filter_windowsize: 7
     num_path_points: 10
     
 yolov8_dualcam_inference_node:
   ros__parameters:
-    yolov8_inference_node: "/home/mo/Thesis/YoloV8_InstanceSeg/runs/train/nano/full_set/20250119_1052/weights/best.pt"
+    yolov8_inference_node: "/home/mo/Thesis/YoloV8_InstanceSeg/runs/train/medium/full_set/20250119_1052/weights/best.pt"
     confidence_threshold: 0.2
     do_preprocessing: False
     show_cam_img: False
@@ -55,7 +55,7 @@ yolov8_dualcam_inference_node:
     publish_masks: True
     publish_output_imgs: True
     filter_alpha: 0.2
-    filter_windowsize: 5
+    filter_windowsize: 7
     num_path_points: 10
     
 scan_bar_horizontal_triangulation_node:
