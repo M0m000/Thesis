@@ -51,7 +51,7 @@ class AttachmentTrajectory(Node):
             self.get_logger().info("Waiting for Service SetSystemFrame...")
             i += 1
         self.get_logger().info("Service SetSystemFrame available!")
-        self.tcp_in_tfc_trans = [0.0, 0.0, 244.2]       # in mm
+        self.tcp_in_tfc_trans = [0.0, 0.0, 244.2]      # in mm
         self.tcp_in_tfc_rot = [0.0, 0.0, 30.0]         # in Grad
         self.set_frame(self.tcp_in_tfc_rot, self.tcp_in_tfc_trans, frame="tcp", ref_frame="tfc")
 
@@ -217,14 +217,14 @@ class AttachmentTrajectory(Node):
         # Berechne die Trajektorie basierend auf den Hook-Daten
         time.sleep(5)
         self.plane = self.hook_geometrics_handler.calculate_plane(trans_in_tcpframe=[0.0, 0.0, 0.0], 
-                                                                  rot_in_tcpframe=[0.0, 0.0, 0.0])
+                                                                  rot_in_tcpframe=[0.0, 0.0, -90.0])
         self.hook_geometrics_handler.update_hook_data(hook_num=self.hook_num)
         self.hook_geometrics_handler.calculate_hook_line()
         
         # Trajektorie als Liste von Punkten, wobei jeder Punkt ein Tupel aus (Translation, Rotation) ist
         # self.trajectory = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num = self.hook_num)
         # self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num, tip_ppoint = 7)
-        self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, attachment_distance_in_mm = self.distance_to_tip_in_mm, tip_ppoint = 7, hook_type = 'a', beta = 0)
+        self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, attachment_distance_in_mm = self.distance_to_tip_in_mm, tip_ppoint = 10, hook_type = 'a', beta = 1)
         
         for k in range(len(self.trajectory)):
             print("Trajektorie im Hauptprogramm: ", self.trajectory[k])

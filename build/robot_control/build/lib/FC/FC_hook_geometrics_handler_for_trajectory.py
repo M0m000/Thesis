@@ -71,10 +71,10 @@ class HookGeometricsHandler(Node):
         self.rot_diff_in_tfcframe = None
 
         # Optimale Richtungsvektoren für Gerade in WORK-Frame
-        optim_rotation_a_in_workframe = [1, -1, 0]
-        optim_rotation_b_in_workframe = [1, -1, 0]
+        optim_rotation_a_in_workframe = [1, -0.6, 0]
+        optim_rotation_b_in_workframe = [1, -0.6, 0]
         optim_rotation_c_in_workframe = [1, -0.6, 0]
-        optim_rotation_d_in_workframe = [1, -0.5, 0]
+        optim_rotation_d_in_workframe = [1, -0.6, 0]
         self.optim_dir_list_in_workframe = [optim_rotation_a_in_workframe, 
                                             optim_rotation_b_in_workframe, 
                                             optim_rotation_c_in_workframe, 
@@ -147,14 +147,20 @@ class HookGeometricsHandler(Node):
 
             # Optimale Richtungsvektoren umrechnen ins TCP-Frame und normieren auf Länge 1
             for dir_vector in self.optim_dir_list_in_workframe:
-                # print("dir_vector in TFC: ", dir_vector)
-                # dir_vector_hom = np.append(np.array(dir_vector), 0)         # Translatorische Verschiebung aus, da Richtungsvektor
-                # dir_vector_in_tcpframe = T_work_in_tcpframe @ dir_vector_hom
-                # print("dir_vector in TCP: ", dir_vector_in_tcpframe)
-                # abs = np.linalg.norm(dir_vector_in_tcpframe[:3])
-                # self.optim_dir_list_in_tcpframe.append(dir_vector_in_tcpframe[:3]/abs)
+                # Normierung auf Länge 1
+                dir_vector = np.array(dir_vector)
                 abs = np.linalg.norm(dir_vector)
-                self.optim_dir_list_in_tcpframe.append(np.array(dir_vector))
+                dir_vector /= abs
+
+                # Transformation
+                dir_vector_hom = np.append(dir_vector, 0)         # Translatorische Verschiebung aus, da Richtungsvektor
+                print("dir_vector in WORK: ", dir_vector_hom)
+                dir_vector_in_tcpframe = T_work_in_tcpframe @ dir_vector_hom
+                print("dir_vector in TCP: ", dir_vector_in_tcpframe)
+
+                # Normieren auf Länge 1
+                abs = np.linalg.norm(dir_vector_in_tcpframe[:3])
+                self.optim_dir_list_in_tcpframe.append(dir_vector_in_tcpframe[:3]/abs)
 
 
             # rechne die Path Points ins TFC Frame um
@@ -520,7 +526,7 @@ class HookGeometricsHandler(Node):
             - Planen der Trajektorie mit festem Einfädelungs-Weg attachment_distance_in_mm
         """
         # Optimalen Richtungsvektor für Hook Type aus Liste extrahieren
-        p_dir_optim = self.optim_dir_list_in_tcpframe[(np.where(hook_type == np.array(['a', 'b', 'c', 'd'])))[0][0]]
+        p_dir_optim = self.optim_dir_list_in_tcpframe[0]
 
         # Ausreißer in Path Points entfernen und glätten
         path_points_smoothed_in_tcpframe = self._interpolate_outlier_vectors_zscore(
