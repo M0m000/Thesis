@@ -205,6 +205,7 @@ class ScanBarHorizontalTriangulation(Node):
         # self.get_logger().info("Wait 5 sec...")
         time.sleep(1)
         ###########################################################
+        
         self.scan_process_start_time = time.perf_counter()
         self.scan_process_end_time = None
     
