@@ -178,7 +178,6 @@ class ScanBarHorizontalTriangulation(Node):
             self.get_logger().info("Init movement done successfully!")
             self.process_step = "move_until_2_hooks_visible"
         else:
-        
             self.get_logger().error("Init movement failed!")
         
         self.startpoint_movement_done = False
