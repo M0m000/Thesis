@@ -153,6 +153,7 @@ class HookGeometricsHandler(Node):
                 # print("dir_vector in TCP: ", dir_vector_in_tcpframe)
                 # abs = np.linalg.norm(dir_vector_in_tcpframe[:3])
                 # self.optim_dir_list_in_tcpframe.append(dir_vector_in_tcpframe[:3]/abs)
+                abs = np.linalg.norm(dir_vector)
                 self.optim_dir_list_in_tcpframe.append(np.array(dir_vector))
 
 

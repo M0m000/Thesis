@@ -29,3 +29,32 @@ sync: 0.0
 chaining: 0"
 
 
+ros2 service call /kr/robot/get_system_frame kr_msgs/srv/GetSystemFrame "name: 'tcp'
+ref: 'tfc'"
+
+
+ros2 service call /kr/motion/move_linear kr_msgs/srv/MoveLinear "pos: [223.72053737, 494.45654267, 750.97600007]
+rot: [-90.0, 0.0, 0.0]
+ref: 1
+ttype: 0
+tvalue: 250.0
+bpoint: 0
+btype: 0
+bvalue: 100.0
+sync: 0.0
+chaining: 0"
+
+
+ros2 service call /kr/robot/set_system_frame kr_msgs/srv/SetSystemFrame "name: 'tcp'
+pos:
+- 0.0
+- 0.0
+- 244.2
+rot:
+- 0.0
+- 0.0
+- 0.0
+ref: 'tfc'"
+
+
+
