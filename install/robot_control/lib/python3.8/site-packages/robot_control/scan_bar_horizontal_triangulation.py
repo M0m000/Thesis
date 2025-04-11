@@ -8,6 +8,7 @@ from FC.FC_frame_handler import FrameHandler
 from FC.FC_triangulation_processor import StereoTriangulationProcessor
 from FC.FC_save_load_global_hook_dict import save_dict_to_csv
 from FC.FC_doc_visualization import DocVisualization
+from FC.FC_call_move_ptp_service import MovePTPServiceClient
 from kr_msgs.msg import JogLinear
 from kr_msgs.srv import SelectJoggingFrame
 from kr_msgs.srv import SetSystemFrame
@@ -111,7 +112,7 @@ class ScanBarHorizontalTriangulation(Node):
             trans = startpoint_trans_in_workframe,
             rot = startpoint_rot_in_workframe,
             pose_ref_frame = 'work')
-        
+
         # Publisher für Linear Servoing
         self.vel_lin_publisher = self.create_publisher(JogLinear, '/kr/motion/jog_linear', 10)
 
@@ -145,7 +146,7 @@ class ScanBarHorizontalTriangulation(Node):
         self.upcoming_process_step = None
         self.wait_timer = None
         self.move_linear_client = MoveLinearServiceClient()
-
+        self.move_ptp_client = MovePTPServiceClient()
 
         # Bewegung zum Init-Startpunkt in der Mitte des Gestells
         init_position_tfc_in_workframe = [662.7679417387326, -457.86324018092, 10.694603651697957]
@@ -177,8 +178,9 @@ class ScanBarHorizontalTriangulation(Node):
             self.get_logger().info("Init movement done successfully!")
             self.process_step = "move_until_2_hooks_visible"
         else:
+        
             self.get_logger().error("Init movement failed!")
-
+        
         self.startpoint_movement_done = False
         if self.start_rotation_tfc_in_worldframe is not None and self.start_position_tfc_in_worldframe is not None:
             self.startpoint_movement_done = False

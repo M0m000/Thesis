@@ -34,31 +34,62 @@ class MovePTPServiceClient(Node):
         self.target_rot = None
         self.ik_result = None
 
-    def move_to_pose(self, pos, rot):
+    def call_move_ptp_service(self, pos = None, rot = None, ref = 0, ttype = 0, tvalue = 30.0, bpoint = 0, btype = 0, bvalue = 30.0, sync = 0.0, chaining = 0):
+        """
+        Methode, die in ROS2 Nodes aufgerufen werden kann
+            -> anschließend wird die IK über Handshake mit KR1205 berechnet
+            -> Gelenkwinkel werden zurückgeliefert
+            -> MoveJoint Bewegung mit diesen Gelenkwinkeln wird aufgerufen
+        """
         self.reset_trigger_bits()  # vor dem Start: alle Bits zurücksetzen
         time.sleep(0.1)  # kleine Pause, um Reset zu propagieren
 
+        # Variablen für Bewegungsservice speichern
+        self.move_service_ref = ref
+        self.move_service_ttype = ttype
+        self.move_service_tvalue = tvalue
+        self.move_service_bpoint = bpoint
+        self.move_service_btype = btype
+        self.move_service_bvalue = bvalue
+        self.move_service_sync = sync
+        self.move_service_chaining = chaining
+
+        # IK Status auf Request
         self.ik_state = 'requested'
         self.target_trans = pos
         self.target_rot = rot
         self.ik_result = None
 
-        # === Anfrage starten ===
-        self.send_req_bit()
-        self.wait_for_state('req_accepted')
+        try:
+            # IK Request starten
+            self.send_req_bit()
+            self.wait_for_state('req_accepted')
 
-        act_pose = self.get_actual_pose()
-        self.publish_actual_pose(act_pose)
-        self.publish_target_pose(pos, rot)
-        self.send_start_flag()
+            act_pose = self.get_actual_pose()
+            self.publish_actual_pose(act_pose)
+            self.publish_target_pose(pos, rot)
+            self.send_start_flag()
 
-        self.wait_for_state('ik_successful')
+            self.wait_for_state('ik_successful')
 
-        if self.ik_result is None:
-            raise RuntimeError("IK result missing")
+            if self.ik_result is None:
+                self.get_logger().error("IK result missing")
+                self.reset_trigger_bits()
+                return False
 
-        self.send_move_joint(self.ik_result)
-        self.reset_trigger_bits()  # nach Erfolg: alles zurücksetzen
+            success = self.send_move_joint(self.ik_result)
+            self.reset_trigger_bits()
+            return success
+
+        except TimeoutError as e:
+            self.get_logger().error(str(e))
+            self.reset_trigger_bits()
+            return False
+
+        except RuntimeError as e:
+            self.get_logger().error(str(e))
+            self.reset_trigger_bits()
+            return False
 
     ##### Hilfsfunktionen
     def wait_for_state(self, desired_state, timeout_sec=10.0):
@@ -110,18 +141,23 @@ class MovePTPServiceClient(Node):
     def send_move_joint(self, ik_result):
         req = MoveJoint.Request()
         req.jsconf = ik_result.jsconf
-        req.ttype = 0
-        req.tvalue = 30.0
-        req.bpoint = 0
-        req.btype = 0
-        req.bvalue = 30.0
-        req.sync = 0.0
-        req.chaining = 0
+        req.ttype = self.move_service_ttype
+        req.tvalue = self.move_service_tvalue
+        req.bpoint = self.move_service_bpoint
+        req.btype = self.move_service_btype
+        req.bvalue = self.move_service_bvalue
+        req.sync = self.move_service_sync
+        req.chaining = self.move_service_chaining
 
         future = self.move_joint_client.call_async(req)
         rclpy.spin_until_future_complete(self, future)
-        if not future.result().success:
-            raise RuntimeError("MoveJoint failed")
+
+        if future.result() is not None and future.result().success:
+            self.get_logger().info("MoveJoint succeeded")
+            return True
+        else:
+            self.get_logger().error("MoveJoint failed or returned no result")
+            return False
 
     ##### Callbacks
     def cb_req_accepted(self, msg):

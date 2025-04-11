@@ -12,14 +12,24 @@ class IKExampleNode(Node):
 
     def send_example_request(self):
         self.get_logger().info('Sende Beispiel-PTP-Request...')
-        try:
-            self.ik_executor.move_to_pose(
-                pos=[111.38811176, 165.31722525, 792.60884063],
-                rot=[-91.27098247, -30.92798873, 0.60895482]
-            )
+
+        success = self.ik_executor.call_move_ptp_service(
+            pos=[111.38811176, 165.31722525, 792.60884063],
+            rot=[-91.27098247, -30.92798873, 0.60895482],
+            ref=0, 
+            ttype=0, 
+            tvalue=30.0, 
+            bpoint=0, 
+            btype=0, 
+            bvalue=30.0, 
+            sync=0.0, 
+            chaining=0,
+        )
+
+        if success:
             self.get_logger().info("Bewegung erfolgreich ausgeführt.")
-        except Exception as e:
-            self.get_logger().error(f"Fehler bei Bewegung: {str(e)}")
+        else:
+            self.get_logger().warn("Bewegung fehlgeschlagen oder abgebrochen.")
 
 
     def shutdown_node(self):
