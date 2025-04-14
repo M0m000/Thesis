@@ -99,74 +99,64 @@ class HookGeometricsHandler(Node):
             # hole die Haken Koordinaten im WORK Frame aus Global Scan Dict
             self.extract_hook_of_global_scan_dict(hook_num)
             
-            # Hakenkoordinaten in TCP-Frame umrechnen
-            tip_in_workframe = np.append(np.array(self.tip_pos_in_workframe), 1)
-            lowpoint_in_workframe = np.append(np.array(self.lowpoint_pos_in_workframe), 1)
+            # Richtungsvektor dir berechnen
+            dir_in_workframe = (np.array(self.tip_pos_in_workframe) - np.array(self.lowpoint_pos_in_workframe))
+            dir_in_workframe /= np.linalg.norm(dir_in_workframe)
+            dir_in_workframe[2] = 0
+            print("lowpoint_pos_in_workframe: ", self.lowpoint_pos_in_workframe)
+            print("tip_pos_in_workframe: ", self.tip_pos_in_workframe)
+            print("dir_in_workframe: ", dir_in_workframe)
 
-            self.tip_pos_in_tcpframe = T_work_in_tcpframe @ tip_in_workframe
-            self.tip_pos_in_tcpframe = self.tip_pos_in_tcpframe[:3]
-            self.lowpoint_pos_in_tcpframe = T_work_in_tcpframe @ lowpoint_in_workframe
-            self.lowpoint_pos_in_tcpframe = self.lowpoint_pos_in_tcpframe[:3]
+            # neue x-TCP-Achse als Projektion des Richtungsvektors auf die xz-Ebene
+            dir_xz_in_workframe = np.array([dir_in_workframe[0], 0, dir_in_workframe[2]])
+            x_new = dir_xz_in_workframe / np.linalg.norm(dir_xz_in_workframe)
+
+            # neue z-TCP-Achse entspricht dem Richtungsvektor (senkrechter Schnitt in die Lochebene)
+            y_new = -dir_in_workframe
             
-            # Berechne Richtungsvektor v_in_tcpframe der Hakengerade
-            dir_in_tcpframe = np.array(self.tip_pos_in_tcpframe) - np.array(self.lowpoint_pos_in_tcpframe)
-            dir_in_tcpframe /= np.linalg.norm(dir_in_tcpframe)
+            # neue y-TCP-Achse über Kreuzprodukt
+            z_new = np.cross(x_new, y_new)
+            z_new /= np.linalg.norm(z_new)
 
-            # Zielposition und Ausrichtung im WORLD-Frame definieren
-            # (Direkt die Position im WORLD-Frame berechnen, die der Roboter anfahren soll)
-            desired_position_worldframe = self.tip_pos_in_tcpframe  # Beispiel: nutze Tip-Position im WORLD-Frame
-            desired_orientation_worldframe = dir_in_tcpframe  # Beispiel: nutze die Orientierung entlang der Hakengerade
+            # Zur Sicherheit - Ortogonalität zwingend herstellen
+            # z_new = np.cross(x_new, y_new)
+            # z_new /= np.linalg.norm(z_new)
 
-            print("Zielposition (WORLD): ", desired_position_worldframe)
-            print("Zielorientierung (WORLD): ", desired_orientation_worldframe)
-
-            return desired_position_worldframe, desired_orientation_worldframe
             
-            '''
-            # Vektoren in Hook-Line-Dict speichern
-            self.hook_line['tip_in_tcpframe'] = self.tip_pos_in_tcpframe
-            self.hook_line['lowpoint_in_tcpframe'] = self.lowpoint_pos_in_tcpframe
-            self.hook_line['dir_in_tcpframe'] = dir_in_tcpframe
+            print()
+            print("Neue x-Achse [WORK]: ", x_new)
+            print("Neue y-Achse [WORK]: ", y_new)
+            print("Neue z-Achse [WORK]: ", z_new)
+            print()
+
+
+            # Aufbau der homogenen Transformation für TCP_new in WORK
+            T_tcp_new_in_workframe = np.eye(4)
+            T_tcp_new_in_workframe[:3, 0] = x_new
+            T_tcp_new_in_workframe[:3, 1] = y_new
+            T_tcp_new_in_workframe[:3, 2] = z_new
+            T_tcp_new_in_workframe[:3, 3] = np.array(self.tip_pos_in_workframe)
+
+            print("T_tcp_new_in_workframe:, ", T_tcp_new_in_workframe)
+
+            print("trans_xyz [WORK]: ", self.tip_pos_in_workframe)
+            print("rot_rpy: [WORK] ", R.from_matrix(T_tcp_new_in_workframe[:3, :3]).as_euler('xyz', degrees = True).tolist())
+            print()
+
+            # Transformation in WORLD
+            T_work_in_worldframe = self.frame_handler.get_work_in_worldframe()
+            T_tcp_new_in_worldframe = T_work_in_worldframe @ T_tcp_new_in_workframe
+
+            # Translation und RPY extrahieren
+            trans_xyz = T_tcp_new_in_worldframe[:3, 3]
+            rot_rpy = R.from_matrix(T_tcp_new_in_worldframe[:3, :3]).as_euler('xyz', degrees = True).tolist()
+
+            print("trans_xyz [WORLD]: ", trans_xyz)
+            print("rot_rpy: [WORLD] ", rot_rpy)
+            print()
+
+            return trans_xyz, rot_rpy
             
-            # Erste Ausrichtung - Parallelität von dir und x_help (neues Frame für die Korrektur)
-            ## Projektion von dir auf xz-Ebene von TCP_help
-            dir_xz = np.array([dir_in_tcpframe[0], 0, dir_in_tcpframe[2]])
-            x_help = dir_xz / np.linalg.norm(dir_xz)
-
-            # Zweite Ausrichtung - Drehung um z_help bis y_help || dir
-            ## (y_help (Ortogonale Achse in die Lochebene hinein) || dir) -> y_help = dir
-            y_help = dir_in_tcpframe
-            z_help = np.cross(x_help, y_help)
-            z_help /= np.linalg.norm(z_help)
-
-            ## Zur Sicherheit -> Ortogonalität zwingend herstellen
-            y_help = np.cross(z_help, x_help)
-            y_help /= np.linalg.norm(y_help)
-
-            # Berechnung der translatorischen Verschiebung zum Zielpunkt
-            t_in_tcpframe = self.hook_line['tip_in_tcpframe'] - np.array([0, 0, 0])
-            print(t_in_tcpframe)
-
-            # Aufbau der Homogenen Transformation zwischen TCP_fixed und TCP_help
-            T_help_in_fixedframe = np.eye(4)
-            T_help_in_fixedframe[:3, 0] = x_help
-            T_help_in_fixedframe[:3, 1] = y_help
-            T_help_in_fixedframe[:3, 2] = z_help
-            T_help_in_fixedframe[:3, 3] = t_in_tcpframe
-
-            # Homogene Transformationsmatrix in WORLD berechnen
-            T_help_in_worldframe = T_tcp_in_worldframe @ T_help_in_fixedframe
-
-            # Euler-Winkel berechnen
-            rot_matrix = T_help_in_worldframe[:3, :3]
-            rpy = R.from_matrix(rot_matrix).as_euler('xyz', degrees=True).tolist()
-            xyz = T_help_in_worldframe[:3, 3]
-
-            print("xyz: ", xyz)
-            print("rpy: ", rpy)
-
-            return xyz, rpy
-            '''
 
 
 
