@@ -218,8 +218,8 @@ class AttachmentTrajectory(Node):
         
         # Trajektorie als Liste von Punkten, wobei jeder Punkt ein Tupel aus (Translation, Rotation) ist
         # self.trajectory = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num = self.hook_num)
-        self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num)
-        # self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, attachment_distance_in_mm = self.distance_to_tip_in_mm, hook_type = 'a', beta = 1)
+        # self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num)
+        self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, hook_type = 'b', beta = 0.5)
         
         for k in range(len(self.trajectory)):
             print("Trajektorie im Hauptprogramm: ", self.trajectory[k])
