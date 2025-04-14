@@ -20,6 +20,7 @@ FC/FC_edge_detector.py
 FC/FC_frame_handler.py
 FC/FC_gripper_handler.py
 FC/FC_hook_geometrics_handler_for_trajectory.py
+FC/FC_hook_geometrics_handler_for_trajectory_old.py
 FC/FC_ik_interface.py
 FC/FC_parameterized_cubic_spline.py
 FC/FC_save_load_global_hook_dict.py

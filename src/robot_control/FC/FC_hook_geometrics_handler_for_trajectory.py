@@ -28,30 +28,18 @@ class HookGeometricsHandler(Node):
         self.get_logger().info("Frame Handler for Geometrics Handler instantiated successfully!")
 
         ########## speichern der aktuellen Hakeninstanz
-        self.hook_entry = None
-
-        # Variablen für Hook-Pos in WORK und TFC
+        # Variablen für Haken-Koordinaten in WORK und TFC
         self.hook_pos_in_camframe = None
         self.hook_pos_in_workframe = None
         self.hook_pos_in_tcpframe = None
-
-        # Variablen für Tip-Pos in WORK und TFC
         self.tip_pos_in_camframe = None
         self.tip_pos_in_workframe = None
         self.tip_pos_in_tfcframe = None
-
-        # Variablen für Lowpoints-Pos in WORK und TFC
         self.lowpoint_pos_in_camframe = None
         self.lowpoint_pos_in_workframe = None
         self.lowpoint_pos_in_tcpframe = None
-
-        # Variablen für Path-Points in WORK und TFC
         self.path_points_in_workframe = None
         self.path_points_in_tfcframe = None
-
-        # Variablen für TFC-Pose in WORK und WORLD
-        self.hook_tfc_pos_in_workframe = None
-        self.hook_tfc_pos_in_worldframe = None
 
         # Dict für Speicherung der aktuellen Hakengerade
         self.hook_line = {}
@@ -82,26 +70,19 @@ class HookGeometricsHandler(Node):
         self.optim_dir_list_in_tcpframe = []
 
 
-    def get_hook_of_global_scan_dict(self, hook_num):
+
+    def extract_hook_of_global_scan_dict(self, hook_num):
         """
         Lädt alle Daten für eine gegebene Hakennummer aus Global Scan Dict
         """
         if hook_num != 0 and hook_num <= len(self.global_scan_dict) and self.global_scan_dict is not None:
-            self.hook_tfc_pos_in_workframe = self.global_scan_dict[str(hook_num)]['tfc_in_workframe']
-            self.hook_tfc_pos_in_worldframe = self.global_scan_dict[str(hook_num)]['tfc_in_worldframe']
-
-            self.hook_entry = self.global_scan_dict[str(hook_num)]
             self.hook_pos_in_camframe = self.global_scan_dict[str(hook_num)]['xyz_hook_in_camframe']
             self.hook_pos_in_workframe = self.global_scan_dict[str(hook_num)]['xyz_hook_in_workframe']
-            
             self.tip_pos_in_camframe = self.global_scan_dict[str(hook_num)]['xyz_tip_in_camframe']
             self.tip_pos_in_workframe = self.global_scan_dict[str(hook_num)]['xyz_tip_in_workframe']
-
             self.lowpoint_pos_in_camframe = self.global_scan_dict[str(hook_num)]['xyz_lowpoint_in_camframe']
             self.lowpoint_pos_in_workframe = self.global_scan_dict[str(hook_num)]['xyz_lowpoint_in_workframe']
-
             self.path_points_in_workframe = self.global_scan_dict[str(hook_num)]['xyz_path_points_in_workframe']
-            return self.hook_entry
         
         
 
@@ -110,71 +91,83 @@ class HookGeometricsHandler(Node):
         Aktualisiert alle Daten des Hakes (verändert sich in Bezug auf das TFC-Frame permanent während Bewegung)
         """
         if self.global_scan_dict is not None:
-            # hole die aktuelle TFC Position im WORLD-Frame und rechne sie ins WORK-Frame um
+            # Berechne Transformation von WORK zu TCP_fixed
             _, _, T_tcp_in_worldframe = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
-            T_tcp_in_workframe = self.frame_handler.transform_worldpose_to_desired_frame(
-                T_in_worldframe = T_tcp_in_worldframe,
-                frame_desired = "work")
+            T_tcp_in_workframe = self.frame_handler.transform_worldpose_to_desired_frame(T_in_worldframe = T_tcp_in_worldframe, frame_desired = 'work')
             T_work_in_tcpframe = np.linalg.inv(T_tcp_in_workframe)
-            print("T_work_in_tcpframe: ", T_work_in_tcpframe)
-
-            # hole die Haken Koordinaten im WORK Frame aus Global Scan Dict
-            _ = self.get_hook_of_global_scan_dict(hook_num)
-
-            hook_point_in_workframe_hom = np.array([self.hook_pos_in_workframe[0], 
-                                                    self.hook_pos_in_workframe[1], 
-                                                    self.hook_pos_in_workframe[2], 
-                                                    1.0])
-            tip_point_in_workframe_hom = np.array([self.tip_pos_in_workframe[0], 
-                                                   self.tip_pos_in_workframe[1], 
-                                                   self.tip_pos_in_workframe[2], 
-                                                   1.0])
-            lowpoint_point_in_workframe_hom = np.array([self.lowpoint_pos_in_workframe[0], 
-                                                        self.lowpoint_pos_in_workframe[1], 
-                                                        self.lowpoint_pos_in_workframe[2], 
-                                                        1.0])
             
+            # hole die Haken Koordinaten im WORK Frame aus Global Scan Dict
+            self.extract_hook_of_global_scan_dict(hook_num)
+            
+            # Hakenkoordinaten in TCP-Frame umrechnen
+            tip_in_workframe = np.append(np.array(self.tip_pos_in_workframe), 1)
+            lowpoint_in_workframe = np.append(np.array(self.lowpoint_pos_in_workframe), 1)
 
-            # rechne die Hakenkoordinaten vom WORK-Frame ins TFC-Frame um
-            self.hook_pos_in_tcpframe = T_work_in_tcpframe @ hook_point_in_workframe_hom
-            self.hook_pos_in_tcpframe = self.hook_pos_in_tcpframe[:3]
-
-            self.tip_pos_in_tcpframe = T_work_in_tcpframe @ tip_point_in_workframe_hom
+            self.tip_pos_in_tcpframe = T_work_in_tcpframe @ tip_in_workframe
             self.tip_pos_in_tcpframe = self.tip_pos_in_tcpframe[:3]
-
-            self.lowpoint_pos_in_tcpframe = T_work_in_tcpframe @ lowpoint_point_in_workframe_hom
+            self.lowpoint_pos_in_tcpframe = T_work_in_tcpframe @ lowpoint_in_workframe
             self.lowpoint_pos_in_tcpframe = self.lowpoint_pos_in_tcpframe[:3]
+            
+            # Berechne Richtungsvektor v_in_tcpframe der Hakengerade
+            dir_in_tcpframe = np.array(self.tip_pos_in_tcpframe) - np.array(self.lowpoint_pos_in_tcpframe)
+            dir_in_tcpframe /= np.linalg.norm(dir_in_tcpframe)
 
-            # Optimale Richtungsvektoren umrechnen ins TCP-Frame und normieren auf Länge 1
-            for dir_vector in self.optim_dir_list_in_workframe:
-                # Normierung auf Länge 1
-                dir_vector = np.array(dir_vector)
-                abs = np.linalg.norm(dir_vector)
-                dir_vector /= abs
+            # Zielposition und Ausrichtung im WORLD-Frame definieren
+            # (Direkt die Position im WORLD-Frame berechnen, die der Roboter anfahren soll)
+            desired_position_worldframe = self.tip_pos_in_tcpframe  # Beispiel: nutze Tip-Position im WORLD-Frame
+            desired_orientation_worldframe = dir_in_tcpframe  # Beispiel: nutze die Orientierung entlang der Hakengerade
 
-                # Transformation
-                dir_vector_hom = np.append(dir_vector, 0)         # Translatorische Verschiebung aus, da Richtungsvektor
-                print("dir_vector in WORK: ", dir_vector_hom)
-                dir_vector_in_tcpframe = T_work_in_tcpframe @ dir_vector_hom
-                print("dir_vector in TCP: ", dir_vector_in_tcpframe)
+            print("Zielposition (WORLD): ", desired_position_worldframe)
+            print("Zielorientierung (WORLD): ", desired_orientation_worldframe)
 
-                # Normieren auf Länge 1
-                abs = np.linalg.norm(dir_vector_in_tcpframe[:3])
-                self.optim_dir_list_in_tcpframe.append(dir_vector_in_tcpframe[:3]/abs)
+            return desired_position_worldframe, desired_orientation_worldframe
+            
+            '''
+            # Vektoren in Hook-Line-Dict speichern
+            self.hook_line['tip_in_tcpframe'] = self.tip_pos_in_tcpframe
+            self.hook_line['lowpoint_in_tcpframe'] = self.lowpoint_pos_in_tcpframe
+            self.hook_line['dir_in_tcpframe'] = dir_in_tcpframe
+            
+            # Erste Ausrichtung - Parallelität von dir und x_help (neues Frame für die Korrektur)
+            ## Projektion von dir auf xz-Ebene von TCP_help
+            dir_xz = np.array([dir_in_tcpframe[0], 0, dir_in_tcpframe[2]])
+            x_help = dir_xz / np.linalg.norm(dir_xz)
 
+            # Zweite Ausrichtung - Drehung um z_help bis y_help || dir
+            ## (y_help (Ortogonale Achse in die Lochebene hinein) || dir) -> y_help = dir
+            y_help = dir_in_tcpframe
+            z_help = np.cross(x_help, y_help)
+            z_help /= np.linalg.norm(z_help)
 
-            # rechne die Path Points ins TFC Frame um
-            self.path_points_in_tcpframe = []       # leeren der bisherigen Liste
-            for ppoint in self.path_points_in_workframe:
-                x = ppoint[0]
-                y = ppoint[1]
-                z = ppoint[2]
-                ppoint_hom = np.array([x, y, z, 1.0])
-                # print("T_work_in_tcpframe: ", T_work_in_tcpframe)
-                ppoint_in_tcpframe = T_work_in_tcpframe @ ppoint_hom
-                ppoint_in_tcpframe = ppoint_in_tcpframe[:3]
-                # print("ppoint_in_tcpframe: ", ppoint_in_tcpframe)
-                self.path_points_in_tcpframe.append(ppoint_in_tcpframe)         # speichern in Liste
+            ## Zur Sicherheit -> Ortogonalität zwingend herstellen
+            y_help = np.cross(z_help, x_help)
+            y_help /= np.linalg.norm(y_help)
+
+            # Berechnung der translatorischen Verschiebung zum Zielpunkt
+            t_in_tcpframe = self.hook_line['tip_in_tcpframe'] - np.array([0, 0, 0])
+            print(t_in_tcpframe)
+
+            # Aufbau der Homogenen Transformation zwischen TCP_fixed und TCP_help
+            T_help_in_fixedframe = np.eye(4)
+            T_help_in_fixedframe[:3, 0] = x_help
+            T_help_in_fixedframe[:3, 1] = y_help
+            T_help_in_fixedframe[:3, 2] = z_help
+            T_help_in_fixedframe[:3, 3] = t_in_tcpframe
+
+            # Homogene Transformationsmatrix in WORLD berechnen
+            T_help_in_worldframe = T_tcp_in_worldframe @ T_help_in_fixedframe
+
+            # Euler-Winkel berechnen
+            rot_matrix = T_help_in_worldframe[:3, :3]
+            rpy = R.from_matrix(rot_matrix).as_euler('xyz', degrees=True).tolist()
+            xyz = T_help_in_worldframe[:3, 3]
+
+            print("xyz: ", xyz)
+            print("rpy: ", rpy)
+
+            return xyz, rpy
+            '''
+
 
 
 
@@ -436,7 +429,7 @@ class HookGeometricsHandler(Node):
             return None
         else:
             trajectory = []
-            _ = self.get_hook_of_global_scan_dict(hook_num=hook_num)
+            _ = self.extract_hook_of_global_scan_dict(hook_num=hook_num)
             
             # Berechne Init-Punkt (mit Abstand zur Spitze)
             self.get_logger().info("Calculating initial trajectory point...")
@@ -480,7 +473,7 @@ class HookGeometricsHandler(Node):
                 tip_ppoint = len(self.path_points_in_tcpframe)
 
             trajectory = []
-            _ = self.get_hook_of_global_scan_dict(hook_num=hook_num)
+            _ = self.extract_hook_of_global_scan_dict(hook_num=hook_num)
             
             # Berechne Init-Punkt (mit Abstand zur Spitze) - entlang der Hook-Line von Senke nach Spitze
             self.get_logger().info("Calculating initial trajectory point...")

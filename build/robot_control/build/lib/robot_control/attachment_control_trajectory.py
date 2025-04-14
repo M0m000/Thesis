@@ -51,7 +51,7 @@ class AttachmentTrajectory(Node):
             self.get_logger().info("Waiting for Service SetSystemFrame...")
             i += 1
         self.get_logger().info("Service SetSystemFrame available!")
-        self.tcp_in_tfc_trans = [0.0, 0.0, 244.2]      # in mm
+        self.tcp_in_tfc_trans = [0.0, 0.0, 300.0]       #[0.0, 0.0, 244.2]      # in mm
         self.tcp_in_tfc_rot = [0.0, 0.0, 30.0]         # in Grad
         self.set_frame(self.tcp_in_tfc_rot, self.tcp_in_tfc_trans, frame="tcp", ref_frame="tfc")
 
@@ -59,9 +59,6 @@ class AttachmentTrajectory(Node):
         self.hook_geometrics_handler = HookGeometricsHandler(
             distance_to_tip_in_mm = self.distance_to_tip_in_mm,
             global_scan_dict_filename = '/home/mo/Thesis/src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv')           # /home/mo/Thesis/Evaluation/1_Scan-Prozess/1_Triangulationsmethoden/1_Horizontale-Triangulation/d_50/global_hook_dict_horizontal.csv
-        self.hook = self.hook_geometrics_handler.get_hook_of_global_scan_dict(hook_num=self.hook_num)
-        self.hook_geometrics_handler.update_hook_data(hook_num=self.hook_num)
-        self.hook_geometrics_handler.calculate_hook_line()
 
         # Instanz DOKUMENTATION Plot-Fkt
         self.doc_plot = DocPlotAttachment(plot_save_filename='/home/mo/Thesis/src/robot_control/robot_control/data/controller_output_logging', hook_num = self.hook_num)
@@ -217,10 +214,10 @@ class AttachmentTrajectory(Node):
         # Berechne die Trajektorie basierend auf den Hook-Daten
         time.sleep(5)
         self.plane = self.hook_geometrics_handler.calculate_plane(trans_in_tcpframe=[0.0, 0.0, 0.0], 
-                                                                  rot_in_tcpframe=[0.0, 0.0, -90.0])
-        self.hook_geometrics_handler.update_hook_data(hook_num=self.hook_num)
-        self.hook_geometrics_handler.calculate_hook_line()
-        
+                                                                  rot_in_tcpframe=[0.0, 0.0, 0.0])
+        xyz, rpy = self.hook_geometrics_handler.update_hook_data(hook_num=self.hook_num)
+        # self.hook_geometrics_handler.calculate_hook_line()
+        '''
         # Trajektorie als Liste von Punkten, wobei jeder Punkt ein Tupel aus (Translation, Rotation) ist
         # self.trajectory = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num = self.hook_num)
         # self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num, tip_ppoint = 7)
@@ -228,17 +225,17 @@ class AttachmentTrajectory(Node):
         
         for k in range(len(self.trajectory)):
             print("Trajektorie im Hauptprogramm: ", self.trajectory[k])
-
+        '''
         self.trajectory_point_num = 0
-
+        
         
         ########## Bewegung zur Pre-Pose mit z-Offset ##########
-        self.hook_pre_position, self.hook_pre_rotation = self.hook_geometrics_handler.calculate_pre_position_with_z_offset(trajectory_in_worldframe = self.trajectory, z_off_in_mm_in_workframe = 200)
-        
-        self.get_logger().warn(f"Starte Bewegung zu Pre-Position: Pose: {self.hook_pre_position}, Rotation: {self.hook_pre_rotation}")
+        # self.hook_pre_position, self.hook_pre_rotation = self.hook_geometrics_handler.calculate_pre_position_with_z_offset(trajectory_in_worldframe = self.trajectory, z_off_in_mm_in_workframe = 200)
+        # self.get_logger().warn(f"Starte Bewegung zu Pre-Position: Pose: {self.hook_pre_position}, Rotation: {self.hook_pre_rotation}")
+
         self.move_lin_client.call_move_linear_service(
-            pos = self.hook_pre_position,
-            rot = self.hook_pre_rotation,
+            pos = xyz,
+            rot = rpy,
             ref = 0,
             ttype = 0,
             tvalue = 30.0,
@@ -283,6 +280,7 @@ class AttachmentTrajectory(Node):
 
                     self.get_logger().warn(f"Moving to current trajectory point {self.trajectory_point_num}")
                     self.get_logger().warn(f"Pose: {self.target_pos_trans_in_worldframe}, Rotation: {self.target_pos_rot_in_worldframe}")
+                    '''
                     self.move_lin_client.call_move_linear_service(
                         pos = self.target_pos_trans_in_worldframe,
                         rot = self.target_pos_rot_in_worldframe,
@@ -294,6 +292,7 @@ class AttachmentTrajectory(Node):
                         bvalue = 100.0,
                         sync = 0.0,
                         chaining = 0)
+                        '''
                 else:
                     self.doc_plot.save_plot_as_png()
                     self.get_logger().info("Reached last trajectory point!")
