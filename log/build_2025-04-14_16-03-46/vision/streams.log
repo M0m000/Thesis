@@ -1,0 +1,56 @@
+[1.537s] Invoking command in '/home/mo/Thesis/src/vision': PYTHONPATH=/home/mo/Thesis/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/mo/Thesis/build/vision/build install --record /home/mo/Thesis/build/vision/install.log --single-version-externally-managed install_data
+[1.792s] running egg_info
+[1.810s] writing ../../build/vision/vision.egg-info/PKG-INFO
+[1.811s] writing dependency_links to ../../build/vision/vision.egg-info/dependency_links.txt
+[1.811s] writing entry points to ../../build/vision/vision.egg-info/entry_points.txt
+[1.811s] writing requirements to ../../build/vision/vision.egg-info/requires.txt
+[1.811s] writing top-level names to ../../build/vision/vision.egg-info/top_level.txt
+[1.957s] reading manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[1.959s] writing manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[1.960s] running build
+[1.960s] running build_py
+[1.961s] copying vision/light_controller_gui.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[1.962s] copying vision/yolov8_dualcam_inference.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[1.963s] copying vision/point_finder_3d.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[1.964s] copying vision/light_controller.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[1.965s] copying vision/point_finder_2d.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[1.966s] copying vision/maskrcnn_inference.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[1.967s] copying vision/calibration.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[1.968s] copying vision/yolov8_inference.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[1.969s] copying vision/__init__.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[1.970s] copying vision/test_node.py -> /home/mo/Thesis/build/vision/build/lib/vision
+[1.971s] copying FC_vision/FC_process_hooks_dict_for_publishing.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+[1.972s] copying FC_vision/FC_lowpass_filter.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+[1.973s] copying FC_vision/FC_plot_yolo_imgs.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+[1.974s] copying FC_vision/FC_two_cam_stereo_triangulation_processor.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+[1.976s] copying FC_vision/FC_ema_filter.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+[1.977s] copying FC_vision/FC_yolo_output_processor.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+[1.988s] copying FC_vision/FC_moving_avg_filter.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+[1.989s] copying FC_vision/FC_parameterized_cubic_spline.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+[1.990s] copying FC_vision/__init__.py -> /home/mo/Thesis/build/vision/build/lib/FC_vision
+[1.992s] running install
+[2.000s] running install_lib
+[2.030s] running install_data
+[2.031s] copying resource/vision -> /home/mo/Thesis/install/vision/share/ament_index/resource_index/packages
+[2.032s] copying package.xml -> /home/mo/Thesis/install/vision/share/vision
+[2.033s] running install_egg_info
+[2.057s] removing '/home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision-0.0.0-py3.8.egg-info' (and everything under it)
+[2.057s] Copying ../../build/vision/vision.egg-info to /home/mo/Thesis/install/vision/lib/python3.8/site-packages/vision-0.0.0-py3.8.egg-info
+[2.058s] running install_scripts
+[2.113s] Installing calibration script to /home/mo/Thesis/install/vision/lib/vision
+[2.113s] Installing hook_detector script to /home/mo/Thesis/install/vision/lib/vision
+[2.113s] Installing image_filters script to /home/mo/Thesis/install/vision/lib/vision
+[2.113s] Installing image_receiver script to /home/mo/Thesis/install/vision/lib/vision
+[2.113s] Installing light_controller script to /home/mo/Thesis/install/vision/lib/vision
+[2.113s] Installing light_controller_gui script to /home/mo/Thesis/install/vision/lib/vision
+[2.114s] Installing maskrcnn_inference script to /home/mo/Thesis/install/vision/lib/vision
+[2.114s] Installing nn_output_processor script to /home/mo/Thesis/install/vision/lib/vision
+[2.114s] Installing point_finder_2d script to /home/mo/Thesis/install/vision/lib/vision
+[2.114s] Installing point_finder_3d script to /home/mo/Thesis/install/vision/lib/vision
+[2.114s] Installing stereo_triangulation script to /home/mo/Thesis/install/vision/lib/vision
+[2.114s] Installing stereo_triangulation_with_robot script to /home/mo/Thesis/install/vision/lib/vision
+[2.115s] Installing test_node script to /home/mo/Thesis/install/vision/lib/vision
+[2.115s] Installing yolov8_dualcam_inference script to /home/mo/Thesis/install/vision/lib/vision
+[2.115s] Installing yolov8_inference script to /home/mo/Thesis/install/vision/lib/vision
+[2.116s] writing list of installed files to '/home/mo/Thesis/build/vision/install.log'
+[2.140s] Invoked command in '/home/mo/Thesis/src/vision' returned '0': PYTHONPATH=/home/mo/Thesis/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mo/Thesis/install/vision/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/mo/Thesis/build/vision/build install --record /home/mo/Thesis/build/vision/install.log --single-version-externally-managed install_data
