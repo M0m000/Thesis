@@ -102,10 +102,6 @@ class HookGeometricsHandler(Node):
             # Richtungsvektor dir berechnen
             dir_in_workframe = (np.array(self.tip_pos_in_workframe) - np.array(self.lowpoint_pos_in_workframe))
             dir_in_workframe /= np.linalg.norm(dir_in_workframe)
-            dir_in_workframe[2] = 0
-            print("lowpoint_pos_in_workframe: ", self.lowpoint_pos_in_workframe)
-            print("tip_pos_in_workframe: ", self.tip_pos_in_workframe)
-            print("dir_in_workframe: ", dir_in_workframe)
 
             # neue x-TCP-Achse als Projektion des Richtungsvektors auf die xz-Ebene
             dir_xz_in_workframe = np.array([dir_in_workframe[0], 0, dir_in_workframe[2]])
@@ -118,30 +114,12 @@ class HookGeometricsHandler(Node):
             z_new = np.cross(x_new, y_new)
             z_new /= np.linalg.norm(z_new)
 
-            # Zur Sicherheit - Ortogonalität zwingend herstellen
-            # z_new = np.cross(x_new, y_new)
-            # z_new /= np.linalg.norm(z_new)
-
-            
-            print()
-            print("Neue x-Achse [WORK]: ", x_new)
-            print("Neue y-Achse [WORK]: ", y_new)
-            print("Neue z-Achse [WORK]: ", z_new)
-            print()
-
-
             # Aufbau der homogenen Transformation für TCP_new in WORK
             T_tcp_new_in_workframe = np.eye(4)
             T_tcp_new_in_workframe[:3, 0] = x_new
             T_tcp_new_in_workframe[:3, 1] = y_new
             T_tcp_new_in_workframe[:3, 2] = z_new
             T_tcp_new_in_workframe[:3, 3] = np.array(self.tip_pos_in_workframe)
-
-            print("T_tcp_new_in_workframe:, ", T_tcp_new_in_workframe)
-
-            print("trans_xyz [WORK]: ", self.tip_pos_in_workframe)
-            print("rot_rpy: [WORK] ", R.from_matrix(T_tcp_new_in_workframe[:3, :3]).as_euler('xyz', degrees = True).tolist())
-            print()
 
             # Transformation in WORLD
             T_work_in_worldframe = self.frame_handler.get_work_in_worldframe()

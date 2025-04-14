@@ -230,7 +230,7 @@ class AttachmentTrajectory(Node):
         ########## Bewegung zur Pre-Pose mit z-Offset ##########
         # self.hook_pre_position, self.hook_pre_rotation = self.hook_geometrics_handler.calculate_pre_position_with_z_offset(trajectory_in_worldframe = self.trajectory, z_off_in_mm_in_workframe = 200)
         # self.get_logger().warn(f"Starte Bewegung zu Pre-Position: Pose: {self.hook_pre_position}, Rotation: {self.hook_pre_rotation}")
-        '''
+        
         self.move_lin_client.call_move_linear_service(
             pos = xyz,
             rot = rpy,
@@ -242,7 +242,7 @@ class AttachmentTrajectory(Node):
             bvalue = 30.0,
             sync = 0.0,
             chaining = 0)
-        '''
+        
         # Variablen und Plot für Trajektorien-Ansteuerung
         self.target_pos_trans_in_worldframe = None
         self.target_pos_rot_in_worldframe = None
