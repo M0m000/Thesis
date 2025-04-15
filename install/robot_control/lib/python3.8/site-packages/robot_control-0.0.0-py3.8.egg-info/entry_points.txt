@@ -15,4 +15,5 @@ scan_bar_horizontal_triangulation_pxmm = robot_control.scan_bar_horizontal_trian
 scan_bar_vertical_triangulation = robot_control.scan_bar_vertical_triangulation:main
 set_working_frame_qr = robot_control.set_working_frame_qr:main
 seven_dof_ik_node = robot_control.seven_dof_ik_node:main
+tcp_calibration = robot_control.tcp_calibration:main
 tf_frames_publisher = robot_control.tf_frames_publisher:main
