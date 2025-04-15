@@ -51,7 +51,7 @@ class AttachmentTrajectory(Node):
             self.get_logger().info("Waiting for Service SetSystemFrame...")
             i += 1
         self.get_logger().info("Service SetSystemFrame available!")
-        self.tcp_in_tfc_trans = [0.0, 0.0, 400.0]       #[0.0, 0.0, 244.2]      # in mm
+        self.tcp_in_tfc_trans = [0.0, 0.0, 245.2]       #[0.0, 0.0, 244.2]      # in mm
         self.tcp_in_tfc_rot = [0.0, 0.0, 30.0]         # in Grad
         self.set_frame(self.tcp_in_tfc_rot, self.tcp_in_tfc_trans, frame="tcp", ref_frame="tfc")
 
@@ -218,8 +218,8 @@ class AttachmentTrajectory(Node):
         
         # Trajektorie als Liste von Punkten, wobei jeder Punkt ein Tupel aus (Translation, Rotation) ist
         # self.trajectory = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num = self.hook_num)
-        self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num)
-        # self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, hook_type = 'b', beta = 0.5)
+        # self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num)
+        self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, hook_type = 'b', beta = 0.5)
         
         for k in range(len(self.trajectory)):
             print("Trajektorie im Hauptprogramm: ", self.trajectory[k])

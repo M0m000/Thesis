@@ -850,9 +850,9 @@ class ScanBarHorizontalTriangulation(Node):
         save_dict_to_csv(node = self, data = self.global_hooks_dict, filename = 'src/robot_control/robot_control/data/global_scan_dicts/global_hook_dict_horizontal.csv')
 
         if self.baseline_error:
-            self.get_logger().error("Shutting down node... Consider restarting KR1205 Controller")
+            self.get_logger().error("Shutting down... Consider restarting KR1205 Controller")
         else:
-            self.get_logger().info("Shutting down node...")
+            self.get_logger().info("Shutting down...")
         
         # Timer stoppen und Node zerstören
         self.process_timer.cancel()
