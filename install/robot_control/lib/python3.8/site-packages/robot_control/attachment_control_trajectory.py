@@ -51,7 +51,7 @@ class AttachmentTrajectory(Node):
             self.get_logger().info("Waiting for Service SetSystemFrame...")
             i += 1
         self.get_logger().info("Service SetSystemFrame available!")
-        self.tcp_in_tfc_trans = [0.6813, -0.19708, 237.249]     # in mm
+        self.tcp_in_tfc_trans = [0.67564637, 3.43066157, 239.3860887]     # in mm
         self.tcp_in_tfc_rot = [0.0, 0.0, 30.0]         # in Grad
         self.set_frame(self.tcp_in_tfc_rot, self.tcp_in_tfc_trans, frame="tcp", ref_frame="tfc")
 

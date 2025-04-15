@@ -567,7 +567,7 @@ class ScanBarHorizontalTriangulation(Node):
 
             print("xyz_tip_in_camframe: ", xyz_tip_in_camframe)
             print("xyz_lowpoint_in_camframe: ", xyz_lowpoint_in_camframe)
-            
+
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_hook_in_worldframe'] = xyz_hook_in_worldframe[:3]
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_tip_in_worldframe'] = xyz_tip_in_worldframe[:3]
             self.global_hooks_dict[str(self.act_hook_num)]['xyz_lowpoint_in_worldframe'] = xyz_lowpoint_in_worldframe[:3]

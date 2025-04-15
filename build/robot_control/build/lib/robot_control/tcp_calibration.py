@@ -55,6 +55,14 @@ def build_frame_from_points(p1, p2, p3):
 class TCPCalibrationNode(Node):
     def __init__(self):
         super().__init__('tcp_calibration')
+
+        # Parameter deklarieren
+        self.declare_parameter('num_samples', 4)
+        self.declare_parameter('with_rotation', True)
+
+        self.num_samples = self.get_parameter('num_samples').get_parameter_value().integer_value
+        self.with_rotation = self.get_parameter('with_rotation').get_parameter_value().bool_value
+
         self.cli = self.create_client(GetSystemFrame, '/kr/robot/get_system_frame')
         while not self.cli.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('Waiting for service GetSystemFrame')
@@ -70,16 +78,19 @@ class TCPCalibrationNode(Node):
 
     def run(self):
         self.get_logger().info("TCP calibration started!")
-        self.get_logger().info("1 - TRANSLATION")
+        self.get_logger().info(f"1 - TRANSLATION ({self.num_samples} samples)")
 
-        while self.step < 4:
-            if input(f"[{self.step+1}/4] Place TCP on one tip and type 'done': ").strip().lower() == 'done':
+        while self.step < self.num_samples:
+            if input(f"[{self.step+1}/{self.num_samples}] Place TCP on one tip and type 'done': ").strip().lower() == 'done':
                 self.capture_pose('tfc', 'world', store_in='translation')
                 self.step += 1
 
         self.get_logger().info("Position values collected. Calculating TCP position...")
         tcp_trans, tcp_rot_dummy, target = compute_tcp_optimized(self.trans_list, self.rot_list)
         self.get_logger().info(f"TCP position in TFC [mm]: {tcp_trans * 1000.0}")
+
+        if not self.with_rotation:
+            return
 
         self.get_logger().info("2 - ROTATION")
         for label in ['A', 'B', 'C']:
