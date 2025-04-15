@@ -58,15 +58,27 @@ class HookGeometricsHandler(Node):
         self.trans_diff_in_tfcframe = None
         self.rot_diff_in_tfcframe = None
 
-        # Optimale Richtungsvektoren für Gerade in WORK-Frame
-        optim_rotation_a_in_workframe = [-45.0, 0.0, 45.0]
+        # Optimale Richtungsvektoren für Gerade in WORK-Frame (XYZ-Konvention)
+        optim_rotation_a_in_workframe = [0.0, 45.0, 45.0]
         optim_rotation_b_in_workframe = [0.0, 0.0, 25.0]
         optim_rotation_c_in_workframe = [0.0, 0.0, 45.0]
         optim_rotation_d_in_workframe = [0.0, 0.0, 15.0]
+
         self.optim_rot_list_in_workframe = [optim_rotation_a_in_workframe, 
                                             optim_rotation_b_in_workframe, 
                                             optim_rotation_c_in_workframe, 
                                             optim_rotation_d_in_workframe]
+        
+        # Berechne Rotationsmatrizen und daraus die Roll-Pitch-Yaw Winkel
+        for idx in range(len(self.optim_rot_list_in_workframe)):
+            rot = self.optim_rot_list_in_workframe[idx]
+            rot_matrix_x = self.frame_handler.calculate_rot_matrix(rot = [rot[0], 0, 0])
+            rot_matrix_y = self.frame_handler.calculate_rot_matrix(rot = [0, rot[1], 0])
+            rot_matrix_z = self.frame_handler.calculate_rot_matrix(rot = [0, 0, rot[2]])
+            rot_matrix = rot_matrix_x @ rot_matrix_y @ rot_matrix_z
+            rpy = self.frame_handler.rotation_matrix_to_euler_angles(rotation_matrix = rot_matrix)
+            print(rpy)
+            self.optim_rot_list_in_workframe[idx] = rpy
 
 
 
@@ -184,7 +196,7 @@ class HookGeometricsHandler(Node):
             p_traj_init = self._calculate_init_trajectory_point()
 
             # Berechne Anfangspunkt der Trajektorie
-            self._calculate_hook_line(p0_in_workframe=self.path_points_in_workframe[0], p1_in_workframe=p_traj_init)
+            self._calculate_hook_line(p0_in_workframe=self.tip_pos_in_workframe, p1_in_workframe=p_traj_init)
             pre_pose = self._calculate_trajectory_point_along_hook_line()
 
             # Trajektorie für alle Path Points berechnen
@@ -238,7 +250,7 @@ class HookGeometricsHandler(Node):
             p_traj_init = self._calculate_init_trajectory_point()
 
             # Berechne Anfangspunkt der Trajektorie
-            self._calculate_hook_line(p0_in_workframe=self.path_points_in_workframe[0], p1_in_workframe=p_traj_init)
+            self._calculate_hook_line(p0_in_workframe=self.tip_pos_in_workframe, p1_in_workframe=p_traj_init)
             pre_pose_translation, _ = self._calculate_trajectory_point_along_hook_line()
             pre_pose = (pre_pose_translation, rotation)
 
@@ -308,7 +320,7 @@ class HookGeometricsHandler(Node):
             p_traj_init = self._calculate_init_trajectory_point()
 
             # Berechne Anfangspunkt der Trajektorie
-            self._calculate_hook_line(p0_in_workframe=self.path_points_in_workframe[0], p1_in_workframe=p_traj_init)
+            self._calculate_hook_line(p0_in_workframe=self.tip_pos_in_workframe, p1_in_workframe=p_traj_init)
             pre_pose_translation, _ = self._calculate_trajectory_point_along_hook_line()
             pre_pose = (pre_pose_translation, rotation_weighted)
 
@@ -328,6 +340,70 @@ class HookGeometricsHandler(Node):
                 
                 trajectory_point_translation, _ = self._calculate_trajectory_point_along_hook_line()
                 trajectory.append((trajectory_point_translation, rotation_weighted))
+            
+            # Ausreißer auf Translation und Rotationen entfernen
+            # trajectory = self._smooth_trajectory(trajectory = trajectory, z_thresh = 2.3)
+            # Rotationen glätten durch Polynom-Regression n=3 -> WIRD HIER NICHT BENÖTIGT, DA ROTATION IMMER GLEICH
+            # trajectory = self._polynomial_regression_trajectory_rotations(trajectory = trajectory_smoothed, degree = 3)
+            trajectory.insert(0, pre_pose)
+            return trajectory
+        
+
+    def plan_optimized_trajectory(self, hook_num = None, hook_type = 'a', beta = 0, attachment_distance_in_mm = 0):
+        """
+        Ansatz 4 - Planung einer Trajektorie mit optimierter Orientierung (vgl. Ansatz 3) 
+        und fester Einfädeldistanz von Spitze in Richtung Senke
+        """
+        if hook_num is None:
+            self.get_logger().error(f"No Hook Num selected!")
+            return None
+        else:
+            self._extract_hook_of_global_scan_dict(hook_num=hook_num)
+            self._calculate_hook_line()
+
+            # Berechne konstante Orientierung anhand Gerade (Spitze -> Senke)
+            _, rotation_calculated = self._calculate_trajectory_point_along_hook_line()
+
+            # Extrahiere optimalen Richtungsvektor für Hook Type aus Liste und rechne von WORK in WORLD-Frame um
+            rotation_optimal_in_workframe = self.optim_rot_list_in_workframe[['a', 'b', 'c', 'd'].index(hook_type)]
+            R_in_workframe = self.frame_handler.calculate_rot_matrix(rot = rotation_optimal_in_workframe)
+            T_work_in_worldframe = self.frame_handler.get_work_in_worldframe()
+            R_in_worldframe = T_work_in_worldframe[:3, :3] @ R_in_workframe
+            rotation_optimal = self.frame_handler.rotation_matrix_to_euler_angles(rotation_matrix = R_in_worldframe)
+
+            # Gewichtung der Richtungsvektoren
+            rotation_weighted = (1 - beta) * rotation_optimal + beta * np.array(rotation_calculated)
+            rotation_weighted = rotation_weighted.tolist()
+
+            self.get_logger().info(f"Calculated rotation for hook_type {hook_type}: {rotation_calculated}")
+            self.get_logger().info(f"Optimal rotation for hook type {hook_type}: {rotation_optimal}")
+            self.get_logger().info(f"Weighted rotation for hook type {hook_type}: {rotation_weighted}")
+            
+            # Berechne Init-Punkt (mit Abstand zur Spitze)
+            self.get_logger().info("Calculating initial trajectory point...")
+            p_traj_init = self._calculate_init_trajectory_point()
+
+            # Berechne Anfangspunkt der Trajektorie
+            self._calculate_hook_line(p0_in_workframe=self.tip_pos_in_workframe, p1_in_workframe=p_traj_init)
+            pre_pose_translation, _ = self._calculate_trajectory_point_along_hook_line()
+            pre_pose = (pre_pose_translation, rotation_weighted)
+
+            # Berechne Hakengerade für Spitze -> Senke und damit Startpunkt an Spitze
+            self._calculate_hook_line(p0_in_workframe=self.lowpoint_pos_in_workframe, p1_in_workframe=self.tip_pos_in_workframe)
+            tip_pose_translation, _ = self._calculate_trajectory_point_along_hook_line()
+            tip_pose = (tip_pose_translation, rotation_weighted)
+
+            # Berechne Endpose in Distanz attachment_distance_in_mm zur Spitze (dann wird Teil losgelassen)
+            dir_in_workframe = self.hook_line['dir_in_workframe']
+            end_pose_translation = (np.array(tip_pose_translation) - np.array(dir_in_workframe) * attachment_distance_in_mm).tolist()
+            end_pose = (end_pose_translation, rotation_weighted)
+
+            self.get_logger().warn(f"Pre Pose: {pre_pose}")
+            self.get_logger().warn(f"Tip Pose: {tip_pose}")
+            self.get_logger().warn(f"End Pose: {end_pose}")
+
+            # Trajektorie aufbauen
+            trajectory = [tip_pose, end_pose]
             
             # Ausreißer auf Translation und Rotationen entfernen
             # trajectory = self._smooth_trajectory(trajectory = trajectory, z_thresh = 2.3)
