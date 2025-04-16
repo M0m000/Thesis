@@ -77,7 +77,6 @@ class HookGeometricsHandler(Node):
             rot_matrix_z = self.frame_handler.calculate_rot_matrix(rot = [0, 0, rot[2]])
             rot_matrix = rot_matrix_x @ rot_matrix_y @ rot_matrix_z
             rpy = self.frame_handler.rotation_matrix_to_euler_angles(rotation_matrix = rot_matrix)
-            print(rpy)
             self.optim_rot_list_in_workframe[idx] = rpy
 
 
