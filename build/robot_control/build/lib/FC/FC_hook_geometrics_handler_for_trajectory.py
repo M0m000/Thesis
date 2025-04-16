@@ -383,18 +383,21 @@ class HookGeometricsHandler(Node):
             p_traj_init = self._calculate_init_trajectory_point()
 
             # Berechne Anfangspunkt der Trajektorie
-            self._calculate_hook_line(p0_in_workframe=self.tip_pos_in_workframe, p1_in_workframe=p_traj_init)
+            self._calculate_hook_line(p0_in_workframe = self.tip_pos_in_workframe, p1_in_workframe = p_traj_init)
             pre_pose_translation, _ = self._calculate_trajectory_point_along_hook_line()
             pre_pose = (pre_pose_translation, rotation_weighted)
 
             # Berechne Hakengerade für Spitze -> Senke und damit Startpunkt an Spitze
-            self._calculate_hook_line(p0_in_workframe=self.lowpoint_pos_in_workframe, p1_in_workframe=self.tip_pos_in_workframe)
+            self._calculate_hook_line(p0_in_workframe = self.lowpoint_pos_in_workframe, p1_in_workframe = self.tip_pos_in_workframe)
             tip_pose_translation, _ = self._calculate_trajectory_point_along_hook_line()
             tip_pose = (tip_pose_translation, rotation_weighted)
 
             # Berechne Endpose in Distanz attachment_distance_in_mm zur Spitze (dann wird Teil losgelassen)
             dir_in_workframe = self.hook_line['dir_in_workframe']
-            end_pose_translation = (np.array(tip_pose_translation) - np.array(dir_in_workframe) * attachment_distance_in_mm).tolist()
+            dir_in_worldframe = T_work_in_worldframe @ np.append(np.array(dir_in_workframe), 0)
+            dir_in_worldframe = dir_in_worldframe[:3]
+            
+            end_pose_translation = (np.array(tip_pose_translation) - np.array(dir_in_worldframe) * attachment_distance_in_mm).tolist()
             end_pose = (end_pose_translation, rotation_weighted)
 
             self.get_logger().warn(f"Pre Pose: {pre_pose}")
