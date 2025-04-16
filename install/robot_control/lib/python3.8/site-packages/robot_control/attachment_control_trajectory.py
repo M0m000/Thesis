@@ -4,7 +4,10 @@ from FC.FC_gripper_handler import GripperHandler
 from FC.FC_hook_geometrics_handler_for_trajectory import HookGeometricsHandler
 from FC.FC_frame_handler import FrameHandler
 from FC.FC_call_move_linear_service import MoveLinearServiceClient
+from FC.FC_call_move_ptp_service import MovePTPServiceClient
 from FC.FC_doc_plot_attachment import DocPlotAttachment
+from FC.FC_eval_save_trajectory_to_csv import save_trajectory_to_csv
+from FC.FC_eval_save_trajectory_to_csv import load_csv_to_trajectory
 from kr_msgs.msg import JogLinear
 from kr_msgs.srv import SelectJoggingFrame
 from kr_msgs.srv import SetSystemFrame
@@ -16,11 +19,8 @@ import time
 class AttachmentTrajectory(Node):
     def __init__(self):
         super().__init__('attachment_control_trajectory')
-
-        startpoint_trans_in_workframe = [150.0, -430.0, 100.0]
-        startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
         
-        self.declare_parameter('hook_num', 5)
+        self.declare_parameter('hook_num', 15)
         self.hook_num = self.get_parameter('hook_num').get_parameter_value().integer_value
         self.declare_parameter('distance_to_tip_in_mm', 10)
         self.distance_to_tip_in_mm = self.get_parameter('distance_to_tip_in_mm').get_parameter_value().double_value
@@ -74,6 +74,35 @@ class AttachmentTrajectory(Node):
 
         # Instanz des MoveLinearServiceClient
         self.move_lin_client = MoveLinearServiceClient()
+        self.move_ptp_client = MovePTPServiceClient()
+
+        # Bewege Roboter auf Pre Pose in Mitte von Gestell
+        init_position_tcp_in_workframe = [662.7679417387326, -457.86324018092, 10.694603651697957]
+        init_rotation_tcp_in_workframe = [0.0, 0.0, 0.0]
+
+        self.init_position_tcp_in_worldframe, self.init_rotation_tcp_in_worldframe = self.frame_handler.transform_pose_to_world(
+            pose_ref_frame = 'work',
+            trans = init_position_tcp_in_workframe,
+            rot = init_rotation_tcp_in_workframe
+        )
+
+        if self.init_position_tcp_in_worldframe is not None and self.init_rotation_tcp_in_worldframe is not None:
+            self.movement_done = False
+            self.movement_done = self.move_ptp_client.call_move_ptp_service(
+                pos = self.init_position_tcp_in_worldframe,
+                rot = self.init_rotation_tcp_in_worldframe,
+                ref = 0,
+                ttype = 0,
+                tvalue = 150.0,
+                bpoint = 0,
+                btype = 0,
+                bvalue = 100.0,
+                sync = 0.0,
+                chaining = 0
+            )
+        while self.movement_done == False:
+            self.get_logger().warn("Movement...")
+        self.get_logger().warn("Movement done!")
 
         '''
         ########## Bewege Roboter auf die Startposition und anschließend auf die Ausgleichsposition (wegen LIN-Bewegung) ##########
@@ -217,11 +246,18 @@ class AttachmentTrajectory(Node):
         # self.hook_geometrics_handler.calculate_hook_line()
         
         # Trajektorie als Liste von Punkten, wobei jeder Punkt ein Tupel aus (Translation, Rotation) ist
-        # self.trajectory = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num = self.hook_num)
-        # self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num)
-        # self.trajectory = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, hook_type = 'b', beta = 0.5)
-        self.trajectory = self.hook_geometrics_handler.plan_optimized_trajectory(hook_num = self.hook_num, hook_type = 'a', beta = 0, attachment_distance_in_mm = 5)
-        
+        self.trajectory_1 = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num = self.hook_num)
+        self.trajectory_2 = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num)
+        self.trajectory_3 = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, hook_type = 'b', beta = 0.5)
+        self.trajectory_4 = self.hook_geometrics_handler.plan_optimized_trajectory(hook_num = self.hook_num, hook_type = 'a', beta = 0, attachment_distance_in_mm = 5)
+
+        # Zur Evaluation - speichern der Trajektorien als CSV
+        save_trajectory_to_csv(self.trajectory_1, '/home/mo/Thesis/Evaluation/Trajektorientests/CSV/trajectory_1.csv')
+        save_trajectory_to_csv(self.trajectory_2, '/home/mo/Thesis/Evaluation/Trajektorientests/CSV/trajectory_2.csv')
+        save_trajectory_to_csv(self.trajectory_3, '/home/mo/Thesis/Evaluation/Trajektorientests/CSV/trajectory_3.csv')
+        save_trajectory_to_csv(self.trajectory_4, '/home/mo/Thesis/Evaluation/Trajektorientests/CSV/trajectory_4.csv')
+
+        self.trajectory = self.trajectory_4
         for k in range(len(self.trajectory)):
             print("Trajektorie im Hauptprogramm: ", self.trajectory[k])
         
@@ -232,7 +268,8 @@ class AttachmentTrajectory(Node):
         self.hook_pre_position, self.hook_pre_rotation = self.hook_geometrics_handler.calculate_pre_position_with_z_offset(trajectory_in_worldframe = self.trajectory, z_off_in_mm_in_workframe = 200)
         self.get_logger().warn(f"Starte Bewegung zu Pre-Position: Pose: {self.hook_pre_position}, Rotation: {self.hook_pre_rotation}")
         
-        self.move_lin_client.call_move_linear_service(
+        self.movement_done = False
+        self.movement_done = self.move_ptp_client.call_move_ptp_service(
             pos = self.hook_pre_position,
             rot = self.hook_pre_rotation,
             ref = 0,
@@ -243,6 +280,9 @@ class AttachmentTrajectory(Node):
             bvalue = 30.0,
             sync = 0.0,
             chaining = 0)
+        while self.movement_done == False:
+            self.get_logger().warn("Movement...")
+        self.get_logger().warn("Movement done!")
         
         # Variablen und Plot für Trajektorien-Ansteuerung
         self.target_pos_trans_in_worldframe = None
@@ -281,7 +321,8 @@ class AttachmentTrajectory(Node):
                     self.get_logger().warn(f"Moving to current trajectory point {self.trajectory_point_num}")
                     self.get_logger().warn(f"Pose: {self.target_pos_trans_in_worldframe}, Rotation: {self.target_pos_rot_in_worldframe}")
                     
-                    self.move_lin_client.call_move_linear_service(
+                    self.movement_done = False
+                    self.movement_done = self.move_lin_client.call_move_linear_service(
                         pos = self.target_pos_trans_in_worldframe,
                         rot = self.target_pos_rot_in_worldframe,
                         ref = 0,
@@ -292,6 +333,9 @@ class AttachmentTrajectory(Node):
                         bvalue = 100.0,
                         sync = 0.0,
                         chaining = 0)
+                    while self.movement_done == False:
+                        self.get_logger().warn("Movement...")
+                    self.get_logger().warn("Movement done!")
                         
                 else:
                     self.doc_plot.save_plot_as_png()
