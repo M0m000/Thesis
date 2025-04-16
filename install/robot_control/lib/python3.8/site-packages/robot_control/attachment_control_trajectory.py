@@ -7,7 +7,6 @@ from FC.FC_call_move_linear_service import MoveLinearServiceClient
 from FC.FC_call_move_ptp_service import MovePTPServiceClient
 from FC.FC_doc_plot_attachment import DocPlotAttachment
 from FC.FC_eval_save_trajectory_to_csv import save_trajectory_to_csv
-from FC.FC_eval_save_trajectory_to_csv import load_csv_to_trajectory
 from kr_msgs.msg import JogLinear
 from kr_msgs.srv import SelectJoggingFrame
 from kr_msgs.srv import SetSystemFrame

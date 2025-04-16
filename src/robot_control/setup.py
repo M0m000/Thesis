@@ -49,7 +49,8 @@ setup(
             'ik_solver_node = robot_control.ik_solver_node:main',
             'seven_dof_ik_node = robot_control.seven_dof_ik_node:main',
             'ik_example_node = robot_control.ik_example_node:main',
-            'tcp_calibration = robot_control.tcp_calibration:main'
+            'tcp_calibration = robot_control.tcp_calibration:main',
+            'trajectory_recorder = robot_control.trajectory_recorder:main'
         ],
     },
 )

@@ -13,6 +13,7 @@
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/scan_bar_combined_triangulation.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/scan_bar_horizontal_triangulation.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/scan_bar_combined_triangulation_old.py
+/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/trajectory_recorder.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/hook_data_listener.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/scan_bar.py
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__init__.py
@@ -53,6 +54,7 @@
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/scan_bar_combined_triangulation.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/scan_bar_horizontal_triangulation.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/scan_bar_combined_triangulation_old.cpython-38.pyc
+/home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/trajectory_recorder.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/hook_data_listener.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/scan_bar.cpython-38.pyc
 /home/mo/Thesis/install/robot_control/lib/python3.8/site-packages/robot_control/__pycache__/__init__.cpython-38.pyc
@@ -111,3 +113,4 @@
 /home/mo/Thesis/install/robot_control/lib/robot_control/seven_dof_ik_node
 /home/mo/Thesis/install/robot_control/lib/robot_control/tcp_calibration
 /home/mo/Thesis/install/robot_control/lib/robot_control/tf_frames_publisher
+/home/mo/Thesis/install/robot_control/lib/robot_control/trajectory_recorder
