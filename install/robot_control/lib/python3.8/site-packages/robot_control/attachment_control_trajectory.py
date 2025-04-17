@@ -84,7 +84,7 @@ class AttachmentTrajectory(Node):
             trans = init_position_tcp_in_workframe,
             rot = init_rotation_tcp_in_workframe
         )
-
+        '''
         if self.init_position_tcp_in_worldframe is not None and self.init_rotation_tcp_in_worldframe is not None:
             self.movement_done = False
             self.movement_done = self.move_ptp_client.call_move_ptp_service(
@@ -102,6 +102,7 @@ class AttachmentTrajectory(Node):
         while self.movement_done == False:
             self.get_logger().warn("Movement...")
         self.get_logger().warn("Movement done!")
+        '''
 
         '''
         ########## Bewege Roboter auf die Startposition und anschließend auf die Ausgleichsposition (wegen LIN-Bewegung) ##########
@@ -236,14 +237,14 @@ class AttachmentTrajectory(Node):
             sync = 0.0,
             chaining = 0)
         ###########################################################'
-        '''
+        
 
         ########## Aufruf Trajektorienberechnung ##########
         # Berechne die Trajektorie basierend auf den Hook-Daten
         time.sleep(5)
         # xyz, rpy = self.hook_geometrics_handler.update_hook_data(hook_num=self.hook_num)
         # self.hook_geometrics_handler.calculate_hook_line()
-        
+        '''
         # Trajektorie als Liste von Punkten, wobei jeder Punkt ein Tupel aus (Translation, Rotation) ist
         self.trajectory_1 = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num = self.hook_num)
         self.trajectory_2 = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num)
@@ -266,7 +267,7 @@ class AttachmentTrajectory(Node):
         ########## Bewegung zur Pre-Pose mit z-Offset ##########
         self.hook_pre_position, self.hook_pre_rotation = self.hook_geometrics_handler.calculate_pre_position_with_z_offset(trajectory_in_worldframe = self.trajectory, z_off_in_mm_in_workframe = 200)
         self.get_logger().warn(f"Starte Bewegung zu Pre-Position: Pose: {self.hook_pre_position}, Rotation: {self.hook_pre_rotation}")
-        
+        '''
         self.movement_done = False
         self.movement_done = self.move_ptp_client.call_move_ptp_service(
             pos = self.hook_pre_position,
@@ -282,7 +283,7 @@ class AttachmentTrajectory(Node):
         while self.movement_done == False:
             self.get_logger().warn("Movement...")
         self.get_logger().warn("Movement done!")
-        
+        '''
         # Variablen und Plot für Trajektorien-Ansteuerung
         self.target_pos_trans_in_worldframe = None
         self.target_pos_rot_in_worldframe = None
@@ -319,7 +320,7 @@ class AttachmentTrajectory(Node):
 
                     self.get_logger().warn(f"Moving to current trajectory point {self.trajectory_point_num}")
                     self.get_logger().warn(f"Pose: {self.target_pos_trans_in_worldframe}, Rotation: {self.target_pos_rot_in_worldframe}")
-                    
+                    '''
                     self.movement_done = False
                     self.movement_done = self.move_lin_client.call_move_linear_service(
                         pos = self.target_pos_trans_in_worldframe,
@@ -335,7 +336,7 @@ class AttachmentTrajectory(Node):
                     while self.movement_done == False:
                         self.get_logger().warn("Movement...")
                     self.get_logger().warn("Movement done!")
-                        
+                    '''
                 else:
                     self.doc_plot.save_plot_as_png()
                     self.get_logger().info("Reached last trajectory point!")
