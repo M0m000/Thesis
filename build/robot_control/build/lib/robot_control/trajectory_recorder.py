@@ -39,7 +39,7 @@ class TrajectoryRecorder(Node):
                 try:
                     save_trajectory_to_csv(
                         self.trajectory_recorded,
-                        filepath='/home/mo/Thesis/Evaluation/Trajektorientests/CSV/trajectory_0.csv'
+                        filepath='/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_0.csv'
                     )
                     self.get_logger().info('Trajectory successfully saved to CSV.')
                 except Exception as e:
