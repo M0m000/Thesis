@@ -248,8 +248,8 @@ class AttachmentTrajectory(Node):
         # Trajektorie als Liste von Punkten, wobei jeder Punkt ein Tupel aus (Translation, Rotation) ist
         self.trajectory_1 = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num = self.hook_num)
         self.trajectory_2 = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num)
-        self.trajectory_3 = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, hook_type = 'd', beta = 0.5)
-        self.trajectory_4 = self.hook_geometrics_handler.plan_optimized_trajectory(hook_num = self.hook_num, hook_type = 'd', beta = 0, attachment_distance_in_mm = 5)
+        self.trajectory_3 = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, hook_type = 'a', beta = 0.5)
+        self.trajectory_4 = self.hook_geometrics_handler.plan_optimized_trajectory(hook_num = self.hook_num, hook_type = 'a', beta = 0, attachment_distance_in_mm = 5)
 
         # Zur Evaluation - speichern der Trajektorien als CSV
         self.save_traj_in_workframe_as_csv(self.trajectory_1, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_1.csv')
