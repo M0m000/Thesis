@@ -252,14 +252,14 @@ class AttachmentTrajectory(Node):
         self.trajectory_4 = self.hook_geometrics_handler.plan_optimized_trajectory(hook_num = self.hook_num, hook_type = 'a', beta = 0, attachment_distance_in_mm = 5)
 
         # Zur Evaluation - speichern der Trajektorien als CSV
-        self.save_traj_in_workframe_as_csv(self.trajectory_1, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_1.csv')
-        self.save_traj_in_workframe_as_csv(self.trajectory_2, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_2.csv')
-        self.save_traj_in_workframe_as_csv(self.trajectory_3, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_3.csv')
-        self.save_traj_in_workframe_as_csv(self.trajectory_4, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_4.csv')
-        # save_trajectory_to_csv(self.trajectory_1, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_1.csv')
-        # save_trajectory_to_csv(self.trajectory_2, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_2.csv')
-        # save_trajectory_to_csv(self.trajectory_3, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_3.csv')
-        # save_trajectory_to_csv(self.trajectory_4, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_4.csv')
+        self.save_traj_in_workframe_as_csv(self.trajectory_1, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_1_work.csv')
+        self.save_traj_in_workframe_as_csv(self.trajectory_2, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_2_work.csv')
+        self.save_traj_in_workframe_as_csv(self.trajectory_3, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_3_work.csv')
+        self.save_traj_in_workframe_as_csv(self.trajectory_4, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_4_work.csv')
+        save_trajectory_to_csv(self.trajectory_1, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_1.csv')
+        save_trajectory_to_csv(self.trajectory_2, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_2.csv')
+        save_trajectory_to_csv(self.trajectory_3, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_3.csv')
+        save_trajectory_to_csv(self.trajectory_4, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_4.csv')
 
         self.trajectory = self.trajectory_4
         for k in range(len(self.trajectory)):
