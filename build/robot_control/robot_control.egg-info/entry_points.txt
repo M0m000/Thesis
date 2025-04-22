@@ -17,4 +17,5 @@ set_working_frame_qr = robot_control.set_working_frame_qr:main
 seven_dof_ik_node = robot_control.seven_dof_ik_node:main
 tcp_calibration = robot_control.tcp_calibration:main
 tf_frames_publisher = robot_control.tf_frames_publisher:main
+trajectory_frame_converter = robot_control.trajectory_frame_converter:main
 trajectory_recorder = robot_control.trajectory_recorder:main

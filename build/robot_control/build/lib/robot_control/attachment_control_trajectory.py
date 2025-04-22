@@ -12,6 +12,7 @@ from kr_msgs.srv import SelectJoggingFrame
 from kr_msgs.srv import SetSystemFrame
 import sys, select, termios, tty
 import time
+import numpy as np
 
 
 
@@ -251,10 +252,14 @@ class AttachmentTrajectory(Node):
         self.trajectory_4 = self.hook_geometrics_handler.plan_optimized_trajectory(hook_num = self.hook_num, hook_type = 'd', beta = 0, attachment_distance_in_mm = 5)
 
         # Zur Evaluation - speichern der Trajektorien als CSV
-        save_trajectory_to_csv(self.trajectory_1, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_1.csv')
-        save_trajectory_to_csv(self.trajectory_2, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_2.csv')
-        save_trajectory_to_csv(self.trajectory_3, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_3.csv')
-        save_trajectory_to_csv(self.trajectory_4, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_4.csv')
+        self.save_traj_in_workframe_as_csv(self.trajectory_1, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_1.csv')
+        self.save_traj_in_workframe_as_csv(self.trajectory_2, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_2.csv')
+        self.save_traj_in_workframe_as_csv(self.trajectory_3, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_3.csv')
+        self.save_traj_in_workframe_as_csv(self.trajectory_4, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_4.csv')
+        # save_trajectory_to_csv(self.trajectory_1, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_1.csv')
+        # save_trajectory_to_csv(self.trajectory_2, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_2.csv')
+        # save_trajectory_to_csv(self.trajectory_3, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_3.csv')
+        # save_trajectory_to_csv(self.trajectory_4, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_4.csv')
 
         self.trajectory = self.trajectory_4
         for k in range(len(self.trajectory)):
@@ -293,6 +298,22 @@ class AttachmentTrajectory(Node):
 
         # Timer zum periodischen Abfragen der Tastatur
         self.keyboard_timer = self.create_timer(0.1, self.check_keyboard)
+
+
+
+    def save_traj_in_workframe_as_csv(self, traj_in_worldframe, savepath):
+        """Methode zur Umrechnung der Trajektorie ins WORK-Frame und anschließenden Speicherung als CSV"""
+        traj_in_workframe = []
+        T_world_in_workframe = self.frame_handler.get_world_in_workframe()
+        for traj_point in traj_in_worldframe:
+            traj_pos_in_worldframe = traj_point[0]
+            traj_rot_in_worldframe = traj_point[1]
+
+            traj_pos_in_workframe = T_world_in_workframe @ np.hstack((traj_pos_in_worldframe, 1))
+            traj_rot_in_workframe = T_world_in_workframe[:3, :3] @ np.array(traj_rot_in_worldframe)
+            traj_in_workframe.append((traj_pos_in_workframe[:3].tolist(), traj_rot_in_workframe.tolist()))
+        save_trajectory_to_csv(trajectory = traj_in_workframe, filepath = savepath)
+
 
 
 
