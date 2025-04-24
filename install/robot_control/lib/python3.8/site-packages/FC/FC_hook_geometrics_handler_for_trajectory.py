@@ -109,14 +109,27 @@ class HookGeometricsHandler(Node):
         dir_xz_in_workframe = np.array([dir_in_workframe[0], 0, dir_in_workframe[2]])
         abs = np.linalg.norm(dir_xz_in_workframe)
         x_new = dir_xz_in_workframe / abs if abs != 0 else dir_xz_in_workframe
+        print("x-Achse in WORK (Projektion auf xz-Ebene): ", x_new)
 
-        # neue z-TCP-Achse entspricht dem Richtungsvektor (senkrechter Schnitt in die Lochebene)
-        y_new = -dir_in_workframe
-        
-        # neue y-TCP-Achse über Kreuzprodukt
+        # neue y-TCP-Achse entspricht zunächst der y-Achse von WORK
+        y_new = [0.0, 1.0, 0.0]
+        print("Temporaere y-Achse in WORK (senkrechter Schnitt): ", y_new)
+
+        # neue z-Achse ist das Kreuzprodukt von x und y -> bleibt fest (lange Seite des Langlochs)
         z_new = np.cross(x_new, y_new)
         abs = np.linalg.norm(z_new)
         z_new = z_new / abs if abs != 0 else z_new
+        print("z-Achse in WORK (rechtshaendiges Kreuzprodukt): ", z_new)
+
+        ### Idee - Drehe so lange um z, bis y-Achse = Richtungsvektor Hakengerade
+        # neue y-Achse ist der Richtungsvektor der Geraden -> senkrechter Schnitt
+        y_new = -dir_in_workframe
+        print("y-Achse in WORK (senkrechter Schnitt): ", y_new)
+
+        # Korrektur der x-Achse nach Drehung um z aus Kreuzprodukt von z und y
+        x_new = np.cross(y_new, z_new)
+        abs = np.linalg.norm(x_new)
+        x_new = x_new / abs if abs != 0 else x_new
 
         # Aufbau der homogenen Transformation für TCP_new in WORK
         T_tcp_new_in_workframe = np.eye(4)

@@ -51,8 +51,10 @@ class AttachmentTrajectory(Node):
             self.get_logger().info("Waiting for Service SetSystemFrame...")
             i += 1
         self.get_logger().info("Service SetSystemFrame available!")
-        self.tcp_in_tfc_trans = [0.67564637, 3.43066157, 239.3860887]     # in mm
-        self.tcp_in_tfc_rot = [0.0, 0.0, 30.0]         # in Grad
+        # self.tcp_in_tfc_trans = [0.67564637, 3.43066157, 239.3860887]     # in mm
+        self.tcp_in_tfc_trans = [-1.78034352, 0.33577707, 105.41798404]
+        # self.tcp_in_tfc_rot = [0.0, 0.0, 30.0]         # in Grad
+        self.tcp_in_tfc_rot = [0.0, 0.0, 0.0]
         self.set_frame(self.tcp_in_tfc_rot, self.tcp_in_tfc_trans, frame="tcp", ref_frame="tfc")
 
         # Instanz Hook Geometrics Handler
@@ -248,7 +250,7 @@ class AttachmentTrajectory(Node):
         # Trajektorie als Liste von Punkten, wobei jeder Punkt ein Tupel aus (Translation, Rotation) ist
         self.trajectory_1 = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num = self.hook_num)
         self.trajectory_2 = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num)
-        self.trajectory_3 = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, hook_type = 'a', beta = 0.5)
+        self.trajectory_3 = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, hook_type = 'a', beta = 1.0)
         self.trajectory_4 = self.hook_geometrics_handler.plan_optimized_trajectory(hook_num = self.hook_num, hook_type = 'a', beta = 0, attachment_distance_in_mm = 5)
 
         # Zur Evaluation - speichern der Trajektorien als CSV
@@ -261,7 +263,7 @@ class AttachmentTrajectory(Node):
         save_trajectory_to_csv(self.trajectory_3, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_3.csv')
         save_trajectory_to_csv(self.trajectory_4, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_4.csv')
 
-        self.trajectory = self.trajectory_4
+        self.trajectory = self.trajectory_3
         for k in range(len(self.trajectory)):
             print("Trajektorie im Hauptprogramm: ", self.trajectory[k])
         
