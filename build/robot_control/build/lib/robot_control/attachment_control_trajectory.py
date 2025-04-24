@@ -51,10 +51,10 @@ class AttachmentTrajectory(Node):
             self.get_logger().info("Waiting for Service SetSystemFrame...")
             i += 1
         self.get_logger().info("Service SetSystemFrame available!")
-        # self.tcp_in_tfc_trans = [0.67564637, 3.43066157, 239.3860887]     # in mm
-        self.tcp_in_tfc_trans = [-1.78034352, 0.33577707, 105.41798404]
-        # self.tcp_in_tfc_rot = [0.0, 0.0, 30.0]         # in Grad
-        self.tcp_in_tfc_rot = [0.0, 0.0, 0.0]
+        self.tcp_in_tfc_trans = [0.67564637, 3.43066157, 239.3860887]     # in mm
+        # self.tcp_in_tfc_trans = [-1.78034352, 0.33577707, 105.41798404]
+        self.tcp_in_tfc_rot = [0.0, 0.0, 30.0]         # in Grad
+        # self.tcp_in_tfc_rot = [0.0, 0.0, 0.0]
         self.set_frame(self.tcp_in_tfc_rot, self.tcp_in_tfc_trans, frame="tcp", ref_frame="tfc")
 
         # Instanz Hook Geometrics Handler
@@ -263,7 +263,7 @@ class AttachmentTrajectory(Node):
         save_trajectory_to_csv(self.trajectory_3, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_3.csv')
         save_trajectory_to_csv(self.trajectory_4, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_4.csv')
 
-        self.trajectory = self.trajectory_3
+        self.trajectory = self.trajectory_4
         for k in range(len(self.trajectory)):
             print("Trajektorie im Hauptprogramm: ", self.trajectory[k])
         
@@ -311,9 +311,21 @@ class AttachmentTrajectory(Node):
             traj_pos_in_worldframe = traj_point[0]
             traj_rot_in_worldframe = traj_point[1]
 
-            traj_pos_in_workframe = T_world_in_workframe @ np.hstack((traj_pos_in_worldframe, 1))
-            traj_rot_in_workframe = T_world_in_workframe[:3, :3] @ np.array(traj_rot_in_worldframe)
-            traj_in_workframe.append((traj_pos_in_workframe[:3].tolist(), traj_rot_in_workframe.tolist()))
+            R_trajpoint_in_worldframe = self.frame_handler.calculate_rot_matrix(rot = traj_rot_in_worldframe)
+            T_trajpoint_in_worldframe = np.eye(4)
+            T_trajpoint_in_worldframe[:3, :3] = R_trajpoint_in_worldframe
+            T_trajpoint_in_worldframe[:3, 3] = traj_pos_in_worldframe
+
+            T_trajpoint_in_workframe = T_world_in_workframe @ T_trajpoint_in_worldframe
+
+            traj_pos_in_workframe = T_trajpoint_in_workframe[:3, 3]
+            traj_rot_in_workframe = self.frame_handler.rotation_matrix_to_euler_angles(rotation_matrix = T_trajpoint_in_workframe[:3, :3])
+
+            print(traj_pos_in_workframe, traj_rot_in_workframe)
+            # traj_pos_in_workframe = T_world_in_workframe @ np.hstack((traj_pos_in_worldframe, 1))
+            # traj_rot_in_workframe = T_world_in_workframe[:3, :3] @ np.array(traj_rot_in_worldframe)
+            # traj_in_workframe.append((traj_pos_in_workframe[:3].tolist(), traj_rot_in_workframe.tolist()))
+            traj_in_workframe.append((traj_pos_in_workframe.tolist(), traj_rot_in_workframe.tolist()))
         save_trajectory_to_csv(trajectory = traj_in_workframe, filepath = savepath)
 
 

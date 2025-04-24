@@ -8,6 +8,7 @@ import select
 from FC.FC_eval_save_trajectory_to_csv import save_trajectory_to_csv
 from FC.FC_frame_handler import FrameHandler
 import numpy as np
+from scipy.spatial.transform import Rotation as R
 
 
 class TrajectoryRecorder(Node):
@@ -20,7 +21,6 @@ class TrajectoryRecorder(Node):
 
         # Instanz Frame Handler
         self.frame_handler = FrameHandler(node_name = 'frame_handler_for_trajectory_recorder_node')
-
 
         self.trajectory_recorded_in_workframe = []
         self.trajectory_recorded_in_worldframe = []
@@ -41,7 +41,25 @@ class TrajectoryRecorder(Node):
             key = sys.stdin.read(1)
             if key == 'n':
                 self.get_logger().info('Key "n" pressed – reading robot pose...')
-                self.call_service()
+
+                # hole aktuelle TCP-Pose aus FrameHandler
+                tcp_pos_in_worldframe, tcp_rot_in_worldframe, T_tcp_in_worldframe = self.frame_handler.get_system_frame(name = 'tcp', ref = 'world')
+                self.trajectory_recorded_in_worldframe.append((tcp_pos_in_worldframe, tcp_rot_in_worldframe))
+
+                # hole Transformation von WORLD zu WORK aus CSV
+                T_world_in_workframe = self.frame_handler.get_world_in_workframe()
+
+                # berechne Transformation von TCP zu WORK
+                T_tcp_in_workframe = T_world_in_workframe @ T_tcp_in_worldframe
+
+                # berechne Translation und Roll-Pitch-Yaw
+                tcp_pos_in_workframe = T_tcp_in_workframe[:3, 3]
+                tcp_rot_in_workframe = R.from_matrix(T_tcp_in_workframe[:3, :3]).as_euler('xyz', degrees=True)
+
+                self.trajectory_recorded_in_workframe.append((tcp_pos_in_workframe.tolist(), tcp_rot_in_workframe.tolist()))
+                self.get_logger().info(f'Pose recorded [WORK]: pos={tcp_pos_in_workframe}, rot={tcp_rot_in_workframe}')
+                self.get_logger().info(f'Pose recorded [WORLD]: pos={tcp_pos_in_worldframe}, rot={tcp_rot_in_worldframe}')
+
             elif key == 's':
                 self.get_logger().info('Key "s" pressed – saving trajectory to CSV...')
                 try:
