@@ -58,8 +58,8 @@ class AttachmentTrajectory(Node):
         # self.tcp_in_tfc_trans = [-1.78034352, 0.33577707, 105.41798404]   # 3D-Schablone groß
         # self.tcp_in_tfc_rot = [0.0, 0.0, 0.0]
 
-        self.tcp_in_tfc_trans = [21.56077984, -26.06898406, 317.2201606]    # Bauteile in Schunk
-        self.tcp_in_tfc_rot = [7.54749762, -22.38190283, 37.52598048]
+        self.tcp_in_tfc_trans = [23.8, -28.06898406, 311.2201606]    # Bauteile in Schunk
+        self.tcp_in_tfc_rot = [2.54749762, 10.38190283, 37.52598048]       # (x und y Vorzeichen tauschen)
         
         self.set_frame(self.tcp_in_tfc_rot, self.tcp_in_tfc_trans, frame="tcp", ref_frame="tfc")
 
@@ -85,7 +85,8 @@ class AttachmentTrajectory(Node):
         self.move_ptp_client = MovePTPServiceClient()
 
         # Bewege Roboter auf Pre Pose in Mitte von Gestell
-        init_position_tcp_in_workframe = [662.7679417387326, -457.86324018092, 10.694603651697957]
+        # init_position_tcp_in_workframe = [662.7679417387326, -457.86324018092, 10.694603651697957]
+        init_position_tcp_in_workframe = [500.0, -450.0, 10.0]
         init_rotation_tcp_in_workframe = [0.0, 0.0, 0.0]
 
         self.init_position_tcp_in_worldframe, self.init_rotation_tcp_in_worldframe = self.frame_handler.transform_pose_to_world(
