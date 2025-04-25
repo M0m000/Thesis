@@ -51,11 +51,16 @@ class AttachmentTrajectory(Node):
             self.get_logger().info("Waiting for Service SetSystemFrame...")
             i += 1
         self.get_logger().info("Service SetSystemFrame available!")
-        # self.tcp_in_tfc_trans = [0.67564637, 3.43066157, 239.3860887]     # in mm
-        self.tcp_in_tfc_trans = [0.61629099, 4.49679891, 238.7470473]
-        # self.tcp_in_tfc_trans = [-1.78034352, 0.33577707, 105.41798404]
-        self.tcp_in_tfc_rot = [0.0, 0.0, 30.0]         # in Grad
+
+        # self.tcp_in_tfc_trans = [0.61629099, 4.49679891, 238.7470473]       # 3D-Schablone auf Schunk
+        # self.tcp_in_tfc_rot = [0.0, 0.0, 30.0]
+
+        # self.tcp_in_tfc_trans = [-1.78034352, 0.33577707, 105.41798404]   # 3D-Schablone groß
         # self.tcp_in_tfc_rot = [0.0, 0.0, 0.0]
+
+        self.tcp_in_tfc_trans = [21.56077984, -26.06898406, 317.2201606]    # Bauteile in Schunk
+        self.tcp_in_tfc_rot = [7.54749762, -22.38190283, 37.52598048]
+        
         self.set_frame(self.tcp_in_tfc_rot, self.tcp_in_tfc_trans, frame="tcp", ref_frame="tfc")
 
         # Instanz Hook Geometrics Handler
