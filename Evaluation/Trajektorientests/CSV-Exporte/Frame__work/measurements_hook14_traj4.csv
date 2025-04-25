@@ -1,2 +1,2 @@
 hook_num,trajectory_process,x_max_work,x_max_local,x_min_work,x_min_local,y_max_work,y_max_local,y_min_work,y_min_local,z_max_work,z_max_local,z_min_work,z_min_local,x_mean_work,x_mean_local,y_mean_work,y_mean_local,z_mean_work,z_mean_local,euclidean_max_work,roll_max,pitch_max,yaw_max
-14,4,4.58,3.04,-0.0,0.0,0.98,0.0,0.0,-2.74,-0.0,2.39,-0.73,0.0,4.37,2.86,0.84,-2.67,-0.68,2.21,4.73,11.35,0.0,0.0
+14,4,2.43,1.88,0.0,0.0,0.09,0.0,-0.76,-1.55,0.0,0.74,-0.55,0.0,1.9,1.29,-0.33,-1.45,-0.45,0.41,2.46,20.85,8.48,13.49

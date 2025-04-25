@@ -52,14 +52,14 @@ class AttachmentTrajectory(Node):
             i += 1
         self.get_logger().info("Service SetSystemFrame available!")
 
-        # self.tcp_in_tfc_trans = [0.61629099, 4.49679891, 238.7470473]       # 3D-Schablone auf Schunk
-        # self.tcp_in_tfc_rot = [0.0, 0.0, 30.0]
+        self.tcp_in_tfc_trans = [0.61629099, 4.49679891, 238.7470473]       # 3D-Schablone auf Schunk
+        self.tcp_in_tfc_rot = [0.0, 0.0, 30.0]
 
         # self.tcp_in_tfc_trans = [-1.78034352, 0.33577707, 105.41798404]   # 3D-Schablone groß
         # self.tcp_in_tfc_rot = [0.0, 0.0, 0.0]
 
-        self.tcp_in_tfc_trans = [23.8, -28.06898406, 311.2201606]    # Bauteile in Schunk
-        self.tcp_in_tfc_rot = [2.54749762, 10.38190283, 37.52598048]       # (x und y Vorzeichen tauschen)
+        # self.tcp_in_tfc_trans = [23.0, -30.56898406, 314.7201606]    # Bauteile in Schunk
+        # self.tcp_in_tfc_rot = [2.54749762, 10.38190283, 37.52598048]       # (x und y Vorzeichen tauschen)
         
         self.set_frame(self.tcp_in_tfc_rot, self.tcp_in_tfc_trans, frame="tcp", ref_frame="tfc")
 
