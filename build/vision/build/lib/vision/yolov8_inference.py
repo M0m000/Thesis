@@ -45,6 +45,8 @@ class YOLOv8InferenceNode(Node):
         self.filter_alpha = self.get_parameter('filter_alpha').get_parameter_value().double_value
         self.declare_parameter('filter_windowsize', 10)
         self.filter_windowsize = self.get_parameter('filter_windowsize').get_parameter_value().integer_value
+        self.declare_parameter('filter_bbsize_tolerance', 0.05)
+        self.filter_bbsize_tolerance = self.get_parameter('filter_bbsize_tolerance').get_parameter_value().double_value
         self.declare_parameter('num_path_points', 5)
         self.num_path_points = self.get_parameter('num_path_points').get_parameter_value().integer_value
 
@@ -61,7 +63,7 @@ class YOLOv8InferenceNode(Node):
 
         # Filterinstanzen zur Filterung des Outputs
         # self.ema_filter = HookFilterEMA(alpha = self.filter_alpha, confirmation_frames = 10, disappearance_frames = 10)
-        self.movingavg_filter = HookFilterMovingAvg(window_size = self.filter_windowsize, confirmation_frames = 5, disappearance_frames = 5)
+        self.movingavg_filter = HookFilterMovingAvg(window_size = self.filter_windowsize, confirmation_frames = 5, disappearance_frames = 5, size_tolerance = self.filter_bbsize_tolerance)
         
         # Subscriber auf Filter-Enable-Topic zur Schaltung des Filters
         self.filter_enable_subscriber = self.create_subscription(Bool, 'vision/nn_output_filter/enable', self.filter_enable_callback, 10)
