@@ -7,6 +7,7 @@ from FC.FC_call_move_linear_service import MoveLinearServiceClient
 from FC.FC_call_move_ptp_service import MovePTPServiceClient
 from FC.FC_doc_plot_attachment import DocPlotAttachment
 from FC.FC_eval_save_trajectory_to_csv import save_trajectory_to_csv
+from FC.FC_trajectoroy_3d_plotter import TrajectoryPlotter
 from kr_msgs.msg import JogLinear
 from kr_msgs.srv import SelectJoggingFrame
 from kr_msgs.srv import SetSystemFrame
@@ -77,6 +78,11 @@ class AttachmentTrajectory(Node):
         # Instanz DOKUMENTATION Plot-Fkt
         self.doc_plot = DocPlotAttachment(plot_save_filename='/home/mo/Thesis/src/robot_control/robot_control/data/controller_output_logging', hook_num = self.hook_num)
         self.doc_plot.initialize_plot()
+
+        # Instanz 3D Plot
+        self.trajectory_3d_plotter = TrajectoryPlotter(interp_step_size = 0.05,
+                                                       hole_width = 8, hole_height = 12,
+                                                       hook_num = self.hook_num, hook_type = self.hook_type, trajectory_process = 4)
 
         # Instanz Frame Handler
         self.frame_handler = FrameHandler(node_name = 'frame_handler_for_dummy_node')
@@ -277,11 +283,16 @@ class AttachmentTrajectory(Node):
         save_trajectory_to_csv(self.trajectory_4, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_4.csv')
 
         self.trajectory = self.trajectory_4
-        for k in range(len(self.trajectory)):
-            print("Trajektorie im Hauptprogramm: ", self.trajectory[k])
+        # for k in range(len(self.trajectory)):
+        #     print("Trajektorie im Hauptprogramm: ", self.trajectory[k])
         
-        self.trajectory_point_num = 0
+        self.act_trajectory_point_num = 0
         
+        # Init-3D-Trajektorie-Plot
+        self.trajectory_3d_plotter.process_trajectory_for_plot(trajectory = self.trajectory)
+        self.trajectory_3d_plotter.create_static_plot()
+        self.trajectory_3d_plotter.start_live_server()
+
         # time.sleep(10)
         ########## Bewegung zur Pre-Pose mit z-Offset ##########
         self.hook_pre_position, self.hook_pre_rotation = self.hook_geometrics_handler.calculate_pre_position_with_z_offset(trajectory_in_worldframe = self.trajectory, z_off_in_mm_in_workframe = 200)
@@ -352,20 +363,24 @@ class AttachmentTrajectory(Node):
         if select.select([sys.stdin], [], [], 0)[0]:
             key = sys.stdin.read(1)
             if key == 'n':
-                if self.trajectory_point_num == 0:      # wenn es sich um den resten Trajektorienpunkt handelt
-                    initial_point = self.trajectory[self.trajectory_point_num]
-                    print(initial_point)
+                ### Plot aktualisieren mit aktuellem Trajektorien-Punkt
+                plot_act_traj_rectangles = self.trajectory_3d_plotter._compute_rectangle_corners(trajectory = [self.trajectory[self.act_trajectory_point_num]])
+                self.trajectory_3d_plotter.update_3d_plot(act_traj_rectangle = plot_act_traj_rectangles)
+
+                ### Anfahren der Pose
+                if self.act_trajectory_point_num == 0:      # wenn es sich um den ersten Trajektorienpunkt handelt
+                    initial_point = self.trajectory[self.act_trajectory_point_num]
                     self.target_pos_trans_in_worldframe = initial_point[0]
                     self.target_pos_rot_in_worldframe = initial_point[1]
                     self.prepare_and_update_plot()      # Plot updaten
 
-                if self.trajectory_point_num < len(self.trajectory):        # wenn es sich um Path Point handelt
-                    act_point = self.trajectory[self.trajectory_point_num]
+                if self.act_trajectory_point_num < len(self.trajectory):        # wenn es sich um Path Point handelt
+                    act_point = self.trajectory[self.act_trajectory_point_num]
                     self.target_pos_trans_in_worldframe = act_point[0]
                     self.target_pos_rot_in_worldframe = act_point[1]
                     self.prepare_and_update_plot()      # Plot updaten
 
-                    self.get_logger().warn(f"Moving to current trajectory point {self.trajectory_point_num}")
+                    self.get_logger().warn(f"Moving to current trajectory point {self.act_trajectory_point_num}")
                     self.get_logger().warn(f"Pose: {self.target_pos_trans_in_worldframe}, Rotation: {self.target_pos_rot_in_worldframe}")
                     
                     self.movement_done = False
@@ -383,11 +398,14 @@ class AttachmentTrajectory(Node):
                     while self.movement_done == False:
                         self.get_logger().warn("Movement...")
                     self.get_logger().warn("Movement done!")
-                        
                 else:
+                    # Plots speichern
                     self.doc_plot.save_plot_as_png()
+                    self.trajectory_3d_plotter.save_html(filename = '/home/mo/Thesis/src/robot_control/robot_control/data/controller_output_logging')
+                    
+                    # Ausgabe: Ende
                     self.get_logger().info("Reached last trajectory point!")
-                self.trajectory_point_num += 1
+                self.act_trajectory_point_num += 1
 
 
 
@@ -398,7 +416,7 @@ class AttachmentTrajectory(Node):
         self.doc_plot.update_plot_lists(
             target_trans_list = self.target_pos_trans_in_worldframe,
             target_rot_list = self.target_pos_rot_in_worldframe,
-            num_trajectory_point = self.trajectory_point_num,
+            num_trajectory_point = self.act_trajectory_point_num,
         )
         self.doc_plot.update_plot()
         
