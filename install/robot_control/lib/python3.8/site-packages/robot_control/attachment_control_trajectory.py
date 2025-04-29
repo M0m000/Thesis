@@ -55,7 +55,7 @@ class AttachmentTrajectory(Node):
             i += 1
         self.get_logger().info("Service SetSystemFrame available!")
 
-        # self.tcp_in_tfc_trans = [0.61629099, 4.49679891, 238.7470473]       # 3D-Schablone auf Schunk
+        # self.tcp_in_tfc_trans = [2.80207228, -1.02330715, 238.72358785]
         # self.tcp_in_tfc_rot = [0.0, 0.0, 30.0]
 
         # self.tcp_in_tfc_trans = [-1.78034352, 0.33577707, 105.41798404]   # 3D-Schablone groß
@@ -262,7 +262,7 @@ class AttachmentTrajectory(Node):
 
         ########## Aufruf Trajektorienberechnung ##########
         # Berechne die Trajektorie basierend auf den Hook-Daten
-        time.sleep(5)
+        time.sleep(2)
         # xyz, rpy = self.hook_geometrics_handler.update_hook_data(hook_num=self.hook_num)
         # self.hook_geometrics_handler.calculate_hook_line()
         
