@@ -293,7 +293,7 @@ class AttachmentTrajectory(Node):
         self.trajectory_3d_plotter.create_static_plot()
         self.trajectory_3d_plotter.start_live_server()
 
-        # time.sleep(10)
+        time.sleep(10)
         ########## Bewegung zur Pre-Pose mit z-Offset ##########
         self.hook_pre_position, self.hook_pre_rotation = self.hook_geometrics_handler.calculate_pre_position_with_z_offset(trajectory_in_worldframe = self.trajectory, z_off_in_mm_in_workframe = 200)
         self.get_logger().warn(f"Starte Bewegung zu Pre-Position: Pose: {self.hook_pre_position}, Rotation: {self.hook_pre_rotation}")
@@ -365,7 +365,7 @@ class AttachmentTrajectory(Node):
             if key == 'n':
                 ### Plot aktualisieren mit aktuellem Trajektorien-Punkt
                 plot_act_traj_rectangles = self.trajectory_3d_plotter._compute_rectangle_corners(trajectory = [self.trajectory[self.act_trajectory_point_num]])
-                self.trajectory_3d_plotter.update_3d_plot(act_traj_rectangle = plot_act_traj_rectangles)
+                self.trajectory_3d_plotter.update_3d_plot(act_traj_rectangle = plot_act_traj_rectangles[0])
 
                 ### Anfahren der Pose
                 if self.act_trajectory_point_num == 0:      # wenn es sich um den ersten Trajektorienpunkt handelt
