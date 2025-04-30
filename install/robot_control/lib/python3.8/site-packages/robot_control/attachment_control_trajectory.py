@@ -98,7 +98,7 @@ class AttachmentTrajectory(Node):
 
         # Bewege Roboter auf Pre Pose in Mitte von Gestell
         # init_position_tcp_in_workframe = [662.7679417387326, -457.86324018092, 10.694603651697957]
-        init_position_tcp_in_workframe = [500.0, -450.0, 10.0]
+        init_position_tcp_in_workframe = [400.0, -450.0, 10.0]
         init_rotation_tcp_in_workframe = [0.0, 0.0, 0.0]
 
         self.init_position_tcp_in_worldframe, self.init_rotation_tcp_in_worldframe = self.frame_handler.transform_pose_to_world(
