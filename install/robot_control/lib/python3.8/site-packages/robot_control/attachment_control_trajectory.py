@@ -66,9 +66,11 @@ class AttachmentTrajectory(Node):
 
         self.tcp_in_tfc_trans = [26.8098082, -31.51782424, 314.29054815]
         self.tcp_in_tfc_rot = [2.54749762, 10.38190283, 37.52598048]
-
-        
         self.set_frame(self.tcp_in_tfc_rot, self.tcp_in_tfc_trans, frame="tcp", ref_frame="tfc")
+
+        # Korrekturwerte (Offsets)
+        self.offset_traj_1 = [-0.4267, 4.5006, 2.6056]
+
 
         # Instanz Hook Geometrics Handler
         self.hook_geometrics_handler = HookGeometricsHandler(
@@ -268,6 +270,13 @@ class AttachmentTrajectory(Node):
         
         # Trajektorie als Liste von Punkten, wobei jeder Punkt ein Tupel aus (Translation, Rotation) ist
         self.trajectory_1 = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num = self.hook_num)
+        for k in range(len(self.trajectory_1)):
+            pos, rot = self.trajectory_1[k]
+            print("ohne Offset: ", pos, rot)
+            pos = np.array(pos) + np.array(self.offset_traj_1)
+            self.trajectory_1[k] = pos, rot
+            print("mit Offset: ", pos, rot)
+
         self.trajectory_2 = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num)
         self.trajectory_3 = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, hook_type = self.hook_type, beta = 0.5)
         self.trajectory_4 = self.hook_geometrics_handler.plan_optimized_trajectory(hook_num = self.hook_num, hook_type = self.hook_type, beta = 0, attachment_distance_in_mm = 5)
