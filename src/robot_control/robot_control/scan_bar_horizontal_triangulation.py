@@ -295,7 +295,7 @@ class ScanBarHorizontalTriangulation(Node):
                 ##### Nächster Prozessschritt
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 as initial Reference Point>")
                 self.upcoming_process_step = "extract_hook_2_as_init_ref"
-                self.start_timer_for_step(2.0)    # Timer starten
+                self.start_timer_for_step(3.0)    # Timer starten
                 self.process_step = "waiting_for_timer"
 
 
@@ -400,7 +400,7 @@ class ScanBarHorizontalTriangulation(Node):
                 else:
                     self.get_logger().info("Done! -> next process step <Extract Hook 3 as Horizontal Point>")
                     self.upcoming_process_step = "extract_hook_3_as_horizontal_point"
-                    self.start_timer_for_step(2.0)    # Timer starten
+                    self.start_timer_for_step(3.0)    # Timer starten
                     self.process_step = "waiting_for_timer"
         
 
@@ -681,7 +681,7 @@ class ScanBarHorizontalTriangulation(Node):
 
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 as Horizontal Point>")
                 self.upcoming_process_step = "extract_hook_3_as_horizontal_point"
-                self.start_timer_for_step(2.0)    # Timer starten
+                self.start_timer_for_step(3.0)    # Timer starten
                 self.process_step = "waiting_for_timer"
 
 
