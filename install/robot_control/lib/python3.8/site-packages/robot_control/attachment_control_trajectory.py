@@ -69,7 +69,8 @@ class AttachmentTrajectory(Node):
         self.set_frame(self.tcp_in_tfc_rot, self.tcp_in_tfc_trans, frame="tcp", ref_frame="tfc")
 
         # Korrekturwerte (Offsets)
-        self.offset_traj_1 = [-0.4267, 4.5006, 2.6056]
+        self.offset_traj_1 = [-0.2242, 4.0398, 2.9785]
+        self.offset_traj_4 = [-0.3972, 4.7819, 2.6889]
 
 
         # Instanz Hook Geometrics Handler
@@ -269,18 +270,17 @@ class AttachmentTrajectory(Node):
         # self.hook_geometrics_handler.calculate_hook_line()
         
         # Trajektorie als Liste von Punkten, wobei jeder Punkt ein Tupel aus (Translation, Rotation) ist
-        self.trajectory_1 = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num = self.hook_num)
-        for k in range(len(self.trajectory_1)):
-            pos, rot = self.trajectory_1[k]
-            print("ohne Offset: ", pos, rot)
-            pos = np.array(pos) + np.array(self.offset_traj_1)
-            self.trajectory_1[k] = pos, rot
-            print("mit Offset: ", pos, rot)
+        trajectory_1 = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num = self.hook_num)
+        trajectory_2 = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num)
+        trajectory_3 = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, hook_type = self.hook_type, beta = 0.5)
+        trajectory_4 = self.hook_geometrics_handler.plan_optimized_trajectory(hook_num = self.hook_num, hook_type = self.hook_type, beta = 0, attachment_distance_in_mm = 5)
 
-        self.trajectory_2 = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num)
-        self.trajectory_3 = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, hook_type = self.hook_type, beta = 0.5)
-        self.trajectory_4 = self.hook_geometrics_handler.plan_optimized_trajectory(hook_num = self.hook_num, hook_type = self.hook_type, beta = 0, attachment_distance_in_mm = 5)
-
+        # Korrektur der Trajektorien um empirisch ermittellte Offsets
+        self.trajectory_1 = self.offset_trajectory_correction(trajectory = trajectory_1, offset_xyz = self.offset_traj_1)
+        self.trajectory_2 = self.offset_trajectory_correction(trajectory = trajectory_2, offset_xyz = self.offset_traj_1)
+        self.trajectory_3 = self.offset_trajectory_correction(trajectory = trajectory_3, offset_xyz = self.offset_traj_1)
+        self.trajectory_4 = self.offset_trajectory_correction(trajectory = trajectory_4, offset_xyz = self.offset_traj_4)
+        
         # Zur Evaluation - speichern der Trajektorien als CSV
         self.save_traj_in_workframe_as_csv(self.trajectory_1, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_1_work.csv')
         self.save_traj_in_workframe_as_csv(self.trajectory_2, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_2_work.csv')
@@ -333,6 +333,18 @@ class AttachmentTrajectory(Node):
 
         # Timer zum periodischen Abfragen der Tastatur
         self.keyboard_timer = self.create_timer(0.1, self.check_keyboard)
+
+
+
+    def offset_trajectory_correction(self, trajectory, offset_xyz):
+        """Methode zur Korrektur eine Trajektorie mit gespeicherten Offsets für WORK (xyz)"""
+        for k in range(len(trajectory)):
+            pos, rot = trajectory[k]
+            print("vor Offset-Korrektur: ", pos, rot)
+            pos = np.array(pos) + np.array(offset_xyz)
+            print("nach Offset-Korrektur: ", pos, rot)
+            trajectory[k] = pos, rot
+        return trajectory
 
 
 

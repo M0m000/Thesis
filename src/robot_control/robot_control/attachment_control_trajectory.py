@@ -338,14 +338,13 @@ class AttachmentTrajectory(Node):
 
     def offset_trajectory_correction(self, trajectory, offset_xyz):
         """Methode zur Korrektur eine Trajektorie mit gespeicherten Offsets für WORK (xyz)"""
-        for k in range(trajectory):
+        for k in range(len(trajectory)):
             pos, rot = trajectory[k]
             print("vor Offset-Korrektur: ", pos, rot)
             pos = np.array(pos) + np.array(offset_xyz)
             print("nach Offset-Korrektur: ", pos, rot)
             trajectory[k] = pos, rot
         return trajectory
-    
 
 
 
