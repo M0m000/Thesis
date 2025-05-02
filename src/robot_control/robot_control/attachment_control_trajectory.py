@@ -66,11 +66,16 @@ class AttachmentTrajectory(Node):
 
         self.tcp_in_tfc_trans = [26.8098082, -31.51782424, 314.29054815]
         self.tcp_in_tfc_rot = [2.54749762, 10.38190283, 37.52598048]
-        self.set_frame(self.tcp_in_tfc_rot, self.tcp_in_tfc_trans, frame="tcp", ref_frame="tfc")
 
         # Korrekturwerte (Offsets)
-        self.offset_traj_1 = [-0.2242, 4.0398, 2.9785]
-        self.offset_traj_4 = [-0.3972, 4.7819, 2.6889]
+        self.offset_traj_1 = [-0.252, 3.7856, 2.8829]
+        self.offset_traj_4 = [-0.4267, 4.5007, 2.6056]
+
+        tool_pos = np.array(self.tcp_in_tfc_trans) + np.array(self.offset_traj_1)
+        tool_pos = tool_pos.tolist()
+
+        # Tool setzen
+        self.set_frame(self.tcp_in_tfc_rot, tool_pos, frame="tcp", ref_frame="tfc")
 
 
         # Instanz Hook Geometrics Handler
@@ -270,16 +275,16 @@ class AttachmentTrajectory(Node):
         # self.hook_geometrics_handler.calculate_hook_line()
         
         # Trajektorie als Liste von Punkten, wobei jeder Punkt ein Tupel aus (Translation, Rotation) ist
-        trajectory_1 = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num = self.hook_num)
-        trajectory_2 = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num)
-        trajectory_3 = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, hook_type = self.hook_type, beta = 0.5)
-        trajectory_4 = self.hook_geometrics_handler.plan_optimized_trajectory(hook_num = self.hook_num, hook_type = self.hook_type, beta = 0, attachment_distance_in_mm = 5)
+        self.trajectory_1 = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num = self.hook_num)
+        self.trajectory_2 = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num)
+        self.trajectory_3 = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, hook_type = self.hook_type, beta = 0.5)
+        self.trajectory_4 = self.hook_geometrics_handler.plan_optimized_trajectory(hook_num = self.hook_num, hook_type = self.hook_type, beta = 0, attachment_distance_in_mm = 5)
 
         # Korrektur der Trajektorien um empirisch ermittellte Offsets
-        self.trajectory_1 = self.offset_trajectory_correction(trajectory = trajectory_1, offset_xyz = self.offset_traj_1)
-        self.trajectory_2 = self.offset_trajectory_correction(trajectory = trajectory_2, offset_xyz = self.offset_traj_1)
-        self.trajectory_3 = self.offset_trajectory_correction(trajectory = trajectory_3, offset_xyz = self.offset_traj_1)
-        self.trajectory_4 = self.offset_trajectory_correction(trajectory = trajectory_4, offset_xyz = self.offset_traj_4)
+        # self.trajectory_1 = self.offset_trajectory_correction(trajectory = trajectory_1, offset_xyz = self.offset_traj_1)
+        # self.trajectory_2 = self.offset_trajectory_correction(trajectory = trajectory_2, offset_xyz = self.offset_traj_1)
+        # self.trajectory_3 = self.offset_trajectory_correction(trajectory = trajectory_3, offset_xyz = self.offset_traj_1)
+        # self.trajectory_4 = self.offset_trajectory_correction(trajectory = trajectory_4, offset_xyz = self.offset_traj_4)
         
         # Zur Evaluation - speichern der Trajektorien als CSV
         self.save_traj_in_workframe_as_csv(self.trajectory_1, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_1_work.csv')
@@ -302,7 +307,7 @@ class AttachmentTrajectory(Node):
         self.trajectory_3d_plotter.create_static_plot()
         self.trajectory_3d_plotter.start_live_server()
 
-        # time.sleep(10)
+        time.sleep(10)
         ########## Bewegung zur Pre-Pose mit z-Offset ##########
         self.hook_pre_position, self.hook_pre_rotation = self.hook_geometrics_handler.calculate_pre_position_with_z_offset(trajectory_in_worldframe = self.trajectory, z_off_in_mm_in_workframe = 200)
         self.get_logger().warn(f"Starte Bewegung zu Pre-Position: Pose: {self.hook_pre_position}, Rotation: {self.hook_pre_rotation}")
