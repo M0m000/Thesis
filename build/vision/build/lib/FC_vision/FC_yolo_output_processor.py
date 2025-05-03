@@ -211,14 +211,19 @@ class YoloPostprocessor(Node):
             
             if hook_mask is not None and hook_mask != []:
                 uv_hook = self.calc_mean_of_mask(hook_mask, title='hook')
+                # uv_hook = self.calc_center_between_extreme_points(hook_mask, title='hook')
             else:
                 uv_hook = None
             if tip_mask is not None and tip_mask != []:
-                uv_tip = self.calc_mean_of_mask(tip_mask, title='tip')
+                # uv_tip = self.calc_mean_of_mask(tip_mask, title='tip')
+                # uv_tip = self.calc_center_between_extreme_points(tip_mask, title='tip')
+                uv_tip = self.get_top_edge_midpoint_fast(tip_mask, top_fraction=0.25)
             else:
                 uv_tip = None
             if lowpoint_mask is not None and lowpoint_mask != []:
-                uv_lowpoint = self.calc_mean_of_mask(lowpoint_mask, title='lowpoint')
+                # uv_lowpoint = self.calc_mean_of_mask(lowpoint_mask, title='lowpoint')
+                # uv_lowpoint = self.calc_center_between_extreme_points(lowpoint_mask, title='lowpoint')
+                uv_lowpoint = self.get_top_edge_midpoint_fast(lowpoint_mask, top_fraction=0.25)
             else:
                 uv_lowpoint = None
 
@@ -241,6 +246,71 @@ class YoloPostprocessor(Node):
             cx = np.mean(xs)
             cy = np.mean(ys)
             return [cx, cy]
+        
+
+    def calc_center_between_extreme_points(self, mask, title='none'):
+        """
+        Berechnet den Mittelpunkt der Verbindungslinie zwischen den beiden
+        am weitesten voneinander entfernten Punkten auf der Maskenkontur.
+        """
+        if mask is None or mask == []:
+            return None
+
+        mask = np.array(mask, dtype=np.uint8)
+        contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+        if not contours or len(contours[0]) < 2:
+            return None
+
+        contour = contours[0]
+        max_dist = 0
+        p1, p2 = None, None
+
+        for i in range(len(contour)):
+            for j in range(i + 1, len(contour)):
+                d = np.linalg.norm(contour[i][0] - contour[j][0])
+                if d > max_dist:
+                    max_dist = d
+                    p1 = contour[i][0]
+                    p2 = contour[j][0]
+
+        if p1 is None or p2 is None:
+            return None
+        midpoint = ((p1 + p2) / 2).astype(float)
+        return [midpoint[0], midpoint[1]]
+    
+
+    def get_top_edge_midpoint_fast(self, mask, top_fraction=0.3):
+        if mask is None or mask == []:
+            return None
+    
+        mask = np.array(mask, dtype=np.uint8)
+        contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    
+        if not contours or len(contours[0]) < 2:
+            return None
+    
+        contour = contours[0].reshape(-1, 2)
+    
+        min_y = np.min(contour[:, 1])
+        max_y = np.max(contour[:, 1])
+        y_thresh = min_y + (max_y - min_y) * top_fraction
+    
+        # Manuelle Filterung – schneller als Numpy-Maskierung
+        top_x = []
+        top_y = []
+        for pt in contour:
+            if pt[1] <= y_thresh:
+                top_x.append(pt[0])
+                top_y.append(pt[1])
+    
+        if len(top_x) < 2:
+            return None
+    
+        cx = sum(top_x) / len(top_x)
+        cy = sum(top_y) / len(top_y)
+        return [float(cx), float(cy)]
+
     
 
     def find_hooks_shape(self, hooks_dict, num_interpolation_points=5):
