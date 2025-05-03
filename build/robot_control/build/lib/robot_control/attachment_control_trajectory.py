@@ -64,9 +64,11 @@ class AttachmentTrajectory(Node):
         ## self.tcp_in_tfc_trans = [23.0, -30.56898406, 314.7201606]       # Bauteil in Schunk
         # self.tcp_in_tfc_trans = [22.02, -28.3429, 314.16]           # Bauteil in Schunk - Korrektur
 
-        self.tcp_in_tfc_trans = [26.8098082, -31.51782424, 314.29054815]
-        self.tcp_in_tfc_tans = [24.91212972, -26.14683785, 317.22246788]
-        self.tcp_in_tfc_trans = [27.67008193, -30.57720838, 315.57233133]
+        # self.tcp_in_tfc_trans = [26.8098082, -31.51782424, 314.29054815]
+        # self.tcp_in_tfc_trans = [24.91212972, -26.14683785, 317.22246788]
+        # self.tcp_in_tfc_trans = [27.67008193, -30.57720838, 315.57233133]
+        # self.tcp_in_tfc_trans = [23.25405724, -22.79749883, 318.30550869]
+        self.tcp_in_tfc_trans = [27.68748979, -29.70161769, 316.58973164]
         self.tcp_in_tfc_rot = [2.54749762, 10.38190283, 37.52598048]
 
         # Korrekturwerte (Offsets)
