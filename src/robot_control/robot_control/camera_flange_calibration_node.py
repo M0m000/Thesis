@@ -6,6 +6,8 @@ import cv2
 import numpy as np
 from FC.FC_frame_handler import FrameHandler
 
+
+
 class CameraFlangeCalibration(Node):
     def __init__(self):
         super().__init__('camera_flange_calibration_node')
@@ -77,8 +79,9 @@ class CameraFlangeCalibration(Node):
                 continue
 
             # Roboterflanschpose abrufen
-            pos, rpy = self.get_current_flange_pose()  # <- DU IMPLEMENTIERST DAS
-            R_flange = self.rpy_to_matrix(rpy)
+            pos, rpy, T_tfc_in_worldframe = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
+            self.get_logger().info(f"Flanschpose: pos={pos}, rpy={rpy}")
+            R_flange = T_tfc_in_worldframe[:3, :3]
 
             # Speichern
             self.all_flange_poses.append((R_flange, np.array(pos)))
@@ -89,23 +92,6 @@ class CameraFlangeCalibration(Node):
 
         self.compute_hand_eye()
 
-    def get_current_flange_pose(self):
-        pos, rpy = self.frame_handler.get_system_frame(name = 'tfc', ref = 'world')
-        self.get_logger().info(f"Flanschpose: pos={pos}, rpy={rpy}")
-        return pos, rpy
-
-    def rpy_to_matrix(self, rpy):
-        roll, pitch, yaw = rpy
-        Rx = np.array([[1, 0, 0],
-                       [0, np.cos(roll), -np.sin(roll)],
-                       [0, np.sin(roll),  np.cos(roll)]])
-        Ry = np.array([[np.cos(pitch), 0, np.sin(pitch)],
-                       [0, 1, 0],
-                       [-np.sin(pitch), 0, np.cos(pitch)]])
-        Rz = np.array([[np.cos(yaw), -np.sin(yaw), 0],
-                       [np.sin(yaw),  np.cos(yaw), 0],
-                       [0, 0, 1]])
-        return Rz @ Ry @ Rx
 
     def compute_hand_eye(self):
         R_gripper2base = [R for R, t in self.all_flange_poses]
@@ -124,13 +110,11 @@ class CameraFlangeCalibration(Node):
             R_target2cam, t_target2cam,
             method=cv2.CALIB_HAND_EYE_TSAI
         )
+        self.get_logger().info(f"Translation Kamera → Flansch (Meter): {t_cam2gripper.flatten()}")
+        self.get_logger().info(f"Rotation Kamera → Flansch (Matrix):\n{R_cam2gripper}")
+        np.savez("/home/mo/Thesis/src/robot_control/robot_control/handeye_result.npz", R=R_cam2gripper, t=t_cam2gripper)
 
-        self.get_logger().info("✅ Hand-Eye-Kalibrierung abgeschlossen.")
-        self.get_logger().info(f"📍 Translation Kamera → Flansch (Meter): {t_cam2gripper.flatten()}")
-        self.get_logger().info(f"🔄 Rotation Kamera → Flansch (Matrix):\n{R_cam2gripper}")
 
-        # Optional: speichern
-        np.savez("handeye_result.npz", R=R_cam2gripper, t=t_cam2gripper)
 
 def main(args=None):
     rclpy.init(args=args)
@@ -140,3 +124,4 @@ def main(args=None):
     finally:
         node.destroy_node()
         rclpy.shutdown()
+
