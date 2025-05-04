@@ -12,7 +12,6 @@ class CameraFlangeCalibration(Node):
     def __init__(self):
         super().__init__('camera_flange_calibration_node')
 
-        # Bild-Abo
         self.subscription = self.create_subscription(
             Image,
             'vcnanoz/image_raw',
