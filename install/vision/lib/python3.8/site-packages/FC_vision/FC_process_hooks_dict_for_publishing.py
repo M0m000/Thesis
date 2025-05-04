@@ -78,7 +78,9 @@ def process_hook_for_publisher(hook_name, hook_data, dual_camera_setup = False, 
             hook.conf_tip = float(hook_data['conf_tip'])
 
             # UV Koordinaten von Tip
-            hook.uv_tip = UV(u=hook_data['uv_tip'][0], v = hook_data['uv_tip'][1])
+            if hook_data['uv_tip'] is not None:
+                hook.uv_tip = UV(u=hook_data['uv_tip'][0], v = hook_data['uv_tip'][1])
+
             if dual_camera_setup == True:
                 hook.uv_tip_img2 = UV(u = hook_data['uv_tip_img2'][0], 
                                       v = hook_data['uv_tip_img2'][1])
@@ -109,7 +111,9 @@ def process_hook_for_publisher(hook_name, hook_data, dual_camera_setup = False, 
             hook.conf_lowpoint = float(hook_data['conf_lowpoint'])
 
             # UV Koordinaten von Lowpoint
-            hook.uv_lowpoint = UV(u=hook_data['uv_lowpoint'][0], v=hook_data['uv_lowpoint'][1])
+            if hook_data['uv_lowpoint'] is not None:
+                hook.uv_lowpoint = UV(u=hook_data['uv_lowpoint'][0], v=hook_data['uv_lowpoint'][1])
+    
             if dual_camera_setup == True:
                 hook.uv_lowpoint_img2 = UV(u = hook_data['uv_lowpoint_img2'][0], 
                                            v = hook_data['uv_lowpoint_img2'][1])

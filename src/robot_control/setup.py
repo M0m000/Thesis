@@ -51,7 +51,8 @@ setup(
             'ik_example_node = robot_control.ik_example_node:main',
             'tcp_calibration = robot_control.tcp_calibration:main',
             'trajectory_recorder = robot_control.trajectory_recorder:main',
-            'trajectory_frame_converter = robot_control.trajectory_frame_converter:main'
+            'trajectory_frame_converter = robot_control.trajectory_frame_converter:main',
+            'camera_flange_calibration_node = robot_control.camera_flange_calibration_node:main'
         ],
     },
 )

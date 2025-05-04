@@ -3,8 +3,8 @@ import numpy as np
 import glob
 
 # Checkerboard-Abmessungen
-CHECKERBOARD = (8, 6)  # Anzahl der inneren Ecken (nx, ny)
-square_size = 25.0      # Größe eines Quadrats in der gewünschten Maßeinheit (z. B. Millimeter)
+CHECKERBOARD = (9, 6)  # Anzahl der inneren Ecken (nx, ny)
+square_size = 10.0      # Größe eines Quadrats in der gewünschten Maßeinheit (z. B. Millimeter)
 
 # Termination criteria für die Subpixelgenauigkeit
 criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)

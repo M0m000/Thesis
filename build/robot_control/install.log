@@ -104,6 +104,7 @@
 /home/mo/Thesis/install/robot_control/lib/robot_control/MoveTcpAlongAxis_action_client
 /home/mo/Thesis/install/robot_control/lib/robot_control/attachment_control_servoing
 /home/mo/Thesis/install/robot_control/lib/robot_control/attachment_control_trajectory
+/home/mo/Thesis/install/robot_control/lib/robot_control/camera_flange_calibration_node
 /home/mo/Thesis/install/robot_control/lib/robot_control/define_working_frame_needle
 /home/mo/Thesis/install/robot_control/lib/robot_control/hook_data_listener
 /home/mo/Thesis/install/robot_control/lib/robot_control/ibvs_2d

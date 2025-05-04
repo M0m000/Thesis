@@ -16,13 +16,13 @@ class CameraFlangeCalibration(Node):
             Image,
             'vcnanoz/image_raw',
             self.image_callback,
-            10)
+            1)
         self.bridge = CvBridge()
         self.latest_image = None
 
         # Checkerboard-Parameter
-        self.checkerboard_size = (8, 6)    # Anzahl Innenpunkte (Ecken)
-        self.square_size = 0.025           # Quadratgröße in Metern (25 mm)
+        self.checkerboard_size = (9, 6)    # Anzahl Innenpunkte (Ecken)
+        self.square_size = 0.01           # Quadratgröße in Metern (25 mm)
 
         # Kalibrierdaten laden
         calib_data = np.load("/home/mo/Thesis/calibration_data.npz")
@@ -41,11 +41,13 @@ class CameraFlangeCalibration(Node):
 
 
     def image_callback(self, msg):
-        self.latest_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
+        self.latest_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='passthrough')
 
 
     def run(self):
         while rclpy.ok():
+            rclpy.spin_once(self, timeout_sec=0.1)  # <<< das ist entscheidend
+
             user_input = input("Drücke Enter zum Erfassen, 'q' zum Beenden: ")
             if user_input.strip().lower() == 'q':
                 break
@@ -107,11 +109,17 @@ class CameraFlangeCalibration(Node):
         R_cam2gripper, t_cam2gripper = cv2.calibrateHandEye(
             R_gripper2base, t_gripper2base,
             R_target2cam, t_target2cam,
-            method=cv2.CALIB_HAND_EYE_TSAI
+            method=cv2.CALIB_HAND_EYE_PARK
         )
         self.get_logger().info(f"Translation Kamera → Flansch (Meter): {t_cam2gripper.flatten()}")
         self.get_logger().info(f"Rotation Kamera → Flansch (Matrix):\n{R_cam2gripper}")
         np.savez("/home/mo/Thesis/src/robot_control/robot_control/handeye_result.npz", R=R_cam2gripper, t=t_cam2gripper)
+
+        np.savez("/home/mo/Thesis/handeye_input_data.npz",
+         R_gripper2base=R_gripper2base,
+         t_gripper2base=t_gripper2base,
+         R_target2cam=R_target2cam,
+         t_target2cam=t_target2cam)
 
 
 
