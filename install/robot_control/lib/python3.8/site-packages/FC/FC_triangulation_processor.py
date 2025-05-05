@@ -13,17 +13,19 @@ class StereoTriangulationProcessor:
         self.calib_data = np.load(calib_path)
         self.intrinsics = self.calib_data['mtx']     # Kameramatrix (mit Brennweite Verzerrung etc.)
 
+        '''
         f_x = 0.006/3.45e-6
         f_y = 0.006/3.45e-6
         c_x = img_width / 2
         c_y = img_height / 2
-        '''
+        
         self.intrinsics = np.array([[f_x, 0, c_x], 
                                     [0, f_y, c_y], 
                                     [0, 0, 1]])
-        '''
+        
         self.intrinsics[0][2] = c_x
         self.intrinsics[1][2] = c_y
+        '''
         
         self.dist = self.calib_data['dist']          # Verzerrungskoeffizienten
         self.rvecs = self.calib_data['rvecs']        # Rotationsvektoren - UNBENUTZT
@@ -51,7 +53,7 @@ class StereoTriangulationProcessor:
         self.t_baseline = self.T_baseline[:3, 3].reshape(3, 1)
         return self.R_baseline, self.t_baseline, self.T_baseline
     
-
+    '''
     def calculate_projection_matrices(self, intrinsics = None, R_baseline = None, t_baseline = None):
         """
         Berechnet die Projektionsmatrizen für Cam2 (Referenz) und Cam1
@@ -65,15 +67,43 @@ class StereoTriangulationProcessor:
         self.projection_matrix_cam1 = intrinsics @ np.hstack((R_baseline, t_baseline))
         self.projection_matrix_cam2 = intrinsics @ np.hstack((np.eye(3), np.zeros((3, 1))))
         return self.projection_matrix_cam1, self.projection_matrix_cam2
+    '''
+
+    def calculate_projection_matrices(self, intrinsics=None, R_baseline=None, t_baseline=None):
+        """
+        Berechnet Projektionsmatrizen mit normierten Kamera-Koordinaten.
+        (K wird nicht mehr verwendet, da Punkte bereits normiert)
+        """
+        if R_baseline is None:
+            R_baseline = self.R_baseline
+        if t_baseline is None:
+            t_baseline = self.t_baseline
+
+        # Nur Geometrie – keine intrinsics
+        self.projection_matrix_cam1 = np.hstack((R_baseline, t_baseline))
+        self.projection_matrix_cam2 = np.hstack((np.eye(3), np.zeros((3, 1))))
+        return self.projection_matrix_cam1, self.projection_matrix_cam2
+
     
 
+    '''
     def prepare_point_for_triangulation(self, point):
         """
         Entzerrt den Punkt gemäß der geschätzten Verzerrungsparameter des Objektivs
         """
         point = np.array(point, dtype=np.float64).reshape(1, 2)  # shape: (1, 2)
         point = cv2.undistortPoints(point, self.intrinsics, self.dist, None, self.intrinsics)
-        return point.reshape(2, 1)  # OpenCV erwartet (2, N)        
+        return point.reshape(2, 1)  # OpenCV erwartet (2, N)
+    '''
+
+    def prepare_point_for_triangulation(self, point):
+        """
+        Entzerrt den Punkt und gibt normierte Bildkoordinaten (in Kamera-Raum) zurück.
+        """
+        point = np.array(point, dtype=np.float64).reshape(1, 1, 2)
+        undistorted = cv2.undistortPoints(point, self.intrinsics, self.dist)
+        return undistorted.reshape(2, 1)
+
     
 
     def triangulate_point(self, projection_matrix_cam1 = None, projection_matrix_cam2 = None, point_1_uv = [0.0, 0.0], point_2_uv = [0.0, 0.0]):

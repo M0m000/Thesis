@@ -24,7 +24,7 @@ class ScanBarHorizontalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_horizontal_triangulation')
 
-        startpoint_trans_in_workframe = [0.0, -400.0, 20.0]      # [-30.0, -400.0, -30.0] für Typ A
+        startpoint_trans_in_workframe = [0.0, -400.0, 40.0]      # [-30.0, -400.0, -30.0] für Typ A
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
 
         self.node_shutdown_flag = False
@@ -295,7 +295,7 @@ class ScanBarHorizontalTriangulation(Node):
                 ##### Nächster Prozessschritt
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 as initial Reference Point>")
                 self.upcoming_process_step = "extract_hook_2_as_init_ref"
-                self.start_timer_for_step(3.0)    # Timer starten
+                self.start_timer_for_step(5.0)    # Timer starten
                 self.process_step = "waiting_for_timer"
 
 
@@ -400,7 +400,7 @@ class ScanBarHorizontalTriangulation(Node):
                 else:
                     self.get_logger().info("Done! -> next process step <Extract Hook 3 as Horizontal Point>")
                     self.upcoming_process_step = "extract_hook_3_as_horizontal_point"
-                    self.start_timer_for_step(3.0)    # Timer starten
+                    self.start_timer_for_step(5.0)    # Timer starten
                     self.process_step = "waiting_for_timer"
         
 
@@ -510,6 +510,7 @@ class ScanBarHorizontalTriangulation(Node):
                 else:
                     self.xyz_path_points_in_camframe = None
                     self.path_point_triangulation_successful = False
+                    time_token_ppoint_triangulation = None
                     self.get_logger().error(f"No path points available for triangulation!")
                 
                 ##### Nächster Prozessschritt
@@ -681,7 +682,7 @@ class ScanBarHorizontalTriangulation(Node):
 
                 self.get_logger().info("Done! -> next process step <Extract Hook 2 as Horizontal Point>")
                 self.upcoming_process_step = "extract_hook_3_as_horizontal_point"
-                self.start_timer_for_step(3.0)    # Timer starten
+                self.start_timer_for_step(5.0)    # Timer starten
                 self.process_step = "waiting_for_timer"
 
 

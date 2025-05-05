@@ -43,7 +43,7 @@ class YOLOv8InferenceNode(Node):
         self.publish_output_imgs = self.get_parameter('publish_output_imgs').get_parameter_value().bool_value
         self.declare_parameter('filter_alpha', 1.0)
         self.filter_alpha = self.get_parameter('filter_alpha').get_parameter_value().double_value
-        self.declare_parameter('filter_windowsize', 10)
+        self.declare_parameter('filter_windowsize', 20)
         self.filter_windowsize = self.get_parameter('filter_windowsize').get_parameter_value().integer_value
         self.declare_parameter('filter_bbsize_tolerance', 0.05)
         self.filter_bbsize_tolerance = self.get_parameter('filter_bbsize_tolerance').get_parameter_value().double_value

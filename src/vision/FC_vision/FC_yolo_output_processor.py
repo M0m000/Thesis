@@ -216,7 +216,7 @@ class YoloPostprocessor(Node):
             if tip_mask is not None and tip_mask != []:
                 # uv_tip = self.calc_mean_of_mask(tip_mask, title='tip')
                 # uv_tip = self.calc_center_between_extreme_points(tip_mask, title='tip')
-                uv_tip = self.get_top_edge_midpoint_fast(tip_mask, top_fraction=0.25)
+                uv_tip = self.get_top_edge_midpoint(tip_mask, top_fraction=0.25)
                 # if uv_tip is None:
                 #     uv_tip = self.calc_center_between_extreme_points(tip_mask, title='tip')
             else:
@@ -224,7 +224,7 @@ class YoloPostprocessor(Node):
             if lowpoint_mask is not None and lowpoint_mask != []:
                 # uv_lowpoint = self.calc_mean_of_mask(lowpoint_mask, title='lowpoint')
                 uv_lowpoint = self.calc_center_between_extreme_points(lowpoint_mask, title='lowpoint')
-                # uv_lowpoint = self.get_top_edge_midpoint_fast(lowpoint_mask, top_fraction=0.25)
+                # uv_lowpoint = self.get_top_edge_midpoint(lowpoint_mask, top_fraction=0.25)
                 # if uv_lowpoint is None:
                 #     uv_lowpoint = self.calc_center_between_extreme_points(lowpoint_mask, title='lowpoint')
             else:
@@ -283,7 +283,7 @@ class YoloPostprocessor(Node):
         return [midpoint[0], midpoint[1]]
     
 
-    def get_top_edge_midpoint_fast(self, mask, top_fraction=0.3):
+    def get_top_edge_midpoint(self, mask, top_fraction=0.3):
         if mask is None or mask == []:
             return None
     
@@ -351,7 +351,7 @@ class YoloPostprocessor(Node):
                 '''
 
                 # Verbreitern des Skeletts
-                skeleton_thickness = 1
+                skeleton_thickness = 3
                 kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (skeleton_thickness, skeleton_thickness))  # oder eine andere Größe wählen
                 skeleton_mask = cv2.dilate(skeleton_mask, kernel, iterations=1)
 
