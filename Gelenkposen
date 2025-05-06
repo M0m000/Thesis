@@ -57,4 +57,8 @@ rot:
 ref: 'tfc'"
 
 
+ros2 service call /kr/robot/get_system_frame kr_msgs/srv/GetSystemFrame "name: 'tfc'
+ref: 'world'"
+
+
 
