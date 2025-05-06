@@ -4,7 +4,7 @@ import glob
 
 # Checkerboard-Abmessungen
 CHECKERBOARD = (9, 6)  # Anzahl der inneren Ecken (nx, ny)
-square_size = 10.0      # Größe eines Quadrats in der gewünschten Maßeinheit (z. B. Millimeter)
+square_size = 7.9      # Größe eines Quadrats in der gewünschten Maßeinheit (z. B. Millimeter)
 
 # Termination criteria für die Subpixelgenauigkeit
 criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
