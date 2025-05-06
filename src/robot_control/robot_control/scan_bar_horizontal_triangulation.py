@@ -24,7 +24,7 @@ class ScanBarHorizontalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_horizontal_triangulation')
 
-        startpoint_trans_in_workframe = [0.0, -400.0, 40.0]      # [-30.0, -400.0, -30.0] für Typ A
+        startpoint_trans_in_workframe = [0.0, -410.0, 30.0]      # [-30.0, -400.0, -30.0] für Typ A
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
 
         self.node_shutdown_flag = False
