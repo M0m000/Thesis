@@ -249,6 +249,9 @@ class HookGeometricsHandler(Node):
             self.get_logger().error(f"No Hook Num selected!")
             return None
         else:
+            if end_ppoint is None:
+                end_ppoint = len(self.path_points_in_workframe)
+            
             trajectory = []
             self._extract_hook_of_global_scan_dict(hook_num=hook_num)
             self._calculate_hook_line()
@@ -267,7 +270,7 @@ class HookGeometricsHandler(Node):
             pre_pose = (pre_pose_translation, rotation)
 
             # Trajektorie für alle Path Points berechnen
-            for idx in range(len(self.path_points_in_workframe)):
+            for idx in range(end_ppoint):
                 # Wenn wir nicht den letzten Punkt haben
                 if idx < (len(self.path_points_in_workframe) - 1):
                     ppoint_1 = self.path_points_in_workframe[idx]
@@ -304,6 +307,9 @@ class HookGeometricsHandler(Node):
             self.get_logger().error(f"No Hook Num selected!")
             return None
         else:
+            if end_ppoint is None:
+                end_ppoint = len(self.path_points_in_workframe)
+
             trajectory = []
             self._extract_hook_of_global_scan_dict(hook_num=hook_num)
             self._calculate_hook_line()
@@ -337,7 +343,7 @@ class HookGeometricsHandler(Node):
             pre_pose = (pre_pose_translation, rotation_weighted)
 
             # Trajektorie für alle Path Points berechnen
-            for idx in range(len(self.path_points_in_workframe)):
+            for idx in range(end_ppoint):
                 # Wenn wir nicht den letzten Punkt haben
                 if idx < (len(self.path_points_in_workframe) - 1):
                     ppoint_1 = self.path_points_in_workframe[idx]

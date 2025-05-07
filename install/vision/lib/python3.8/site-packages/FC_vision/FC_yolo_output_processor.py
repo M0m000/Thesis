@@ -211,7 +211,14 @@ class YoloPostprocessor(Node):
             
             if hook_mask is not None and hook_mask != []:
                 uv_hook = self.calc_mean_of_mask(hook_mask, title='hook')
-                uv_lowpoint = max(hook_mask, key=lambda p: p[1])            # für Hakenmodell D
+
+                coords = np.argwhere(np.array(hook_mask) == 1)  # y,x Koordinaten
+                if coords.size > 0:
+                    # Finde Pixel mit größtem y-Wert (am weitesten unten)
+                    lowest_idx = np.argmax(coords[:, 0])  # Index mit größtem y
+                    y, x = coords[lowest_idx]
+                    # in der Spalte von x soll der mittelwert aller y-Werte mit 1 in der Binärmaske genommen werden
+                    uv_lowpoint = [float(x), float(y)]  # (x, y) als floats
             else:
                 uv_hook = None
                 uv_lowpoint = None
