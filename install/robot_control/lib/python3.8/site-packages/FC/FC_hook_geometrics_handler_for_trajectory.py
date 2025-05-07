@@ -187,10 +187,27 @@ class HookGeometricsHandler(Node):
         p_traj_init = p_tip + self.distance_to_tip_in_mm * p_dir
         self.hook_line['p_traj_init_in_workframe'] = p_traj_init
         return p_traj_init
+    
+
+
+    def _rpy_to_direction_vector(self, rpy):
+        """
+        Berechnet den Richtungsvektor des Haken anhand der Roll-Pitch-Yaw Winkel
+        """
+        R = self.frame_handler.calculate_rot_matrix(rot = rpy)
+
+        # Die y-Achse der Lochebene ist die Hakengerade (Richtungsvektor)
+        direction_vector = R[:, 1]
+
+        # normieren
+        abs = np.linalg.norm(direction_vector)
+        direction_vector = direction_vector / abs if abs != 0 else direction_vector
+        direction_vector = direction_vector * (-1)
+        return direction_vector
 
 
 
-    def plan_path_point_trajectory(self, hook_num=None):
+    def plan_path_point_trajectory(self, hook_type='a', hook_num=None):
         """
         Ansatz 1 - Pfad-Trajektorie
         Berechnet die vollständige Trajektorie für das Einfädeln entlang der Hakenform
@@ -205,7 +222,8 @@ class HookGeometricsHandler(Node):
 
             # Berechne Init-Punkt (mit Abstand zur Spitze)
             self.get_logger().info("Calculating initial trajectory point...")
-            p_traj_init = self._calculate_init_trajectory_point()
+            rotation_optimal_in_workframe = self.optim_rot_list_in_workframe[['a', 'b', 'c', 'd'].index(hook_type)]
+            p_traj_init = self._calculate_init_trajectory_point(dir_in_workframe = self._rpy_to_direction_vector(rpy = rotation_optimal_in_workframe))
 
             # Berechne Anfangspunkt der Trajektorie
             self._calculate_hook_line(p0_in_workframe=self.tip_pos_in_workframe, p1_in_workframe=p_traj_init)
@@ -240,7 +258,7 @@ class HookGeometricsHandler(Node):
     
 
 
-    def plan_trajectory_with_fixed_orientation(self, hook_num = None, end_ppoint = None):
+    def plan_trajectory_with_fixed_orientation(self, hook_type = 'a', hook_num = None, end_ppoint = None):
         """
         Ansatz 2 - Berechnung von Trajektorie mit fester Orientierung
             -> Orientierung kommt von Gerade Spitze -> Senke
@@ -262,7 +280,8 @@ class HookGeometricsHandler(Node):
             
             # Berechne Init-Punkt (mit Abstand zur Spitze)
             self.get_logger().info("Calculating initial trajectory point...")
-            p_traj_init = self._calculate_init_trajectory_point()
+            rotation_optimal_in_workframe = self.optim_rot_list_in_workframe[['a', 'b', 'c', 'd'].index(hook_type)]
+            p_traj_init = self._calculate_init_trajectory_point(dir_in_workframe = self._rpy_to_direction_vector(rpy = rotation_optimal_in_workframe))
 
             # Berechne Anfangspunkt der Trajektorie
             self._calculate_hook_line(p0_in_workframe=self.tip_pos_in_workframe, p1_in_workframe=p_traj_init)
@@ -335,7 +354,8 @@ class HookGeometricsHandler(Node):
             
             # Berechne Init-Punkt (mit Abstand zur Spitze)
             self.get_logger().info("Calculating initial trajectory point...")
-            p_traj_init = self._calculate_init_trajectory_point()
+            rotation_optimal_in_workframe = self.optim_rot_list_in_workframe[['a', 'b', 'c', 'd'].index(hook_type)]
+            p_traj_init = self._calculate_init_trajectory_point(dir_in_workframe = self._rpy_to_direction_vector(rpy = rotation_optimal_in_workframe))
 
             # Berechne Anfangspunkt der Trajektorie
             self._calculate_hook_line(p0_in_workframe=self.tip_pos_in_workframe, p1_in_workframe=p_traj_init)
@@ -399,7 +419,8 @@ class HookGeometricsHandler(Node):
             
             # Berechne Init-Punkt (mit Abstand zur Spitze)
             self.get_logger().info("Calculating initial trajectory point...")
-            p_traj_init = self._calculate_init_trajectory_point()
+            rotation_optimal_in_workframe = self.optim_rot_list_in_workframe[['a', 'b', 'c', 'd'].index(hook_type)]
+            p_traj_init = self._calculate_init_trajectory_point(dir_in_workframe = self._rpy_to_direction_vector(rpy = rotation_optimal_in_workframe))
 
             # Berechne Anfangspunkt der Trajektorie
             self._calculate_hook_line(p0_in_workframe = self.tip_pos_in_workframe, p1_in_workframe = p_traj_init)
