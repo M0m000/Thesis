@@ -211,8 +211,10 @@ class YoloPostprocessor(Node):
             
             if hook_mask is not None and hook_mask != []:
                 uv_hook = self.calc_mean_of_mask(hook_mask, title='hook')
+                uv_lowpoint = max(hook_mask, key=lambda p: p[1])            # für Hakenmodell D
             else:
                 uv_hook = None
+                uv_lowpoint = None
             if tip_mask is not None and tip_mask != []:
                 # uv_tip = self.calc_mean_of_mask(tip_mask, title='tip')
                 # uv_tip = self.calc_center_between_extreme_points(tip_mask, title='tip')
@@ -221,6 +223,7 @@ class YoloPostprocessor(Node):
                 #     uv_tip = self.calc_center_between_extreme_points(tip_mask, title='tip')
             else:
                 uv_tip = None
+            '''
             if lowpoint_mask is not None and lowpoint_mask != []:
                 # uv_lowpoint = self.calc_mean_of_mask(lowpoint_mask, title='lowpoint')
                 uv_lowpoint = self.calc_center_between_extreme_points(lowpoint_mask, title='lowpoint')
@@ -229,6 +232,7 @@ class YoloPostprocessor(Node):
                 #     uv_lowpoint = self.calc_center_between_extreme_points(lowpoint_mask, title='lowpoint')
             else:
                 uv_lowpoint = None
+            '''
 
             hooks_dict_processed[key]['uv_hook'] = uv_hook
             hooks_dict_processed[key]['uv_tip'] = uv_tip
