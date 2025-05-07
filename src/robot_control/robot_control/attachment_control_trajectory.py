@@ -55,8 +55,8 @@ class AttachmentTrajectory(Node):
             i += 1
         self.get_logger().info("Service SetSystemFrame available!")
 
-        # self.tcp_in_tfc_trans = [2.80207228, -1.02330715, 238.72358785]
-        # self.tcp_in_tfc_rot = [0.0, 0.0, 30.0]
+        self.tcp_in_tfc_trans = [-2.80207228, 3.02330715, 238.72358785]   # 3D-Schablone in Schunk
+        self.tcp_in_tfc_rot = [0.0, 0.0, 30.0]
 
         # self.tcp_in_tfc_trans = [-1.78034352, 0.33577707, 105.41798404]   # 3D-Schablone groß
         # self.tcp_in_tfc_rot = [0.0, 0.0, 0.0]
@@ -68,15 +68,15 @@ class AttachmentTrajectory(Node):
         # self.tcp_in_tfc_trans = [24.91212972, -26.14683785, 317.22246788]
         # self.tcp_in_tfc_trans = [27.67008193, -30.57720838, 315.57233133]
         # self.tcp_in_tfc_trans = [23.25405724, -22.79749883, 318.30550869]
-        self.tcp_in_tfc_trans = [27.68748979, -29.70161769, 316.58973164]
-        self.tcp_in_tfc_rot = [2.54749762, 10.38190283, 37.52598048]
+        # self.tcp_in_tfc_trans = [27.68748979, -29.70161769, 316.58973164]
+        # self.tcp_in_tfc_rot = [2.54749762, 10.38190283, 37.52598048]
 
         # Korrekturwerte (Offsets)
-        self.offset_traj_1 = [-0.252, 3.7856, 2.8829]
-        self.offset_traj_4 = [-0.4267, 4.5007, 2.6056]
+        # self.offset_traj_1 = [-0.252, 3.7856, 2.8829]
+        # self.offset_traj_4 = [-0.4267, 4.5007, 2.6056]
 
-        tool_pos = np.array(self.tcp_in_tfc_trans) + np.array(self.offset_traj_1)
-        tool_pos = tool_pos.tolist()
+        # tool_pos = np.array(self.tcp_in_tfc_trans) + np.array(self.offset_traj_1)
+        # tool_pos = tool_pos.tolist()
         tool_pos = self.tcp_in_tfc_trans
 
         # Tool setzen
