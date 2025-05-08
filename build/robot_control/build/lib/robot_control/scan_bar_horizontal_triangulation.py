@@ -27,8 +27,10 @@ class ScanBarHorizontalTriangulation(Node):
         startpoint_trans_in_workframe = [0.0, -410.0, 30.0]      # Modell A und C
         # startpoint_trans_in_workframe = [0.0, -390.0, 20.0]      # Modell B
         # startpoint_trans_in_workframe = [-30.0, -395.0, -40.0]      # Modell D
-
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
+
+        # startpoint_trans_in_workframe = [100.0, -390.0, 20.0]      # Modell B mit Rotation
+        # startpoint_rot_in_workframe = [0.0, -20.0, 0.0]
 
         self.node_shutdown_flag = False
         self.baseline_error = False
