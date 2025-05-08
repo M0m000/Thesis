@@ -298,7 +298,7 @@ class AttachmentTrajectory(Node):
         # for k in range(len(self.trajectory)):
         #     print("Trajektorie im Hauptprogramm: ", self.trajectory[k])
         
-        self.act_trajectory_point_num = 0
+        self.act_trajectory_point_num = 0   
         
         # Init-3D-Trajektorie-Plot
         self.trajectory_3d_plotter.process_trajectory_for_plot(trajectory = self.trajectory)
