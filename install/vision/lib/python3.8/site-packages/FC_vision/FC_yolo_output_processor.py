@@ -230,7 +230,7 @@ class YoloPostprocessor(Node):
                 #     uv_tip = self.calc_center_between_extreme_points(tip_mask, title='tip')
             else:
                 uv_tip = None
-            
+            '''
             if lowpoint_mask is not None and lowpoint_mask != []:
                 # uv_lowpoint = self.calc_mean_of_mask(lowpoint_mask, title='lowpoint')
                 uv_lowpoint = self.calc_center_between_extreme_points(lowpoint_mask, title='lowpoint')
@@ -239,7 +239,7 @@ class YoloPostprocessor(Node):
                 #     uv_lowpoint = self.calc_center_between_extreme_points(lowpoint_mask, title='lowpoint')
             else:
                 uv_lowpoint = None
-            
+            '''
 
             hooks_dict_processed[key]['uv_hook'] = uv_hook
             hooks_dict_processed[key]['uv_tip'] = uv_tip
