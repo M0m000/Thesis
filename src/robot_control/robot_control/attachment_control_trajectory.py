@@ -294,7 +294,7 @@ class AttachmentTrajectory(Node):
         save_trajectory_to_csv(self.trajectory_3, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_3.csv')
         save_trajectory_to_csv(self.trajectory_4, '/home/mo/Thesis/Evaluation/Trajektorientests/trajectory_4.csv')
 
-        self.trajectory = self.trajectory_2
+        self.trajectory = self.trajectory_3
         # for k in range(len(self.trajectory)):
         #     print("Trajektorie im Hauptprogramm: ", self.trajectory[k])
         
