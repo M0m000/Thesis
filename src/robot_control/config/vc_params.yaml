@@ -31,7 +31,7 @@ vc_2_img_receiver_node:
 yolov8_inference_node:
   ros__parameters:
     yolov8_inference_node: "/home/mo/Thesis/YoloV8_InstanceSeg/runs/train/medium/full_set/20250118_1640/weights/best.pt"
-    confidence_threshold: 0.2
+    confidence_threshold: 0.5
     do_preprocessing: False
     show_cam_img: False
     show_output_img: True
@@ -46,7 +46,7 @@ yolov8_inference_node:
 yolov8_dualcam_inference_node:
   ros__parameters:
     yolov8_inference_node: "/home/mo/Thesis/YoloV8_InstanceSeg/runs/train/medium/full_set/20250119_1052/weights/best.pt"
-    confidence_threshold: 0.2
+    confidence_threshold: 0.5
     do_preprocessing: False
     show_cam_img: False
     show_output_img: True
