@@ -121,3 +121,5 @@ class HookFilterMovingAvg:
 
     def set_enabled(self, enabled: bool):
         self.enabled = enabled
+        self.reset()
+    
