@@ -15,7 +15,7 @@ vc_1_img_receiver_node:
     img_width: 896
     img_height: 480
     rgb_stream: False
-    show_img: False
+    show_img: True
     take_pictures: False
     rotate_image: 90
     
@@ -25,7 +25,7 @@ vc_2_img_receiver_node:
     port: 2002
     img_width: 896
     img_height: 480
-    show_img: False
+    show_img: True
     take_pictures: False
 
 yolov8_inference_node:
