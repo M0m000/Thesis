@@ -193,7 +193,7 @@ def plot_combined_skeletons(hooks_dict):
                 combined_mask = cv2.bitwise_or(combined_mask, resized_mask)
 
     skeleton_img_color = cv2.cvtColor(combined_mask, cv2.COLOR_GRAY2BGR)
-
+    '''
     # Jetzt alle Punkte für alle Haken einzeichnen
     for key in hooks_dict:
         path_points = hooks_dict[key].get('path_points', None)
@@ -226,4 +226,5 @@ def plot_combined_skeletons(hooks_dict):
             if 0 <= x < max_width and 0 <= y < max_height:
                 cv2.circle(skeleton_img_color, (x, y), radius = 8, color=(0, 255, 0), thickness=-1)
             break
+    '''
     return skeleton_img_color
