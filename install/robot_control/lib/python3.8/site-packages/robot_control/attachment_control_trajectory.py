@@ -61,7 +61,7 @@ class AttachmentTrajectory(Node):
         # self.tcp_in_tfc_trans = [-1.78034352, 0.33577707, 105.41798404]   # 3D-Schablone groß
         # self.tcp_in_tfc_rot = [0.0, 0.0, 0.0]
 
-        self.tcp_in_tfc_trans = [27.68748979, -29.70161769, 316.58973164]   # Bauteil in Schunk
+        self.tcp_in_tfc_trans = [26.68748979, -23.70161769, 316.58973164]   # Bauteil in Schunk   [27.68748979, -29.70161769, 316.58973164]
         self.tcp_in_tfc_rot = [2.54749762, 10.38190283, 37.52598048]
 
         # Korrekturwerte (Offsets)
@@ -83,12 +83,12 @@ class AttachmentTrajectory(Node):
 
         # Instanz DOKUMENTATION Plot-Fkt
         self.doc_plot = DocPlotAttachment(plot_save_filename='/home/mo/Thesis/src/robot_control/robot_control/data/controller_output_logging', hook_num = self.hook_num)
-        self.doc_plot.initialize_plot()
+        # self.doc_plot.initialize_plot()
 
         # Instanz 3D Plot
         self.trajectory_3d_plotter = TrajectoryPlotter(interp_step_size = 0.05,
                                                        hole_width = 8, hole_height = 12,
-                                                       hook_num = self.hook_num, hook_type = self.hook_type, trajectory_process = 4)
+                                                       hook_num = self.hook_num, hook_type = self.hook_type, trajectory_process = 2)
 
         # Instanz Frame Handler
         self.frame_handler = FrameHandler(node_name = 'frame_handler_for_dummy_node')
@@ -388,21 +388,22 @@ class AttachmentTrajectory(Node):
             key = sys.stdin.read(1)
             if key == 'n':
                 ### Plot aktualisieren mit aktuellem Trajektorien-Punkt
-                plot_act_traj_rectangles = self.trajectory_3d_plotter._compute_rectangle_corners(trajectory = [self.trajectory[self.act_trajectory_point_num]])
-                self.trajectory_3d_plotter.update_3d_plot(act_traj_rectangle = plot_act_traj_rectangles[0])
+                if self.act_trajectory_point_num < len(self.trajectory):
+                    plot_act_traj_rectangles = self.trajectory_3d_plotter._compute_rectangle_corners(trajectory = [self.trajectory[self.act_trajectory_point_num]])
+                    self.trajectory_3d_plotter.update_3d_plot(act_traj_rectangle = plot_act_traj_rectangles[0])
 
                 ### Anfahren der Pose
                 if self.act_trajectory_point_num == 0:      # wenn es sich um den ersten Trajektorienpunkt handelt
                     initial_point = self.trajectory[self.act_trajectory_point_num]
                     self.target_pos_trans_in_worldframe = initial_point[0]
                     self.target_pos_rot_in_worldframe = initial_point[1]
-                    self.prepare_and_update_plot()      # Plot updaten
+                    # self.prepare_and_update_plot()      # Plot updaten
 
                 if self.act_trajectory_point_num < len(self.trajectory):        # wenn es sich um Path Point handelt
                     act_point = self.trajectory[self.act_trajectory_point_num]
                     self.target_pos_trans_in_worldframe = act_point[0]
                     self.target_pos_rot_in_worldframe = act_point[1]
-                    self.prepare_and_update_plot()      # Plot updaten
+                    # self.prepare_and_update_plot()      # Plot updaten
 
                     self.get_logger().warn(f"Moving to current trajectory point {self.act_trajectory_point_num}")
                     self.get_logger().warn(f"Pose: {self.target_pos_trans_in_worldframe}, Rotation: {self.target_pos_rot_in_worldframe}")
@@ -424,8 +425,8 @@ class AttachmentTrajectory(Node):
                     self.get_logger().warn("Movement done!")
                 else:
                     # Plots speichern
-                    self.doc_plot.save_plot_as_png()
-                    self.trajectory_3d_plotter.save_html(filename = '/home/mo/Thesis/src/robot_control/robot_control/data/controller_output_logging')
+                    # self.doc_plot.save_plot_as_png()
+                    # self.trajectory_3d_plotter.save_html(filename = '/home/mo/Thesis/src/robot_control/robot_control/data/controller_output_logging')
                     
                     # Ausgabe: Ende
                     self.get_logger().info("Reached last trajectory point!")

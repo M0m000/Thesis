@@ -211,7 +211,7 @@ class YoloPostprocessor(Node):
             if hook_mask is not None and hook_mask != []:
                 uv_hook = self.calc_mean_of_mask(hook_mask, title='hook')
 
-                '''
+                
                 ########## Senke Berechnung für Modell D
                 coords = np.argwhere(np.array(hook_mask) == 1)  # y,x Koordinaten
                 if coords.size > 0:
@@ -220,20 +220,20 @@ class YoloPostprocessor(Node):
                     y, x = coords[lowest_idx]
                     # in der Spalte von x soll der mittelwert aller y-Werte mit 1 in der Binärmaske genommen werden
                     uv_lowpoint = [float(x), float(y)]  # (x, y) als floats
-                '''
+                
 
             else:
                 uv_hook = None
                 uv_lowpoint = None
             if tip_mask is not None and tip_mask != []:
-                # uv_tip = self.calc_mean_of_mask(tip_mask, title='tip')
-                uv_tip = self.calc_center_between_extreme_points(tip_mask, title='tip')
-                # uv_tip = self.get_top_edge_midpoint(tip_mask, top_fraction=0.25)
+                # uv_tip = self.calc_mean_of_mask(tip_mask, title='tip')                        # nicht nutzbar (A)
+                # uv_tip = self.calc_center_between_extreme_points(tip_mask, title='tip')       # nicht nutzbar
+                uv_tip = self.get_top_edge_midpoint(tip_mask, top_fraction=0.25)                # Modell A
                 # if uv_tip is None:
                 #     uv_tip = self.calc_center_between_extreme_points(tip_mask, title='tip')
             else:
                 uv_tip = None
-            
+            '''
             ########## Senke Berechnung für Modelle A-C
             if lowpoint_mask is not None and lowpoint_mask != []:
                 uv_lowpoint = self.calc_mean_of_mask(lowpoint_mask, title='lowpoint')         # Senke für Modell A
@@ -243,7 +243,7 @@ class YoloPostprocessor(Node):
                 #     uv_lowpoint = self.calc_center_between_extreme_points(lowpoint_mask, title='lowpoint')
             else:
                 uv_lowpoint = None
-            
+            '''
 
             hooks_dict_processed[key]['uv_hook'] = uv_hook
             hooks_dict_processed[key]['uv_tip'] = uv_tip

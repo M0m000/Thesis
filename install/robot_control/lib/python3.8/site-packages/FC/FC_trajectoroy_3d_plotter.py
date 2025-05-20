@@ -201,8 +201,8 @@ class TrajectoryPlotter:
                 zaxis_title='Z',
                 aspectmode='data',
                 camera=dict(
-                    up=dict(x=0, y=-1., z=0),
-                    eye=dict(x=-0.3, y=-0.3, z=-2)
+                    up=dict(x=0, y=0, z=1),  # Z-Achse zeigt nach oben
+                    eye=dict(x=-1.2, y=-1.2, z=0.3)  # schräg von oben vorne
                 )
             ),
             title=f'Haken {self.hook_num} (Modell {self.hook_type}), Trajektorien-Ansatz {self.trajectory_process}',

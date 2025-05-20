@@ -62,7 +62,7 @@ class HookGeometricsHandler(Node):
         optim_rotation_a_in_workframe = [0.0, 45.0, 45.0]
         optim_rotation_b_in_workframe = [0.0, 0.0, 25.0]
         optim_rotation_c_in_workframe = [0.0, 0.0, 45.0]
-        optim_rotation_d_in_workframe = [0.0, 0.0, 15.0]
+        optim_rotation_d_in_workframe = [0.0, 0.0, 5.0]
 
         self.optim_rot_list_in_workframe = [optim_rotation_a_in_workframe, 
                                             optim_rotation_b_in_workframe, 
@@ -251,9 +251,13 @@ class HookGeometricsHandler(Node):
             trajectory.insert(0, pre_pose)
 
             # Optional: Ausreißer und Rotation glätten
-            # trajectory_smoothed = self._smooth_trajectory(trajectory = trajectory, z_thresh = 2.3)
+            trajectory = self._smooth_trajectory(trajectory = trajectory, z_thresh = 2.3)
+            
+            # Trajektorie glätten durch Regression
+            trajectory = self._regress_and_smooth_trajectory(trajectory=trajectory, degree=3)
+
             # Rotationen glätten durch Polynom-Regression n=3
-            # trajectory = self._polynomial_regression_trajectory_rotations(trajectory = trajectory_smoothed, degree = 1)
+            trajectory = self._polynomial_regression_trajectory_rotations(trajectory = trajectory, degree = 1)
             return trajectory
     
 
@@ -285,8 +289,8 @@ class HookGeometricsHandler(Node):
 
             # Berechne Anfangspunkt der Trajektorie
             self._calculate_hook_line(p0_in_workframe=self.tip_pos_in_workframe, p1_in_workframe=p_traj_init)
-            pre_pose_translation, _ = self._calculate_trajectory_point_along_hook_line()
-            pre_pose = (pre_pose_translation, rotation)
+            pre_pose_translation, pre_pose_rotation = self._calculate_trajectory_point_along_hook_line()
+            pre_pose = (pre_pose_translation, pre_pose_rotation)
 
             # Trajektorie für alle Path Points berechnen
             for idx in range(end_ppoint):
@@ -306,9 +310,15 @@ class HookGeometricsHandler(Node):
                 trajectory.append((trajectory_point_translation, rotation))
             
             # Ausreißer auf Translation und Rotationen entfernen
-            # trajectory = self._smooth_trajectory(trajectory = trajectory, z_thresh = 2.3)
+            trajectory = self._smooth_trajectory(trajectory = trajectory, z_thresh = 2.3)
+            
+            # Trajektorie glätten durch Regression
+            trajectory = self._regress_and_smooth_trajectory(trajectory=trajectory, degree=3)
+
             # Rotationen glätten durch Polynom-Regression n=3 -> WIRD HIER NICHT BENÖTIGT, DA ROTATION IMMER GLEICH
             # trajectory = self._polynomial_regression_trajectory_rotations(trajectory = trajectory_smoothed, degree = 3)
+
+            # Vorposition hinzufügen
             trajectory.insert(0, pre_pose)
             return trajectory
         
@@ -380,9 +390,14 @@ class HookGeometricsHandler(Node):
                 trajectory.append((trajectory_point_translation, rotation_weighted))
             
             # Ausreißer auf Translation und Rotationen entfernen
-            # trajectory = self._smooth_trajectory(trajectory = trajectory, z_thresh = 2.3)
+            trajectory = self._smooth_trajectory(trajectory = trajectory, z_thresh = 2.3)
+
+            # Trajektorie glätten durch Regression
+            trajectory = self._regress_and_smooth_trajectory(trajectory=trajectory, degree=3)
+
             # Rotationen glätten durch Polynom-Regression n=3 -> WIRD HIER NICHT BENÖTIGT, DA ROTATION IMMER GLEICH
-            # trajectory = self._polynomial_regression_trajectory_rotations(trajectory = trajectory_smoothed, degree = 3)
+            trajectory = self._polynomial_regression_trajectory_rotations(trajectory = trajectory, degree = 3)
+            
             trajectory.insert(0, pre_pose)
             return trajectory
         
@@ -451,6 +466,7 @@ class HookGeometricsHandler(Node):
             # trajectory = self._smooth_trajectory(trajectory = trajectory, z_thresh = 2.3)
             # Rotationen glätten durch Polynom-Regression n=3 -> WIRD HIER NICHT BENÖTIGT, DA ROTATION IMMER GLEICH
             # trajectory = self._polynomial_regression_trajectory_rotations(trajectory = trajectory_smoothed, degree = 3)
+            
             trajectory.insert(0, pre_pose)
             return trajectory
 
@@ -479,6 +495,38 @@ class HookGeometricsHandler(Node):
         smoothed_rotations = np.stack(smoothed_rotations, axis=1)
         new_trajectory = [(pos, rot) for pos, rot in zip(positions, smoothed_rotations)]
         return new_trajectory
+    
+
+
+    def _regress_and_smooth_trajectory(self, trajectory, degree=3):
+        """
+        Wendet eine Regression auf Positions- und Rotationsdaten an,
+        um die Trajektorie zu glätten.
+        """
+        positions = np.array([p[0] for p in trajectory])
+        rotations = np.array([p[1] for p in trajectory])
+
+        n_points = len(positions)
+        x_vals = np.arange(n_points)
+
+        smoothed_positions = []
+        smoothed_rotations = []
+
+        for i in range(3):  # x, y, z
+            coeffs = np.polyfit(x_vals, positions[:, i], degree)
+            smoothed = np.polyval(coeffs, x_vals)
+            smoothed_positions.append(smoothed)
+
+        for i in range(3):  # roll, pitch, yaw
+            coeffs = np.polyfit(x_vals, rotations[:, i], degree)
+            smoothed = np.polyval(coeffs, x_vals)
+            smoothed_rotations.append(smoothed)
+
+        smoothed_positions = np.stack(smoothed_positions, axis=1)
+        smoothed_rotations = np.stack(smoothed_rotations, axis=1)
+
+        return list(zip(smoothed_positions, smoothed_rotations))
+
     
 
 

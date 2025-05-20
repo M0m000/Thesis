@@ -24,15 +24,15 @@ class ScanBarHorizontalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_horizontal_triangulation')
 
-        
+        '''
         ## Modell A ohne Kamera-Rotation (wird hier nicht benötigt)
         startpoint_trans_in_workframe = [-10.0, -410.0, 30.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
-        
+        '''
 
         '''
         ## Modell B ohne Kamera-Rotation
-        startpoint_trans_in_workframe = [-10.0, -390.0, 0.0]        # [0.0, -410.0, 30.0]
+        startpoint_trans_in_workframe = [-15.0, -400.0, 20.0]        # [0.0, -410.0, 30.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
         '''
 
@@ -50,15 +50,21 @@ class ScanBarHorizontalTriangulation(Node):
 
         '''
         ## Modell C ohne Kamera-Rotation
-        startpoint_trans_in_workframe = [-10.0, -390.0, 10.0]
+        startpoint_trans_in_workframe = [-10.0, -410.0, 30.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
         '''
 
         '''
+        ## Modell C ohne Kamera-Rotation
+        startpoint_trans_in_workframe = [-10.0, -390.0, 10.0]
+        startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
+        '''
+
+        
         ## Modell D ohne Kamera-Rotation (wird hier nicht benötigt)
         startpoint_trans_in_workframe = [-25.0, -395.0, -40.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
-        '''
+        
 
 
         self.node_shutdown_flag = False
@@ -862,9 +868,9 @@ class ScanBarHorizontalTriangulation(Node):
                 if self.yolo_hooks_dict['hook_1']['uv_hook'][0] < (self.img_width * 0.8):
                     self.new_hook_in_picture = False
             else:
-                if self.yolo_hooks_dict['hook_1']['uv_hook'][0] > (self.img_width * 0.9):
+                if self.yolo_hooks_dict['hook_1']['uv_hook'][0] > (self.img_width * 0.8):
                     self.new_hook_in_picture = True
-                if self.yolo_hooks_dict['hook_1']['uv_hook'][0] < (self.img_width * 0.9):
+                if self.yolo_hooks_dict['hook_1']['uv_hook'][0] < (self.img_width * 0.8):
                     self.new_hook_in_picture = False
             
             ### Prüfen auf linken Randbereich -> Detektion, ob alter Haken weg
