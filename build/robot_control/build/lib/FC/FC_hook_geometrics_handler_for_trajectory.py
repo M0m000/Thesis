@@ -286,6 +286,7 @@ class HookGeometricsHandler(Node):
             self.get_logger().info("Calculating initial trajectory point...")
             rotation_optimal_in_workframe = self.optim_rot_list_in_workframe[['a', 'b', 'c', 'd'].index(hook_type)]
             p_traj_init = self._calculate_init_trajectory_point(dir_in_workframe = self._rpy_to_direction_vector(rpy = rotation_optimal_in_workframe))
+            p_traj_init = self._calculate_init_trajectory_point(dir_in_workframe = self.hook_line['dir_in_workframe'])
 
             # Berechne Anfangspunkt der Trajektorie
             self._calculate_hook_line(p0_in_workframe=self.tip_pos_in_workframe, p1_in_workframe=p_traj_init)
