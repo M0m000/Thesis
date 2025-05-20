@@ -24,15 +24,42 @@ class ScanBarHorizontalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_horizontal_triangulation')
 
-        # startpoint_trans_in_workframe = [-10.0, -410.0, 30.0]       # Modell A
-        startpoint_trans_in_workframe = [0.0, -410.0, 30.0]         # Modell B
-        # startpoint_trans_in_workframe = [-10.0, -390.0, 30.0]       # Modell C
-        # startpoint_trans_in_workframe = [-25.0, -395.0, -40.0]      # Modell D
         
+        ## Modell A ohne Kamera-Rotation (wird hier nicht benötigt)
+        startpoint_trans_in_workframe = [-10.0, -410.0, 30.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
+        
 
-        # startpoint_trans_in_workframe = [100.0, -390.0, 20.0]      # Modell B mit seitlicher Kamera-Rotation
-        # startpoint_rot_in_workframe = [0.0, -20.0, 0.0]
+        '''
+        ## Modell B ohne Kamera-Rotation
+        startpoint_trans_in_workframe = [-10.0, -390.0, 0.0]        # [0.0, -410.0, 30.0]
+        startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
+        '''
+
+        '''
+        ## Modell B mit Kamera-Rotation seitlich
+        startpoint_trans_in_workframe = [100.0, -390.0, 20.0]
+        startpoint_rot_in_workframe = [0.0, -20.0, 0.0]
+        '''
+
+        '''
+        ## Modell B mit Kamera-Rotation hochwärts
+        startpoint_trans_in_workframe = [-15.0, -490.0, -10.0]
+        startpoint_rot_in_workframe = [-15.0, 0.0, 0.0]
+        '''
+
+        '''
+        ## Modell C ohne Kamera-Rotation
+        startpoint_trans_in_workframe = [-10.0, -390.0, 10.0]
+        startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
+        '''
+
+        '''
+        ## Modell D ohne Kamera-Rotation (wird hier nicht benötigt)
+        startpoint_trans_in_workframe = [-25.0, -395.0, -40.0]
+        startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
+        '''
+
 
         self.node_shutdown_flag = False
         self.baseline_error = False

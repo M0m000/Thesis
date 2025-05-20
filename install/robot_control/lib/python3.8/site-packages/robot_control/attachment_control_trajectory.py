@@ -61,7 +61,7 @@ class AttachmentTrajectory(Node):
         # self.tcp_in_tfc_trans = [-1.78034352, 0.33577707, 105.41798404]   # 3D-Schablone groß
         # self.tcp_in_tfc_rot = [0.0, 0.0, 0.0]
 
-        self.tcp_in_tfc_trans = [27.68748979, -29.70161769, 316.58973164]
+        self.tcp_in_tfc_trans = [27.68748979, -29.70161769, 316.58973164]   # Bauteil in Schunk
         self.tcp_in_tfc_rot = [2.54749762, 10.38190283, 37.52598048]
 
         # Korrekturwerte (Offsets)

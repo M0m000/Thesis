@@ -188,7 +188,7 @@ ros2 launch robot_control scan_bar_launch.py
 
 ### **Attachment Trajectory Controller** Node <br>
 ```bash
-ros2 run robot_control attachment_control_trajectory --ros-args -p hook_num:=10 -p distance_to_tip_in_mm:=10.0
+ros2 run robot_control attachment_control_trajectory --ros-args -p distance_to_tip_in_mm:=10.0 -p hook_type:='a' -p hook_num:=7
 ```
 >Enthält das Anfahren und genaue Positionieren (durch eine Regelung) an der Hakenspitze. Die Orientierung wird so ausgeregelt, dass die Lochebene des Bauteils senkrecht von der verlängerten Hakengerade durchstoßen wird. Somit kann ein ortogonales Einfädeln erfolgen. Nutzt die FC-trajectory-controller Funktion zur Regelung.<br>
 <br>
