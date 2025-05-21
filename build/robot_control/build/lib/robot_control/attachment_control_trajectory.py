@@ -274,8 +274,8 @@ class AttachmentTrajectory(Node):
         
         # Trajektorie als Liste von Punkten, wobei jeder Punkt ein Tupel aus (Translation, Rotation) ist
         self.trajectory_1 = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num = self.hook_num)
-        self.trajectory_2 = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num, hook_type = self.hook_type, end_ppoint = 8)
-        self.trajectory_3 = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, hook_type = self.hook_type, beta = 0.5, end_ppoint = 8)
+        self.trajectory_2 = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num, hook_type = self.hook_type, end_ppoint = 7)
+        self.trajectory_3 = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, hook_type = self.hook_type, beta = 0.5, end_ppoint = 7)
         self.trajectory_4 = self.hook_geometrics_handler.plan_optimized_trajectory(hook_num = self.hook_num, hook_type = self.hook_type, beta = 0, attachment_distance_in_mm = 5)
 
         # Korrektur der Trajektorien um empirisch ermittellte Offsets
