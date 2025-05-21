@@ -246,7 +246,7 @@ class ScanBarHorizontalTriangulation(Node):
         time.sleep(1)
         ###########################################################
 
-        self.scan_process_start_time = time.perf_counter()
+        self.scan_process_start_time = time.perf_counter()        # Zeitmessung des Scans
         self.scan_process_end_time = None
     
 
@@ -735,6 +735,7 @@ class ScanBarHorizontalTriangulation(Node):
             
             ##### Nächster Prozessschritt
             self.get_logger().info("Done! -> next process step <Finish>")
+            self.scan_process_end_time = time.perf_counter()        # neue Zeitmessung reiner Scan
             self.process_step = "move_back_to_init"
 
 
@@ -770,7 +771,7 @@ class ScanBarHorizontalTriangulation(Node):
             """
             self.get_logger().info("Scan finished!")
             self.node_shutdown_flag = True
-            self.scan_process_end_time = time.perf_counter()
+            # self.scan_process_end_time = time.perf_counter()      # alte Zeitmessung mit Schlussbewegung
             self.get_logger().warn(f"Time token for full scan process: {((self.scan_process_end_time - self.scan_process_start_time) / 60):.2f}min")
 
 
@@ -875,20 +876,31 @@ class ScanBarHorizontalTriangulation(Node):
             
             ### Prüfen auf linken Randbereich -> Detektion, ob alter Haken weg
             if self.handling_last_two_hooks:
+                if 'hook_3' in self.yolo_hooks_dict:
+                    x_left_hook = self.yolo_hooks_dict['hook_3']['uv_hook'][0]
+                    if x_left_hook < (self.img_width * 0.1) and x_left_hook != 0:
+                        self.hook_in_left_area = True
+                    if x_left_hook > (self.img_width * 0.1) and x_left_hook != 0:
+                        self.hook_in_left_area = False
+                else:
+                    time.sleep(0.005)
                 # x_left_hook = self.yolo_hooks_dict['hook_3']['uv_hook'][0]
-                x_left_hook = self.yolo_hooks_dict[(list(self.yolo_hooks_dict.keys())[-3])]['uv_hook'][0]
+                # x_left_hook = self.yolo_hooks_dict[(list(self.yolo_hooks_dict.keys())[-3])]['uv_hook'][0]
+
             elif self.handling_last_hook:
-                if 'hook_2' not in self.yolo_hooks_dict:
-                    time.sleep(0.001)
-                x_left_hook = self.yolo_hooks_dict['hook_2']['uv_hook'][0]
+                if 'hook_2' in self.yolo_hooks_dict:
+                    x_left_hook = self.yolo_hooks_dict['hook_2']['uv_hook'][0]
+                    if x_left_hook < (self.img_width * 0.1) and x_left_hook != 0:
+                        self.hook_in_left_area = True
+                    if x_left_hook > (self.img_width * 0.1) and x_left_hook != 0:
+                        self.hook_in_left_area = False
+                else:
+                    time.sleep(0.005)
                 # x_left_hook = self.yolo_hooks_dict[(list(self.yolo_hooks_dict.keys())[-2])]['uv_hook'][0]
             else:
                 x_left_hook = self.yolo_hooks_dict[(list(self.yolo_hooks_dict.keys())[0])]['uv_hook'][0]
-            
-            if x_left_hook < (self.img_width * 0.1) and x_left_hook != 0:
-                self.hook_in_left_area = True
-            if x_left_hook > (self.img_width * 0.1) and x_left_hook != 0:
-                self.hook_in_left_area = False
+                if x_left_hook > (self.img_width * 0.1) and x_left_hook != 0:
+                    self.hook_in_left_area = False
 
             
     
