@@ -24,11 +24,11 @@ class ScanBarHorizontalTriangulation(Node):
     def __init__(self):
         super().__init__('scan_bar_horizontal_triangulation')
 
-        '''
+        
         ## Modell A ohne Kamera-Rotation (wird hier nicht benötigt)
         startpoint_trans_in_workframe = [-10.0, -410.0, 30.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
-        '''
+        
 
         '''
         ## Modell B ohne Kamera-Rotation
@@ -60,11 +60,11 @@ class ScanBarHorizontalTriangulation(Node):
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
         '''
 
-        
+        '''
         ## Modell D ohne Kamera-Rotation (wird hier nicht benötigt)
         startpoint_trans_in_workframe = [-25.0, -395.0, -40.0]
         startpoint_rot_in_workframe = [0.0, 0.0, 0.0]
-        
+        '''
 
 
         self.node_shutdown_flag = False

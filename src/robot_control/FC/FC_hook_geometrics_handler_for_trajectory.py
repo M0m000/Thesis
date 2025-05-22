@@ -148,6 +148,109 @@ class HookGeometricsHandler(Node):
         return trans_xyz, rot_rpy
     
 
+    ##### Für Kundentermin Entwurf Loslassen
+    def calculate_balance_rotation(self):
+        """Berechnet die Pose für die Ausgleichsbewegung 1 -> senkrechtes Aufstellen der Ebene"""
+        x_new_in_workframe = [0.0, 1.0, 0.0]        # x-Achse muss nach unten zeigen in WORK-Frame (y-Achse von WORK)
+
+        ## alte Berechnung für z-Achse in WORK-Frame
+        # Richtungsvektor dir berechnen
+        dir_in_workframe = np.array(self.hook_line['p1_in_workframe']) - np.array(self.hook_line['p0_in_workframe'])
+        abs = np.linalg.norm(dir_in_workframe)
+        dir_in_workframe = dir_in_workframe / abs if abs != 0 else dir_in_workframe
+
+        # neue x-TCP-Achse als Projektion des Richtungsvektors auf die xz-Ebene
+        dir_xz_in_workframe = np.array([dir_in_workframe[0], 0, dir_in_workframe[2]])
+        abs = np.linalg.norm(dir_xz_in_workframe)
+        x_new = dir_xz_in_workframe / abs if abs != 0 else dir_xz_in_workframe
+        # print("x-Achse in WORK (Projektion auf xz-Ebene): ", x_new)
+
+        # neue y-TCP-Achse entspricht zunächst der y-Achse von WORK
+        y_new = [0.0, 1.0, 0.0]
+        # print("Temporaere y-Achse in WORK (senkrechter Schnitt): ", y_new)
+
+        # neue z-Achse ist das Kreuzprodukt von x und y -> bleibt fest (lange Seite des Langlochs)
+        z_new = np.cross(x_new, y_new)
+        abs = np.linalg.norm(z_new)
+        z_new = z_new / abs if abs != 0 else z_new
+        # print("z-Achse in WORK (rechtshaendiges Kreuzprodukt): ", z_new)
+
+        y_new = np.cross(z_new, x_new_in_workframe)
+        abs = np.linalg.norm(y_new)
+        y_new = y_new / abs if abs != 0 else y_new
+
+        # Aufbau der homogenen Transformation für TCP_new in WORK
+        T_tcp_new_in_workframe = np.eye(4)
+        T_tcp_new_in_workframe[:3, 0] = x_new_in_workframe
+        T_tcp_new_in_workframe[:3, 1] = y_new
+        T_tcp_new_in_workframe[:3, 2] = z_new
+        T_tcp_new_in_workframe[:3, 3] = np.array(self.hook_line['p1_in_workframe'])
+
+        # Transformation in WORLD
+        T_work_in_worldframe = self.frame_handler.get_work_in_worldframe()
+        T_tcp_new_in_worldframe = T_work_in_worldframe @ T_tcp_new_in_workframe
+
+        # RPY extrahieren
+        rot_rpy = R.from_matrix(T_tcp_new_in_worldframe[:3, :3]).as_euler('xyz', degrees = True).tolist()
+        return rot_rpy
+    
+
+
+    def calculate_drop_rotation(self):
+        """Berechnet die zweite Ausgleichsbewegung (Schwerpunkt unter Aufhängepunkt) für das Loslassen des Werkstücks"""
+
+        ## alte Berechnung der ersten Ausgleichsbewegung
+        x_new_in_workframe = [0.0, 1.0, 0.0]        # x-Achse muss nach unten zeigen in WORK-Frame (y-Achse von WORK)
+
+        ## alte Berechnung für z-Achse in WORK-Frame
+        # Richtungsvektor dir berechnen
+        dir_in_workframe = np.array(self.hook_line['p1_in_workframe']) - np.array(self.hook_line['p0_in_workframe'])
+        abs = np.linalg.norm(dir_in_workframe)
+        dir_in_workframe = dir_in_workframe / abs if abs != 0 else dir_in_workframe
+
+        # neue x-TCP-Achse als Projektion des Richtungsvektors auf die xz-Ebene
+        dir_xz_in_workframe = np.array([dir_in_workframe[0], 0, dir_in_workframe[2]])
+        abs = np.linalg.norm(dir_xz_in_workframe)
+        x_new = dir_xz_in_workframe / abs if abs != 0 else dir_xz_in_workframe
+        # print("x-Achse in WORK (Projektion auf xz-Ebene): ", x_new)
+
+        # neue y-TCP-Achse entspricht zunächst der y-Achse von WORK
+        y_new = [0.0, 1.0, 0.0]
+        # print("Temporaere y-Achse in WORK (senkrechter Schnitt): ", y_new)
+
+        # neue z-Achse ist das Kreuzprodukt von x und y -> bleibt fest (lange Seite des Langlochs)
+        z_new = np.cross(x_new, y_new)
+        abs = np.linalg.norm(z_new)
+        z_new = z_new / abs if abs != 0 else z_new
+        # print("z-Achse in WORK (rechtshaendiges Kreuzprodukt): ", z_new)
+
+        y_new = np.cross(z_new, x_new_in_workframe)
+        abs = np.linalg.norm(y_new)
+        y_new = y_new / abs if abs != 0 else y_new
+
+
+        ## Berechnung der zweiten Ausgleichsbewegung
+        x_new_in_workframe = [0.0, 0.0, 1.0]
+        z_new = np.cross(x_new_in_workframe, y_new)
+        abs = np.linalg.norm(z_new)
+
+        # Aufbau der homogenen Transformation für TCP_new in WORK
+        T_tcp_new_in_workframe = np.eye(4)
+        T_tcp_new_in_workframe[:3, 0] = x_new_in_workframe
+        T_tcp_new_in_workframe[:3, 1] = y_new
+        T_tcp_new_in_workframe[:3, 2] = z_new
+        T_tcp_new_in_workframe[:3, 3] = np.array(self.hook_line['p1_in_workframe'])
+
+        # Transformation in WORLD
+        T_work_in_worldframe = self.frame_handler.get_work_in_worldframe()
+        T_tcp_new_in_worldframe = T_work_in_worldframe @ T_tcp_new_in_workframe
+
+        # RPY extrahieren
+        rot_rpy = R.from_matrix(T_tcp_new_in_worldframe[:3, :3]).as_euler('xyz', degrees = True).tolist()
+        return rot_rpy
+    #####
+    
+
 
     def _calculate_hook_line(self, p0_in_workframe = None, p1_in_workframe = None):
         """

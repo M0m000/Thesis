@@ -274,8 +274,8 @@ class AttachmentTrajectory(Node):
         
         # Trajektorie als Liste von Punkten, wobei jeder Punkt ein Tupel aus (Translation, Rotation) ist
         self.trajectory_1 = self.hook_geometrics_handler.plan_path_point_trajectory(hook_num = self.hook_num)
-        self.trajectory_2 = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num, hook_type = self.hook_type, end_ppoint = 7)
-        self.trajectory_3 = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, hook_type = self.hook_type, beta = 0.5, end_ppoint = 7)
+        self.trajectory_2 = self.hook_geometrics_handler.plan_trajectory_with_fixed_orientation(hook_num = self.hook_num, hook_type = self.hook_type, end_ppoint = 8)
+        self.trajectory_3 = self.hook_geometrics_handler.plan_trajectory_with_optimized_orientation(hook_num = self.hook_num, hook_type = self.hook_type, beta = 0.5, end_ppoint = 8)
         self.trajectory_4 = self.hook_geometrics_handler.plan_optimized_trajectory(hook_num = self.hook_num, hook_type = self.hook_type, beta = 0, attachment_distance_in_mm = 5)
 
         # Korrektur der Trajektorien um empirisch ermittellte Offsets
@@ -431,6 +431,52 @@ class AttachmentTrajectory(Node):
                     # Ausgabe: Ende
                     self.get_logger().info("Reached last trajectory point!")
                 self.act_trajectory_point_num += 1
+            
+            # wenn 'k' gedrueckt, mache erste Ausgleichsbewegung (Lochebene senkrecht aufstellen)
+            if key == 'k':
+                self.target_pos_rot_in_worldframe = self.hook_geometrics_handler.calculate_balance_rotation()
+                self.get_logger().warn(f"Moving to balance point...")
+                self.get_logger().warn(f"Pose: {self.target_pos_trans_in_worldframe}, Rotation: {self.target_pos_rot_in_worldframe}")
+
+                self.movement_done = False
+                self.movement_done = self.move_lin_client.call_move_linear_service(
+                    pos = self.target_pos_trans_in_worldframe,
+                    rot = self.target_pos_rot_in_worldframe,
+                    ref = 0,
+                    ttype = 0,
+                    tvalue = 30.0,
+                    bpoint = 0,
+                    btype = 0,
+                    bvalue = 100.0,
+                    sync = 0.0,
+                    chaining = 0)
+                while self.movement_done == False:
+                    self.get_logger().warn("Movement...")
+                self.get_logger().warn("Movement done!")
+
+            '''
+            # wenn 'l' gedrueckt, mache zweite Ausgleichsbewegung (Schwerpunkt unter Aufhängepunkt)
+            if key == 'l':
+                self.target_pos_rot_in_worldframe = self.hook_geometrics_handler.calculate_drop_rotation()
+                self.get_logger().warn(f"Moving to balance point...")
+                self.get_logger().warn(f"Pose: {self.target_pos_trans_in_worldframe}, Rotation: {self.target_pos_rot_in_worldframe}")
+
+                self.movement_done = False
+                self.movement_done = self.move_lin_client.call_move_linear_service(
+                    pos = self.target_pos_trans_in_worldframe,
+                    rot = self.target_pos_rot_in_worldframe,
+                    ref = 0,
+                    ttype = 0,
+                    tvalue = 30.0,
+                    bpoint = 0,
+                    btype = 0,
+                    bvalue = 100.0,
+                    sync = 0.0,
+                    chaining = 0)
+                while self.movement_done == False:
+                    self.get_logger().warn("Movement...")
+                self.get_logger().warn("Movement done!")
+            '''
 
 
 
